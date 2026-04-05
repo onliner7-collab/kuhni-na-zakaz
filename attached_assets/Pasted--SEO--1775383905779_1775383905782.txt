@@ -1,0 +1,510 @@
+Ты работаешь над проектом коммерческого SEO-сайта по продаже кухонь на заказ. Действуй автономно и строго по инструкции ниже.
+
+ГЛАВНАЯ ЦЕЛЬ:
+Сначала создай внутри проекта всю обязательную документацию, затем опирайся на неё как на источник истины, затем поэтапно строй проект, коммить изменения и пушь их в GitHub, если remote и права на push доступны.
+
+ОБЯЗАТЕЛЬНЫЙ ПОРЯДОК РАБОТЫ:
+
+ШАГ 1. ПРОВЕРКА GIT/GITHUB
+1. Проверь git status.
+2. Проверь, инициализирован ли git.
+3. Проверь, есть ли remote origin.
+4. Если git не инициализирован — инициализируй.
+5. Если remote отсутствует — продолжай локально, но всё равно создай документацию и структуру проекта.
+6. Если remote есть и push возможен — используй поэтапные commit + push.
+
+ШАГ 2. СОЗДАНИЕ ПРОЕКТНОЙ ДОКУМЕНТАЦИИ
+Создай папку:
+- project-docs
+
+Создай и заполни файлы:
+- README.md
+- project-docs/PROJECT_OVERVIEW.md
+- project-docs/TECHNICAL_SPEC.md
+- project-docs/AI_RULES.md
+- project-docs/CONTENT_RULES.md
+- project-docs/SEO_STRATEGY.md
+- project-docs/UI_UX_GUIDE.md
+- project-docs/ADMIN_PANEL_SPEC.md
+- project-docs/ROUTES_MAP.md
+- project-docs/COMPONENT_LIBRARY.md
+- project-docs/CONTENT_MODELS.md
+- project-docs/CHANGELOG.md
+- project-docs/HANDOFF.md
+- project-docs/FEATURE_BACKLOG.md
+- project-docs/DEPLOYMENT.md
+- project-docs/TEST_CHECKLIST.md
+- project-docs/REPLIT_EXECUTION_PLAN.md
+
+ПРАВИЛО:
+Пока эти файлы не созданы, код сайта не писать.
+
+КОНТЕКСТ ПРОЕКТА, КОТОРЫЙ НУЖНО ЗАЛОЖИТЬ В ДОКУМЕНТАЦИЮ:
+
+Проект:
+- сайт по продаже кухонь на заказ
+
+Приоритетная география запуска:
+- Минск
+- Минская область
+
+География масштабирования:
+- Москва
+- Санкт-Петербург
+
+Основная задача сайта:
+- получать заявки из органического поиска, локального SEO, карт и прямого трафика
+- быть удобным на мобильных и десктопе
+- иметь сильную конверсионную структуру
+- иметь полноценную админ-панель
+- быть SEO-готовым под Google и Яндекс с первого этапа
+
+Ключевые принципы:
+- people-first
+- mobile-first
+- indexable architecture
+- SSR/SSG для индексируемых страниц
+- нельзя делать SPA-only архитектуру для ключевых SEO-страниц
+- нельзя делать дубли городских страниц
+- нельзя хардкодить данные, которые должны редактироваться через админку
+
+ОБЯЗАТЕЛЬНЫЕ ПУБЛИЧНЫЕ МАРШРУТЫ:
+- /
+- /catalog
+- /prices
+- /portfolio
+- /reviews
+- /about
+- /contacts
+- /delivery-installation
+- /warranty
+- /blog
+- /locations/minsk
+- /locations/minskaya-oblast
+- /privacy-policy
+- /terms
+- /personal-data
+- /thanks
+
+ОБЯЗАТЕЛЬНЫЕ ДИНАМИЧЕСКИЕ ШАБЛОНЫ:
+- /catalog/[slug]
+- /portfolio/[slug]
+- /blog/[slug]
+
+ОБЯЗАТЕЛЬНЫЕ РАЗДЕЛЫ САЙТА:
+- главная
+- каталог кухонь
+- стили / формы / материалы
+- цены
+- портфолио / кейсы
+- отзывы
+- о компании
+- доставка и монтаж
+- гарантия
+- блог
+- локальные страницы
+- контакты
+- юридические страницы
+
+ТРЕБОВАНИЯ К АДМИН-ПАНЕЛИ:
+Нужна полноценная admin panel с ролями:
+- Super Admin
+- Manager
+- Guest Admin
+
+Через админку должно быть возможно:
+- менять фото
+- менять цены
+- добавлять/редактировать/удалять карточки кухонь
+- добавлять/редактировать/удалять кейсы
+- редактировать страницы
+- редактировать FAQ
+- редактировать блог
+- редактировать контакты
+- модерировать отзывы
+
+ОТЗЫВЫ:
+- отзывы не публикуются автоматически
+- все отзывы сначала попадают в модерацию
+- возможны статусы: new, pending, published, rejected, deleted
+
+GUEST ADMIN:
+- временный доступ
+- по одноразовой ссылке или одноразовому логину/паролю
+- ограниченный доступ по разделам и действиям
+- истечение срока действия
+- все действия логируются
+- нельзя давать гостю доступ ко всем системным настройкам
+
+ОБЯЗАТЕЛЬНЫЕ SEO-ЭЛЕМЕНТЫ:
+- unique title
+- unique meta description
+- unique H1
+- canonical
+- breadcrumbs
+- robots.txt
+- sitemap.xml
+- JSON-LD
+- Organization schema
+- LocalBusiness schema
+- FAQPage schema где уместно
+
+ОБЯЗАТЕЛЬНЫЕ MOBILE ЭЛЕМЕНТЫ:
+- mobile menu
+- sticky mobile CTA bar
+- крупные кнопки
+- адаптивные формы
+- адаптивные карточки
+- mobile-first layout
+
+ОБЯЗАТЕЛЬНЫЕ ФИЧИ MVP:
+- калькулятор кухни
+- подбор по бюджету
+- блок “что входит в цену”
+- кейсы с реальными цифрами
+- фильтр похожих решений
+- формы лидогенерации
+- локальные страницы под Минск и Минскую область
+
+ТЕХСТЕК:
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Prisma + PostgreSQL или Supabase
+- архитектура должна быть масштабируемой
+- проект должен быть готов к деплою на сервер
+
+ТРЕБОВАНИЯ К КАЖДОМУ ДОКУМЕНТУ:
+
+README.md
+- описание проекта
+- цели
+- стек
+- порядок чтения project-docs
+- правило, что документация обязательна к чтению перед кодом
+
+PROJECT_OVERVIEW.md
+- краткая бизнес-цель
+- аудитория
+- география
+- MVP-приоритеты
+- как сайт должен выделяться
+
+TECHNICAL_SPEC.md
+- полное ТЗ
+- страницы
+- маршруты
+- требования к SEO
+- требования к мобильной версии
+- требования к админке
+- требования к аналитике
+- этапы разработки
+
+AI_RULES.md
+- что ИИ обязан делать
+- что ИИ запрещено делать
+- как обновлять документацию
+- как делать commit/push
+- как не ломать архитектуру
+
+CONTENT_RULES.md
+- правила контента
+- tone of voice
+- правила CTA
+- правила локальных страниц
+- правила кейсов
+- правила статей
+- правила отзывов
+
+SEO_STRATEGY.md
+- кластеры запросов
+- логика индексационных страниц
+- правила мета-данных
+- правила перелинковки
+- правила локального SEO
+- запреты на doorway/dublicates
+
+UI_UX_GUIDE.md
+- стиль
+- сетки
+- отступы
+- правила кнопок
+- hero
+- формы
+- FAQ
+- карточки
+- mobile-first поведение
+
+ADMIN_PANEL_SPEC.md
+- роли
+- права
+- guest access
+- moderation flow
+- fields for entities
+- security restrictions
+
+ROUTES_MAP.md
+- полный список URL
+- динамические маршруты
+- CTA -> куда ведут
+- структура навигации
+
+COMPONENT_LIBRARY.md
+- список компонентов
+- где используются
+- states
+- props high-level
+
+CONTENT_MODELS.md
+- модели данных:
+  Kitchen
+  PortfolioCase
+  Review
+  BlogPost
+  LocationPage
+  FAQItem
+  User
+  GuestAccess
+  ActivityLog
+
+CHANGELOG.md
+- что изменено
+- когда
+- почему
+- какие файлы затронуты
+
+HANDOFF.md
+- текущее состояние
+- что уже сделано
+- что делать следующим шагом
+- что нельзя ломать
+
+FEATURE_BACKLOG.md
+- MVP features
+- later features
+- приоритет
+- статус
+
+DEPLOYMENT.md
+- запуск
+- env
+- build
+- deploy
+- GitHub flow
+
+TEST_CHECKLIST.md
+- UI check
+- forms check
+- SEO check
+- roles check
+- mobile check
+- analytics check
+
+REPLIT_EXECUTION_PLAN.md
+- milestones
+- порядок реализации
+- какие commit messages использовать
+
+ШАГ 3. СДЕЛАТЬ ПЕРВЫЙ COMMIT
+После создания всей документации:
+commit message:
+docs: add project documentation and development rules
+
+Если push возможен:
+- push в GitHub
+
+ШАГ 4. ТОЛЬКО ПОСЛЕ ЭТОГО НАЧИНАТЬ КОД
+
+MILESTONE 1 — APP FOUNDATION
+Сделай:
+- Next.js App Router + TypeScript + Tailwind
+- app layout
+- header
+- footer
+- mobile menu
+- sticky mobile CTA
+- базовую структуру app/components/lib/types
+- metadata helper
+- robots scaffold
+- sitemap scaffold
+- JSON-LD helpers
+
+После этого:
+- обнови CHANGELOG.md
+- обнови HANDOFF.md
+- commit:
+chore: initialize nextjs app router project structure
+- если возможно, push
+
+MILESTONE 2 — PUBLIC SITE SHELL
+Создай маршруты:
+- /
+- /catalog
+- /prices
+- /portfolio
+- /reviews
+- /about
+- /contacts
+- /delivery-installation
+- /warranty
+- /blog
+- /locations/minsk
+- /locations/minskaya-oblast
+- /privacy-policy
+- /terms
+- /personal-data
+- /thanks
+
+На этом этапе можно сделать page shells и section placeholders.
+
+После этого:
+- обнови CHANGELOG.md
+- обнови HANDOFF.md
+- обнови ROUTES_MAP.md если нужно
+- commit:
+feat: add public site shell and core routes
+- если возможно, push
+
+MILESTONE 3 — CONTENT ARCHITECTURE
+Сделай:
+- models/types
+- slug architecture
+- data layer scaffold
+- templates for dynamic pages:
+  /catalog/[slug]
+  /portfolio/[slug]
+  /blog/[slug]
+
+После этого:
+- обнови CHANGELOG.md
+- HANDOFF.md
+- CONTENT_MODELS.md
+- commit:
+feat: add content models and dynamic route architecture
+- если возможно, push
+
+MILESTONE 4 — ADMIN FOUNDATION
+Сделай:
+- /admin/login
+- /admin/dashboard
+- role-based access scaffold
+- route protection scaffold
+- activity log scaffold
+
+После этого:
+- обнови CHANGELOG.md
+- HANDOFF.md
+- ADMIN_PANEL_SPEC.md при необходимости
+- commit:
+feat: add admin shell and role-based structure
+- если возможно, push
+
+MILESTONE 5 — CONTENT MANAGEMENT
+Сделай редактирование:
+- kitchens
+- prices
+- portfolio
+- reviews moderation
+- pages
+- blog
+- locations
+- contacts/settings
+
+После этого:
+- commit:
+feat: add content editing flows and moderation tools
+- если возможно, push
+
+MILESTONE 6 — GUEST ACCESS
+Сделай:
+- temporary guest access
+- one-time link or one-time credentials
+- expiration
+- limited permissions
+- revocation
+- audit trail
+
+После этого:
+- commit:
+feat: add temporary guest admin access with restrictions
+- если возможно, push
+
+MILESTONE 7 — LEAD GENERATION
+Сделай:
+- lead forms
+- calculator
+- callback form
+- review submission form
+- thank-you page flow
+- validation
+- anti-spam
+- webhook/email/telegram integration layer
+
+После этого:
+- commit:
+feat: add lead generation forms calculator and submission flows
+- если возможно, push
+
+MILESTONE 8 — SEO FOUNDATION
+Сделай:
+- page metadata
+- canonical
+- JSON-LD
+- breadcrumbs
+- robots
+- sitemap
+- OG setup
+
+После этого:
+- commit:
+feat: add seo metadata sitemap robots breadcrumbs and schema
+- если возможно, push
+
+MILESTONE 9 — MOBILE + PERFORMANCE
+Сделай:
+- responsive fixes
+- mobile CTA improvements
+- image optimization
+- lazy loading
+- basic performance cleanup
+
+После этого:
+- commit:
+feat: improve mobile ux responsiveness and performance
+- если возможно, push
+
+MILESTONE 10 — CONTENT POPULATION
+Сделай стартовое наполнение:
+- главная
+- категории
+- цены
+- кейсы
+- FAQ
+- локальные страницы
+- базовые статьи
+- отзывы только через модерацию
+
+После этого:
+- commit:
+feat: add initial site content and local landing pages
+- если возможно, push
+
+ПРАВИЛА РАБОТЫ:
+- Не пропускай этап документации.
+- Не пиши код раньше документации.
+- Не игнорируй project-docs.
+- Не удаляй project-docs.
+- Не хардкодь редактируемые сущности в код.
+- Не ломай SEO-структуру.
+- Не меняй URL без причины.
+- Не создавай дубли локальных страниц.
+- Не делай SPA-only для индексируемых страниц.
+- После каждого milestone обязательно обновляй CHANGELOG.md и HANDOFF.md.
+
+ФОРМАТ ОТВЕТА ПОСЛЕ КАЖДОГО MILESTONE:
+1. Что создано
+2. Какие файлы добавлены
+3. Какие файлы изменены
+4. Какой commit сделан
+5. Был ли push
+6. Что следующий шаг
