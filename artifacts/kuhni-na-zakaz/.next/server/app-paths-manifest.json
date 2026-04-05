@@ -1,5 +1,5 @@
 {
   "/styles/[slug]/page": "app/styles/[slug]/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/login/page": "app/admin/login/page.js"
+  "/materials/[slug]/page": "app/materials/[slug]/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js"
 }
