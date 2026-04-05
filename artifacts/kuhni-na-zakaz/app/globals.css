@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -32,8 +32,8 @@
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
 
-  --font-sans: 'Inter', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Manrope', 'Inter', sans-serif;
+  --font-serif: 'Manrope', sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -42,34 +42,35 @@
 }
 
 :root {
-  --background: 45 33% 97%;
-  --foreground: 0 0% 10%;
-  --border: 45 15% 88%;
-  --input: 45 15% 88%;
-  --ring: 29 57% 46%;
+  --background: 0 0% 100%;
+  --foreground: 240 15% 8%;
+  --border: 240 8% 92%;
+  --input: 240 8% 92%;
+  --ring: 263 85% 62%;
 
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
+  --card-foreground: 240 15% 8%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
+  --popover-foreground: 240 15% 8%;
 
-  --primary: 29 57% 46%;
+  /* Vibrant violet/purple primary */
+  --primary: 263 85% 62%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 45 10% 85%;
-  --secondary-foreground: 0 0% 10%;
+  --secondary: 263 20% 95%;
+  --secondary-foreground: 263 85% 40%;
 
-  --muted: 45 15% 92%;
-  --muted-foreground: 0 0% 42%;
+  --muted: 240 8% 96%;
+  --muted-foreground: 240 8% 46%;
 
-  --accent: 45 15% 92%;
-  --accent-foreground: 0 0% 10%;
+  --accent: 187 96% 44%;
+  --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 
 @layer base {
@@ -81,7 +82,8 @@
     font-family: var(--font-sans);
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
+    font-weight: 800;
   }
 }
 
@@ -90,15 +92,28 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center gap-2;
+    @apply bg-primary text-primary-foreground hover:opacity-90 active:scale-95 px-6 py-3 rounded-xl font-semibold transition-all inline-flex items-center gap-2 shadow-lg shadow-primary/25;
   }
   .btn-outline {
-    @apply border border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-3 rounded-lg font-medium transition-colors inline-flex items-center gap-2;
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-3 rounded-xl font-semibold transition-all inline-flex items-center gap-2 active:scale-95;
   }
   .section-padding {
     @apply py-16 lg:py-24;
   }
   .card-base {
-    @apply bg-card border border-border rounded-xl overflow-hidden;
+    @apply bg-card border border-border rounded-2xl overflow-hidden;
+  }
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(263, 85%, 62%) 0%, hsl(230, 85%, 62%) 100%);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(263, 85%, 62%) 0%, hsl(187, 96%, 44%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glass {
+    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.85);
   }
 }

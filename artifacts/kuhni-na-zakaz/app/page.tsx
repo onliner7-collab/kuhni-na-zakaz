@@ -83,30 +83,67 @@ export default async function HomePage() {
       />
 
       {/* HERO */}
-      <section className="relative bg-gradient-to-br from-stone-100 to-stone-200 py-20 lg:py-32 overflow-hidden">
+      <section
+        className="relative py-20 lg:py-32 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #1a0533 0%, #2d1060 40%, #0f1a3d 100%)" }}
+      >
+        {/* Decorative blobs */}
+        <div
+          className="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #7C3AED, transparent)" }}
+        />
+        <div
+          className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full opacity-15 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #06B6D4, transparent)" }}
+        />
+
         <div className="container-site relative z-10">
           <div className="max-w-2xl">
-            <h1 className="font-serif text-4xl lg:text-6xl font-bold text-foreground leading-tight">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold text-violet-200 border border-violet-500/30 bg-violet-500/10 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+              Минск и область — от 14 дней
+            </div>
+
+            <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tight">
               Кухни на заказ{" "}
-              <span className="text-primary">в Минске</span>
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #a78bfa, #38bdf8)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                в Минске
+              </span>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            <p className="mt-6 text-lg text-white/60 leading-relaxed">
               Собственное производство. Фиксированная цена в договоре.
               Гарантия 5 лет. Замер и 3D-проект — бесплатно.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link href="/contacts#form" className="btn-primary" data-testid="hero-cta-order">
+              <Link
+                href="/contacts#form"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white shadow-xl shadow-violet-900/40 transition-all hover:scale-105 active:scale-95"
+                style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
+                data-testid="hero-cta-order"
+              >
                 Заказать замер бесплатно
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/catalog" className="btn-outline" data-testid="hero-cta-catalog">
+              <Link
+                href="/catalog"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white border border-white/20 hover:bg-white/10 transition-all active:scale-95"
+                data-testid="hero-cta-catalog"
+              >
                 Смотреть каталог
               </Link>
             </div>
-            <div className="mt-8 flex flex-wrap gap-6">
+            <div className="mt-8 flex flex-wrap gap-5">
               {["Замер бесплатно", "Проект за 3 дня", "От 14 дней"].map((t) => (
-                <div key={t} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
+                <div key={t} className="flex items-center gap-2 text-sm text-white/60">
+                  <CheckCircle className="w-4 h-4 text-violet-400 shrink-0" />
                   {t}
                 </div>
               ))}
@@ -118,15 +155,23 @@ export default async function HomePage() {
       {/* ADVANTAGES */}
       <section className="section-padding bg-background">
         <div className="container-site">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold text-center mb-12">
-            Почему выбирают нас
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {ADVANTAGES.map((adv) => (
-              <div key={adv.title} className="card-base p-6">
-                <CheckCircle className="w-6 h-6 text-primary mb-3" />
-                <h3 className="font-semibold text-base mb-1">{adv.title}</h3>
-                <p className="text-sm text-muted-foreground">{adv.desc}</p>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-black text-foreground">
+              Почему выбирают нас
+            </h2>
+            <p className="mt-3 text-muted-foreground text-lg">6 причин доверить кухню нам</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {ADVANTAGES.map((adv, i) => (
+              <div key={adv.title} className="group rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all bg-white">
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 text-white font-black text-sm"
+                  style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="font-bold text-base mb-1.5 group-hover:text-primary transition-colors">{adv.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{adv.desc}</p>
               </div>
             ))}
           </div>
@@ -143,7 +188,7 @@ export default async function HomePage() {
             </Link>
           </div>
           {kitchens.length === 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {[
                 { slug: "uglovye-kuhni", t: "Угловые кухни", p: "от 1 800 BYN" },
                 { slug: "pryamye-kuhni", t: "Прямые кухни", p: "от 1 200 BYN" },
@@ -152,31 +197,31 @@ export default async function HomePage() {
                 { slug: "malenkie-kuhni", t: "Маленькие кухни", p: "от 900 BYN" },
                 { slug: "kuhni-do-potolka", t: "Кухни до потолка", p: "от 2 200 BYN" },
               ].map((cat) => (
-                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base hover:shadow-md transition-shadow group">
-                  <div className="h-48 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center">
-                    <span className="text-stone-400 text-sm">Фото кухни</span>
+                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
+                  <div className="h-48 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #f3f0ff, #e0f2fe)" }}>
+                    <span className="text-violet-300 text-sm font-medium">Фото кухни</span>
                   </div>
                   <div className="p-5">
-                    <h3 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{cat.t}</h3>
-                    <p className="text-primary font-medium mt-1 text-sm">{cat.p}</p>
+                    <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{cat.t}</h3>
+                    <p className="text-primary font-bold mt-1 text-sm">{cat.p}</p>
                   </div>
                 </Link>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {kitchens.map((k) => (
-                <Link key={k.id} href={`/catalog/${k.slug}`} className="card-base hover:shadow-md transition-shadow group">
-                  <div className="h-48 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center overflow-hidden">
+                <Link key={k.id} href={`/catalog/${k.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
+                  <div className="h-48 flex items-center justify-center overflow-hidden" style={{ background: "linear-gradient(135deg, #f3f0ff, #e0f2fe)" }}>
                     {k.mainImage ? (
                       <img src={k.mainImage} alt={k.title} className="w-full h-full object-cover" />
                     ) : (
-                      <span className="text-stone-400 text-sm">Фото кухни</span>
+                      <span className="text-violet-300 text-sm font-medium">Фото кухни</span>
                     )}
                   </div>
                   <div className="p-5">
-                    <h3 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{k.title}</h3>
-                    <p className="text-primary font-medium mt-1 text-sm">от {k.priceFrom.toLocaleString("ru")} BYN</p>
+                    <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{k.title}</h3>
+                    <p className="text-primary font-bold mt-1 text-sm">от {k.priceFrom.toLocaleString("ru")} BYN</p>
                   </div>
                 </Link>
               ))}
@@ -196,39 +241,39 @@ export default async function HomePage() {
               </Link>
             </div>
             {cases.length === 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {[
                   { t: "Угловая кухня в минимализме", city: "Минск", area: 14, price: "2 800–3 200 BYN" },
                   { t: "Скандинавская кухня", city: "Борисов", area: 10, price: "1 800–2 100 BYN" },
                   { t: "Кухня с островом", city: "Минск, Партизанский р-н", area: 22, price: "5 500–6 200 BYN" },
                 ].map((c, i) => (
-                  <div key={i} className="card-base">
-                    <div className="h-56 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center">
-                      <span className="text-stone-400 text-sm">Фото проекта</span>
+                  <div key={i} className="rounded-2xl overflow-hidden border border-border bg-white">
+                    <div className="h-56 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #f5f3ff, #ecfeff)" }}>
+                      <span className="text-violet-300 text-sm font-medium">Фото проекта</span>
                     </div>
                     <div className="p-5">
-                      <h3 className="font-serif font-semibold">{c.t}</h3>
+                      <h3 className="font-bold">{c.t}</h3>
                       <p className="text-sm text-muted-foreground mt-1">{c.city} · {c.area} м²</p>
-                      <p className="text-primary font-medium text-sm mt-1">{c.price}</p>
+                      <p className="text-primary font-bold text-sm mt-1">{c.price}</p>
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {cases.map((c) => (
-                  <Link key={c.id} href={`/portfolio/${c.slug}`} className="card-base hover:shadow-md transition-shadow group">
-                    <div className="h-56 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center overflow-hidden">
+                  <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
+                    <div className="h-56 flex items-center justify-center overflow-hidden" style={{ background: "linear-gradient(135deg, #f5f3ff, #ecfeff)" }}>
                       {c.mainImage ? (
                         <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover" />
                       ) : (
-                        <span className="text-stone-400 text-sm">Фото проекта</span>
+                        <span className="text-violet-300 text-sm font-medium">Фото проекта</span>
                       )}
                     </div>
                     <div className="p-5">
-                      <h3 className="font-serif font-semibold group-hover:text-primary transition-colors">{c.title}</h3>
+                      <h3 className="font-bold group-hover:text-primary transition-colors">{c.title}</h3>
                       <p className="text-sm text-muted-foreground mt-1">{c.city} · {c.area} м²</p>
-                      <p className="text-primary font-medium text-sm mt-1">
+                      <p className="text-primary font-bold text-sm mt-1">
                         {c.priceFrom.toLocaleString("ru")}–{c.priceTo.toLocaleString("ru")} BYN
                       </p>
                     </div>
@@ -241,18 +286,34 @@ export default async function HomePage() {
       )}
 
       {/* STEPS */}
-      <section className="section-padding bg-foreground text-background">
+      <section
+        className="section-padding"
+        style={{ background: "linear-gradient(160deg, #0f0f1a 0%, #1a1030 60%, #0c1a30 100%)" }}
+      >
         <div className="container-site">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold text-center mb-12">
-            Как мы работаем
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-black text-white">
+              Как мы работаем
+            </h2>
+            <p className="mt-3 text-white/40 text-lg">6 шагов от заявки до готовой кухни</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {STEPS.map((s) => (
-              <div key={s.n} className="flex gap-4">
-                <div className="text-3xl font-serif font-bold text-primary/60 shrink-0">{s.n}</div>
+              <div key={s.n} className="flex gap-4 p-5 rounded-2xl border border-white/8 bg-white/4 hover:border-violet-500/30 hover:bg-white/8 transition-all">
+                <div
+                  className="text-2xl font-black shrink-0 leading-none mt-0.5"
+                  style={{
+                    background: "linear-gradient(135deg, #a78bfa, #38bdf8)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {s.n}
+                </div>
                 <div>
-                  <h3 className="font-semibold text-background">{s.t}</h3>
-                  <p className="text-sm text-background/70 mt-1">{s.d}</p>
+                  <h3 className="font-bold text-white">{s.t}</h3>
+                  <p className="text-sm text-white/50 mt-1 leading-relaxed">{s.d}</p>
                 </div>
               </div>
             ))}
@@ -294,25 +355,32 @@ export default async function HomePage() {
       {faqs.length > 0 && <FAQSection items={faqs} />}
 
       {/* CTA BANNER */}
-      <section className="py-16 bg-primary">
-        <div className="container-site text-center">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold text-primary-foreground mb-4">
+      <section
+        className="py-16 relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #0891b2 100%)" }}
+      >
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #fff 0%, transparent 50%), radial-gradient(circle at 80% 20%, #38bdf8 0%, transparent 40%)" }}
+        />
+        <div className="container-site text-center relative z-10">
+          <h2 className="text-3xl lg:text-4xl font-black text-white mb-4">
             Хотите точный расчёт?
           </h2>
-          <p className="text-primary-foreground/80 mb-8 text-lg">
+          <p className="text-white/75 mb-8 text-lg">
             Оставьте заявку — перезвоним в течение 30 минут
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contacts#form"
-              className="bg-background text-foreground hover:bg-background/90 px-8 py-3 rounded-lg font-medium inline-flex items-center gap-2 transition-colors"
+              className="bg-white text-violet-700 hover:bg-white/90 px-8 py-3.5 rounded-xl font-bold inline-flex items-center gap-2 transition-all hover:scale-105 shadow-xl"
               data-testid="banner-cta"
             >
               Заказать бесплатный замер
             </Link>
             <a
               href="tel:+375291234567"
-              className="flex items-center gap-2 text-primary-foreground border border-primary-foreground/30 hover:border-primary-foreground px-8 py-3 rounded-lg font-medium transition-colors"
+              className="flex items-center justify-center gap-2 text-white border-2 border-white/30 hover:border-white hover:bg-white/10 px-8 py-3.5 rounded-xl font-bold transition-all"
             >
               <Phone className="w-4 h-4" />
               +375 (29) 123-45-67

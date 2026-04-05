@@ -19,13 +19,13 @@ export function MobileCTA() {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-background border-t border-border"
+      className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white/90 backdrop-blur-xl border-t border-black/8 shadow-lg"
       data-testid="mobile-cta-bar"
     >
-      <div className="flex items-center gap-2 p-3">
+      <div className="flex items-center gap-2 p-3 pb-safe">
         <a
           href="tel:+375291234567"
-          className="flex-1 flex items-center justify-center gap-2 bg-foreground text-background py-3 rounded-lg font-medium text-sm"
+          className="flex-1 flex items-center justify-center gap-2 bg-muted text-foreground py-3 rounded-xl font-semibold text-sm"
           data-testid="mobile-cta-call"
         >
           <Phone className="w-4 h-4" />
@@ -33,7 +33,8 @@ export function MobileCTA() {
         </a>
         <Link
           href="/contacts#form"
-          className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-lg font-medium text-sm"
+          className="flex-1 flex items-center justify-center gap-2 text-white py-3 rounded-xl font-semibold text-sm shadow-lg"
+          style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
           data-testid="mobile-cta-order"
         >
           Заказать замер
