@@ -1,0 +1,225 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  MANAGER
+}
+
+enum ReviewStatus {
+  NEW
+  PENDING
+  PUBLISHED
+  REJECTED
+  DELETED
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         UserRole @default(MANAGER)
+  createdAt    DateTime @default(now())
+  lastLoginAt  DateTime?
+
+  guestAccessCreated GuestAccess[]
+  activityLogs       ActivityLog[]
+  moderatedReviews   Review[]      @relation("ModeratedBy")
+}
+
+model GuestAccess {
+  id                Int       @id @default(autoincrement())
+  name              String
+  createdById       Int
+  createdBy         User      @relation(fields: [createdById], references: [id])
+  allowedSections   String[]
+  allowedActions    String[]
+  loginToken        String    @unique @default(cuid())
+  loginLogin        String?
+  loginPasswordHash String?
+  expiresAt         DateTime
+  revokedAt         DateTime?
+  createdAt         DateTime  @default(now())
+
+  activityLogs ActivityLog[]
+}
+
+model ActivityLog {
+  id            Int          @id @default(autoincrement())
+  userId        Int?
+  user          User?        @relation(fields: [userId], references: [id])
+  guestAccessId Int?
+  guestAccess   GuestAccess? @relation(fields: [guestAccessId], references: [id])
+  action        String
+  entity        String
+  entityId      Int?
+  details       Json         @default("{}")
+  ip            String       @default("")
+  userAgent     String       @default("")
+  createdAt     DateTime     @default(now())
+}
+
+model Kitchen {
+  id             Int      @id @default(autoincrement())
+  title          String
+  slug           String   @unique
+  description    String   @default("")
+  category       String
+  style          String   @default("")
+  material       String   @default("")
+  priceFrom      Int      @default(0)
+  priceTo        Int?
+  features       String[]
+  images         String[]
+  mainImage      String   @default("")
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model PortfolioCase {
+  id             Int      @id @default(autoincrement())
+  title          String
+  slug           String   @unique
+  city           String
+  area           Int      @default(0)
+  style          String   @default("")
+  material       String   @default("")
+  priceFrom      Int      @default(0)
+  priceTo        Int      @default(0)
+  days           Int      @default(0)
+  description    String   @default("")
+  task           String   @default("")
+  solution       String   @default("")
+  images         String[]
+  mainImage      String   @default("")
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Review {
+  id              Int          @id @default(autoincrement())
+  name            String
+  city            String
+  phone           String       @default("")
+  rating          Int
+  text            String
+  date            String       @default("")
+  status          ReviewStatus @default(NEW)
+  moderatedById   Int?
+  moderatedBy     User?        @relation("ModeratedBy", fields: [moderatedById], references: [id])
+  moderatedAt     DateTime?
+  rejectionReason String?
+  createdAt       DateTime     @default(now())
+}
+
+model BlogPost {
+  id             Int       @id @default(autoincrement())
+  title          String
+  slug           String    @unique
+  excerpt        String    @default("")
+  content        String    @default("")
+  category       String    @default("")
+  tags           String[]
+  readTime       Int       @default(5)
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean   @default(false)
+  publishedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model FAQItem {
+  id       Int    @id @default(autoincrement())
+  question String
+  answer   String
+  page     String @default("home")
+  order    Int    @default(0)
+}
+
+model LocationPage {
+  id             Int      @id @default(autoincrement())
+  city           String
+  slug           String   @unique
+  title          String
+  h1             String
+  description    String   @default("")
+  content        String   @default("")
+  areas          String[]
+  deliveryCost   String   @default("")
+  phone          String?
+  address        String?
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean  @default(true)
+}
+
+model Lead {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  city      String   @default("")
+  comment   String   @default("")
+  source    String   @default("website")
+  formType  String   @default("contact")
+  answers   Json     @default("{}")
+  createdAt DateTime @default(now())
+}
+
+model StylePage {
+  id             Int     @id @default(autoincrement())
+  slug           String  @unique
+  title          String
+  description    String  @default("")
+  content        String  @default("")
+  priceFrom      Int     @default(0)
+  image          String  @default("")
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean @default(true)
+}
+
+model MaterialPage {
+  id             Int      @id @default(autoincrement())
+  slug           String   @unique
+  title          String
+  description    String   @default("")
+  content        String   @default("")
+  pros           String[]
+  cons           String[]
+  priceFrom      Int      @default(0)
+  image          String   @default("")
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean  @default(true)
+}
+
+model SiteSettings {
+  id              Int    @id @default(1)
+  siteName        String @default("КухниMinsk")
+  phone           String @default("+375291234567")
+  phoneDisplay    String @default("+375 (29) 123-45-67")
+  email           String @default("info@kuhniminsk.by")
+  address         String @default("г. Минск, ул. Притыцкого, 100")
+  workingHours    String @default("Пн–Сб 9:00–19:00, Вс 10:00–17:00")
+  telegram        String @default("")
+  viber           String @default("")
+  whatsapp        String @default("")
+  telegramBotToken String @default("")
+  telegramChatId  String @default("")
+  metaTitle       String @default("Кухни на заказ в Минске | КухниMinsk")
+  metaDescription String @default("Кухни на заказ в Минске и Минской области. Собственное производство. Гарантия 5 лет. Замер и проект бесплатно.")
+}

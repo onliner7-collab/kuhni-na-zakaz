@@ -32,15 +32,18 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ### Описание
 
-Коммерческий сайт для продажи кухонь на заказ. Целевая аудитория — жители Минска и Минской области. SEO-направленный, статичный (пока без бэкенда).
+Production-ready коммерческий сайт для продажи кухонь на заказ. Next.js 15.3.3 App Router, SSR/SSG, PostgreSQL/Prisma, полная admin-панель с ролями.
 
 ### Технологии сайта
 
-- React + Vite + TypeScript
-- Tailwind CSS v4
-- Wouter (роутинг)
-- Framer Motion (анимации)
-- shadcn/ui компоненты
+- **Next.js 15.3.3** App Router (SSR + SSG)
+- TypeScript 5.9
+- Tailwind CSS v4 (PostCSS plugin)
+- Prisma 6 + PostgreSQL (DATABASE_URL)
+- bcryptjs + jose (JWT auth, HttpOnly cookies)
+- Zod + react-hook-form + @hookform/resolvers
+- Sonner (toasts)
+- Lucide React (icons)
 - Google Fonts: Playfair Display + Inter
 
 ### Цветовая тема
@@ -53,49 +56,88 @@ See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and pa
 
 ```
 artifacts/kuhni-na-zakaz/
-  src/
-    App.tsx             — роутинг (23 маршрута)
-    components/
-      Layout.tsx        — шапка, подвал, мобильная CTA
-      ui/               — shadcn компоненты
-    pages/
-      Home.tsx          — главная (10 блоков)
-      CatalogPage.tsx   — каталог + детальные страницы
-      PortfolioPage.tsx — портфолио + детальные страницы
-      PricesPage.tsx    — цены + калькулятор-квиз
-      ReviewsPage.tsx   — отзывы + форма
-      BlogPage.tsx      — блог + статьи
-      AboutPage.tsx     — о компании
-      ContactsPage.tsx  — контакты + форма
-      LocationPage.tsx  — Минск и Минская область
-      DeliveryPage.tsx  — доставка и монтаж
-      WarrantyPage.tsx  — гарантия
-      ThanksPage.tsx    — страница благодарности
-      LegalPages.tsx    — privacy, terms, personal-data
-    lib/
-      data.ts           — все статичные данные сайта
+  app/
+    layout.tsx              — RootLayout (условный Header/Footer)
+    page.tsx                — главная (Hero, FAQ, CTA sections)
+    globals.css             — CSS переменные, Tailwind тема
+    admin/
+      layout.tsx            — AdminLayout (sidebar + main)
+      login/page.tsx        — страница входа
+      dashboard/page.tsx    — дашборд (статистика)
+      kitchens/             — CRUD кухонь
+      portfolio/            — CRUD портфолио
+      blog/                 — CRUD блога
+      reviews/              — модерация отзывов
+      users/                — управление пользователями
+      guest-access/         — временный гостевой доступ
+      settings/             — настройки сайта
+      activity-log/         — журнал действий
+      leads/                — просмотр заявок
+      prices/               — ценовая сетка
+      pages/                — обзор страниц
+      locations/            — управление городами
+    api/
+      auth/login|logout/    — JWT auth endpoints
+      leads/                — обработка заявок + Telegram
+      reviews/              — публичные отзывы
+      admin/                — защищённые admin endpoints
+    catalog/, blog/, portfolio/, reviews/, prices/
+    about/, contacts/, delivery-installation/, warranty/
+    locations/[slug]/       — SEO-страницы по городам
+    styles/[slug]/, materials/[slug]/
+    sitemap.ts, robots.ts   — SEO
+  components/
+    layout/Header|Footer|MobileCTA.tsx
+    sections/               — HeroSection, FAQSection, PriceQuiz, etc.
+    admin/                  — AdminSidebar, LoginForm, KitchenForm, BlogPostForm, etc.
+    ui/                     — Button, Input, Badge, Card, Toaster
+  lib/
+    auth.ts                 — JWT encode/decode, session management
+    prisma.ts               — Prisma client singleton
+    utils.ts                — cn helper
+  middleware.ts             — JWT проверка + pathname header
+  prisma/
+    schema.prisma           — все модели (User, Kitchen, BlogPost, Review, etc.)
+    seed.ts                 — начальные данные
 ```
 
-### Важные файлы документации
+### Пользователи (из seed)
 
-- `project-docs/AI_RULES.md` — правила для ИИ-агента
-- `project-docs/HANDOFF.md` — текущее состояние и следующий шаг
-- `project-docs/ROUTES_MAP.md` — все URL и их назначение
-- `project-docs/CHANGELOG.md` — журнал изменений
+- **Super Admin**: `admin@kuhniminsk.by` / `Admin123!`
+
+### Роли
+
+- `SUPER_ADMIN` — полный доступ
+- `MANAGER` — кухни, портфолио, блог, отзывы, заявки
+- `GUEST` — временный доступ к выбранным разделам (токен + срок)
+
+### API endpoints
+
+- `POST /api/auth/login` — вход (JWT cookie)
+- `POST /api/auth/logout` — выход
+- `POST /api/leads` — заявка (Telegram webhook)
+- `GET/POST /api/reviews` — публичные отзывы
+- `GET/POST/PUT/DELETE /api/admin/kitchens`
+- `GET/POST/PUT/DELETE /api/admin/blog`
+- `GET/POST/PUT/DELETE /api/admin/portfolio`
+- `GET/POST/PUT /api/admin/reviews`
+- `GET/POST/DELETE /api/admin/users`
+- `GET/POST/DELETE /api/admin/guest-access`
+- `GET/PUT /api/admin/settings`
+- `GET /api/admin/activity-log`
+- `GET /api/admin/leads`
 
 ### Правила разработки
 
-1. Не хардкодить телефон/адрес/цены — только из SITE_CONFIG или data.ts
-2. Не удалять и не переименовывать URL без редиректов
-3. Все формы имеют honeypot-поле
-4. Все интерактивные элементы имеют data-testid
-5. GitHub push только по команде пользователя
-6. Бранч: feature/* → dev → PR → main
+1. Все формы имеют honeypot-поле (anti-spam)
+2. Все интерактивные элементы имеют `data-testid`
+3. `@/*` алиас → корень `artifacts/kuhni-na-zakaz/`
+4. GitHub push только по команде пользователя
+5. Не удалять URL без редиректов (SEO)
 
 ### GitHub
 
 ```
 repo: https://github.com/onliner7-collab/kuhni-na-zakaz.git
 main = продакшн
-dev = разработка
 ```
