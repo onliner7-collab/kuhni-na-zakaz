@@ -28,7 +28,7 @@ async function getLocalCases(city: string) {
 
 async function getLocalReviews(city: string) {
   return prisma.review.findMany({
-    where: { status: ReviewStatus.APPROVED, city: { contains: city, mode: "insensitive" } },
+    where: { status: ReviewStatus.PUBLISHED, city: { contains: city, mode: "insensitive" } },
     orderBy: { createdAt: "desc" },
     take: 3,
     select: { id: true, name: true, city: true, rating: true, text: true, date: true },

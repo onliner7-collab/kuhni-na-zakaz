@@ -259,3 +259,16 @@ model TelegramRecipient {
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
 }
+
+model HomepageBlock {
+  id          Int      @id @default(autoincrement())
+  type        String
+  title       String
+  subtitle    String   @default("")
+  description String   @default("")
+  icon        String   @default("")
+  href        String   @default("")
+  badge       String   @default("")
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+}

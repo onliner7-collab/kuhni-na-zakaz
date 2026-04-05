@@ -5,8 +5,8 @@ import { prisma } from "@/lib/db";
 import { ReviewForm } from "@/components/sections/ReviewForm";
 
 export const metadata: Metadata = {
-  title: "Отзывы клиентов — кухни на заказ в Минске",
-  description: "Отзывы реальных клиентов о кухнях на заказ в Минске и Минской области.",
+  title: "Отзывы клиентов о кухнях на заказ — КухниBY",
+  description: "Отзывы реальных клиентов о кухнях на заказ по всей Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв.",
   alternates: { canonical: "/reviews" },
 };
 
