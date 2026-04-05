@@ -1,5 +1,7 @@
 {
+  "/kapi/admin/homepage/route": "app/kapi/admin/homepage/route.js",
   "/page": "app/page.js",
+  "/admin/homepage/page": "app/admin/homepage/page.js",
   "/admin/login/page": "app/admin/login/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js"
 }
