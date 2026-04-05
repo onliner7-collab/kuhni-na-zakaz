@@ -272,3 +272,29 @@ model HomepageBlock {
   order       Int      @default(0)
   published   Boolean  @default(true)
 }
+
+model ScenarioPage {
+  id              Int      @id @default(autoincrement())
+  slug            String   @unique
+  icon            String   @default("🏠")
+  badge           String   @default("")
+  title           String
+  headline        String   @default("")
+  intro           String   @default("")
+  seoTitle        String   @default("")
+  seoDescription  String   @default("")
+  seoKeywords     String   @default("")
+  needs           String[]
+  solutions       String[]
+  features        Json     @default("[]")
+  tips            String[]
+  relatedStyles   String[]
+  relatedMaterials String[]
+  relatedCaseSlugs String[]
+  ctaText         String   @default("Заказать бесплатный замер")
+  ctaHref         String   @default("/contacts#form")
+  order           Int      @default(0)
+  published       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

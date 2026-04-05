@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, UtensilsCrossed, Images, Star, FileText,
   BookOpen, MapPin, Settings, Users, Key, Activity, LogOut, ChevronLeft,
-  DollarSign, Globe, Bell, Phone, Home,
+  DollarSign, Globe, Bell, Phone, Home, Route,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SessionPayload } from "@/lib/auth";
@@ -27,6 +27,7 @@ const NAV_GROUPS = [
     label: "Структура",
     items: [
       { href: "/admin/homepage", icon: Home, label: "Главная страница", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/scenarios", icon: Route, label: "Сценарии выбора", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/pages", icon: FileText, label: "Страницы сайта", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/locations", icon: MapPin, label: "Города и регионы", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/leads", icon: Globe, label: "Заявки", roles: ["SUPER_ADMIN", "MANAGER"] },

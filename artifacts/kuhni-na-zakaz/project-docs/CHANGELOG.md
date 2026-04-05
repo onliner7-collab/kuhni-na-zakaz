@@ -1,5 +1,31 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-05 (ScenarioPage system)
+
+### Added
+- **Prisma model `ScenarioPage`** — 20+ fields: slug, icon, badge, title, headline, intro, needs[], solutions[], features (JSON), tips[], relatedStyles[], relatedMaterials[], relatedCaseSlugs[], SEO fields (seoTitle, seoDescription, seoKeywords), ctaText, ctaHref, order, published, timestamps
+- **6 unique scenarios seeded** with full content (not clones):
+  - `semya-s-detmi` — Кухня для семьи с детьми (badge: Популярный)
+  - `malenkaya-kukhnya` — Маленькая кухня 5–8 м² (badge: Запрос №1)
+  - `kukhnya-gostinaya` — Кухня-гостиная (открытое пространство)
+  - `lyublyu-gotovit` — Кухня для тех, кто любит готовить (badge: Для гурмана)
+  - `bez-pereplaty` — Кухня без переплаты (badge: Выгодно)
+  - `maksimum-khraneniya` — Хочу максимум хранения
+- **API routes** — `/kapi/admin/scenarios` (GET/POST) + `/kapi/admin/scenarios/[id]` (GET/PUT/DELETE)
+- **Admin pages**:
+  - `/admin/scenarios` — список с таблицей (эмодзи, badge, URL, связи, статус)
+  - `/admin/scenarios/new` — создание сценария
+  - `/admin/scenarios/[id]` — редактирование с 4 вкладками
+- **ScenarioForm component** (`components/admin/ScenarioForm.tsx`) — 4-вкладочная форма:
+  - Вкладка «Основное»: slug, icon, badge, title, headline, intro, CTA, порядок
+  - Вкладка «Контент»: потребности (needs), решения (solutions), особенности (features), советы (tips) — все динамические списки с +/−
+  - Вкладка «Связи»: relatedStyles[], relatedMaterials[], relatedCaseSlugs[]
+  - Вкладка «SEO»: seoTitle, seoDescription, seoKeywords + превью в поиске
+- **Публичные страницы**:
+  - `/scenarios` — index с 6 карточками, JSON-LD ItemList, breadcrumb
+  - `/scenarios/[slug]` — полноценная страница (hero + needs/solutions + features + related cases/styles/materials + tips + other scenarios + ContactForm), JSON-LD Article + BreadcrumbList
+- **AdminSidebar** — добавлен пункт «Сценарии выбора» с иконкой Route
+
 ## [Unreleased] — 2026-04-05
 
 ### Added

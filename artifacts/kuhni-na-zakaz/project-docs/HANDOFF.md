@@ -56,6 +56,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | `FAQItem` | FAQ items (page-scoped) |
 | `LocationPage` | City/region SEO pages |
 | `HomepageBlock` | Homepage editable blocks (scenario/step/advantage/trust) |
+| `ScenarioPage` | Scenario pages with needs, solutions, features, tips, related entities |
 | `SiteSettings` | Global settings: phone, email, address, socials (id=1) |
 | `Lead` | Form submissions |
 | `User` | Admin users |
