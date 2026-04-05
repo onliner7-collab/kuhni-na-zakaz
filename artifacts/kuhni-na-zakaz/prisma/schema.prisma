@@ -201,31 +201,57 @@ model Lead {
 }
 
 model StylePage {
-  id             Int     @id @default(autoincrement())
-  slug           String  @unique
-  title          String
-  description    String  @default("")
-  content        String  @default("")
-  priceFrom      Int     @default(0)
-  image          String  @default("")
-  seoTitle       String?
-  seoDescription String?
-  published      Boolean @default(true)
+  id                  Int      @id @default(autoincrement())
+  slug                String   @unique
+  title               String
+  headline            String   @default("")
+  description         String   @default("")
+  intro               String   @default("")
+  content             String   @default("")
+  suitableFor         String[]
+  pros                String[]
+  cons                String[]
+  careGuide           String[]
+  pairsWith           String[]
+  budgetLevel         String   @default("")
+  priceFrom           Int      @default(0)
+  image               String   @default("")
+  relatedMaterials    String[]
+  relatedCaseSlugs    String[]
+  relatedScenarioSlugs String[]
+  seoTitle            String   @default("")
+  seoDescription      String   @default("")
+  seoKeywords         String   @default("")
+  order               Int      @default(0)
+  published           Boolean  @default(true)
+  updatedAt           DateTime @updatedAt
 }
 
 model MaterialPage {
-  id             Int      @id @default(autoincrement())
-  slug           String   @unique
-  title          String
-  description    String   @default("")
-  content        String   @default("")
-  pros           String[]
-  cons           String[]
-  priceFrom      Int      @default(0)
-  image          String   @default("")
-  seoTitle       String?
-  seoDescription String?
-  published      Boolean  @default(true)
+  id                  Int      @id @default(autoincrement())
+  slug                String   @unique
+  title               String
+  headline            String   @default("")
+  description         String   @default("")
+  intro               String   @default("")
+  content             String   @default("")
+  pros                String[]
+  cons                String[]
+  suitableFor         String[]
+  careGuide           String[]
+  budgetLevel         String   @default("")
+  pricePer            String   @default("")
+  priceFrom           Int      @default(0)
+  image               String   @default("")
+  relatedStyles       String[]
+  relatedCaseSlugs    String[]
+  relatedScenarioSlugs String[]
+  seoTitle            String   @default("")
+  seoDescription      String   @default("")
+  seoKeywords         String   @default("")
+  order               Int      @default(0)
+  published           Boolean  @default(true)
+  updatedAt           DateTime @updatedAt
 }
 
 model SiteSettings {

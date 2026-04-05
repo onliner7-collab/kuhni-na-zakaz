@@ -1,57 +1,138 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
+import { ContactForm } from "@/components/sections/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Стили кухонь на заказ — современные, классические, скандинавские",
-  description: "Кухни на заказ в разных стилях: современный, классический, скандинавский, минимализм, лофт. Фото и цены.",
+  title: "Стили кухонь на заказ — современный, классический, скандинавский | КухниBY",
+  description: "Кухни на заказ в разных стилях по всей Беларуси: современный, классический, скандинавский, минимализм, лофт. Фото, цены, советы по выбору.",
   alternates: { canonical: "/styles" },
 };
 
-const STATIC_STYLES = [
-  { slug: "sovremennye", title: "Современные кухни", description: "Чёткие линии, функциональность и минимум декора. Идеально для тех, кто ценит порядок и технологии.", priceFrom: 1800 },
-  { slug: "klassicheskie", title: "Классические кухни", description: "Фасады с фрезеровкой, декоративные карнизы, натуральные материалы. Вне времени и моды.", priceFrom: 3500 },
-  { slug: "skandinavskie", title: "Скандинавские кухни", description: "Белые фасады, дерево, натуральный текстиль. Светло, уютно и практично.", priceFrom: 2000 },
-  { slug: "minimalizm", title: "Кухни в стиле минимализм", description: "Только необходимое, ничего лишнего. Скрытые ручки, встроенная техника, монохром.", priceFrom: 2200 },
-  { slug: "loft", title: "Кухни в стиле лофт", description: "Открытый бетон, металл, кирпич. Брутальная эстетика с промышленным характером.", priceFrom: 2500 },
-];
+const budgetColor: Record<string, string> = {
+  "Экономный": "bg-green-100 text-green-700 border-green-200",
+  "Средний": "bg-blue-100 text-blue-700 border-blue-200",
+  "Выше среднего": "bg-orange-100 text-orange-700 border-orange-200",
+  "Премиум": "bg-purple-100 text-purple-700 border-purple-200",
+};
 
 async function getStyles() {
   try {
-    return await prisma.stylePage.findMany({ where: { published: true }, orderBy: { id: "asc" } });
-  } catch {
-    return [];
-  }
+    return await prisma.stylePage.findMany({ where: { published: true }, orderBy: [{ order: "asc" }, { id: "asc" }] });
+  } catch { return []; }
 }
 
 export default async function StylesPage() {
   const styles = await getStyles();
-  const display = styles.length > 0 ? styles : STATIC_STYLES;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Стили кухонь на заказ",
+    itemListElement: styles.map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: s.title,
+      url: `https://kuhniby.by/styles/${s.slug}`,
+    })),
+  };
 
   return (
-    <div className="section-padding">
-      <div className="container-site">
-        <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-          <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-          <span className="text-foreground">Стили</span>
-        </nav>
-        <h1 className="font-serif text-4xl font-bold mb-4">Стили кухонь</h1>
-        <p className="text-muted-foreground mb-10">Выберите стиль — мы воплотим его в вашей кухне</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {display.map((s) => (
-            <Link key={s.slug} href={`/styles/${s.slug}`} className="card-base hover:shadow-md transition-shadow group">
-              <div className="h-52 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center">
-                <span className="text-stone-400 text-sm">Фото стиля</span>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <div className="section-padding">
+        <div className="container-site">
+          <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
+            <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
+            <span className="text-foreground">Стили кухонь</span>
+          </nav>
+
+          <div className="max-w-2xl mb-10">
+            <h1 className="font-serif text-4xl font-bold mb-4">Стили кухонь на заказ</h1>
+            <p className="text-muted-foreground text-lg">
+              Выберите стиль, который вам близок — мы воплотим его в жизнь. Производим кухни по всей Беларуси с выездом замерщика на дом.
+            </p>
+          </div>
+
+          {styles.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {styles.map((s) => (
+                <Link key={s.slug} href={`/styles/${s.slug}`}
+                  className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
+                  <div className="h-52 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center relative overflow-hidden">
+                    {s.image ? (
+                      <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-stone-400 text-sm">Фото стиля</span>
+                    )}
+                    {s.budgetLevel && (
+                      <span className={`absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded-full border ${budgetColor[s.budgetLevel] || "bg-gray-100 text-gray-600 border-gray-200"}`}>
+                        {s.budgetLevel}
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors mb-1">{s.title}</h2>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{s.description}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-primary font-semibold text-sm">от {s.priceFrom.toLocaleString("ru")} BYN</span>
+                      <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors">Подробнее →</span>
+                    </div>
+                    {s.pros.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-gray-100">
+                        <p className="text-xs text-muted-foreground line-clamp-1">✓ {s.pros[0]}</p>
+                      </div>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+              {["Современные кухни", "Классические кухни", "Скандинавские кухни", "Минимализм", "Лофт"].map((t) => (
+                <div key={t} className="card-base p-5 text-center text-muted-foreground">
+                  <p className="font-medium">{t}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Help Section */}
+          <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-8 mb-16">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="font-serif text-2xl font-bold mb-3">Не можете определиться со стилем?</h2>
+              <p className="text-muted-foreground mb-6">
+                Наш дизайнер поможет подобрать стиль под ваш интерьер и бюджет. Первая консультация — бесплатно.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-left">
+                {[
+                  { step: "01", title: "Оставьте заявку", desc: "Укажите примерный бюджет и площадь кухни" },
+                  { step: "02", title: "Консультация", desc: "Дизайнер позвонит в удобное время и задаст вопросы" },
+                  { step: "03", title: "3D-проект", desc: "Получите проект кухни с визуализацией бесплатно" },
+                ].map((item) => (
+                  <div key={item.step} className="flex gap-4">
+                    <span className="text-3xl font-bold text-primary/30 leading-none">{item.step}</span>
+                    <div>
+                      <p className="font-semibold text-foreground">{item.title}</p>
+                      <p className="text-muted-foreground mt-0.5">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="p-5">
-                <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{s.title}</h2>
-                <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{s.description}</p>
-                <p className="text-primary font-semibold mt-2 text-sm">от {s.priceFrom.toLocaleString("ru")} BYN</p>
-              </div>
-            </Link>
-          ))}
+            </div>
+          </div>
+
+          {/* CTA Form */}
+          <div className="max-w-xl mx-auto">
+            <h2 className="font-serif text-2xl font-bold text-center mb-2">Получить консультацию</h2>
+            <p className="text-center text-muted-foreground mb-6">Расскажите о вашей кухне — ответим в течение часа</p>
+            <div className="card-base p-6">
+              <ContactForm source="styles-index" />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

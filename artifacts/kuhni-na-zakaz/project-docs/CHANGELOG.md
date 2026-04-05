@@ -1,5 +1,38 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-05 (Этап 3: StylePage + MaterialPage как SEO-посадочные)
+
+### Added
+- **Расширена Prisma-модель `StylePage`** — добавлено 12 полей: `headline`, `intro`, `suitableFor[]`, `pros[]`, `cons[]`, `careGuide[]`, `pairsWith[]`, `budgetLevel`, `relatedMaterials[]`, `relatedCaseSlugs[]`, `relatedScenarioSlugs[]`, `seoKeywords`, `order`, `updatedAt`
+- **Расширена Prisma-модель `MaterialPage`** — добавлено 12 полей: `headline`, `intro`, `suitableFor[]`, `careGuide[]`, `budgetLevel`, `pricePer`, `relatedStyles[]`, `relatedCaseSlugs[]`, `relatedScenarioSlugs[]`, `seoKeywords`, `order`, `updatedAt`
+- **5 стилей посеяно** с богатым контентом (suitableFor, pros, cons, careGuide, pairsWith, relatedMaterials, relatedScenarioSlugs, SEO):
+  - `sovremennye` — Современный (Средний, от 1 800 BYN)
+  - `klassicheskie` — Классический (Премиум, от 3 500 BYN)
+  - `skandinavskie` — Скандинавский (Средний, от 2 000 BYN)
+  - `minimalizm` — Минимализм (Средний, от 2 200 BYN)
+  - `loft` — Лофт (Средний, от 2 500 BYN)
+- **5 материалов посеяно** с богатым контентом (pros, cons, suitableFor, careGuide, relatedStyles, relatedScenarioSlugs, SEO):
+  - `mdf` — МДФ с плёнкой ПВХ (Экономный, от 1 200 BYN)
+  - `plastik` — HPL и акрил (Средний, от 1 500 BYN)
+  - `emal` — Эмаль матовая (Выше среднего, от 2 200 BYN)
+  - `shpon` — Натуральный шпон (Премиум, от 3 200 BYN)
+  - `egger` — ЛДСП EGGER (Экономный, от 900 BYN)
+- **API routes для стилей**: `/kapi/admin/styles` (GET/POST) + `/kapi/admin/styles/[id]` (GET/PUT/DELETE)
+- **API routes для материалов**: `/kapi/admin/materials` (GET/POST) + `/kapi/admin/materials/[id]` (GET/PUT/DELETE)
+- **StyleForm** (`components/admin/StyleForm.tsx`) — 4-вкладочная форма: Основное / Контент / Связи / SEO
+- **MaterialForm** (`components/admin/MaterialForm.tsx`) — 4-вкладочная форма: Основное / Контент / Связи / SEO
+- **Admin страницы для стилей**: `/admin/styles`, `/admin/styles/new`, `/admin/styles/[id]`
+- **Admin страницы для материалов**: `/admin/materials`, `/admin/materials/new`, `/admin/materials/[id]`
+- **Перестроен `/styles/page.tsx`** — карточки с бюджетным уровнем, первый плюс, step-блок «Как получить консультацию», ContactForm внизу, JSON-LD ItemList
+- **Перестроен `/styles/[slug]/page.tsx`** — H1 + intro + плашка бюджета + цена с кнопкой → калькулятор + блок «Кому подходит» + «Плюсы и минусы» + «Советы по уходу» + «Сочетается с» + «Рекомендуемые материалы» + «Подходящие сценарии» + sticky sidebar с FormContact + быстрые факты + навигация по стилям. JSON-LD Article + BreadcrumbList
+- **Перестроен `/materials/page.tsx`** — таблица сравнения (плюс/минус первый, цена, бюджет) + карточки с pros/cons, ContactForm внизу, JSON-LD ItemList
+- **Перестроен `/materials/[slug]/page.tsx`** — полноценная SEO-посадочная: headline + intro + цена → калькулятор + «Плюсы и минусы» + «Кому подходит» + «Уход» + «Подходящие стили» + «Сценарии использования» + sticky sidebar + навигация по материалам. JSON-LD Article + BreadcrumbList
+- **Внутренняя перелинковка**: стили↔материалы, стили↔сценарии, материалы↔стили, материалы↔сценарии — все из БД
+- **AdminSidebar** — добавлены «Стили кухонь» (Palette) и «Материалы» (Layers) в раздел Структура
+
+### Changed
+- 16 файлов изменено/создано в этом этапе
+
 ## [Unreleased] — 2026-04-05 (ScenarioPage system)
 
 ### Added

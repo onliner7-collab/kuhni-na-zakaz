@@ -1,82 +1,311 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CheckCircle, XCircle, Droplets, ArrowRight, Palette, Users, Wallet } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { CheckCircle, XCircle } from "lucide-react";
-
-const STATIC: Record<string, { title: string; description: string; priceFrom: number; pros: string[]; cons: string[]; content: string }> = {
-  "mdf": { title: "Фасады МДФ на заказ", description: "МДФ плёнка ПВХ — доступный и популярный материал. От 1 200 BYN.", priceFrom: 1200, pros: ["Доступная цена", "Богатый выбор цветов", "Лёгкий ремонт"], cons: ["Боится влаги на срезах", "Средняя ударопрочность"], content: "МДФ с покрытием ПВХ — самый популярный выбор для кухонных фасадов в Беларуси. Основа из плотного МДФ покрывается плёнкой под любой цвет или текстуру. Срок службы — 10–15 лет при правильном уходе." },
-  "plastik": { title: "Пластиковые фасады на заказ", description: "HPL и акрил — прочные и влагостойкие фасады. От 1 500 BYN.", priceFrom: 1500, pros: ["Очень прочные", "Легко моются", "Не выцветают"], cons: ["Видны царапины на глянце", "Сложно ремонтировать"], content: "Пластиковые фасады (HPL и акрил) — идеальный выбор для тех, кто ценит практичность. Поверхность выдерживает механическое воздействие и легко чистится. Глянцевый акрил создаёт эффект зеркала." },
-  "emal": { title: "Эмалевые фасады на заказ", description: "Крашеный МДФ с эмалью — премиальный вид. От 2 200 BYN.", priceFrom: 2200, pros: ["Идеально ровная поверхность", "Богатая палитра RAL", "Премиальный вид"], cons: ["Требует бережного ухода", "Дороже МДФ плёнки"], content: "Эмалевые фасады — выбор тех, кто хочет идеальный результат. МДФ-основа покрывается несколькими слоями эмали с шлифовкой между слоями. Поверхность получается гладкой и равномерной." },
-  "shpon": { title: "Шпонированные фасады на заказ", description: "Натуральный шпон — тепло дерева без цены массива. От 3 200 BYN.", priceFrom: 3200, pros: ["Натуральный вид дерева", "Уникальная текстура", "Тактильная приятность"], cons: ["Требует специального ухода", "Чувствителен к влаге и теплу"], content: "Шпонированные фасады — это тонкий срез натурального дерева на основе МДФ. Ясень, дуб, орех, венге — каждый лист имеет уникальный рисунок. Тепло дерева за разумные деньги." },
-  "egger": { title: "ЛДСП EGGER для кухонь", description: "Немецкий ЛДСП EGGER — надёжный и доступный. От 900 BYN.", priceFrom: 900, pros: ["Бюджетный вариант", "Сотни декоров", "Прочность и стабильность"], cons: ["Ограниченные формы", "Нельзя гнуть или фрезеровать"], content: "ЛДСП EGGER — немецкий стандарт качества. Используется для корпусов и плоских фасадов. Сотни декоров: под дерево, бетон, камень. Оптимальный выбор для бюджетных кухонь." },
-};
 
 interface Props { params: Promise<{ slug: string }> }
 
+async function getMaterial(slug: string) {
+  try {
+    return await prisma.materialPage.findUnique({ where: { slug, published: true } });
+  } catch { return null; }
+}
+
+async function getRelatedData(m: Awaited<ReturnType<typeof getMaterial>>) {
+  if (!m) return { styles: [], scenarios: [] };
+  try {
+    const [styles, scenarios] = await Promise.all([
+      m.relatedStyles.length > 0
+        ? prisma.stylePage.findMany({ where: { slug: { in: m.relatedStyles }, published: true } })
+        : Promise.resolve([]),
+      m.relatedScenarioSlugs.length > 0
+        ? prisma.scenarioPage.findMany({ where: { slug: { in: m.relatedScenarioSlugs }, published: true } })
+        : Promise.resolve([]),
+    ]);
+    return { styles, scenarios };
+  } catch { return { styles: [], scenarios: [] }; }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  try {
-    const m = await prisma.materialPage.findUnique({ where: { slug } });
-    if (m) return { title: m.seoTitle || m.title, description: m.seoDescription || m.description, alternates: { canonical: `/materials/${slug}` } };
-  } catch {}
-  const s = STATIC[slug];
-  if (s) return { title: s.title, description: s.description, alternates: { canonical: `/materials/${slug}` } };
-  return { title: "Материал для кухни" };
+  const m = await getMaterial(slug);
+  if (!m) return { title: "Материал для кухни" };
+  return {
+    title: m.seoTitle || `${m.title} — КухниBY`,
+    description: m.seoDescription || m.description,
+    keywords: m.seoKeywords || undefined,
+    alternates: { canonical: `/materials/${slug}` },
+  };
 }
 
 export default async function MaterialPage({ params }: Props) {
   const { slug } = await params;
-  let data: typeof STATIC[string] | null = null;
-  try {
-    const m = await prisma.materialPage.findUnique({ where: { slug } });
-    if (m && m.published) data = { title: m.title, description: m.description, priceFrom: m.priceFrom, pros: m.pros, cons: m.cons, content: m.content };
-  } catch {}
-  if (!data) data = STATIC[slug] || null;
-  if (!data) notFound();
+  const m = await getMaterial(slug);
+  if (!m) notFound();
+  const { styles, scenarios } = await getRelatedData(m);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: m.headline || m.title,
+    description: m.seoDescription || m.description,
+    name: m.title,
+    url: `https://kuhniby.by/materials/${slug}`,
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhniby.by" },
+        { "@type": "ListItem", position: 2, name: "Материалы", item: "https://kuhniby.by/materials" },
+        { "@type": "ListItem", position: 3, name: m.title, item: `https://kuhniby.by/materials/${slug}` },
+      ],
+    },
+  };
 
   return (
-    <div className="section-padding">
-      <div className="container-site">
-        <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-          <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-          <Link href="/materials" className="hover:text-primary">Материалы</Link><span>/</span>
-          <span className="text-foreground">{data.title.split(" ").slice(0, 2).join(" ")}</span>
-        </nav>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2">
-            <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
-            <div className="h-64 bg-gradient-to-br from-stone-200 to-stone-300 rounded-xl flex items-center justify-center mb-6">
-              <span className="text-stone-400">Образец материала</span>
-            </div>
-            <p className="text-muted-foreground mb-6">{data.content}</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div className="card-base p-5">
-                <h2 className="font-semibold mb-3 text-green-700">Плюсы</h2>
-                <ul className="space-y-2">
-                  {data.pros.map((p) => <li key={p} className="flex items-start gap-2 text-sm"><CheckCircle className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />{p}</li>)}
-                </ul>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <div className="section-padding">
+        <div className="container-site">
+          {/* Breadcrumb */}
+          <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2 flex-wrap">
+            <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
+            <Link href="/materials" className="hover:text-primary">Материалы</Link><span>/</span>
+            <span className="text-foreground">{m.title}</span>
+          </nav>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            {/* Main content */}
+            <div className="lg:col-span-2 space-y-10">
+              {/* Hero */}
+              <div>
+                {m.budgetLevel && (
+                  <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary mb-4">
+                    {m.budgetLevel} сегмент
+                  </span>
+                )}
+                <h1 className="font-serif text-4xl font-bold mb-4 leading-tight">
+                  {m.headline || m.title}
+                </h1>
+                <div className="h-64 bg-gradient-to-br from-stone-200 to-stone-300 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
+                  {m.image ? (
+                    <img src={m.image} alt={m.title} className="w-full h-full object-cover" />
+                  ) : (
+                    <span className="text-stone-400">Образец материала</span>
+                  )}
+                </div>
+                {m.intro && (
+                  <p className="text-muted-foreground leading-relaxed text-lg">{m.intro}</p>
+                )}
+                {m.content && !m.intro && (
+                  <p className="text-muted-foreground leading-relaxed">{m.content}</p>
+                )}
               </div>
-              <div className="card-base p-5">
-                <h2 className="font-semibold mb-3 text-red-600">Минусы</h2>
-                <ul className="space-y-2">
-                  {data.cons.map((c) => <li key={c} className="flex items-start gap-2 text-sm"><XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />{c}</li>)}
-                </ul>
+
+              {/* Price block */}
+              {m.priceFrom > 0 && (
+                <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <Wallet className="w-5 h-5 text-primary" />
+                      <span className="font-semibold text-primary text-lg">
+                        {m.pricePer || `от ${m.priceFrom.toLocaleString("ru")} BYN`}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Точная цена — после бесплатного замера на дому</p>
+                  </div>
+                  <Link href="/calculator" className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition-colors shrink-0">
+                    Рассчитать стоимость <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              )}
+
+              {/* Плюсы и минусы */}
+              {(m.pros.length > 0 || m.cons.length > 0) && (
+                <section>
+                  <h2 className="font-serif text-2xl font-bold mb-4">Плюсы и минусы</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {m.pros.length > 0 && (
+                      <div className="card-base p-5">
+                        <h3 className="font-semibold text-green-700 mb-3 flex items-center gap-2">
+                          <CheckCircle className="w-5 h-5" /> Преимущества
+                        </h3>
+                        <ul className="space-y-2.5">
+                          {m.pros.map((p, i) => (
+                            <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
+                              <span className="w-5 h-5 rounded-full bg-green-100 text-green-700 text-xs flex items-center justify-center shrink-0 mt-0.5 font-semibold">{i + 1}</span>
+                              {p}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {m.cons.length > 0 && (
+                      <div className="card-base p-5">
+                        <h3 className="font-semibold text-red-600 mb-3 flex items-center gap-2">
+                          <XCircle className="w-5 h-5" /> Недостатки
+                        </h3>
+                        <ul className="space-y-2.5">
+                          {m.cons.map((c, i) => (
+                            <li key={i} className="flex items-start gap-2.5 text-sm text-foreground">
+                              <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                              {c}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )}
+
+              {/* Кому подходит */}
+              {m.suitableFor.length > 0 && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                      <Users className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold">Кому подходит</h2>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {m.suitableFor.map((item, i) => (
+                      <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-blue-50/60 border border-blue-100">
+                        <CheckCircle className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
+                        <span className="text-sm text-foreground">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Уход */}
+              {m.careGuide.length > 0 && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-cyan-100 flex items-center justify-center shrink-0">
+                      <Droplets className="w-5 h-5 text-cyan-600" />
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold">Уход и эксплуатация</h2>
+                  </div>
+                  <div className="card-base p-5">
+                    <ul className="space-y-3">
+                      {m.careGuide.map((tip, i) => (
+                        <li key={i} className="flex items-start gap-3 text-sm text-foreground">
+                          <span className="w-6 h-6 rounded-full bg-cyan-100 text-cyan-700 text-xs flex items-center justify-center shrink-0 font-semibold">{i + 1}</span>
+                          {tip}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
+              )}
+
+              {/* Рекомендуемые стили */}
+              {styles.length > 0 && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-amber-100 flex items-center justify-center shrink-0">
+                      <Palette className="w-5 h-5 text-amber-600" />
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold">Подходящие стили</h2>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {styles.map((st) => (
+                      <Link key={st.slug} href={`/styles/${st.slug}`}
+                        className="card-base p-4 flex gap-4 hover:shadow-md transition-shadow group">
+                        <div className="w-16 h-16 bg-gradient-to-br from-stone-200 to-amber-100 rounded-lg shrink-0 overflow-hidden">
+                          {st.image && <img src={st.image} alt={st.title} className="w-full h-full object-cover" />}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm group-hover:text-primary transition-colors">{st.title}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{st.description}</p>
+                          <p className="text-xs text-primary font-medium mt-1">от {st.priceFrom.toLocaleString("ru")} BYN</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Сценарии */}
+              {scenarios.length > 0 && (
+                <section>
+                  <h2 className="font-serif text-2xl font-bold mb-4">Популярные сценарии использования</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {scenarios.map((sc) => (
+                      <Link key={sc.slug} href={`/scenarios/${sc.slug}`}
+                        className="card-base p-4 hover:shadow-md transition-shadow group">
+                        <div className="flex items-center gap-3 mb-2">
+                          {sc.icon && <span className="text-2xl">{sc.icon}</span>}
+                          <h3 className="font-semibold text-sm group-hover:text-primary transition-colors">{sc.title}</h3>
+                        </div>
+                        <p className="text-xs text-muted-foreground line-clamp-2">{sc.intro || sc.description}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-5">
+                <div className="card-base p-6">
+                  <h2 className="font-serif text-xl font-semibold mb-4">Заказать замер</h2>
+                  <p className="text-sm text-muted-foreground mb-4">Выезд бесплатно. Работаем по всей Беларуси.</p>
+                  <ContactForm source={`materials/${slug}`} />
+                </div>
+
+                {/* Quick info */}
+                <div className="card-base p-5 space-y-3">
+                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Характеристики</h3>
+                  {m.budgetLevel && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Сегмент</span>
+                      <span className="font-medium">{m.budgetLevel}</span>
+                    </div>
+                  )}
+                  {m.priceFrom > 0 && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Цена от</span>
+                      <span className="font-medium text-primary">{m.priceFrom.toLocaleString("ru")} BYN</span>
+                    </div>
+                  )}
+                  {styles.length > 0 && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Стили</span>
+                      <span className="font-medium">{styles.length} варианта</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Nav */}
+                <div className="card-base p-5">
+                  <h3 className="font-semibold text-sm mb-3">Другие материалы</h3>
+                  <div className="space-y-1">
+                    {[
+                      { slug: "mdf", title: "МДФ с плёнкой ПВХ" },
+                      { slug: "plastik", title: "Пластик HPL / акрил" },
+                      { slug: "emal", title: "Эмаль матовая / глянец" },
+                      { slug: "shpon", title: "Натуральный шпон" },
+                      { slug: "egger", title: "ЛДСП EGGER" },
+                    ].filter(l => l.slug !== slug).map(l => (
+                      <Link key={l.slug} href={`/materials/${l.slug}`}
+                        className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                        {l.title}
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="bg-primary/10 border border-primary/20 rounded-xl p-5">
-              <p className="font-semibold text-primary">Кухня из {data.title.toLowerCase()}: от {data.priceFrom.toLocaleString("ru")} BYN</p>
-            </div>
-          </div>
-          <div>
-            <div className="card-base p-6 sticky top-20">
-              <h2 className="font-serif text-xl font-semibold mb-4">Заказать замер</h2>
-              <ContactForm source={`materials/${slug}`} />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
