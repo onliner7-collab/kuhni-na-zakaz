@@ -5,5 +5,6 @@
   "/admin/login/page": "app/admin/login/page.js",
   "/admin/dashboard/page": "app/admin/dashboard/page.js",
   "/admin/kitchens/page": "app/admin/kitchens/page.js",
-  "/admin/kitchens/[id]/page": "app/admin/kitchens/[id]/page.js"
+  "/admin/kitchens/[id]/page": "app/admin/kitchens/[id]/page.js",
+  "/admin/locations/page": "app/admin/locations/page.js"
 }
