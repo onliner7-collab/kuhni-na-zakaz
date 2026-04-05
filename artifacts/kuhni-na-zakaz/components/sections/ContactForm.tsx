@@ -20,12 +20,13 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export function ContactForm({ source = "website" }: { source?: string }) {
+export function ContactForm({ source = "website", city }: { source?: string; city?: string }) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: { city: city || "" },
   });
 
   const onSubmit = async (data: FormData) => {

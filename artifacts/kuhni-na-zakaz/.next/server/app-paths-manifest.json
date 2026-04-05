@@ -1,6 +1,6 @@
 {
-  "/kapi/admin/settings/route": "app/kapi/admin/settings/route.js",
+  "/locations/[city]/page": "app/locations/[city]/page.js",
   "/admin/login/page": "app/admin/login/page.js",
-  "/admin/contacts/page": "app/admin/contacts/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js"
+  "/admin/dashboard/page": "app/admin/dashboard/page.js",
+  "/admin/locations/new/page": "app/admin/locations/new/page.js"
 }

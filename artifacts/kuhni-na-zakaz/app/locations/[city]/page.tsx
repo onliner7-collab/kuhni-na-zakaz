@@ -1,122 +1,476 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { prisma } from "@/lib/db";
+import { ReviewStatus } from "@prisma/client";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { CheckCircle } from "lucide-react";
+import {
+  CheckCircle, MapPin, Clock, Ruler, Wrench, ChevronRight,
+  Star, Phone, CalendarDays, ArrowRight, MessageSquare
+} from "lucide-react";
 
-const LOCATIONS: Record<string, {
-  city: string; title: string; h1: string; description: string;
-  content: string; areas: string[]; deliveryCost: string;
-  phone: string; seoTitle: string; seoDesc: string;
-}> = {
-  minsk: {
-    city: "Минск", title: "Кухни на заказ в Минске — замер бесплатно | КухниMinsk",
-    h1: "Кухни на заказ в Минске",
-    description: "Кухни на заказ в Минске от производителя. Собственное производство. Замер и 3D-проект бесплатно. Гарантия 5 лет. Изготовление от 14 дней.",
-    content: `Мы производим кухни на заказ для жителей Минска уже более 10 лет. Собственный цех, штат дизайнеров и монтажников — всё для того, чтобы ваша кухня была сделана точно в срок и без лишних нервов.
-
-Работаем во всех районах Минска: Центральный, Советский, Фрунзенский, Московский, Партизанский, Ленинский, Октябрьский, Заводской.
-
-После замера подготовим 3D-проект в течение 3 рабочих дней. Цена фиксируется в договоре.`,
-    areas: ["Центральный район", "Советский район", "Фрунзенский район", "Московский район", "Партизанский район", "Ленинский район", "Октябрьский район", "Заводской район"],
-    deliveryCost: "Бесплатно при заказе от 3 000 BYN",
-    phone: "+375 (29) 123-45-67",
-    seoTitle: "Кухни на заказ в Минске от производителя | КухниMinsk",
-    seoDesc: "Кухни на заказ в Минске. Собственное производство. Замер бесплатно. Гарантия 5 лет. От 900 BYN. Звоните: +375 (29) 123-45-67",
-  },
-  "minskaya-oblast": {
-    city: "Минская область", title: "Кухни на заказ в Минской области | КухниMinsk",
-    h1: "Кухни на заказ в Минской области",
-    description: "Кухни на заказ в Минской области: Борисов, Молодечно, Жодино, Солигорск. Доставка и монтаж. Замер выездной — бесплатно.",
-    content: `Изготавливаем кухни для жителей Минской области. Выезжаем на замер в любой населённый пункт области. Доставляем и устанавливаем силами собственных монтажников.
-
-Работаем в Борисове, Молодечно, Жодино, Солигорске, Слуцке, Несвиже, Клецке, Копыле и других городах и посёлках.
-
-Стоимость доставки по области зависит от расстояния — от 50 BYN. При крупном заказе доставка бесплатно.`,
-    areas: ["Борисов", "Молодечно", "Жодино", "Солигорск", "Слуцк", "Несвиж", "Клецк", "Копыль", "Дзержинск", "Вилейка"],
-    deliveryCost: "от 50 BYN (зависит от расстояния)",
-    phone: "+375 (29) 123-45-67",
-    seoTitle: "Кухни на заказ в Минской области | КухниMinsk",
-    seoDesc: "Кухни на заказ в Минской области: Борисов, Молодечно, Жодино, Слуцк. Доставка и монтаж. Замер бесплатно.",
-  },
-};
+export const revalidate = 3600;
 
 interface Props { params: Promise<{ city: string }> }
 
+async function getLocation(slug: string) {
+  return prisma.locationPage.findUnique({ where: { slug, published: true } }).catch(() => null);
+}
+
+async function getLocalCases(city: string) {
+  return prisma.portfolioCase.findMany({
+    where: { published: true, city: { contains: city, mode: "insensitive" } },
+    orderBy: { createdAt: "desc" },
+    take: 4,
+    select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
+  }).catch(() => []);
+}
+
+async function getLocalReviews(city: string) {
+  return prisma.review.findMany({
+    where: { status: ReviewStatus.APPROVED, city: { contains: city, mode: "insensitive" } },
+    orderBy: { createdAt: "desc" },
+    take: 3,
+    select: { id: true, name: true, city: true, rating: true, text: true, date: true },
+  }).catch(() => []);
+}
+
+export async function generateStaticParams() {
+  const locs = await prisma.locationPage.findMany({ where: { published: true }, select: { slug: true } }).catch(() => []);
+  return locs.map(l => ({ city: l.slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
-  const loc = LOCATIONS[city];
+  const loc = await getLocation(city);
   if (!loc) return { title: "Не найдено" };
   return {
-    title: loc.seoTitle,
-    description: loc.seoDesc,
+    title: loc.seoTitle || loc.title,
+    description: loc.seoDescription || loc.description,
     alternates: { canonical: `/locations/${city}` },
-    openGraph: { title: loc.seoTitle, description: loc.seoDesc },
+    openGraph: {
+      title: loc.seoTitle || loc.title,
+      description: loc.seoDescription || loc.description,
+      images: loc.images[0] ? [{ url: loc.images[0] }] : [],
+    },
   };
 }
 
 export default async function LocationPage({ params }: Props) {
   const { city } = await params;
-  const loc = LOCATIONS[city];
+  const [loc, cases, reviews] = await Promise.all([
+    getLocation(city),
+    getLocation(city).then(l => l ? getLocalCases(l.city) : []),
+    getLocation(city).then(l => l ? getLocalReviews(l.city) : []),
+  ]);
+
   if (!loc) notFound();
 
-  const jsonLd = {
+  const faqItems = (loc.faq as Array<{ q: string; a: string }>) ?? [];
+  const timelineSteps = loc.timelineText ? loc.timelineText.split("→").map(s => s.trim()).filter(Boolean) : [];
+
+  const jsonLdLocalBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "КухниMinsk",
+    "@id": `https://kuhniby.by/locations/${loc.slug}`,
+    name: "КухниBY",
     description: loc.description,
-    telephone: "+375291234567",
-    address: { "@type": "PostalAddress", addressLocality: loc.city, addressCountry: "BY" },
+    telephone: loc.phone || "+375291234567",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: loc.city,
+      addressRegion: loc.region,
+      addressCountry: "BY",
+    },
     areaServed: loc.areas,
+    priceRange: `от ${loc.priceFrom} BYN`,
+    image: loc.images[0] || undefined,
+    url: `https://kuhniby.by/locations/${loc.slug}`,
+  };
+
+  const jsonLdFaq = faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map(item => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  } : null;
+
+  const jsonLdBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhniby.by/" },
+      { "@type": "ListItem", position: 2, name: "Города", item: "https://kuhniby.by/locations/" },
+      { "@type": "ListItem", position: 3, name: loc.city, item: `https://kuhniby.by/locations/${loc.slug}` },
+    ],
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="section-padding">
-        <div className="container-site">
-          <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-            <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-            <span className="text-foreground">Кухни в {loc.city}</span>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdLocalBusiness) }} />
+      {jsonLdFaq && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
+
+      {/* HERO */}
+      <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
+        {loc.images[0] && (
+          <div className="absolute inset-0 opacity-15">
+            <img src={loc.images[0]} alt={loc.city} className="w-full h-full object-cover" />
+          </div>
+        )}
+        <div className="relative container-site section-padding py-16 md:py-24">
+          <nav className="text-sm text-white/60 mb-6 flex items-center gap-2 flex-wrap">
+            <Link href="/" className="hover:text-white transition-colors">Главная</Link>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-white/80 hover:text-white cursor-default">Кухни в {loc.city}</span>
           </nav>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <div className="lg:col-span-2">
-              <h1 className="font-serif text-4xl font-bold mb-4">{loc.h1}</h1>
-              <p className="text-lg text-muted-foreground mb-6">{loc.description}</p>
-              <div className="prose prose-stone max-w-none mb-8">
-                {loc.content.split("\n\n").map((p, i) => <p key={i} className="mb-4 text-muted-foreground leading-relaxed">{p}</p>)}
+
+          <div className="max-w-3xl">
+            {loc.region && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-medium mb-4 border border-white/20">
+                <MapPin className="w-3 h-3" />
+                {loc.region}
               </div>
-              <div className="card-base p-6 mb-6">
-                <h2 className="font-semibold mb-4">Работаем в:</h2>
-                <div className="grid grid-cols-2 gap-2">
-                  {loc.areas.map((area) => (
-                    <div key={area} className="flex items-center gap-2 text-sm">
-                      <CheckCircle className="w-4 h-4 text-primary shrink-0" />{area}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="card-base p-5">
-                  <h3 className="font-semibold mb-1">Доставка</h3>
-                  <p className="text-sm text-muted-foreground">{loc.deliveryCost}</p>
-                </div>
-                <div className="card-base p-5">
-                  <h3 className="font-semibold mb-1">Замер</h3>
-                  <p className="text-sm text-muted-foreground">Выездной замер — бесплатно</p>
-                </div>
-              </div>
+            )}
+            <h1 className="text-3xl md:text-5xl font-serif font-bold mb-4 leading-tight">{loc.h1}</h1>
+            {loc.intro && <p className="text-lg text-white/80 mb-8 leading-relaxed">{loc.intro}</p>}
+
+            <div className="flex flex-wrap gap-3 mb-10">
+              <a
+                href={`tel:${(loc.phone || "+375291234567").replace(/\D/g, "").replace(/^/, "+")}`}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[#2d0a5e] font-bold hover:bg-white/90 transition-colors text-sm"
+              >
+                <Phone className="w-4 h-4" />
+                Бесплатный замер
+              </a>
+              <a
+                href="#form"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors text-sm border border-white/20"
+              >
+                Оставить заявку
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
-            <div>
-              <div className="card-base p-6 sticky top-20">
-                <h2 className="font-serif text-xl font-semibold mb-2">Заказать замер</h2>
-                <p className="text-sm text-muted-foreground mb-4">в {loc.city}</p>
-                <ContactForm source={`locations/${city}`} />
+
+            {/* Quick stats */}
+            <div className="flex flex-wrap gap-6">
+              {loc.priceFrom > 0 && (
+                <div>
+                  <p className="text-2xl font-bold">от {loc.priceFrom} BYN</p>
+                  <p className="text-xs text-white/60">за погонный метр</p>
+                </div>
+              )}
+              <div>
+                <p className="text-2xl font-bold">{loc.measureCost || "Бесплатно"}</p>
+                <p className="text-xs text-white/60">выезд на замер</p>
               </div>
+              {loc.deliveryDays > 0 && (
+                <div>
+                  <p className="text-2xl font-bold">{loc.deliveryDays === 1 ? "1 день" : `${loc.deliveryDays} дня`}</p>
+                  <p className="text-xs text-white/60">срок выезда</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* FEATURES */}
+      {loc.features.length > 0 && (
+        <section className="bg-white border-b border-border">
+          <div className="container-site py-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {loc.features.map((f, i) => (
+                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-primary/5 border border-primary/10">
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-sm font-medium text-foreground">{f}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* LOCAL CASES */}
+      {cases.length > 0 && (
+        <section className="section-padding bg-muted/30">
+          <div className="container-site">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
+                  Наши работы в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+                </h2>
+                <p className="text-muted-foreground mt-1">Реализованные проекты для жителей региона</p>
+              </div>
+              <Link href="/portfolio" className="hidden md:inline-flex items-center gap-1.5 text-primary font-semibold text-sm hover:gap-2.5 transition-all">
+                Все работы <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {cases.map(c => (
+                <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden bg-white border border-border hover:shadow-lg transition-all">
+                  <div className="aspect-[4/3] overflow-hidden bg-muted">
+                    {c.mainImage ? (
+                      <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-4xl">🏠</div>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <p className="font-semibold text-foreground text-sm mb-2 line-clamp-2">{c.title}</p>
+                    <div className="flex gap-3 text-xs text-muted-foreground">
+                      {c.area > 0 && <span>{c.area} м²</span>}
+                      {c.priceFrom > 0 && <span>от {c.priceFrom.toLocaleString("ru")} BYN</span>}
+                      {c.days > 0 && <span>{c.days} дн.</span>}
+                    </div>
+                    {c.style && <span className="mt-2 inline-block text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{c.style}</span>}
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-6 text-center md:hidden">
+              <Link href="/portfolio" className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm">
+                Все работы <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* PHOTO GALLERY */}
+      {loc.images.length > 1 && (
+        <section className="section-padding bg-white">
+          <div className="container-site">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
+              Фото работ в регионе
+            </h2>
+            <p className="text-muted-foreground mb-8">Кухни, изготовленные и установленные для жителей {loc.region || loc.city}</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {loc.images.map((img, i) => (
+                <div key={i} className={`rounded-xl overflow-hidden bg-muted ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
+                  <img src={img} alt={`Кухня в ${loc.city} — фото ${i + 1}`} className="w-full h-full object-cover aspect-square" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* TIMELINE */}
+      {timelineSteps.length > 0 && (
+        <section className="section-padding bg-gradient-to-br from-primary/5 to-violet-50">
+          <div className="container-site">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2 text-center">
+              Как это работает
+            </h2>
+            <p className="text-muted-foreground mb-10 text-center">От звонка до готовой кухни</p>
+            <div className="flex flex-col md:flex-row items-start gap-0 md:gap-0 max-w-4xl mx-auto">
+              {timelineSteps.map((step, i) => (
+                <div key={i} className="flex md:flex-col items-start md:items-center flex-1 relative">
+                  <div className="flex md:flex-col items-center gap-3 md:gap-2 w-full">
+                    <div className="w-10 h-10 rounded-full bg-primary text-white font-bold text-sm flex items-center justify-center flex-shrink-0 z-10">
+                      {i + 1}
+                    </div>
+                    {i < timelineSteps.length - 1 && (
+                      <div className="hidden md:block absolute top-5 left-1/2 right-0 h-0.5 bg-primary/20" style={{ width: "100%" }} />
+                    )}
+                    <p className="text-sm font-medium text-foreground md:text-center mt-0 md:mt-3">{step}</p>
+                  </div>
+                  {i < timelineSteps.length - 1 && (
+                    <ChevronRight className="md:hidden w-4 h-4 text-muted-foreground/40 mt-3 mx-2 flex-shrink-0 rotate-90 md:rotate-0" />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* VISIT + INSTALL DETAILS */}
+      {(loc.visitDetails || loc.installDetails) && (
+        <section className="section-padding bg-white">
+          <div className="container-site">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-8">
+              Замер и монтаж в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {loc.visitDetails && (
+                <div className="bg-muted/30 rounded-2xl p-6 border border-border">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Ruler className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">Выезд на замер</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-sm whitespace-pre-line">{loc.visitDetails}</p>
+                </div>
+              )}
+              {loc.installDetails && (
+                <div className="bg-muted/30 rounded-2xl p-6 border border-border">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <Wrench className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">Монтаж</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-sm whitespace-pre-line">{loc.installDetails}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* LOCAL REVIEWS */}
+      {reviews.length > 0 && (
+        <section className="section-padding bg-muted/30">
+          <div className="container-site">
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
+                  Отзывы клиентов из {loc.city === "Минск" ? "Минска" : loc.city === "Минская область" ? "Минской области" : loc.city}
+                </h2>
+                <p className="text-muted-foreground mt-1">Что говорят наши клиенты в регионе</p>
+              </div>
+              <Link href="/reviews" className="hidden md:inline-flex items-center gap-1.5 text-primary font-semibold text-sm">
+                Все отзывы <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {reviews.map(r => (
+                <div key={r.id} className="bg-white rounded-2xl p-5 border border-border">
+                  <div className="flex items-center gap-0.5 mb-3">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className={`w-4 h-4 ${i < r.rating ? "fill-amber-400 text-amber-400" : "text-muted-foreground/30"}`} />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-4">{r.text}</p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-foreground text-sm">{r.name}</p>
+                      <p className="text-xs text-muted-foreground">{r.city}</p>
+                    </div>
+                    {r.date && <span className="text-xs text-muted-foreground">{r.date}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* WORK ZONES + MAP */}
+      {(loc.areas.length > 0 || loc.mapEmbed) && (
+        <section className="section-padding bg-white">
+          <div className="container-site">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
+              Зона работы
+            </h2>
+            {loc.workZone && <p className="text-muted-foreground mb-8">{loc.workZone}</p>}
+            <div className={`grid gap-8 ${loc.mapEmbed ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
+              {loc.areas.length > 0 && (
+                <div>
+                  <h3 className="text-base font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-primary" />
+                    Районы и населённые пункты
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {loc.areas.map((area, i) => (
+                      <span key={i} className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                        {area}
+                      </span>
+                    ))}
+                  </div>
+                  {loc.deliveryCost && (
+                    <div className="mt-6 p-4 rounded-xl bg-muted/30 border border-border">
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Доставка</p>
+                      <p className="text-sm text-foreground">{loc.deliveryCost}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+              {loc.mapEmbed && (
+                <div className="rounded-2xl overflow-hidden border border-border h-72 lg:h-auto">
+                  <iframe
+                    src={loc.mapEmbed}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, minHeight: "280px" }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {faqItems.length > 0 && (
+        <section className="section-padding bg-muted/30">
+          <div className="container-site">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
+              Частые вопросы о кухнях в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+            </h2>
+            <p className="text-muted-foreground mb-8">Отвечаем на самые популярные вопросы жителей региона</p>
+            <div className="max-w-3xl space-y-4">
+              {faqItems.map((item, i) => (
+                <details key={i} className="group bg-white rounded-2xl border border-border overflow-hidden">
+                  <summary className="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-muted/30 transition-colors">
+                    <span className="font-semibold text-foreground pr-4">{item.q}</span>
+                    <ChevronRight className="w-5 h-5 text-muted-foreground flex-shrink-0 group-open:rotate-90 transition-transform" />
+                  </summary>
+                  <div className="px-5 pb-5 text-muted-foreground text-sm leading-relaxed">{item.a}</div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA + FORM */}
+      <section id="form" className="section-padding bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white">
+        <div className="container-site">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">
+                Заказать кухню в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+              </h2>
+              <p className="text-white/70 mb-8 leading-relaxed">
+                Оставьте заявку — перезвоним в течение 15 минут и запишем на бесплатный выезд замерщика.
+              </p>
+              <div className="space-y-4">
+                {[
+                  { icon: <Clock className="w-5 h-5" />, text: "Перезвоним в течение 15 минут" },
+                  { icon: <CalendarDays className="w-5 h-5" />, text: `Выезд замерщика — ${loc.deliveryDays === 1 ? "в день обращения" : `в течение ${loc.deliveryDays} дней`}` },
+                  { icon: <MessageSquare className="w-5 h-5" />, text: "3D-проект бесплатно после замера" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-white/80">
+                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
+                      {item.icon}
+                    </div>
+                    <span className="text-sm">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+              {loc.phone && (
+                <a href={`tel:${loc.phone.replace(/\D/g, "")}`} className="mt-8 inline-flex items-center gap-2 text-white/90 font-semibold hover:text-white transition-colors">
+                  <Phone className="w-4 h-4" />
+                  {loc.phone}
+                </a>
+              )}
+            </div>
+            <div className="bg-white/5 rounded-2xl border border-white/10 p-6 backdrop-blur-sm">
+              <ContactForm city={loc.city} />
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

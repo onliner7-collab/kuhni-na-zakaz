@@ -21,20 +21,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/login/page.js"
     ],
-    "/admin/contacts/page": [
+    "/locations/[city]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/contacts/page.js"
+      "static/chunks/app/locations/[city]/page.js"
     ],
     "/admin/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/dashboard/page.js"
     ],
-    "/kapi/admin/settings/route": [
+    "/admin/locations/new/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/kapi/admin/settings/route.js"
+      "static/chunks/app/admin/locations/new/page.js"
     ]
   }
 }

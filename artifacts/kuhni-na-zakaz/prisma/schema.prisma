@@ -151,20 +151,41 @@ model FAQItem {
 }
 
 model LocationPage {
-  id             Int      @id @default(autoincrement())
-  city           String
-  slug           String   @unique
-  title          String
-  h1             String
-  description    String   @default("")
-  content        String   @default("")
-  areas          String[]
-  deliveryCost   String   @default("")
-  phone          String?
-  address        String?
-  seoTitle       String?
-  seoDescription String?
-  published      Boolean  @default(true)
+  id              Int      @id @default(autoincrement())
+  city            String
+  slug            String   @unique
+  region          String   @default("")
+
+  title           String
+  h1              String
+  intro           String   @default("")
+  description     String   @default("")
+
+  priceFrom       Int      @default(900)
+  deliveryCost    String   @default("")
+  deliveryDays    Int      @default(1)
+  measureCost     String   @default("Бесплатно")
+  timelineText    String   @default("")
+
+  visitDetails    String   @default("")
+  installDetails  String   @default("")
+
+  images          String[]
+  areas           String[]
+  workZone        String   @default("")
+  mapEmbed        String   @default("")
+
+  features        String[]
+  faq             Json     @default("[]")
+
+  phone           String   @default("")
+  address         String   @default("")
+
+  seoTitle        String?
+  seoDescription  String?
+  published       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Lead {
