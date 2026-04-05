@@ -21,25 +21,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/login/page.js"
     ],
-    "/page": [
+    "/scenarios/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/scenarios/page.js"
     ],
     "/admin/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/dashboard/page.js"
     ],
-    "/admin/homepage/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/homepage/page.js"
+      "static/chunks/app/page.js"
     ],
-    "/kapi/admin/homepage/route": [
+    "/scenarios/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/kapi/admin/homepage/route.js"
+      "static/chunks/app/scenarios/[slug]/page.js"
     ]
   }
 }
