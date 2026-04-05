@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, UtensilsCrossed, Images, Star, FileText,
   BookOpen, MapPin, Settings, Users, Key, Activity, LogOut, ChevronLeft,
-  DollarSign, Globe,
+  DollarSign, Globe, Bell,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SessionPayload } from "@/lib/auth";
@@ -34,6 +34,7 @@ const NAV_GROUPS = [
   {
     label: "Система",
     items: [
+      { href: "/admin/notifications", icon: Bell, label: "Уведомления Telegram", roles: ["SUPER_ADMIN"] },
       { href: "/admin/settings", icon: Settings, label: "Настройки сайта", roles: ["SUPER_ADMIN"] },
       { href: "/admin/users", icon: Users, label: "Пользователи", roles: ["SUPER_ADMIN"] },
       { href: "/admin/guest-access", icon: Key, label: "Гостевой доступ", roles: ["SUPER_ADMIN"] },

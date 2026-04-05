@@ -223,3 +223,11 @@ model SiteSettings {
   metaTitle       String @default("Кухни на заказ в Минске | КухниMinsk")
   metaDescription String @default("Кухни на заказ в Минске и Минской области. Собственное производство. Гарантия 5 лет. Замер и проект бесплатно.")
 }
+
+model TelegramRecipient {
+  id        Int      @id @default(autoincrement())
+  label     String   @default("")
+  chatId    String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}

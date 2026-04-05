@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { sendLeadNotifications } from "@/lib/telegram";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -41,8 +42,8 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Telegram webhook
-    await sendTelegramNotification(lead).catch((err) => {
+    // Telegram уведомления всем получателям
+    await sendLeadNotifications(lead).catch((err) => {
       console.error("[TELEGRAM]", err);
     });
 
@@ -65,22 +66,3 @@ export async function GET(req: NextRequest) {
   }
 }
 
-async function sendTelegramNotification(lead: {
-  id: number; name: string; phone: string; city: string; comment: string; source: string;
-}) {
-  const settings = await prisma.siteSettings.findFirst().catch(() => null);
-  if (!settings?.telegramBotToken || !settings?.telegramChatId) return;
-
-  const text = `🆕 Новая заявка #${lead.id}
-👤 Имя: ${lead.name}
-📞 Телефон: ${lead.phone}
-📍 Город: ${lead.city || "не указан"}
-💬 Комментарий: ${lead.comment || "—"}
-🔗 Источник: ${lead.source}`;
-
-  await fetch(`https://api.telegram.org/bot${settings.telegramBotToken}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: settings.telegramChatId, text, parse_mode: "HTML" }),
-  });
-}

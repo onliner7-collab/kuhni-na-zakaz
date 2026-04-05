@@ -31,30 +31,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/dashboard/page.js"
     ],
-    "/admin/kitchens/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/kitchens/page.js"
-    ],
-    "/catalog/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/catalog/page.js"
-    ],
     "/kapi/auth/login/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/kapi/auth/login/route.js"
     ],
-    "/admin/kitchens/[id]/page": [
+    "/kapi/admin/notifications/telegram/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/kitchens/[id]/page.js"
+      "static/chunks/app/kapi/admin/notifications/telegram/route.js"
     ],
-    "/admin/locations/page": [
+    "/admin/notifications/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/locations/page.js"
+      "static/chunks/app/admin/notifications/page.js"
     ]
   }
 }
