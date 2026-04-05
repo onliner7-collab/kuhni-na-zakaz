@@ -2,6 +2,12 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
+if (!process.env.SESSION_SECRET) {
+  console.error(
+    "[AUTH] ВНИМАНИЕ: SESSION_SECRET не задан. Установите переменную окружения SESSION_SECRET для безопасной работы."
+  );
+}
+
 const JWT_SECRET = new TextEncoder().encode(
   process.env.SESSION_SECRET || "kuhni-minsk-secret-change-in-prod"
 );

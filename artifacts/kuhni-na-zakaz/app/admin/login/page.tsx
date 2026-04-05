@@ -21,8 +21,13 @@ export default async function LoginPage({ searchParams }: Props) {
     <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="font-serif text-2xl font-bold">КухниMinsk</h1>
-          <p className="text-muted-foreground text-sm mt-1">Панель управления</p>
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}>
+              <span className="text-white font-black text-sm">К</span>
+            </div>
+            <span className="font-black text-2xl text-foreground">Кухни<span style={{ background: "linear-gradient(135deg, #7C3AED, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>BY</span></span>
+          </div>
+          <p className="text-muted-foreground text-sm">Панель управления</p>
         </div>
         <LoginForm redirectTo={from || "/admin/dashboard"} />
       </div>

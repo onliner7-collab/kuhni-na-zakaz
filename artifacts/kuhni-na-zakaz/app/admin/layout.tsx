@@ -3,7 +3,7 @@ import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { getSession } from "@/lib/auth";
 
 export const metadata: Metadata = {
-  title: { default: "Панель управления", template: "%s | Admin КухниMinsk" },
+  title: { default: "Панель управления", template: "%s | Панель управления КухниBY" },
   robots: { index: false, follow: false },
 };
 
