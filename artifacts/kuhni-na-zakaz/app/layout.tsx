@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCTA } from "@/components/layout/MobileCTA";
 import { Toaster } from "@/components/ui/toaster";
+import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: {
@@ -38,10 +39,19 @@ export default async function RootLayout({
   const pathname = headersList.get("x-pathname") || "";
   const isAdmin = pathname.startsWith("/admin");
 
+  const siteSettings = !isAdmin
+    ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
+    : null;
+
   return (
     <html lang="ru">
       <body>
-        {!isAdmin && <Header />}
+        {!isAdmin && (
+          <Header
+            phone={siteSettings?.phoneDisplay}
+            phoneHref={siteSettings?.phone ? `tel:${siteSettings.phone}` : undefined}
+          />
+        )}
         {isAdmin ? children : <main>{children}</main>}
         {!isAdmin && <Footer />}
         {!isAdmin && <MobileCTA />}

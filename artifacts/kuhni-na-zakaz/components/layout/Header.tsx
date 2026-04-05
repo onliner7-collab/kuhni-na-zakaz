@@ -16,12 +16,11 @@ const NAV_LINKS = [
   { href: "/contacts", label: "Контакты" },
 ];
 
-const PHONE = "+375 (29) 123-45-67";
-const PHONE_HREF = "tel:+375291234567";
-
 // Redesigned: modern youth-oriented header with gradient logo, glassmorphism on scroll
 
-export function Header() {
+export function Header({ phone, phoneHref }: { phone?: string; phoneHref?: string }) {
+  const PHONE = phone || "+375 (29) 123-45-67";
+  const PHONE_HREF = phoneHref || "tel:+375291234567";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
