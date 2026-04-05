@@ -32,7 +32,7 @@ export function ContactForm({ source = "website" }: { source?: string }) {
     if (data.honeypot) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/leads", {
+      const res = await fetch("/kapi/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, source, formType: "contact" }),

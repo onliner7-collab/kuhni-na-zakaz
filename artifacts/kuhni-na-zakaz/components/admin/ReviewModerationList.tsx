@@ -31,7 +31,7 @@ function ReviewCard({ review, onAction }: { review: Review; onAction: (id: numbe
   async function handle(action: string) {
     setLoading(true);
     try {
-      const res = await fetch(`/api/admin/reviews/${review.id}`, {
+      const res = await fetch(`/kapi/admin/reviews/${review.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action }),

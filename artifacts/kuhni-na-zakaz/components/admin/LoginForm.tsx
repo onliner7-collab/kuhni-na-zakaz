@@ -17,7 +17,7 @@ export function LoginForm({ redirectTo }: { redirectTo: string }) {
     setLoading(true);
     const fd = new FormData(e.currentTarget);
     try {
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch("/kapi/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: fd.get("email"), password: fd.get("password") }),

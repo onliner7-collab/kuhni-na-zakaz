@@ -29,7 +29,7 @@ export function KitchenForm({ kitchen }: { kitchen?: Kitchen }) {
       published: fd.get("published") === "on",
     };
     try {
-      const url = kitchen ? `/api/admin/kitchens/${kitchen.id}` : "/api/admin/kitchens";
+      const url = kitchen ? `/api/admin/kitchens/${kitchen.id}` : "/kapi/admin/kitchens";
       const method = kitchen ? "PUT" : "POST";
       const res = await fetch(url, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
       if (res.ok) {

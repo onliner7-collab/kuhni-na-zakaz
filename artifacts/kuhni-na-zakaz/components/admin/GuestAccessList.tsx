@@ -31,7 +31,7 @@ export function GuestAccessList({ accesses: initial }: { accesses: GuestAccess[]
     setLoading(true);
     const fd = new FormData(e.currentTarget);
     try {
-      const res = await fetch("/api/admin/guest-access", {
+      const res = await fetch("/kapi/admin/guest-access", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -52,7 +52,7 @@ export function GuestAccessList({ accesses: initial }: { accesses: GuestAccess[]
   }
 
   async function handleRevoke(id: number) {
-    const res = await fetch("/api/admin/guest-access", {
+    const res = await fetch("/kapi/admin/guest-access", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),

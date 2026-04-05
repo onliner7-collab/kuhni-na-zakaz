@@ -70,7 +70,7 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
     e.preventDefault();
     setLoading(true);
     try {
-      const url = isEdit ? `/api/admin/portfolio/${portfolioCase!.id}` : "/api/admin/portfolio";
+      const url = isEdit ? `/api/admin/portfolio/${portfolioCase!.id}` : "/kapi/admin/portfolio";
       const method = isEdit ? "PUT" : "POST";
       const res = await fetch(url, {
         method,

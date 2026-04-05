@@ -33,7 +33,7 @@ export function SettingsForm({ settings }: { settings: Settings | null }) {
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
     try {
-      const res = await fetch("/api/admin/settings", {
+      const res = await fetch("/kapi/admin/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

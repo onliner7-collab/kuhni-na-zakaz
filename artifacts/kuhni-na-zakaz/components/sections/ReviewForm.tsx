@@ -39,7 +39,7 @@ export function ReviewForm() {
     if (data.honeypot) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/reviews", {
+      const res = await fetch("/kapi/reviews", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

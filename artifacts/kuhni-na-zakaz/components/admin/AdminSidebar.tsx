@@ -62,7 +62,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
   }
 
   async function handleLogout() {
-    await fetch("/api/auth/logout", { method: "POST" });
+    await fetch("/kapi/auth/logout", { method: "POST" });
     router.push("/admin/login");
     router.refresh();
   }

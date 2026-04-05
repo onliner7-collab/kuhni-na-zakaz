@@ -16,7 +16,7 @@ export function AddUserForm() {
     setLoading(true);
     const fd = new FormData(e.currentTarget);
     try {
-      const res = await fetch("/api/admin/users", {
+      const res = await fetch("/kapi/admin/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

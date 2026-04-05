@@ -57,7 +57,7 @@ export function BlogPostForm({ post }: Props) {
     e.preventDefault();
     setLoading(true);
     try {
-      const url = isEdit ? `/api/admin/blog/${post!.id}` : "/api/admin/blog";
+      const url = isEdit ? `/api/admin/blog/${post!.id}` : "/kapi/admin/blog";
       const method = isEdit ? "PUT" : "POST";
       const res = await fetch(url, {
         method,
