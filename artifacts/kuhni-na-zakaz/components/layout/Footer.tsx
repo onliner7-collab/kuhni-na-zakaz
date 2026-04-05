@@ -40,11 +40,11 @@ export function Footer() {
                 <span className="text-white font-black text-sm">К</span>
               </div>
               <span className="font-black text-xl tracking-tight text-white">
-                Кухни<span style={{ background: "linear-gradient(135deg, #a78bfa, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Minsk</span>
+                Кухни<span style={{ background: "linear-gradient(135deg, #a78bfa, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>BY</span>
               </span>
             </Link>
             <p className="mt-3 text-sm text-white/50 leading-relaxed">
-              Кухни на заказ в Минске и Минской области. Собственное производство.
+              Кухни на заказ по всей Беларуси. Собственное производство.
             </p>
             <div className="mt-4 space-y-2.5">
               <a href="tel:+375291234567" className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
@@ -118,7 +118,7 @@ export function Footer() {
 
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-white/30">
-            © {new Date().getFullYear()} КухниMinsk. Все права защищены.
+            © {new Date().getFullYear()} КухниBY. Все права защищены.
           </p>
           <p className="text-sm text-white/30">
             УНП 000000000 | г. Минск, Беларусь

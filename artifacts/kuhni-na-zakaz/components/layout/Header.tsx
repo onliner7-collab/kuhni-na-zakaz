@@ -64,7 +64,7 @@ export function Header() {
                 backgroundClip: "text",
               }}
             >
-              Minsk
+              BY
             </span>
           </span>
         </Link>

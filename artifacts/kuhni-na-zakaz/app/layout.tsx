@@ -8,12 +8,12 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: {
-    default: "Кухни на заказ в Минске | КухниMinsk",
-    template: "%s | КухниMinsk",
+    default: "Кухни на заказ по Беларуси | КухниBY",
+    template: "%s | КухниBY",
   },
   description:
-    "Кухни на заказ в Минске и Минской области. Собственное производство. Гарантия 5 лет. Замер и проект бесплатно. Звоните: +375 (29) 123-45-67",
-  keywords: ["кухни на заказ", "кухни Минск", "кухни Минская область"],
+    "Проектируем, изготавливаем и устанавливаем кухни под заказ по всей Беларуси. Собственное производство. Гарантия 5 лет. Замер и 3D-проект бесплатно.",
+  keywords: ["кухни на заказ", "кухни на заказ Беларусь", "кухни под заказ", "кухни Минск", "кухни Минская область"],
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniminsk.by"
   ),
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_BY",
     url: process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniminsk.by",
-    siteName: "КухниMinsk",
+    siteName: "КухниBY",
   },
   robots: {
     index: true,

@@ -6,9 +6,9 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { FAQSection } from "@/components/sections/FAQSection";
 
 export const metadata: Metadata = {
-  title: "Кухни на заказ в Минске — замер и проект бесплатно",
+  title: "Кухни на заказ по Беларуси — замер и проект бесплатно",
   description:
-    "Кухни на заказ в Минске и Минской области. Собственное производство, гарантия 5 лет. Замер и 3D-проект бесплатно. Изготовление от 14 дней.",
+    "Проектируем, изготавливаем и устанавливаем кухни под заказ по всей Беларуси. Подберём решение под ваш размер, бюджет и стиль. Замер и 3D-проект бесплатно.",
   alternates: { canonical: "/" },
 };
 
@@ -50,8 +50,8 @@ export default async function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "КухниMinsk",
-    description: "Кухни на заказ в Минске и Минской области",
+    name: "КухниBY",
+    description: "Кухни на заказ по всей Беларуси. Собственное производство.",
     telephone: "+375291234567",
     email: "info@kuhniminsk.by",
     address: {
@@ -102,7 +102,7 @@ export default async function HomePage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold text-violet-200 border border-violet-500/30 bg-violet-500/10 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-              Минск и область — от 14 дней
+              По всей Беларуси — от 14 дней
             </div>
 
             <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tight">
@@ -115,12 +115,12 @@ export default async function HomePage() {
                   backgroundClip: "text",
                 }}
               >
-                в Минске
+                по Беларуси
               </span>
             </h1>
             <p className="mt-6 text-lg text-white/60 leading-relaxed">
-              Собственное производство. Фиксированная цена в договоре.
-              Гарантия 5 лет. Замер и 3D-проект — бесплатно.
+              Проектируем, изготавливаем и устанавливаем кухни под заказ.
+              Фиксированная цена в договоре. Гарантия 5 лет. Замер и 3D-проект — бесплатно.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Link
