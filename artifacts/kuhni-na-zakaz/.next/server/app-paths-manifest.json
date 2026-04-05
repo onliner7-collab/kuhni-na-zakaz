@@ -1,8 +1,6 @@
 {
-  "/kapi/auth/login/route": "app/kapi/auth/login/route.js",
-  "/kapi/admin/notifications/telegram/route": "app/kapi/admin/notifications/telegram/route.js",
   "/page": "app/page.js",
+  "/catalog/page": "app/catalog/page.js",
   "/admin/login/page": "app/admin/login/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js",
-  "/admin/notifications/page": "app/admin/notifications/page.js"
+  "/admin/dashboard/page": "app/admin/dashboard/page.js"
 }
