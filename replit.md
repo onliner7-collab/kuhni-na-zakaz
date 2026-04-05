@@ -141,3 +141,9 @@ artifacts/kuhni-na-zakaz/
 repo: https://github.com/onliner7-collab/kuhni-na-zakaz.git
 main = продакшн
 ```
+
+**Push status:** Pushed successfully on 2026-04-05.
+- Remote `github` added via `GITHUB_TOKEN` secret
+- 298 objects pushed to `main` branch (28.75 MiB)
+- HEAD at `ab1af3c` on GitHub main
+- Command: `git push github main` → `2622c75..ab1af3c main -> main`
