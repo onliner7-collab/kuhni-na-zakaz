@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "gvVdpjxLvZqUz5w2w6ci8"
+uri = "file://artifacts/kuhni-na-zakaz/public/images/hero.png"
+type = "image"
+title = "Modern warm kitchen hero"
