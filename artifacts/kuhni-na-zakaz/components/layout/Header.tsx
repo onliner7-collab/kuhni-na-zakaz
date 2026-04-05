@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, LogIn } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -101,6 +101,14 @@ export function Header() {
             {PHONE}
           </a>
           <Link
+            href="/admin/login"
+            className="flex items-center gap-1.5 text-sm font-semibold text-foreground/50 hover:text-foreground border border-border rounded-lg px-3 py-2 transition-all hover:bg-muted"
+            data-testid="header-login"
+          >
+            <LogIn className="w-4 h-4" />
+            Вход
+          </Link>
+          <Link
             href="/contacts#form"
             className="btn-primary text-sm py-2.5 px-5"
             data-testid="header-cta"
@@ -148,6 +156,13 @@ export function Header() {
               </a>
               <Link href="/contacts#form" className="btn-primary justify-center text-sm py-3">
                 Бесплатный замер
+              </Link>
+              <Link
+                href="/admin/login"
+                className="flex items-center justify-center gap-2 text-sm font-semibold text-foreground/50 border border-border rounded-xl px-3 py-3 transition-all hover:bg-muted"
+              >
+                <LogIn className="w-4 h-4" />
+                Вход для сотрудников
               </Link>
             </div>
           </nav>

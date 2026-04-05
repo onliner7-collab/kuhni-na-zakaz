@@ -1,6 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
+import { redirect } from "next/navigation";
 
 if (!process.env.SESSION_SECRET) {
   console.error(
@@ -73,6 +74,12 @@ export function getSessionFromRequestSync(
   req: NextRequest
 ): Promise<SessionPayload | null> {
   return getSessionFromRequest(req);
+}
+
+export async function requireAdmin(): Promise<SessionPayload> {
+  const session = await getSession();
+  if (!session) redirect("/admin/login");
+  return session;
 }
 
 export const COOKIE_CONFIG = {

@@ -1,5 +1,5 @@
 import { requireAdmin } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/db";
 import Link from "next/link";
 import { Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
 
