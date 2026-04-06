@@ -9,16 +9,17 @@ export const metadata: Metadata = { title: "Панель управления" }
 
 async function getStats() {
   try {
-    const [kitchens, pendingReviews, leads, posts, users] = await Promise.all([
+    const [kitchens, pendingReviews, newLeads, totalLeads, posts, users] = await Promise.all([
       prisma.kitchen.count(),
       prisma.review.count({ where: { status: "NEW" } }),
+      prisma.lead.count({ where: { status: "new" } }),
       prisma.lead.count(),
       prisma.blogPost.count(),
       prisma.user.count(),
     ]);
-    return { kitchens, pendingReviews, leads, posts, users };
+    return { kitchens, pendingReviews, newLeads, totalLeads, posts, users };
   } catch {
-    return { kitchens: 0, pendingReviews: 0, leads: 0, posts: 0, users: 0 };
+    return { kitchens: 0, pendingReviews: 0, newLeads: 0, totalLeads: 0, posts: 0, users: 0 };
   }
 }
 
@@ -57,13 +58,14 @@ export default async function DashboardPage() {
       alert: stats.pendingReviews > 0,
     },
     {
-      label: "Заявок от клиентов",
-      sub: "Всего за всё время",
-      value: stats.leads,
+      label: "Новых заявок",
+      sub: stats.newLeads > 0 ? "Ждут звонка — требуют внимания" : `Всего заявок: ${stats.totalLeads}`,
+      value: stats.newLeads,
       icon: FileText,
-      href: "/admin/leads",
+      href: "/admin/leads?status=new",
       color: "text-blue-600",
       bg: "bg-blue-50 border-blue-100",
+      alert: stats.newLeads > 0,
     },
     {
       label: "Статей в блоге",
@@ -88,6 +90,7 @@ export default async function DashboardPage() {
   const QUICK_ACTIONS = [
     { href: "/admin/kitchens/new", label: "Добавить кухню в каталог", desc: "Новая позиция появится на /catalog" },
     { href: "/admin/portfolio/new", label: "Добавить выполненный проект", desc: "Публикуется в разделе Портфолио" },
+    { href: "/admin/leads?status=new", label: "Обработать новые заявки", desc: stats.newLeads > 0 ? `${stats.newLeads} ждут звонка` : "Нет необработанных", alert: stats.newLeads > 0 },
     { href: "/admin/reviews", label: "Проверить новые отзывы", desc: `${stats.pendingReviews} ждут модерации`, alert: stats.pendingReviews > 0 },
     { href: "/admin/blog/new", label: "Написать статью", desc: "Публикуется в разделе Блог" },
     { href: "/admin/settings", label: "Настройки сайта", desc: "Телефон, адрес, реквизиты" },

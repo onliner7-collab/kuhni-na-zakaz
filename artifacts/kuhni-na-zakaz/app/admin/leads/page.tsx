@@ -4,7 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { LeadStatusControl } from "@/components/admin/LeadStatusControl";
 import { STATUS_OPTIONS } from "@/lib/lead-status";
 import { LeadNoteEditor } from "@/components/admin/LeadNoteEditor";
-import { Phone, User, MapPin, Calendar, Cpu, Palette, Package, Wallet, Route, FileText } from "lucide-react";
+import { LeadAssignedEditor } from "@/components/admin/LeadAssignedEditor";
+import { requireAdmin } from "@/lib/auth";
+import { Phone, User, MapPin, Calendar, Cpu, Palette, Package, Wallet, Route, FileText, Search } from "lucide-react";
 
 export const metadata: Metadata = { title: "Заявки — КухниBY" };
 
@@ -51,13 +53,27 @@ function formatDate(d: Date) {
 export default async function AdminLeadsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ status?: string; from?: string }>;
+  searchParams: Promise<{ status?: string; q?: string }>;
 }) {
+  await requireAdmin();
   const sp = await searchParams;
   const statusFilter = sp.status && sp.status !== "all" ? sp.status : undefined;
+  const searchQuery = sp.q?.trim() ?? "";
 
   const leads = await prisma.lead.findMany({
-    where: statusFilter ? { status: statusFilter } : {},
+    where: {
+      ...(statusFilter ? { status: statusFilter } : {}),
+      ...(searchQuery
+        ? {
+            OR: [
+              { name: { contains: searchQuery, mode: "insensitive" } },
+              { phone: { contains: searchQuery } },
+              { city: { contains: searchQuery, mode: "insensitive" } },
+              { comment: { contains: searchQuery, mode: "insensitive" } },
+            ],
+          }
+        : {}),
+    },
     orderBy: { createdAt: "desc" },
     take: 300,
   }).catch(() => []);
@@ -67,7 +83,7 @@ export default async function AdminLeadsPage({
     _count: { id: true },
   }).catch(() => []);
 
-  const countMap: Record<string, number> = { all: leads.length };
+  const countMap: Record<string, number> = {};
   counts.forEach(c => { countMap[c.status] = c._count.id; });
   const total = counts.reduce((sum, c) => sum + c._count.id, 0);
   countMap.all = total;
@@ -82,9 +98,29 @@ export default async function AdminLeadsPage({
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <h1 className="font-serif text-3xl font-bold">Заявки</h1>
         <span className="text-sm text-muted-foreground">{total} всего</span>
+      </div>
+
+      {/* Search + status filter row */}
+      <div className="flex items-center gap-3 flex-wrap">
+        <form method="GET" action="/admin/leads" className="relative flex-1 min-w-[220px] max-w-sm">
+          <input type="hidden" name="status" value={sp.status ?? "all"} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+          <input
+            name="q"
+            defaultValue={searchQuery}
+            placeholder="Поиск по имени, телефону, городу…"
+            className="w-full pl-9 pr-3 py-2 text-sm border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/30 bg-white"
+          />
+        </form>
+        {searchQuery && (
+          <a href={`/admin/leads${statusFilter ? `?status=${statusFilter}` : ""}`}
+            className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2">
+            Сбросить поиск
+          </a>
+        )}
       </div>
 
       {/* Status filter tabs */}
@@ -92,9 +128,10 @@ export default async function AdminLeadsPage({
         {tabOptions.map(tab => {
           const active = (statusFilter ?? "all") === tab.value;
           const cnt = countMap[tab.value] ?? 0;
+          const href = `/admin/leads?status=${tab.value}${searchQuery ? `&q=${encodeURIComponent(searchQuery)}` : ""}`;
           return (
             <a key={tab.value}
-              href={`/admin/leads?status=${tab.value}`}
+              href={href}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                 active ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}>
@@ -107,7 +144,9 @@ export default async function AdminLeadsPage({
 
       {leads.length === 0 ? (
         <div className="card-base p-12 text-center">
-          <p className="text-muted-foreground">Заявок нет</p>
+          <p className="text-muted-foreground">
+            {searchQuery ? `Ничего не найдено по запросу «${searchQuery}»` : "Заявок нет"}
+          </p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -186,8 +225,9 @@ export default async function AdminLeadsPage({
                     </div>
                   )}
 
-                  {/* Manager note */}
-                  <div className="pt-1 border-t border-border/50">
+                  {/* Assigned to + manager note */}
+                  <div className="pt-1 border-t border-border/50 space-y-1.5">
+                    <LeadAssignedEditor leadId={lead.id} assignedTo={lead.assignedTo} />
                     <LeadNoteEditor leadId={lead.id} note={lead.managerNote} />
                   </div>
                 </div>

@@ -21,6 +21,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Этап 8 | ✅ Done | LocationPage — 7 новых полей (localIntro/uniquePoints/contentBlocks/caseSlugs/reviewIds/ctaHeadline/ctaSubtext), публичная страница полностью переработана, LocationForm расширена (вкладки «Связи», расширенный «Контент», CTA в «Основном»), DB seed Минск + Минская обл. |
 | Этап 9 | ✅ Done | Smart cross-linking — BlogPost (+3 поля), StylePage/MaterialPage/ScenarioPage показывают связанные кейсы, PortfolioCase авто-находит LocationPage по городу, BlogPost публичная страница с 3 секциями related-контента, BlogPostForm панель «Связанный контент», auto-seed cross-links через prisma node-script |
 | Этап 10 | ✅ Done | Персонализация — Lead (+8 полей), SavedConfig, FavoriteCase (новые модели); usePersonalization hook; FavoriteButton на портфолио; ConfigResultActions (save/send на просчёт); SavedConfigBanner; admin/leads полный перепис с статусами/заметками/config-данными; admin/saved-configs; LeadStatusControl/LeadNoteEditor |
+| Admin UX audit | ✅ Done | FAQ admin CRUD (/admin/faq + API), LeadAssignedEditor (назначение менеджера), поиск заявок, Dashboard новые заявки; tech debt задокументирован |
 
 ---
 
@@ -84,23 +85,46 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 ## Admin pages
 
-| URL | Purpose |
-|---|---|
-| `/admin/dashboard` | Stats + recent activity |
-| `/admin/homepage` | Edit HomepageBlocks |
-| `/admin/kitchens` | Kitchen catalog CRUD |
-| `/admin/portfolio` | Portfolio cases CRUD |
-| `/admin/reviews` | Review moderation |
-| `/admin/blog` | Blog posts CRUD |
-| `/admin/prices` | Price table CRUD |
-| `/admin/locations` | City SEO pages CRUD |
-| `/admin/leads` | View form submissions |
-| `/admin/contacts` | Edit SiteSettings (phone, address, socials) |
-| `/admin/notifications` | Telegram webhook config |
-| `/admin/settings` | Site-wide settings |
-| `/admin/users` | User management (SUPER_ADMIN only) |
-| `/admin/guest-access` | Temp access tokens |
-| `/admin/activity-log` | Audit trail |
+| URL | Purpose | Кто может |
+|---|---|---|
+| `/admin/dashboard` | Stats + recent activity | SUPER_ADMIN, MANAGER |
+| `/admin/homepage` | Edit HomepageBlocks (сценарии, преимущества, шаги, доверие) | SUPER_ADMIN, MANAGER |
+| `/admin/kitchens` | Kitchen catalog CRUD | SUPER_ADMIN, MANAGER |
+| `/admin/portfolio` | Portfolio cases CRUD (опубликовать/скрыть, featured, order) | SUPER_ADMIN, MANAGER |
+| `/admin/reviews` | Review moderation (NEW→PENDING→PUBLISHED/REJECTED) | SUPER_ADMIN, MANAGER |
+| `/admin/blog` | Blog posts CRUD (draft/published, publishedAt) | SUPER_ADMIN, MANAGER |
+| `/admin/prices` | Price table CRUD (34 правила, inline bulk-edit) | SUPER_ADMIN, MANAGER |
+| `/admin/configurator` | Конфигуратор — шаги + варианты CRUD | SUPER_ADMIN, MANAGER |
+| `/admin/scenarios` | Сценарии выбора кухни CRUD | SUPER_ADMIN, MANAGER |
+| `/admin/styles` | Стили кухонь CRUD | SUPER_ADMIN, MANAGER |
+| `/admin/materials` | Материалы фасадов CRUD | SUPER_ADMIN, MANAGER |
+| `/admin/faq` | FAQ вопросы и ответы — добавить/редактировать/удалить/сортировать по страницам | SUPER_ADMIN, MANAGER |
+| `/admin/locations` | City SEO pages CRUD | SUPER_ADMIN, MANAGER |
+| `/admin/leads` | Заявки — статус, назначение менеджера, заметки, поиск | SUPER_ADMIN, MANAGER |
+| `/admin/saved-configs` | Сохранённые подборы клиентов (read-only) | SUPER_ADMIN, MANAGER |
+| `/admin/contacts` | Edit SiteSettings (phone, address, socials) | SUPER_ADMIN |
+| `/admin/notifications` | Telegram webhook config | SUPER_ADMIN |
+| `/admin/settings` | Site-wide settings | SUPER_ADMIN |
+| `/admin/users` | User management | SUPER_ADMIN |
+| `/admin/guest-access` | Temp access tokens | SUPER_ADMIN |
+| `/admin/activity-log` | Audit trail | SUPER_ADMIN, MANAGER |
+
+---
+
+## Технический долг (hardcoded content)
+
+Следующий контент **захардкожен в JSX-файлах** и не редактируется из admin-панели без правки кода. Задокументировано для следующего этапа:
+
+| Страница | Файл | Что захардкожено |
+|---|---|---|
+| `/about` | `app/about/page.tsx` | Весь текст О компании, история, команда, ценности |
+| `/delivery-installation` | `app/delivery-installation/page.tsx` | Условия и сроки доставки, зоны, цены на доставку |
+| `/warranty` | `app/warranty/page.tsx` | Условия гарантии, сроки, контакты сервиса |
+| `/privacy-policy` | `app/privacy-policy/page.tsx` | Текст политики конфиденциальности |
+| `/terms` | `app/terms/page.tsx` | Текст условий использования |
+| `/personal-data` | `app/personal-data/page.tsx` | Согласие на обработку персональных данных |
+
+**Рекомендация**: добавить Prisma-модель `StaticPage { slug, title, content, updatedAt }`, admin CRUD страницу `/admin/static-pages`, и публичные страницы читать из БД вместо JSX. Объём работы: ~1 день.
 
 ---
 
