@@ -328,6 +328,46 @@ model PriceRule {
   updatedAt   DateTime @updatedAt
 }
 
+// ──────────────────────────────────────────
+// Конфигуратор кухни (Этап 6)
+// ──────────────────────────────────────────
+
+model ConfigStep {
+  id        Int            @id @default(autoincrement())
+  key       String         @unique
+  question  String
+  hint      String         @default("")
+  type      String         @default("choice")  // "choice" | "multichoice"
+  emoji     String         @default("")
+  order     Int            @default(0)
+  active    Boolean        @default(true)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  options   ConfigOption[]
+}
+
+model ConfigOption {
+  id          Int        @id @default(autoincrement())
+  stepId      Int
+  step        ConfigStep @relation(fields: [stepId], references: [id], onDelete: Cascade)
+  key         String
+  label       String
+  description String     @default("")
+  emoji       String     @default("")
+  tags        String[]   // e.g. ["style:scandinavian", "budget:standard", "layout:corner"]
+  order       Int        @default(0)
+  active      Boolean    @default(true)
+}
+
+model ConfigResult {
+  id        Int      @id @default(autoincrement())
+  sessionId String   @default(cuid())
+  answers   Json     // {"layout":"corner","style":"scandinavian",...}
+  tags      String[] // агрегированные теги выбранных опций
+  leadId    Int?
+  createdAt DateTime @default(now())
+}
+
 model ScenarioPage {
   id              Int      @id @default(autoincrement())
   slug            String   @unique

@@ -16,6 +16,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Этап 3 | ✅ Done | StylePage + MaterialPage — расширены схемы (+12 полей каждая), 5+5 записей посеяно, admin CRUD + forms, полные SEO-посадочные, internal linking |
 | Этап 4 | ✅ Done | PortfolioCase — расширена схема (+15 полей), 6 кейсов посеяно, 4-tab admin form, /portfolio (Server Component + client filters), /portfolio/[slug] (полный кейс-стади + история + до/после + отзывы + internal links + sidebar), JSON-LD Article |
 | Этап 5 | ✅ Done | PriceRule — 34 правила в 8 категориях, /kapi/calculator (POST) с полной формулой, PriceRulesEditor (bulk inline CRUD), /admin/prices DB-driven, /calculator (8-шаговый wizard SSR+CSR) |
+| Этап 6 | ✅ Done | Конфигуратор — ConfigStep/ConfigOption/ConfigResult (3 модели), 8 шагов + 32 варианта с тег-системой, /configure (8-шаговый wizard), /configure/result (SSR рекомендации из БД), /admin/configurator (полный CRUD), тег-маппинг на StylePage/MaterialPage/PortfolioCase |
 
 ---
 
@@ -120,3 +121,22 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | `SESSION_SECRET` | Replit secret — must be set for JWT signing |
 | `TELEGRAM_BOT_TOKEN` | Set in admin `/admin/notifications` (stored in SiteSettings) |
 | `TELEGRAM_CHAT_ID` | Set in admin `/admin/notifications` (stored in SiteSettings) |
+
+---
+
+## Configurator tag system (Этап 6)
+
+Tags format: `prefix:value` stored on `ConfigOption.tags[]`
+
+| Prefix | Maps to | Example |
+|---|---|---|
+| `style:` | StylePage.slug via STYLE_SLUG map | `style:scandinavian` → `skandinavskie` |
+| `budget:` | MaterialPage.budgetLevel via BUDGET_LEVEL map | `budget:standard` → `Средний` |
+| `material:` | MaterialPage.slug via MATERIAL_SLUG map | `material:veneer` → `shpon` |
+| `layout:` | used for human summary + calculator URL pre-fill | |
+| `hardware:` | informational tag | |
+| `storage:` | informational tag | |
+| `children:` | informational tag | |
+| `tech:` | informational tag | |
+
+**To add a new style/material recommendation**: add appropriate tag to ConfigOption and ensure StylePage/MaterialPage has matching slug in the DB. Maps are defined in `app/configure/result/page.tsx`.

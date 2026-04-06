@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, UtensilsCrossed, Images, Star, FileText,
   BookOpen, MapPin, Settings, Users, Key, Activity, LogOut, ChevronLeft,
-  DollarSign, Globe, Bell, Phone, Home, Route, Palette, Layers, UserCircle,
+  DollarSign, Globe, Bell, Phone, Home, Route, Palette, Layers, UserCircle, Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SessionPayload } from "@/lib/auth";
@@ -21,6 +21,7 @@ const NAV_GROUPS = [
       { href: "/admin/reviews", icon: Star, label: "Отзывы", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/blog", icon: BookOpen, label: "Блог", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/prices", icon: DollarSign, label: "Цены", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/configurator", icon: Sparkles, label: "Конфигуратор", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
   {

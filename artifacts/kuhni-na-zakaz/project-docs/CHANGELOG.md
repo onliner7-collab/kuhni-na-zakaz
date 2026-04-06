@@ -1,5 +1,57 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 6: Конфигуратор кухни)
+
+### Added
+- **Prisma-модели (3 новых)**:
+  - `ConfigStep` — шаги конфигуратора (key, question, hint, emoji, type, order, active)
+  - `ConfigOption` — варианты ответа (key, label, description, emoji, `tags[]`, order, active) c Cascade-удалением
+  - `ConfigResult` — сохранённые сессии (answers JSON, `tags[]` агрег., leadId)
+- **8 шагов + 32 варианта посеяно** с тегами:
+  - Планировка (straight/corner/u_shape/island)
+  - Площадь (small/medium/large/xlarge)
+  - Стиль (modern/scandinavian/minimalist/loft/classic/provence)
+  - Приоритет (design/balance/practical/budget)
+  - Дети (yes_small/yes_older/no)
+  - Хранение (minimal/standard/lots/smart)
+  - Техника (column/builtin/own)
+  - Бюджет (economy/standard/comfort/premium)
+- **API routes (6 новых)**:
+  - `GET /kapi/configurator/steps` — активные шаги с опциями (публичный)
+  - `POST /kapi/configurator/result` — сохранение сессии
+  - `GET/POST /kapi/admin/configurator/steps` — CRUD шагов (admin)
+  - `PATCH/DELETE /kapi/admin/configurator/steps/[id]`
+  - `POST /kapi/admin/configurator/options` — создание варианта
+  - `PATCH/DELETE /kapi/admin/configurator/options/[id]`
+- **`/configure`** — публичная SSR-оболочка конфигуратора
+- **`ConfiguratorFlow.tsx`** — 8-шаговый wizard (client):
+  - Загрузка шагов из DB через `/kapi/configurator/steps`
+  - Прогресс-бар + точки шагов (активная = широкая)
+  - Авто-переход (300мс) после выбора варианта
+  - Кнопка «Пропустить» для необязательных шагов
+  - При завершении: агрегация тегов → save → redirect с `?tags=...`
+- **`/configure/result`** — SSR страница результата:
+  - Парсинг тегов из query params
+  - Маппинг tag-ключей → DB slugs (`style:scandinavian` → `skandinavskie`)
+  - Блок стилей (StylePage), материалов (MaterialPage), кейсов (PortfolioCase)
+  - CTA: калькулятор с предзаполненными ответами, форма замера
+  - Кнопка «Пройти заново»
+- **`/admin/configurator`** — admin CRUD:
+  - Счётчик пройденных сессий
+  - Пояснение логики тегов
+  - `ConfigStepsEditor.tsx` — раскрываемые шаги, inline-редактирование
+  - `OptionRow` — редактирование варианта: label/emoji/desc/tags с цветными бейджами по префиксу
+  - Создание новых шагов и вариантов через форму
+  - Управление активностью (show/hide)
+- **Навигация** — «Подбор кухни» в публичном хедере, «Конфигуратор» в admin sidebar
+
+### Architecture
+- Тег формат: `prefix:value` (style:scandinavian, budget:standard, material:veneer…)
+- Рекомендации строятся сервером на основе собранных тегов без хардкода
+- Admin меняет теги вариантов → рекомендации меняются автоматически
+
+---
+
 ## [Unreleased] — 2026-04-06 (Этап 5: Калькулятор с DB-driven PriceRules)
 
 ### Added

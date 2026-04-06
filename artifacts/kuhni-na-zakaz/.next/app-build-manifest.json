@@ -16,35 +16,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/calculator/page": [
+    "/configure/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/calculator/page.js"
+      "static/chunks/app/configure/page.js"
     ],
     "/admin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/layout.js"
     ],
-    "/admin/prices/page": [
+    "/admin/configurator/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/prices/page.js"
+      "static/chunks/app/admin/configurator/page.js"
     ],
-    "/prices/page": [
+    "/configure/result/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/prices/page.js"
+      "static/chunks/app/configure/result/page.js"
     ],
-    "/contacts/page": [
+    "/kapi/configurator/steps/route": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/contacts/page.js"
-    ],
-    "/kapi/calculator/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/kapi/calculator/route.js"
+      "static/chunks/app/kapi/configurator/steps/route.js"
     ]
   }
 }
