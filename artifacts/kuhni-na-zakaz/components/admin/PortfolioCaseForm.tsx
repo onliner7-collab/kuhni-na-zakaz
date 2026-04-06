@@ -49,23 +49,49 @@ function generateSlug(title: string) {
 
 function ArrayUrlField({ label, value, onChange, hint }: { label: string; value: string[]; onChange: (v: string[]) => void; hint?: string }) {
   const [input, setInput] = useState("");
-  const add = () => { const v = input.trim(); if (v) { onChange([...value, v]); setInput(""); } };
+  const isValidUrl = (v: string) => v.startsWith("http://") || v.startsWith("https://");
+  const add = () => {
+    const v = input.trim();
+    if (v) { onChange([...value, v]); setInput(""); }
+  };
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
       {hint && <p className="text-xs text-gray-400 mb-2">{hint}</p>}
-      <div className="flex gap-2 mb-2">
-        <input className="form-input flex-1 text-sm" value={input} onChange={e => setInput(e.target.value)}
-          placeholder="https://..." onKeyDown={e => e.key === "Enter" && (e.preventDefault(), add())} />
-        <button type="button" onClick={add} className="px-3 py-2 bg-primary text-white rounded-lg text-sm">+</button>
+      <div className="flex gap-2 mb-3">
+        <input
+          className={`form-input flex-1 text-sm font-mono ${input && !isValidUrl(input) ? "border-red-300 focus:ring-red-200" : ""}`}
+          value={input} onChange={e => setInput(e.target.value)} type="url"
+          placeholder="https://example.com/photo.jpg"
+          onKeyDown={e => e.key === "Enter" && (e.preventDefault(), add())} />
+        <button type="button" onClick={add} className="px-3 py-2 bg-primary text-white rounded-lg text-sm shrink-0">+ Добавить</button>
       </div>
-      {value.map((url, i) => (
-        <div key={i} className="flex items-center gap-2 mb-1">
-          <img src={url} alt="" className="w-12 h-12 object-cover rounded border border-gray-200" onError={e => (e.currentTarget.style.display="none")} />
-          <span className="text-xs text-gray-500 flex-1 truncate">{url}</span>
-          <button type="button" onClick={() => onChange(value.filter((_, j) => j !== i))} className="text-gray-400 hover:text-red-500 text-lg leading-none">×</button>
+      {input && !isValidUrl(input) && (
+        <p className="text-xs text-red-500 mb-2">URL должен начинаться с https://</p>
+      )}
+      {value.length > 0 && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          {value.map((url, i) => (
+            <div key={i} className="relative group rounded-lg overflow-hidden border border-gray-200 aspect-video bg-gray-50">
+              <img src={url} alt={`Фото ${i + 1}`} className="w-full h-full object-cover"
+                onError={e => { (e.currentTarget.style.opacity = "0.2"); }} />
+              {i === 0 && <span className="absolute top-1 left-1 text-xs bg-primary text-white px-1.5 py-0.5 rounded font-medium">1</span>}
+              <button type="button" onClick={() => onChange(value.filter((_, j) => j !== i))}
+                className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-xs">
+                ×
+              </button>
+              <div className="absolute bottom-0 left-0 right-0 bg-black/40 px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-white text-xs truncate block">{url.split("/").pop()}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
+      {value.length === 0 && (
+        <div className="border-2 border-dashed border-gray-200 rounded-lg h-20 flex items-center justify-center bg-gray-50">
+          <span className="text-xs text-gray-400">Фото пока не добавлены</span>
+        </div>
+      )}
     </div>
   );
 }
@@ -300,9 +326,18 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
         <div className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Главное фото (превью карточки)</label>
-            <input className="form-input w-full" value={form.mainImage} onChange={e => set("mainImage", e.target.value)} placeholder="https://..." />
-            {form.mainImage && (
-              <img src={form.mainImage} alt="" className="mt-2 h-24 rounded-lg object-cover border border-gray-200" onError={e => (e.currentTarget.style.display="none")} />
+            <p className="text-xs text-gray-400 mb-1">Отображается в каталоге — подбирайте широкоформатное фото</p>
+            <input className="form-input w-full font-mono text-sm" type="url" value={form.mainImage} onChange={e => set("mainImage", e.target.value)} placeholder="https://example.com/kitchen-main.jpg" />
+            {form.mainImage ? (
+              <div className="mt-2 relative rounded-lg overflow-hidden border border-gray-200 aspect-video bg-gray-50">
+                <img src={form.mainImage} alt="Главное фото" className="w-full h-full object-cover"
+                  onError={e => { (e.currentTarget.parentElement!.style.display = "none"); }} />
+                <span className="absolute top-1.5 left-1.5 text-xs bg-primary text-white px-2 py-0.5 rounded font-medium">Обложка</span>
+              </div>
+            ) : (
+              <div className="mt-2 rounded-lg border-2 border-dashed border-gray-200 h-28 flex items-center justify-center bg-gray-50">
+                <span className="text-xs text-gray-400">Превью появится после вставки URL</span>
+              </div>
             )}
           </div>
           <ArrayUrlField label="Галерея готовой кухни" value={form.images} onChange={v => set("images", v)}

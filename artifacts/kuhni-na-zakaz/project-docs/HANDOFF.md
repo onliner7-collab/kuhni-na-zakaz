@@ -136,7 +136,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 ## Pending / Next tasks
 
-1. **Images** — upload system via object storage or S3; currently only URL fields in DB
+1. **Images** ✅ DONE (Этап 7) — Admin image handling улучшен: BlogPost.coverImage добавлен в схему+форму+API; PortfolioCaseForm.ArrayUrlField переделан в grid-preview; StyleForm/MaterialForm получили live-preview. Ограничение: загрузка файлов не реализована — только URL-поля. Для upload нужен отдельный этап с S3/object storage.
 2. **Blog** ✅ DONE — 6 posts seeded (seed-blog.ts), article renderer uses renderContent (bold + lists)
 3. **Prices page** ✅ DONE — PriceQuiz теперь вызывает `/kapi/calculator` (DB-driven). Metadata исправлен (Беларусь). SEGMENTS и EXTRA_WORKS — задокументированный static fallback (нет PriceSegment в БД).
 4. **Regional pages** ✅ DONE — 10 LocationPages total: all 6 oblast capitals + Борисов, Жодино, Молодечно

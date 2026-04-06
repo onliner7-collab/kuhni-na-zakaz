@@ -1,5 +1,25 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 7: Image handling improvement)
+
+### Added
+- **`BlogPost.coverImage String @default("")`** — новое поле обложки статьи в Prisma schema. Применено через `prisma db push`.
+- **`BlogPostForm`** — новый блок «Обложка статьи» в правом сайдбаре: URL-поле (`type="url"`), live preview в aspect-video-контейнере, placeholder пока URL не вставлен.
+- **`app/kapi/admin/blog/route.ts`** — `coverImage` добавлен в `BlogSchema` (POST).
+- **`app/kapi/admin/blog/[id]/route.ts`** — `coverImage` добавлен в `BlogSchema` (PUT).
+
+### Changed
+- **`PortfolioCaseForm` — `ArrayUrlField`** — переделан: сетка `grid-cols-2/3` вместо плоского списка, thumbnails `aspect-video` вместо `w-12 h-12`, badge «1» на первом фото, hover-кнопка удаления, `type="url"` + inline ошибка валидации ("URL должен начинаться с https://").
+- **`PortfolioCaseForm` — `mainImage`** — улучшен preview: `aspect-video` контейнер с badge «Обложка», placeholder-заглушка когда поле пустое, `type="url"` на input, более подробная подпись.
+- **`StyleForm` — `image`** — добавлен live preview (`aspect-video`), placeholder-заглушка, подсказка, `type="url"`, `font-mono` на input.
+- **`MaterialForm` — `image`** — аналогично StyleForm.
+
+### Ограничения (не изменились)
+- Загрузка файлов напрямую из admin не реализована — только URL-поля. Изображения нужно хостить внешне (CDN, облачное хранилище) и вставлять URL.
+- Upload в S3/object storage — не сделан в этом этапе.
+
+---
+
 ## [Unreleased] — 2026-04-06 (Этап 6 cleanup: email recipient hardcoded)
 
 ### Changed

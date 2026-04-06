@@ -11,6 +11,7 @@ const BlogSchema = z.object({
   category: z.string().optional(),
   tags: z.array(z.string()).optional(),
   readTime: z.number().int().min(1).optional(),
+  coverImage: z.string().optional(),
   relatedCaseSlugs: z.array(z.string()).optional(),
   relatedStyleSlugs: z.array(z.string()).optional(),
   relatedScenarioSlugs: z.array(z.string()).optional(),

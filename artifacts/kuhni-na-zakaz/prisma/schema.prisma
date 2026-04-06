@@ -157,6 +157,7 @@ model BlogPost {
   relatedCaseSlugs     String[]
   relatedStyleSlugs    String[]
   relatedScenarioSlugs String[]
+  coverImage           String    @default("")
   seoTitle             String?
   seoDescription       String?
   published            Boolean   @default(false)

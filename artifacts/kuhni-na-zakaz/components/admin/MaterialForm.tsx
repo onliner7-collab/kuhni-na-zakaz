@@ -156,8 +156,19 @@ export default function MaterialForm({ initial }: { initial?: Partial<MaterialDa
             <input className="form-input w-full" value={data.pricePer} onChange={e => set("pricePer", e.target.value)} placeholder="от 1 200 BYN за гарнитур" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Ссылка на изображение</label>
-            <input className="form-input w-full" value={data.image} onChange={e => set("image", e.target.value)} placeholder="https://..." />
+            <label className="block text-sm font-medium text-gray-700 mb-1">Ссылка на изображение материала</label>
+            <p className="text-xs text-gray-400 mb-1">Главное фото — отображается на карточке и странице материала</p>
+            <input className="form-input w-full font-mono text-sm" type="url" value={data.image} onChange={e => set("image", e.target.value)} placeholder="https://example.com/material-photo.jpg" />
+            {data.image ? (
+              <div className="mt-2 relative rounded-lg overflow-hidden border border-gray-200 aspect-video bg-gray-50">
+                <img src={data.image} alt="Превью" className="w-full h-full object-cover"
+                  onError={e => { (e.currentTarget.parentElement!.style.display = "none"); }} />
+              </div>
+            ) : (
+              <div className="mt-2 rounded-lg border-2 border-dashed border-gray-200 h-28 flex items-center justify-center bg-gray-50">
+                <span className="text-xs text-gray-400">Превью появится после вставки URL</span>
+              </div>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <input type="checkbox" id="pub" checked={data.published} onChange={e => set("published", e.target.checked)} className="w-4 h-4 accent-primary" />

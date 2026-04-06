@@ -13,6 +13,7 @@ interface BlogPost {
   category: string;
   tags: string[];
   readTime: number;
+  coverImage: string;
   relatedCaseSlugs: string[];
   relatedStyleSlugs: string[];
   relatedScenarioSlugs: string[];
@@ -38,6 +39,7 @@ export function BlogPostForm({ post }: Props) {
     category: post?.category ?? "",
     tags: post?.tags.join(", ") ?? "",
     readTime: post?.readTime ?? 5,
+    coverImage: post?.coverImage ?? "",
     relatedCaseSlugs: post?.relatedCaseSlugs.join(", ") ?? "",
     relatedStyleSlugs: post?.relatedStyleSlugs.join(", ") ?? "",
     relatedScenarioSlugs: post?.relatedScenarioSlugs.join(", ") ?? "",
@@ -165,6 +167,34 @@ export function BlogPostForm({ post }: Props) {
               />
               <span className="text-sm text-foreground">Опубликовать статью</span>
             </label>
+          </div>
+
+          <div className="bg-white rounded-xl border border-border p-5 space-y-3">
+            <h3 className="font-semibold text-foreground">Обложка статьи</h3>
+            <p className="text-xs text-muted-foreground">URL изображения — отображается на карточке и в шапке статьи</p>
+            <input
+              type="url"
+              data-testid="input-cover-image"
+              value={form.coverImage}
+              onChange={(e) => setForm((f) => ({ ...f, coverImage: e.target.value }))}
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background font-mono text-sm"
+              placeholder="https://example.com/image.jpg"
+            />
+            {form.coverImage && (
+              <div className="relative rounded-lg overflow-hidden border border-border aspect-video bg-muted">
+                <img
+                  src={form.coverImage}
+                  alt="Превью обложки"
+                  className="w-full h-full object-cover"
+                  onError={(e) => { (e.currentTarget.parentElement!.style.display = "none"); }}
+                />
+              </div>
+            )}
+            {!form.coverImage && (
+              <div className="rounded-lg border-2 border-dashed border-border aspect-video flex items-center justify-center bg-muted/30">
+                <span className="text-xs text-muted-foreground">Превью появится после вставки URL</span>
+              </div>
+            )}
           </div>
 
           <div className="bg-white rounded-xl border border-border p-5 space-y-4">
