@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
-import { prisma } from "@/lib/db";
+
+const LEAD_NOTIFICATION_RECIPIENT = "onliner7@gmail.com";
 
 export interface EmailLeadData {
   id: number;
@@ -121,22 +122,9 @@ export async function sendEmailNotification(lead: EmailLeadData): Promise<void> 
     return;
   }
 
-  // Resolve recipient: env override → SiteSettings.email → fallback
-  let recipient = process.env.EMAIL_TO ?? "";
-  if (!recipient) {
-    const settings = await prisma.siteSettings.findFirst().catch(() => null);
-    recipient = settings?.email ?? "";
-  }
-  if (!recipient) {
-    console.warn("[EMAIL] No recipient configured (EMAIL_TO env or SiteSettings.email) — skipping");
-    return;
-  }
-
-  const from = process.env.EMAIL_FROM
-    ? process.env.EMAIL_FROM
-    : smtp.auth.user
-      ? `"КухниBY" <${smtp.auth.user}>`
-      : `"КухниBY" <noreply@kuhniby.by>`;
+  const from = smtp.auth.user
+    ? `"КухниBY" <${smtp.auth.user}>`
+    : `"КухниBY" <noreply@kuhniby.by>`;
 
   const formLabel = FORM_TYPE_LABELS[lead.formType] ?? lead.formType;
   const subject = `Новая заявка #${lead.id} — ${formLabel} | КухниBY`;
@@ -144,10 +132,10 @@ export async function sendEmailNotification(lead: EmailLeadData): Promise<void> 
   const transporter = nodemailer.createTransport(smtp);
   await transporter.sendMail({
     from,
-    to: recipient,
+    to: LEAD_NOTIFICATION_RECIPIENT,
     subject,
     html: buildHtmlBody(lead),
   });
 
-  console.info(`[EMAIL] Notification sent for lead #${lead.id} to ${recipient}`);
+  console.info(`[EMAIL] Notification sent for lead #${lead.id} to ${LEAD_NOTIFICATION_RECIPIENT}`);
 }

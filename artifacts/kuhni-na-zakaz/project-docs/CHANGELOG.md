@@ -1,5 +1,12 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 6 cleanup: email recipient hardcoded)
+
+### Changed
+- **`lib/email.ts`** — получатель email-уведомлений зафиксирован как `onliner7@gmail.com` (константа `LEAD_NOTIFICATION_RECIPIENT`). Убраны: `EMAIL_TO` env var, fallback через `SiteSettings.email`, DB-запрос к `prisma.siteSettings`, импорт `prisma`. Логика SMTP-транспорта и guard без `EMAIL_SMTP_HOST` не изменились.
+
+---
+
 ## [Unreleased] — 2026-04-06 (Этап 6: Email notifications for leads)
 
 ### Added
