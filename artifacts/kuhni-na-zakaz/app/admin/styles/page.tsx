@@ -29,7 +29,8 @@ export default async function AdminStylesPage() {
       </div>
 
       <div className="card-base overflow-hidden">
-        <table className="w-full text-sm">
+        <div className="overflow-x-auto">
+        <table className="w-full text-sm min-w-[600px]">
           <thead>
             <tr className="border-b border-gray-100 bg-gray-50">
               <th className="text-left p-4 font-semibold text-gray-600">Стиль</th>
@@ -81,6 +82,7 @@ export default async function AdminStylesPage() {
             ))}
           </tbody>
         </table>
+        </div>
         {styles.length === 0 && (
           <div className="text-center py-12 text-gray-400">
             <p className="text-lg mb-2">Стилей пока нет</p>

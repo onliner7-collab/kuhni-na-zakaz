@@ -47,7 +47,8 @@ export default async function AdminScenariosPage() {
             </Link>
           </div>
         ) : (
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[600px]">
             <thead className="bg-muted/30 border-b border-border">
               <tr>
                 <th className="text-left p-4 font-semibold text-muted-foreground w-8">#</th>
@@ -120,6 +121,7 @@ export default async function AdminScenariosPage() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
 

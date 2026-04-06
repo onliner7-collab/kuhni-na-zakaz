@@ -87,7 +87,8 @@ export default function AdminLocationsPage() {
             <span className="text-sm font-medium text-muted-foreground">{locations.length} страниц</span>
             <span className="text-xs text-muted-foreground">{locations.filter(l => l.published).length} опубликовано</span>
           </div>
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[560px]">
             <thead className="border-b border-border">
               <tr>
                 <th className="text-left px-5 py-3 font-medium text-muted-foreground">Город / регион</th>
@@ -159,6 +160,7 @@ export default function AdminLocationsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>

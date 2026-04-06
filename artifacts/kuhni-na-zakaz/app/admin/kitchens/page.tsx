@@ -41,7 +41,8 @@ export default async function AdminKitchensPage() {
         </div>
       ) : (
         <div className="rounded-2xl border border-border overflow-hidden bg-white">
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[480px]">
             <thead className="bg-muted">
               <tr>
                 <th className="text-left p-3 font-semibold text-xs uppercase tracking-wide text-muted-foreground">Название</th>
@@ -90,6 +91,7 @@ export default async function AdminKitchensPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       )}
     </div>
