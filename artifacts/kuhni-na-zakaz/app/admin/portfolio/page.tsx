@@ -53,7 +53,7 @@ export default async function AdminPortfolioPage() {
                   <tr key={c.id} className="hover:bg-muted/20 transition-colors">
                     <td className="px-4 py-3">
                       <div className="font-medium text-foreground line-clamp-1">{c.title}</div>
-                      <div className="text-xs text-muted-foreground">{c.area} м² · {c.days} дней</div>
+                      <div className="text-xs text-muted-foreground">{c.area} п.м · {c.days} дней</div>
                     </td>
                     <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{c.city}</td>
                     <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">{c.style || "—"}</td>

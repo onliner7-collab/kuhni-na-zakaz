@@ -319,7 +319,7 @@ export default async function LocationPage({ params }: Props) {
                   <div className="p-4">
                     <p className="font-semibold text-foreground text-sm mb-2 line-clamp-2">{c.title}</p>
                     <div className="flex gap-3 text-xs text-muted-foreground">
-                      {c.area > 0 && <span>{c.area} м²</span>}
+                      {c.area > 0 && <span>{c.area} п.м</span>}
                       {c.priceFrom > 0 && <span>от {c.priceFrom.toLocaleString("ru")} BYN</span>}
                       {c.days > 0 && <span>{c.days} дн.</span>}
                     </div>

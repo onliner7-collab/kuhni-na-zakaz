@@ -241,7 +241,7 @@ export function Home() {
                     <div className="h-48 bg-gradient-to-br from-stone-200 to-amber-100 relative">
                       <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
                         <span className="text-xs bg-white/90 text-stone-800 px-2 py-1 rounded-full font-medium">{item.style}</span>
-                        <span className="text-xs bg-white/90 text-stone-800 px-2 py-1 rounded-full font-medium">{item.area} м²</span>
+                        <span className="text-xs bg-white/90 text-stone-800 px-2 py-1 rounded-full font-medium">{item.area} п.м</span>
                       </div>
                     </div>
                     <CardContent className="p-5">
@@ -469,7 +469,7 @@ export function Home() {
                   <input
                     value={comment}
                     onChange={e => setComment(e.target.value)}
-                    placeholder="Угловая, 12 м², эконом бюджет..."
+                    placeholder="Угловая, 3 п.м, эконом бюджет..."
                     className="w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 bg-background"
                     data-testid="input-home-comment"
                   />

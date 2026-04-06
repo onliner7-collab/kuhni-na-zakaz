@@ -202,7 +202,7 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
 
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Площадь (м²)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Длина гарнитура (п.м)</label>
               <input className="form-input w-full" type="number" min={1} value={form.area} onChange={e => set("area", Number(e.target.value))} />
             </div>
             <div>
@@ -298,7 +298,7 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
             <label className="block text-sm font-medium text-gray-700 mb-1">Задача клиента</label>
             <p className="text-xs text-gray-400 mb-1">Что клиент хотел получить? Чего боялся?</p>
             <textarea className="form-input w-full" rows={4} value={form.task}
-              onChange={e => set("task", e.target.value)} placeholder="Разместить максимум хранения на угловой кухне 14 м² без ощущения тесноты..." />
+              onChange={e => set("task", e.target.value)} placeholder="Разместить максимум хранения на угловой кухне 3 п.м без ощущения тесноты..." />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Ограничения проекта</label>
@@ -361,7 +361,7 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">SEO заголовок (title)</label>
             <input className="form-input w-full" value={form.seoTitle} onChange={e => set("seoTitle", e.target.value)}
-              placeholder="Угловая кухня в минимализме 14 м² в Минске — кейс КухниBY" />
+              placeholder="Угловая кухня в минимализме 3 п.м в Минске — кейс КухниBY" />
             <p className="text-xs text-gray-400 mt-1">{form.seoTitle.length}/60 символов</p>
           </div>
           <div>

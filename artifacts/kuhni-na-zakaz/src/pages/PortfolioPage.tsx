@@ -55,7 +55,7 @@ export function PortfolioPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Maximize2 className="w-3.5 h-3.5 flex-shrink-0" />
-                      <span>{item.area} м²</span>
+                      <span>{item.area} п.м</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="w-3.5 h-3.5 flex-shrink-0" />
@@ -127,8 +127,8 @@ export function PortfolioItemPage() {
                   <dd className="font-medium">{item.city}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Площадь</dt>
-                  <dd className="font-medium">{item.area} м²</dd>
+                  <dt className="text-muted-foreground">Длина</dt>
+                  <dd className="font-medium">{item.area} п.м</dd>
                 </div>
                 <div className="flex justify-between">
                   <dt className="text-muted-foreground">Стиль</dt>

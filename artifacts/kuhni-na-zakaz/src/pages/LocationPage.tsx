@@ -129,7 +129,7 @@ export function LocationPage() {
                   <div className="h-44 bg-secondary rounded-t-xl" />
                   <CardContent className="p-4">
                     <h3 className="font-semibold group-hover:text-primary transition-colors mb-1">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.area} м² · {item.style}</p>
+                    <p className="text-sm text-muted-foreground">{item.area} п.м · {item.style}</p>
                   </CardContent>
                 </Card>
               </Link>

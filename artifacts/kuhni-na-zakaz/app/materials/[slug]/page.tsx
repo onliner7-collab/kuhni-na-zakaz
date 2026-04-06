@@ -232,7 +232,7 @@ export default async function MaterialPage({ params }: Props) {
                           <p className="font-semibold text-sm group-hover:text-primary transition-colors mb-1 line-clamp-2">{c.title}</p>
                           <div className="flex items-center gap-3 text-xs text-muted-foreground">
                             {c.city && <span>{c.city}</span>}
-                            {c.area > 0 && <span>{c.area} м²</span>}
+                            {c.area > 0 && <span>{c.area} п.м</span>}
                             {c.style && <span>{c.style}</span>}
                           </div>
                           {c.priceFrom > 0 && (

@@ -11,8 +11,8 @@ const STEPS = [
     multi: false,
   },
   {
-    q: "Площадь кухни",
-    opts: ["До 6 м²", "6–10 м²", "10–15 м²", "Более 15 м²"],
+    q: "Размер кухни (п.м)",
+    opts: ["До 2 п.м", "2–4 п.м", "4–6 п.м", "Более 6 п.м"],
     multi: false,
   },
   {
@@ -36,7 +36,7 @@ type Answers = Record<number, string[]>;
 
 function mapToCalcInput(answers: Answers) {
   const layout = ({ "Прямая": "straight", "Угловая": "corner", "П-образная": "u_shape", "С островом": "with_island" } as Record<string, string>)[answers[0]?.[0]] || "straight";
-  const area = ({ "До 6 м²": 5, "6–10 м²": 8, "10–15 м²": 12, "Более 15 м²": 20 } as Record<string, number>)[answers[1]?.[0]] || 12;
+  const area = ({ "До 2 п.м": 2, "2–4 п.м": 3, "4–6 п.м": 5, "Более 6 п.м": 7 } as Record<string, number>)[answers[1]?.[0]] || 3;
   const material = ({ "МДФ плёнка": "mdf_film", "Пластик": "plastic_acrylic", "Эмаль матовая": "enamel_matte", "Шпон / дерево": "veneer" } as Record<string, string>)[answers[2]?.[0]] || "mdf_film";
   const hardware = ({ "Эконом (GTV)": "economy", "Стандарт (Hettich)": "standard", "Премиум (Blum)": "premium" } as Record<string, string>)[answers[3]?.[0]] || "economy";
   const tech = ({ "Без техники": "none", "Базовый комплект": "basic", "Полный комплект": "full" } as Record<string, string>)[answers[4]?.[0]] || "none";

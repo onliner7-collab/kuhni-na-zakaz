@@ -259,7 +259,7 @@ export default async function HomePage() {
                   </div>
                   <div className="p-5">
                     <h3 className="font-bold group-hover:text-primary transition-colors">{c.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1">{c.city} · {c.area} м²</p>
+                    <p className="text-sm text-muted-foreground mt-1">{c.city} · {c.area} п.м</p>
                     {c.priceFrom > 0 && (
                       <p className="text-primary font-bold text-sm mt-1">
                         от {c.priceFrom.toLocaleString("ru")} BYN {c.priceTo > 0 && `— ${c.priceTo.toLocaleString("ru")} BYN`}

@@ -9,11 +9,11 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Цены и калькулятор — Админ" };
 
 const CATEGORY_LABELS: Record<string, string> = {
-  material:   "Материал фасадов — базовая цена (BYN/м² кухни)",
+  material:   "Материал фасадов — базовая цена (BYN/п.м кухни)",
   layout:     "Планировка — коэффициент",
   style:      "Стиль — коэффициент",
   countertop: "Столешница — надбавка (BYN)",
-  hardware:   "Фурнитура — надбавка (BYN/м²)",
+  hardware:   "Фурнитура — надбавка (BYN/п.м)",
   tech:       "Встроенная техника — надбавка (BYN)",
   priority:   "Приоритет клиента — корректировка",
   config:     "Настройки расчёта",
@@ -47,7 +47,7 @@ export default async function AdminPricesPage() {
       </div>
 
       <div className="bg-blue-50 border border-blue-100 rounded-xl px-4 py-3 text-sm text-blue-700">
-        <strong>Формула:</strong> Базовая цена (BYN/м² × площадь) × коэфф. планировки × коэфф. стиля + столешница + фурнитура/м² + техника ± приоритет. Итог × диапазон (config_range_low … config_range_high).
+        <strong>Формула:</strong> Базовая цена (BYN/п.м × длина) × коэфф. планировки × коэфф. стиля + столешница + фурнитура/п.м + техника ± приоритет. Итог × диапазон (config_range_low … config_range_high).
       </div>
 
       <PriceRulesEditor grouped={grouped} categoryLabels={CATEGORY_LABELS} categoryOrder={CATEGORY_ORDER} />

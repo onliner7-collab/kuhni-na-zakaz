@@ -34,8 +34,8 @@ const STEPS: Step[] = [
     ],
   },
   {
-    id: "area", title: "Площадь кухни", subtitle: "Укажите площадь в м²",
-    type: "slider", sliderMin: 5, sliderMax: 35, sliderDefault: 12, sliderUnit: "м²",
+    id: "area", title: "Размер кухни", subtitle: "Укажите длину гарнитура в погонных метрах",
+    type: "slider", sliderMin: 1, sliderMax: 8, sliderDefault: 3, sliderUnit: "п.м",
   },
   {
     id: "style", title: "Стиль кухни", subtitle: "Какой стиль вам близок?",
@@ -147,7 +147,7 @@ export function CalculatorWizard() {
             <CheckCircle className="w-4 h-4" /> Расчёт готов
           </div>
           <h2 className="font-serif text-3xl font-bold mb-2">Ориентировочная стоимость</h2>
-          <p className="text-muted-foreground">для кухни {result.area} м² с вашими параметрами</p>
+          <p className="text-muted-foreground">для кухни {result.area} п.м с вашими параметрами</p>
         </div>
 
         {/* Price block */}
@@ -264,11 +264,11 @@ export function CalculatorWizard() {
               <span>{currentStep.sliderMax} {currentStep.sliderUnit}</span>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              {[8, 12, 16, 20, 24, 28].map(n => (
+              {[2, 3, 4, 5, 6, 7].map(n => (
                 <button key={n} type="button"
                   onClick={() => setAnswers(a => ({ ...a, [currentStep.id]: n }))}
                   className={`py-2 rounded-lg text-sm font-medium border transition-colors ${answers[currentStep.id] === n ? "bg-primary text-white border-primary" : "border-gray-200 text-gray-600 hover:border-primary/50"}`}>
-                  {n} м²
+                  {n} п.м
                 </button>
               ))}
             </div>

@@ -39,7 +39,7 @@ function calcUrl(params: Record<string, string>): string {
             params.layout === "corner" ? "corner" : "straight",
     style: params.style ?? "modern",
     material: tagVal((params.tags ?? "").split(","), "material") ?? "mdf_film",
-    area: params.area === "small" ? "8" : params.area === "large" ? "18" : params.area === "xlarge" ? "24" : "12",
+    area: params.area === "small" ? "2" : params.area === "large" ? "5" : params.area === "xlarge" ? "7" : "3",
   };
   const q = new URLSearchParams();
   for (const [k, v] of Object.entries(map)) q.set(k, v);
@@ -247,7 +247,7 @@ export default async function ConfigureResultPage({ searchParams }: PageProps) {
                     )}
                     <div className="p-4">
                       <h3 className="font-semibold text-sm line-clamp-1">{c.title}</h3>
-                      <p className="text-xs text-muted-foreground mt-1">{c.city} · {c.area} м²</p>
+                      <p className="text-xs text-muted-foreground mt-1">{c.city} · {c.area} п.м</p>
                       {c.priceFrom > 0 && (
                         <p className="text-xs text-primary font-semibold mt-1">
                           от {c.priceFrom.toLocaleString("ru")} BYN

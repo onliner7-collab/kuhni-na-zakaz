@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const STATIC_POSTS = [
   { slug: "kak-vybrat-kuhnyu", title: "Как выбрать кухню на заказ: 7 вопросов перед заказом", excerpt: "Рассказываем о ключевых вещах, которые нужно продумать до встречи с дизайнером.", category: "Советы", readTime: 6, publishedAt: new Date("2025-12-10") },
   { slug: "skolko-stoit-kuhnya-na-zakaz", title: "Сколько стоит кухня на заказ в Минске: честные цифры", excerpt: "Разбираем из чего складывается цена: материалы, фурнитура, монтаж, доставка.", category: "Цены", readTime: 8, publishedAt: new Date("2025-12-01") },
-  { slug: "kuhnya-dlya-malenkoy-kvartiry", title: "Кухня для маленькой квартиры: 10 приёмов дизайнеров", excerpt: "Как сделать кухню функциональной и красивой, если площадь всего 6–9 м².", category: "Дизайн", readTime: 7, publishedAt: new Date("2025-11-20") },
+  { slug: "kuhnya-dlya-malenkoy-kvartiry", title: "Кухня для маленькой квартиры: 10 приёмов дизайнеров", excerpt: "Как сделать кухню функциональной и красивой, если длина гарнитура всего 1.5–2.5 п.м.", category: "Дизайн", readTime: 7, publishedAt: new Date("2025-11-20") },
   { slug: "kakie-fasady-luchshe", title: "Какие фасады лучше: МДФ, пластик, эмаль или шпон", excerpt: "Сравниваем популярные материалы для кухонных фасадов по цене, прочности и внешнему виду.", category: "Материалы", readTime: 9, publishedAt: new Date("2025-11-10") },
 ];
 

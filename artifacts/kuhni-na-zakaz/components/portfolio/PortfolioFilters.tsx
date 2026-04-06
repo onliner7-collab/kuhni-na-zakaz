@@ -7,11 +7,11 @@ import { FavoriteButton } from "@/components/ui/FavoriteButton";
 
 const STYLE_OPTS = ["Все стили", "Современный", "Классический", "Скандинавский", "Минимализм", "Лофт", "Прованс"];
 const AREA_OPTS = [
-  { label: "Любая площадь", min: 0, max: 9999 },
-  { label: "До 8 м²", min: 0, max: 8 },
-  { label: "8–14 м²", min: 8, max: 14 },
-  { label: "14–20 м²", min: 14, max: 20 },
-  { label: "Более 20 м²", min: 20, max: 9999 },
+  { label: "Любой размер", min: 0, max: 9999 },
+  { label: "До 2 п.м", min: 0, max: 2 },
+  { label: "2–4 п.м", min: 2, max: 4 },
+  { label: "4–6 п.м", min: 4, max: 6 },
+  { label: "Более 6 п.м", min: 6, max: 9999 },
 ];
 const PRICE_OPTS = [
   { label: "Любой бюджет", min: 0, max: 999999 },
@@ -63,7 +63,7 @@ export function PortfolioFilters({ cases }: { cases: Case[] }) {
         </div>
         <div className="flex items-end gap-3">
           <div>
-            <label className="block text-xs font-medium text-gray-500 mb-1.5">Площадь</label>
+            <label className="block text-xs font-medium text-gray-500 mb-1.5">Размер (п.м)</label>
             <select className="form-input text-sm py-1.5" value={areaIdx} onChange={e => setAreaIdx(Number(e.target.value))}>
               {AREA_OPTS.map((o, i) => <option key={i} value={i}>{o.label}</option>)}
             </select>
@@ -122,7 +122,7 @@ export function PortfolioFilters({ cases }: { cases: Case[] }) {
                 <h2 className="font-serif font-semibold group-hover:text-primary transition-colors mb-2 line-clamp-2">{c.title}</h2>
                 <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground mb-3">
                   <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{c.city}</span>
-                  <span className="flex items-center gap-1"><Square className="w-3 h-3" />{c.area} м²</span>
+                  <span className="flex items-center gap-1"><Square className="w-3 h-3" />{c.area} п.м</span>
                   <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{c.days} дней</span>
                 </div>
                 {c.description && <p className="text-xs text-muted-foreground line-clamp-2 mb-3">{c.description}</p>}

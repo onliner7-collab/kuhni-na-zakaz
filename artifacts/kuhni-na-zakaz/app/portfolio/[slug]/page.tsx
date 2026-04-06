@@ -108,7 +108,7 @@ export default async function PortfolioCasePage({ params }: Props) {
                 {/* Specs strip */}
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground mb-6">
                   <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-primary shrink-0" />{c.city}{c.region && c.region !== c.city && `, ${c.region}`}</span>
-                  <span className="flex items-center gap-1.5"><Square className="w-4 h-4 text-primary shrink-0" />{c.area} м²</span>
+                  <span className="flex items-center gap-1.5"><Square className="w-4 h-4 text-primary shrink-0" />{c.area} п.м</span>
                   {c.layout && <span className="flex items-center gap-1.5"><Layers className="w-4 h-4 text-primary shrink-0" />{c.layout}</span>}
                   <span className="flex items-center gap-1.5"><Paintbrush className="w-4 h-4 text-primary shrink-0" />{c.material}</span>
                   <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary shrink-0" />{c.days} дней</span>
@@ -320,7 +320,7 @@ export default async function PortfolioCasePage({ params }: Props) {
                         </div>
                         <div className="p-3">
                           <p className="font-semibold text-xs group-hover:text-primary transition-colors line-clamp-2">{o.title}</p>
-                          <p className="text-xs text-muted-foreground mt-1">{o.city} · {o.area} м²</p>
+                          <p className="text-xs text-muted-foreground mt-1">{o.city} · {o.area} п.м</p>
                         </div>
                       </Link>
                     ))}
@@ -343,7 +343,7 @@ export default async function PortfolioCasePage({ params }: Props) {
                   <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Характеристики</h3>
                   {[
                     { label: "Город", value: c.city },
-                    { label: "Площадь", value: `${c.area} м²` },
+                    { label: "Длина гарнитура", value: `${c.area} п.м` },
                     c.layout && { label: "Планировка", value: c.layout },
                     { label: "Стиль", value: c.style },
                     { label: "Материал", value: c.material },

@@ -51,7 +51,7 @@ const STATIC_POSTS: Record<string, { title: string; excerpt: string; category: s
   },
   "kuhnya-dlya-malenkoy-kvartiry": {
     title: "Кухня для маленькой квартиры: 10 приёмов дизайнеров",
-    excerpt: "Как сделать кухню функциональной и красивой, если площадь всего 6–9 м².",
+    excerpt: "Как сделать кухню функциональной и красивой, если длина гарнитура всего 1.5–2.5 п.м.",
     category: "Дизайн", readTime: 7,
     relatedScenarioSlugs: ["malenkaya-kukhnya"],
     relatedStyleSlugs: ["minimalizm"],
@@ -193,7 +193,7 @@ export default async function BlogPostPage({ params }: Props) {
                         <p className="font-semibold text-sm group-hover:text-primary transition-colors line-clamp-2">{c.title}</p>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
                           {c.city && <span>{c.city}</span>}
-                          {c.area > 0 && <span>{c.area} м²</span>}
+                          {c.area > 0 && <span>{c.area} п.м</span>}
                         </div>
                         {c.priceFrom > 0 && <p className="text-primary font-semibold text-xs mt-1">от {c.priceFrom.toLocaleString("ru")} BYN</p>}
                       </div>
