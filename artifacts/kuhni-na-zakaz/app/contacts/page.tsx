@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Контакты КухниBY — кухни на заказ по Беларуси",
@@ -9,7 +10,28 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contacts" },
 };
 
-export default function ContactsPage() {
+const DEFAULTS = {
+  phone: "+375291234567",
+  phoneDisplay: "+375 (29) 123-45-67",
+  phone2: "",
+  phoneDisplay2: "",
+  email: "info@kuhniby.by",
+  address: "г. Минск, ул. Притыцкого, 100",
+  workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
+};
+
+export default async function ContactsPage() {
+  const s = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
+  const c = {
+    phone: s?.phone || DEFAULTS.phone,
+    phoneDisplay: s?.phoneDisplay || DEFAULTS.phoneDisplay,
+    phone2: s?.phone2 || DEFAULTS.phone2,
+    phoneDisplay2: s?.phoneDisplay2 || DEFAULTS.phoneDisplay2,
+    email: s?.email || DEFAULTS.email,
+    address: s?.address || DEFAULTS.address,
+    workingHours: s?.workingHours || DEFAULTS.workingHours,
+  };
+
   return (
     <div className="section-padding">
       <div className="container-site">
@@ -27,7 +49,14 @@ export default function ContactsPage() {
                 </div>
                 <div>
                   <div className="font-medium">Телефон</div>
-                  <a href="tel:+375291234567" className="text-muted-foreground hover:text-primary">+375 (29) 123-45-67</a>
+                  <a href={`tel:${c.phone}`} className="text-muted-foreground hover:text-primary">
+                    {c.phoneDisplay}
+                  </a>
+                  {c.phone2 && c.phoneDisplay2 && (
+                    <a href={`tel:${c.phone2}`} className="block text-muted-foreground hover:text-primary">
+                      {c.phoneDisplay2}
+                    </a>
+                  )}
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -36,7 +65,9 @@ export default function ContactsPage() {
                 </div>
                 <div>
                   <div className="font-medium">Email</div>
-                  <a href="mailto:info@kuhniby.by" className="text-muted-foreground hover:text-primary">info@kuhniby.by</a>
+                  <a href={`mailto:${c.email}`} className="text-muted-foreground hover:text-primary">
+                    {c.email}
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -45,7 +76,7 @@ export default function ContactsPage() {
                 </div>
                 <div>
                   <div className="font-medium">Адрес</div>
-                  <p className="text-muted-foreground">г. Минск, ул. Притыцкого, 100</p>
+                  <p className="text-muted-foreground">{c.address}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -54,13 +85,14 @@ export default function ContactsPage() {
                 </div>
                 <div>
                   <div className="font-medium">Время работы</div>
-                  <p className="text-muted-foreground">Пн–Сб 9:00–19:00</p>
-                  <p className="text-muted-foreground">Вс 10:00–17:00</p>
+                  {c.workingHours.split(",").map((h) => (
+                    <p key={h.trim()} className="text-muted-foreground">{h.trim()}</p>
+                  ))}
                 </div>
               </div>
             </div>
             <div className="h-56 bg-gradient-to-br from-stone-200 to-stone-300 rounded-xl flex items-center justify-center">
-              <p className="text-stone-400 text-sm">Карта — г. Минск, ул. Притыцкого, 100</p>
+              <p className="text-stone-400 text-sm">Карта — {c.address}</p>
             </div>
           </div>
           <div id="form">

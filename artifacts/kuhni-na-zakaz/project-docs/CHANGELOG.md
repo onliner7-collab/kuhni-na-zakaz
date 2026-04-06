@@ -1,5 +1,31 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 3: Contacts page DB-driven)
+
+### Changed
+- **`app/contacts/page.tsx`** — конвертирован в `async` Server Component. Читает `phone`, `phoneDisplay`, `phone2`, `phoneDisplay2`, `email`, `address`, `workingHours` из `SiteSettings` (id=1) через Prisma. При DB-ошибке — `catch(() => null)`, код показывает значения из `DEFAULTS`. Страница более не оторвана от глобальных настроек.
+- **`prisma/schema.prisma`** — исправлен `default` для `SiteSettings.email`: `"info@kuhniminsk.by"` → `"info@kuhniby.by"`. Влияет только на создание новых записей (существующие данные в БД не затронуты).
+- **`project-docs/HANDOFF.md`** — удалена строка «Contacts page — currently static» из Pending tasks (задача выполнена); нумерация списка исправлена.
+
+### Что стало DB-driven
+| Поле | Источник |
+|---|---|
+| телефон / доп. телефон | `SiteSettings.phone` / `phone2` |
+| email | `SiteSettings.email` |
+| адрес | `SiteSettings.address` |
+| время работы | `SiteSettings.workingHours` (split по `,` → отдельные строки) |
+
+### Что осталось fallback
+- `DEFAULTS` в `contacts/page.tsx` — safety-net при отсутствии записи SiteSettings
+- Placeholder карты (`Карта — {c.address}`) — статический блок, адрес динамический
+
+### Verified (не изменено)
+- `Footer.tsx` — уже DB-driven ✓
+- `Header.tsx` — принимает phone-props из `layout.tsx` (читает SiteSettings) ✓
+- `layout.tsx` — SiteSettings + Header props без изменений ✓
+
+---
+
 ## [Unreleased] — 2026-04-06 (Brand & positioning cleanup)
 
 ### Подэтап A — docs fix

@@ -24,6 +24,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Admin UX audit | ✅ Done | FAQ admin CRUD (/admin/faq + API), LeadAssignedEditor (назначение менеджера), поиск заявок, Dashboard новые заявки; tech debt задокументирован |
 | Security & Cleanup | ✅ Done | `lib/auth.ts` — убран fallback secret, throw если SESSION_SECRET не задан; `.next/` удалён из git-индекса; `.gitignore` расширен; `asChild` bug fixed в Button |
 | Brand & positioning cleanup | ✅ Done | Убраны минские fallback-домены из metadataBase/OG/Footer email. Статические страницы: "КухниMinsk" → "КухниBY", email → kuhniby.by, metadata о Беларуси. Локальные city-страницы не тронуты. |
+| Этап 3 (Contacts DB) | ✅ Done | `/contacts` конвертирован в async Server Component, читает phone/email/address/workingHours из SiteSettings (id=1) с fallback. Schema default email исправлен. |
 
 ---
 
@@ -135,14 +136,13 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 ## Pending / Next tasks
 
-1. **Contacts page** (`/contacts`) — currently static; should read `SiteSettings` from DB for phone/address/hours
-2. **Images** — upload system via object storage or S3; currently only URL fields in DB
-3. **Blog** — blog listing + article pages exist but content needs to be seeded
-4. **Prices page** — `/prices` reads from `PriceRow` but needs seeded data
-5. **Regional pages** — expand LocationPages beyond Минск/Область/Борисов to all 6 oblasts
-6. **Email notifications** — currently only Telegram; consider adding email for leads
-7. **Production deployment** — run `npx prisma migrate deploy` in production. `SESSION_SECRET` ✅ already set via Replit Secrets and auth module will throw on missing secret.
-8. **StaticPage CMS** — pages `/about`, `/delivery-installation`, `/warranty`, `/privacy-policy`, `/terms` are hardcoded JSX. Add `StaticPage` Prisma model + `/admin/static-pages`.
+1. **Images** — upload system via object storage or S3; currently only URL fields in DB
+2. **Blog** — blog listing + article pages exist but content needs to be seeded
+3. **Prices page** — `/prices` reads from `PriceRow` but needs seeded data
+4. **Regional pages** — expand LocationPages beyond Минск/Область/Борисов to all 6 oblasts
+5. **Email notifications** — currently only Telegram; consider adding email for leads
+6. **Production deployment** — run `npx prisma migrate deploy` in production. `SESSION_SECRET` ✅ already set via Replit Secrets and auth module will throw on missing secret.
+7. **StaticPage CMS** — pages `/about`, `/delivery-installation`, `/warranty`, `/privacy-policy`, `/terms` are hardcoded JSX. Add `StaticPage` Prisma model + `/admin/static-pages`.
 
 ### Known patterns / gotchas
 - `Button` component (`components/ui/button.tsx`) does **not** support `asChild`. Use `<Link className={buttonVariants(...)}>` or `<a className={buttonVariants()}>` instead. Do not add `asChild` to Button props.
