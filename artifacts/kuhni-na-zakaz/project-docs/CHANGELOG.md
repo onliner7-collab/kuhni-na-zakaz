@@ -1,5 +1,25 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Blog seed + Regional expansion)
+
+### Added
+- **`prisma/seed-blog.ts`** — 6 публичных блог-постов (советы, цены, дизайн, материалы, фурнитура, остров). Все опубликованы с `publishedAt`. Теги, relatedStyle/Scenario slugs заполнены для cross-linking.
+- **`prisma/seed-locations.ts`** — 7 новых LocationPage: Брест, Гродно, Витебск, Гомель, Могилёв (5 областных центров), + Жодино и Молодечно (Минская обл). Каждая с: intro, features, uniquePoints, contentBlocks, faq, ctaHeadline, ctaSubtext, SEO-полями.
+- **`package.json`** — команды `db:seed-blog` и `db:seed-locations`.
+
+### Changed
+- **`components/layout/Footer.tsx`** — расширен блок «Города»: добавлены ссылки на Брест, Гродно, Витебск, Гомель, Могилёв (теперь 7 городов вместо 2).
+
+### DB данные
+- `BlogPost`: было 0 → стало 6 записей
+- `LocationPage`: было 3 (Минск, Минская обл, Борисов) → стало 10 (+ 5 областных + Жодино + Молодечно)
+
+### Закрытые pending tasks (из HANDOFF)
+- ✅ Blog — контент посеян, страница берёт данные из БД (не fallback)
+- ✅ Regional pages — все 6 областных центров Беларуси теперь имеют LocationPage
+
+---
+
 ## [Unreleased] — 2026-04-06 (Этап 4: StaticPage CMS)
 
 ### Added
