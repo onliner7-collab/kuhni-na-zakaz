@@ -202,21 +202,18 @@ export default async function HomePage() {
         <section className="py-6 sm:py-10 bg-gradient-to-r from-primary/5 via-violet-50 to-primary/5 border-y border-primary/10 overflow-hidden">
           <div className="container-site">
 
-            {/* Mobile: горизонтальная прокручиваемая полоса */}
-            <div
-              className="flex gap-2.5 sm:hidden overflow-x-auto -mx-4 px-4 pb-0.5"
-              style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
-            >
+            {/* Mobile: вертикальный столбик */}
+            <div className="flex flex-col gap-2 sm:hidden">
               {displayTrust.map((t) => (
                 <div
                   key={t.id}
-                  className="flex-none flex items-center gap-2.5 bg-white border border-border rounded-2xl px-3.5 py-2.5 shadow-sm"
+                  className="flex items-center gap-3 bg-white border border-border rounded-2xl px-4 py-3 shadow-sm"
                 >
-                  <span className="text-xl leading-none">{t.icon}</span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-black text-foreground leading-tight whitespace-nowrap">{t.title}</p>
+                  <span className="text-xl leading-none flex-shrink-0">{t.icon}</span>
+                  <div>
+                    <p className="text-sm font-black text-foreground leading-tight">{t.title}</p>
                     {t.subtitle && (
-                      <p className="text-xs text-muted-foreground leading-tight whitespace-nowrap mt-0.5">{t.subtitle}</p>
+                      <p className="text-xs text-muted-foreground leading-tight mt-0.5">{t.subtitle}</p>
                     )}
                   </div>
                 </div>
