@@ -3,8 +3,8 @@ import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Доставка и монтаж кухни в Минске",
-  description: "Доставка и монтаж кухни под ключ в Минске и Минской области. Цены на монтаж от 200 BYN.",
+  title: "Доставка и монтаж кухни — КухниBY",
+  description: "Доставка и монтаж кухни под ключ по Беларуси. Цены на монтаж от 200 BYN. Работаем в Минске, Бресте, Гродно, Витебске, Гомеле, Могилёве.",
   alternates: { canonical: "/delivery-installation" },
 };
 

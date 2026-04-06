@@ -4,8 +4,8 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Контакты — кухни на заказ в Минске",
-  description: "Контакты КухниMinsk: телефон, email, адрес в Минске. Заказать замер бесплатно.",
+  title: "Контакты КухниBY — кухни на заказ по Беларуси",
+  description: "Контакты КухниBY: телефон, email, адрес. Заказать замер бесплатно.",
   alternates: { canonical: "/contacts" },
 };
 
@@ -36,7 +36,7 @@ export default function ContactsPage() {
                 </div>
                 <div>
                   <div className="font-medium">Email</div>
-                  <a href="mailto:info@kuhniminsk.by" className="text-muted-foreground hover:text-primary">info@kuhniminsk.by</a>
+                  <a href="mailto:info@kuhniby.by" className="text-muted-foreground hover:text-primary">info@kuhniby.by</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">

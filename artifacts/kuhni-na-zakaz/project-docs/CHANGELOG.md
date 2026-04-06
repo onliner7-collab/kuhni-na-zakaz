@@ -1,21 +1,68 @@
 # Changelog — КухниBY
 
-## [Unreleased] — 2026-04-06 (Этап 2: Бренд и позиционирование — Беларусь)
+## [Unreleased] — 2026-04-06 (Brand & positioning cleanup)
 
-### Changed
-- **`app/layout.tsx`** — metadataBase и OG url fallback: `"https://kuhniminsk.by"` → `"https://kuhniby.by"` (2 места). Если `NEXT_PUBLIC_SITE_URL` не задан, бренд больше не позиционируется как минский домен.
-- **`components/layout/Footer.tsx`** — дефолтный email в `FOOTER_DEFAULTS`: `"info@kuhniminsk.by"` → `"info@kuhniby.by"`. Email показывается в футере если в `SiteSettings` (БД) не задан другой.
+### Подэтап A — docs fix
 
-### Verified (не изменено — уже корректно)
-- `app/page.tsx` title: "Кухни на заказ по Беларуси" ✓
-- `app/page.tsx` description: "по всей Беларуси" ✓
-- `app/page.tsx` H1: "Кухня на заказ — именно под вас" — без привязки к Минску ✓
-- `app/page.tsx` JSON-LD `areaServed`: `{ name: "Беларусь" }` ✓
-- `app/page.tsx` JSON-LD `email`: `info@kuhniby.by` ✓
-- Footer brand text: "Кухни на заказ по всей Беларуси. Собственное производство." ✓
-- Hero badge: "Работаем по всей Беларуси — от 14 рабочих дней" ✓
-- `address.addressLocality: "Минск"` в JSON-LD — физический адрес (не зона покрытия), оставлен ✓
-- Footer cities: "/locations/minsk", "/locations/minskaya-oblast" — локальные SEO-ссылки, оставлены ✓
+- **`project-docs/HANDOFF.md`** — убрано слово `production-ready` из описания проекта (маркетинговое утверждение без доказательной базы в рамках этой задачи).
+- **`project-docs/HANDOFF.md`** — запись `Этап 2 (Бренд)` переименована в `Brand & positioning cleanup` во избежание конфликта с продуктовым `Этап 2` (ScenarioPage).
+
+### Подэтап B — static pages & global content hygiene
+
+#### Изменено: `app/layout.tsx`
+- metadataBase fallback: `"https://kuhniminsk.by"` → `"https://kuhniby.by"`
+- OG url fallback: то же
+
+#### Изменено: `components/layout/Footer.tsx`
+- `FOOTER_DEFAULTS.email`: `"info@kuhniminsk.by"` → `"info@kuhniby.by"`
+
+#### Изменено: `app/about/page.tsx`
+- metadata title: "О компании — кухни на заказ в Минске" → "О компании КухниBY — кухни на заказ по Беларуси"
+- metadata description: убран "в Минске", бренд исправлен на "КухниBY"
+- JSON-LD `name`: "КухниMinsk" → "КухниBY"
+- JSON-LD `description`: "в Минске и Минской области" → "по всей Беларуси"
+- JSON-LD `email`: "info@kuhniminsk.by" → "info@kuhniby.by"
+- Body: "КухниMinsk — производитель кухонь на заказ в Минске и Минской области" → бренд + охват исправлены
+
+#### Изменено: `app/delivery-installation/page.tsx`
+- metadata title: "Доставка и монтаж кухни в Минске" → "Доставка и монтаж кухни — КухниBY"
+- metadata description: убрано "в Минске и Минской области" как единственный охват; добавлены все регионы
+- Зоны доставки в body ("Доставка по Минску", "по Минской области") оставлены — это фактические ценовые зоны, не брендовое позиционирование
+
+#### Изменено: `app/warranty/page.tsx`
+- metadata description: убрано "Гарантийное обслуживание в Минске" — страница описывает общий сервис
+- Body email: "info@kuhniminsk.by" → "info@kuhniby.by"
+
+#### Изменено: `app/privacy-policy/page.tsx`
+- metadata description: "КухниMinsk" → "КухниBY"
+- Body: "КухниMinsk" → "КухниBY" (2 места)
+- Body: "info@kuhniminsk.by" → "info@kuhniby.by" (2 места)
+
+#### Изменено: `app/terms/page.tsx`
+- metadata description: "КухниMinsk" → "КухниBY"
+- Body: "kuhniminsk.by" → "kuhniby.by"
+- Body: "КухниMinsk" → "КухниBY"
+
+#### Изменено: `app/personal-data/page.tsx`
+- metadata description: "КухниMinsk" → "КухниBY"
+- Body: "kuhniminsk.by" → "kuhniby.by"
+- Body: "info@kuhniminsk.by" → "info@kuhniby.by"
+- Body: "КухниMinsk" → "КухниBY" (включая блок оператора данных)
+- Физический адрес "г. Минск, ул. Притыцкого, 100" — оставлен (фактический адрес оператора)
+
+#### Изменено: `app/contacts/page.tsx`
+- metadata title: "Контакты — кухни на заказ в Минске" → "Контакты КухниBY — кухни на заказ по Беларуси"
+- metadata description: "КухниMinsk" → "КухниBY", убрано "адрес в Минске" как позиционирование
+- Body email: "info@kuhniminsk.by" → "info@kuhniby.by"
+- Физический адрес "г. Минск, ул. Притыцкого, 100" — оставлен (фактические данные)
+- Placeholder карты "Карта — г. Минск, ул. Притыцкого, 100" — оставлен
+
+### Verified (не изменено)
+- `app/page.tsx` JSON-LD `areaServed: { name: "Беларусь" }` — уже корректно ✓
+- `app/page.tsx` `address.addressLocality: "Минск"` — физический адрес, оставлен ✓
+- Footer city links `/locations/minsk`, `/locations/minskaya-oblast` — локальные SEO, оставлены ✓
+- `/locations/*` pages — не тронуты ✓
+- auth-логика, db schema — не тронуты ✓
 
 ---
 

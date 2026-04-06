@@ -4,8 +4,8 @@ import { CheckCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export const metadata: Metadata = {
-  title: "О компании — кухни на заказ в Минске",
-  description: "КухниMinsk — производитель кухонь на заказ в Минске. Собственное производство, опыт с 2015 года, более 1000 реализованных проектов.",
+  title: "О компании КухниBY — кухни на заказ по Беларуси",
+  description: "КухниBY — производитель кухонь на заказ по всей Беларуси. Собственное производство, опыт с 2015 года, более 1 000 реализованных проектов.",
   alternates: { canonical: "/about" },
 };
 
@@ -26,11 +26,11 @@ const VALUES = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "КухниMinsk",
+  name: "КухниBY",
   foundingDate: "2015",
-  description: "Производитель кухонь на заказ в Минске и Минской области",
+  description: "Производитель кухонь на заказ по всей Беларуси",
   telephone: "+375291234567",
-  email: "info@kuhniminsk.by",
+  email: "info@kuhniby.by",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Минск",
@@ -65,7 +65,7 @@ export default function AboutPage() {
             <div>
               <h2 className="font-serif text-2xl font-bold mb-4">Кто мы</h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>КухниMinsk — производитель кухонь на заказ в Минске и Минской области. Работаем с 2015 года, изготовили более 1 000 кухонь.</p>
+                <p>КухниBY — производитель кухонь на заказ по всей Беларуси. Работаем с 2015 года, изготовили более 1 000 кухонь.</p>
                 <p>У нас собственное производство: фрезерные станки с ЧПУ, кромкооблицовочное и покрасочное оборудование. Это позволяет контролировать качество на каждом этапе.</p>
                 <p>Работаем напрямую с клиентом — без посредников. Замер, проект, производство, монтаж — всё делаем сами.</p>
               </div>

@@ -4,7 +4,7 @@ import { Shield } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Гарантия на кухни — 5 лет на фурнитуру",
-  description: "Гарантия на кухни на заказ: 5 лет на фурнитуру Blum, 2 года на корпус и фасады. Гарантийное обслуживание в Минске.",
+  description: "Гарантия на кухни на заказ: 5 лет на фурнитуру Blum, 2 года на корпус и фасады, 1 год на монтажные работы.",
   alternates: { canonical: "/warranty" },
 };
 
@@ -51,7 +51,7 @@ export default function WarrantyPage() {
           </div>
           <div className="card-base p-6">
             <h2 className="font-serif text-xl font-bold mb-4">Как обратиться по гарантии</h2>
-            <p className="text-sm text-muted-foreground">Позвоните нам по телефону <a href="tel:+375291234567" className="text-primary hover:underline">+375 (29) 123-45-67</a> или напишите на <a href="mailto:info@kuhniminsk.by" className="text-primary hover:underline">info@kuhniminsk.by</a>. Укажите дату покупки и опишите проблему. Свяжемся в течение 1 рабочего дня.</p>
+            <p className="text-sm text-muted-foreground">Позвоните нам по телефону <a href="tel:+375291234567" className="text-primary hover:underline">+375 (29) 123-45-67</a> или напишите на <a href="mailto:info@kuhniby.by" className="text-primary hover:underline">info@kuhniby.by</a>. Укажите дату покупки и опишите проблему. Свяжемся в течение 1 рабочего дня.</p>
           </div>
         </div>
       </div>
