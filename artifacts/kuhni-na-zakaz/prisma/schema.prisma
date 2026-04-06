@@ -198,6 +198,14 @@ model LocationPage {
   features        String[]
   faq             Json     @default("[]")
 
+  localIntro      String   @default("")
+  uniquePoints    Json     @default("[]")
+  contentBlocks   Json     @default("[]")
+  caseSlugs       String[]
+  reviewIds       Int[]
+  ctaHeadline     String   @default("")
+  ctaSubtext      String   @default("")
+
   phone           String   @default("")
   address         String   @default("")
 

@@ -1,6 +1,47 @@
 # Changelog — КухниBY
 
-## [Unreleased] — 2026-04-06 (Этап 6: Конфигуратор кухни)
+## [Unreleased] — 2026-04-06 (Этап 8: LocationPage — расширенный контент и связи)
+
+### Added
+- **LocationPage schema — 7 новых полей** (мигрировано через `prisma db push`):
+  - `localIntro String?` — уникальный вводный абзац для города
+  - `uniquePoints Json?` — массив `{emoji, title, text}` — локальные преимущества с иконкой
+  - `contentBlocks Json?` — массив `{title, text, type}` — текстовые блоки (type: "text"|"highlight")
+  - `caseSlugs String[]` — вручную прикреплённые кейсы портфолио
+  - `reviewIds Int[]` — вручную прикреплённые отзывы
+  - `ctaHeadline String?` — кастомный заголовок CTA-блока
+  - `ctaSubtext String?` — кастомный подзаголовок CTA-блока
+- **Публичная `/locations/[city]/page.tsx` полностью переработана**:
+  - Секция «Уникальный вводный текст» (localIntro)
+  - Секция «Как мы работаем в [городе]» — карточки uniquePoints с emoji
+  - Секция «Наши работы в [городе]» — прикреплённые + автонайденные кейсы
+  - Секция «Отзывы из [города]» — прикреплённые + автонайденные отзывы
+  - Секция «Дополнительные материалы» — contentBlocks (highlight выделяется фиолетовой рамкой)
+  - Кастомный CTA с ctaHeadline/ctaSubtext или дефолтный текст
+  - Safe cast `Array.isArray()` для всех JSON полей
+- **DB seed Минск и Минская область** — заполнены uniquePoints (4 шт.) и contentBlocks (2 шт.) реальным уникальным контентом
+- **LocationForm.tsx — полное обновление** (6 новых вкладок/секций):
+  - Новая вкладка «Связи» — редакторы caseSlugs и reviewIds с тег-пилюлями
+  - В вкладке «Контент» — редакторы localIntro, uniquePoints, contentBlocks с inline preview
+  - В вкладке «Основное» — поля ctaHeadline и ctaSubtext
+  - Все хелперы: add/remove для uniquePoints, contentBlocks, caseSlugs, reviewIds
+- **Edit page** обновлён — корректный cast всех новых Json/Array полей при загрузке
+
+---
+
+## [Released] — 2026-04-06 (Этап 7: Система отзывов — расширение)
+
+### Added
+- **Review schema — 5 новых полей**: region, source, sourceUrl, featured, managerNote
+- **Модерация (4 вкладки)**: Новые / На проверке / Опубликовано / Отклонено
+- **Публичная /reviews** с секцией featured отзывов
+- **SourceBadge** — бейджи источника (Google/Яндекс/2ГИС/Onliner/whatsapp/direct)
+- **Связь с кейсом** через caseSlug
+- **Полный workflow модерации** NEW→PENDING→PUBLISHED|REJECTED
+
+---
+
+## [Released] — 2026-04-06 (Этап 6: Конфигуратор кухни)
 
 ### Added
 - **Prisma-модели (3 новых)**:

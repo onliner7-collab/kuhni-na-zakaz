@@ -16,6 +16,13 @@ export default async function EditLocationPage({ params }: Props) {
   const initial = {
     ...loc,
     faq: (loc.faq as Array<{ q: string; a: string }>) ?? [],
+    uniquePoints: (loc.uniquePoints as Array<{ emoji: string; title: string; text: string }>) ?? [],
+    contentBlocks: (loc.contentBlocks as Array<{ title: string; text: string; type: "text" | "highlight" }>) ?? [],
+    caseSlugs: loc.caseSlugs ?? [],
+    reviewIds: loc.reviewIds ?? [],
+    localIntro: loc.localIntro ?? "",
+    ctaHeadline: loc.ctaHeadline ?? "",
+    ctaSubtext: loc.ctaSubtext ?? "",
   };
 
   return (

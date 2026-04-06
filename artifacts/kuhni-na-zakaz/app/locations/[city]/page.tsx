@@ -8,31 +8,72 @@ import {
   CheckCircle, MapPin, Clock, Ruler, Wrench, ChevronRight,
   Star, Phone, CalendarDays, ArrowRight, MessageSquare
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export const revalidate = 3600;
 
 interface Props { params: Promise<{ city: string }> }
 
+type UniquePoint = { emoji: string; title: string; text: string };
+type ContentBlock = { title: string; text: string; type: "text" | "highlight" };
+type FaqItem = { q: string; a: string };
+type PortfolioCase = { id: number; title: string; slug: string; mainImage: string; style: string; priceFrom: number; area: number; days: number; city: string };
+type ReviewItem = { id: number; name: string; city: string; rating: number; text: string; date: string; region: string; source: string };
+
 async function getLocation(slug: string) {
   return prisma.locationPage.findUnique({ where: { slug, published: true } }).catch(() => null);
 }
 
-async function getLocalCases(city: string) {
-  return prisma.portfolioCase.findMany({
-    where: { published: true, city: { contains: city, mode: "insensitive" } },
-    orderBy: { createdAt: "desc" },
-    take: 4,
-    select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
-  }).catch(() => []);
-}
+async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocation>>>) {
+  const pinnedSlugs = loc.caseSlugs ?? [];
+  const pinnedIds = loc.reviewIds ?? [];
 
-async function getLocalReviews(city: string) {
-  return prisma.review.findMany({
-    where: { status: ReviewStatus.PUBLISHED, city: { contains: city, mode: "insensitive" } },
-    orderBy: { createdAt: "desc" },
-    take: 3,
-    select: { id: true, name: true, city: true, rating: true, text: true, date: true },
-  }).catch(() => []);
+  const [pinnedCases, autoCases, pinnedReviews, autoReviews] = await Promise.all([
+    pinnedSlugs.length > 0
+      ? prisma.portfolioCase.findMany({
+          where: { published: true, slug: { in: pinnedSlugs } },
+          select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
+        }).catch(() => [])
+      : [],
+    prisma.portfolioCase.findMany({
+      where: { published: true, city: { contains: loc.city, mode: "insensitive" } },
+      orderBy: { createdAt: "desc" },
+      take: 6,
+      select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
+    }).catch(() => []),
+    pinnedIds.length > 0
+      ? prisma.review.findMany({
+          where: { status: ReviewStatus.PUBLISHED, id: { in: pinnedIds } },
+          select: { id: true, name: true, city: true, rating: true, text: true, date: true, region: true, source: true },
+        }).catch(() => [])
+      : [],
+    prisma.review.findMany({
+      where: { status: ReviewStatus.PUBLISHED, city: { contains: loc.city, mode: "insensitive" } },
+      orderBy: { createdAt: "desc" },
+      take: 4,
+      select: { id: true, name: true, city: true, rating: true, text: true, date: true, region: true, source: true },
+    }).catch(() => []),
+  ]);
+
+  const seenCaseIds = new Set<number>();
+  const cases: PortfolioCase[] = [];
+  for (const c of [...pinnedCases, ...autoCases]) {
+    if (!seenCaseIds.has(c.id) && cases.length < 4) {
+      seenCaseIds.add(c.id);
+      cases.push(c as PortfolioCase);
+    }
+  }
+
+  const seenReviewIds = new Set<number>();
+  const reviews: ReviewItem[] = [];
+  for (const r of [...pinnedReviews, ...autoReviews]) {
+    if (!seenReviewIds.has(r.id) && reviews.length < 3) {
+      seenReviewIds.add(r.id);
+      reviews.push(r as ReviewItem);
+    }
+  }
+
+  return { cases, reviews };
 }
 
 export async function generateStaticParams() {
@@ -56,18 +97,41 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function cityGenitive(city: string) {
+  if (city === "Минск") return "Минске";
+  if (city === "Минская область") return "Минской области";
+  if (city === "Борисов") return "Борисове";
+  if (city === "Молодечно") return "Молодечно";
+  if (city === "Брест") return "Бресте";
+  if (city === "Гродно") return "Гродно";
+  if (city === "Гомель") return "Гомеле";
+  if (city === "Витебск") return "Витебске";
+  if (city === "Могилёв") return "Могилёве";
+  return city;
+}
+
+function StarRow({ rating }: { rating: number }) {
+  return (
+    <div className="flex gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star key={i} className={`w-4 h-4 ${i < rating ? "fill-amber-400 text-amber-400" : "text-muted-foreground/20"}`} />
+      ))}
+    </div>
+  );
+}
+
 export default async function LocationPage({ params }: Props) {
   const { city } = await params;
-  const [loc, cases, reviews] = await Promise.all([
-    getLocation(city),
-    getLocation(city).then(l => l ? getLocalCases(l.city) : []),
-    getLocation(city).then(l => l ? getLocalReviews(l.city) : []),
-  ]);
-
+  const loc = await getLocation(city);
   if (!loc) notFound();
 
-  const faqItems = (loc.faq as Array<{ q: string; a: string }>) ?? [];
+  const { cases, reviews } = await getPageData(loc);
+
+  const faqItems = (loc.faq as FaqItem[]) ?? [];
+  const uniquePoints: UniquePoint[] = Array.isArray(loc.uniquePoints) ? (loc.uniquePoints as UniquePoint[]) : [];
+  const contentBlocks: ContentBlock[] = Array.isArray(loc.contentBlocks) ? (loc.contentBlocks as ContentBlock[]) : [];
   const timelineSteps = loc.timelineText ? loc.timelineText.split("→").map(s => s.trim()).filter(Boolean) : [];
+  const cityGen = cityGenitive(loc.city);
 
   const jsonLdLocalBusiness = {
     "@context": "https://schema.org",
@@ -125,7 +189,7 @@ export default async function LocationPage({ params }: Props) {
           <nav className="text-sm text-white/60 mb-6 flex items-center gap-2 flex-wrap">
             <Link href="/" className="hover:text-white transition-colors">Главная</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-white/80 hover:text-white cursor-default">Кухни в {loc.city}</span>
+            <span className="text-white/80">Кухни в {loc.city}</span>
           </nav>
 
           <div className="max-w-3xl">
@@ -155,7 +219,6 @@ export default async function LocationPage({ params }: Props) {
               </a>
             </div>
 
-            {/* Quick stats */}
             <div className="flex flex-wrap gap-6">
               {loc.priceFrom > 0 && (
                 <div>
@@ -194,14 +257,48 @@ export default async function LocationPage({ params }: Props) {
         </section>
       )}
 
+      {/* LOCAL INTRO — unique per location */}
+      {loc.localIntro && (
+        <section className="section-padding bg-white">
+          <div className="container-site">
+            <div className="max-w-3xl">
+              <p className="text-base md:text-lg text-foreground leading-relaxed">{loc.localIntro}</p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* UNIQUE POINTS — local selling points */}
+      {uniquePoints.length > 0 && (
+        <section className="section-padding bg-muted/30">
+          <div className="container-site">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
+              Как мы работаем в {cityGen}
+            </h2>
+            <p className="text-muted-foreground mb-8">Особенности нашей работы в этом регионе</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {uniquePoints.map((pt, i) => (
+                <div key={i} className="bg-white rounded-2xl p-6 border border-border flex gap-4">
+                  <div className="text-3xl flex-shrink-0">{pt.emoji}</div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">{pt.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{pt.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* LOCAL CASES */}
       {cases.length > 0 && (
-        <section className="section-padding bg-muted/30">
+        <section className="section-padding bg-white">
           <div className="container-site">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-                  Наши работы в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+                  Наши работы в {cityGen}
                 </h2>
                 <p className="text-muted-foreground mt-1">Реализованные проекты для жителей региона</p>
               </div>
@@ -240,6 +337,33 @@ export default async function LocationPage({ params }: Props) {
         </section>
       )}
 
+      {/* CONTENT BLOCKS — unique editorial blocks */}
+      {contentBlocks.length > 0 && (
+        <section className="section-padding bg-muted/30">
+          <div className="container-site">
+            <div className="max-w-3xl space-y-6">
+              {contentBlocks.map((block, i) => (
+                <div
+                  key={i}
+                  className={cn("rounded-2xl p-6 border", {
+                    "bg-primary/5 border-primary/20": block.type === "highlight",
+                    "bg-white border-border": block.type !== "highlight",
+                  })}
+                >
+                  <h3 className={cn("font-serif font-bold text-xl mb-3", {
+                    "text-primary": block.type === "highlight",
+                    "text-foreground": block.type !== "highlight",
+                  })}>
+                    {block.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">{block.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* PHOTO GALLERY */}
       {loc.images.length > 1 && (
         <section className="section-padding bg-white">
@@ -266,7 +390,7 @@ export default async function LocationPage({ params }: Props) {
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2 text-center">
               Как это работает
             </h2>
-            <p className="text-muted-foreground mb-10 text-center">От звонка до готовой кухни</p>
+            <p className="text-muted-foreground mb-10 text-center">От звонка до готовой кухни в {cityGen}</p>
             <div className="flex flex-col md:flex-row items-start gap-0 md:gap-0 max-w-4xl mx-auto">
               {timelineSteps.map((step, i) => (
                 <div key={i} className="flex md:flex-col items-start md:items-center flex-1 relative">
@@ -294,7 +418,7 @@ export default async function LocationPage({ params }: Props) {
         <section className="section-padding bg-white">
           <div className="container-site">
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-8">
-              Замер и монтаж в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+              Замер и монтаж в {cityGen}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {loc.visitDetails && (
@@ -331,7 +455,7 @@ export default async function LocationPage({ params }: Props) {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-                  Отзывы клиентов из {loc.city === "Минск" ? "Минска" : loc.city === "Минская область" ? "Минской области" : loc.city}
+                  Отзывы клиентов из {cityGen}
                 </h2>
                 <p className="text-muted-foreground mt-1">Что говорят наши клиенты в регионе</p>
               </div>
@@ -342,16 +466,14 @@ export default async function LocationPage({ params }: Props) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {reviews.map(r => (
                 <div key={r.id} className="bg-white rounded-2xl p-5 border border-border">
-                  <div className="flex items-center gap-0.5 mb-3">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className={`w-4 h-4 ${i < r.rating ? "fill-amber-400 text-amber-400" : "text-muted-foreground/30"}`} />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-4">{r.text}</p>
-                  <div className="flex items-center justify-between">
+                  <StarRow rating={r.rating} />
+                  <p className="text-muted-foreground text-sm leading-relaxed my-3 line-clamp-4">{r.text}</p>
+                  <div className="border-t border-border pt-3 flex items-center justify-between">
                     <div>
                       <p className="font-semibold text-foreground text-sm">{r.name}</p>
-                      <p className="text-xs text-muted-foreground">{r.city}</p>
+                      <p className="text-xs text-muted-foreground">
+                        {r.city}{r.region ? `, ${r.region}` : ""}
+                      </p>
                     </div>
                     {r.date && <span className="text-xs text-muted-foreground">{r.date}</span>}
                   </div>
@@ -415,7 +537,7 @@ export default async function LocationPage({ params }: Props) {
         <section className="section-padding bg-muted/30">
           <div className="container-site">
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
-              Частые вопросы о кухнях в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+              Частые вопросы о кухнях в {cityGen}
             </h2>
             <p className="text-muted-foreground mb-8">Отвечаем на самые популярные вопросы жителей региона</p>
             <div className="max-w-3xl space-y-4">
@@ -439,10 +561,10 @@ export default async function LocationPage({ params }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl font-serif font-bold mb-4">
-                Заказать кухню в {loc.city === "Минск" ? "Минске" : loc.city === "Минская область" ? "Минской области" : loc.city}
+                {loc.ctaHeadline || `Заказать кухню в ${cityGen}`}
               </h2>
               <p className="text-white/70 mb-8 leading-relaxed">
-                Оставьте заявку — перезвоним в течение 15 минут и запишем на бесплатный выезд замерщика.
+                {loc.ctaSubtext || "Оставьте заявку — перезвоним в течение 15 минут и запишем на бесплатный выезд замерщика."}
               </p>
               <div className="space-y-4">
                 {[

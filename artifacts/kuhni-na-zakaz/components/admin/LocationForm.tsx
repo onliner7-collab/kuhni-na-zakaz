@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface FaqItem { q: string; a: string; }
+interface UniquePoint { emoji: string; title: string; text: string; }
+interface ContentBlock { title: string; text: string; type: "text" | "highlight"; }
 
 interface LocationData {
   id?: number;
@@ -26,6 +28,13 @@ interface LocationData {
   mapEmbed: string;
   features: string[];
   faq: FaqItem[];
+  localIntro: string;
+  uniquePoints: UniquePoint[];
+  contentBlocks: ContentBlock[];
+  caseSlugs: string[];
+  reviewIds: number[];
+  ctaHeadline: string;
+  ctaSubtext: string;
   phone: string;
   address: string;
   seoTitle: string;
@@ -41,6 +50,9 @@ const DEFAULT: LocationData = {
   visitDetails: "", installDetails: "",
   images: [], areas: [], workZone: "", mapEmbed: "",
   features: [], faq: [],
+  localIntro: "", uniquePoints: [], contentBlocks: [],
+  caseSlugs: [], reviewIds: [],
+  ctaHeadline: "", ctaSubtext: "",
   phone: "", address: "",
   seoTitle: "", seoDescription: "", published: true,
 };
@@ -118,7 +130,15 @@ export default function LocationForm({ initial, isEdit }: Props) {
   const [newFeature, setNewFeature] = useState("");
   const [newFaqQ, setNewFaqQ] = useState("");
   const [newFaqA, setNewFaqA] = useState("");
-  const [activeTab, setActiveTab] = useState<"basic"|"logistics"|"content"|"faq"|"seo">("basic");
+  const [newCaseSlug, setNewCaseSlug] = useState("");
+  const [newReviewId, setNewReviewId] = useState("");
+  const [newUPEmoji, setNewUPEmoji] = useState("⭐");
+  const [newUPTitle, setNewUPTitle] = useState("");
+  const [newUPText, setNewUPText] = useState("");
+  const [newCBTitle, setNewCBTitle] = useState("");
+  const [newCBText, setNewCBText] = useState("");
+  const [newCBType, setNewCBType] = useState<"text"|"highlight">("text");
+  const [activeTab, setActiveTab] = useState<"basic"|"logistics"|"content"|"links"|"faq"|"seo">("basic");
 
   const set = (field: keyof LocationData, value: unknown) => {
     setData(prev => ({ ...prev, [field]: value }));
@@ -182,10 +202,45 @@ export default function LocationForm({ initial, isEdit }: Props) {
     }
   };
 
+  const addUniquePoint = () => {
+    if (newUPTitle.trim() && newUPText.trim()) {
+      set("uniquePoints", [...(data.uniquePoints || []), { emoji: newUPEmoji, title: newUPTitle.trim(), text: newUPText.trim() }]);
+      setNewUPTitle(""); setNewUPText(""); setNewUPEmoji("⭐");
+    }
+  };
+  const removeUniquePoint = (i: number) => set("uniquePoints", (data.uniquePoints || []).filter((_, idx) => idx !== i));
+
+  const addContentBlock = () => {
+    if (newCBTitle.trim() && newCBText.trim()) {
+      set("contentBlocks", [...(data.contentBlocks || []), { title: newCBTitle.trim(), text: newCBText.trim(), type: newCBType }]);
+      setNewCBTitle(""); setNewCBText(""); setNewCBType("text");
+    }
+  };
+  const removeContentBlock = (i: number) => set("contentBlocks", (data.contentBlocks || []).filter((_, idx) => idx !== i));
+
+  const addCaseSlug = () => {
+    const slug = newCaseSlug.trim();
+    if (slug && !(data.caseSlugs || []).includes(slug)) {
+      set("caseSlugs", [...(data.caseSlugs || []), slug]);
+      setNewCaseSlug("");
+    }
+  };
+  const removeCaseSlug = (i: number) => set("caseSlugs", (data.caseSlugs || []).filter((_, idx) => idx !== i));
+
+  const addReviewId = () => {
+    const id = parseInt(newReviewId);
+    if (!isNaN(id) && !(data.reviewIds || []).includes(id)) {
+      set("reviewIds", [...(data.reviewIds || []), id]);
+      setNewReviewId("");
+    }
+  };
+  const removeReviewId = (i: number) => set("reviewIds", (data.reviewIds || []).filter((_, idx) => idx !== i));
+
   const tabs = [
     { key: "basic", label: "Основное" },
     { key: "logistics", label: "Логистика" },
     { key: "content", label: "Контент" },
+    { key: "links", label: "Связи" },
     { key: "faq", label: "FAQ" },
     { key: "seo", label: "SEO" },
   ] as const;
@@ -319,6 +374,19 @@ export default function LocationForm({ initial, isEdit }: Props) {
               </div>
             </div>
           </div>
+
+          <div className={cardCls}>
+            <h3 className="font-semibold text-foreground">CTA-блок (форма заявки)</h3>
+            <p className="text-xs text-muted-foreground">Заголовок и подзаголовок финального CTA. Если пусто — используется стандартный текст.</p>
+            <div>
+              <label className={labelCls}>Заголовок CTA</label>
+              <input className={inputCls} value={data.ctaHeadline} onChange={e => set("ctaHeadline", e.target.value)} placeholder={`Заказать кухню в ${data.city || "городе"}`} />
+            </div>
+            <div>
+              <label className={labelCls}>Подзаголовок CTA</label>
+              <textarea className={inputCls} rows={2} value={data.ctaSubtext} onChange={e => set("ctaSubtext", e.target.value)} placeholder="Оставьте заявку — позвоним в течение 15 минут..." />
+            </div>
+          </div>
         </div>
       )}
 
@@ -396,6 +464,104 @@ export default function LocationForm({ initial, isEdit }: Props) {
       {/* === CONTENT TAB === */}
       {activeTab === "content" && (
         <div className="space-y-4">
+
+          <div className={cardCls}>
+            <h3 className="font-semibold text-foreground">Уникальный вводный текст</h3>
+            <p className="text-xs text-muted-foreground">Длинный абзац, уникальный для этого города. Показывается после блока преимуществ. Раскрывает ваш опыт именно в этом регионе.</p>
+            <textarea
+              className={inputCls}
+              rows={5}
+              value={data.localIntro}
+              onChange={e => set("localIntro", e.target.value)}
+              placeholder="Минск — наш основной рынок с 2012 года. За это время мы изготовили более 800 кухонь..."
+            />
+            <p className="text-xs text-muted-foreground">{data.localIntro.length} символов</p>
+          </div>
+
+          <div className={cardCls}>
+            <h3 className="font-semibold text-foreground">Уникальные местные преимущества</h3>
+            <p className="text-xs text-muted-foreground">Отличия работы именно в этом городе — не общие пункты, а реальные локальные факты. Показываются на странице в виде карточек с иконкой.</p>
+            <div className="space-y-2">
+              {(data.uniquePoints || []).map((pt, i) => (
+                <div key={i} className="flex items-start gap-3 p-3 rounded-xl border border-border bg-muted/20">
+                  <span className="text-xl flex-shrink-0">{pt.emoji}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-sm">{pt.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{pt.text}</p>
+                  </div>
+                  <button onClick={() => removeUniquePoint(i)} className="text-red-400 hover:text-red-600 text-sm px-2 flex-shrink-0">×</button>
+                </div>
+              ))}
+            </div>
+            <div className="p-4 rounded-xl border-2 border-dashed border-primary/30 space-y-3">
+              <p className="text-sm font-medium text-muted-foreground">Добавить преимущество</p>
+              <div className="grid grid-cols-5 gap-2">
+                <div>
+                  <label className={labelCls}>Эмодзи</label>
+                  <input className={inputCls} value={newUPEmoji} onChange={e => setNewUPEmoji(e.target.value)} placeholder="🏭" />
+                </div>
+                <div className="col-span-4">
+                  <label className={labelCls}>Заголовок</label>
+                  <input className={inputCls} value={newUPTitle} onChange={e => setNewUPTitle(e.target.value)} placeholder="Собственный цех в Минске" />
+                </div>
+              </div>
+              <div>
+                <label className={labelCls}>Описание</label>
+                <textarea className={inputCls} rows={2} value={newUPText} onChange={e => setNewUPText(e.target.value)} placeholder="Производство находится в самом городе — нет наценки..." />
+              </div>
+              <button onClick={addUniquePoint} disabled={!newUPTitle.trim() || !newUPText.trim()} className="px-4 py-2 text-sm rounded-lg bg-primary text-white hover:bg-primary/90 disabled:opacity-40 transition-colors">
+                + Добавить
+              </button>
+            </div>
+          </div>
+
+          <div className={cardCls}>
+            <h3 className="font-semibold text-foreground">Дополнительные текстовые блоки</h3>
+            <p className="text-xs text-muted-foreground">Уникальный контент для страницы: история работы в регионе, особенности, советы. Тип «акцент» показывается с фиолетовой рамкой.</p>
+            <div className="space-y-2">
+              {(data.contentBlocks || []).map((block, i) => (
+                <div key={i} className={`p-3 rounded-xl border ${block.type === "highlight" ? "border-primary/30 bg-primary/5" : "border-border bg-muted/20"}`}>
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${block.type === "highlight" ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
+                          {block.type === "highlight" ? "Акцент" : "Текст"}
+                        </span>
+                        <p className="font-medium text-sm">{block.title}</p>
+                      </div>
+                      <p className="text-xs text-muted-foreground line-clamp-2">{block.text}</p>
+                    </div>
+                    <button onClick={() => removeContentBlock(i)} className="text-red-400 hover:text-red-600 text-sm px-2 flex-shrink-0">×</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="p-4 rounded-xl border-2 border-dashed border-primary/30 space-y-3">
+              <p className="text-sm font-medium text-muted-foreground">Добавить блок</p>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" checked={newCBType === "text"} onChange={() => setNewCBType("text")} className="accent-primary" />
+                  <span className="text-sm">Обычный текст</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" checked={newCBType === "highlight"} onChange={() => setNewCBType("highlight")} className="accent-primary" />
+                  <span className="text-sm">Акцент (фиолетовая рамка)</span>
+                </label>
+              </div>
+              <div>
+                <label className={labelCls}>Заголовок блока</label>
+                <input className={inputCls} value={newCBTitle} onChange={e => setNewCBTitle(e.target.value)} placeholder="Почему минчане выбирают нас" />
+              </div>
+              <div>
+                <label className={labelCls}>Текст блока</label>
+                <textarea className={inputCls} rows={3} value={newCBText} onChange={e => setNewCBText(e.target.value)} placeholder="Мы не работаем по схеме «сделали — забыли»..." />
+              </div>
+              <button onClick={addContentBlock} disabled={!newCBTitle.trim() || !newCBText.trim()} className="px-4 py-2 text-sm rounded-lg bg-primary text-white hover:bg-primary/90 disabled:opacity-40 transition-colors">
+                + Добавить блок
+              </button>
+            </div>
+          </div>
+
           <div className={cardCls}>
             <h3 className="font-semibold text-foreground">Фотографии работ в регионе</h3>
             <p className="text-xs text-muted-foreground">Первое фото будет использоваться как обложка раздела</p>
@@ -432,6 +598,66 @@ export default function LocationForm({ initial, isEdit }: Props) {
               <input className={inputCls} value={newFeature} onChange={e => setNewFeature(e.target.value)} onKeyDown={e => e.key === "Enter" && addFeature()} placeholder="Выезд замерщика в день обращения" />
               <button onClick={addFeature} className="px-3 py-2 text-sm rounded-lg bg-primary text-white hover:bg-primary/90 whitespace-nowrap">+ Добавить</button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* === LINKS TAB === */}
+      {activeTab === "links" && (
+        <div className="space-y-4">
+          <div className={cardCls}>
+            <h3 className="font-semibold text-foreground">Прикреплённые кейсы</h3>
+            <p className="text-xs text-muted-foreground">
+              Укажите slug-и кейсов из портфолио, которые нужно показывать на этой странице.
+              Они будут показываться первыми, дополнительно к кейсам, найденным автоматически по городу.
+            </p>
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {(data.caseSlugs || []).map((slug, i) => (
+                <span key={i} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium font-mono">
+                  {slug}
+                  <button onClick={() => removeCaseSlug(i)} className="hover:text-red-500 ml-0.5">×</button>
+                </span>
+              ))}
+            </div>
+            <div className="flex gap-2">
+              <input
+                className={inputCls}
+                value={newCaseSlug}
+                onChange={e => setNewCaseSlug(e.target.value)}
+                onKeyDown={e => e.key === "Enter" && addCaseSlug()}
+                placeholder="uglovaya-kuhnya-minimalizm-minsk-kirova"
+              />
+              <button onClick={addCaseSlug} className="px-3 py-2 text-sm rounded-lg bg-primary text-white hover:bg-primary/90 whitespace-nowrap">+ Добавить</button>
+            </div>
+            <p className="text-xs text-muted-foreground">Slug кейса из адреса /portfolio/[slug]</p>
+          </div>
+
+          <div className={cardCls}>
+            <h3 className="font-semibold text-foreground">Прикреплённые отзывы</h3>
+            <p className="text-xs text-muted-foreground">
+              ID опубликованных отзывов, которые нужно показывать на этой странице.
+              Они будут показываться первыми, дополнительно к отзывам, найденным автоматически по городу.
+            </p>
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {(data.reviewIds || []).map((id, i) => (
+                <span key={i} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-medium">
+                  Отзыв #{id}
+                  <button onClick={() => removeReviewId(i)} className="hover:text-red-500 ml-0.5">×</button>
+                </span>
+              ))}
+            </div>
+            <div className="flex gap-2">
+              <input
+                className={inputCls}
+                type="number"
+                value={newReviewId}
+                onChange={e => setNewReviewId(e.target.value)}
+                onKeyDown={e => e.key === "Enter" && addReviewId()}
+                placeholder="ID отзыва (число)"
+              />
+              <button onClick={addReviewId} className="px-3 py-2 text-sm rounded-lg bg-primary text-white hover:bg-primary/90 whitespace-nowrap">+ Добавить</button>
+            </div>
+            <p className="text-xs text-muted-foreground">ID можно посмотреть в разделе «Модерация отзывов»</p>
           </div>
         </div>
       )}

@@ -1,5 +1,8 @@
 {
+  "/kapi/admin/locations/route": "app/kapi/admin/locations/route.js",
+  "/locations/[city]/page": "app/locations/[city]/page.js",
   "/page": "app/page.js",
-  "/admin/reviews/page": "app/admin/reviews/page.js",
-  "/reviews/page": "app/reviews/page.js"
+  "/admin/locations/[id]/edit/page": "app/admin/locations/[id]/edit/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/locations/page": "app/admin/locations/page.js"
 }
