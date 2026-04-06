@@ -11,8 +11,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 | Этап | Статус | Описание |
 |---|---|---|
-| Этап 1 (Security) | ✅ Done | `lib/auth.ts` — убран fallback secret; throw если SESSION_SECRET не задан. `.gitignore` расширен. `asChild` bug fixed. |
-| Этап 1 (Build) | ✅ Done | HomepageBlock — DB-driven homepage, admin page, API routes |
+| Этап 1 | ✅ Done | HomepageBlock — DB-driven homepage, admin page, API routes |
 | Этап 2 | ✅ Done | ScenarioPage — 6 сценариев, admin CRUD 4-tab form, public /scenarios |
 | Этап 3 | ✅ Done | StylePage + MaterialPage — расширены схемы (+12 полей каждая), 5+5 записей посеяно, admin CRUD + forms, полные SEO-посадочные, internal linking |
 | Этап 4 | ✅ Done | PortfolioCase — расширена схема (+15 полей), 6 кейсов посеяно, 4-tab admin form, /portfolio (Server Component + client filters), /portfolio/[slug] (полный кейс-стади + история + до/после + отзывы + internal links + sidebar), JSON-LD Article |
@@ -23,6 +22,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Этап 9 | ✅ Done | Smart cross-linking — BlogPost (+3 поля), StylePage/MaterialPage/ScenarioPage показывают связанные кейсы, PortfolioCase авто-находит LocationPage по городу, BlogPost публичная страница с 3 секциями related-контента, BlogPostForm панель «Связанный контент», auto-seed cross-links через prisma node-script |
 | Этап 10 | ✅ Done | Персонализация — Lead (+8 полей), SavedConfig, FavoriteCase (новые модели); usePersonalization hook; FavoriteButton на портфолио; ConfigResultActions (save/send на просчёт); SavedConfigBanner; admin/leads полный перепис с статусами/заметками/config-данными; admin/saved-configs; LeadStatusControl/LeadNoteEditor |
 | Admin UX audit | ✅ Done | FAQ admin CRUD (/admin/faq + API), LeadAssignedEditor (назначение менеджера), поиск заявок, Dashboard новые заявки; tech debt задокументирован |
+| Security & Cleanup | ✅ Done | `lib/auth.ts` — убран fallback secret, throw если SESSION_SECRET не задан; `.next/` удалён из git-индекса; `.gitignore` расширен; `asChild` bug fixed в Button |
 
 ---
 

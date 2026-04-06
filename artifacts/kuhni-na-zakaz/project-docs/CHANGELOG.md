@@ -12,6 +12,7 @@
 - **Trust bar (4 статистики) на мобильных** — переработан в вертикальный столбик компактных карточек (`sm:hidden`): иконка + заголовок + подзаголовок в одну строку. На планшетах+ — прежняя 4-column сетка. Commit: `ee78ce5`
 
 ### Chores
+- **`.next/` удалён из git-индекса** — `git rm -r --cached artifacts/kuhni-na-zakaz/.next/` — 49 отслеживаемых build-файлов (manifests, webpack-кэш, server chunks) убраны из tracking. Файлы на диске сохранены. В следующих коммитах `.next/` отслеживаться не будет.
 - **`.gitignore`** — расширен: добавлены `dist/`, `.pnpm-store/`, `*.log`, `coverage/`, `.nyc_output/`, `.turbo/`, `.cache/`, `.vercel/`, `.env.production`
 - Не было конфликтов в build: TypeScript-типы корректны, все import-пути валидны
 
