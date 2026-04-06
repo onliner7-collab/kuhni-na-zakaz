@@ -38,8 +38,11 @@
     --color-yellow-100: oklch(97.3% 0.071 103.193);
     --color-yellow-200: oklch(94.5% 0.129 101.54);
     --color-yellow-400: oklch(85.2% 0.199 91.936);
+    --color-yellow-500: oklch(79.5% 0.184 86.047);
+    --color-yellow-600: oklch(68.1% 0.162 75.834);
     --color-yellow-700: oklch(55.4% 0.135 66.442);
     --color-yellow-800: oklch(47.6% 0.114 61.907);
+    --color-yellow-900: oklch(42.1% 0.095 57.708);
     --color-green-50: oklch(98.2% 0.018 155.826);
     --color-green-100: oklch(96.2% 0.044 156.743);
     --color-green-200: oklch(92.5% 0.084 155.995);
@@ -55,10 +58,13 @@
     --color-cyan-100: oklch(95.6% 0.045 203.388);
     --color-cyan-600: oklch(60.9% 0.126 221.723);
     --color-cyan-700: oklch(52% 0.105 223.128);
+    --color-sky-100: oklch(95.1% 0.026 236.824);
+    --color-sky-700: oklch(50% 0.134 242.749);
     --color-blue-50: oklch(97% 0.014 254.604);
     --color-blue-100: oklch(93.2% 0.032 255.585);
     --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-300: oklch(80.9% 0.105 251.813);
+    --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-600: oklch(54.6% 0.245 262.881);
     --color-blue-700: oklch(48.8% 0.243 264.376);
@@ -1131,6 +1137,12 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
   .line-clamp-4 {
     overflow: hidden;
     display: -webkit-box;
@@ -2084,6 +2096,9 @@
   .border-blue-200 {
     border-color: var(--color-blue-200);
   }
+  .border-blue-300 {
+    border-color: var(--color-blue-300);
+  }
   .border-border {
     border-color: hsl(var(--border));
   }
@@ -2168,6 +2183,9 @@
   .border-red-200 {
     border-color: var(--color-red-200);
   }
+  .border-red-300 {
+    border-color: var(--color-red-300);
+  }
   .border-secondary {
     border-color: hsl(var(--secondary));
   }
@@ -2228,8 +2246,23 @@
   .border-b-white {
     border-bottom-color: var(--color-white);
   }
+  .border-l-blue-400 {
+    border-left-color: var(--color-blue-400);
+  }
+  .border-l-gray-300 {
+    border-left-color: var(--color-gray-300);
+  }
+  .border-l-green-500 {
+    border-left-color: var(--color-green-500);
+  }
+  .border-l-red-400 {
+    border-left-color: var(--color-red-400);
+  }
   .border-l-transparent {
     border-left-color: transparent;
+  }
+  .border-l-yellow-400 {
+    border-left-color: var(--color-yellow-400);
   }
   .bg-\[\#0f0f1a\] {
     background-color: #0f0f1a;
@@ -2351,6 +2384,9 @@
   .bg-green-500 {
     background-color: var(--color-green-500);
   }
+  .bg-green-600 {
+    background-color: var(--color-green-600);
+  }
   .bg-indigo-100 {
     background-color: var(--color-indigo-100);
   }
@@ -2420,11 +2456,17 @@
   .bg-purple-100 {
     background-color: var(--color-purple-100);
   }
+  .bg-red-50 {
+    background-color: var(--color-red-50);
+  }
   .bg-red-100 {
     background-color: var(--color-red-100);
   }
   .bg-red-500 {
     background-color: var(--color-red-500);
+  }
+  .bg-red-600 {
+    background-color: var(--color-red-600);
   }
   .bg-secondary {
     background-color: hsl(var(--secondary));
@@ -2452,6 +2494,9 @@
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, hsl(var(--secondary)) 70%, transparent);
     }
+  }
+  .bg-sky-100 {
+    background-color: var(--color-sky-100);
   }
   .bg-stone-200 {
     background-color: var(--color-stone-200);
@@ -2560,6 +2605,9 @@
   }
   .bg-yellow-400 {
     background-color: var(--color-yellow-400);
+  }
+  .bg-yellow-500 {
+    background-color: var(--color-yellow-500);
   }
   .bg-gradient-to-br {
     --tw-gradient-position: to bottom right in oklab;
@@ -2685,6 +2733,9 @@
   }
   .fill-amber-400 {
     fill: var(--color-amber-400);
+  }
+  .fill-amber-500 {
+    fill: var(--color-amber-500);
   }
   .fill-current {
     fill: currentcolor;
@@ -3194,6 +3245,12 @@
   .text-muted-foreground {
     color: hsl(var(--muted-foreground));
   }
+  .text-muted-foreground\/20 {
+    color: hsl(var(--muted-foreground));
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, hsl(var(--muted-foreground)) 20%, transparent);
+    }
+  }
   .text-muted-foreground\/30 {
     color: hsl(var(--muted-foreground));
     @supports (color: color-mix(in lab, red, red)) {
@@ -3262,6 +3319,9 @@
   }
   .text-secondary-foreground {
     color: hsl(var(--secondary-foreground));
+  }
+  .text-sky-700 {
+    color: var(--color-sky-700);
   }
   .text-stone-400 {
     color: var(--color-stone-400);
@@ -3365,11 +3425,17 @@
   .text-yellow-400 {
     color: var(--color-yellow-400);
   }
+  .text-yellow-600 {
+    color: var(--color-yellow-600);
+  }
   .text-yellow-700 {
     color: var(--color-yellow-700);
   }
   .text-yellow-800 {
     color: var(--color-yellow-800);
+  }
+  .text-yellow-900 {
+    color: var(--color-yellow-900);
   }
   .uppercase {
     text-transform: uppercase;
@@ -4285,6 +4351,13 @@
       }
     }
   }
+  .hover\:bg-amber-50 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-amber-50);
+      }
+    }
+  }
   .hover\:bg-amber-400 {
     &:hover {
       @media (hover: hover) {
@@ -4292,10 +4365,10 @@
       }
     }
   }
-  .hover\:bg-destructive {
+  .hover\:bg-blue-50 {
     &:hover {
       @media (hover: hover) {
-        background-color: hsl(var(--destructive));
+        background-color: var(--color-blue-50);
       }
     }
   }
@@ -4361,6 +4434,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-green-200);
+      }
+    }
+  }
+  .hover\:bg-green-700 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-green-700);
       }
     }
   }
@@ -4469,6 +4549,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-red-600);
+      }
+    }
+  }
+  .hover\:bg-red-700 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-red-700);
       }
     }
   }
@@ -5595,6 +5682,11 @@
   .sm\:items-center {
     @media (width >= 40rem) {
       align-items: center;
+    }
+  }
+  .sm\:items-end {
+    @media (width >= 40rem) {
+      align-items: flex-end;
     }
   }
   .sm\:justify-end {

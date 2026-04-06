@@ -140,3 +140,44 @@ Tags format: `prefix:value` stored on `ConfigOption.tags[]`
 | `tech:` | informational tag | |
 
 **To add a new style/material recommendation**: add appropriate tag to ConfigOption and ensure StylePage/MaterialPage has matching slug in the DB. Maps are defined in `app/configure/result/page.tsx`.
+
+---
+
+## Этап 7 — Система отзывов и доверия
+
+### Новые поля Review (schema.prisma)
+| Поле | Тип | Назначение |
+|---|---|---|
+| `region` | String @default("") | Регион: Минская обл., г. Минск, Брестская обл. |
+| `source` | String @default("website") | Источник: website, google, yandex, telegram, instagram, vk, direct |
+| `sourceUrl` | String @default("") | Ссылка на оригинальный отзыв |
+| `featured` | Boolean @default(false) | Избранный (отдельная секция на /reviews) |
+| `managerNote` | String @default("") | Внутренняя заметка менеджера (не публикуется) |
+
+### Workflow модерации
+```
+NEW → PENDING → PUBLISHED
+NEW → REJECTED
+PENDING → PUBLISHED | REJECTED
+PUBLISHED → DELETED
+REJECTED | DELETED → PUBLISHED (повторная публикация)
+```
+Ни один отзыв не публикуется автоматически. Статус NEW = ещё не рассмотрен, PENDING = взят в работу.
+
+### Связь с кейсами
+- `Review.caseSlug` → `PortfolioCase.slug`
+- В публичной части: ссылка "Смотреть проект" рядом с отзывом
+- В админке: slug редактируется inline, название кейса резолвится через БД
+
+### API
+- `PATCH /kapi/admin/reviews/[id]` с `action=publish|reject|delete|pending` — модерация
+- `PATCH /kapi/admin/reviews/[id]` без action — редактирование полей (featured, caseSlug, source, managerNote)
+- `POST /kapi/reviews` — публичная форма теперь принимает `region`, `source`, `caseSlug`
+
+### Файлы изменены
+- `prisma/schema.prisma` — +5 полей в Review
+- `app/kapi/reviews/route.ts` — +region, source, caseSlug в schema
+- `app/kapi/admin/reviews/[id]/route.ts` — dual-mode PATCH + GET
+- `components/admin/ReviewModerationList.tsx` — полный переписан (4 tabs, SourceBadge, featured toggle, manager note, reject с причиной)
+- `app/admin/reviews/page.tsx` — 4-вкладочная загрузка с JOIN кейсов
+- `app/reviews/page.tsx` — избранные отзывы, ссылки на кейсы, источник, без статик-фолбека

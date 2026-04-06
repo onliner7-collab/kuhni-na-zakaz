@@ -16,30 +16,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/configure/page": [
+    "/reviews/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/configure/page.js"
+      "static/chunks/app/reviews/page.js"
     ],
     "/admin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/layout.js"
     ],
-    "/admin/configurator/page": [
+    "/admin/reviews/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/configurator/page.js"
-    ],
-    "/configure/result/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/configure/result/page.js"
-    ],
-    "/kapi/configurator/steps/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/kapi/configurator/steps/route.js"
+      "static/chunks/app/admin/reviews/page.js"
     ]
   }
 }

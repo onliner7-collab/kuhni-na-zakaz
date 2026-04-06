@@ -127,11 +127,16 @@ model Review {
   id              Int          @id @default(autoincrement())
   name            String
   city            String
+  region          String       @default("")
   phone           String       @default("")
   rating          Int
   text            String
   date            String       @default("")
   caseSlug        String       @default("")
+  source          String       @default("website")
+  sourceUrl       String       @default("")
+  featured        Boolean      @default(false)
+  managerNote     String       @default("")
   status          ReviewStatus @default(NEW)
   moderatedById   Int?
   moderatedBy     User?        @relation("ModeratedBy", fields: [moderatedById], references: [id])
