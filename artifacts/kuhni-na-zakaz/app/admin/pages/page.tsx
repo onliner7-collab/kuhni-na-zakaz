@@ -1,71 +1,84 @@
 import { requireAdmin } from "@/lib/auth";
+import { prisma } from "@/lib/db";
 import Link from "next/link";
-import { ExternalLink, Pencil } from "lucide-react";
+import { ExternalLink, Pencil, FileText } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Страницы — Админ" };
 
-const STATIC_PAGES = [
-  { title: "Главная", path: "/", editable: false },
-  { title: "Каталог кухонь", path: "/catalog", editable: false },
-  { title: "Портфолио", path: "/portfolio", editable: false },
-  { title: "Блог", path: "/blog", editable: false },
-  { title: "Цены", path: "/prices", editable: false },
-  { title: "О нас", path: "/about", editable: true },
-  { title: "Контакты", path: "/contacts", editable: true },
-  { title: "Доставка и установка", path: "/delivery-installation", editable: true },
-  { title: "Гарантия", path: "/warranty", editable: true },
-  { title: "Политика конфиденциальности", path: "/privacy-policy", editable: false },
-  { title: "Условия использования", path: "/terms", editable: false },
-  { title: "Обработка персональных данных", path: "/personal-data", editable: false },
-];
-
 export default async function AdminPagesPage() {
   await requireAdmin();
+
+  const pages = await prisma.staticPage.findMany({ orderBy: { id: "asc" } });
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-serif font-bold text-foreground">Страницы сайта</h1>
-        <p className="text-muted-foreground mt-1">Обзор всех страниц сайта</p>
+        <h1 className="text-2xl font-serif font-bold text-foreground flex items-center gap-2">
+          <FileText className="w-6 h-6 text-primary" /> Статические страницы
+        </h1>
+        <p className="text-muted-foreground mt-1">
+          Редактирование инфостраниц сайта: О компании, Доставка, Гарантия и других
+        </p>
       </div>
 
       <div className="bg-white rounded-xl border border-border overflow-hidden">
-        <div className="px-4 py-3 bg-amber-50 border-b border-amber-200">
-          <p className="text-sm text-amber-700">
-            ℹ️ Редактирование контента страниц через CMS будет доступно в следующей версии. Сейчас используйте текстовый редактор.
-          </p>
-        </div>
-        <table className="w-full text-sm">
-          <thead className="bg-muted/30 border-b border-border">
-            <tr>
-              <th className="text-left px-4 py-3 font-medium text-foreground">Название</th>
-              <th className="text-left px-4 py-3 font-medium text-foreground">URL</th>
-              <th className="text-right px-4 py-3 font-medium text-foreground">Действия</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {STATIC_PAGES.map((page) => (
-              <tr key={page.path} className="hover:bg-muted/20 transition-colors">
-                <td className="px-4 py-3 font-medium text-foreground">{page.title}</td>
-                <td className="px-4 py-3 text-muted-foreground font-mono text-xs">{page.path}</td>
-                <td className="px-4 py-3 text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <a
-                      href={page.path}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded hover:bg-muted text-muted-foreground transition-colors"
-                      title="Открыть"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </div>
-                </td>
+        {pages.length === 0 ? (
+          <div className="text-center py-12 text-muted-foreground text-sm">
+            <FileText className="w-8 h-8 mx-auto mb-3 opacity-30" />
+            <p>Страниц пока нет.</p>
+          </div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead className="bg-muted/30 border-b border-border">
+              <tr>
+                <th className="text-left px-4 py-3 font-medium text-foreground">Заголовок</th>
+                <th className="text-left px-4 py-3 font-medium text-foreground">URL</th>
+                <th className="text-left px-4 py-3 font-medium text-foreground">Статус</th>
+                <th className="text-right px-4 py-3 font-medium text-foreground">Действия</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {pages.map((page) => (
+                <tr key={page.id} className="hover:bg-muted/20 transition-colors">
+                  <td className="px-4 py-3 font-medium text-foreground">{page.title}</td>
+                  <td className="px-4 py-3 text-muted-foreground font-mono text-xs">/{page.slug}</td>
+                  <td className="px-4 py-3">
+                    <span
+                      className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                        page.published
+                          ? "bg-green-100 text-green-700"
+                          : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {page.published ? "Опубликована" : "Скрыта"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <Link
+                        href={`/admin/pages/${page.id}/edit`}
+                        className="p-1.5 rounded hover:bg-muted text-muted-foreground hover:text-primary transition-colors"
+                        title="Редактировать"
+                      >
+                        <Pencil className="w-4 h-4" />
+                      </Link>
+                      <a
+                        href={`/${page.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-1.5 rounded hover:bg-muted text-muted-foreground transition-colors"
+                        title="Открыть"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

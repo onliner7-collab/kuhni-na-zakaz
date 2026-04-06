@@ -353,6 +353,18 @@ model TelegramRecipient {
   createdAt DateTime @default(now())
 }
 
+model StaticPage {
+  id             Int      @id @default(autoincrement())
+  slug           String   @unique
+  title          String
+  content        String   @default("")
+  seoTitle       String   @default("")
+  seoDescription String   @default("")
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
 model HomepageBlock {
   id          Int      @id @default(autoincrement())
   type        String

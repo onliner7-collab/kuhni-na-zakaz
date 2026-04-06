@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { prisma } from "@/lib/db";
+import { renderContent } from "@/lib/render-content";
 
-export const metadata: Metadata = {
-  title: "Условия использования",
-  description: "Условия использования сайта КухниBY.",
-  alternates: { canonical: "/terms" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await prisma.staticPage.findUnique({ where: { slug: "terms" } });
+  return {
+    title: page?.seoTitle || "Условия использования — КухниBY",
+    description: page?.seoDescription || "Условия использования сайта КухниBY.",
+    alternates: { canonical: "/terms" },
+  };
+}
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const page = await prisma.staticPage.findUnique({ where: { slug: "terms" } });
+  const title = page?.title || "Условия использования";
+  const content = page?.content || "";
+
   return (
     <div className="section-padding">
       <div className="container-site max-w-3xl">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
           <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-          <span className="text-foreground">Условия использования</span>
+          <span className="text-foreground">{title}</span>
         </nav>
-        <h1 className="font-serif text-4xl font-bold mb-8">Условия использования</h1>
-        <div className="prose prose-stone max-w-none space-y-6 text-muted-foreground">
-          <p>Используя сайт kuhniby.by, вы принимаете настоящие условия использования.</p>
-          <h2 className="font-serif text-xl font-semibold text-foreground">1. Интеллектуальная собственность</h2>
-          <p>Все материалы сайта (тексты, изображения, логотипы) являются собственностью КухниBY. Копирование без разрешения запрещено.</p>
-          <h2 className="font-serif text-xl font-semibold text-foreground">2. Информация на сайте</h2>
-          <p>Цены и сроки носят ориентировочный характер. Точные данные согласуются при личном контакте.</p>
-          <h2 className="font-serif text-xl font-semibold text-foreground">3. Ограничение ответственности</h2>
-          <p>Мы не несём ответственности за ущерб, возникший в результате использования информации на сайте.</p>
+        <h1 className="font-serif text-4xl font-bold mb-8">{title}</h1>
+        <div className="space-y-4">
+          {renderContent(content)}
         </div>
       </div>
     </div>

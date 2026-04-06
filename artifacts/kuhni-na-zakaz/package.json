@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
+    "db:seed-static": "tsx prisma/seed-static-pages.ts",
     "db:studio": "prisma studio"
   },
   "dependencies": {

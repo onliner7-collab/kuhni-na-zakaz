@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { prisma } from "@/lib/db";
+import { renderContent } from "@/lib/render-content";
 
-export const metadata: Metadata = {
-  title: "Согласие на обработку персональных данных",
-  description: "Согласие на обработку персональных данных на сайте КухниBY.",
-  alternates: { canonical: "/personal-data" },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await prisma.staticPage.findUnique({ where: { slug: "personal-data" } });
+  return {
+    title: page?.seoTitle || "Согласие на обработку персональных данных — КухниBY",
+    description: page?.seoDescription || "Согласие на обработку персональных данных на сайте КухниBY.",
+    alternates: { canonical: "/personal-data" },
+  };
+}
 
-export default function PersonalDataPage() {
+export default async function PersonalDataPage() {
+  const page = await prisma.staticPage.findUnique({ where: { slug: "personal-data" } });
+  const title = page?.title || "Согласие на обработку персональных данных";
+  const content = page?.content || "";
+
   return (
     <div className="section-padding">
       <div className="container-site max-w-3xl">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
           <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-          <span className="text-foreground">Персональные данные</span>
+          <span className="text-foreground">{title}</span>
         </nav>
-        <h1 className="font-serif text-4xl font-bold mb-8">Согласие на обработку персональных данных</h1>
-        <div className="prose prose-stone max-w-none space-y-6 text-muted-foreground">
-          <p>Заполняя формы на сайте kuhniby.by, вы даёте согласие на обработку своих персональных данных в соответствии с законодательством Республики Беларусь о защите персональных данных.</p>
-          <h2 className="font-serif text-xl font-semibold text-foreground">Цели обработки</h2>
-          <ul><li>Обратная связь по заявке</li><li>Подготовка коммерческого предложения</li><li>Информирование об акциях (если вы дали согласие)</li></ul>
-          <h2 className="font-serif text-xl font-semibold text-foreground">Права субъекта данных</h2>
-          <p>Вы можете в любое время отозвать согласие, обратившись по email: info@kuhniby.by или по телефону +375 (29) 123-45-67.</p>
-          <h2 className="font-serif text-xl font-semibold text-foreground">Оператор персональных данных</h2>
-          <p>КухниBY, г. Минск, ул. Притыцкого, 100. УНП 000000000.</p>
+        <h1 className="font-serif text-4xl font-bold mb-8">{title}</h1>
+        <div className="space-y-4">
+          {renderContent(content)}
         </div>
       </div>
     </div>

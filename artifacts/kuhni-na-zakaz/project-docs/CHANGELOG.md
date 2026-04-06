@@ -1,5 +1,31 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 4: StaticPage CMS)
+
+### Added
+- **`prisma/schema.prisma`** — новая модель `StaticPage` (slug unique, title, content, seoTitle, seoDescription, published, timestamps).
+- **`prisma/seed-static-pages.ts`** — seed-скрипт для 6 страниц: about, delivery-installation, warranty, privacy-policy, terms, personal-data.
+- **`package.json`** — команда `db:seed-static` → `tsx prisma/seed-static-pages.ts`.
+- **`lib/render-content.tsx`** — легковесный renderer: `## Заголовок` → `<h2>`, `- пункт` → `<ul><li>`, блок текста → `<p>`.
+- **`app/kapi/admin/static-pages/route.ts`** — GET (список страниц).
+- **`app/kapi/admin/static-pages/[id]/route.ts`** — GET (одна страница) + PATCH (обновление).
+- **`app/admin/pages/[id]/edit/page.tsx`** — Client Component: редактор страницы (title, content, seoTitle, seoDescription, published), сохранение через PATCH.
+
+### Changed
+- **`app/admin/pages/page.tsx`** — заменён stub с amber-предупреждением: теперь полноценный список из БД с колонками Заголовок/URL/Статус + иконки Редактировать/Открыть.
+- **`app/about/page.tsx`** — SSR из `StaticPage` slug=about; FACTS-grid и ContactForm сохранены как hardcoded визуальные компоненты; `generateMetadata` читает seoTitle/seoDescription из БД.
+- **`app/warranty/page.tsx`** — SSR из `StaticPage` slug=warranty; карточки гарантии (5/2/1 год) hardcoded; контент из БД.
+- **`app/delivery-installation/page.tsx`** — полностью DB-driven (title + content из БД).
+- **`app/privacy-policy/page.tsx`** — полностью DB-driven.
+- **`app/terms/page.tsx`** — полностью DB-driven.
+- **`app/personal-data/page.tsx`** — полностью DB-driven.
+
+### DB migration
+- `prisma db push` → таблица `StaticPage` создана.
+- `pnpm db:seed-static` → 6 записей посеяны.
+
+---
+
 ## [Unreleased] — 2026-04-06 (Этап 3: Contacts page DB-driven)
 
 ### Changed
