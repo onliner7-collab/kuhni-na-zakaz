@@ -137,12 +137,15 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 ## Pending / Next tasks
 
 1. **Images** — upload system via object storage or S3; currently only URL fields in DB
-2. **Blog** — blog listing + article pages exist but content needs to be seeded
-3. **Prices page** — `/prices` reads from `PriceRow` but needs seeded data
-4. **Regional pages** — expand LocationPages beyond Минск/Область/Борисов to all 6 oblasts
+2. **Blog** ✅ DONE — 6 posts seeded (seed-blog.ts), article renderer uses renderContent (bold + lists)
+3. **Prices page** — `/prices` functional with SEGMENTS hardcoded; PriceRule×34 powers /calculator
+4. **Regional pages** ✅ DONE — 10 LocationPages total: all 6 oblast capitals + Борисов, Жодино, Молодечно
 5. **Email notifications** — currently only Telegram; consider adding email for leads
 6. **Production deployment** — run `npx prisma migrate deploy` in production. `SESSION_SECRET` ✅ already set via Replit Secrets and auth module will throw on missing secret.
-7. **StaticPage CMS** — pages `/about`, `/delivery-installation`, `/warranty`, `/privacy-policy`, `/terms` are hardcoded JSX. Add `StaticPage` Prisma model + `/admin/static-pages`.
+7. **StaticPage CMS** ✅ DONE — StaticPage model + /admin/static-pages + 6 pages seeded; public pages read from DB
+
+### Sitemap (✅ db5c50d)
+`app/sitemap.ts` dynamically fetches all LocationPages, BlogPosts, PortfolioCases, StaticPages from DB. BASE_URL default = `https://kuhniby.by`.
 
 ### Known patterns / gotchas
 - `Button` component (`components/ui/button.tsx`) does **not** support `asChild`. Use `<Link className={buttonVariants(...)}>` or `<a className={buttonVariants()}>` instead. Do not add `asChild` to Button props.
