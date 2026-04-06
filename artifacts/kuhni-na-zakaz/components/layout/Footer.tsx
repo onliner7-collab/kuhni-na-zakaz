@@ -29,7 +29,7 @@ const FOOTER_LINKS = {
 const FOOTER_DEFAULTS = {
   phone: "+375291234567",
   phoneDisplay: "+375 (29) 123-45-67",
-  email: "info@kuhniminsk.by",
+  email: "info@kuhniby.by",
   address: "г. Минск, ул. Притыцкого, 100",
   workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
 };

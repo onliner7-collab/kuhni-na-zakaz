@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     "Проектируем, изготавливаем и устанавливаем кухни под заказ по всей Беларуси. Собственное производство. Гарантия 5 лет. Замер и 3D-проект бесплатно.",
   keywords: ["кухни на заказ", "кухни на заказ Беларусь", "кухни под заказ", "кухни Минск", "кухни Минская область"],
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniminsk.by"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by"
   ),
   openGraph: {
     type: "website",
     locale: "ru_BY",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniminsk.by",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by",
     siteName: "КухниBY",
   },
   robots: {

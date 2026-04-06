@@ -1,5 +1,24 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 2: Бренд и позиционирование — Беларусь)
+
+### Changed
+- **`app/layout.tsx`** — metadataBase и OG url fallback: `"https://kuhniminsk.by"` → `"https://kuhniby.by"` (2 места). Если `NEXT_PUBLIC_SITE_URL` не задан, бренд больше не позиционируется как минский домен.
+- **`components/layout/Footer.tsx`** — дефолтный email в `FOOTER_DEFAULTS`: `"info@kuhniminsk.by"` → `"info@kuhniby.by"`. Email показывается в футере если в `SiteSettings` (БД) не задан другой.
+
+### Verified (не изменено — уже корректно)
+- `app/page.tsx` title: "Кухни на заказ по Беларуси" ✓
+- `app/page.tsx` description: "по всей Беларуси" ✓
+- `app/page.tsx` H1: "Кухня на заказ — именно под вас" — без привязки к Минску ✓
+- `app/page.tsx` JSON-LD `areaServed`: `{ name: "Беларусь" }` ✓
+- `app/page.tsx` JSON-LD `email`: `info@kuhniby.by` ✓
+- Footer brand text: "Кухни на заказ по всей Беларуси. Собственное производство." ✓
+- Hero badge: "Работаем по всей Беларуси — от 14 рабочих дней" ✓
+- `address.addressLocality: "Минск"` в JSON-LD — физический адрес (не зона покрытия), оставлен ✓
+- Footer cities: "/locations/minsk", "/locations/minskaya-oblast" — локальные SEO-ссылки, оставлены ✓
+
+---
+
 ## [Unreleased] — 2026-04-06 (Этап 1: Security & Housekeeping)
 
 ### Security

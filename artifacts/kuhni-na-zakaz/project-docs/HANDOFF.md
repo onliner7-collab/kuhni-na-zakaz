@@ -23,6 +23,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Этап 10 | ✅ Done | Персонализация — Lead (+8 полей), SavedConfig, FavoriteCase (новые модели); usePersonalization hook; FavoriteButton на портфолио; ConfigResultActions (save/send на просчёт); SavedConfigBanner; admin/leads полный перепис с статусами/заметками/config-данными; admin/saved-configs; LeadStatusControl/LeadNoteEditor |
 | Admin UX audit | ✅ Done | FAQ admin CRUD (/admin/faq + API), LeadAssignedEditor (назначение менеджера), поиск заявок, Dashboard новые заявки; tech debt задокументирован |
 | Security & Cleanup | ✅ Done | `lib/auth.ts` — убран fallback secret, throw если SESSION_SECRET не задан; `.next/` удалён из git-индекса; `.gitignore` расширен; `asChild` bug fixed в Button |
+| Этап 2 (Бренд) | ✅ Done | Убраны минские fallback-домены из metadataBase/OG/Footer email. Всё глобальное позиционирование — Беларусь. Локальные SEO-страницы не тронуты. |
 
 ---
 
