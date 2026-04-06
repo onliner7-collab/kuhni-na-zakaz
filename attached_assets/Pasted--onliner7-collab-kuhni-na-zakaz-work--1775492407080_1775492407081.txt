@@ -1,0 +1,93 @@
+Работаем в репозитории:
+onliner7-collab/kuhni-na-zakaz
+
+Ветка:
+work
+
+Контекст:
+полезные улучшения по image handling уже внесены, но этап оформлен грязно.
+Нужен cleanup, чтобы оставить только чистый итог без мусора.
+
+Что уже считается полезным и должно остаться:
+- `BlogPost.coverImage`
+- preview/URL input для blog cover
+- улучшенный preview для portfolio mainImage
+- grid-preview для portfolio arrays (`images`, `photosBefore`, `photosAfter`)
+- базовая URL-валидация в image-полях
+- улучшения image preview в `StyleForm`
+- улучшения image preview в `MaterialForm`
+- docs по image limitations можно оставить, если они фактические
+
+Нужно сделать cleanup так, чтобы итоговый diff для image-handling был чистым.
+
+==================================================
+ЗАДАЧА
+==================================================
+
+1. Удалить из git мусорные файлы:
+- `attached_assets/Pasted--onliner7-collab-kuhni-na-zakaz-work--1775490829949_1775490829949.txt`
+- `attached_assets/Pasted--onliner7-collab-kuhni-na-zakaz-work--1775491369899_1775491369899.txt`
+
+2. Проверить, чтобы в итоговом image-handling cleanup не было посторонних изменений из других этапов.
+Если в текущем наборе изменений присутствуют файлы не про image handling, их не трогать в этом cleanup-коммите, кроме случаев, когда нужно убрать явный мусор.
+Особенно не вносить новых изменений в:
+- `app/kapi/leads/route.ts`
+- `lib/email.ts`
+- `app/prices/page.tsx`
+- `components/sections/PriceQuiz.tsx`
+
+3. Не менять заново содержательную image-логику, если она уже работает.
+Цель — именно cleanup поставки.
+
+4. Убедиться, что image-handling файлы остались как есть:
+- `prisma/schema.prisma`
+- `app/kapi/admin/blog/route.ts`
+- `app/kapi/admin/blog/[id]/route.ts`
+- `components/admin/BlogPostForm.tsx`
+- `components/admin/PortfolioCaseForm.tsx`
+- `components/admin/StyleForm.tsx`
+- `components/admin/MaterialForm.tsx`
+- `project-docs/CHANGELOG.md`
+- `project-docs/HANDOFF.md`
+
+==================================================
+ЧТО ЗАПРЕЩЕНО
+==================================================
+
+- не делать новый функционал
+- не менять email notifications
+- не менять prices
+- не менять blog seed
+- не менять regional pages
+- не делать unrelated refactor
+- не добавлять новые файлы
+- не менять ничего кроме cleanup, если это не абсолютно необходимо
+
+==================================================
+КРИТЕРИЙ ГОТОВНОСТИ
+==================================================
+
+Cleanup считается завершённым только если:
+1. из git удалены мусорные `attached_assets/*.txt`
+2. не добавлено новых посторонних изменений
+3. image-handling улучшения сохранены
+4. сделан один аккуратный commit
+
+==================================================
+ЧТО СДАТЬ
+==================================================
+
+После завершения:
+1. список удалённых файлов
+2. подтверждение, что новых функциональных изменений не делалось
+3. подтверждение, что image-handling изменения сохранены
+4. SHA cleanup-коммита
+
+==================================================
+ФОРМАТ РАБОТЫ
+==================================================
+
+- удалить только мусорные attached_assets
+- проверить diff
+- сделать 1 commit
+- в ответе дать только фактический отчёт и SHA
