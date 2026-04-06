@@ -1,76 +1,376 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { MapPin, Square, Paintbrush, Layers, Clock, ArrowRight, CheckCircle, AlertTriangle, Lightbulb, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
-
-const STATIC_CASES: Record<string, { title: string; city: string; area: number; style: string; material: string; priceFrom: number; priceTo: number; days: number; description: string; task: string; solution: string }> = {
-  "uglovaya-kuhnya-minsk-kirova": { title: "Угловая кухня в стиле минимализм", city: "Минск, ул. Кирова", area: 14, style: "Минимализм", material: "Эмаль матовая", priceFrom: 2800, priceTo: 3200, days: 21, description: "Угловая кухня 14 м² в двухкомнатной квартире.", task: "Разместить максимум хранения на 4 погонных метрах без ощущения тесноты.", solution: "Закрытые фасады до потолка, встроенная техника, скрытые ручки." },
-  "pryamaya-kuhnya-borisov": { title: "Прямая кухня в скандинавском стиле", city: "Борисов", area: 10, style: "Скандинавский", material: "МДФ плёнка", priceFrom: 1800, priceTo: 2100, days: 18, description: "Прямая кухня 10 м² в частном доме.", task: "Сделать функциональную кухню для большой семьи.", solution: "Светлые фасады с плёнкой, удобная мойка, выдвижные ящики с полным ходом." },
-  "kuhnya-s-ostrovom-minsk-partizansky": { title: "Кухня с островом — проект для новостройки", city: "Минск, Партизанский р-н", area: 22, style: "Современный", material: "Шпон ясень", priceFrom: 5500, priceTo: 6200, days: 30, description: "Просторная кухня-гостиная 22 м² в новостройке.", task: "Создать открытое пространство с функциональным островом.", solution: "Остров 160×90 см совмещает зону приготовления и барную стойку на 4 места." },
-  "klassicheskaya-kuhnya-molodechno": { title: "Классическая кухня в частном доме", city: "Молодечно", area: 18, style: "Классический", material: "МДФ крашеный", priceFrom: 4200, priceTo: 4800, days: 28, description: "Классическая кухня с патиной 18 м² в загородном доме.", task: "Воссоздать ощущение классики с современными удобствами.", solution: "Фасады с фрезеровкой и патиной, карнизы, встроенная посудомойка." },
-  "malenkaya-kuhnya-studiya": { title: "Кухня для квартиры-студии, 6 м²", city: "Минск, Сухарево", area: 6, style: "Минимализм", material: "Пластик глянец", priceFrom: 1200, priceTo: 1500, days: 14, description: "Компактная кухня для студии.", task: "Уместить всё необходимое на 6 квадратах.", solution: "Навесные шкафы до потолка, встроенная техника, складная столешница." },
-  "kuhnya-do-potolka-minsk-vostok": { title: "Кухня до потолка — максимум хранения", city: "Минск, Восток", area: 12, style: "Современный", material: "Эмаль матовая", priceFrom: 3100, priceTo: 3600, days: 24, description: "Кухня с фасадами до потолка 12 м².", task: "Обеспечить хранение для большого количества посуды.", solution: "Шкафы высотой 2,7 м, pull-out ящики, встроенный холодильник." },
-};
+import { ReviewStatus } from "@prisma/client";
 
 interface Props { params: Promise<{ slug: string }> }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+async function getCase(slug: string) {
   try {
-    const c = await prisma.portfolioCase.findUnique({ where: { slug } });
-    if (c) return { title: c.seoTitle || c.title, description: c.seoDescription || c.description.slice(0, 160), alternates: { canonical: `/portfolio/${slug}` } };
-  } catch {}
-  const s = STATIC_CASES[slug];
-  if (s) return { title: s.title, description: s.description, alternates: { canonical: `/portfolio/${slug}` } };
-  return { title: "Проект кухни" };
+    return await prisma.portfolioCase.findUnique({ where: { slug, published: true } });
+  } catch { return null; }
 }
 
-export default async function PortfolioItemPage({ params }: Props) {
-  const { slug } = await params;
-  let data: typeof STATIC_CASES[string] | null = null;
+async function getRelated(c: Awaited<ReturnType<typeof getCase>>) {
+  if (!c) return { style: null, materials: [], scenarios: [], reviews: [] };
   try {
-    const c = await prisma.portfolioCase.findUnique({ where: { slug } });
-    if (c && c.published) data = { title: c.title, city: c.city, area: c.area, style: c.style, material: c.material, priceFrom: c.priceFrom, priceTo: c.priceTo, days: c.days, description: c.description, task: c.task, solution: c.solution };
-  } catch {}
-  if (!data) data = STATIC_CASES[slug] || null;
-  if (!data) notFound();
+    const [style, materials, scenarios, reviews] = await Promise.all([
+      c.styleSlug ? prisma.stylePage.findUnique({ where: { slug: c.styleSlug, published: true } }) : Promise.resolve(null),
+      c.materialSlugs.length > 0 ? prisma.materialPage.findMany({ where: { slug: { in: c.materialSlugs }, published: true } }) : Promise.resolve([]),
+      c.scenarioSlugs.length > 0 ? prisma.scenarioPage.findMany({ where: { slug: { in: c.scenarioSlugs }, published: true } }) : Promise.resolve([]),
+      c.reviewIds.length > 0 ? prisma.review.findMany({ where: { id: { in: c.reviewIds }, status: ReviewStatus.PUBLISHED } }) : Promise.resolve([]),
+    ]);
+    return { style, materials, scenarios, reviews };
+  } catch { return { style: null, materials: [], scenarios: [], reviews: [] }; }
+}
+
+async function getOtherCases(slug: string) {
+  try {
+    return await prisma.portfolioCase.findMany({
+      where: { published: true, slug: { not: slug } },
+      orderBy: [{ featured: "desc" }, { order: "asc" }],
+      take: 3,
+    });
+  } catch { return []; }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const c = await getCase(slug);
+  if (!c) return { title: "Проект кухни" };
+  return {
+    title: c.seoTitle || `${c.title} — КухниBY`,
+    description: c.seoDescription || c.description,
+    keywords: c.seoKeywords || undefined,
+    alternates: { canonical: `/portfolio/${slug}` },
+  };
+}
+
+export default async function PortfolioCasePage({ params }: Props) {
+  const { slug } = await params;
+  const c = await getCase(slug);
+  if (!c) notFound();
+  const [{ style, materials, scenarios, reviews }, others] = await Promise.all([getRelated(c), getOtherCases(slug)]);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: c.title,
+    description: c.seoDescription || c.description,
+    url: `https://kuhniby.by/portfolio/${slug}`,
+    datePublished: c.createdAt.toISOString(),
+    dateModified: c.updatedAt.toISOString(),
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhniby.by" },
+        { "@type": "ListItem", position: 2, name: "Портфолио", item: "https://kuhniby.by/portfolio" },
+        { "@type": "ListItem", position: 3, name: c.title, item: `https://kuhniby.by/portfolio/${slug}` },
+      ],
+    },
+  };
+
+  const allPhotos = [...(c.images.length > 0 ? c.images : c.mainImage ? [c.mainImage] : [])];
 
   return (
-    <div className="section-padding">
-      <div className="container-site">
-        <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-          <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-          <Link href="/portfolio" className="hover:text-primary">Портфолио</Link><span>/</span>
-          <span className="text-foreground">{data.title}</span>
-        </nav>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          <div className="lg:col-span-2">
-            <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground mb-6">
-              <span>📍 {data.city}</span><span>📐 {data.area} м²</span>
-              <span>🎨 {data.style}</span><span>🪵 {data.material}</span><span>📅 {data.days} дней</span>
-            </div>
-            <div className="h-80 bg-gradient-to-br from-stone-200 to-amber-100 rounded-xl flex items-center justify-center mb-6">
-              <span className="text-stone-400">Фото проекта</span>
-            </div>
-            <p className="text-muted-foreground mb-6">{data.description}</p>
-            <div className="space-y-4">
-              <div className="card-base p-5"><h2 className="font-semibold mb-2">Задача</h2><p className="text-sm text-muted-foreground">{data.task}</p></div>
-              <div className="card-base p-5"><h2 className="font-semibold mb-2">Решение</h2><p className="text-sm text-muted-foreground">{data.solution}</p></div>
-              <div className="bg-primary/10 border border-primary/20 rounded-xl p-5">
-                <p className="font-semibold text-primary">Стоимость: {data.priceFrom.toLocaleString("ru")}–{data.priceTo.toLocaleString("ru")} BYN</p>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <div className="section-padding">
+        <div className="container-site">
+          {/* Breadcrumb */}
+          <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2 flex-wrap">
+            <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
+            <Link href="/portfolio" className="hover:text-primary">Портфолио</Link><span>/</span>
+            <span className="text-foreground">{c.title}</span>
+          </nav>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            {/* Main */}
+            <div className="lg:col-span-2 space-y-10">
+              {/* Hero */}
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  {c.style && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary">{c.style}</span>}
+                  {c.layout && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-600">{c.layout}</span>}
+                  {c.featured && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-amber-100 text-amber-700 flex items-center gap-1"><Star className="w-3 h-3" />Избранный проект</span>}
+                </div>
+                <h1 className="font-serif text-4xl font-bold mb-4 leading-tight">{c.title}</h1>
+
+                {/* Specs strip */}
+                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground mb-6">
+                  <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-primary shrink-0" />{c.city}{c.region && c.region !== c.city && `, ${c.region}`}</span>
+                  <span className="flex items-center gap-1.5"><Square className="w-4 h-4 text-primary shrink-0" />{c.area} м²</span>
+                  {c.layout && <span className="flex items-center gap-1.5"><Layers className="w-4 h-4 text-primary shrink-0" />{c.layout}</span>}
+                  <span className="flex items-center gap-1.5"><Paintbrush className="w-4 h-4 text-primary shrink-0" />{c.material}</span>
+                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary shrink-0" />{c.days} дней</span>
+                  {c.completedAt && <span className="flex items-center gap-1.5 text-muted-foreground">📅 {c.completedAt}</span>}
+                </div>
+
+                {/* Main photo */}
+                <div className="h-80 bg-gradient-to-br from-stone-200 to-amber-100 rounded-2xl overflow-hidden mb-4">
+                  {c.mainImage ? (
+                    <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-stone-400">Фото проекта</div>
+                  )}
+                </div>
+
+                {/* Gallery */}
+                {allPhotos.length > 1 && (
+                  <div className="grid grid-cols-3 gap-2 mb-4">
+                    {allPhotos.slice(1, 4).map((img, i) => (
+                      <div key={i} className="h-28 rounded-xl overflow-hidden bg-stone-200">
+                        <img src={img} alt={`${c.title} фото ${i + 2}`} className="w-full h-full object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {c.description && <p className="text-muted-foreground leading-relaxed text-lg">{c.description}</p>}
               </div>
+
+              {/* Price */}
+              {c.priceFrom > 0 && (
+                <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Стоимость этого проекта</p>
+                    <p className="font-bold text-primary text-2xl">
+                      {c.priceTo > 0 ? `${c.priceFrom.toLocaleString("ru")}–${c.priceTo.toLocaleString("ru")} BYN` : `от ${c.priceFrom.toLocaleString("ru")} BYN`}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">Точная цена — после бесплатного замера</p>
+                  </div>
+                  <Link href="/calculator" className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 shrink-0">
+                    Рассчитать свой проект <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              )}
+
+              {/* Task */}
+              {c.task && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center shrink-0">
+                      <span className="text-blue-600 font-bold text-sm">01</span>
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold">Задача клиента</h2>
+                  </div>
+                  <div className="card-base p-5">
+                    <p className="text-muted-foreground leading-relaxed">{c.task}</p>
+                  </div>
+                </section>
+              )}
+
+              {/* Constraints */}
+              {c.constraints && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-orange-100 flex items-center justify-center shrink-0">
+                      <AlertTriangle className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold">Ограничения</h2>
+                  </div>
+                  <div className="card-base p-5 border-l-4 border-orange-300">
+                    <p className="text-muted-foreground leading-relaxed">{c.constraints}</p>
+                  </div>
+                </section>
+              )}
+
+              {/* Solution */}
+              {c.solution && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <Lightbulb className="w-5 h-5 text-primary" />
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold">Наше решение</h2>
+                  </div>
+                  <div className="card-base p-5">
+                    <p className="text-muted-foreground leading-relaxed">{c.solution}</p>
+                  </div>
+                </section>
+              )}
+
+              {/* Before / After */}
+              {(c.photosBefore.length > 0 || c.photosAfter.length > 0) && (
+                <section>
+                  <h2 className="font-serif text-2xl font-bold mb-4">До и после</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    {c.photosBefore.length > 0 && (
+                      <div>
+                        <p className="text-sm font-medium text-muted-foreground mb-2 text-center uppercase tracking-wide">До</p>
+                        <div className="rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                          <img src={c.photosBefore[0]} alt="До" className="w-full h-full object-cover" />
+                        </div>
+                      </div>
+                    )}
+                    {c.photosAfter.length > 0 && (
+                      <div>
+                        <p className="text-sm font-medium text-primary mb-2 text-center uppercase tracking-wide">После</p>
+                        <div className="rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
+                          <img src={c.photosAfter[0]} alt="После" className="w-full h-full object-cover" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </section>
+              )}
+
+              {/* Result */}
+              {c.result && (
+                <section>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-green-100 flex items-center justify-center shrink-0">
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                    </div>
+                    <h2 className="font-serif text-2xl font-bold">Результат</h2>
+                  </div>
+                  <div className="card-base p-5 border-l-4 border-green-300 bg-green-50/30">
+                    <p className="text-foreground leading-relaxed">{c.result}</p>
+                  </div>
+                </section>
+              )}
+
+              {/* Reviews */}
+              {reviews.length > 0 && (
+                <section>
+                  <h2 className="font-serif text-2xl font-bold mb-4">Отзыв клиента</h2>
+                  {reviews.map(r => (
+                    <div key={r.id} className="card-base p-5">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">
+                          {r.name[0]}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">{r.name}</p>
+                          <p className="text-xs text-muted-foreground">{r.city}{r.date && `, ${r.date}`}</p>
+                        </div>
+                        <div className="ml-auto flex gap-0.5">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <Star key={i} className={`w-4 h-4 ${i < r.rating ? "text-amber-400 fill-amber-400" : "text-gray-200"}`} />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{r.text}</p>
+                    </div>
+                  ))}
+                </section>
+              )}
+
+              {/* Related */}
+              {(style || materials.length > 0 || scenarios.length > 0) && (
+                <section>
+                  <h2 className="font-serif text-2xl font-bold mb-4">Использованные стиль и материалы</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {style && (
+                      <Link href={`/styles/${style.slug}`} className="card-base p-4 flex gap-3 hover:shadow-md transition-shadow group">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-stone-200 to-amber-100 shrink-0 overflow-hidden">
+                          {style.image && <img src={style.image} alt={style.title} className="w-full h-full object-cover" />}
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Стиль</p>
+                          <p className="font-semibold text-sm group-hover:text-primary transition-colors">{style.title}</p>
+                          <p className="text-xs text-primary font-medium">от {style.priceFrom.toLocaleString("ru")} BYN</p>
+                        </div>
+                      </Link>
+                    )}
+                    {materials.map(m => (
+                      <Link key={m.slug} href={`/materials/${m.slug}`} className="card-base p-4 flex gap-3 hover:shadow-md transition-shadow group">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-stone-200 to-stone-300 shrink-0 overflow-hidden">
+                          {m.image && <img src={m.image} alt={m.title} className="w-full h-full object-cover" />}
+                        </div>
+                        <div>
+                          <p className="text-xs text-muted-foreground">Материал</p>
+                          <p className="font-semibold text-sm group-hover:text-primary transition-colors">{m.title}</p>
+                          <p className="text-xs text-primary font-medium">от {m.priceFrom.toLocaleString("ru")} BYN</p>
+                        </div>
+                      </Link>
+                    ))}
+                    {scenarios.map(s => (
+                      <Link key={s.slug} href={`/scenarios/${s.slug}`} className="card-base p-4 hover:shadow-md transition-shadow group">
+                        <p className="text-xs text-muted-foreground mb-1">Сценарий</p>
+                        <div className="flex items-center gap-2">
+                          {s.icon && <span className="text-xl">{s.icon}</span>}
+                          <p className="font-semibold text-sm group-hover:text-primary transition-colors">{s.title}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Other cases */}
+              {others.length > 0 && (
+                <section>
+                  <h2 className="font-serif text-2xl font-bold mb-4">Другие проекты</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {others.map(o => (
+                      <Link key={o.slug} href={`/portfolio/${o.slug}`} className="card-base overflow-hidden hover:shadow-md transition-shadow group">
+                        <div className="h-36 bg-gradient-to-br from-stone-200 to-amber-100 overflow-hidden">
+                          {o.mainImage ? <img src={o.mainImage} alt={o.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                            : <div className="w-full h-full flex items-center justify-center text-stone-400 text-xs">Фото</div>}
+                        </div>
+                        <div className="p-3">
+                          <p className="font-semibold text-xs group-hover:text-primary transition-colors line-clamp-2">{o.title}</p>
+                          <p className="text-xs text-muted-foreground mt-1">{o.city} · {o.area} м²</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
-          </div>
-          <div>
-            <div className="card-base p-6 sticky top-20">
-              <h2 className="font-serif text-xl font-semibold mb-4">Хотите похожий проект?</h2>
-              <ContactForm source={`portfolio/${slug}`} />
+
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-5">
+                <div className="card-base p-6">
+                  <h2 className="font-serif text-xl font-semibold mb-2">Хотите похожий проект?</h2>
+                  <p className="text-sm text-muted-foreground mb-4">Расскажите о вашей кухне — пришлём смету.</p>
+                  <ContactForm source={`portfolio/${slug}`} />
+                </div>
+
+                {/* Technical card */}
+                <div className="card-base p-5 space-y-3">
+                  <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">Характеристики</h3>
+                  {[
+                    { label: "Город", value: c.city },
+                    { label: "Площадь", value: `${c.area} м²` },
+                    c.layout && { label: "Планировка", value: c.layout },
+                    { label: "Стиль", value: c.style },
+                    { label: "Материал", value: c.material },
+                    { label: "Срок", value: `${c.days} рабочих дней` },
+                    c.completedAt && { label: "Завершён", value: c.completedAt },
+                    c.priceFrom > 0 && { label: "Стоимость", value: c.priceTo > 0 ? `${c.priceFrom.toLocaleString("ru")}–${c.priceTo.toLocaleString("ru")} BYN` : `от ${c.priceFrom.toLocaleString("ru")} BYN`, primary: true },
+                  ].filter(Boolean).map((row: any) => (
+                    <div key={row.label} className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">{row.label}</span>
+                      <span className={`font-medium text-right ${row.primary ? "text-primary" : ""}`}>{row.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="card-base p-5">
+                  <h3 className="font-semibold text-sm mb-3">Другие проекты</h3>
+                  {others.slice(0, 4).map(o => (
+                    <Link key={o.slug} href={`/portfolio/${o.slug}`}
+                      className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                      <span className="line-clamp-1">{o.title}</span>
+                      <ArrowRight className="w-3.5 h-3.5 shrink-0 ml-2" />
+                    </Link>
+                  ))}
+                  <Link href="/portfolio" className="block text-center mt-3 text-xs text-primary hover:underline">
+                    Все проекты →
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

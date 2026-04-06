@@ -1,5 +1,9 @@
 {
-  "/styles/[slug]/page": "app/styles/[slug]/page.js",
-  "/materials/[slug]/page": "app/materials/[slug]/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js"
+  "/page": "app/page.js",
+  "/portfolio/[slug]/page": "app/portfolio/[slug]/page.js",
+  "/portfolio/page": "app/portfolio/page.js",
+  "/catalog/page": "app/catalog/page.js",
+  "/styles/page": "app/styles/page.js",
+  "/prices/page": "app/prices/page.js",
+  "/admin/login/page": "app/admin/login/page.js"
 }

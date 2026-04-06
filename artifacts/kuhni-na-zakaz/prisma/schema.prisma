@@ -87,26 +87,40 @@ model Kitchen {
 }
 
 model PortfolioCase {
-  id             Int      @id @default(autoincrement())
-  title          String
-  slug           String   @unique
-  city           String
-  area           Int      @default(0)
-  style          String   @default("")
-  material       String   @default("")
-  priceFrom      Int      @default(0)
-  priceTo        Int      @default(0)
-  days           Int      @default(0)
-  description    String   @default("")
-  task           String   @default("")
-  solution       String   @default("")
-  images         String[]
-  mainImage      String   @default("")
-  seoTitle       String?
-  seoDescription String?
-  published      Boolean  @default(true)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  title           String
+  slug            String   @unique
+  city            String
+  region          String   @default("")
+  area            Int      @default(0)
+  layout          String   @default("")
+  style           String   @default("")
+  styleSlug       String   @default("")
+  material        String   @default("")
+  materialSlugs   String[]
+  scenarioSlugs   String[]
+  priceFrom       Int      @default(0)
+  priceTo         Int      @default(0)
+  days            Int      @default(0)
+  completedAt     String   @default("")
+  description     String   @default("")
+  task            String   @default("")
+  constraints     String   @default("")
+  solution        String   @default("")
+  result          String   @default("")
+  mainImage       String   @default("")
+  images          String[]
+  photosBefore    String[]
+  photosAfter     String[]
+  reviewIds       Int[]
+  featured        Boolean  @default(false)
+  order           Int      @default(0)
+  seoTitle        String   @default("")
+  seoDescription  String   @default("")
+  seoKeywords     String   @default("")
+  published       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Review {
@@ -117,6 +131,7 @@ model Review {
   rating          Int
   text            String
   date            String       @default("")
+  caseSlug        String       @default("")
   status          ReviewStatus @default(NEW)
   moderatedById   Int?
   moderatedBy     User?        @relation("ModeratedBy", fields: [moderatedById], references: [id])

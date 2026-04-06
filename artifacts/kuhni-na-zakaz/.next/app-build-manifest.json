@@ -11,6 +11,21 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/portfolio/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/portfolio/page.js"
+    ],
+    "/portfolio/[slug]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/portfolio/[slug]/page.js"
+    ],
     "/admin/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -21,20 +36,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/admin/login/page.js"
     ],
-    "/admin/dashboard/page": [
+    "/catalog/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/admin/dashboard/page.js"
+      "static/chunks/app/catalog/page.js"
     ],
-    "/styles/[slug]/page": [
+    "/styles/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/styles/[slug]/page.js"
+      "static/chunks/app/styles/page.js"
     ],
-    "/materials/[slug]/page": [
+    "/prices/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/materials/[slug]/page.js"
+      "static/chunks/app/prices/page.js"
     ]
   }
 }

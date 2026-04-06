@@ -14,6 +14,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Этап 1 | ✅ Done | HomepageBlock — DB-driven homepage, admin page, API routes |
 | Этап 2 | ✅ Done | ScenarioPage — 6 сценариев, admin CRUD 4-tab form, public /scenarios |
 | Этап 3 | ✅ Done | StylePage + MaterialPage — расширены схемы (+12 полей каждая), 5+5 записей посеяно, admin CRUD + forms, полные SEO-посадочные, internal linking |
+| Этап 4 | ✅ Done | PortfolioCase — расширена схема (+15 полей), 6 кейсов посеяно, 4-tab admin form, /portfolio (Server Component + client filters), /portfolio/[slug] (полный кейс-стади + история + до/после + отзывы + internal links + sidebar), JSON-LD Article |
 
 ---
 

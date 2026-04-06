@@ -9,7 +9,7 @@ export const metadata = { title: "Портфолио — Админ" };
 export default async function AdminPortfolioPage() {
   const session = await requireAdmin();
   const cases = await prisma.portfolioCase.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: [{ order: "asc" }, { createdAt: "desc" }],
   });
 
   return (
@@ -73,7 +73,15 @@ export default async function AdminPortfolioPage() {
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link
-                        href={`/admin/portfolio/${c.id}/edit`}
+                        href={`/portfolio/${c.slug}`}
+                        target="_blank"
+                        className="p-1.5 rounded hover:bg-green-50 text-green-600 transition-colors"
+                        title="На сайте"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </Link>
+                      <Link
+                        href={`/admin/portfolio/${c.id}`}
                         data-testid={`btn-edit-case-${c.id}`}
                         className="p-1.5 rounded hover:bg-primary/10 text-primary transition-colors"
                         title="Редактировать"

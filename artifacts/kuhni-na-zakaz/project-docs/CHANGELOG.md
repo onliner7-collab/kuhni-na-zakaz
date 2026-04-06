@@ -1,5 +1,54 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 4: PortfolioCase как полноценные кейс-стади)
+
+### Added
+- **Расширена Prisma-модель `PortfolioCase`** — добавлено 15+ полей:
+  - `region`, `layout`, `completedAt` — география и планировка
+  - `constraints`, `result` — история проекта: ограничения + результат
+  - `photosBefore[]`, `photosAfter[]` — блок «До и После»
+  - `reviewIds[]` — привязка отзывов к кейсу
+  - `featured`, `order` — управление приоритетом отображения
+  - `styleSlug`, `materialSlugs[]`, `scenarioSlugs[]` — внутренние ссылки по slug
+  - `seoKeywords` — SEO ключевые слова кейса
+- **Добавлено поле `caseSlug` в модель `Review`** — привязка отзыва к конкретному кейсу
+- **6 богатых кейсов посеяно** в БД:
+  - `uglovaya-kuhnya-minimalizm-minsk-kirova` — Угловая, 14 м², минимализм, Минск
+  - `skandinavskaya-kuhnya-borisov-chastniy-dom` — П-образная, 16 м², скандинав, Борисов
+  - `kuhnya-s-ostrovom-minsk-partizansky` — С островом, 22 м², современный, Минск ★ featured
+  - `klassicheskaya-kuhnya-molodechno-chastniy-dom` — Классика с патиной, 18 м², Молодечно
+  - `malenkaya-kuhnya-studiya-suharyovo` — Студия, 6 м², минимализм, Минск
+  - `kuhnya-do-potolka-minsk-vostok` — До потолка, 12 м², современный, Минск
+- **Обновлены API routes** `/kapi/admin/portfolio` (GET/POST) и `/kapi/admin/portfolio/[id]` (GET/PUT/DELETE):
+  - Переход с `@/lib/prisma` → `@/lib/db`
+  - Убрана зависимость `zod` — упрощённая обработка данных
+  - GET-список сортирует по `order asc, createdAt desc`
+- **`PortfolioCaseForm.tsx`** — полностью перестроена под 4 вкладки:
+  - **Основное**: название, slug, город/регион/дата, площадь/планировка/срок, цена, стиль, материалы, сценарии, краткое описание, featured/published/order
+  - **История проекта**: задача клиента, ограничения, решение, результат (свободный текст)
+  - **Фото**: главное фото, галерея, фото до/после с превью
+  - **SEO**: live-превью поиска Google, title/description/keywords с счётчиком символов
+- **Создана страница** `/admin/portfolio/[id]/page.tsx` — редактирование существующего кейса
+- **Обновлён** `/admin/portfolio/page.tsx` — сортировка по order+date, кнопка «На сайте» (открывает публичную страницу)
+- **Перестроен** `/portfolio/page.tsx` — Server Component (прямой запрос Prisma), использует `PortfolioFilters`
+- **Создан** `components/portfolio/PortfolioFilters.tsx` — клиентский компонент фильтрации (стиль / площадь / бюджет) без перезагрузки страницы
+- **Перестроен** `/portfolio/[slug]/page.tsx` — полный кейс-стади:
+  - Плашки стиля/планировки/featured
+  - Specs strip (город, площадь, планировка, материал, срок, дата)
+  - Ценовой блок с CTA → калькулятор
+  - История: Задача → Ограничения → Решение → До/После → Результат
+  - Отзывы клиента (если привязаны через reviewIds)
+  - Внутренние ссылки: стиль, материалы, сценарии — из БД
+  - Похожие проекты (другие кейсы, 3 штуки)
+  - Sticky sidebar: ContactForm + характеристики + навигация
+  - JSON-LD Article + BreadcrumbList + generateMetadata (seoTitle/seoDescription/seoKeywords)
+
+### Changed
+- API routes портфолио: избавились от `zod`, переход на `@/lib/db`
+- Публичный список портфолио теперь Server Component (SEO-friendly, нет client fetch)
+
+---
+
 ## [Unreleased] — 2026-04-05 (Этап 3: StylePage + MaterialPage как SEO-посадочные)
 
 ### Added
