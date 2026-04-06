@@ -1,6 +1,7 @@
 {
-  "/kapi/auth/login/route": "app/kapi/auth/login/route.js",
+  "/kapi/calculator/route": "app/kapi/calculator/route.js",
+  "/prices/page": "app/prices/page.js",
+  "/contacts/page": "app/contacts/page.js",
   "/page": "app/page.js",
-  "/admin/login/page": "app/admin/login/page.js",
-  "/admin/dashboard/page": "app/admin/dashboard/page.js"
+  "/calculator/page": "app/calculator/page.js"
 }
