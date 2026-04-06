@@ -15,16 +15,17 @@ async function getCase(slug: string) {
 }
 
 async function getRelated(c: Awaited<ReturnType<typeof getCase>>) {
-  if (!c) return { style: null, materials: [], scenarios: [], reviews: [] };
+  if (!c) return { style: null, materials: [], scenarios: [], reviews: [], locationPage: null };
   try {
-    const [style, materials, scenarios, reviews] = await Promise.all([
+    const [style, materials, scenarios, reviews, locationPage] = await Promise.all([
       c.styleSlug ? prisma.stylePage.findUnique({ where: { slug: c.styleSlug, published: true } }) : Promise.resolve(null),
       c.materialSlugs.length > 0 ? prisma.materialPage.findMany({ where: { slug: { in: c.materialSlugs }, published: true } }) : Promise.resolve([]),
       c.scenarioSlugs.length > 0 ? prisma.scenarioPage.findMany({ where: { slug: { in: c.scenarioSlugs }, published: true } }) : Promise.resolve([]),
       c.reviewIds.length > 0 ? prisma.review.findMany({ where: { id: { in: c.reviewIds }, status: ReviewStatus.PUBLISHED } }) : Promise.resolve([]),
+      c.city ? prisma.locationPage.findFirst({ where: { city: c.city, published: true }, select: { slug: true, city: true, h1: true } }) : Promise.resolve(null),
     ]);
-    return { style, materials, scenarios, reviews };
-  } catch { return { style: null, materials: [], scenarios: [], reviews: [] }; }
+    return { style, materials, scenarios, reviews, locationPage };
+  } catch { return { style: null, materials: [], scenarios: [], reviews: [], locationPage: null }; }
 }
 
 async function getOtherCases(slug: string) {
@@ -53,7 +54,7 @@ export default async function PortfolioCasePage({ params }: Props) {
   const { slug } = await params;
   const c = await getCase(slug);
   if (!c) notFound();
-  const [{ style, materials, scenarios, reviews }, others] = await Promise.all([getRelated(c), getOtherCases(slug)]);
+  const [{ style, materials, scenarios, reviews, locationPage }, others] = await Promise.all([getRelated(c), getOtherCases(slug)]);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -366,6 +367,23 @@ export default async function PortfolioCasePage({ params }: Props) {
                     Все проекты →
                   </Link>
                 </div>
+
+                {locationPage && (
+                  <div className="card-base p-5 bg-primary/5 border-primary/20">
+                    <h3 className="font-semibold text-sm mb-2 flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      Кухни в {c.city}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Смотрите другие проекты, цены на доставку и замер в вашем городе
+                    </p>
+                    <Link href={`/locations/${locationPage.slug}`}
+                      className="flex items-center justify-between text-sm text-primary font-semibold hover:gap-2 transition-all gap-1">
+                      {locationPage.h1 || `Кухни в ${c.city}`}
+                      <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>

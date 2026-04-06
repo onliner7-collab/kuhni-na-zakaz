@@ -13,6 +13,9 @@ interface BlogPost {
   category: string;
   tags: string[];
   readTime: number;
+  relatedCaseSlugs: string[];
+  relatedStyleSlugs: string[];
+  relatedScenarioSlugs: string[];
   seoTitle: string | null;
   seoDescription: string | null;
   published: boolean;
@@ -35,6 +38,9 @@ export function BlogPostForm({ post }: Props) {
     category: post?.category ?? "",
     tags: post?.tags.join(", ") ?? "",
     readTime: post?.readTime ?? 5,
+    relatedCaseSlugs: post?.relatedCaseSlugs.join(", ") ?? "",
+    relatedStyleSlugs: post?.relatedStyleSlugs.join(", ") ?? "",
+    relatedScenarioSlugs: post?.relatedScenarioSlugs.join(", ") ?? "",
     seoTitle: post?.seoTitle ?? "",
     seoDescription: post?.seoDescription ?? "",
     published: post?.published ?? false,
@@ -65,6 +71,9 @@ export function BlogPostForm({ post }: Props) {
         body: JSON.stringify({
           ...form,
           tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
+          relatedCaseSlugs: form.relatedCaseSlugs.split(",").map((t) => t.trim()).filter(Boolean),
+          relatedStyleSlugs: form.relatedStyleSlugs.split(",").map((t) => t.trim()).filter(Boolean),
+          relatedScenarioSlugs: form.relatedScenarioSlugs.split(",").map((t) => t.trim()).filter(Boolean),
           readTime: Number(form.readTime),
         }),
       });
@@ -196,6 +205,41 @@ export function BlogPostForm({ post }: Props) {
                 value={form.readTime}
                 onChange={(e) => setForm((f) => ({ ...f, readTime: parseInt(e.target.value) || 5 }))}
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background"
+              />
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl border border-border p-5 space-y-4">
+            <h3 className="font-semibold text-foreground">Связанный контент</h3>
+            <p className="text-xs text-muted-foreground">Slug-и через запятую. Показываются в конце статьи блоками «Похожие проекты», «Стили», «Сценарии».</p>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">Кейсы портфолио</label>
+              <input
+                type="text"
+                value={form.relatedCaseSlugs}
+                onChange={(e) => setForm((f) => ({ ...f, relatedCaseSlugs: e.target.value }))}
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background text-sm"
+                placeholder="slug-keisa-1, slug-keisa-2"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">Стили кухонь</label>
+              <input
+                type="text"
+                value={form.relatedStyleSlugs}
+                onChange={(e) => setForm((f) => ({ ...f, relatedStyleSlugs: e.target.value }))}
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background text-sm"
+                placeholder="minimalizm, skandinavskie"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1">Сценарии использования</label>
+              <input
+                type="text"
+                value={form.relatedScenarioSlugs}
+                onChange={(e) => setForm((f) => ({ ...f, relatedScenarioSlugs: e.target.value }))}
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background text-sm"
+                placeholder="malenkaya-kukhnya, semya-s-detmi"
               />
             </div>
           </div>

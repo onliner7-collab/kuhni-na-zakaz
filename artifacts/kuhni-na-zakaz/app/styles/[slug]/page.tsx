@@ -14,18 +14,24 @@ async function getStyle(slug: string) {
 }
 
 async function getRelatedData(s: Awaited<ReturnType<typeof getStyle>>) {
-  if (!s) return { materials: [], scenarios: [] };
+  if (!s) return { materials: [], scenarios: [], cases: [] };
   try {
-    const [materials, scenarios] = await Promise.all([
+    const [materials, scenarios, cases] = await Promise.all([
       s.relatedMaterials.length > 0
         ? prisma.materialPage.findMany({ where: { slug: { in: s.relatedMaterials }, published: true } })
         : Promise.resolve([]),
       s.relatedScenarioSlugs.length > 0
         ? prisma.scenarioPage.findMany({ where: { slug: { in: s.relatedScenarioSlugs }, published: true } })
         : Promise.resolve([]),
+      s.relatedCaseSlugs.length > 0
+        ? prisma.portfolioCase.findMany({
+            where: { slug: { in: s.relatedCaseSlugs }, published: true },
+            select: { id: true, slug: true, title: true, city: true, area: true, priceFrom: true, mainImage: true, style: true, days: true },
+          })
+        : Promise.resolve([]),
     ]);
-    return { materials, scenarios };
-  } catch { return { materials: [], scenarios: [] }; }
+    return { materials, scenarios, cases };
+  } catch { return { materials: [], scenarios: [], cases: [] }; }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -44,7 +50,7 @@ export default async function StylePage({ params }: Props) {
   const { slug } = await params;
   const s = await getStyle(slug);
   if (!s) notFound();
-  const { materials, scenarios } = await getRelatedData(s);
+  const { materials, scenarios, cases } = await getRelatedData(s);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -213,6 +219,42 @@ export default async function StylePage({ params }: Props) {
                   <div className="flex flex-wrap gap-2">
                     {s.pairsWith.map((item, i) => (
                       <span key={i} className="px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-sm text-amber-800">{item}</span>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Реальные работы в этом стиле */}
+              {cases.length > 0 && (
+                <section>
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="font-serif text-2xl font-bold">Наши работы в этом стиле</h2>
+                    <Link href={`/portfolio?style=${slug}`} className="text-sm text-primary font-semibold hover:underline flex items-center gap-1">
+                      Все работы <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {cases.map((c) => (
+                      <Link key={c.slug} href={`/portfolio/${c.slug}`}
+                        className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all bg-white">
+                        <div className="h-44 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
+                          {c.mainImage
+                            ? <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            : <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-4xl">🏠</div>
+                          }
+                        </div>
+                        <div className="p-4">
+                          <p className="font-semibold text-sm group-hover:text-primary transition-colors mb-1 line-clamp-2">{c.title}</p>
+                          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                            {c.city && <span>{c.city}</span>}
+                            {c.area > 0 && <span>{c.area} м²</span>}
+                            {c.days > 0 && <span>{c.days} дн.</span>}
+                          </div>
+                          {c.priceFrom > 0 && (
+                            <p className="text-primary font-semibold text-sm mt-1">от {c.priceFrom.toLocaleString("ru")} BYN</p>
+                          )}
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </section>

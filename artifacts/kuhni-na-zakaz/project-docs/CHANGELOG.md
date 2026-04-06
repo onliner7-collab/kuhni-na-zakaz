@@ -1,6 +1,36 @@
 # Changelog — КухниBY
 
-## [Unreleased] — 2026-04-06 (Этап 8: LocationPage — расширенный контент и связи)
+## [Unreleased] — 2026-04-06 (Этап 9: Smart cross-linking system)
+
+### Added
+- **BlogPost schema — 3 новых поля** (`prisma db push`):
+  - `relatedCaseSlugs String[]` — прикреплённые кейсы портфолио
+  - `relatedStyleSlugs String[]` — прикреплённые стили кухонь
+  - `relatedScenarioSlugs String[]` — прикреплённые сценарии использования
+- **StylePage публичная страница** (`/styles/[slug]`) — новая секция «Работы в этом стиле» (сетка кейс-карточек из `relatedCaseSlugs`)
+- **MaterialPage публичная страница** (`/materials/[slug]`) — новая секция «Работы из этого материала» (сетка кейс-карточек из `relatedCaseSlugs`)
+- **PortfolioCase публичная страница** (`/portfolio/[slug]`) — виджет в sidebar «Кухни в вашем регионе»: авто-находит LocationPage по полю `city` (без ручной настройки)
+- **BlogPost публичная страница** (`/blog/[slug]`) — полностью переработана:
+  - Секция «Похожие проекты из портфолио» (карточки из `relatedCaseSlugs`)
+  - Секция «Стили кухонь по теме» (из `relatedStyleSlugs`)
+  - Секция «Подходит для вашего сценария» (из `relatedScenarioSlugs`)
+  - Sidebar: форма захвата лида + блок «Другие статьи»
+- **BlogPostForm** — новая панель «Связанный контент» (3 textarea для slug-ов кейсов/стилей/сценариев)
+- **BlogPost API routes** (POST + PUT Zod schemas) — добавлены 3 новых поля в валидацию
+- **Cross-link авто-сид** — `relatedCaseSlugs` заполнены для всех StylePage/MaterialPage/ScenarioPage по совпадению тегов:
+  - `minimalizm` → uglovaya-kuhnya, malenkaya-kuhnya-studiya
+  - `sovremennye` → kuhnya-s-ostrovom, kuhnya-do-potolka
+  - `emal` → uglovaya-kuhnya, klassicheskaya, kuhnya-do-potolka
+  - `semya-s-detmi` → skandinavskaya, kuhnya-do-potolka
+  - (и т.д. для всех стилей/материалов/сценариев)
+
+### Changed
+- Zod BlogSchema (POST): добавлены relatedCaseSlugs/relatedStyleSlugs/relatedScenarioSlugs с `default([])`
+- Zod BlogSchema (PUT): добавлены те же поля как optional
+
+---
+
+## [v8.0] — 2026-04-06 (Этап 8: LocationPage — расширенный контент и связи)
 
 ### Added
 - **LocationPage schema — 7 новых полей** (мигрировано через `prisma db push`):

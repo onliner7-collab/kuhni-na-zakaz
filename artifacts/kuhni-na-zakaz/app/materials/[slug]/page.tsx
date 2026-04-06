@@ -14,18 +14,24 @@ async function getMaterial(slug: string) {
 }
 
 async function getRelatedData(m: Awaited<ReturnType<typeof getMaterial>>) {
-  if (!m) return { styles: [], scenarios: [] };
+  if (!m) return { styles: [], scenarios: [], cases: [] };
   try {
-    const [styles, scenarios] = await Promise.all([
+    const [styles, scenarios, cases] = await Promise.all([
       m.relatedStyles.length > 0
         ? prisma.stylePage.findMany({ where: { slug: { in: m.relatedStyles }, published: true } })
         : Promise.resolve([]),
       m.relatedScenarioSlugs.length > 0
         ? prisma.scenarioPage.findMany({ where: { slug: { in: m.relatedScenarioSlugs }, published: true } })
         : Promise.resolve([]),
+      m.relatedCaseSlugs.length > 0
+        ? prisma.portfolioCase.findMany({
+            where: { slug: { in: m.relatedCaseSlugs }, published: true },
+            select: { id: true, slug: true, title: true, city: true, area: true, priceFrom: true, mainImage: true, style: true, days: true },
+          })
+        : Promise.resolve([]),
     ]);
-    return { styles, scenarios };
-  } catch { return { styles: [], scenarios: [] }; }
+    return { styles, scenarios, cases };
+  } catch { return { styles: [], scenarios: [], cases: [] }; }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -44,7 +50,7 @@ export default async function MaterialPage({ params }: Props) {
   const { slug } = await params;
   const m = await getMaterial(slug);
   if (!m) notFound();
-  const { styles, scenarios } = await getRelatedData(m);
+  const { styles, scenarios, cases } = await getRelatedData(m);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -199,6 +205,42 @@ export default async function MaterialPage({ params }: Props) {
                         </li>
                       ))}
                     </ul>
+                  </div>
+                </section>
+              )}
+
+              {/* Реальные проекты с этим материалом */}
+              {cases.length > 0 && (
+                <section>
+                  <div className="flex items-center justify-between mb-4">
+                    <h2 className="font-serif text-2xl font-bold">Проекты с этим материалом</h2>
+                    <Link href="/portfolio" className="text-sm text-primary font-semibold hover:underline flex items-center gap-1">
+                      Все работы <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {cases.map((c) => (
+                      <Link key={c.slug} href={`/portfolio/${c.slug}`}
+                        className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all bg-white">
+                        <div className="h-44 overflow-hidden bg-gradient-to-br from-stone-100 to-stone-200">
+                          {c.mainImage
+                            ? <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            : <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-4xl">🏠</div>
+                          }
+                        </div>
+                        <div className="p-4">
+                          <p className="font-semibold text-sm group-hover:text-primary transition-colors mb-1 line-clamp-2">{c.title}</p>
+                          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                            {c.city && <span>{c.city}</span>}
+                            {c.area > 0 && <span>{c.area} м²</span>}
+                            {c.style && <span>{c.style}</span>}
+                          </div>
+                          {c.priceFrom > 0 && (
+                            <p className="text-primary font-semibold text-sm mt-1">от {c.priceFrom.toLocaleString("ru")} BYN</p>
+                          )}
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 </section>
               )}
