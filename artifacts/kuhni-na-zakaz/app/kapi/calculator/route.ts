@@ -19,13 +19,13 @@ export async function POST(req: NextRequest) {
     const allRules = await prisma.priceRule.findMany({ where: { active: true } });
     const rule = (key: string) => allRules.find(r => r.key === key)?.value ?? 0;
 
-    const area = Math.max(5, Math.min(35, Number(input.area) || 12));
+    const area = Math.max(1, Math.min(8, Number(input.area) || 3));
 
-    const basePricePerSqm = rule(`material_${input.material}`);
+    const basePricePerLm = rule(`material_${input.material}`);
     const layoutCoeff = rule(`layout_${input.layout}`);
     const styleCoeff = rule(`style_${input.style}`);
     const countertopAddon = rule(`countertop_${input.countertop}`);
-    const hardwarePerSqm = rule(`hardware_${input.hardware}`);
+    const hardwarePerLm = rule(`hardware_${input.hardware}`);
     const techAddon = rule(`tech_${input.tech}`);
     const priorityDelta = rule(`priority_${input.priority}`);
 
@@ -33,9 +33,9 @@ export async function POST(req: NextRequest) {
     const rangeHigh = rule("config_range_high") || 1.22;
 
     const baseEstimate =
-      basePricePerSqm * area * layoutCoeff * styleCoeff
+      basePricePerLm * area * layoutCoeff * styleCoeff
       + countertopAddon
-      + hardwarePerSqm * area
+      + hardwarePerLm * area
       + techAddon;
 
     const withPriority = baseEstimate * (1 + priorityDelta);
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     if (layoutCoeff > 1.1) factors.push({ label: `Планировка «${input.layout === "with_island" ? "с островом" : "П-образная"}» увеличивает стоимость`, impact: "warning" });
     if (styleCoeff > 1.1) factors.push({ label: "Сложный стиль с декором требует дополнительной обработки", impact: "warning" });
     if (countertopAddon > 300) factors.push({ label: "Столешница из натурального материала — значительная статья расходов", impact: "neutral" });
-    if (hardwarePerSqm >= 95) factors.push({ label: "Фурнитура Blum/Hettich — долговечность и надёжность", impact: "positive" });
+    if (hardwarePerLm >= 95) factors.push({ label: "Фурнитура Blum/Hettich — долговечность и надёжность", impact: "positive" });
     if (techAddon > 0) factors.push({ label: "Встроенная техника — дополнительные +"+techAddon.toLocaleString("ru")+" BYN", impact: "neutral" });
     factors.push({ label: "Точная стоимость — после бесплатного замера и проекта", impact: "neutral" });
 
