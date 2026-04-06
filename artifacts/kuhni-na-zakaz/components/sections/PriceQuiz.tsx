@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const STEPS = [
@@ -79,7 +79,7 @@ export function PriceQuiz() {
         <p className="text-muted-foreground text-sm mb-6">Точный расчёт — после замера и согласования. Это приблизительная оценка.</p>
         <div className="flex gap-3 justify-center">
           <Button onClick={() => { setStep(0); setAnswers({}); setDone(false); }} variant="outline">Пересчитать</Button>
-          <Button asChild><a href="/contacts#form">Заказать замер</a></Button>
+          <a href="/contacts#form" className={buttonVariants()}>Заказать замер</a>
         </div>
       </div>
     );

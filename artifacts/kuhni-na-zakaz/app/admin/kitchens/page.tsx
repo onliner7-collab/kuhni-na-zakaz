@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import { Plus, Edit, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = { title: "Кухни" };
@@ -19,9 +20,14 @@ export default async function AdminKitchensPage() {
             Каждая кухня отображается на странице <span className="font-mono text-xs bg-muted px-1 py-0.5 rounded">/catalog/[slug]</span>
           </p>
         </div>
-        <Button asChild data-testid="add-kitchen" style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }} className="text-white">
-          <Link href="/admin/kitchens/new"><Plus className="w-4 h-4 mr-2" />Добавить кухню</Link>
-        </Button>
+        <Link
+          href="/admin/kitchens/new"
+          data-testid="add-kitchen"
+          className={cn(buttonVariants(), "text-white")}
+          style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
+        >
+          <Plus className="w-4 h-4 mr-2" />Добавить кухню
+        </Link>
       </div>
 
       <div className="mb-6 mt-4 p-3 rounded-xl bg-muted/50 border border-border text-xs text-muted-foreground">
@@ -31,7 +37,7 @@ export default async function AdminKitchensPage() {
       {kitchens.length === 0 ? (
         <div className="rounded-2xl border border-border p-12 text-center bg-white">
           <p className="text-muted-foreground mb-4">Кухонь пока нет. Добавьте первую позицию в каталог.</p>
-          <Button asChild><Link href="/admin/kitchens/new"><Plus className="w-4 h-4 mr-2" />Добавить первую кухню</Link></Button>
+          <Link href="/admin/kitchens/new" className={buttonVariants()}><Plus className="w-4 h-4 mr-2" />Добавить первую кухню</Link>
         </div>
       ) : (
         <div className="rounded-2xl border border-border overflow-hidden bg-white">
@@ -62,17 +68,22 @@ export default async function AdminKitchensPage() {
                   <td className="p-3">
                     <div className="flex items-center gap-1 justify-end">
                       {k.published && (
-                        <Button asChild variant="ghost" size="sm" title="Открыть на сайте">
-                          <Link href={`/catalog/${k.slug}`} target="_blank">
-                            <ExternalLink className="w-4 h-4 text-muted-foreground" />
-                          </Link>
-                        </Button>
-                      )}
-                      <Button asChild variant="ghost" size="sm" title="Редактировать">
-                        <Link href={`/admin/kitchens/${k.id}`}>
-                          <Edit className="w-4 h-4" />
+                        <Link
+                          href={`/catalog/${k.slug}`}
+                          target="_blank"
+                          title="Открыть на сайте"
+                          className={buttonVariants({ variant: "ghost", size: "sm" })}
+                        >
+                          <ExternalLink className="w-4 h-4 text-muted-foreground" />
                         </Link>
-                      </Button>
+                      )}
+                      <Link
+                        href={`/admin/kitchens/${k.id}`}
+                        title="Редактировать"
+                        className={buttonVariants({ variant: "ghost", size: "sm" })}
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Link>
                     </div>
                   </td>
                 </tr>
