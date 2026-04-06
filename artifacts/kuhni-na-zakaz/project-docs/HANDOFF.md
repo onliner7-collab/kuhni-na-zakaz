@@ -25,7 +25,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Security & Cleanup | ✅ Done | `lib/auth.ts` — убран fallback secret, throw если SESSION_SECRET не задан; `.next/` удалён из git-индекса; `asChild` bug fixed |
 | Brand & positioning cleanup | ✅ Done | Убраны минские fallback-домены из metadataBase/OG/Footer. Статические страницы: "КухниMinsk" → "КухниBY", домен → kuhniby.by |
 | Contacts DB cleanup | ✅ Done | `/contacts` читает phone/email/address/workingHours из SiteSettings (id=1) с fallback. Schema default email исправлен. |
-| StaticPage CMS | ✅ Done | StaticPage model + /admin/static-pages (CRUD) + 6 страниц посеяно; публичные about/warranty/delivery/privacy/terms/personal-data читают контент из БД |
+| StaticPage CMS | ✅ Done | StaticPage model + /admin/pages (CRUD, редактор: /admin/pages/[id]/edit) + 6 страниц посеяно; публичные about/warranty/delivery/privacy/terms/personal-data читают контент из БД |
 | Blog seed + Regional expansion | ✅ Done | 6 blog posts посеяно; 10 LocationPages (все 6 областных центров + Борисов/Жодино/Молодечно); sitemap.ts DB-driven; renderContent поддерживает bold+lists |
 | Email notifications | ✅ Done | `lib/email.ts` через nodemailer + SMTP env vars; получатель захардкожен как `onliner7@gmail.com`; fire-and-forget после Telegram |
 | Image handling improvement | ✅ Done | BlogPost.coverImage добавлен в схему+форму+API; PortfolioCaseForm.ArrayUrlField переделан в grid-preview; StyleForm/MaterialForm получили live-preview и URL-валидацию |

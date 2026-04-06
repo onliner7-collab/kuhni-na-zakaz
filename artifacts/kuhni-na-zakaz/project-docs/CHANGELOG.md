@@ -194,7 +194,7 @@
 ## [Unreleased] — 2026-04-06 (Этап 1: Security & Housekeeping)
 
 ### Security
-- **`lib/auth.ts` — убран небезопасный fallback secret**: вместо `process.env.SESSION_SECRET || "kuhni-minsk-secret-change-in-prod"` модуль теперь бросает `Error` при старте если `SESSION_SECRET` не задан. Никакого молчаливого fallback. `SESSION_SECRET` должен быть установлен через Replit Secrets (уже установлен). Commit: `4360f6c+`
+- **`lib/auth.ts` — убран небезопасный fallback secret**: вместо `process.env.SESSION_SECRET || "kuhni-minsk-secret-change-in-prod"` модуль теперь бросает `Error` при старте если `SESSION_SECRET` не задан. Никакого молчаливого fallback. `SESSION_SECRET` должен быть задан через Replit Secrets. Commit: `4360f6c+`
 
 ### Fixed
 - **`asChild` prop на DOM-элементе** — убран из `app/admin/kitchens/page.tsx` и `components/sections/PriceQuiz.tsx`. Кастомный `Button` не поддерживает Radix UI `asChild`. Заменено на `<Link className={buttonVariants(...)}>` и `<a className={buttonVariants()}>`. Устраняет React warning в консоли. Commit: `4360f6c`
@@ -205,7 +205,6 @@
 ### Chores
 - **`.next/` удалён из git-индекса** — `git rm -r --cached artifacts/kuhni-na-zakaz/.next/` — 49 отслеживаемых build-файлов (manifests, webpack-кэш, server chunks) убраны из tracking. Файлы на диске сохранены. В следующих коммитах `.next/` отслеживаться не будет.
 - **`.gitignore`** — расширен: добавлены `dist/`, `.pnpm-store/`, `*.log`, `coverage/`, `.nyc_output/`, `.turbo/`, `.cache/`, `.vercel/`, `.env.production`
-- Не было конфликтов в build: TypeScript-типы корректны, все import-пути валидны
 
 ---
 
@@ -604,50 +603,3 @@
 - Activity log for admin actions
 - SEO: sitemap.xml, robots.txt, JSON-LD, BreadcrumbList
 - All public pages: catalog, portfolio, reviews, blog, prices, contacts, warranty, etc.
-
-## Этап 7 — Система отзывов и доверия ($(date +%Y-%m-%d))
-
-### Prisma: 5 новых полей в Review
-- `region String @default("")` — регион Беларуси (Минская обл., г. Минск, Брестская обл. и т.д.)
-- `source String @default("website")` — источник: website | google | yandex | telegram | instagram | vk | direct
-- `sourceUrl String @default("")` — ссылка на оригинальный отзыв (для Google, Instagram и т.д.)
-- `featured Boolean @default(false)` — избранный отзыв (отдельная секция на странице)
-- `managerNote String @default("")` — внутренняя заметка менеджера (не публикуется)
-
-### API
-- `POST /kapi/reviews` — расширен полями `region`, `source`, `caseSlug`
-- `PATCH /kapi/admin/reviews/[id]` — два режима:
-  - action-режим: `publish | reject | delete | pending` с `reason`, `managerNote`
-  - edit-режим: `featured`, `caseSlug`, `source`, `sourceUrl`, `region`, `managerNote`
-- `GET /kapi/admin/reviews/[id]` — получить отдельный отзыв (для admin)
-
-### Workflow модерации (4 статуса)
-NEW → PENDING → PUBLISHED | REJECTED → (повторная публикация возможна)
-
-### Компоненты
-- `ReviewModerationList.tsx` — полный переписан:
-  - 4 вкладки: Новые / На проверке / Опубликовано / Отклонено
-  - Цветная левая граница по статусу
-  - `SourceBadge` (Google, Telegram, Instagram, ВКонтакте, сайт)
-  - Бейдж "Избранный" + toggle
-  - Collapse/expand длинного текста
-  - Связанный проект: slug → ссылка + название кейса
-  - Ссылка на оригинал (sourceUrl)
-  - Поле менеджерской заметки (не публикуется)
-  - Inline редактирование source + caseSlug
-  - Reject с вводом причины
-  - Кнопка "На проверку" (PENDING) для двухэтапной модерации
-
-### Публичная страница /reviews
-- Секция "Избранные отзывы" (карточки с border-primary)
-- Связь с PortfolioCase → ссылка "Смотреть проект"
-- Источник отзыва (Google, Telegram, Instagram) — в подписи
-- Регион — рядом с городом
-- Убраны статические fallback-данные (только DB)
-- JSON-LD Schema.org Review + AggregateRating корректен
-- Уведомление о модерации в форме
-
-### Данные
-- Все 5 существующих отзывов получили: region, source, caseSlug, featured
-- Добавлен NEW отзыв (Светлана Петрова, Гродно) — для тестирования очереди
-- Добавлен PENDING отзыв (Андрей Козловский, Брест) с managerNote
