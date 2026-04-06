@@ -26,59 +26,105 @@ const STEPS = [
     multi: false,
   },
   {
-    q: "Дополнительно",
-    opts: ["Встроенная техника", "Фасады до потолка", "Барная стойка", "Ничего из перечисленного"],
-    multi: true,
+    q: "Встроенная техника",
+    opts: ["Без техники", "Базовый комплект", "Полный комплект"],
+    multi: false,
   },
 ];
 
-const PRICES: Record<string, number> = {
-  "Прямая": 1200, "Угловая": 1800, "П-образная": 3500, "С островом": 4500,
-  "До 6 м²": 0, "6–10 м²": 500, "10–15 м²": 1200, "Более 15 м²": 2500,
-  "МДФ плёнка": 0, "Пластик": 300, "Эмаль матовая": 800, "Шпон / дерево": 1500,
-  "Эконом (GTV)": 0, "Стандарт (Hettich)": 400, "Премиум (Blum)": 900,
-  "Встроенная техника": 600, "Фасады до потолка": 400, "Барная стойка": 500,
-};
+type Answers = Record<number, string[]>;
+
+function mapToCalcInput(answers: Answers) {
+  const layout = ({ "Прямая": "straight", "Угловая": "corner", "П-образная": "u_shape", "С островом": "with_island" } as Record<string, string>)[answers[0]?.[0]] || "straight";
+  const area = ({ "До 6 м²": 5, "6–10 м²": 8, "10–15 м²": 12, "Более 15 м²": 20 } as Record<string, number>)[answers[1]?.[0]] || 12;
+  const material = ({ "МДФ плёнка": "mdf_film", "Пластик": "plastic_acrylic", "Эмаль матовая": "enamel_matte", "Шпон / дерево": "veneer" } as Record<string, string>)[answers[2]?.[0]] || "mdf_film";
+  const hardware = ({ "Эконом (GTV)": "economy", "Стандарт (Hettich)": "standard", "Премиум (Blum)": "premium" } as Record<string, string>)[answers[3]?.[0]] || "economy";
+  const tech = ({ "Без техники": "none", "Базовый комплект": "basic", "Полный комплект": "full" } as Record<string, string>)[answers[4]?.[0]] || "none";
+
+  return {
+    area,
+    layout,
+    material,
+    hardware,
+    tech,
+    style: "modern",
+    countertop: "postforming",
+    priority: "balance",
+  };
+}
+
+interface CalcResult {
+  priceFrom: number;
+  priceTo: number;
+  priceCenter: number;
+  factors?: { label: string; impact: string }[];
+}
 
 export function PriceQuiz() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string[]>>({});
+  const [answers, setAnswers] = useState<Answers>({});
   const [done, setDone] = useState(false);
+  const [result, setResult] = useState<CalcResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const cur = STEPS[step];
   const selected = answers[step] || [];
 
   function toggle(opt: string) {
-    if (cur.multi) {
-      const next = selected.includes(opt) ? selected.filter((o) => o !== opt) : [...selected, opt];
-      setAnswers({ ...answers, [step]: next });
-    } else {
-      setAnswers({ ...answers, [step]: [opt] });
-    }
+    setAnswers({ ...answers, [step]: [opt] });
   }
 
   function next() {
-    if (step < STEPS.length - 1) setStep(step + 1);
-    else setDone(true);
+    if (step < STEPS.length - 1) {
+      setStep(step + 1);
+    } else {
+      submitCalc();
+    }
   }
 
-  function calcPrice() {
-    let total = 0;
-    Object.values(answers).forEach((opts) => {
-      opts.forEach((o) => { total += PRICES[o] || 0; });
-    });
-    return total;
+  async function submitCalc() {
+    setLoading(true);
+    setError(null);
+    try {
+      const input = mapToCalcInput(answers);
+      const res = await fetch("/kapi/calculator", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input),
+      });
+      if (!res.ok) throw new Error("Ошибка расчёта");
+      const data: CalcResult = await res.json();
+      setResult(data);
+      setDone(true);
+    } catch {
+      setError("Не удалось рассчитать. Попробуйте ещё раз.");
+    } finally {
+      setLoading(false);
+    }
   }
 
-  if (done) {
-    const price = calcPrice();
+  function reset() {
+    setStep(0);
+    setAnswers({});
+    setDone(false);
+    setResult(null);
+    setError(null);
+  }
+
+  if (done && result) {
     return (
       <div className="card-base p-8 text-center max-w-xl mx-auto">
         <h3 className="font-serif text-2xl font-semibold mb-2">Ориентировочная стоимость</h3>
-        <p className="text-4xl font-bold text-primary my-4">от {price.toLocaleString("ru")} BYN</p>
+        <p className="text-4xl font-bold text-primary my-4">
+          от {result.priceFrom.toLocaleString("ru")} BYN
+        </p>
+        <p className="text-lg text-muted-foreground mb-2">
+          до {result.priceTo.toLocaleString("ru")} BYN
+        </p>
         <p className="text-muted-foreground text-sm mb-6">Точный расчёт — после замера и согласования. Это приблизительная оценка.</p>
         <div className="flex gap-3 justify-center">
-          <Button onClick={() => { setStep(0); setAnswers({}); setDone(false); }} variant="outline">Пересчитать</Button>
+          <Button onClick={reset} variant="outline">Пересчитать</Button>
           <a href="/contacts#form" className={buttonVariants()}>Заказать замер</a>
         </div>
       </div>
@@ -94,7 +140,6 @@ export function PriceQuiz() {
       </div>
       <p className="text-xs text-muted-foreground mb-2">Вопрос {step + 1} из {STEPS.length}</p>
       <h3 className="font-serif text-xl font-semibold mb-4">{cur.q}</h3>
-      {cur.multi && <p className="text-xs text-muted-foreground mb-3">Можно выбрать несколько</p>}
       <div className="grid grid-cols-2 gap-3 mb-6">
         {cur.opts.map((opt) => (
           <button
@@ -112,8 +157,9 @@ export function PriceQuiz() {
           </button>
         ))}
       </div>
-      <Button onClick={next} disabled={selected.length === 0} className="w-full">
-        {step === STEPS.length - 1 ? "Рассчитать стоимость" : "Далее →"}
+      {error && <p className="text-destructive text-sm mb-3">{error}</p>}
+      <Button onClick={next} disabled={selected.length === 0 || loading} className="w-full">
+        {loading ? "Считаем..." : step === STEPS.length - 1 ? "Рассчитать стоимость" : "Далее →"}
       </Button>
     </div>
   );

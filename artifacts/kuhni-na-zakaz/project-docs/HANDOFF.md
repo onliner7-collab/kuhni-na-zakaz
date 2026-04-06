@@ -138,7 +138,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 1. **Images** — upload system via object storage or S3; currently only URL fields in DB
 2. **Blog** ✅ DONE — 6 posts seeded (seed-blog.ts), article renderer uses renderContent (bold + lists)
-3. **Prices page** — `/prices` functional with SEGMENTS hardcoded; PriceRule×34 powers /calculator
+3. **Prices page** ✅ DONE — PriceQuiz теперь вызывает `/kapi/calculator` (DB-driven). Metadata исправлен (Беларусь). SEGMENTS и EXTRA_WORKS — задокументированный static fallback (нет PriceSegment в БД).
 4. **Regional pages** ✅ DONE — 10 LocationPages total: all 6 oblast capitals + Борисов, Жодино, Молодечно
 5. **Email notifications** — currently only Telegram; consider adding email for leads
 6. **Production deployment** — run `npx prisma migrate deploy` in production. `SESSION_SECRET` ✅ already set via Replit Secrets and auth module will throw on missing secret.

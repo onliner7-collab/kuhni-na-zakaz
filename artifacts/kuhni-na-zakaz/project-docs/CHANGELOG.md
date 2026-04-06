@@ -1,5 +1,18 @@
 # Changelog — КухниBY
 
+## [Unreleased] — 2026-04-06 (Этап 5: Prices page completion)
+
+### Changed
+- **`components/sections/PriceQuiz.tsx`** — переключён на DB-driven расчёт: вместо локальной таблицы `PRICES[]` вызывает `POST /kapi/calculator` с маппингом ответов на параметры калькулятора (layout, area, material, hardware, tech, style=modern, countertop=postforming, priority=balance). Показывает `priceFrom–priceTo` из БД.
+- **`app/prices/page.tsx`** — исправлены metadata: убрано "в Минске", добавлено "по Беларуси"; "Доставка по Минску" → "Доставка по городу", добавлена строка "Доставка в другой город — по договорённости". Сегменты (Эконом/Стандарт/Премиум) помечены как редакционный fallback через JSDoc-комментарии — нет модели PriceSegment в БД.
+
+### Архитектура после этапа
+- **DB-driven:** расчёт стоимости в PriceQuiz — через `PriceRule` и `POST /kapi/calculator`
+- **Static fallback (задокументирован):** SEGMENTS — маркетинговые диапазоны без DB-эквивалента; EXTRA_WORKS — услуги вне формулы калькулятора
+- **Не сломано:** `/kapi/calculator`, `/admin/prices`, формула PriceRule
+
+---
+
 ## [Unreleased] — 2026-04-06 (Blog seed + Regional expansion)
 
 ### Added
