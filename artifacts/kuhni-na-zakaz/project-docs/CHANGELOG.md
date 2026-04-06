@@ -1,6 +1,6 @@
 # Changelog — КухниBY
 
-## [Unreleased] — 2026-04-06 (Этап 7: Image handling improvement)
+## [Unreleased] — 2026-04-06 (Image handling improvement)
 
 ### Added
 - **`BlogPost.coverImage String @default("")`** — новое поле обложки статьи в Prisma schema. Применено через `prisma db push`.
@@ -20,18 +20,11 @@
 
 ---
 
-## [Unreleased] — 2026-04-06 (Этап 6 cleanup: email recipient hardcoded)
-
-### Changed
-- **`lib/email.ts`** — получатель email-уведомлений зафиксирован как `onliner7@gmail.com` (константа `LEAD_NOTIFICATION_RECIPIENT`). Убраны: `EMAIL_TO` env var, fallback через `SiteSettings.email`, DB-запрос к `prisma.siteSettings`, импорт `prisma`. Логика SMTP-транспорта и guard без `EMAIL_SMTP_HOST` не изменились.
-
----
-
-## [Unreleased] — 2026-04-06 (Этап 6: Email notifications for leads)
+## [Unreleased] — 2026-04-06 (Email notifications for leads)
 
 ### Added
-- **`lib/email.ts`** — модуль email-уведомлений о новых заявках. SMTP через env vars (`EMAIL_SMTP_HOST`, `EMAIL_SMTP_PORT`, `EMAIL_SMTP_USER`, `EMAIL_SMTP_PASS`, `EMAIL_SMTP_SECURE`). Получатель: `EMAIL_TO` env → `SiteSettings.email` fallback. Отправитель: `EMAIL_FROM` env → auto-from-smtp-user. HTML-шаблон: форма, дата, имя, телефон, город, комментарий, источник, ответы. Если `EMAIL_SMTP_HOST` не задан — пропуск с предупреждением в console.
-- **`app/kapi/leads/route.ts`** — добавлен вызов `sendEmailNotification(lead)` после Telegram. Email запускается fire-and-forget (не `await`), ошибка перехватывается `.catch()` — не влияет ни на Telegram, ни на HTTP-ответ.
+- **`lib/email.ts`** — модуль email-уведомлений о новых заявках. SMTP через env vars. Получатель зафиксирован как `onliner7@gmail.com` (константа `LEAD_NOTIFICATION_RECIPIENT`). HTML-шаблон: дата, имя, телефон, город, комментарий, источник, ответы. Если `EMAIL_SMTP_HOST` не задан — пропуск.
+- **`app/kapi/leads/route.ts`** — вызов `sendEmailNotification(lead)` после Telegram. Fire-and-forget, ошибка не влияет на Telegram и HTTP-ответ.
 - **`nodemailer`** + **`@types/nodemailer`** добавлены в `package.json`.
 
 ### Env vars (для email, все опциональны)
@@ -42,13 +35,8 @@
 | `EMAIL_SMTP_SECURE` | Нет | `"true"` для SSL (порт 465). По умолчанию: STARTTLS. |
 | `EMAIL_SMTP_USER` | Нет | Логин SMTP |
 | `EMAIL_SMTP_PASS` | Нет | Пароль SMTP |
-| `EMAIL_FROM` | Нет | Адрес отправителя. По умолчанию: `"КухниBY" <EMAIL_SMTP_USER>` |
-| `EMAIL_TO` | Нет | Адрес получателя. Fallback: `SiteSettings.email` (`info@kuhniby.by`) |
 
-### Поведение при отсутствии конфига
-- `EMAIL_SMTP_HOST` не задан → `[EMAIL] EMAIL_SMTP_HOST not set — skipping`, лид создаётся нормально
-- `EMAIL_TO` не задан + SiteSettings.email пуст → `[EMAIL] No recipient configured — skipping`
-- SMTP-ошибка при отправке → `[EMAIL] <error>` в console, лид и Telegram не затронуты
+Получатель `onliner7@gmail.com` захардкожен — `EMAIL_TO` не используется.
 
 ---
 
