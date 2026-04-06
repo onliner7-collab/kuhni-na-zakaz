@@ -1,9 +1,19 @@
 # Changelog — КухниBY
 
-## [Unreleased] — 2026-04-06 (Mobile trust bar redesign)
+## [Unreleased] — 2026-04-06 (Этап 1: Security & Housekeeping)
+
+### Security
+- **`lib/auth.ts` — убран небезопасный fallback secret**: вместо `process.env.SESSION_SECRET || "kuhni-minsk-secret-change-in-prod"` модуль теперь бросает `Error` при старте если `SESSION_SECRET` не задан. Никакого молчаливого fallback. `SESSION_SECRET` должен быть установлен через Replit Secrets (уже установлен). Commit: `4360f6c+`
+
+### Fixed
+- **`asChild` prop на DOM-элементе** — убран из `app/admin/kitchens/page.tsx` и `components/sections/PriceQuiz.tsx`. Кастомный `Button` не поддерживает Radix UI `asChild`. Заменено на `<Link className={buttonVariants(...)}>` и `<a className={buttonVariants()}>`. Устраняет React warning в консоли. Commit: `4360f6c`
 
 ### Changed
-- **Trust bar (4 статистики) на мобильных** — переработан в горизонтальную прокручиваемую полосу пиллов (`sm:hidden`): каждый элемент — компактная белая карточка (иконка + заголовок + подзаголовок) без скроллбара (`scrollbarWidth: none`). На планшетах и десктопах — прежняя 4-column сетка. Решает проблему громоздкости на узких экранах. Commit: `7241bab`
+- **Trust bar (4 статистики) на мобильных** — переработан в вертикальный столбик компактных карточек (`sm:hidden`): иконка + заголовок + подзаголовок в одну строку. На планшетах+ — прежняя 4-column сетка. Commit: `ee78ce5`
+
+### Chores
+- **`.gitignore`** — расширен: добавлены `dist/`, `.pnpm-store/`, `*.log`, `coverage/`, `.nyc_output/`, `.turbo/`, `.cache/`, `.vercel/`, `.env.production`
+- Не было конфликтов в build: TypeScript-типы корректны, все import-пути валидны
 
 ---
 

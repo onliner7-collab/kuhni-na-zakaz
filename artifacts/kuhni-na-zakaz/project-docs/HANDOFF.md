@@ -11,7 +11,8 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 | Этап | Статус | Описание |
 |---|---|---|
-| Этап 1 | ✅ Done | HomepageBlock — DB-driven homepage, admin page, API routes |
+| Этап 1 (Security) | ✅ Done | `lib/auth.ts` — убран fallback secret; throw если SESSION_SECRET не задан. `.gitignore` расширен. `asChild` bug fixed. |
+| Этап 1 (Build) | ✅ Done | HomepageBlock — DB-driven homepage, admin page, API routes |
 | Этап 2 | ✅ Done | ScenarioPage — 6 сценариев, admin CRUD 4-tab form, public /scenarios |
 | Этап 3 | ✅ Done | StylePage + MaterialPage — расширены схемы (+12 полей каждая), 5+5 записей посеяно, admin CRUD + forms, полные SEO-посадочные, internal linking |
 | Этап 4 | ✅ Done | PortfolioCase — расширена схема (+15 полей), 6 кейсов посеяно, 4-tab admin form, /portfolio (Server Component + client filters), /portfolio/[slug] (полный кейс-стади + история + до/после + отзывы + internal links + sidebar), JSON-LD Article |
@@ -45,10 +46,13 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 - Public site at `/`, admin at `/admin/*`
 
 ### Auth
-- JWT stored in `session` cookie (HttpOnly, Secure)
+- JWT stored in `kuhni_session` cookie (HttpOnly, Secure in production)
 - Roles: `SUPER_ADMIN`, `MANAGER`, `GUEST`
 - Guest access: timed token with whitelisted sections, stored in `GuestAccess` table
-- Middleware: `middleware.ts` protects `/admin/*`
+- Middleware: `middleware.ts` protects `/admin/*` — redirects unauthenticated to `/admin/login`
+- **`lib/auth.ts`**: `SESSION_SECRET` is required at startup — throws `Error` if missing. No fallback. Set via Replit Secrets.
+- Login flow: `POST /kapi/auth/login` → bcrypt verify → JWT cookie. Logout: `POST /kapi/auth/logout` → clear cookie.
+- **⚠️ Do not add** `SESSION_SECRET` fallback back — this is intentional security hardening.
 
 ### Design tokens
 - Primary: `hsl(263, 85%, 62%)` (violet)
@@ -134,10 +138,14 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 2. **Images** — upload system via object storage or S3; currently only URL fields in DB
 3. **Blog** — blog listing + article pages exist but content needs to be seeded
 4. **Prices page** — `/prices` reads from `PriceRow` but needs seeded data
-5. **Styles page** — currently static mockup, no DB model yet
-6. **Regional pages** — expand LocationPages beyond Минск/Область/Борисов to all 6 oblasts
-7. **Email notifications** — currently only Telegram; consider adding email for leads
-8. **Production deployment** — run `npx prisma migrate deploy` in production, set `SESSION_SECRET` env var
+5. **Regional pages** — expand LocationPages beyond Минск/Область/Борисов to all 6 oblasts
+6. **Email notifications** — currently only Telegram; consider adding email for leads
+7. **Production deployment** — run `npx prisma migrate deploy` in production. `SESSION_SECRET` ✅ already set via Replit Secrets and auth module will throw on missing secret.
+8. **StaticPage CMS** — pages `/about`, `/delivery-installation`, `/warranty`, `/privacy-policy`, `/terms` are hardcoded JSX. Add `StaticPage` Prisma model + `/admin/static-pages`.
+
+### Known patterns / gotchas
+- `Button` component (`components/ui/button.tsx`) does **not** support `asChild`. Use `<Link className={buttonVariants(...)}>` or `<a className={buttonVariants()}>` instead. Do not add `asChild` to Button props.
+- All Next.js API routes must use `/kapi/` prefix (not `/api/`) to avoid Express intercept conflict.
 
 ---
 

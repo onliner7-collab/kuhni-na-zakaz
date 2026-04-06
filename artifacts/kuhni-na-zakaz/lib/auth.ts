@@ -3,15 +3,16 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 import { redirect } from "next/navigation";
 
-if (!process.env.SESSION_SECRET) {
-  console.error(
-    "[AUTH] ВНИМАНИЕ: SESSION_SECRET не задан. Установите переменную окружения SESSION_SECRET для безопасной работы."
+const rawSecret = process.env.SESSION_SECRET;
+
+if (!rawSecret) {
+  throw new Error(
+    "[AUTH] SESSION_SECRET environment variable is required. " +
+      "Set it via Replit Secrets before starting the server."
   );
 }
 
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "kuhni-minsk-secret-change-in-prod"
-);
+const JWT_SECRET = new TextEncoder().encode(rawSecret);
 
 const COOKIE_NAME = "kuhni_session";
 
