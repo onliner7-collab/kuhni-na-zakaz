@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/db";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniminsk.by";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -19,8 +19,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/delivery-installation`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/warranty`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/locations/minsk`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/locations/minskaya-oblast`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/calculator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/configure`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const catalogSlugs = [
@@ -43,18 +43,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   let portfolioPages: MetadataRoute.Sitemap = [];
   let blogPages: MetadataRoute.Sitemap = [];
+  let locationPages: MetadataRoute.Sitemap = [];
+  let staticCmsPages: MetadataRoute.Sitemap = [];
 
   try {
-    const cases = await prisma.portfolioCase.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } });
+    const [cases, posts, locations, staticPgs] = await Promise.all([
+      prisma.portfolioCase.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+      prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+      prisma.locationPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+      prisma.staticPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+    ]);
+
     portfolioPages = cases.map((c) => ({
-      url: `${BASE_URL}/portfolio/${c.slug}`, lastModified: c.updatedAt, changeFrequency: "monthly", priority: 0.7,
+      url: `${BASE_URL}/portfolio/${c.slug}`, lastModified: c.updatedAt, changeFrequency: "monthly" as const, priority: 0.7,
     }));
 
-    const posts = await prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } });
     blogPages = posts.map((p) => ({
-      url: `${BASE_URL}/blog/${p.slug}`, lastModified: p.updatedAt, changeFrequency: "monthly", priority: 0.7,
+      url: `${BASE_URL}/blog/${p.slug}`, lastModified: p.updatedAt, changeFrequency: "monthly" as const, priority: 0.7,
+    }));
+
+    locationPages = locations.map((l) => ({
+      url: `${BASE_URL}/locations/${l.slug}`, lastModified: l.updatedAt, changeFrequency: "monthly" as const, priority: 0.8,
+    }));
+
+    staticCmsPages = staticPgs.map((p) => ({
+      url: `${BASE_URL}/${p.slug}`, lastModified: p.updatedAt, changeFrequency: "monthly" as const, priority: 0.5,
     }));
   } catch {}
 
-  return [...staticPages, ...catalogPages, ...stylesPages, ...materialsPages, ...portfolioPages, ...blogPages];
+  return [
+    ...staticPages,
+    ...catalogPages,
+    ...stylesPages,
+    ...materialsPages,
+    ...portfolioPages,
+    ...blogPages,
+    ...locationPages,
+    ...staticCmsPages,
+  ];
 }

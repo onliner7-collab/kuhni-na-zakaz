@@ -1,5 +1,15 @@
 import React from "react";
 
+function renderInline(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
 export function renderContent(content: string): React.ReactNode {
   if (!content.trim()) return null;
   const blocks = content.trim().split(/\n{2,}/);
@@ -21,8 +31,8 @@ export function renderContent(content: string): React.ReactNode {
           );
         }
         const lines = block.split("\n");
-        const isAllList = lines.every((l) => l.trim() === "" || l.startsWith("- "));
-        if (isAllList && lines.some((l) => l.startsWith("- "))) {
+        const isAllBullet = lines.every((l) => l.trim() === "" || l.startsWith("- "));
+        if (isAllBullet && lines.some((l) => l.startsWith("- "))) {
           return (
             <ul key={i} className="space-y-2 my-4 ml-1">
               {lines
@@ -30,16 +40,30 @@ export function renderContent(content: string): React.ReactNode {
                 .map((l, j) => (
                   <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
                     <span className="text-primary shrink-0 mt-0.5">•</span>
-                    <span>{l.slice(2).trim()}</span>
+                    <span>{renderInline(l.slice(2).trim())}</span>
                   </li>
                 ))}
             </ul>
           );
         }
+        const isAllNumbered = lines.every((l) => l.trim() === "" || /^\d+\.\s/.test(l));
+        if (isAllNumbered && lines.some((l) => /^\d+\.\s/.test(l))) {
+          return (
+            <ol key={i} className="space-y-2 my-4 ml-1 list-decimal list-inside">
+              {lines
+                .filter((l) => /^\d+\.\s/.test(l))
+                .map((l, j) => (
+                  <li key={j} className="text-sm text-muted-foreground">
+                    {renderInline(l.replace(/^\d+\.\s/, "").trim())}
+                  </li>
+                ))}
+            </ol>
+          );
+        }
         if (!block.trim()) return null;
         return (
           <p key={i} className="text-muted-foreground leading-relaxed text-sm">
-            {block.trim()}
+            {renderInline(block.trim())}
           </p>
         );
       })}

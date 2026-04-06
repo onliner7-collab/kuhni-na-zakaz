@@ -5,6 +5,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { renderContent } from "@/lib/render-content";
 
 const STATIC_POSTS: Record<string, { title: string; excerpt: string; category: string; readTime: number; content: string; relatedCaseSlugs?: string[]; relatedStyleSlugs?: string[]; relatedScenarioSlugs?: string[] }> = {
   "kak-vybrat-kuhnyu": {
@@ -165,10 +166,8 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="h-64 bg-gradient-to-br from-stone-200 to-amber-50 rounded-xl flex items-center justify-center mb-8">
               <span className="text-stone-400">Иллюстрация к статье</span>
             </div>
-            <div className="prose prose-stone max-w-none">
-              {data.content.split("\n\n").map((para, i) => (
-                <p key={i} className="mb-4 text-foreground leading-relaxed whitespace-pre-line">{para}</p>
-              ))}
+            <div className="space-y-4">
+              {renderContent(data.content)}
             </div>
 
             {/* Похожие проекты */}
