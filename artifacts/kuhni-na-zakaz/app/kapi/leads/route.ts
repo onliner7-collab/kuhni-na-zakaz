@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { sendLeadNotifications } from "@/lib/telegram";
+import { sendEmailNotification } from "@/lib/email";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -61,8 +62,14 @@ export async function POST(req: NextRequest) {
       }).catch(() => {});
     }
 
+    // Telegram — основной канал (ошибка не блокирует ответ)
     await sendLeadNotifications(lead).catch((err) => {
       console.error("[TELEGRAM]", err);
+    });
+
+    // Email — дополнительный канал (ошибка не влияет на Telegram и не блокирует ответ)
+    sendEmailNotification(lead).catch((err) => {
+      console.error("[EMAIL]", err);
     });
 
     return NextResponse.json({ ok: true, id: lead.id });

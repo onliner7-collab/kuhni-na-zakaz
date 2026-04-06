@@ -140,7 +140,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 2. **Blog** ✅ DONE — 6 posts seeded (seed-blog.ts), article renderer uses renderContent (bold + lists)
 3. **Prices page** ✅ DONE — PriceQuiz теперь вызывает `/kapi/calculator` (DB-driven). Metadata исправлен (Беларусь). SEGMENTS и EXTRA_WORKS — задокументированный static fallback (нет PriceSegment в БД).
 4. **Regional pages** ✅ DONE — 10 LocationPages total: all 6 oblast capitals + Борисов, Жодино, Молодечно
-5. **Email notifications** — currently only Telegram; consider adding email for leads
+5. **Email notifications** ✅ DONE — `lib/email.ts` через nodemailer + SMTP env vars. Дополняет Telegram, не заменяет. Безопасный fallback: без `EMAIL_SMTP_HOST` — пропуск. Получатель: `EMAIL_TO` env или `SiteSettings.email`.
 6. **Production deployment** — run `npx prisma migrate deploy` in production. `SESSION_SECRET` ✅ already set via Replit Secrets and auth module will throw on missing secret.
 7. **StaticPage CMS** ✅ DONE — StaticPage model + /admin/static-pages + 6 pages seeded; public pages read from DB
 
