@@ -11,6 +11,12 @@ const leadSchema = z.object({
   source: z.string().max(100).optional().default("website"),
   formType: z.string().max(50).optional().default("contact"),
   answers: z.record(z.unknown()).optional().default({}),
+  // Этап 10: персонализация
+  configSessionId: z.string().max(100).optional(),
+  scenarioSlug: z.string().max(100).optional().default(""),
+  styleSlug: z.string().max(100).optional().default(""),
+  materialSlug: z.string().max(100).optional().default(""),
+  budgetLevel: z.string().max(100).optional().default(""),
   honeypot: z.string().max(0).optional(),
 });
 
@@ -20,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     // Anti-spam: honeypot
     if (body.honeypot && body.honeypot.length > 0) {
-      return NextResponse.json({ ok: true }); // Silent ignore
+      return NextResponse.json({ ok: true });
     }
 
     const parsed = leadSchema.safeParse(body);
@@ -39,10 +45,22 @@ export async function POST(req: NextRequest) {
         source: data.source || "website",
         formType: data.formType || "contact",
         answers: data.answers || {},
+        configSessionId: data.configSessionId || null,
+        scenarioSlug: data.scenarioSlug || "",
+        styleSlug: data.styleSlug || "",
+        materialSlug: data.materialSlug || "",
+        budgetLevel: data.budgetLevel || "",
       },
     });
 
-    // Telegram уведомления всем получателям
+    // Если есть сессия с сохранённым конфигом — обновляем leadId
+    if (data.configSessionId) {
+      prisma.savedConfig.updateMany({
+        where: { sessionId: data.configSessionId },
+        data: { leadId: lead.id, phone: data.phone },
+      }).catch(() => {});
+    }
+
     await sendLeadNotifications(lead).catch((err) => {
       console.error("[TELEGRAM]", err);
     });
@@ -65,4 +83,3 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Ошибка БД" }, { status: 500 });
   }
 }
-

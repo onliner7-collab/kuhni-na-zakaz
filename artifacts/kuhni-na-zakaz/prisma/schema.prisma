@@ -220,15 +220,51 @@ model LocationPage {
 }
 
 model Lead {
+  id              Int      @id @default(autoincrement())
+  name            String
+  phone           String
+  city            String   @default("")
+  comment         String   @default("")
+  source          String   @default("website")
+  formType        String   @default("contact")
+  answers         Json     @default("{}")
+  // Этап 10: персонализация
+  configSessionId String?
+  scenarioSlug    String   @default("")
+  styleSlug       String   @default("")
+  materialSlug    String   @default("")
+  budgetLevel     String   @default("")
+  // Менеджерский workflow
+  status          String   @default("new")      // new | contacted | working | done | lost
+  managerNote     String   @default("")
+  assignedTo      String   @default("")
+  createdAt       DateTime @default(now())
+}
+
+// Этап 10: сохранённые конфигурации (анонимные, по sessionId)
+model SavedConfig {
+  id           Int      @id @default(autoincrement())
+  sessionId    String   @unique
+  answers      Json     @default("{}")
+  tags         String[]
+  styleSlug    String   @default("")
+  materialSlug String   @default("")
+  scenarioSlug String   @default("")
+  budgetLevel  String   @default("")
+  label        String   @default("")  // человекочитаемое резюме
+  phone        String   @default("")  // если пользователь оставил телефон
+  leadId       Int?                   // если конвертирован в заявку
+  createdAt    DateTime @default(now())
+}
+
+// Этап 10: избранные проекты портфолио (анонимные, по sessionId)
+model FavoriteCase {
   id        Int      @id @default(autoincrement())
-  name      String
-  phone     String
-  city      String   @default("")
-  comment   String   @default("")
-  source    String   @default("website")
-  formType  String   @default("contact")
-  answers   Json     @default("{}")
+  sessionId String
+  caseSlug  String
   createdAt DateTime @default(now())
+
+  @@unique([sessionId, caseSlug])
 }
 
 model StylePage {

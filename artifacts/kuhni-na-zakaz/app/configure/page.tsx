@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import { ConfiguratorFlow } from "@/components/configurator/ConfiguratorFlow";
+import { SavedConfigBanner } from "@/components/sections/SavedConfigBanner";
 
 export const metadata: Metadata = {
   title: "Подбор кухни — персональный конфигуратор | КухниBY",
@@ -18,6 +19,10 @@ export default function ConfigurePage() {
           <span>/</span>
           <span className="text-foreground">Подбор кухни</span>
         </nav>
+
+        <div className="mb-6">
+          <SavedConfigBanner />
+        </div>
 
         {/* Hero */}
         <div className="text-center mb-10">

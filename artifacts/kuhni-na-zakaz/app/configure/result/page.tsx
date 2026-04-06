@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Sparkles, ArrowRight, Phone, RotateCcw } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { ConfigResultActions } from "@/components/sections/ConfigResultActions";
 
 export const metadata: Metadata = {
   title: "Ваша кухня — персональные рекомендации | КухниBY",
@@ -103,6 +104,23 @@ export default async function ConfigureResultPage({ searchParams }: PageProps) {
 
   const hasTags = tags.length > 0;
 
+  // Build label for saved config
+  const labelParts: string[] = [];
+  if (layoutKey) labelParts.push({ straight: "Прямая", corner: "Угловая", u_shape: "П-образная", island: "С островом" }[layoutKey] ?? layoutKey);
+  if (styleKey) labelParts.push({ modern: "Современная", scandinavian: "Скандинавская", minimalist: "Минималистичная", loft: "Лофт", classic: "Классика", provence: "Прованс" }[styleKey] ?? styleKey);
+  if (budgetKey) labelParts.push({ economy: "Эконом", standard: "Стандарт", comfort: "Комфорт", premium: "Премиум" }[budgetKey] ?? budgetKey);
+  const configLabel = labelParts.join(" · ");
+
+  const configData = {
+    answers: Object.fromEntries(Object.entries(sp).filter(([k]) => k !== "tags")) as Record<string, string>,
+    tags,
+    styleSlug: styleSlug ?? "",
+    materialSlug: materialSlug ?? "",
+    scenarioSlug: "",
+    budgetLevel: budgetKey ?? "",
+    label: configLabel || "Мой вариант кухни",
+  };
+
   return (
     <div className="section-padding">
       <div className="container-site max-w-4xl mx-auto">
@@ -129,6 +147,13 @@ export default async function ConfigureResultPage({ searchParams }: PageProps) {
             <p className="text-muted-foreground">Общие рекомендации — пройдите конфигуратор для персональных результатов</p>
           )}
         </div>
+
+        {/* Personalization panel: save / send */}
+        {hasTags && (
+          <div className="max-w-xl mx-auto mb-10">
+            <ConfigResultActions configData={configData} />
+          </div>
+        )}
 
         <div className="space-y-12">
           {/* Стили */}

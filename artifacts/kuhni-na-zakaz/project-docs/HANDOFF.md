@@ -20,6 +20,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Этап 7 | ✅ Done | Система отзывов расширена — 5 новых полей (region/source/sourceUrl/featured/managerNote), 4-tab модерация, SourceBadge, связь с кейсом caseSlug, полный workflow NEW→PENDING→PUBLISHED/REJECTED |
 | Этап 8 | ✅ Done | LocationPage — 7 новых полей (localIntro/uniquePoints/contentBlocks/caseSlugs/reviewIds/ctaHeadline/ctaSubtext), публичная страница полностью переработана, LocationForm расширена (вкладки «Связи», расширенный «Контент», CTA в «Основном»), DB seed Минск + Минская обл. |
 | Этап 9 | ✅ Done | Smart cross-linking — BlogPost (+3 поля), StylePage/MaterialPage/ScenarioPage показывают связанные кейсы, PortfolioCase авто-находит LocationPage по городу, BlogPost публичная страница с 3 секциями related-контента, BlogPostForm панель «Связанный контент», auto-seed cross-links через prisma node-script |
+| Этап 10 | ✅ Done | Персонализация — Lead (+8 полей), SavedConfig, FavoriteCase (новые модели); usePersonalization hook; FavoriteButton на портфолио; ConfigResultActions (save/send на просчёт); SavedConfigBanner; admin/leads полный перепис с статусами/заметками/config-данными; admin/saved-configs; LeadStatusControl/LeadNoteEditor |
 
 ---
 

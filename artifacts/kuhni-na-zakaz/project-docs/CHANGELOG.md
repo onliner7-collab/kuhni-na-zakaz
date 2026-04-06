@@ -1,6 +1,57 @@
 # Changelog — КухниBY
 
-## [Unreleased] — 2026-04-06 (Этап 9: Smart cross-linking system)
+## [Unreleased] — 2026-04-06 (Этап 10: Персонализация и lead flow)
+
+### Added (Schema)
+- **Lead** модель — расширена 8 новыми полями:
+  - `configSessionId String?` — link к сохранённой конфигурации
+  - `scenarioSlug String` — сценарий использования
+  - `styleSlug String` — интересующий стиль
+  - `materialSlug String` — интересующий материал
+  - `budgetLevel String` — бюджетный уровень (economy/standard/comfort/premium)
+  - `status String` — статус ведения (new/contacted/working/done/lost)
+  - `managerNote String` — заметка менеджера
+  - `assignedTo String` — ответственный менеджер
+- **SavedConfig** новая модель (анонимные конфигурации по sessionId):
+  - sessionId (unique), answers Json, tags String[], styleSlug, materialSlug, scenarioSlug, budgetLevel, label, phone, leadId
+- **FavoriteCase** новая модель (избранные кейсы по sessionId):
+  - sessionId, caseSlug, @@unique([sessionId, caseSlug])
+
+### Added (API)
+- `POST/GET /kapi/saved-config` — сохранение и получение конфигурации по sessionId (upsert)
+- `POST/GET /kapi/favorites` — toggle избранного кейса + список по sessionId
+- `GET/PATCH /kapi/admin/leads/[id]` — GET кейса + PATCH статус/заметка/ответственный
+- `GET /kapi/admin/saved-configs` — список сохранённых конфигураций для admin
+- `/kapi/leads` POST — принимает 5 новых полей персонализации + обновляет SavedConfig.leadId
+
+### Added (Frontend)
+- `hooks/usePersonalization.ts` — localStorage sessionId + favorites + savedConfig (без аккаунта)
+- `components/ui/FavoriteButton.tsx` — кнопка "В избранное" с heart-toggle (rose-themed)
+- `components/sections/ConfigResultActions.tsx` — панель "Ваш вариант": Сохранить выбор + Отправить на просчёт (с inline-формой имя/телефон/город)
+- `components/sections/SavedConfigBanner.tsx` — баннер "Продолжить ваш подбор" на конфигураторе (читает localStorage, показывается если есть saved config)
+- `lib/lead-status.ts` — shared константы STATUS_OPTIONS (доступны и server, и client компонентам)
+
+### Added (Admin UI)
+- `app/admin/leads/page.tsx` — полный перепис:
+  - Табы статусов (Все/Новая/Связались/В работе/Готово/Отказ) с счётчиками
+  - Для каждой заявки: контакт, источник, config-блок с цветными тегами (стиль/материал/бюджет/сценарий)
+  - Inline смена статуса через `LeadStatusControl`
+  - Inline редактирование заметки менеджера через `LeadNoteEditor`
+  - Кнопка "Позвонить" на каждой записи
+- `components/admin/LeadStatusControl.tsx` — клиентский dropdown смены статуса
+- `components/admin/LeadNoteEditor.tsx` — inline редактор заметки менеджера (hover-to-edit)
+- `app/admin/saved-configs/page.tsx` — новая страница "Сохранённые подборы" в admin sidebar
+
+### Changed (Pages)
+- `configure/result/page.tsx` — добавлен блок `ConfigResultActions` (save + send) выше рекомендаций
+- `configure/page.tsx` — добавлен `SavedConfigBanner` (показывается если пользователь ранее сохранял подбор)
+- `portfolio/page.tsx` → `PortfolioFilters.tsx` — добавлен `FavoriteButton` на каждую карточку
+- `portfolio/[slug]/page.tsx` — добавлен `FavoriteButton` рядом с заголовком кейса
+- Admin sidebar — добавлен пункт "Сохранённые подборы" (Bookmark icon)
+
+---
+
+## [v9.0] — 2026-04-06 (Этап 9: Smart cross-linking system)
 
 ### Added
 - **BlogPost schema — 3 новых поля** (`prisma db push`):

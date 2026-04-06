@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { MapPin, Square, Paintbrush, Layers, Clock, ArrowRight, CheckCircle, AlertTriangle, Lightbulb, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { FavoriteButton } from "@/components/ui/FavoriteButton";
 import { ReviewStatus } from "@prisma/client";
 
 interface Props { params: Promise<{ slug: string }> }
@@ -99,7 +100,10 @@ export default async function PortfolioCasePage({ params }: Props) {
                   {c.layout && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-600">{c.layout}</span>}
                   {c.featured && <span className="text-xs font-semibold px-3 py-1 rounded-full bg-amber-100 text-amber-700 flex items-center gap-1"><Star className="w-3 h-3" />Избранный проект</span>}
                 </div>
-                <h1 className="font-serif text-4xl font-bold mb-4 leading-tight">{c.title}</h1>
+                <div className="flex items-start justify-between gap-3 mb-4">
+                  <h1 className="font-serif text-4xl font-bold leading-tight">{c.title}</h1>
+                  <FavoriteButton caseSlug={c.slug} className="flex-shrink-0 mt-1" />
+                </div>
 
                 {/* Specs strip */}
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground mb-6">

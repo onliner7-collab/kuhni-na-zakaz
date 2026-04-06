@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MapPin, Square, Clock, Star } from "lucide-react";
+import { FavoriteButton } from "@/components/ui/FavoriteButton";
 
 const STYLE_OPTS = ["Все стили", "Современный", "Классический", "Скандинавский", "Минимализм", "Лофт", "Прованс"];
 const AREA_OPTS = [
@@ -132,7 +133,7 @@ export function PortfolioFilters({ cases }: { cases: Case[] }) {
                       : c.priceFrom > 0 ? `от ${c.priceFrom.toLocaleString("ru")} BYN`
                       : "Цена по запросу"}
                   </span>
-                  <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors">Читать кейс →</span>
+                  <FavoriteButton caseSlug={c.slug} />
                 </div>
               </div>
             </Link>
