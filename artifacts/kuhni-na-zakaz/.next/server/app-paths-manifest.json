@@ -1,9 +1,5 @@
 {
+  "/kapi/auth/login/route": "app/kapi/auth/login/route.js",
   "/page": "app/page.js",
-  "/portfolio/[slug]/page": "app/portfolio/[slug]/page.js",
-  "/portfolio/page": "app/portfolio/page.js",
-  "/catalog/page": "app/catalog/page.js",
-  "/styles/page": "app/styles/page.js",
-  "/prices/page": "app/prices/page.js",
   "/admin/login/page": "app/admin/login/page.js"
 }

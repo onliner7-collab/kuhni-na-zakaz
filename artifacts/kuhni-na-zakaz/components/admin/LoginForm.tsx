@@ -20,14 +20,14 @@ export function LoginForm({ redirectTo }: { redirectTo: string }) {
       const res = await fetch("/kapi/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: fd.get("email"), password: fd.get("password") }),
+        body: JSON.stringify({ login: fd.get("login"), password: fd.get("password") }),
       });
       const data = await res.json();
       if (res.ok) {
         router.push(redirectTo);
         router.refresh();
       } else {
-        setError(data.error || "Неверный email или пароль");
+        setError(data.error || "Неверный логин или пароль");
       }
     } catch {
       setError("Ошибка сети. Попробуйте ещё раз.");
@@ -39,8 +39,8 @@ export function LoginForm({ redirectTo }: { redirectTo: string }) {
   return (
     <form onSubmit={handleSubmit} className="card-base p-8 space-y-4" data-testid="login-form">
       <div>
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" required placeholder="admin@kuhniminsk.by" className="mt-1" data-testid="login-email" />
+        <Label htmlFor="login">Логин</Label>
+        <Input id="login" name="login" type="text" required placeholder="admin" autoComplete="username" className="mt-1" data-testid="login-email" />
       </div>
       <div>
         <Label htmlFor="password">Пароль</Label>

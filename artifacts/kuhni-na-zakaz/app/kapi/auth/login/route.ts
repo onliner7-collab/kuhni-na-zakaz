@@ -5,7 +5,8 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 
 const loginSchema = z.object({
-  email: z.string().email(),
+  login: z.string().min(1).optional(),
+  email: z.string().min(1).optional(),
   password: z.string().min(1),
   guestToken: z.string().optional(),
 });
@@ -18,7 +19,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Неверный формат данных" }, { status: 400 });
     }
 
-    const { email, password, guestToken } = parsed.data;
+    const { login, email, password, guestToken } = parsed.data;
+    const loginValue = (login || email || "").trim();
 
     // Guest token login
     if (guestToken) {
@@ -46,15 +48,15 @@ export async function POST(req: NextRequest) {
       return response;
     }
 
-    // Regular login
-    const user = await prisma.user.findUnique({ where: { email } });
+    // Regular login — find by email field (used as login/username)
+    const user = await prisma.user.findUnique({ where: { email: loginValue } });
     if (!user) {
-      return NextResponse.json({ error: "Неверный email или пароль" }, { status: 401 });
+      return NextResponse.json({ error: "Неверный логин или пароль" }, { status: 401 });
     }
 
     const valid = await bcrypt.compare(password, user.passwordHash);
     if (!valid) {
-      return NextResponse.json({ error: "Неверный email или пароль" }, { status: 401 });
+      return NextResponse.json({ error: "Неверный логин или пароль" }, { status: 401 });
     }
 
     await prisma.user.update({
