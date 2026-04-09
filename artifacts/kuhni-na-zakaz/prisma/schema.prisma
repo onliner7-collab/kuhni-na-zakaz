@@ -240,6 +240,8 @@ model Lead {
   managerNote     String   @default("")
   assignedTo      String   @default("")
   createdAt       DateTime @default(now())
+
+  visualProject   VisualProject?
 }
 
 // Этап 10: сохранённые конфигурации (анонимные, по sessionId)
@@ -431,6 +433,221 @@ model ConfigResult {
   tags      String[] // агрегированные теги выбранных опций
   leadId    Int?
   createdAt DateTime @default(now())
+}
+
+// ──────────────────────────────────────────
+// Визуальный конфигуратор кухни (Этап 1)
+// ──────────────────────────────────────────
+
+enum KitchenModuleType {
+  LOWER
+  UPPER
+  TALL
+  CORNER
+  SINK
+  DRAWER
+  GLASS_DOOR
+  LIFT_MECHANISM
+}
+
+enum KitchenLayoutType {
+  STRAIGHT
+  CORNER
+  U_SHAPE
+  ISLAND
+  PENINSULA
+  LINEAR_COLUMNS
+  COMPACT
+}
+
+enum KitchenHandleType {
+  STANDARD
+  RECESSED
+  PUSH_TO_OPEN
+  INTEGRATED
+}
+
+enum CompatibilityRuleType {
+  INCOMPATIBLE
+  REQUIRES
+  WARNING
+}
+
+// Модули кухни — нижние, верхние, пеналы, угловые и т.д.
+model KitchenModule {
+  id            Int               @id @default(autoincrement())
+  name          String
+  slug          String            @unique
+  moduleType    KitchenModuleType
+  widthCm       Int
+  heightCm      Int
+  depthCm       Int
+  priceBase     Int               @default(0)
+  imageUrl      String            @default("")
+  description   String            @default("")
+  tags          String[]
+  isEnabled     Boolean           @default(true)
+  sortOrder     Int               @default(0)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
+
+// Шаблоны планировок кухни
+model KitchenTemplate {
+  id              Int               @id @default(autoincrement())
+  name            String
+  slug            String            @unique
+  layoutType      KitchenLayoutType
+  description     String            @default("")
+  previewImageUrl String            @default("")
+  modulesConfig   Json              @default("[]") // расположение модулей по умолчанию
+  minWidthCm      Int?
+  maxWidthCm      Int?
+  isEnabled       Boolean           @default(true)
+  isPublished     Boolean           @default(false)
+  sortOrder       Int               @default(0)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+// Фасады
+model KitchenFacade {
+  id              Int      @id @default(autoincrement())
+  name            String
+  slug            String   @unique
+  material        String   @default("") // mdf, plastic, enamel, veneer, solid_wood
+  finish          String   @default("") // matte, gloss, textured
+  colorHex        String   @default("")
+  colorName       String   @default("")
+  imageUrl        String   @default("")
+  priceMultiplier Float    @default(1.0)
+  isEnabled       Boolean  @default(true)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Столешницы
+model KitchenCountertop {
+  id            Int      @id @default(autoincrement())
+  name          String
+  slug          String   @unique
+  material      String   @default("") // laminate, stone, quartz, solid_surface, wood
+  thicknessMm   Int      @default(38)
+  colorName     String   @default("")
+  imageUrl      String   @default("")
+  pricePerMeter Int      @default(0)
+  isEnabled     Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Скинали / фартуки
+model KitchenSkinal {
+  id              Int      @id @default(autoincrement())
+  name            String
+  slug            String   @unique
+  material        String   @default("") // glass, tile, acrylic, mdf
+  colorName       String   @default("")
+  imageUrl        String   @default("")
+  pricePerSqMeter Int      @default(0)
+  isEnabled       Boolean  @default(true)
+  sortOrder       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Ручки и безручечные системы
+model KitchenHandle {
+  id            Int               @id @default(autoincrement())
+  name          String
+  slug          String            @unique
+  handleType    KitchenHandleType
+  material      String            @default("")
+  finishName    String            @default("")
+  imageUrl      String            @default("")
+  pricePerPiece Int               @default(0)
+  isEnabled     Boolean           @default(true)
+  sortOrder     Int               @default(0)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
+
+// Механизмы открывания (Aventos и аналоги, мягкое закрытие и т.д.)
+model KitchenMechanism {
+  id            Int      @id @default(autoincrement())
+  name          String
+  slug          String   @unique
+  brand         String   @default("") // Blum, Grass, Hettich
+  mechanismType String   @default("") // lift, swing, push_open, drawer_soft_close
+  imageUrl      String   @default("")
+  pricePerPiece Int      @default(0)
+  isEnabled     Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Встраиваемая техника
+model KitchenAppliance {
+  id            Int      @id @default(autoincrement())
+  name          String
+  slug          String   @unique
+  brand         String   @default("")
+  applianceType String   @default("") // oven, hob, dishwasher, fridge, microwave, hood
+  widthCm       Int?
+  heightCm      Int?
+  depthCm       Int?
+  imageUrl      String   @default("")
+  priceBase     Int      @default(0)
+  isEnabled     Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Пользовательский визуальный проект
+model VisualProject {
+  id               Int      @id @default(autoincrement())
+  sessionId        String?
+  name             String   @default("Мой проект")
+  roomConfig       Json     @default("{}") // размеры, стены, двери, окна, выступы
+  modulePlacement  Json     @default("[]") // позиции модулей на плане
+  materialsConfig  Json     @default("{}") // выбранные фасад, столешница и т.д.
+  priceEstimate    Int      @default(0)
+  isDraft          Boolean  @default(true)
+  isArchived       Boolean  @default(false)
+  leadId           Int?     @unique
+  lead             Lead?    @relation(fields: [leadId], references: [id])
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// Правила совместимости между компонентами
+model CompatibilityRule {
+  id           Int                   @id @default(autoincrement())
+  ruleType     CompatibilityRuleType
+  sourceEntity String                // "facade" | "mechanism" | "module" | "handle"
+  sourceSlug   String
+  targetEntity String
+  targetSlug   String
+  message      String                @default("")
+  isEnabled    Boolean               @default(true)
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+}
+
+// Глобальные настройки конфигуратора (синглтон)
+model KitchenConfiguratorSettings {
+  id                   Int     @id @default(1)
+  isEnabled            Boolean @default(true)
+  defaultRoomWidthCm   Int     @default(300)
+  defaultRoomDepthCm   Int     @default(250)
+  defaultRoomHeightCm  Int     @default(250)
+  shareTextTemplate    String  @default("Смотри мой проект кухни!")
+  exportBrandingText   String  @default("Создано на kuhniby.by")
+  updatedAt            DateTime @updatedAt
 }
 
 model ScenarioPage {
