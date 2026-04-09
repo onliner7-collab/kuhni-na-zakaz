@@ -1,5 +1,64 @@
 # Журнал изменений
 
+## [0.5.0] — 2026-04-09 — Этапы 2–12: Полный визуальный конфигуратор
+
+### Этап 2 — 2D Планировщик помещения
+- `components/configurator/canvas/Room2D.tsx` — SVG-холст плана помещения: стены, проёмы, выступы, модули на стенах, snapping
+- `components/configurator/steps/RoomStep.tsx` — форма размеров (slider+number), добавление дверей/окон/выступов с tabs, live-preview плана
+- `app/kapi/configurator-visual/catalog/route.ts` — GET all catalogs за один запрос
+- `app/kapi/configurator-visual/projects/route.ts` — POST save/update project
+- `app/kapi/configurator-visual/projects/[id]/route.ts` — GET project by id
+
+### Этап 3 — Каталог модулей и шаблонов
+- `components/configurator/steps/TemplateStep.tsx` — выбор планировки (карточки с SVG-превью или изображением, анимация motion)
+- `components/configurator/steps/ModulesStep.tsx` — каталог модулей с фильтром по типу, выбор стены для размещения, drag на плане, inspector выбранного модуля
+
+### Этап 4 — Материалы, фасады, столешницы, скинали, механизмы
+- `components/configurator/steps/MaterialsStep.tsx` — tab-панель: фасады (color swatch), столешницы, скинали, ручки, техника (toggle выбора)
+
+### Этап 5 — 3D ядро
+- `@react-three/fiber`, `@react-three/drei`, `three`, `@types/three` добавлены в package.json
+- `components/configurator/canvas/Scene3D.tsx` — R3F сцена: пол, стены, модули на стенах с фасадами, столешницами; OrbitControls, ambient/directional light, Environment; lite-режим для мобильных
+- `components/configurator/steps/View3DStep.tsx` — dynamic import Scene3D (no SSR), toolbar (пресеты ракурсов, lite toggle, reset camera), hints управления
+
+### Этап 6 — Стилевые пресеты
+- `lib/kitchen-configurator/style-presets.ts` — 8 встроенных пресетов: Минимализм, Тёплый дуб, Светлый камень, Графит+Дерево, Матовые фасады, Витрины+Подсветка, Премиум безручечный, Кухня-гостиная
+- `components/configurator/steps/StyleStep.tsx` — карточки пресетов с gradient preview, применение + переход к ручной настройке
+
+### Этап 7 — Анимация и premium UI
+- `components/configurator/ConfiguratorStepper.tsx` — анимированный stepper: pulse на активном шаге, check на завершённых, gradient connector
+- `KitchenConfigurator.tsx` — AnimatePresence slide-transition между шагами, motion кнопки
+- `KitchenConfiguratorPage.tsx` — Hero с motion.h1, whileInView секции, scroll cue
+
+### Этап 8 — Сохранение проекта
+- `lib/kitchen-configurator/idb-storage.ts` — IndexedDB: autosave, save/load draft, named saves, list projects
+- `KitchenConfigurator.tsx` — автосохранение каждые 8 с, восстановление черновика при монтировании (toast-banner), сохранение на сервер через API
+- `SummaryStep.tsx` — кнопка «Сохранить», статус dirty/saved в header
+
+### Этап 9 — Экспорт
+- `lib/kitchen-configurator/export.ts` — exportProjectAsJSON (download), exportPlanAsPNG (SVG→canvas→PNG), exportProjectAsPDF (HTML print + fallback download); progressive enhancement showSaveFilePicker
+
+### Этап 10 — Поделиться
+- `lib/kitchen-configurator/share.ts` — nativeShare (Web Share API + canShare для файлов), copyLinkToClipboard (clipboard API + execCommand fallback), buildShareLinks (Telegram, WhatsApp, Viber, Email)
+- `SummaryStep.tsx` — кнопка Share с fallback-панелью мессенджеров + copy link
+
+### Этап 11 — Mobile-first UX
+- `ConfiguratorStepper` — горизонтальный scroll, short labels, emoji-иконки
+- Sticky header + sticky bottom nav с price indicator и Prev/Next
+- Все step-компоненты responsive: grid адаптируется, slider+number для размеров
+- View3DStep: lite-режим (низкое dpr, ambient only, no shadows) для мобильных
+
+### Этап 12 — Onboarding, Hero, Visual presentation
+- `components/configurator/KitchenConfiguratorPage.tsx` — landing → configurator SPA; Hero с gradient bg, motion h1/p/button, How-it-works (whileInView), CTA bottom
+- `app/kitchen-configurator/page.tsx` — Server Component загружает каталог из БД, передаёт в client-компонент
+- `components/layout/Header.tsx` — ссылка «🏠 Конфигуратор» добавлена в навигацию
+
+### Системные (не admin-managed)
+- Редьюсер, типы, движок совместимости, расчёт цены — системная логика
+- Встроенные стилевые пресеты — системные (расширяемы через admin в следующих итерациях)
+
+---
+
 ## [0.4.0] — 2026-04-09 — Этап 1: Product Foundation
 
 ### Добавлено

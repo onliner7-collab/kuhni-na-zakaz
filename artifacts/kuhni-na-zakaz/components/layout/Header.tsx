@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { href: "/catalog", label: "Каталог" },
   { href: "/styles", label: "Стили" },
   { href: "/portfolio", label: "Портфолио" },
+  { href: "/kitchen-configurator", label: "🏠 Конфигуратор" },
   { href: "/configure", label: "Подбор кухни" },
   { href: "/calculator", label: "Калькулятор" },
   { href: "/prices", label: "Цены" },

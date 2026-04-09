@@ -14,13 +14,29 @@
 - Публичный маршрут `/kitchen-configurator` — placeholder
 - `AdminSidebar` обновлён
 
-### Следующий шаг — Этап 2: 2D Планировщик помещения
+### Все 12 этапов — выполнено
 
-- Пользователь вводит размеры комнаты, двери, окна, выступы
-- Отображение плана в 2D (canvas / SVG)
-- Расстановка модулей, snapping, collision detection
-- Сериализация проекта
-- Mobile-first: bottom sheet / step-form
+**Версия**: 0.5.0  
+**Статус**: Визуальный конфигуратор полностью реализован
+
+#### Реализовано:
+- [x] Этап 1: Prisma schema, TypeScript types, store, compatibility engine, price engine
+- [x] Этап 2: SVG 2D-план, форма помещения (размеры/двери/окна/выступы), placement модулей
+- [x] Этап 3: Каталог модулей с фильтрацией, выбор шаблонов планировок
+- [x] Этап 4: Материалы: фасады, столешницы, скинали, ручки, техника
+- [x] Этап 5: R3F 3D-сцена (стены, пол, модули, фасады, столешницы, OrbitControls, lite-режим)
+- [x] Этап 6: 8 стилевых пресетов (Минимализм, Дуб, Камень, Графит, Матовые, Витрины, Премиум, Кухня-гостиная)
+- [x] Этап 7: Анимации (stepper pulse/check, slide transitions, whileInView hero)
+- [x] Этап 8: Сохранение (IndexedDB autosave + server, restore draft, named saves)
+- [x] Этап 9: Экспорт JSON / PNG / PDF (print) + showSaveFilePicker fallback
+- [x] Этап 10: Share (Web Share API + Telegram/WhatsApp/Viber/Email + copy link fallback)
+- [x] Этап 11: Mobile-first (sticky nav, price indicator, lite 3D, responsive grids)
+- [x] Этап 12: Landing page с hero, how-it-works (whileInView), ссылка в Header
+
+#### Требует для полной работы:
+- Запуск `prisma db push` для применения новых моделей
+- Запуск `pnpm install` для установки @react-three/fiber, @react-three/drei, three
+- Заполнение каталогов через `/admin/configurator-visual/` (модули, шаблоны, фасады)
 
 ## Что уже сделано
 
