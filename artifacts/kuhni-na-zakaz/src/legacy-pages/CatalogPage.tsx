@@ -1,4 +1,4 @@
-import { Link, useParams } from "wouter";
+﻿import { Link, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import { CATALOG_CATEGORIES } from "@/lib/data";
 
 function Breadcrumb({ items }: { items: { label: string; href?: string }[] }) {
   return (
-    <nav className="text-sm text-muted-foreground mb-8" aria-label="Навигация">
+    <nav className="text-sm text-muted-foreground mb-8" aria-label="РќР°РІРёРіР°С†РёСЏ">
       <ol className="flex flex-wrap gap-1 items-center">
         {items.map((item, i) => (
           <li key={i} className="flex items-center gap-1">
@@ -27,11 +27,11 @@ function Breadcrumb({ items }: { items: { label: string; href?: string }[] }) {
 export function CatalogPage() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Каталог" }]} />
+      <Breadcrumb items={[{ label: "Р“Р»Р°РІРЅР°СЏ", href: "/" }, { label: "РљР°С‚Р°Р»РѕРі" }]} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">Каталог кухонь на заказ</h1>
+        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">РљР°С‚Р°Р»РѕРі РєСѓС…РѕРЅСЊ РЅР° Р·Р°РєР°Р·</h1>
         <p className="text-muted-foreground text-lg mb-12 max-w-2xl">
-          Изготавливаем кухни под размер вашего помещения. Выберите конфигурацию и рассчитайте стоимость.
+          РР·РіРѕС‚Р°РІР»РёРІР°РµРј РєСѓС…РЅРё РїРѕРґ СЂР°Р·РјРµСЂ РІР°С€РµРіРѕ РїРѕРјРµС‰РµРЅРёСЏ. Р’С‹Р±РµСЂРёС‚Рµ РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ Рё СЂР°СЃСЃС‡РёС‚Р°Р№С‚Рµ СЃС‚РѕРёРјРѕСЃС‚СЊ.
         </p>
       </motion.div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -46,14 +46,14 @@ export function CatalogPage() {
               <Card className="overflow-hidden group hover:shadow-lg transition-shadow cursor-pointer h-full" data-testid={`card-catalog-${cat.slug}`}>
                 <div className="h-52 bg-secondary relative overflow-hidden">
                   <div className="absolute inset-0 flex items-end p-4 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-white font-medium text-sm">Смотреть варианты</span>
+                    <span className="text-white font-medium text-sm">РЎРјРѕС‚СЂРµС‚СЊ РІР°СЂРёР°РЅС‚С‹</span>
                   </div>
                 </div>
                 <CardContent className="p-6">
                   <h2 className="font-bold text-xl font-serif mb-2 group-hover:text-primary transition-colors">{cat.title}</h2>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{cat.description}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">от {cat.priceFrom.toLocaleString("ru")} BYN</span>
+                    <span className="text-sm font-medium">РѕС‚ {cat.priceFrom.toLocaleString("ru")} BYN</span>
                     <ArrowRight className="w-4 h-4 text-primary" />
                   </div>
                 </CardContent>
@@ -63,10 +63,10 @@ export function CatalogPage() {
         ))}
       </div>
       <div className="mt-16 bg-primary/5 border border-primary/20 rounded-2xl p-8 text-center">
-        <h2 className="text-2xl font-bold font-serif mb-3">Не нашли подходящий вариант?</h2>
-        <p className="text-muted-foreground mb-6">Опишите задачу — предложим решение под ваш размер и бюджет.</p>
+        <h2 className="text-2xl font-bold font-serif mb-3">РќРµ РЅР°С€Р»Рё РїРѕРґС…РѕРґСЏС‰РёР№ РІР°СЂРёР°РЅС‚?</h2>
+        <p className="text-muted-foreground mb-6">РћРїРёС€РёС‚Рµ Р·Р°РґР°С‡Сѓ вЂ” РїСЂРµРґР»РѕР¶РёРј СЂРµС€РµРЅРёРµ РїРѕРґ РІР°С€ СЂР°Р·РјРµСЂ Рё Р±СЋРґР¶РµС‚.</p>
         <Button size="lg" asChild data-testid="btn-catalog-cta">
-          <Link href="/contacts">Получить бесплатную консультацию</Link>
+          <Link href="/contacts">РџРѕР»СѓС‡РёС‚СЊ Р±РµСЃРїР»Р°С‚РЅСѓСЋ РєРѕРЅСЃСѓР»СЊС‚Р°С†РёСЋ</Link>
         </Button>
       </div>
     </div>
@@ -80,8 +80,8 @@ export function CatalogItemPage() {
   if (!cat) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
-        <h1 className="text-3xl font-bold font-serif mb-4">Категория не найдена</h1>
-        <Link href="/catalog"><Button>В каталог</Button></Link>
+        <h1 className="text-3xl font-bold font-serif mb-4">РљР°С‚РµРіРѕСЂРёСЏ РЅРµ РЅР°Р№РґРµРЅР°</h1>
+        <Link href="/catalog"><Button>Р’ РєР°С‚Р°Р»РѕРі</Button></Link>
       </div>
     );
   }
@@ -89,8 +89,8 @@ export function CatalogItemPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <Breadcrumb items={[
-        { label: "Главная", href: "/" },
-        { label: "Каталог", href: "/catalog" },
+        { label: "Р“Р»Р°РІРЅР°СЏ", href: "/" },
+        { label: "РљР°С‚Р°Р»РѕРі", href: "/catalog" },
         { label: cat.title },
       ]} />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -101,7 +101,7 @@ export function CatalogItemPage() {
           <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4">{cat.title}</h1>
           <p className="text-muted-foreground text-lg mb-6">{cat.description}</p>
           <div className="mb-6">
-            <h3 className="font-semibold mb-3">Особенности:</h3>
+            <h3 className="font-semibold mb-3">РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё:</h3>
             <ul className="space-y-2">
               {cat.features.map((f, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm">
@@ -111,11 +111,11 @@ export function CatalogItemPage() {
               ))}
             </ul>
           </div>
-          <p className="text-2xl font-bold mb-6">от {cat.priceFrom.toLocaleString("ru")} BYN</p>
+          <p className="text-2xl font-bold mb-6">РѕС‚ {cat.priceFrom.toLocaleString("ru")} BYN</p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button size="lg" data-testid="btn-category-calculate">Рассчитать стоимость</Button>
+            <Button size="lg" data-testid="btn-category-calculate">Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ</Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/portfolio">Смотреть портфолио</Link>
+              <Link href="/portfolio">РЎРјРѕС‚СЂРµС‚СЊ РїРѕСЂС‚С„РѕР»РёРѕ</Link>
             </Button>
           </div>
         </motion.div>
@@ -123,3 +123,6 @@ export function CatalogItemPage() {
     </div>
   );
 }
+
+export default CatalogPage;
+

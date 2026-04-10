@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -22,48 +22,48 @@ function Breadcrumb({ items }: { items: { label: string; href?: string }[] }) {
 
 const PRICE_SEGMENTS = [
   {
-    title: "Эконом",
+    title: "Р­РєРѕРЅРѕРј",
     priceFrom: 900,
     priceTo: 1800,
-    description: "Оптимальные решения без потери качества",
+    description: "РћРїС‚РёРјР°Р»СЊРЅС‹Рµ СЂРµС€РµРЅРёСЏ Р±РµР· РїРѕС‚РµСЂРё РєР°С‡РµСЃС‚РІР°",
     features: [
-      "Корпус ЛДСП EGGER",
-      "Фасады МДФ плёнка",
-      "Фурнитура GTV",
-      "Стандартная столешница",
-      "Монтаж под ключ",
+      "РљРѕСЂРїСѓСЃ Р›Р”РЎРџ EGGER",
+      "Р¤Р°СЃР°РґС‹ РњР”Р¤ РїР»С‘РЅРєР°",
+      "Р¤СѓСЂРЅРёС‚СѓСЂР° GTV",
+      "РЎС‚Р°РЅРґР°СЂС‚РЅР°СЏ СЃС‚РѕР»РµС€РЅРёС†Р°",
+      "РњРѕРЅС‚Р°Р¶ РїРѕРґ РєР»СЋС‡",
     ],
     color: "border-secondary",
   },
   {
-    title: "Средний",
+    title: "РЎСЂРµРґРЅРёР№",
     priceFrom: 1800,
     priceTo: 3500,
-    description: "Лучшее соотношение цены и качества",
+    description: "Р›СѓС‡С€РµРµ СЃРѕРѕС‚РЅРѕС€РµРЅРёРµ С†РµРЅС‹ Рё РєР°С‡РµСЃС‚РІР°",
     features: [
-      "Корпус ЛДСП Blum",
-      "Фасады МДФ эмаль или пластик",
-      "Фурнитура Hettich",
-      "Постформинг или HPL-столешница",
-      "Монтаж под ключ",
-      "Встроенная техника",
+      "РљРѕСЂРїСѓСЃ Р›Р”РЎРџ Blum",
+      "Р¤Р°СЃР°РґС‹ РњР”Р¤ СЌРјР°Р»СЊ РёР»Рё РїР»Р°СЃС‚РёРє",
+      "Р¤СѓСЂРЅРёС‚СѓСЂР° Hettich",
+      "РџРѕСЃС‚С„РѕСЂРјРёРЅРі РёР»Рё HPL-СЃС‚РѕР»РµС€РЅРёС†Р°",
+      "РњРѕРЅС‚Р°Р¶ РїРѕРґ РєР»СЋС‡",
+      "Р’СЃС‚СЂРѕРµРЅРЅР°СЏ С‚РµС…РЅРёРєР°",
     ],
     color: "border-primary",
     popular: true,
   },
   {
-    title: "Премиум",
+    title: "РџСЂРµРјРёСѓРј",
     priceFrom: 3500,
     priceTo: 8000,
-    description: "Индивидуальный дизайн и материалы высшего класса",
+    description: "РРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РґРёР·Р°Р№РЅ Рё РјР°С‚РµСЂРёР°Р»С‹ РІС‹СЃС€РµРіРѕ РєР»Р°СЃСЃР°",
     features: [
-      "Корпус ЛДСП Blum Tandembox",
-      "Фасады шпон или крашеный МДФ",
-      "Фурнитура Blum",
-      "Кварц, акрил или керамика",
-      "Монтаж под ключ",
-      "Встроенная техника и освещение",
-      "3D-визуализация",
+      "РљРѕСЂРїСѓСЃ Р›Р”РЎРџ Blum Tandembox",
+      "Р¤Р°СЃР°РґС‹ С€РїРѕРЅ РёР»Рё РєСЂР°С€РµРЅС‹Р№ РњР”Р¤",
+      "Р¤СѓСЂРЅРёС‚СѓСЂР° Blum",
+      "РљРІР°СЂС†, Р°РєСЂРёР» РёР»Рё РєРµСЂР°РјРёРєР°",
+      "РњРѕРЅС‚Р°Р¶ РїРѕРґ РєР»СЋС‡",
+      "Р’СЃС‚СЂРѕРµРЅРЅР°СЏ С‚РµС…РЅРёРєР° Рё РѕСЃРІРµС‰РµРЅРёРµ",
+      "3D-РІРёР·СѓР°Р»РёР·Р°С†РёСЏ",
     ],
     color: "border-secondary",
   },
@@ -72,37 +72,37 @@ const PRICE_SEGMENTS = [
 const QUIZ_STEPS = [
   {
     id: "type",
-    question: "Какая конфигурация кухни?",
-    options: ["Прямая", "Угловая", "П-образная", "С островом", "Не знаю, нужна помощь"],
+    question: "РљР°РєР°СЏ РєРѕРЅС„РёРіСѓСЂР°С†РёСЏ РєСѓС…РЅРё?",
+    options: ["РџСЂСЏРјР°СЏ", "РЈРіР»РѕРІР°СЏ", "Рџ-РѕР±СЂР°Р·РЅР°СЏ", "РЎ РѕСЃС‚СЂРѕРІРѕРј", "РќРµ Р·РЅР°СЋ, РЅСѓР¶РЅР° РїРѕРјРѕС‰СЊ"],
   },
   {
     id: "size",
-    question: "Примерный размер кухни",
-    options: ["До 2 п.м", "2–4 п.м", "4–6 п.м", "Больше 6 п.м"],
+    question: "РџСЂРёРјРµСЂРЅС‹Р№ СЂР°Р·РјРµСЂ РєСѓС…РЅРё",
+    options: ["Р”Рѕ 2 Рї.Рј", "2вЂ“4 Рї.Рј", "4вЂ“6 Рї.Рј", "Р‘РѕР»СЊС€Рµ 6 Рї.Рј"],
   },
   {
     id: "style",
-    question: "Предпочтительный стиль",
-    options: ["Современный", "Классический", "Скандинавский", "Минимализм", "Ещё не решил(а)"],
+    question: "РџСЂРµРґРїРѕС‡С‚РёС‚РµР»СЊРЅС‹Р№ СЃС‚РёР»СЊ",
+    options: ["РЎРѕРІСЂРµРјРµРЅРЅС‹Р№", "РљР»Р°СЃСЃРёС‡РµСЃРєРёР№", "РЎРєР°РЅРґРёРЅР°РІСЃРєРёР№", "РњРёРЅРёРјР°Р»РёР·Рј", "Р•С‰С‘ РЅРµ СЂРµС€РёР»(Р°)"],
   },
   {
     id: "material",
-    question: "Материал фасадов",
-    options: ["МДФ плёнка (бюджет)", "Пластик / HPL", "Эмаль матовая", "Шпон дерева", "Не важно"],
+    question: "РњР°С‚РµСЂРёР°Р» С„Р°СЃР°РґРѕРІ",
+    options: ["РњР”Р¤ РїР»С‘РЅРєР° (Р±СЋРґР¶РµС‚)", "РџР»Р°СЃС‚РёРє / HPL", "Р­РјР°Р»СЊ РјР°С‚РѕРІР°СЏ", "РЁРїРѕРЅ РґРµСЂРµРІР°", "РќРµ РІР°Р¶РЅРѕ"],
   },
   {
     id: "budget",
-    question: "Ваш бюджет",
-    options: ["До 1 500 BYN", "1 500–3 000 BYN", "3 000–6 000 BYN", "Более 6 000 BYN"],
+    question: "Р’Р°С€ Р±СЋРґР¶РµС‚",
+    options: ["Р”Рѕ 1 500 BYN", "1 500вЂ“3 000 BYN", "3 000вЂ“6 000 BYN", "Р‘РѕР»РµРµ 6 000 BYN"],
   },
   {
     id: "appliances",
-    question: "Нужна ли встроенная техника?",
-    options: ["Да, вся техника", "Только духовка и варочная", "Только посудомойка", "Техника есть, не нужна"],
+    question: "РќСѓР¶РЅР° Р»Рё РІСЃС‚СЂРѕРµРЅРЅР°СЏ С‚РµС…РЅРёРєР°?",
+    options: ["Р”Р°, РІСЃСЏ С‚РµС…РЅРёРєР°", "РўРѕР»СЊРєРѕ РґСѓС…РѕРІРєР° Рё РІР°СЂРѕС‡РЅР°СЏ", "РўРѕР»СЊРєРѕ РїРѕСЃСѓРґРѕРјРѕР№РєР°", "РўРµС…РЅРёРєР° РµСЃС‚СЊ, РЅРµ РЅСѓР¶РЅР°"],
   },
   {
     id: "contacts",
-    question: "Куда отправить расчёт?",
+    question: "РљСѓРґР° РѕС‚РїСЂР°РІРёС‚СЊ СЂР°СЃС‡С‘С‚?",
     type: "form",
   },
 ];
@@ -132,29 +132,29 @@ export function PricesPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Цены" }]} />
+      <Breadcrumb items={[{ label: "Р“Р»Р°РІРЅР°СЏ", href: "/" }, { label: "Р¦РµРЅС‹" }]} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">Цены на кухни на заказ</h1>
+        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">Р¦РµРЅС‹ РЅР° РєСѓС…РЅРё РЅР° Р·Р°РєР°Р·</h1>
         <p className="text-muted-foreground text-lg mb-12 max-w-2xl">
-          Прозрачные цены без "от". Стоимость зависит от размеров, материалов и фурнитуры.
+          РџСЂРѕР·СЂР°С‡РЅС‹Рµ С†РµРЅС‹ Р±РµР· "РѕС‚". РЎС‚РѕРёРјРѕСЃС‚СЊ Р·Р°РІРёСЃРёС‚ РѕС‚ СЂР°Р·РјРµСЂРѕРІ, РјР°С‚РµСЂРёР°Р»РѕРІ Рё С„СѓСЂРЅРёС‚СѓСЂС‹.
         </p>
       </motion.div>
 
-      {/* Сегменты цен */}
+      {/* РЎРµРіРјРµРЅС‚С‹ С†РµРЅ */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
         {PRICE_SEGMENTS.map((seg, i) => (
           <motion.div key={seg.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
             <Card className={`h-full border-2 ${seg.popular ? "border-primary shadow-lg" : seg.color} relative`}>
               {seg.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-semibold px-4 py-1 rounded-full">
-                  Популярный выбор
+                  РџРѕРїСѓР»СЏСЂРЅС‹Р№ РІС‹Р±РѕСЂ
                 </div>
               )}
               <CardHeader>
                 <CardTitle className="font-serif text-2xl">{seg.title}</CardTitle>
                 <p className="text-sm text-muted-foreground">{seg.description}</p>
                 <p className="text-3xl font-bold">
-                  {seg.priceFrom.toLocaleString("ru")}–{seg.priceTo.toLocaleString("ru")} <span className="text-lg font-normal text-muted-foreground">BYN</span>
+                  {seg.priceFrom.toLocaleString("ru")}вЂ“{seg.priceTo.toLocaleString("ru")} <span className="text-lg font-normal text-muted-foreground">BYN</span>
                 </p>
               </CardHeader>
               <CardContent>
@@ -167,7 +167,7 @@ export function PricesPage() {
                   ))}
                 </ul>
                 <Button className="w-full" variant={seg.popular ? "default" : "outline"} data-testid={`btn-price-${seg.title.toLowerCase()}`}>
-                  Рассчитать стоимость
+                  Р Р°СЃСЃС‡РёС‚Р°С‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ
                 </Button>
               </CardContent>
             </Card>
@@ -175,15 +175,15 @@ export function PricesPage() {
         ))}
       </div>
 
-      {/* Что входит в цену */}
+      {/* Р§С‚Рѕ РІС…РѕРґРёС‚ РІ С†РµРЅСѓ */}
       <section className="mb-20 bg-secondary/30 rounded-3xl p-8 md:p-12">
-        <h2 className="text-3xl font-bold font-serif mb-8 text-center">Что входит в стоимость</h2>
+        <h2 className="text-3xl font-bold font-serif mb-8 text-center">Р§С‚Рѕ РІС…РѕРґРёС‚ РІ СЃС‚РѕРёРјРѕСЃС‚СЊ</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { title: "Замер и проект", desc: "Выезд замерщика и 3D-визуализация — бесплатно" },
-            { title: "Производство", desc: "Изготовление на собственном производстве в Минске" },
-            { title: "Доставка", desc: "Доставка до подъезда или на этаж" },
-            { title: "Монтаж", desc: "Сборка, навеска, подключение мойки и техники" },
+            { title: "Р—Р°РјРµСЂ Рё РїСЂРѕРµРєС‚", desc: "Р’С‹РµР·Рґ Р·Р°РјРµСЂС‰РёРєР° Рё 3D-РІРёР·СѓР°Р»РёР·Р°С†РёСЏ вЂ” Р±РµСЃРїР»Р°С‚РЅРѕ" },
+            { title: "РџСЂРѕРёР·РІРѕРґСЃС‚РІРѕ", desc: "РР·РіРѕС‚РѕРІР»РµРЅРёРµ РЅР° СЃРѕР±СЃС‚РІРµРЅРЅРѕРј РїСЂРѕРёР·РІРѕРґСЃС‚РІРµ РІ РњРёРЅСЃРєРµ" },
+            { title: "Р”РѕСЃС‚Р°РІРєР°", desc: "Р”РѕСЃС‚Р°РІРєР° РґРѕ РїРѕРґСЉРµР·РґР° РёР»Рё РЅР° СЌС‚Р°Р¶" },
+            { title: "РњРѕРЅС‚Р°Р¶", desc: "РЎР±РѕСЂРєР°, РЅР°РІРµСЃРєР°, РїРѕРґРєР»СЋС‡РµРЅРёРµ РјРѕР№РєРё Рё С‚РµС…РЅРёРєРё" },
           ].map((item, i) => (
             <div key={i} className="text-center p-4">
               <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
@@ -196,20 +196,20 @@ export function PricesPage() {
         </div>
       </section>
 
-      {/* Калькулятор / квиз */}
+      {/* РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ / РєРІРёР· */}
       <section id="calculator" className="mb-20">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold font-serif mb-4 text-center">Рассчитайте стоимость вашей кухни</h2>
-          <p className="text-center text-muted-foreground mb-8">Ответьте на 6 вопросов — пришлём предварительный расчёт в течение 30 минут</p>
+          <h2 className="text-3xl font-bold font-serif mb-4 text-center">Р Р°СЃСЃС‡РёС‚Р°Р№С‚Рµ СЃС‚РѕРёРјРѕСЃС‚СЊ РІР°С€РµР№ РєСѓС…РЅРё</h2>
+          <p className="text-center text-muted-foreground mb-8">РћС‚РІРµС‚СЊС‚Рµ РЅР° 6 РІРѕРїСЂРѕСЃРѕРІ вЂ” РїСЂРёС€Р»С‘Рј РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ СЂР°СЃС‡С‘С‚ РІ С‚РµС‡РµРЅРёРµ 30 РјРёРЅСѓС‚</p>
 
           <Card className="border-2 border-primary/20">
             <CardContent className="p-6 md:p-8">
               {quizStep < QUIZ_STEPS.length && !submitted ? (
                 <>
-                  {/* Прогресс */}
+                  {/* РџСЂРѕРіСЂРµСЃСЃ */}
                   <div className="mb-6">
                     <div className="flex justify-between text-sm text-muted-foreground mb-2">
-                      <span>Вопрос {quizStep + 1} из {QUIZ_STEPS.length}</span>
+                      <span>Р’РѕРїСЂРѕСЃ {quizStep + 1} РёР· {QUIZ_STEPS.length}</span>
                       <span>{progress}%</span>
                     </div>
                     <div className="h-2 bg-secondary rounded-full">
@@ -231,19 +231,19 @@ export function PricesPage() {
                     {currentStep.type === "form" ? (
                       <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                          <label className="text-sm font-medium mb-1 block">Ваше имя</label>
+                          <label className="text-sm font-medium mb-1 block">Р’Р°С€Рµ РёРјСЏ</label>
                           <input
                             type="text"
                             required
                             value={name}
                             onChange={e => setName(e.target.value)}
-                            placeholder="Иван"
+                            placeholder="РРІР°РЅ"
                             className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                             data-testid="input-quiz-name"
                           />
                         </div>
                         <div>
-                          <label className="text-sm font-medium mb-1 block">Телефон</label>
+                          <label className="text-sm font-medium mb-1 block">РўРµР»РµС„РѕРЅ</label>
                           <input
                             type="tel"
                             required
@@ -255,10 +255,10 @@ export function PricesPage() {
                           />
                         </div>
                         <p className="text-xs text-muted-foreground">
-                          Нажимая кнопку, вы соглашаетесь с <Link href="/privacy-policy" className="underline">политикой конфиденциальности</Link>
+                          РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ, РІС‹ СЃРѕРіР»Р°С€Р°РµС‚РµСЃСЊ СЃ <Link href="/privacy-policy" className="underline">РїРѕР»РёС‚РёРєРѕР№ РєРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚Рё</Link>
                         </p>
                         <Button type="submit" className="w-full" size="lg" data-testid="btn-quiz-submit">
-                          Получить расчёт <ChevronRight className="w-4 h-4 ml-1" />
+                          РџРѕР»СѓС‡РёС‚СЊ СЂР°СЃС‡С‘С‚ <ChevronRight className="w-4 h-4 ml-1" />
                         </Button>
                       </form>
                     ) : (
@@ -282,7 +282,7 @@ export function PricesPage() {
                       onClick={() => setQuizStep(prev => prev - 1)}
                       className="mt-4 text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
-                      ← Назад
+                      в†ђ РќР°Р·Р°Рґ
                     </button>
                   )}
                 </>
@@ -291,8 +291,8 @@ export function PricesPage() {
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold font-serif mb-2">Заявка принята!</h3>
-                  <p className="text-muted-foreground">Позвоним в течение 30 минут и пришлём предварительный расчёт.</p>
+                  <h3 className="text-2xl font-bold font-serif mb-2">Р—Р°СЏРІРєР° РїСЂРёРЅСЏС‚Р°!</h3>
+                  <p className="text-muted-foreground">РџРѕР·РІРѕРЅРёРј РІ С‚РµС‡РµРЅРёРµ 30 РјРёРЅСѓС‚ Рё РїСЂРёС€Р»С‘Рј РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ СЂР°СЃС‡С‘С‚.</p>
                 </div>
               )}
             </CardContent>
@@ -302,3 +302,6 @@ export function PricesPage() {
     </div>
   );
 }
+
+export default PricesPage;
+

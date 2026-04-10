@@ -35,7 +35,9 @@ const FOOTER_DEFAULTS = {
 };
 
 export async function Footer() {
-  const s = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
+  const s = process.env.DATABASE_URL
+    ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
+    : null;
   const c = {
     phone: s?.phone || FOOTER_DEFAULTS.phone,
     phoneDisplay: s?.phoneDisplay || FOOTER_DEFAULTS.phoneDisplay,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -37,16 +37,16 @@ export function ContactsPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Контакты" }]} />
+      <Breadcrumb items={[{ label: "Р“Р»Р°РІРЅР°СЏ", href: "/" }, { label: "РљРѕРЅС‚Р°РєС‚С‹" }]} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">Контакты</h1>
+        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">РљРѕРЅС‚Р°РєС‚С‹</h1>
         <p className="text-muted-foreground text-lg mb-12 max-w-xl">
-          Свяжитесь с нами любым удобным способом. Отвечаем в течение 30 минут.
+          РЎРІСЏР¶РёС‚РµСЃСЊ СЃ РЅР°РјРё Р»СЋР±С‹Рј СѓРґРѕР±РЅС‹Рј СЃРїРѕСЃРѕР±РѕРј. РћС‚РІРµС‡Р°РµРј РІ С‚РµС‡РµРЅРёРµ 30 РјРёРЅСѓС‚.
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Контактная информация */}
+        {/* РљРѕРЅС‚Р°РєС‚РЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ */}
         <div className="space-y-6">
           <Card>
             <CardContent className="p-6 space-y-5">
@@ -55,7 +55,7 @@ export function ContactsPage() {
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold mb-1">Телефон</p>
+                  <p className="font-semibold mb-1">РўРµР»РµС„РѕРЅ</p>
                   <a href={`tel:${SITE_CONFIG.phone}`} className="text-primary hover:underline text-lg font-medium" data-testid="link-phone">
                     {SITE_CONFIG.phoneDisplay}
                   </a>
@@ -66,7 +66,7 @@ export function ContactsPage() {
                   <MessageCircle className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold mb-2">Мессенджеры</p>
+                  <p className="font-semibold mb-2">РњРµСЃСЃРµРЅРґР¶РµСЂС‹</p>
                   <div className="flex gap-3">
                     <a href={SITE_CONFIG.telegram} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline" data-testid="link-telegram">
                       Telegram
@@ -96,9 +96,9 @@ export function ContactsPage() {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold mb-1">Адрес</p>
+                  <p className="font-semibold mb-1">РђРґСЂРµСЃ</p>
                   <p className="text-muted-foreground">{SITE_CONFIG.address}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Шоурум: по записи</p>
+                  <p className="text-xs text-muted-foreground mt-1">РЁРѕСѓСЂСѓРј: РїРѕ Р·Р°РїРёСЃРё</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -106,43 +106,43 @@ export function ContactsPage() {
                   <Clock className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold mb-1">Режим работы</p>
+                  <p className="font-semibold mb-1">Р РµР¶РёРј СЂР°Р±РѕС‚С‹</p>
                   <p className="text-muted-foreground text-sm">{SITE_CONFIG.workingHours}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Карта (заглушка) */}
+          {/* РљР°СЂС‚Р° (Р·Р°РіР»СѓС€РєР°) */}
           <div className="bg-secondary rounded-2xl h-52 flex items-center justify-center text-muted-foreground text-sm">
-            Карта — {SITE_CONFIG.address}
+            РљР°СЂС‚Р° вЂ” {SITE_CONFIG.address}
           </div>
         </div>
 
-        {/* Форма */}
+        {/* Р¤РѕСЂРјР° */}
         <div>
-          <h2 className="text-2xl font-bold font-serif mb-6">Оставить заявку</h2>
+          <h2 className="text-2xl font-bold font-serif mb-6">РћСЃС‚Р°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</h2>
           {submitted ? (
             <div className="text-center py-16">
               <CheckCircle className="w-14 h-14 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold font-serif mb-2">Заявка принята!</h3>
-              <p className="text-muted-foreground">Позвоним в течение 30 минут в рабочее время.</p>
+              <h3 className="text-xl font-bold font-serif mb-2">Р—Р°СЏРІРєР° РїСЂРёРЅСЏС‚Р°!</h3>
+              <p className="text-muted-foreground">РџРѕР·РІРѕРЅРёРј РІ С‚РµС‡РµРЅРёРµ 30 РјРёРЅСѓС‚ РІ СЂР°Р±РѕС‡РµРµ РІСЂРµРјСЏ.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4" id="contact-form">
               <div>
-                <label className="text-sm font-medium mb-1 block">Ваше имя *</label>
+                <label className="text-sm font-medium mb-1 block">Р’Р°С€Рµ РёРјСЏ *</label>
                 <input
                   required
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  placeholder="Иван"
+                  placeholder="РРІР°РЅ"
                   className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   data-testid="input-contact-name"
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Телефон *</label>
+                <label className="text-sm font-medium mb-1 block">РўРµР»РµС„РѕРЅ *</label>
                 <input
                   required
                   type="tel"
@@ -154,22 +154,22 @@ export function ContactsPage() {
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Город</label>
+                <label className="text-sm font-medium mb-1 block">Р“РѕСЂРѕРґ</label>
                 <input
                   value={city}
                   onChange={e => setCity(e.target.value)}
-                  placeholder="Минск"
+                  placeholder="РњРёРЅСЃРє"
                   className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                   data-testid="input-contact-city"
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-1 block">Комментарий</label>
+                <label className="text-sm font-medium mb-1 block">РљРѕРјРјРµРЅС‚Р°СЂРёР№</label>
                 <textarea
                   rows={4}
                   value={comment}
                   onChange={e => setComment(e.target.value)}
-                  placeholder="Опишите вашу задачу или вопрос..."
+                  placeholder="РћРїРёС€РёС‚Рµ РІР°С€Сѓ Р·Р°РґР°С‡Сѓ РёР»Рё РІРѕРїСЂРѕСЃ..."
                   className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                   data-testid="textarea-contact-comment"
                 />
@@ -177,10 +177,10 @@ export function ContactsPage() {
               {/* honeypot */}
               <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
               <p className="text-xs text-muted-foreground">
-                Нажимая кнопку, вы соглашаетесь с <Link href="/privacy-policy" className="underline">политикой конфиденциальности</Link>
+                РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ, РІС‹ СЃРѕРіР»Р°С€Р°РµС‚РµСЃСЊ СЃ <Link href="/privacy-policy" className="underline">РїРѕР»РёС‚РёРєРѕР№ РєРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚Рё</Link>
               </p>
               <Button type="submit" size="lg" className="w-full" data-testid="btn-contact-submit">
-                Отправить заявку
+                РћС‚РїСЂР°РІРёС‚СЊ Р·Р°СЏРІРєСѓ
               </Button>
             </form>
           )}
@@ -189,3 +189,6 @@ export function ContactsPage() {
     </div>
   );
 }
+
+export default ContactsPage;
+

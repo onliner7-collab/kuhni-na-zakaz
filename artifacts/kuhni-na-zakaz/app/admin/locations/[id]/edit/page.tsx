@@ -23,6 +23,8 @@ export default async function EditLocationPage({ params }: Props) {
     localIntro: loc.localIntro ?? "",
     ctaHeadline: loc.ctaHeadline ?? "",
     ctaSubtext: loc.ctaSubtext ?? "",
+    seoTitle: loc.seoTitle ?? "",
+    seoDescription: loc.seoDescription ?? "",
   };
 
   return (

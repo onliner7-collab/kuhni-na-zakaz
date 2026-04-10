@@ -1,98 +1,90 @@
-# Деплой
+# Deployment
 
-## Локальный запуск (Replit)
+## Current production model
+
+- application: Next.js app in `artifacts/kuhni-na-zakaz`
+- runtime: Node.js 22 + pnpm
+- database: PostgreSQL
+- process manager: `systemd`
+- reverse proxy: `nginx`
+- target server: Timeweb VPS with Linux
+
+## Local development
+
+From the repository root:
 
 ```bash
 pnpm install
-pnpm --filter @workspace/kuhni-na-zakaz run dev
+cd artifacts/kuhni-na-zakaz
+pnpm run dev
 ```
 
-Сайт доступен на порту из переменной окружения PORT.
+By default the app starts on port `3001`.
 
-## Переменные окружения
+To override the port:
 
-Создайте `.env` в корне проекта:
+```bash
+PORT=3010 pnpm run dev
+```
+
+On Windows PowerShell:
+
+```powershell
+$env:PORT='3010'
+pnpm run dev
+```
+
+## Required environment
+
+Create `artifacts/kuhni-na-zakaz/.env` from `artifacts/kuhni-na-zakaz/.env.example`.
+
+Minimum required variables:
 
 ```env
-# Сайт
-VITE_SITE_URL=https://yourdomain.by
-VITE_PHONE=+375291234567
-VITE_EMAIL=info@kuhni.by
-
-# Формы
-VITE_TELEGRAM_BOT_TOKEN=your_bot_token
-VITE_TELEGRAM_CHAT_ID=your_chat_id
-
-# База данных (для бэкенда)
-DATABASE_URL=postgresql://user:pass@host:5432/dbname
-
-# Сессия
-SESSION_SECRET=your_secret_key
+DATABASE_URL=postgresql://postgres:password@127.0.0.1:5432/kuhni_production
+SESSION_SECRET=replace-with-a-long-random-secret
+NEXT_PUBLIC_SITE_URL=https://example.com
 ```
 
-## Сборка для продакшена
+Optional mail variables:
+
+```env
+EMAIL_SMTP_HOST=
+EMAIL_SMTP_PORT=587
+EMAIL_SMTP_SECURE=false
+EMAIL_SMTP_USER=
+EMAIL_SMTP_PASS=
+```
+
+## Build and run
+
+From `artifacts/kuhni-na-zakaz`:
 
 ```bash
-pnpm --filter @workspace/kuhni-na-zakaz run build
-# Файлы в: artifacts/kuhni-na-zakaz/dist/
+pnpm run build
+pnpm run start
 ```
 
-## Деплой на VPS/VDS
+The start command respects:
 
-### nginx конфигурация
+- `PORT`
+- `HOST`
 
-```nginx
-server {
-    listen 80;
-    server_name yourdomain.by www.yourdomain.by;
-    return 301 https://$host$request_uri;
-}
+## First server deploy
 
-server {
-    listen 443 ssl http2;
-    server_name yourdomain.by;
+1. Clone the repository to the server.
+2. Create the production `.env`.
+3. Run `pnpm install` in the repository root.
+4. Run `pnpm exec prisma db push` in `artifacts/kuhni-na-zakaz`.
+5. Run seed scripts only if the database is empty and seed content is approved for production.
+6. Run `pnpm run build`.
+7. Install the `systemd` service from `deploy/systemd/kuhni-na-zakaz.service`.
+8. Install the nginx config from `deploy/nginx/kuhni-na-zakaz.conf`.
+9. Configure HTTPS with Let's Encrypt.
 
-    ssl_certificate /etc/letsencrypt/live/yourdomain.by/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/yourdomain.by/privkey.pem;
+## Supporting templates
 
-    root /var/www/kuhni/dist/public;
-    index index.html;
-
-    gzip on;
-    gzip_types text/css application/javascript application/json;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    location /api {
-        proxy_pass http://localhost:8080;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff2)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-}
-```
-
-## GitHub Flow
-
-```
-main    — продакшн (только merge через PR)
-dev     — основная разработка
-feature/название — новые фичи
-fix/название — исправления
-```
-
-## Push в GitHub (по команде пользователя)
-
-```bash
-git init
-git remote add origin https://github.com/onliner7-collab/kuhni-na-zakaz.git
-git add .
-git commit -m "docs: add project documentation and development rules"
-git push -u origin main
-```
+- `deploy/nginx/kuhni-na-zakaz.conf`
+- `deploy/systemd/kuhni-na-zakaz.service`
+- `deploy/timeweb/README.md`
+- `project-docs/RELEASE_CHECKLIST.md`

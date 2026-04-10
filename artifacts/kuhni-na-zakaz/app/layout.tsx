@@ -39,9 +39,10 @@ export default async function RootLayout({
   const pathname = headersList.get("x-pathname") || "";
   const isAdmin = pathname.startsWith("/admin");
 
-  const siteSettings = !isAdmin
-    ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
-    : null;
+  const siteSettings =
+    !isAdmin && process.env.DATABASE_URL
+      ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
+      : null;
 
   return (
     <html lang="ru">

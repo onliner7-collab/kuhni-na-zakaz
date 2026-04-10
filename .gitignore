@@ -47,3 +47,13 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Local agent/app state
+.claude/
+
+# Local development database
+.local-postgres/
+
+# Local runtime logs
+.next-dev*.log
+*.pid

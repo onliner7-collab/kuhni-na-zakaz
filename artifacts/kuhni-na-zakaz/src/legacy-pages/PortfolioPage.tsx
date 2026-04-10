@@ -1,4 +1,4 @@
-import { Link, useParams } from "wouter";
+﻿import { Link, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -24,11 +24,11 @@ function Breadcrumb({ items }: { items: { label: string; href?: string }[] }) {
 export function PortfolioPage() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Портфолио" }]} />
+      <Breadcrumb items={[{ label: "Р“Р»Р°РІРЅР°СЏ", href: "/" }, { label: "РџРѕСЂС‚С„РѕР»РёРѕ" }]} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">Портфолио выполненных проектов</h1>
+        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">РџРѕСЂС‚С„РѕР»РёРѕ РІС‹РїРѕР»РЅРµРЅРЅС‹С… РїСЂРѕРµРєС‚РѕРІ</h1>
         <p className="text-muted-foreground text-lg mb-12 max-w-2xl">
-          Реальные кухни, реальные клиенты. Площадь, стиль, цена — всё честно.
+          Р РµР°Р»СЊРЅС‹Рµ РєСѓС…РЅРё, СЂРµР°Р»СЊРЅС‹Рµ РєР»РёРµРЅС‚С‹. РџР»РѕС‰Р°РґСЊ, СЃС‚РёР»СЊ, С†РµРЅР° вЂ” РІСЃС‘ С‡РµСЃС‚РЅРѕ.
         </p>
       </motion.div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -55,18 +55,18 @@ export function PortfolioPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Maximize2 className="w-3.5 h-3.5 flex-shrink-0" />
-                      <span>{item.area} п.м</span>
+                      <span>{item.area} Рї.Рј</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Calendar className="w-3.5 h-3.5 flex-shrink-0" />
-                      <span>{item.days} дней</span>
+                      <span>{item.days} РґРЅРµР№</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between pt-3 border-t">
                     <span className="font-semibold text-primary">
-                      {item.priceFrom.toLocaleString("ru")}–{item.priceTo.toLocaleString("ru")} BYN
+                      {item.priceFrom.toLocaleString("ru")}вЂ“{item.priceTo.toLocaleString("ru")} BYN
                     </span>
-                    <span className="text-xs text-muted-foreground">Смотреть →</span>
+                    <span className="text-xs text-muted-foreground">РЎРјРѕС‚СЂРµС‚СЊ в†’</span>
                   </div>
                 </CardContent>
               </Card>
@@ -75,9 +75,9 @@ export function PortfolioPage() {
         ))}
       </div>
       <div className="mt-16 text-center">
-        <p className="text-muted-foreground mb-6">Хотите похожий результат? Рассчитаем стоимость под вашу планировку.</p>
+        <p className="text-muted-foreground mb-6">РҐРѕС‚РёС‚Рµ РїРѕС…РѕР¶РёР№ СЂРµР·СѓР»СЊС‚Р°С‚? Р Р°СЃСЃС‡РёС‚Р°РµРј СЃС‚РѕРёРјРѕСЃС‚СЊ РїРѕРґ РІР°С€Сѓ РїР»Р°РЅРёСЂРѕРІРєСѓ.</p>
         <Button size="lg" asChild data-testid="btn-portfolio-cta">
-          <Link href="/contacts">Получить расчёт стоимости</Link>
+          <Link href="/contacts">РџРѕР»СѓС‡РёС‚СЊ СЂР°СЃС‡С‘С‚ СЃС‚РѕРёРјРѕСЃС‚Рё</Link>
         </Button>
       </div>
     </div>
@@ -91,8 +91,8 @@ export function PortfolioItemPage() {
   if (!item) {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
-        <h1 className="text-3xl font-bold font-serif mb-4">Проект не найден</h1>
-        <Button asChild><Link href="/portfolio">К портфолио</Link></Button>
+        <h1 className="text-3xl font-bold font-serif mb-4">РџСЂРѕРµРєС‚ РЅРµ РЅР°Р№РґРµРЅ</h1>
+        <Button asChild><Link href="/portfolio">Рљ РїРѕСЂС‚С„РѕР»РёРѕ</Link></Button>
       </div>
     );
   }
@@ -100,13 +100,13 @@ export function PortfolioItemPage() {
   return (
     <div className="container mx-auto px-4 py-12">
       <Breadcrumb items={[
-        { label: "Главная", href: "/" },
-        { label: "Портфолио", href: "/portfolio" },
+        { label: "Р“Р»Р°РІРЅР°СЏ", href: "/" },
+        { label: "РџРѕСЂС‚С„РѕР»РёРѕ", href: "/portfolio" },
         { label: item.title },
       ]} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
         <Link href="/portfolio" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6 transition-colors">
-          <ArrowLeft className="w-4 h-4" /> Все проекты
+          <ArrowLeft className="w-4 h-4" /> Р’СЃРµ РїСЂРѕРµРєС‚С‹
         </Link>
         <h1 className="text-3xl md:text-4xl font-bold font-serif mb-6">{item.title}</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -120,46 +120,46 @@ export function PortfolioItemPage() {
           </div>
           <div className="space-y-6">
             <div className="bg-card border rounded-2xl p-6">
-              <h3 className="font-bold font-serif text-lg mb-4">О проекте</h3>
+              <h3 className="font-bold font-serif text-lg mb-4">Рћ РїСЂРѕРµРєС‚Рµ</h3>
               <dl className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Город</dt>
+                  <dt className="text-muted-foreground">Р“РѕСЂРѕРґ</dt>
                   <dd className="font-medium">{item.city}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Длина</dt>
-                  <dd className="font-medium">{item.area} п.м</dd>
+                  <dt className="text-muted-foreground">Р”Р»РёРЅР°</dt>
+                  <dd className="font-medium">{item.area} Рї.Рј</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Стиль</dt>
+                  <dt className="text-muted-foreground">РЎС‚РёР»СЊ</dt>
                   <dd className="font-medium">{item.style}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Материал</dt>
+                  <dt className="text-muted-foreground">РњР°С‚РµСЂРёР°Р»</dt>
                   <dd className="font-medium">{item.material}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-muted-foreground">Срок</dt>
-                  <dd className="font-medium">{item.days} дней</dd>
+                  <dt className="text-muted-foreground">РЎСЂРѕРє</dt>
+                  <dd className="font-medium">{item.days} РґРЅРµР№</dd>
                 </div>
                 <div className="flex justify-between border-t pt-3">
-                  <dt className="text-muted-foreground">Стоимость</dt>
-                  <dd className="font-bold text-primary">{item.priceFrom.toLocaleString("ru")}–{item.priceTo.toLocaleString("ru")} BYN</dd>
+                  <dt className="text-muted-foreground">РЎС‚РѕРёРјРѕСЃС‚СЊ</dt>
+                  <dd className="font-bold text-primary">{item.priceFrom.toLocaleString("ru")}вЂ“{item.priceTo.toLocaleString("ru")} BYN</dd>
                 </div>
               </dl>
             </div>
             <Button className="w-full" size="lg" data-testid="btn-case-cta">
-              Хочу такую же кухню
+              РҐРѕС‡Сѓ С‚Р°РєСѓСЋ Р¶Рµ РєСѓС…РЅСЋ
             </Button>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div>
-            <h2 className="text-xl font-bold font-serif mb-3">Задача</h2>
+            <h2 className="text-xl font-bold font-serif mb-3">Р—Р°РґР°С‡Р°</h2>
             <p className="text-muted-foreground">{item.task}</p>
           </div>
           <div>
-            <h2 className="text-xl font-bold font-serif mb-3">Решение</h2>
+            <h2 className="text-xl font-bold font-serif mb-3">Р РµС€РµРЅРёРµ</h2>
             <p className="text-muted-foreground">{item.solution}</p>
           </div>
         </div>
@@ -167,3 +167,6 @@ export function PortfolioItemPage() {
     </div>
   );
 }
+
+export default PortfolioPage;
+

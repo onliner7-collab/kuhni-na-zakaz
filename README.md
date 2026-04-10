@@ -1,73 +1,50 @@
-# Кухни на заказ — коммерческий SEO-сайт
+# kuhni-na-zakaz
 
-## О проекте
+Коммерческий SEO-сайт и админ-панель для проекта кухонь на заказ.
 
-Коммерческий SEO-ориентированный сайт по продаже кухонь на заказ в Минске и Минской области. Цель — генерация заявок с органического трафика, карт и прямых заходов.
+## Stack
 
-## Цели
+- Next.js 15 App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Prisma + PostgreSQL
+- pnpm workspaces
 
-- Получать заявки из органического поиска и локального SEO
-- Работать на мобильных и десктопных устройствах
-- Иметь сильную конверсионную структуру
-- Быть SEO-готовым под Google и Яндекс
-- Масштабироваться на новые города без переработки архитектуры
+## Main app
 
-## Технический стек
+- `artifacts/kuhni-na-zakaz` - сайт и админка
+- `project-docs` - документация
+- `deploy` - production templates
 
-- **Frontend**: React + Vite + TypeScript
-- **Стилизация**: Tailwind CSS
-- **Роутинг**: Wouter
-- **Анимации**: Framer Motion
-- **Формы**: React Hook Form + Zod
-- **Монорепо**: pnpm workspaces
-
-## Структура проекта
-
-```
-artifacts/kuhni-na-zakaz/   — основной фронтенд сайта
-artifacts/api-server/       — API сервер (Express)
-lib/db/                     — схема базы данных (Drizzle + PostgreSQL)
-project-docs/               — проектная документация
-```
-
-## Запуск
+## Local run
 
 ```bash
 pnpm install
-pnpm --filter @workspace/kuhni-na-zakaz run dev
+cd artifacts/kuhni-na-zakaz
+pnpm run dev
 ```
 
-## Обязательно к прочтению перед кодом
+Локальный dev-сервер поднимается на `http://localhost:3001`.
 
-Вся документация в папке `project-docs/`. Порядок чтения:
-1. PROJECT_OVERVIEW.md
-2. TECHNICAL_SPEC.md
-3. AI_RULES.md
-4. CONTENT_RULES.md
-5. SEO_STRATEGY.md
-6. UI_UX_GUIDE.md
-7. ADMIN_PANEL_SPEC.md
-8. ROUTES_MAP.md
+## Environment
 
-**Правило: перед написанием любого кода обязательно прочитать документацию.**
+Создавайте локальный `.env` на основе `artifacts/kuhni-na-zakaz/.env.example`.
 
-## GitHub
+Минимально нужны:
 
-- Ветка `main` — продакшн
-- Ветка `dev` — разработка
-- Push по команде пользователя
+- `DATABASE_URL`
+- `SESSION_SECRET`
+- `NEXT_PUBLIC_SITE_URL`
 
-## Деплой
+## Production prep docs
 
-См. `project-docs/DEPLOYMENT.md`
+- `project-docs/GIT_AND_PROD_PREP.md`
+- `project-docs/RELEASE_CHECKLIST.md`
+- `project-docs/DEPLOYMENT.md`
 
-## Окружение
+## Git
 
-Создайте `.env` на основе `.env.example`:
-```
-VITE_SITE_URL=https://yourdomain.by
-VITE_PHONE=+375291234567
-VITE_EMAIL=info@kuhni.by
-VITE_TELEGRAM_BOT_TOKEN=
-VITE_TELEGRAM_CHAT_ID=
-```
+- `origin`: `https://github.com/onliner7-collab/kuhni-na-zakaz.git`
+- `main` - production branch
+- `dev` - integration branch

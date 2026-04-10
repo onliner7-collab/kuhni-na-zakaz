@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import type { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 const SaveSchema = z.object({
@@ -29,11 +30,15 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const data = SaveSchema.parse(body);
+    const createData: Prisma.SavedConfigUncheckedCreateInput = {
+      ...data,
+      answers: data.answers as Prisma.InputJsonValue,
+    };
     const config = await prisma.savedConfig.upsert({
       where: { sessionId: data.sessionId },
-      create: data,
+      create: createData,
       update: {
-        answers: data.answers,
+        answers: data.answers as Prisma.InputJsonValue,
         tags: data.tags,
         styleSlug: data.styleSlug,
         materialSlug: data.materialSlug,

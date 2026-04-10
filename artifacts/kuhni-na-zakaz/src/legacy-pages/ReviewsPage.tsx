@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -49,20 +49,20 @@ export function ReviewsPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <Breadcrumb items={[{ label: "Главная", href: "/" }, { label: "Отзывы" }]} />
+      <Breadcrumb items={[{ label: "Р“Р»Р°РІРЅР°СЏ", href: "/" }, { label: "РћС‚Р·С‹РІС‹" }]} />
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">Отзывы клиентов</h1>
+        <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">РћС‚Р·С‹РІС‹ РєР»РёРµРЅС‚РѕРІ</h1>
         <p className="text-muted-foreground text-lg mb-8 max-w-2xl">
-          Только реальные отзывы от людей, которые заказали у нас кухню.
+          РўРѕР»СЊРєРѕ СЂРµР°Р»СЊРЅС‹Рµ РѕС‚Р·С‹РІС‹ РѕС‚ Р»СЋРґРµР№, РєРѕС‚РѕСЂС‹Рµ Р·Р°РєР°Р·Р°Р»Рё Сѓ РЅР°СЃ РєСѓС…РЅСЋ.
         </p>
       </motion.div>
 
-      {/* Общий рейтинг */}
+      {/* РћР±С‰РёР№ СЂРµР№С‚РёРЅРі */}
       <div className="flex items-center gap-6 mb-12 p-6 bg-secondary/30 rounded-2xl w-fit">
         <div className="text-center">
           <div className="text-5xl font-bold text-primary mb-1">{avgRating}</div>
           <StarRating rating={5} />
-          <p className="text-xs text-muted-foreground mt-1">{REVIEWS.length} отзывов</p>
+          <p className="text-xs text-muted-foreground mt-1">{REVIEWS.length} РѕС‚Р·С‹РІРѕРІ</p>
         </div>
         <div className="h-16 w-px bg-border" />
         <div className="space-y-1">
@@ -91,9 +91,9 @@ export function ReviewsPage() {
                   <div>
                     <div className="flex items-center gap-2">
                       <p className="font-semibold">{review.name}</p>
-                      <CheckCircle className="w-4 h-4 text-primary" title="Верифицированный клиент" />
+                      <CheckCircle className="w-4 h-4 text-primary" title="Р’РµСЂРёС„РёС†РёСЂРѕРІР°РЅРЅС‹Р№ РєР»РёРµРЅС‚" />
                     </div>
-                    <p className="text-sm text-muted-foreground">{review.city} · {review.date}</p>
+                    <p className="text-sm text-muted-foreground">{review.city} В· {review.date}</p>
                   </div>
                   <StarRating rating={review.rating} />
                 </div>
@@ -104,19 +104,19 @@ export function ReviewsPage() {
         ))}
       </div>
 
-      {/* Форма отзыва */}
+      {/* Р¤РѕСЂРјР° РѕС‚Р·С‹РІР° */}
       <div className="max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold font-serif mb-6 text-center">Оставить отзыв</h2>
+        <h2 className="text-2xl font-bold font-serif mb-6 text-center">РћСЃС‚Р°РІРёС‚СЊ РѕС‚Р·С‹РІ</h2>
         {submitted ? (
           <div className="text-center py-8">
             <CheckCircle className="w-12 h-12 text-primary mx-auto mb-3" />
-            <p className="font-semibold">Спасибо за отзыв!</p>
-            <p className="text-sm text-muted-foreground">Он появится после проверки модератором.</p>
+            <p className="font-semibold">РЎРїР°СЃРёР±Рѕ Р·Р° РѕС‚Р·С‹РІ!</p>
+            <p className="text-sm text-muted-foreground">РћРЅ РїРѕСЏРІРёС‚СЃСЏ РїРѕСЃР»Рµ РїСЂРѕРІРµСЂРєРё РјРѕРґРµСЂР°С‚РѕСЂРѕРј.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-sm font-medium mb-1 block">Ваша оценка</label>
+              <label className="text-sm font-medium mb-1 block">Р’Р°С€Р° РѕС†РµРЅРєР°</label>
               <div className="flex gap-1">
                 {[1, 2, 3, 4, 5].map(r => (
                   <button
@@ -132,18 +132,18 @@ export function ReviewsPage() {
               </div>
             </div>
             <div>
-              <label className="text-sm font-medium mb-1 block">Имя</label>
+              <label className="text-sm font-medium mb-1 block">РРјСЏ</label>
               <input
                 required
                 value={name}
                 onChange={e => setName(e.target.value)}
-                placeholder="Иван"
+                placeholder="РРІР°РЅ"
                 className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                 data-testid="input-review-name"
               />
             </div>
             <div>
-              <label className="text-sm font-medium mb-1 block">Телефон (для верификации)</label>
+              <label className="text-sm font-medium mb-1 block">РўРµР»РµС„РѕРЅ (РґР»СЏ РІРµСЂРёС„РёРєР°С†РёРё)</label>
               <input
                 required
                 type="tel"
@@ -155,20 +155,20 @@ export function ReviewsPage() {
               />
             </div>
             <div>
-              <label className="text-sm font-medium mb-1 block">Ваш отзыв</label>
+              <label className="text-sm font-medium mb-1 block">Р’Р°С€ РѕС‚Р·С‹РІ</label>
               <textarea
                 required
                 rows={4}
                 value={text}
                 onChange={e => setText(e.target.value)}
-                placeholder="Расскажите о вашем опыте..."
+                placeholder="Р Р°СЃСЃРєР°Р¶РёС‚Рµ Рѕ РІР°С€РµРј РѕРїС‹С‚Рµ..."
                 className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                 data-testid="textarea-review-text"
               />
             </div>
-            <p className="text-xs text-muted-foreground">Отзыв будет опубликован после проверки модератором</p>
+            <p className="text-xs text-muted-foreground">РћС‚Р·С‹РІ Р±СѓРґРµС‚ РѕРїСѓР±Р»РёРєРѕРІР°РЅ РїРѕСЃР»Рµ РїСЂРѕРІРµСЂРєРё РјРѕРґРµСЂР°С‚РѕСЂРѕРј</p>
             <Button type="submit" className="w-full" size="lg" data-testid="btn-review-submit">
-              Отправить отзыв
+              РћС‚РїСЂР°РІРёС‚СЊ РѕС‚Р·С‹РІ
             </Button>
           </form>
         )}
@@ -176,3 +176,6 @@ export function ReviewsPage() {
     </div>
   );
 }
+
+export default ReviewsPage;
+

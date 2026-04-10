@@ -42,10 +42,26 @@ async function main() {
   ];
 
   for (const m of modules) {
+    const moduleTypeMap: Record<string, string> = {
+      DRAWER_UNIT: "DRAWER",
+      SINK_MODULE: "SINK",
+      COOKTOP_MODULE: "LOWER",
+      OVEN_MODULE: "LOWER",
+      OPEN_SHELF: "UPPER",
+      FRIDGE_MODULE: "TALL",
+      CORNER_LOWER: "CORNER",
+      CORNER_UPPER: "CORNER",
+      ISLAND: "LOWER",
+    };
+    const normalized = {
+      ...m,
+      moduleType: moduleTypeMap[m.moduleType] ?? m.moduleType,
+      tags: [m.slug, (moduleTypeMap[m.moduleType] ?? m.moduleType).toLowerCase()],
+    };
     await prisma.kitchenModule.upsert({
-      where: { slug: m.slug },
-      update: m,
-      create: m,
+      where: { slug: normalized.slug },
+      update: normalized,
+      create: normalized,
     });
   }
   console.log(`  ✅ ${modules.length} modules`);
@@ -152,10 +168,11 @@ async function main() {
   ];
 
   for (const m of mechanisms) {
+    const { loadKg: _loadKg, ...normalized } = m as typeof m & { loadKg?: number };
     await prisma.kitchenMechanism.upsert({
-      where: { slug: m.slug },
-      update: m,
-      create: m,
+      where: { slug: normalized.slug },
+      update: normalized,
+      create: normalized,
     });
   }
   console.log(`  ✅ ${mechanisms.length} mechanisms`);
@@ -175,10 +192,12 @@ async function main() {
   ];
 
   for (const a of appliances) {
+    const { price, ...rest } = a as typeof a & { price: number };
+    const normalized = { ...rest, priceBase: price };
     await prisma.kitchenAppliance.upsert({
-      where: { slug: a.slug },
-      update: a,
-      create: a,
+      where: { slug: normalized.slug },
+      update: normalized,
+      create: normalized,
     });
   }
   console.log(`  ✅ ${appliances.length} appliances`);
@@ -262,10 +281,24 @@ async function main() {
   ];
 
   for (const t of templates) {
+    const layoutTypeMap: Record<string, string> = {
+      LINEAR: "STRAIGHT",
+      L_SHAPED: "CORNER",
+      U_SHAPED: "U_SHAPE",
+    };
+    const normalized = {
+      slug: t.slug,
+      name: t.name,
+      layoutType: layoutTypeMap[t.layoutType] ?? t.layoutType,
+      description: t.description,
+      minWidthCm: t.minRoomWidthCm,
+      modulesConfig: t.modulesConfig as object[],
+      sortOrder: t.sortOrder,
+    };
     await prisma.kitchenTemplate.upsert({
-      where: { slug: t.slug },
-      update: { ...t, modulesConfig: t.modulesConfig as object[] },
-      create: { ...t, modulesConfig: t.modulesConfig as object[] },
+      where: { slug: normalized.slug },
+      update: normalized,
+      create: normalized,
     });
   }
   console.log(`  ✅ ${templates.length} templates`);
@@ -279,11 +312,8 @@ async function main() {
       defaultRoomWidthCm: 400,
       defaultRoomDepthCm: 300,
       defaultRoomHeightCm: 270,
-      minRoomWidthCm: 150,
-      minRoomDepthCm: 120,
-      installationPct: 15,
-      shareTextTemplate: "Посмотрите мой проект кухни на заказ! Общая стоимость: {price} ₽",
-      pdfBrandingText: "Кухни на заказ — индивидуальное производство",
+                        shareTextTemplate: "Посмотрите мой проект кухни на заказ! Общая стоимость: {price} ₽",
+      exportBrandingText: "Кухни на заказ — индивидуальное производство",
       isEnabled: true,
     },
   });
@@ -298,7 +328,7 @@ async function main() {
       targetEntity: "appliance",
       targetSlug: "hood-elica-60",
       message: "К варочной панели рекомендуется вытяжка",
-      isActive: true,
+      isEnabled: true,
     },
     {
       ruleType: "WARNING" as const,
@@ -307,7 +337,7 @@ async function main() {
       targetEntity: "module",
       targetSlug: "corner-lower-90",
       message: "Остров и угловой модуль могут конфликтовать в небольших помещениях",
-      isActive: true,
+      isEnabled: true,
     },
   ];
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
+import type { Prisma } from "@prisma/client";
 
 const saveSchema = z.object({
   id: z.number().optional(),
@@ -20,16 +21,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Неверный формат", details: parsed.error.flatten() }, { status: 400 });
     }
     const { id, ...data } = parsed.data;
+    const payload: Prisma.VisualProjectUncheckedCreateInput = {
+      ...data,
+      roomConfig: data.roomConfig as Prisma.InputJsonValue,
+      modulePlacement: data.modulePlacement as Prisma.InputJsonValue,
+      materialsConfig: data.materialsConfig as Prisma.InputJsonValue,
+      isDraft: true,
+    };
 
     let project;
     if (id) {
       project = await prisma.visualProject.update({
         where: { id },
-        data: { ...data, isDraft: true },
+        data: payload,
       });
     } else {
       project = await prisma.visualProject.create({
-        data: { ...data, isDraft: true },
+        data: payload,
       });
     }
 
