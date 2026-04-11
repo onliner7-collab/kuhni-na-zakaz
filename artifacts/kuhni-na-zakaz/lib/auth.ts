@@ -87,7 +87,9 @@ export const COOKIE_CONFIG = {
   name: COOKIE_NAME,
   options: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure:
+      process.env.NODE_ENV === "production" &&
+      process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://") === true,
     sameSite: "lax" as const,
     path: "/",
     maxAge: 60 * 60 * 8,
