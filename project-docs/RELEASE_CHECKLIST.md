@@ -36,3 +36,4 @@
 - Verify robots.txt
 - Verify canonical URLs
 - Verify title and description on priority pages
+- Add `GOOGLE_SITE_VERIFICATION` and `YANDEX_VERIFICATION` to production `.env` after consoles are created

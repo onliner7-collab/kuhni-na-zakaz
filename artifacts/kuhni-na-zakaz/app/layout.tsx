@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import "./globals.css";
-import { Header } from "@/components/layout/Header";
+
+import { prisma } from "@/lib/db";
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { MobileCTA } from "@/components/layout/MobileCTA";
 import { Toaster } from "@/components/ui/toaster";
-import { prisma } from "@/lib/db";
+
+import "./globals.css";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by";
 
 export const metadata: Metadata = {
   title: {
@@ -13,20 +17,44 @@ export const metadata: Metadata = {
     template: "%s | КухниBY",
   },
   description:
-    "Проектируем, изготавливаем и устанавливаем кухни под заказ по всей Беларуси. Собственное производство. Гарантия 5 лет. Замер и 3D-проект бесплатно.",
-  keywords: ["кухни на заказ", "кухни на заказ Беларусь", "кухни под заказ", "кухни Минск", "кухни Минская область"],
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by"
-  ),
+    "Проектируем, изготавливаем и устанавливаем кухни на заказ по всей Беларуси. Собственное производство. Гарантия 5 лет. Замер и 3D-проект бесплатно.",
+  keywords: [
+    "кухни на заказ",
+    "кухни на заказ Беларусь",
+    "кухни под заказ",
+    "кухни Минск",
+    "кухни Минская область",
+  ],
+  metadataBase: new URL(siteUrl),
   openGraph: {
     type: "website",
     locale: "ru_BY",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by",
+    url: siteUrl,
     siteName: "КухниBY",
+    title: "Кухни на заказ по Беларуси | КухниBY",
+    description:
+      "Проектируем, изготавливаем и устанавливаем кухни на заказ по всей Беларуси. Замер и 3D-проект бесплатно.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Кухни на заказ по Беларуси | КухниBY",
+    description:
+      "Проектируем, изготавливаем и устанавливаем кухни на заказ по всей Беларуси. Замер и 3D-проект бесплатно.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    yandex: process.env.YANDEX_VERIFICATION,
   },
 };
 
@@ -41,7 +69,9 @@ export default async function RootLayout({
 
   const siteSettings =
     !isAdmin && process.env.DATABASE_URL
-      ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
+      ? await prisma.siteSettings
+          .findFirst({ where: { id: 1 } })
+          .catch(() => null)
       : null;
 
   return (
@@ -56,6 +86,23 @@ export default async function RootLayout({
         {isAdmin ? children : <main>{children}</main>}
         {!isAdmin && <Footer />}
         {!isAdmin && <MobileCTA />}
+        {!isAdmin && (
+          <script
+            type="application/ld+json"
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: siteSettings?.siteName || "КухниBY",
+                url: siteUrl,
+                telephone: siteSettings?.phone || "+375291234567",
+                email: siteSettings?.email || "info@kuhniby.by",
+                address: siteSettings?.address || "Минск, Беларусь",
+              }),
+            }}
+          />
+        )}
         <Toaster />
       </body>
     </html>

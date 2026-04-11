@@ -37,3 +37,4 @@ This guide is the baseline for the first production deploy to a Timeweb VPS with
 - `pnpm run start` now respects `PORT` and `HOST`, so the same app scripts work on Windows and Linux.
 - Keep the production `.env` only on the server.
 - Do not run local demo seeds on production unless we explicitly decide which content is safe to publish.
+- After the first deploy you can automate updates with `deploy/scripts/update-production.sh`.
