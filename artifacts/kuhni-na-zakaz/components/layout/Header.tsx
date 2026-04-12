@@ -200,6 +200,15 @@ export function Header({
             >
               <Phone className="h-4 w-4" />
             </a>
+            <Link
+              href="/admin/login"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground/75 transition-colors hover:bg-muted hover:text-foreground"
+              aria-label="Вход в админку"
+              data-testid="header-login-mobile"
+            >
+              <LogIn className="h-4 w-4" />
+              <span className="hidden min-[380px]:inline">Вход</span>
+            </Link>
             <button
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white transition-colors hover:bg-muted"
               onClick={() => setOpen((value) => !value)}
