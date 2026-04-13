@@ -53,7 +53,39 @@ export function BlogPostForm({ post }: Props) {
       .toLowerCase()
       .replace(/[а-яё]/g, (c) => {
         const map: Record<string, string> = {
-          а:"a",б:"b",в:"v",г:"g",д:"d",е:"e",ё:"yo",ж:"zh",з:"z",и:"i",й:"j",к:"k",л:"l",м:"m",н:"n",о:"o",п:"p",р:"r",с:"s",т:"t",у:"u",ф:"f",х:"kh",ц:"ts",ч:"ch",ш:"sh",щ:"shch",ъ:"",ы:"y",ь:"",э:"e",ю:"yu",я:"ya"
+          а: "a",
+          б: "b",
+          в: "v",
+          г: "g",
+          д: "d",
+          е: "e",
+          ё: "yo",
+          ж: "zh",
+          з: "z",
+          и: "i",
+          й: "j",
+          к: "k",
+          л: "l",
+          м: "m",
+          н: "n",
+          о: "o",
+          п: "p",
+          р: "r",
+          с: "s",
+          т: "t",
+          у: "u",
+          ф: "f",
+          х: "kh",
+          ц: "ts",
+          ч: "ch",
+          ш: "sh",
+          щ: "shch",
+          ъ: "",
+          ы: "y",
+          ь: "",
+          э: "e",
+          ю: "yu",
+          я: "ya",
         };
         return map[c] ?? c;
       })
@@ -65,17 +97,29 @@ export function BlogPostForm({ post }: Props) {
     e.preventDefault();
     setLoading(true);
     try {
-      const url = isEdit ? `/api/admin/blog/${post!.id}` : "/kapi/admin/blog";
+      const url = isEdit ? `/kapi/admin/blog/${post!.id}` : "/kapi/admin/blog";
       const method = isEdit ? "PUT" : "POST";
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
-          tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
-          relatedCaseSlugs: form.relatedCaseSlugs.split(",").map((t) => t.trim()).filter(Boolean),
-          relatedStyleSlugs: form.relatedStyleSlugs.split(",").map((t) => t.trim()).filter(Boolean),
-          relatedScenarioSlugs: form.relatedScenarioSlugs.split(",").map((t) => t.trim()).filter(Boolean),
+          tags: form.tags
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean),
+          relatedCaseSlugs: form.relatedCaseSlugs
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean),
+          relatedStyleSlugs: form.relatedStyleSlugs
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean),
+          relatedScenarioSlugs: form.relatedScenarioSlugs
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean),
           readTime: Number(form.readTime),
         }),
       });
@@ -94,11 +138,17 @@ export function BlogPostForm({ post }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} data-testid="blog-post-form" className="space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      data-testid="blog-post-form"
+      className="space-y-6"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-5 bg-white rounded-xl border border-border p-6">
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Заголовок *</label>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Заголовок *
+            </label>
             <input
               type="text"
               data-testid="input-title"
@@ -106,7 +156,11 @@ export function BlogPostForm({ post }: Props) {
               value={form.title}
               onChange={(e) => {
                 const title = e.target.value;
-                setForm((f) => ({ ...f, title, slug: f.slug || generateSlug(title) }));
+                setForm((f) => ({
+                  ...f,
+                  title,
+                  slug: f.slug || generateSlug(title),
+                }));
               }}
               className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background"
               placeholder="Как выбрать кухонный гарнитур"
@@ -114,7 +168,9 @@ export function BlogPostForm({ post }: Props) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">URL (slug) *</label>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              URL (slug) *
+            </label>
             <input
               type="text"
               data-testid="input-slug"
@@ -127,30 +183,40 @@ export function BlogPostForm({ post }: Props) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Краткое описание *</label>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Краткое описание *
+            </label>
             <textarea
               data-testid="input-excerpt"
               required
               rows={2}
               value={form.excerpt}
-              onChange={(e) => setForm((f) => ({ ...f, excerpt: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, excerpt: e.target.value }))
+              }
               className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background resize-none"
               placeholder="Краткое описание для карточки статьи"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1">Содержание *</label>
+            <label className="block text-sm font-medium text-foreground mb-1">
+              Содержание *
+            </label>
             <textarea
               data-testid="input-content"
               required
               rows={12}
               value={form.content}
-              onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, content: e.target.value }))
+              }
               className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background resize-y font-mono text-sm"
               placeholder="Поддерживается Markdown..."
             />
-            <p className="text-xs text-muted-foreground mt-1">Поддерживается Markdown-разметка</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Поддерживается Markdown-разметка
+            </p>
           </div>
         </div>
 
@@ -162,21 +228,29 @@ export function BlogPostForm({ post }: Props) {
                 type="checkbox"
                 data-testid="input-published"
                 checked={form.published}
-                onChange={(e) => setForm((f) => ({ ...f, published: e.target.checked }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, published: e.target.checked }))
+                }
                 className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
               />
-              <span className="text-sm text-foreground">Опубликовать статью</span>
+              <span className="text-sm text-foreground">
+                Опубликовать статью
+              </span>
             </label>
           </div>
 
           <div className="bg-white rounded-xl border border-border p-5 space-y-3">
             <h3 className="font-semibold text-foreground">Обложка статьи</h3>
-            <p className="text-xs text-muted-foreground">URL изображения — отображается на карточке и в шапке статьи</p>
+            <p className="text-xs text-muted-foreground">
+              URL изображения — отображается на карточке и в шапке статьи
+            </p>
             <input
               type="url"
               data-testid="input-cover-image"
               value={form.coverImage}
-              onChange={(e) => setForm((f) => ({ ...f, coverImage: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, coverImage: e.target.value }))
+              }
               className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background font-mono text-sm"
               placeholder="https://example.com/image.jpg"
             />
@@ -186,13 +260,17 @@ export function BlogPostForm({ post }: Props) {
                   src={form.coverImage}
                   alt="Превью обложки"
                   className="w-full h-full object-cover"
-                  onError={(e) => { (e.currentTarget.parentElement!.style.display = "none"); }}
+                  onError={(e) => {
+                    e.currentTarget.parentElement!.style.display = "none";
+                  }}
                 />
               </div>
             )}
             {!form.coverImage && (
               <div className="rounded-lg border-2 border-dashed border-border aspect-video flex items-center justify-center bg-muted/30">
-                <span className="text-xs text-muted-foreground">Превью появится после вставки URL</span>
+                <span className="text-xs text-muted-foreground">
+                  Превью появится после вставки URL
+                </span>
               </div>
             )}
           </div>
@@ -200,10 +278,14 @@ export function BlogPostForm({ post }: Props) {
           <div className="bg-white rounded-xl border border-border p-5 space-y-4">
             <h3 className="font-semibold text-foreground">Параметры</h3>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">Категория</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Категория
+              </label>
               <select
                 value={form.category}
-                onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, category: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background"
               >
                 <option value="">Без категории</option>
@@ -216,24 +298,37 @@ export function BlogPostForm({ post }: Props) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">Теги</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Теги
+              </label>
               <input
                 type="text"
                 value={form.tags}
-                onChange={(e) => setForm((f) => ({ ...f, tags: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, tags: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background"
                 placeholder="кухня, дизайн, советы"
               />
-              <p className="text-xs text-muted-foreground mt-1">Через запятую</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Через запятую
+              </p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">Время чтения (мин)</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Время чтения (мин)
+              </label>
               <input
                 type="number"
                 min={1}
                 max={60}
                 value={form.readTime}
-                onChange={(e) => setForm((f) => ({ ...f, readTime: parseInt(e.target.value) || 5 }))}
+                onChange={(e) =>
+                  setForm((f) => ({
+                    ...f,
+                    readTime: parseInt(e.target.value) || 5,
+                  }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background"
               />
             </div>
@@ -241,33 +336,51 @@ export function BlogPostForm({ post }: Props) {
 
           <div className="bg-white rounded-xl border border-border p-5 space-y-4">
             <h3 className="font-semibold text-foreground">Связанный контент</h3>
-            <p className="text-xs text-muted-foreground">Slug-и через запятую. Показываются в конце статьи блоками «Похожие проекты», «Стили», «Сценарии».</p>
+            <p className="text-xs text-muted-foreground">
+              Slug-и через запятую. Показываются в конце статьи блоками «Похожие
+              проекты», «Стили», «Сценарии».
+            </p>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">Кейсы портфолио</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Кейсы портфолио
+              </label>
               <input
                 type="text"
                 value={form.relatedCaseSlugs}
-                onChange={(e) => setForm((f) => ({ ...f, relatedCaseSlugs: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, relatedCaseSlugs: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background text-sm"
                 placeholder="slug-keisa-1, slug-keisa-2"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">Стили кухонь</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Стили кухонь
+              </label>
               <input
                 type="text"
                 value={form.relatedStyleSlugs}
-                onChange={(e) => setForm((f) => ({ ...f, relatedStyleSlugs: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, relatedStyleSlugs: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background text-sm"
                 placeholder="minimalizm, skandinavskie"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">Сценарии использования</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                Сценарии использования
+              </label>
               <input
                 type="text"
                 value={form.relatedScenarioSlugs}
-                onChange={(e) => setForm((f) => ({ ...f, relatedScenarioSlugs: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({
+                    ...f,
+                    relatedScenarioSlugs: e.target.value,
+                  }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background text-sm"
                 placeholder="malenkaya-kukhnya, semya-s-detmi"
               />
@@ -277,21 +390,29 @@ export function BlogPostForm({ post }: Props) {
           <div className="bg-white rounded-xl border border-border p-5 space-y-4">
             <h3 className="font-semibold text-foreground">SEO</h3>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">SEO-заголовок</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                SEO-заголовок
+              </label>
               <input
                 type="text"
                 value={form.seoTitle}
-                onChange={(e) => setForm((f) => ({ ...f, seoTitle: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, seoTitle: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background"
                 placeholder="Оставьте пустым для авто"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1">SEO-описание</label>
+              <label className="block text-sm font-medium text-foreground mb-1">
+                SEO-описание
+              </label>
               <textarea
                 rows={3}
                 value={form.seoDescription}
-                onChange={(e) => setForm((f) => ({ ...f, seoDescription: e.target.value }))}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, seoDescription: e.target.value }))
+                }
                 className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground bg-background resize-none"
                 placeholder="Оставьте пустым для авто"
               />

@@ -2,6 +2,7 @@ import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import Link from "next/link";
 import { Plus, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import { BlogPostDeleteButton } from "@/components/admin/BlogPostDeleteButton";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Блог — Админ" };
@@ -16,8 +17,12 @@ export default async function AdminBlogPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-serif font-bold text-foreground">Блог</h1>
-          <p className="text-muted-foreground mt-1">Управление статьями блога</p>
+          <h1 className="text-2xl font-serif font-bold text-foreground">
+            Блог
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            Управление статьями блога
+          </p>
         </div>
         <Link
           href="/admin/blog/new"
@@ -40,21 +45,40 @@ export default async function AdminBlogPage() {
             <table className="w-full text-sm min-w-[480px]">
               <thead className="bg-muted/30 border-b border-border">
                 <tr>
-                  <th className="text-left px-4 py-3 font-medium text-foreground">Заголовок</th>
-                  <th className="text-left px-4 py-3 font-medium text-foreground hidden sm:table-cell">Категория</th>
-                  <th className="text-left px-4 py-3 font-medium text-foreground">Статус</th>
-                  <th className="text-left px-4 py-3 font-medium text-foreground hidden sm:table-cell">Дата</th>
-                  <th className="text-right px-4 py-3 font-medium text-foreground">Действия</th>
+                  <th className="text-left px-4 py-3 font-medium text-foreground">
+                    Заголовок
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-foreground hidden sm:table-cell">
+                    Категория
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-foreground">
+                    Статус
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-foreground hidden sm:table-cell">
+                    Дата
+                  </th>
+                  <th className="text-right px-4 py-3 font-medium text-foreground">
+                    Действия
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {posts.map((post) => (
-                  <tr key={post.id} className="hover:bg-muted/20 transition-colors">
+                  <tr
+                    key={post.id}
+                    className="hover:bg-muted/20 transition-colors"
+                  >
                     <td className="px-4 py-3">
-                      <div className="font-medium text-foreground line-clamp-1">{post.title}</div>
-                      <div className="text-xs text-muted-foreground">{post.slug}</div>
+                      <div className="font-medium text-foreground line-clamp-1">
+                        {post.title}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {post.slug}
+                      </div>
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{post.category || "—"}</td>
+                    <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">
+                      {post.category || "—"}
+                    </td>
                     <td className="px-4 py-3">
                       {post.published ? (
                         <span className="flex items-center gap-1 text-green-700 bg-green-50 px-2 py-0.5 rounded-full text-xs w-fit">
@@ -79,20 +103,13 @@ export default async function AdminBlogPage() {
                         >
                           <Pencil className="w-4 h-4" />
                         </Link>
-                        <form action={`/api/admin/blog/${post.id}`} method="POST">
-                          <input type="hidden" name="_method" value="DELETE" />
-                          <button
-                            type="submit"
-                            data-testid={`btn-delete-post-${post.id}`}
-                            className="p-1.5 rounded hover:bg-red-50 text-red-500 transition-colors"
-                            title="Удалить"
-                            onClick={(e) => {
-                              if (!confirm("Удалить статью?")) e.preventDefault();
-                            }}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </form>
+                        <BlogPostDeleteButton
+                          postId={post.id}
+                          dataTestId={`btn-delete-post-${post.id}`}
+                          title="Удалить"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </BlogPostDeleteButton>
                       </div>
                     </td>
                   </tr>
