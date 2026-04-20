@@ -14,25 +14,41 @@ type NavLink = {
 };
 
 const PRIMARY_NAV_LINKS: NavLink[] = [
-  { href: "/catalog", label: "РљР°С‚Р°Р»РѕРі" },
-  { href: "/styles", label: "РЎС‚РёР»Рё" },
-  { href: "/portfolio", label: "РџРѕСЂС‚С„РѕР»РёРѕ" },
-  { href: "/kitchen-configurator", label: "РљРѕРЅС„РёРіСѓСЂР°С‚РѕСЂ" },
-  { href: "/calculator", label: "РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ" },
-  { href: "/prices", label: "Р¦РµРЅС‹" },
-  { href: "/blog", label: "Р‘Р»РѕРі" },
+  { href: "/catalog", label: "\u041a\u0430\u0442\u0430\u043b\u043e\u0433" },
+  { href: "/styles", label: "\u0421\u0442\u0438\u043b\u0438" },
+  { href: "/portfolio", label: "\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0438\u043e" },
+  { href: "/kitchen-configurator", label: "\u041a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0442\u043e\u0440" },
+  { href: "/calculator", label: "\u041a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440" },
+  { href: "/prices", label: "\u0426\u0435\u043d\u044b" },
+  { href: "/blog", label: "\u0411\u043b\u043e\u0433" },
 ];
 
 const SECONDARY_NAV_LINKS: NavLink[] = [
-  { href: "/about", label: "Рћ РЅР°СЃ" },
-  { href: "/contacts", label: "РљРѕРЅС‚Р°РєС‚С‹", exact: true },
+  { href: "/about", label: "\u041e \u043d\u0430\u0441" },
+  { href: "/contacts", label: "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b", exact: true },
 ];
 
 const MOBILE_EXTRA_LINKS: NavLink[] = [
-  { href: "/reviews", label: "РћС‚Р·С‹РІС‹" },
-  { href: "/delivery-installation", label: "Р”РѕСЃС‚Р°РІРєР° Рё РјРѕРЅС‚Р°Р¶" },
-  { href: "/warranty", label: "Р“Р°СЂР°РЅС‚РёСЏ" },
+  { href: "/reviews", label: "\u041e\u0442\u0437\u044b\u0432\u044b" },
+  { href: "/delivery-installation", label: "\u0414\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u0438 \u043c\u043e\u043d\u0442\u0430\u0436" },
+  { href: "/warranty", label: "\u0413\u0430\u0440\u0430\u043d\u0442\u0438\u044f" },
 ];
+
+const BRAND_NAME = "\u041a\u0443\u0445\u043d\u0438";
+const BRAND_LETTER = "\u041a";
+const BRAND_SUBTITLE =
+  "\u041a\u0443\u0445\u043d\u0438 \u043d\u0430 \u0437\u0430\u043a\u0430\u0437 \u043f\u043e \u0411\u0435\u043b\u0430\u0440\u0443\u0441\u0438 \u0441 \u0437\u0430\u043c\u0435\u0440\u043e\u043c \u0438 \u043f\u0440\u043e\u0435\u043a\u0442\u043e\u043c";
+const MAIN_NAV_ARIA = "\u041e\u0441\u043d\u043e\u0432\u043d\u0430\u044f \u043d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044f";
+const EXTRA_NAV_ARIA = "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u043d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044f";
+const MOBILE_NAV_ARIA = "\u041c\u043e\u0431\u0438\u043b\u044c\u043d\u0430\u044f \u043d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044f";
+const OPEN_MENU = "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e";
+const CLOSE_MENU = "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e";
+const LOGIN_LABEL = "\u0412\u0445\u043e\u0434";
+const LOGIN_ADMIN_LABEL = "\u0412\u0445\u043e\u0434 \u0432 \u0430\u0434\u043c\u0438\u043d\u043a\u0443";
+const CTA_LABEL = "\u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0439 \u0437\u0430\u043c\u0435\u0440";
+const CONSULTATION_LABEL = "\u041a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044f";
+const USEFUL_SECTIONS_LABEL = "\u041f\u043e\u043b\u0435\u0437\u043d\u044b\u0435 \u0440\u0430\u0437\u0434\u0435\u043b\u044b";
+const HOME_ARIA = "\u041a\u0443\u0445\u043d\u0438BY - \u0433\u043b\u0430\u0432\u043d\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430";
 
 function isActivePath(pathname: string, href: string, exact = false) {
   if (exact) {
@@ -132,7 +148,7 @@ export function Header({
           <Link
             href="/"
             className="group flex min-w-0 items-center gap-3"
-            aria-label="РљСѓС…РЅРёBY - РіР»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°"
+            aria-label={HOME_ARIA}
           >
             <div
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white shadow-lg shadow-primary/20 transition-transform duration-200 group-hover:scale-[1.03]"
@@ -140,15 +156,15 @@ export function Header({
                 background: "linear-gradient(135deg, #7C3AED, #4F46E5)",
               }}
             >
-              <span className="text-base font-black">Рљ</span>
+              <span className="text-base font-black">{BRAND_LETTER}</span>
             </div>
             <div className="min-w-0">
               <div className="text-xl font-black tracking-tight text-foreground sm:text-2xl">
-                РљСѓС…РЅРё
+                {BRAND_NAME}
                 <span className="text-gradient">BY</span>
               </div>
               <p className="hidden text-xs text-muted-foreground lg:block">
-                РљСѓС…РЅРё РЅР° Р·Р°РєР°Р· РїРѕ Р‘РµР»Р°СЂСѓСЃРё СЃ Р·Р°РјРµСЂРѕРј Рё РїСЂРѕРµРєС‚РѕРј
+                {BRAND_SUBTITLE}
               </p>
             </div>
           </Link>
@@ -164,7 +180,7 @@ export function Header({
               </span>
               <span className="min-w-0">
                 <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                  РљРѕРЅСЃСѓР»СЊС‚Р°С†РёСЏ
+                  {CONSULTATION_LABEL}
                 </span>
                 <span className="block whitespace-nowrap text-sm font-bold text-foreground xl:text-base">
                   {phoneDisplay}
@@ -178,7 +194,7 @@ export function Header({
               data-testid="header-login"
             >
               <LogIn className="h-4 w-4" />
-              Р’С…РѕРґ
+              {LOGIN_LABEL}
             </Link>
 
             <Link
@@ -186,7 +202,7 @@ export function Header({
               className="btn-primary rounded-2xl px-5 py-3 text-sm shadow-xl shadow-primary/20"
               data-testid="header-cta"
             >
-              Р‘РµСЃРїР»Р°С‚РЅС‹Р№ Р·Р°РјРµСЂ
+              {CTA_LABEL}
             </Link>
           </div>
 
@@ -202,18 +218,18 @@ export function Header({
             <Link
               href="/admin/login"
               className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground/75 transition-colors hover:bg-muted hover:text-foreground"
-              aria-label="Р’С…РѕРґ РІ Р°РґРјРёРЅРєСѓ"
+              aria-label={LOGIN_ADMIN_LABEL}
               data-testid="header-login-mobile"
             >
               <LogIn className="h-4 w-4" />
-              <span className="hidden min-[380px]:inline">Р’С…РѕРґ</span>
+              <span className="hidden min-[380px]:inline">{LOGIN_LABEL}</span>
             </Link>
             <button
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white transition-colors hover:bg-muted"
               onClick={() => setOpen((value) => !value)}
               aria-expanded={open}
               aria-controls="mobile-navigation"
-              aria-label={open ? "Р—Р°РєСЂС‹С‚СЊ РјРµРЅСЋ" : "РћС‚РєСЂС‹С‚СЊ РјРµРЅСЋ"}
+              aria-label={open ? CLOSE_MENU : OPEN_MENU}
               data-testid="mobile-menu-btn"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -224,7 +240,7 @@ export function Header({
         <div className="hidden border-t border-border/70 lg:block">
           <div className="flex min-h-14 items-center justify-between gap-6">
             <nav
-              aria-label="РћСЃРЅРѕРІРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ"
+              aria-label={MAIN_NAV_ARIA}
               className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto py-2"
             >
               {PRIMARY_NAV_LINKS.map((link) => (
@@ -233,7 +249,7 @@ export function Header({
             </nav>
 
             <nav
-              aria-label="Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ"
+              aria-label={EXTRA_NAV_ARIA}
               className="flex items-center gap-1 py-2"
             >
               {SECONDARY_NAV_LINKS.map((link) => (
@@ -250,7 +266,7 @@ export function Header({
           className="border-t border-border bg-white/95 shadow-[0_18px_44px_rgba(15,23,42,0.08)] backdrop-blur-xl lg:hidden"
         >
           <div className="container-site py-4">
-            <nav aria-label="РњРѕР±РёР»СЊРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ" className="grid gap-2">
+            <nav aria-label={MOBILE_NAV_ARIA} className="grid gap-2">
               {PRIMARY_NAV_LINKS.map((link) => (
                 <MobileNavLink key={link.href} {...link} pathname={pathname} />
               ))}
@@ -261,7 +277,7 @@ export function Header({
 
             <div className="mt-4 rounded-3xl border border-border bg-muted/40 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                РџРѕР»РµР·РЅС‹Рµ СЂР°Р·РґРµР»С‹
+                {USEFUL_SECTIONS_LABEL}
               </p>
               <div className="mt-3 grid gap-2">
                 {MOBILE_EXTRA_LINKS.map((link) => (
@@ -275,7 +291,7 @@ export function Header({
                 href="/contacts#form"
                 className="btn-primary justify-center rounded-2xl py-3.5 text-sm shadow-xl shadow-primary/20"
               >
-                Р‘РµСЃРїР»Р°С‚РЅС‹Р№ Р·Р°РјРµСЂ
+                {CTA_LABEL}
               </Link>
 
               <a
@@ -291,7 +307,7 @@ export function Header({
                 className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-white px-4 py-3.5 text-sm font-semibold text-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
               >
                 <LogIn className="h-4 w-4" />
-                Р’С…РѕРґ РІ Р°РґРјРёРЅРєСѓ
+                {LOGIN_ADMIN_LABEL}
               </Link>
             </div>
           </div>

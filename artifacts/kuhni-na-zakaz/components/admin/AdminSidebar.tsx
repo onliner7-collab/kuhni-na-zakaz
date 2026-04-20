@@ -14,49 +14,49 @@ import type { SessionPayload } from "@/lib/auth";
 
 const NAV_GROUPS = [
   {
-    label: "РљРѕРЅС‚РµРЅС‚",
+    label: "\u041a\u043e\u043d\u0442\u0435\u043d\u0442",
     items: [
-      { href: "/admin/dashboard", icon: LayoutDashboard, label: "РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/kitchens", icon: UtensilsCrossed, label: "РљСѓС…РЅРё", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/portfolio", icon: Images, label: "РџРѕСЂС‚С„РѕР»РёРѕ", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/reviews", icon: Star, label: "РћС‚Р·С‹РІС‹", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/blog", icon: BookOpen, label: "Р‘Р»РѕРі", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/prices", icon: DollarSign, label: "Р¦РµРЅС‹", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/configurator-visual", icon: ChefHat, label: "Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС„РёРіСѓСЂР°С‚РѕСЂ", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/dashboard", icon: LayoutDashboard, label: "\u041f\u0430\u043d\u0435\u043b\u044c \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/kitchens", icon: UtensilsCrossed, label: "\u041a\u0443\u0445\u043d\u0438", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/portfolio", icon: Images, label: "\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0438\u043e", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/reviews", icon: Star, label: "\u041e\u0442\u0437\u044b\u0432\u044b", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/blog", icon: BookOpen, label: "\u0411\u043b\u043e\u0433", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/prices", icon: DollarSign, label: "\u0426\u0435\u043d\u044b", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/configurator-visual", icon: ChefHat, label: "\u0412\u0438\u0437\u0443\u0430\u043b\u044c\u043d\u044b\u0439 \u043a\u043e\u043d\u0444\u0438\u0433\u0443\u0440\u0430\u0442\u043e\u0440", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/imports", icon: FileSpreadsheet, label: "Bulk import", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
   {
-    label: "РЎС‚СЂСѓРєС‚СѓСЂР°",
+    label: "\u0421\u0442\u0440\u0443\u043a\u0442\u0443\u0440\u0430",
     items: [
-      { href: "/admin/homepage", icon: Home, label: "Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/scenarios", icon: Route, label: "РЎС†РµРЅР°СЂРёРё РІС‹Р±РѕСЂР°", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/styles", icon: Palette, label: "РЎС‚РёР»Рё РєСѓС…РѕРЅСЊ", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/materials", icon: Layers, label: "РњР°С‚РµСЂРёР°Р»С‹", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/pages", icon: FileText, label: "РЎС‚СЂР°РЅРёС†С‹ СЃР°Р№С‚Р°", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/homepage", icon: Home, label: "\u0413\u043b\u0430\u0432\u043d\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/scenarios", icon: Route, label: "\u0421\u0446\u0435\u043d\u0430\u0440\u0438\u0438 \u0432\u044b\u0431\u043e\u0440\u0430", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/styles", icon: Palette, label: "\u0421\u0442\u0438\u043b\u0438 \u043a\u0443\u0445\u043e\u043d\u044c", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/materials", icon: Layers, label: "\u041c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/pages", icon: FileText, label: "\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u044b \u0441\u0430\u0439\u0442\u0430", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/faq", icon: HelpCircle, label: "FAQ", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/locations", icon: MapPin, label: "Р“РѕСЂРѕРґР° Рё СЂРµРіРёРѕРЅС‹", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/leads", icon: Globe, label: "Р—Р°СЏРІРєРё", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/locations", icon: MapPin, label: "\u0413\u043e\u0440\u043e\u0434\u0430 \u0438 \u0440\u0435\u0433\u0438\u043e\u043d\u044b", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/leads", icon: Globe, label: "\u0417\u0430\u044f\u0432\u043a\u0438", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
   {
-    label: "РЎРёСЃС‚РµРјР°",
+    label: "\u0421\u0438\u0441\u0442\u0435\u043c\u0430",
     items: [
-      { href: "/admin/contacts", icon: Phone, label: "РљРѕРЅС‚Р°РєС‚С‹ СЃР°Р№С‚Р°", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/notifications", icon: Bell, label: "РЈРІРµРґРѕРјР»РµРЅРёСЏ Telegram", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/settings", icon: Settings, label: "РќР°СЃС‚СЂРѕР№РєРё СЃР°Р№С‚Р°", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/users", icon: Users, label: "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/guest-access", icon: Key, label: "Р“РѕСЃС‚РµРІРѕР№ РґРѕСЃС‚СѓРї", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/activity-log", icon: Activity, label: "Р–СѓСЂРЅР°Р» РґРµР№СЃС‚РІРёР№", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/profile", icon: UserCircle, label: "РњРѕР№ РїСЂРѕС„РёР»СЊ", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/contacts", icon: Phone, label: "\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b \u0441\u0430\u0439\u0442\u0430", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/notifications", icon: Bell, label: "\u0423\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u044f Telegram", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/settings", icon: Settings, label: "\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u0441\u0430\u0439\u0442\u0430", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/users", icon: Users, label: "\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/guest-access", icon: Key, label: "\u0413\u043e\u0441\u0442\u0435\u0432\u043e\u0439 \u0434\u043e\u0441\u0442\u0443\u043f", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/activity-log", icon: Activity, label: "\u0416\u0443\u0440\u043d\u0430\u043b \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/profile", icon: UserCircle, label: "\u041c\u043e\u0439 \u043f\u0440\u043e\u0444\u0438\u043b\u044c", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
 ];
 
 const ROLE_LABELS: Record<string, { label: string; color: string }> = {
-  SUPER_ADMIN: { label: "РЎСѓРїРµСЂ РђРґРјРёРЅ", color: "text-violet-300" },
-  MANAGER: { label: "РњРµРЅРµРґР¶РµСЂ", color: "text-blue-300" },
-  GUEST: { label: "Р“РѕСЃС‚РµРІРѕР№ РґРѕСЃС‚СѓРї", color: "text-amber-300" },
+  SUPER_ADMIN: { label: "\u0421\u0443\u043f\u0435\u0440 \u0410\u0434\u043c\u0438\u043d", color: "text-violet-300" },
+  MANAGER: { label: "\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440", color: "text-blue-300" },
+  GUEST: { label: "\u0413\u043e\u0441\u0442\u0435\u0432\u043e\u0439 \u0434\u043e\u0441\u0442\u0443\u043f", color: "text-amber-300" },
 };
 
 const SIDEBAR_BG = "linear-gradient(180deg, #1a0533 0%, #0f1525 100%)";
@@ -64,7 +64,6 @@ const SIDEBAR_BG = "linear-gradient(180deg, #1a0533 0%, #0f1525 100%)";
 export function AdminSidebar({ session }: { session: SessionPayload }) {
   const pathname = usePathname();
   const router = useRouter();
-
   const [collapsed, setCollapsed] = useState(true);
 
   useLayoutEffect(() => {
@@ -100,10 +99,13 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
               className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
               style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
             >
-              <span className="text-white font-black text-xs">Рљ</span>
+              <span className="text-white font-black text-xs">\u041a</span>
             </div>
             <span className="font-black text-base text-white tracking-tight truncate">
-              РљСѓС…РЅРё<span style={{ background: "linear-gradient(135deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>BY</span>
+              \u041a\u0443\u0445\u043d\u0438
+              <span style={{ background: "linear-gradient(135deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                BY
+              </span>
             </span>
           </Link>
         )}
@@ -113,7 +115,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
               className="w-8 h-8 rounded-lg flex items-center justify-center"
               style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
             >
-              <span className="text-white font-black text-sm">Рљ</span>
+              <span className="text-white font-black text-sm">\u041a</span>
             </div>
           </Link>
         )}
@@ -121,7 +123,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
           <button
             onClick={() => setCollapsed(true)}
             className="text-white/40 hover:text-white p-1 rounded-lg hover:bg-white/8 transition-colors shrink-0 ml-1"
-            aria-label="РЎРІРµСЂРЅСѓС‚СЊ РјРµРЅСЋ"
+            aria-label="\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -139,8 +141,8 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
         <button
           onClick={() => setCollapsed(false)}
           className="mx-auto mt-3 mb-1 p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/8 transition-colors"
-          aria-label="Р Р°Р·РІРµСЂРЅСѓС‚СЊ РјРµРЅСЋ"
-          title="Р Р°Р·РІРµСЂРЅСѓС‚СЊ РјРµРЅСЋ"
+          aria-label="\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e"
+          title="\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e"
         >
           <ChevronLeft className="w-4 h-4 rotate-180" />
         </button>
@@ -191,10 +193,10 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
             collapsed && "justify-center px-2"
           )}
           data-testid="admin-logout"
-          title="Р’С‹Р№С‚Рё"
+          title="\u0412\u044b\u0439\u0442\u0438"
         >
           <LogOut className="w-4 h-4 shrink-0" />
-          {!collapsed && "Р’С‹Р№С‚Рё РёР· СЃРёСЃС‚РµРјС‹"}
+          {!collapsed && "\u0412\u044b\u0439\u0442\u0438 \u0438\u0437 \u0441\u0438\u0441\u0442\u0435\u043c\u044b"}
         </button>
         {!collapsed && (
           <Link
@@ -203,7 +205,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
             className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-xs text-white/30 hover:text-white/60 transition-all"
           >
             <Globe className="w-3.5 h-3.5 shrink-0" />
-            РћС‚РєСЂС‹С‚СЊ СЃР°Р№С‚
+            \u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0441\u0430\u0439\u0442
           </Link>
         )}
       </div>
