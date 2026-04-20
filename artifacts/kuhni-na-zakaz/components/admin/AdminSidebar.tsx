@@ -60,6 +60,13 @@ const ROLE_LABELS: Record<string, { label: string; color: string }> = {
 };
 
 const SIDEBAR_BG = "linear-gradient(180deg, #1a0533 0%, #0f1525 100%)";
+const BRAND_LETTER = "\u041a";
+const BRAND_NAME = "\u041a\u0443\u0445\u043d\u0438";
+const COLLAPSE_LABEL = "\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e";
+const EXPAND_LABEL = "\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e";
+const LOGOUT_LABEL = "\u0412\u044b\u0439\u0442\u0438";
+const LOGOUT_TEXT = "\u0412\u044b\u0439\u0442\u0438 \u0438\u0437 \u0441\u0438\u0441\u0442\u0435\u043c\u044b";
+const OPEN_SITE_LABEL = "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0441\u0430\u0439\u0442";
 
 export function AdminSidebar({ session }: { session: SessionPayload }) {
   const pathname = usePathname();
@@ -99,10 +106,10 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
               className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
               style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
             >
-              <span className="text-white font-black text-xs">\u041a</span>
+              <span className="text-white font-black text-xs">{BRAND_LETTER}</span>
             </div>
             <span className="font-black text-base text-white tracking-tight truncate">
-              \u041a\u0443\u0445\u043d\u0438
+              {BRAND_NAME}
               <span style={{ background: "linear-gradient(135deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 BY
               </span>
@@ -115,7 +122,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
               className="w-8 h-8 rounded-lg flex items-center justify-center"
               style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
             >
-              <span className="text-white font-black text-sm">\u041a</span>
+              <span className="text-white font-black text-sm">{BRAND_LETTER}</span>
             </div>
           </Link>
         )}
@@ -123,7 +130,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
           <button
             onClick={() => setCollapsed(true)}
             className="text-white/40 hover:text-white p-1 rounded-lg hover:bg-white/8 transition-colors shrink-0 ml-1"
-            aria-label="\u0421\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e"
+            aria-label={COLLAPSE_LABEL}
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -141,8 +148,8 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
         <button
           onClick={() => setCollapsed(false)}
           className="mx-auto mt-3 mb-1 p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/8 transition-colors"
-          aria-label="\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e"
-          title="\u0420\u0430\u0437\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043c\u0435\u043d\u044e"
+          aria-label={EXPAND_LABEL}
+          title={EXPAND_LABEL}
         >
           <ChevronLeft className="w-4 h-4 rotate-180" />
         </button>
@@ -193,10 +200,10 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
             collapsed && "justify-center px-2"
           )}
           data-testid="admin-logout"
-          title="\u0412\u044b\u0439\u0442\u0438"
+          title={LOGOUT_LABEL}
         >
           <LogOut className="w-4 h-4 shrink-0" />
-          {!collapsed && "\u0412\u044b\u0439\u0442\u0438 \u0438\u0437 \u0441\u0438\u0441\u0442\u0435\u043c\u044b"}
+          {!collapsed && LOGOUT_TEXT}
         </button>
         {!collapsed && (
           <Link
@@ -205,7 +212,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
             className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-xs text-white/30 hover:text-white/60 transition-all"
           >
             <Globe className="w-3.5 h-3.5 shrink-0" />
-            \u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0441\u0430\u0439\u0442
+            {OPEN_SITE_LABEL}
           </Link>
         )}
       </div>
