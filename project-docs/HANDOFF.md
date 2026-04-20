@@ -118,3 +118,15 @@
 3. Структура папок artifacts/kuhni-na-zakaz/src/
 4. Данные в lib/data.ts — основа контента
 5. Форма на главной (id="contact-form") — якорная ссылка
+
+
+---
+
+## 2026-04-12 Update (New Chat Bootstrap)
+
+Use these files first:
+- project-docs/NEW_CHAT_CONTEXT.md
+- project-docs/SERVER_RUNBOOK_2026-04-12.md
+- project-docs/GIT_PUSH_RUNBOOK_2026-04-12.md
+
+They contain current production/security status, deploy commands, git push flow, and next actions.

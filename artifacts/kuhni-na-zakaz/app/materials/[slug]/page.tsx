@@ -21,7 +21,10 @@ async function getRelatedData(m: Awaited<ReturnType<typeof getMaterial>>) {
         ? prisma.stylePage.findMany({ where: { slug: { in: m.relatedStyles }, published: true } })
         : Promise.resolve([]),
       m.relatedScenarioSlugs.length > 0
-        ? prisma.scenarioPage.findMany({ where: { slug: { in: m.relatedScenarioSlugs }, published: true } })
+        ? prisma.scenarioPage.findMany({
+            where: { slug: { in: m.relatedScenarioSlugs }, published: true },
+            select: { slug: true, icon: true, title: true, intro: true, seoDescription: true },
+          })
         : Promise.resolve([]),
       m.relatedCaseSlugs.length > 0
         ? prisma.portfolioCase.findMany({
@@ -32,6 +35,19 @@ async function getRelatedData(m: Awaited<ReturnType<typeof getMaterial>>) {
     ]);
     return { styles, scenarios, cases };
   } catch { return { styles: [], scenarios: [], cases: [] }; }
+}
+
+async function getOtherMaterials(currentSlug: string) {
+  try {
+    return await prisma.materialPage.findMany({
+      where: { published: true, slug: { not: currentSlug } },
+      orderBy: [{ order: "asc" }, { id: "asc" }],
+      take: 5,
+      select: { slug: true, title: true },
+    });
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -50,7 +66,10 @@ export default async function MaterialPage({ params }: Props) {
   const { slug } = await params;
   const m = await getMaterial(slug);
   if (!m) notFound();
-  const { styles, scenarios, cases } = await getRelatedData(m);
+  const [{ styles, scenarios, cases }, otherMaterials] = await Promise.all([
+    getRelatedData(m),
+    getOtherMaterials(slug),
+  ]);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -284,7 +303,7 @@ export default async function MaterialPage({ params }: Props) {
                           {sc.icon && <span className="text-2xl">{sc.icon}</span>}
                           <h3 className="font-semibold text-sm group-hover:text-primary transition-colors">{sc.title}</h3>
                         </div>
-                        <p className="text-xs text-muted-foreground line-clamp-2">{sc.intro || sc.description}</p>
+                        <p className="text-xs text-muted-foreground line-clamp-2">{sc.intro || sc.seoDescription}</p>
                       </Link>
                     ))}
                   </div>
@@ -323,26 +342,20 @@ export default async function MaterialPage({ params }: Props) {
                     </div>
                   )}
                 </div>
-
-                {/* Nav */}
-                <div className="card-base p-5">
-                  <h3 className="font-semibold text-sm mb-3">Другие материалы</h3>
-                  <div className="space-y-1">
-                    {[
-                      { slug: "mdf", title: "МДФ с плёнкой ПВХ" },
-                      { slug: "plastik", title: "Пластик HPL / акрил" },
-                      { slug: "emal", title: "Эмаль матовая / глянец" },
-                      { slug: "shpon", title: "Натуральный шпон" },
-                      { slug: "egger", title: "ЛДСП EGGER" },
-                    ].filter(l => l.slug !== slug).map(l => (
-                      <Link key={l.slug} href={`/materials/${l.slug}`}
-                        className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        {l.title}
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    ))}
+                {otherMaterials.length > 0 && (
+                  <div className="card-base p-5">
+                    <h3 className="font-semibold text-sm mb-3">Other materials</h3>
+                    <div className="space-y-1">
+                      {otherMaterials.map((item) => (
+                        <Link key={item.slug} href={`/materials/${item.slug}`}
+                          className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                          {item.title}
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

@@ -1,5 +1,21 @@
 # Handoff — КухниBY
 
+## Current docs
+
+- Bulk import v1 actual-state doc: `project-docs/BULK_IMPORT_V1.md`
+- Bulk import v1 final closure handoff: `project-docs/BULK_IMPORT_V1_FINAL_HANDOFF.md`
+- Bulk import v1 operational summary: `project-docs/BULK_IMPORT_V1_OPERATIONAL_SUMMARY_2026-04-20.md`
+- Post-import smoke runbook: `tests/smoke/README.md`
+
+## Bulk Import v1 Closure Snapshot
+
+- Status: closed and in operation.
+- Scope: `Kitchens`, `Styles`, `Materials`, `Scenarios`, `Portfolio`, `Locations`.
+- Out of scope: calculator/configurator import and all non-listed content areas.
+- Canonical template: `project-docs/templates/bulk-import-v1-template.xlsx`.
+- Canonical operator instruction: `project-docs/BULK_IMPORT_V1_OPERATOR_GUIDE_RU.md`.
+- Canonical post-import checks: `project-docs/BULK_IMPORT_V1_POST_IMPORT_CHECKLIST_RU.md` and `tests/smoke/README.md`.
+
 ## Project overview
 
 **КухниBY** — commercial kitchen sales website for Belarus.  

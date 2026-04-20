@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "node ./scripts/run-next.mjs start",
     "typecheck": "tsc --noEmit",
+    "smoke:post-import": "playwright test -c playwright.smoke.config.ts",
+    "smoke:post-import:headed": "playwright test -c playwright.smoke.config.ts --headed",
+    "bulk-import:audit-external-ids": "tsx scripts/audit-bulk-import-v1-external-ids.ts",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:seed-static": "tsx prisma/seed-static-pages.ts",
@@ -35,6 +38,7 @@
     "tailwind-merge": "^2.5.4",
     "three": "^0.170.0",
     "wouter": "^3.9.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.24.3"
   },
   "devDependencies": {
@@ -46,6 +50,7 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@types/three": "^0.170.0",
+    "@playwright/test": "^1.55.0",
     "postcss": "^8.5.6",
     "prisma": "^6.2.1",
     "tailwindcss": "^4.1.14",

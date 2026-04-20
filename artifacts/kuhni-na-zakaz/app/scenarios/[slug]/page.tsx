@@ -348,11 +348,7 @@ async function OtherScenariosSection({ currentSlug }: { currentSlug: string }) {
   } catch {}
 
   if (others.length === 0) {
-    others = [
-      { slug: "semya-s-detmi", icon: "👨‍👩‍👧‍👦", title: "Кухня для семьи с детьми" },
-      { slug: "malenkaya-kukhnya", icon: "📐", title: "Маленькая кухня" },
-      { slug: "lyublyu-gotovit", icon: "👨‍🍳", title: "Кухня для тех, кто любит готовить" },
-    ].filter((s) => s.slug !== currentSlug);
+    return null;
   }
 
   return (

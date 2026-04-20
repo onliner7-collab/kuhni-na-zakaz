@@ -38,3 +38,18 @@ This guide is the baseline for the first production deploy to a Timeweb VPS with
 - Keep the production `.env` only on the server.
 - Do not run local demo seeds on production unless we explicitly decide which content is safe to publish.
 - After the first deploy you can automate updates with `deploy/scripts/update-production.sh`.
+
+## DNS and SSL timing (root + www)
+
+If `www.__DOMAIN__` resolves earlier than `__DOMAIN__`, wait until both domains resolve to the same VPS IP before issuing a shared certificate.
+
+Quick checks:
+
+- `dig +short __DOMAIN__`
+- `dig +short www.__DOMAIN__`
+
+When both return the VPS IP, issue one certificate for both names:
+
+- `sudo certbot --nginx --cert-name __DOMAIN__ -d __DOMAIN__ -d www.__DOMAIN__`
+
+The nginx template in `deploy/nginx/kuhni-na-zakaz.conf` already keeps `www` as a redirect to the canonical root domain.

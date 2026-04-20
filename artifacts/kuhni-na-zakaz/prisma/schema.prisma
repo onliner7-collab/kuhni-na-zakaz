@@ -68,6 +68,7 @@ model ActivityLog {
 
 model Kitchen {
   id             Int      @id @default(autoincrement())
+  externalId     String?  @unique
   title          String
   slug           String   @unique
   description    String   @default("")
@@ -88,6 +89,7 @@ model Kitchen {
 
 model PortfolioCase {
   id              Int      @id @default(autoincrement())
+  externalId      String?  @unique
   title           String
   slug            String   @unique
   city            String
@@ -176,6 +178,7 @@ model FAQItem {
 
 model LocationPage {
   id              Int      @id @default(autoincrement())
+  externalId      String?   @unique
   city            String
   slug            String   @unique
   region          String   @default("")
@@ -272,6 +275,7 @@ model FavoriteCase {
 
 model StylePage {
   id                  Int      @id @default(autoincrement())
+  externalId          String?   @unique
   slug                String   @unique
   title               String
   headline            String   @default("")
@@ -299,6 +303,7 @@ model StylePage {
 
 model MaterialPage {
   id                  Int      @id @default(autoincrement())
+  externalId          String?   @unique
   slug                String   @unique
   title               String
   headline            String   @default("")
@@ -652,6 +657,7 @@ model KitchenConfiguratorSettings {
 
 model ScenarioPage {
   id              Int      @id @default(autoincrement())
+  externalId      String?   @unique
   slug            String   @unique
   icon            String   @default("🏠")
   badge           String   @default("")

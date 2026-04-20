@@ -10,16 +10,21 @@ export const metadata: Metadata = {
 };
 
 const budgetColor: Record<string, string> = {
-  "Экономный": "bg-green-100 text-green-700 border-green-200",
-  "Средний": "bg-blue-100 text-blue-700 border-blue-200",
+  Экономный: "bg-green-100 text-green-700 border-green-200",
+  Средний: "bg-blue-100 text-blue-700 border-blue-200",
   "Выше среднего": "bg-orange-100 text-orange-700 border-orange-200",
-  "Премиум": "bg-purple-100 text-purple-700 border-purple-200",
+  Премиум: "bg-purple-100 text-purple-700 border-purple-200",
 };
 
 async function getStyles() {
   try {
-    return await prisma.stylePage.findMany({ where: { published: true }, orderBy: [{ order: "asc" }, { id: "asc" }] });
-  } catch { return []; }
+    return await prisma.stylePage.findMany({
+      where: { published: true },
+      orderBy: [{ order: "asc" }, { id: "asc" }],
+    });
+  } catch {
+    return [];
+  }
 }
 
 export default async function StylesPage() {
@@ -44,7 +49,8 @@ export default async function StylesPage() {
       <div className="section-padding">
         <div className="container-site">
           <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-            <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
+            <Link href="/" className="hover:text-primary">Главная</Link>
+            <span>/</span>
             <span className="text-foreground">Стили кухонь</span>
           </nav>
 
@@ -89,16 +95,14 @@ export default async function StylesPage() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              {["Современные кухни", "Классические кухни", "Скандинавские кухни", "Минимализм", "Лофт"].map((t) => (
-                <div key={t} className="card-base p-5 text-center text-muted-foreground">
-                  <p className="font-medium">{t}</p>
-                </div>
-              ))}
+            <div className="mb-16 rounded-2xl border border-dashed border-border bg-muted/20 px-6 py-12 text-center">
+              <p className="text-lg font-semibold text-foreground">Стили пока не опубликованы</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Эта зона больше не подменяется статическим списком и ожидает данные из БД.
+              </p>
             </div>
           )}
 
-          {/* Help Section */}
           <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-2xl p-8 mb-16">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-2xl font-bold mb-3">Не можете определиться со стилем?</h2>
@@ -123,7 +127,6 @@ export default async function StylesPage() {
             </div>
           </div>
 
-          {/* CTA Form */}
           <div className="max-w-xl mx-auto">
             <h2 className="font-serif text-2xl font-bold text-center mb-2">Получить консультацию</h2>
             <p className="text-center text-muted-foreground mb-6">Расскажите о вашей кухне — ответим в течение часа</p>

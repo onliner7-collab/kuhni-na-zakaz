@@ -32,6 +32,9 @@ coverage/
 .turbo/
 .cache/
 .parcel-cache/
+.tmp/
+backups/
+test-results/
 
 # OS
 .DS_Store

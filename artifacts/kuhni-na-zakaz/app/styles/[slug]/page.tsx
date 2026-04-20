@@ -21,7 +21,10 @@ async function getRelatedData(s: Awaited<ReturnType<typeof getStyle>>) {
         ? prisma.materialPage.findMany({ where: { slug: { in: s.relatedMaterials }, published: true } })
         : Promise.resolve([]),
       s.relatedScenarioSlugs.length > 0
-        ? prisma.scenarioPage.findMany({ where: { slug: { in: s.relatedScenarioSlugs }, published: true } })
+        ? prisma.scenarioPage.findMany({
+            where: { slug: { in: s.relatedScenarioSlugs }, published: true },
+            select: { slug: true, icon: true, title: true, intro: true, seoDescription: true },
+          })
         : Promise.resolve([]),
       s.relatedCaseSlugs.length > 0
         ? prisma.portfolioCase.findMany({
@@ -32,6 +35,19 @@ async function getRelatedData(s: Awaited<ReturnType<typeof getStyle>>) {
     ]);
     return { materials, scenarios, cases };
   } catch { return { materials: [], scenarios: [], cases: [] }; }
+}
+
+async function getOtherStyles(currentSlug: string) {
+  try {
+    return await prisma.stylePage.findMany({
+      where: { published: true, slug: { not: currentSlug } },
+      orderBy: [{ order: "asc" }, { id: "asc" }],
+      take: 5,
+      select: { slug: true, title: true },
+    });
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -50,7 +66,10 @@ export default async function StylePage({ params }: Props) {
   const { slug } = await params;
   const s = await getStyle(slug);
   if (!s) notFound();
-  const { materials, scenarios, cases } = await getRelatedData(s);
+  const [{ materials, scenarios, cases }, otherStyles] = await Promise.all([
+    getRelatedData(s),
+    getOtherStyles(slug),
+  ]);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -294,7 +313,7 @@ export default async function StylePage({ params }: Props) {
                           {sc.icon && <span className="text-2xl">{sc.icon}</span>}
                           <h3 className="font-semibold text-sm group-hover:text-primary transition-colors">{sc.title}</h3>
                         </div>
-                        <p className="text-xs text-muted-foreground line-clamp-2">{sc.intro || sc.description}</p>
+                        <p className="text-xs text-muted-foreground line-clamp-2">{sc.intro || sc.seoDescription}</p>
                       </Link>
                     ))}
                   </div>
@@ -333,26 +352,20 @@ export default async function StylePage({ params }: Props) {
                     </div>
                   )}
                 </div>
-
-                {/* Nav */}
-                <div className="card-base p-5">
-                  <h3 className="font-semibold text-sm mb-3">Другие стили</h3>
-                  <div className="space-y-1">
-                    {[
-                      { slug: "sovremennye", title: "Современный" },
-                      { slug: "klassicheskie", title: "Классический" },
-                      { slug: "skandinavskie", title: "Скандинавский" },
-                      { slug: "minimalizm", title: "Минимализм" },
-                      { slug: "loft", title: "Лофт" },
-                    ].filter(l => l.slug !== slug).map(l => (
-                      <Link key={l.slug} href={`/styles/${l.slug}`}
-                        className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-                        {l.title}
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
-                    ))}
+                {otherStyles.length > 0 && (
+                  <div className="card-base p-5">
+                    <h3 className="font-semibold text-sm mb-3">Other styles</h3>
+                    <div className="space-y-1">
+                      {otherStyles.map((item) => (
+                        <Link key={item.slug} href={`/styles/${item.slug}`}
+                          className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+                          {item.title}
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

@@ -7,7 +7,7 @@ import {
   LayoutDashboard, UtensilsCrossed, Images, Star, FileText,
   BookOpen, MapPin, Settings, Users, Key, Activity, LogOut, ChevronLeft,
   DollarSign, Globe, Bell, Phone, Home, Route, Palette, Layers, UserCircle,
-  Sparkles, Bookmark, HelpCircle, ChefHat,
+  Sparkles, Bookmark, HelpCircle, ChefHat, FileSpreadsheet,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SessionPayload } from "@/lib/auth";
@@ -24,6 +24,7 @@ const NAV_GROUPS = [
       { href: "/admin/prices", icon: DollarSign, label: "Цены", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/configurator", icon: Sparkles, label: "Конфигуратор (квиз)", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/configurator-visual", icon: ChefHat, label: "Визуальный конфигуратор", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/imports", icon: FileSpreadsheet, label: "Bulk import", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
   {
