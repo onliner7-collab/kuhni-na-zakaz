@@ -623,3 +623,13 @@
 - Activity log for admin actions
 - SEO: sitemap.xml, robots.txt, JSON-LD, BreadcrumbList
 - All public pages: catalog, portfolio, reviews, blog, prices, contacts, warranty, etc.
+## [Unreleased] - 2026-04-20 (Kitchen selection quiz removal)
+
+### Changed
+- Public navigation now keeps only the visual configurator and calculator flows; the legacy kitchen selection quiz is no longer linked from the site or admin sidebar.
+- Personalization and sitemap cleanup removed stale quiz-specific state and URLs.
+
+### Removed
+- Legacy quiz pages: `/configure` and `/configure/result`.
+- Legacy quiz admin surfaces, API routes, saved-config endpoints, and supporting React components.
+- Residual admin references to the removed quiz in FAQ page options and lead source labels.

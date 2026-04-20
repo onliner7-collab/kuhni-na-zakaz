@@ -21,7 +21,6 @@ const PAGE_OPTIONS = [
   { value: "warranty", label: "Гарантия" },
   { value: "delivery", label: "Доставка и монтаж" },
   { value: "about", label: "О нас" },
-  { value: "configurator", label: "Конфигуратор" },
 ];
 
 function pageLabel(v: string) {

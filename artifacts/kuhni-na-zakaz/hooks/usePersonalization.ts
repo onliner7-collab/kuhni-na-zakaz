@@ -4,7 +4,6 @@ import { useEffect, useState, useCallback } from "react";
 
 const SESSION_KEY = "kuhniby_session_id";
 const FAVORITES_KEY = "kuhniby_favorites";
-const CONFIG_KEY = "kuhniby_saved_config";
 
 function getOrCreateSessionId(): string {
   if (typeof window === "undefined") return "";
@@ -16,20 +15,9 @@ function getOrCreateSessionId(): string {
   return sid;
 }
 
-export interface SavedConfigData {
-  answers: Record<string, string>;
-  tags: string[];
-  styleSlug: string;
-  materialSlug: string;
-  scenarioSlug: string;
-  budgetLevel: string;
-  label: string;
-}
-
 export function usePersonalization() {
   const [sessionId, setSessionId] = useState("");
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [savedConfig, setSavedConfig] = useState<SavedConfigData | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -39,11 +27,6 @@ export function usePersonalization() {
     try {
       const raw = localStorage.getItem(FAVORITES_KEY);
       if (raw) setFavorites(JSON.parse(raw));
-    } catch {}
-    // Load saved config from localStorage
-    try {
-      const raw = localStorage.getItem(CONFIG_KEY);
-      if (raw) setSavedConfig(JSON.parse(raw));
     } catch {}
     setHydrated(true);
   }, []);
@@ -66,22 +49,5 @@ export function usePersonalization() {
     }).catch(() => {});
   }, [sessionId, favorites]);
 
-  const saveConfig = useCallback(async (data: SavedConfigData) => {
-    if (!sessionId) return;
-    setSavedConfig(data);
-    localStorage.setItem(CONFIG_KEY, JSON.stringify(data));
-    // Sync to server
-    fetch("/kapi/saved-config", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionId, ...data }),
-    }).catch(() => {});
-  }, [sessionId]);
-
-  const clearConfig = useCallback(() => {
-    setSavedConfig(null);
-    localStorage.removeItem(CONFIG_KEY);
-  }, []);
-
-  return { sessionId, favorites, isFavorite, toggleFavorite, savedConfig, saveConfig, clearConfig, hydrated };
+  return { sessionId, favorites, isFavorite, toggleFavorite, hydrated };
 }

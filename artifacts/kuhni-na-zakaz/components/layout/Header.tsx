@@ -14,25 +14,24 @@ type NavLink = {
 };
 
 const PRIMARY_NAV_LINKS: NavLink[] = [
-  { href: "/catalog", label: "Каталог" },
-  { href: "/styles", label: "Стили" },
-  { href: "/portfolio", label: "Портфолио" },
-  { href: "/kitchen-configurator", label: "Конфигуратор" },
-  { href: "/configure", label: "Подбор кухни", exact: true },
-  { href: "/calculator", label: "Калькулятор" },
-  { href: "/prices", label: "Цены" },
-  { href: "/blog", label: "Блог" },
+  { href: "/catalog", label: "РљР°С‚Р°Р»РѕРі" },
+  { href: "/styles", label: "РЎС‚РёР»Рё" },
+  { href: "/portfolio", label: "РџРѕСЂС‚С„РѕР»РёРѕ" },
+  { href: "/kitchen-configurator", label: "РљРѕРЅС„РёРіСѓСЂР°С‚РѕСЂ" },
+  { href: "/calculator", label: "РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ" },
+  { href: "/prices", label: "Р¦РµРЅС‹" },
+  { href: "/blog", label: "Р‘Р»РѕРі" },
 ];
 
 const SECONDARY_NAV_LINKS: NavLink[] = [
-  { href: "/about", label: "О нас" },
-  { href: "/contacts", label: "Контакты", exact: true },
+  { href: "/about", label: "Рћ РЅР°СЃ" },
+  { href: "/contacts", label: "РљРѕРЅС‚Р°РєС‚С‹", exact: true },
 ];
 
 const MOBILE_EXTRA_LINKS: NavLink[] = [
-  { href: "/reviews", label: "Отзывы" },
-  { href: "/delivery-installation", label: "Доставка и монтаж" },
-  { href: "/warranty", label: "Гарантия" },
+  { href: "/reviews", label: "РћС‚Р·С‹РІС‹" },
+  { href: "/delivery-installation", label: "Р”РѕСЃС‚Р°РІРєР° Рё РјРѕРЅС‚Р°Р¶" },
+  { href: "/warranty", label: "Р“Р°СЂР°РЅС‚РёСЏ" },
 ];
 
 function isActivePath(pathname: string, href: string, exact = false) {
@@ -133,7 +132,7 @@ export function Header({
           <Link
             href="/"
             className="group flex min-w-0 items-center gap-3"
-            aria-label="КухниBY - главная страница"
+            aria-label="РљСѓС…РЅРёBY - РіР»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°"
           >
             <div
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white shadow-lg shadow-primary/20 transition-transform duration-200 group-hover:scale-[1.03]"
@@ -141,15 +140,15 @@ export function Header({
                 background: "linear-gradient(135deg, #7C3AED, #4F46E5)",
               }}
             >
-              <span className="text-base font-black">К</span>
+              <span className="text-base font-black">Рљ</span>
             </div>
             <div className="min-w-0">
               <div className="text-xl font-black tracking-tight text-foreground sm:text-2xl">
-                Кухни
+                РљСѓС…РЅРё
                 <span className="text-gradient">BY</span>
               </div>
               <p className="hidden text-xs text-muted-foreground lg:block">
-                Кухни на заказ по Беларуси с замером и проектом
+                РљСѓС…РЅРё РЅР° Р·Р°РєР°Р· РїРѕ Р‘РµР»Р°СЂСѓСЃРё СЃ Р·Р°РјРµСЂРѕРј Рё РїСЂРѕРµРєС‚РѕРј
               </p>
             </div>
           </Link>
@@ -165,7 +164,7 @@ export function Header({
               </span>
               <span className="min-w-0">
                 <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                  Консультация
+                  РљРѕРЅСЃСѓР»СЊС‚Р°С†РёСЏ
                 </span>
                 <span className="block whitespace-nowrap text-sm font-bold text-foreground xl:text-base">
                   {phoneDisplay}
@@ -179,7 +178,7 @@ export function Header({
               data-testid="header-login"
             >
               <LogIn className="h-4 w-4" />
-              Вход
+              Р’С…РѕРґ
             </Link>
 
             <Link
@@ -187,7 +186,7 @@ export function Header({
               className="btn-primary rounded-2xl px-5 py-3 text-sm shadow-xl shadow-primary/20"
               data-testid="header-cta"
             >
-              Бесплатный замер
+              Р‘РµСЃРїР»Р°С‚РЅС‹Р№ Р·Р°РјРµСЂ
             </Link>
           </div>
 
@@ -203,18 +202,18 @@ export function Header({
             <Link
               href="/admin/login"
               className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground/75 transition-colors hover:bg-muted hover:text-foreground"
-              aria-label="Вход в админку"
+              aria-label="Р’С…РѕРґ РІ Р°РґРјРёРЅРєСѓ"
               data-testid="header-login-mobile"
             >
               <LogIn className="h-4 w-4" />
-              <span className="hidden min-[380px]:inline">Вход</span>
+              <span className="hidden min-[380px]:inline">Р’С…РѕРґ</span>
             </Link>
             <button
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white transition-colors hover:bg-muted"
               onClick={() => setOpen((value) => !value)}
               aria-expanded={open}
               aria-controls="mobile-navigation"
-              aria-label={open ? "Закрыть меню" : "Открыть меню"}
+              aria-label={open ? "Р—Р°РєСЂС‹С‚СЊ РјРµРЅСЋ" : "РћС‚РєСЂС‹С‚СЊ РјРµРЅСЋ"}
               data-testid="mobile-menu-btn"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -225,7 +224,7 @@ export function Header({
         <div className="hidden border-t border-border/70 lg:block">
           <div className="flex min-h-14 items-center justify-between gap-6">
             <nav
-              aria-label="Основная навигация"
+              aria-label="РћСЃРЅРѕРІРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ"
               className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto py-2"
             >
               {PRIMARY_NAV_LINKS.map((link) => (
@@ -234,7 +233,7 @@ export function Header({
             </nav>
 
             <nav
-              aria-label="Дополнительная навигация"
+              aria-label="Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ"
               className="flex items-center gap-1 py-2"
             >
               {SECONDARY_NAV_LINKS.map((link) => (
@@ -251,7 +250,7 @@ export function Header({
           className="border-t border-border bg-white/95 shadow-[0_18px_44px_rgba(15,23,42,0.08)] backdrop-blur-xl lg:hidden"
         >
           <div className="container-site py-4">
-            <nav aria-label="Мобильная навигация" className="grid gap-2">
+            <nav aria-label="РњРѕР±РёР»СЊРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ" className="grid gap-2">
               {PRIMARY_NAV_LINKS.map((link) => (
                 <MobileNavLink key={link.href} {...link} pathname={pathname} />
               ))}
@@ -262,15 +261,11 @@ export function Header({
 
             <div className="mt-4 rounded-3xl border border-border bg-muted/40 p-4">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                Полезные разделы
+                РџРѕР»РµР·РЅС‹Рµ СЂР°Р·РґРµР»С‹
               </p>
               <div className="mt-3 grid gap-2">
                 {MOBILE_EXTRA_LINKS.map((link) => (
-                  <MobileNavLink
-                    key={link.href}
-                    {...link}
-                    pathname={pathname}
-                  />
+                  <MobileNavLink key={link.href} {...link} pathname={pathname} />
                 ))}
               </div>
             </div>
@@ -280,7 +275,7 @@ export function Header({
                 href="/contacts#form"
                 className="btn-primary justify-center rounded-2xl py-3.5 text-sm shadow-xl shadow-primary/20"
               >
-                Бесплатный замер
+                Р‘РµСЃРїР»Р°С‚РЅС‹Р№ Р·Р°РјРµСЂ
               </Link>
 
               <a
@@ -296,7 +291,7 @@ export function Header({
                 className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-white px-4 py-3.5 text-sm font-semibold text-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
               >
                 <LogIn className="h-4 w-4" />
-                Вход в админку
+                Р’С…РѕРґ РІ Р°РґРјРёРЅРєСѓ
               </Link>
             </div>
           </div>

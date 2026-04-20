@@ -2,63 +2,61 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
   LayoutDashboard, UtensilsCrossed, Images, Star, FileText,
   BookOpen, MapPin, Settings, Users, Key, Activity, LogOut, ChevronLeft,
   DollarSign, Globe, Bell, Phone, Home, Route, Palette, Layers, UserCircle,
-  Sparkles, Bookmark, HelpCircle, ChefHat, FileSpreadsheet,
+  HelpCircle, ChefHat, FileSpreadsheet,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { SessionPayload } from "@/lib/auth";
 
 const NAV_GROUPS = [
   {
-    label: "Контент",
+    label: "РљРѕРЅС‚РµРЅС‚",
     items: [
-      { href: "/admin/dashboard", icon: LayoutDashboard, label: "Панель управления", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/kitchens", icon: UtensilsCrossed, label: "Кухни", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/portfolio", icon: Images, label: "Портфолио", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/reviews", icon: Star, label: "Отзывы", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/blog", icon: BookOpen, label: "Блог", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/prices", icon: DollarSign, label: "Цены", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/configurator", icon: Sparkles, label: "Конфигуратор (квиз)", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/configurator-visual", icon: ChefHat, label: "Визуальный конфигуратор", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/dashboard", icon: LayoutDashboard, label: "РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/kitchens", icon: UtensilsCrossed, label: "РљСѓС…РЅРё", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/portfolio", icon: Images, label: "РџРѕСЂС‚С„РѕР»РёРѕ", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/reviews", icon: Star, label: "РћС‚Р·С‹РІС‹", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/blog", icon: BookOpen, label: "Р‘Р»РѕРі", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/prices", icon: DollarSign, label: "Р¦РµРЅС‹", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/configurator-visual", icon: ChefHat, label: "Р’РёР·СѓР°Р»СЊРЅС‹Р№ РєРѕРЅС„РёРіСѓСЂР°С‚РѕСЂ", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/imports", icon: FileSpreadsheet, label: "Bulk import", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
   {
-    label: "Структура",
+    label: "РЎС‚СЂСѓРєС‚СѓСЂР°",
     items: [
-      { href: "/admin/homepage", icon: Home, label: "Главная страница", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/scenarios", icon: Route, label: "Сценарии выбора", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/styles", icon: Palette, label: "Стили кухонь", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/materials", icon: Layers, label: "Материалы", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/pages", icon: FileText, label: "Страницы сайта", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/homepage", icon: Home, label: "Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/scenarios", icon: Route, label: "РЎС†РµРЅР°СЂРёРё РІС‹Р±РѕСЂР°", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/styles", icon: Palette, label: "РЎС‚РёР»Рё РєСѓС…РѕРЅСЊ", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/materials", icon: Layers, label: "РњР°С‚РµСЂРёР°Р»С‹", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/pages", icon: FileText, label: "РЎС‚СЂР°РЅРёС†С‹ СЃР°Р№С‚Р°", roles: ["SUPER_ADMIN", "MANAGER"] },
       { href: "/admin/faq", icon: HelpCircle, label: "FAQ", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/locations", icon: MapPin, label: "Города и регионы", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/leads", icon: Globe, label: "Заявки", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/saved-configs", icon: Bookmark, label: "Сохранённые подборы", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/locations", icon: MapPin, label: "Р“РѕСЂРѕРґР° Рё СЂРµРіРёРѕРЅС‹", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/leads", icon: Globe, label: "Р—Р°СЏРІРєРё", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
   {
-    label: "Система",
+    label: "РЎРёСЃС‚РµРјР°",
     items: [
-      { href: "/admin/contacts", icon: Phone, label: "Контакты сайта", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/notifications", icon: Bell, label: "Уведомления Telegram", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/settings", icon: Settings, label: "Настройки сайта", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/users", icon: Users, label: "Пользователи", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/guest-access", icon: Key, label: "Гостевой доступ", roles: ["SUPER_ADMIN"] },
-      { href: "/admin/activity-log", icon: Activity, label: "Журнал действий", roles: ["SUPER_ADMIN", "MANAGER"] },
-      { href: "/admin/profile", icon: UserCircle, label: "Мой профиль", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/contacts", icon: Phone, label: "РљРѕРЅС‚Р°РєС‚С‹ СЃР°Р№С‚Р°", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/notifications", icon: Bell, label: "РЈРІРµРґРѕРјР»РµРЅРёСЏ Telegram", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/settings", icon: Settings, label: "РќР°СЃС‚СЂРѕР№РєРё СЃР°Р№С‚Р°", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/users", icon: Users, label: "РџРѕР»СЊР·РѕРІР°С‚РµР»Рё", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/guest-access", icon: Key, label: "Р“РѕСЃС‚РµРІРѕР№ РґРѕСЃС‚СѓРї", roles: ["SUPER_ADMIN"] },
+      { href: "/admin/activity-log", icon: Activity, label: "Р–СѓСЂРЅР°Р» РґРµР№СЃС‚РІРёР№", roles: ["SUPER_ADMIN", "MANAGER"] },
+      { href: "/admin/profile", icon: UserCircle, label: "РњРѕР№ РїСЂРѕС„РёР»СЊ", roles: ["SUPER_ADMIN", "MANAGER"] },
     ],
   },
 ];
 
 const ROLE_LABELS: Record<string, { label: string; color: string }> = {
-  SUPER_ADMIN: { label: "Супер Админ", color: "text-violet-300" },
-  MANAGER: { label: "Менеджер", color: "text-blue-300" },
-  GUEST: { label: "Гостевой доступ", color: "text-amber-300" },
+  SUPER_ADMIN: { label: "РЎСѓРїРµСЂ РђРґРјРёРЅ", color: "text-violet-300" },
+  MANAGER: { label: "РњРµРЅРµРґР¶РµСЂ", color: "text-blue-300" },
+  GUEST: { label: "Р“РѕСЃС‚РµРІРѕР№ РґРѕСЃС‚СѓРї", color: "text-amber-300" },
 };
 
 const SIDEBAR_BG = "linear-gradient(180deg, #1a0533 0%, #0f1525 100%)";
@@ -95,7 +93,6 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
       )}
       style={{ background: SIDEBAR_BG }}
     >
-      {/* Brand */}
       <div className="flex items-center justify-between px-3 py-4 border-b border-white/8">
         {!collapsed && (
           <Link href="/admin/dashboard" className="flex items-center gap-2 min-w-0">
@@ -103,10 +100,10 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
               className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
               style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
             >
-              <span className="text-white font-black text-xs">К</span>
+              <span className="text-white font-black text-xs">Рљ</span>
             </div>
             <span className="font-black text-base text-white tracking-tight truncate">
-              Кухни<span style={{ background: "linear-gradient(135deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>BY</span>
+              РљСѓС…РЅРё<span style={{ background: "linear-gradient(135deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>BY</span>
             </span>
           </Link>
         )}
@@ -116,7 +113,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
               className="w-8 h-8 rounded-lg flex items-center justify-center"
               style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
             >
-              <span className="text-white font-black text-sm">К</span>
+              <span className="text-white font-black text-sm">Рљ</span>
             </div>
           </Link>
         )}
@@ -124,14 +121,13 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
           <button
             onClick={() => setCollapsed(true)}
             className="text-white/40 hover:text-white p-1 rounded-lg hover:bg-white/8 transition-colors shrink-0 ml-1"
-            aria-label="Свернуть меню"
+            aria-label="РЎРІРµСЂРЅСѓС‚СЊ РјРµРЅСЋ"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
         )}
       </div>
 
-      {/* User info */}
       {!collapsed && (
         <div className="px-4 py-3 border-b border-white/8">
           <p className="text-sm text-white font-semibold truncate">{session.name}</p>
@@ -139,19 +135,17 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
         </div>
       )}
 
-      {/* Expand button when collapsed */}
       {collapsed && (
         <button
           onClick={() => setCollapsed(false)}
           className="mx-auto mt-3 mb-1 p-2 rounded-lg text-white/30 hover:text-white hover:bg-white/8 transition-colors"
-          aria-label="Развернуть меню"
-          title="Развернуть меню"
+          aria-label="Р Р°Р·РІРµСЂРЅСѓС‚СЊ РјРµРЅСЋ"
+          title="Р Р°Р·РІРµСЂРЅСѓС‚СЊ РјРµРЅСЋ"
         >
           <ChevronLeft className="w-4 h-4 rotate-180" />
         </button>
       )}
 
-      {/* Nav */}
       <nav className="flex-1 py-2 overflow-y-auto space-y-4">
         {NAV_GROUPS.map((group) => {
           const visible = group.items.filter(isVisible);
@@ -189,7 +183,6 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
         })}
       </nav>
 
-      {/* Logout */}
       <div className="p-3 border-t border-white/8 space-y-1">
         <button
           onClick={handleLogout}
@@ -198,10 +191,10 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
             collapsed && "justify-center px-2"
           )}
           data-testid="admin-logout"
-          title="Выйти"
+          title="Р’С‹Р№С‚Рё"
         >
           <LogOut className="w-4 h-4 shrink-0" />
-          {!collapsed && "Выйти из системы"}
+          {!collapsed && "Р’С‹Р№С‚Рё РёР· СЃРёСЃС‚РµРјС‹"}
         </button>
         {!collapsed && (
           <Link
@@ -210,7 +203,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
             className="flex items-center gap-3 w-full px-3 py-2 rounded-xl text-xs text-white/30 hover:text-white/60 transition-all"
           >
             <Globe className="w-3.5 h-3.5 shrink-0" />
-            Открыть сайт
+            РћС‚РєСЂС‹С‚СЊ СЃР°Р№С‚
           </Link>
         )}
       </div>

@@ -12,7 +12,6 @@ export const metadata: Metadata = { title: "Заявки — КухниBY" };
 
 const FORM_TYPE_LABELS: Record<string, string> = {
   contact: "Контакт",
-  configurator_result: "Конфигуратор",
   calculator: "Калькулятор",
   catalog: "Каталог",
   portfolio: "Портфолио",
