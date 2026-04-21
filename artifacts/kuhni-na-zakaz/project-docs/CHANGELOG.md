@@ -1,5 +1,14 @@
 ﻿# Changelog вЂ” РљСѓС…РЅРёBY
 
+## [Unreleased] - 2026-04-21 (Production styles fix and deploy access refresh)
+
+### Added
+- Local uploaded image assets for `styles`, `kitchens`, and `portfolio` were committed into `artifacts/kuhni-na-zakaz/public/uploads/...` for controlled runtime serving.
+- `project-docs/HANDOFF.md`, `deploy/README.md`, and `deploy/timeweb/README.md` now document the live production server, working SSH key, deploy branch, runtime path, and restart flow so a fresh chat can push and deploy without rediscovery.
+
+### Fixed
+- Production `styles` pages on `https://kuhni.minsk.by` no longer show broken previews: the deployed runtime now serves `/uploads/styles/...` assets correctly after syncing files, rebuilding, and restarting `kuhni-na-zakaz`.
+
 ## [Unreleased] - 2026-04-20 (Bulk import v1 production closure package)
 
 ### Added

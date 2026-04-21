@@ -7,6 +7,41 @@
 - Bulk import v1 operational summary: `project-docs/BULK_IMPORT_V1_OPERATIONAL_SUMMARY_2026-04-20.md`
 - Post-import smoke runbook: `tests/smoke/README.md`
 
+## Production operations snapshot
+
+- Public production URL: `https://kuhni.minsk.by`
+- Production server IP: `5.42.108.140`
+- Production hostname: `msk-1-vm-7shr`
+- SSH user: `root`
+- Preferred auth from this workstation: `C:\Users\User\.ssh\timeweb_kuhni_ed25519`
+- Server repo root: `/var/www/kuhni-na-zakaz`
+- Next.js runtime dir: `/var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz`
+- systemd service: `kuhni-na-zakaz`
+- Active git branch for deploys: `work`
+- A fresh chat can push to git and deploy to production from this machine if it uses the repo access plus the SSH key above.
+
+## Production deploy workflow
+
+1. Push the required commit to `origin/work`.
+2. SSH to production:
+   - `ssh -i C:\Users\User\.ssh\timeweb_kuhni_ed25519 root@5.42.108.140`
+3. Run the update script:
+   - `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work`
+4. If static assets or Prisma client are stale, rebuild manually:
+   - `sudo -u kuhni bash -lc "cd /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz && pnpm exec prisma generate && pnpm run build"`
+5. Restart the app:
+   - `systemctl restart kuhni-na-zakaz`
+6. Verify:
+   - `curl -I https://kuhni.minsk.by/uploads/styles/style-modern.png`
+   - open `https://kuhni.minsk.by/styles`
+
+## 2026-04-21 production styles incident
+
+- Symptom: `/styles` rendered cards with broken previews on production.
+- Root cause: production HTML already referenced local paths like `/uploads/styles/style-modern.png`, but the runtime did not have `public/uploads/styles` available and the service had not been restarted after the asset update, so image URLs returned `404`.
+- Fix applied: production was updated to commit `7b4a4fd`, `public/uploads/styles` was confirmed on the server, the app was rebuilt, and `systemctl restart kuhni-na-zakaz` was executed.
+- Verification: `https://kuhni.minsk.by/uploads/styles/style-modern.png` now returns `200`, and `https://kuhni.minsk.by/styles` loads all 8 style images correctly.
+
 ## Bulk Import v1 Closure Snapshot
 
 - Status: closed and in operation.
@@ -57,6 +92,9 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Admin password | `admin` |
 | Git remote | `origin` = `onliner7-collab/kuhni-na-zakaz.git` |
 | Git branch | `work` |
+| Production host | `root@5.42.108.140` |
+| Production SSH key | `C:\Users\User\.ssh\timeweb_kuhni_ed25519` |
+| Production service | `kuhni-na-zakaz` |
 
 ---
 
@@ -164,7 +202,11 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 ### Image upload
 
-Загрузка файлов напрямую из admin не реализована. В формах — только URL-поля. Изображения нужно хостить внешне (CDN, облачное хранилище) и вставлять URL. Для реализации upload нужен отдельный этап с S3/object storage.
+- `StyleForm` already supports local upload flow for styles in admin.
+- Local runtime assets are served from `artifacts/kuhni-na-zakaz/public/uploads/...`.
+- For styles, production now expects DB image paths in the form `/uploads/styles/<file>`.
+- `kitchens` and `portfolio` can also use local files under `/uploads/kitchens` and `/uploads/portfolio`, but production DB updates for those sections should be applied intentionally per content batch.
+- S3/object storage is still not implemented as the general media backend.
 
 ---
 
@@ -172,10 +214,11 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 
 1. **File upload (S3/object storage)** — реализация загрузки изображений из admin-панели. Сейчас admin работает только с URL. Требует: S3-совместимое хранилище, API-route загрузки, интеграция в формы (Portfolio, Blog, Kitchens, Style, Material).
 
-2. **Production deployment** — запуск в production. Шаги:
-   - `npx prisma migrate deploy` или `prisma db push` (в зависимости от migration history)
-   - Задать env vars: `SESSION_SECRET` (уже в Replit Secrets), SMTP vars (если нужен email)
-   - Проверить `DATABASE_URL` в production окружении
+2. **Production deployment hygiene** — production уже live, но на каждом выкатывании нужно проверять:
+   - repo HEAD на сервере совпадает с нужным коммитом из `work`
+   - `public/uploads/...` реально присутствуют в runtime после update
+   - `DATABASE_URL` и `SESSION_SECRET` валидны на сервере
+   - после rebuild выполнен `systemctl restart kuhni-na-zakaz`
 
 ---
 

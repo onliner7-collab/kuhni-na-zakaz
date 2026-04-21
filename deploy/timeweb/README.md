@@ -2,6 +2,19 @@
 
 This guide is the baseline for the first production deploy to a Timeweb VPS with Ubuntu.
 
+## Active production instance
+
+- Public site: `https://kuhni.minsk.by`
+- Host: `5.42.108.140`
+- Hostname: `msk-1-vm-7shr`
+- SSH user: `root`
+- Preferred auth on this workstation: `C:\Users\User\.ssh\timeweb_kuhni_ed25519`
+- Repo root: `/var/www/kuhni-na-zakaz`
+- App service user: `kuhni`
+- App root inside repo: `/var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz`
+- systemd service: `kuhni-na-zakaz`
+- Active deploy branch: `work`
+
 ## Assumptions
 
 - Ubuntu 22.04 or newer
@@ -38,6 +51,32 @@ This guide is the baseline for the first production deploy to a Timeweb VPS with
 - Keep the production `.env` only on the server.
 - Do not run local demo seeds on production unless we explicitly decide which content is safe to publish.
 - After the first deploy you can automate updates with `deploy/scripts/update-production.sh`.
+
+## Current production update workflow
+
+1. Push the required commit to `origin/work`.
+2. SSH to the server:
+   - `ssh -i C:\Users\User\.ssh\timeweb_kuhni_ed25519 root@5.42.108.140`
+3. Run the update script:
+   - `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work`
+4. If assets, Prisma client, or the Next build are stale, rebuild manually:
+   - `sudo -u kuhni bash -lc "cd /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz && pnpm exec prisma generate && pnpm run build"`
+5. Restart the service:
+   - `systemctl restart kuhni-na-zakaz`
+6. Verify:
+   - `curl -I https://kuhni.minsk.by/uploads/styles/style-modern.png`
+   - open `https://kuhni.minsk.by/styles`
+
+## 2026-04-21 styles asset incident
+
+- Production HTML already referenced local style image paths under `/uploads/styles/...`.
+- The runtime returned `404` because `public/uploads/styles` was missing from the deployed runtime and the service had not been restarted after the asset update.
+- Recovery path that worked:
+  - deploy commit `7b4a4fd`
+  - confirm `public/uploads/styles` exists in `/var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/public/uploads/styles`
+  - run `pnpm exec prisma generate && pnpm run build`
+  - run `systemctl restart kuhni-na-zakaz`
+  - verify direct asset URLs return `200`
 
 ## DNS and SSL timing (root + www)
 
