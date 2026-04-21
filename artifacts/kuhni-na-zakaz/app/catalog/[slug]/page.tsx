@@ -89,7 +89,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CatalogItemPage({ params }: Props) {
   const { slug } = await params;
 
-  let data: { title: string; description: string; priceFrom: number; features: string[]; content: string } | null = null;
+  let data: {
+    title: string;
+    description: string;
+    priceFrom: number;
+    features: string[];
+    content: string;
+    mainImage?: string;
+  } | null = null;
 
   try {
     const kitchen = await prisma.kitchen.findUnique({ where: { slug } });
@@ -100,6 +107,7 @@ export default async function CatalogItemPage({ params }: Props) {
         priceFrom: kitchen.priceFrom,
         features: kitchen.features,
         content: kitchen.description,
+        mainImage: kitchen.mainImage || undefined,
       };
     }
   } catch {}
@@ -123,6 +131,11 @@ export default async function CatalogItemPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
+            {data.mainImage && (
+              <div className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-stone-200 to-stone-300">
+                <img src={data.mainImage} alt={data.title} className="h-80 w-full object-cover" />
+              </div>
+            )}
             <p className="text-muted-foreground text-lg mb-6">{data.content}</p>
             <div className="card-base p-6 mb-6">
               <h2 className="font-semibold mb-4">Особенности</h2>
