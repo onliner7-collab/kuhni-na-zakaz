@@ -10,6 +10,7 @@ import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by";
+const faviconVersion = "20260421b";
 
 export const metadata: Metadata = {
   title: {
@@ -26,14 +27,20 @@ export const metadata: Metadata = {
     "кухни Минская область",
   ],
   metadataBase: new URL(siteUrl),
-  manifest: "/manifest.webmanifest",
+  manifest: `/manifest.webmanifest?v=${faviconVersion}`,
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: `/favicon.ico?v=${faviconVersion}`, sizes: "any" },
+      { url: `/icon.svg?v=${faviconVersion}`, type: "image/svg+xml" },
     ],
-    shortcut: ["/favicon.ico"],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: [`/favicon.ico?v=${faviconVersion}`],
+    apple: [
+      {
+        url: `/apple-icon.png?v=${faviconVersion}`,
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
   openGraph: {
     type: "website",
