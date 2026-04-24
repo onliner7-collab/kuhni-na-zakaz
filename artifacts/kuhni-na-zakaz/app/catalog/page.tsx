@@ -57,7 +57,7 @@ export default async function CatalogPage() {
               ? kitchens.map((k) => (
                   <Link key={k.id} href={`/catalog/${k.slug}`} className="card-base hover:shadow-md transition-shadow group">
                     <div className="h-52 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center overflow-hidden">
-                      {k.mainImage ? <img src={k.mainImage} alt={k.title} className="w-full h-full object-cover" /> : <span className="text-stone-400 text-sm">Фото</span>}
+                      {k.mainImage ? <img src={k.mainImage} alt={k.title} className="w-full h-full object-contain object-center" /> : <span className="text-stone-400 text-sm">Фото</span>}
                     </div>
                     <div className="p-5">
                       <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{k.title}</h2>

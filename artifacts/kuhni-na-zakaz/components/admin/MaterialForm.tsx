@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const BUDGET_LEVELS = ["Экономный", "Средний", "Выше среднего", "Премиум"];
@@ -72,13 +72,70 @@ const EMPTY: MaterialData = {
 
 export default function MaterialForm({ initial }: { initial?: Partial<MaterialData> }) {
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [tab, setTab] = useState(0);
   const [data, setData] = useState<MaterialData>({ ...EMPTY, ...initial });
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [removingImage, setRemovingImage] = useState(false);
   const [error, setError] = useState("");
 
   const set = (k: keyof MaterialData, v: any) => setData(p => ({ ...p, [k]: v }));
+
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploadingImage(true);
+    setError("");
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/kapi/admin/uploads/materials", {
+        method: "POST",
+        body: formData,
+      });
+
+      const payload = await res.json();
+      if (!res.ok) throw new Error(payload.error || "Не удалось загрузить изображение");
+
+      set("image", payload.url);
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setUploadingImage(false);
+      if (event.target) event.target.value = "";
+    }
+  };
+
+  const handleRemoveImage = async () => {
+    if (!data.image) return;
+
+    setRemovingImage(true);
+    setError("");
+
+    try {
+      if (data.image.startsWith("/uploads/materials/")) {
+        const res = await fetch("/kapi/admin/uploads/materials", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ imagePath: data.image }),
+        });
+
+        const payload = await res.json();
+        if (!res.ok) throw new Error(payload.error || "Не удалось удалить изображение");
+      }
+
+      set("image", "");
+    } catch (e: any) {
+      setError(e.message);
+    } finally {
+      setRemovingImage(false);
+    }
+  };
 
   const handleSave = async () => {
     setSaving(true); setError("");
@@ -158,7 +215,35 @@ export default function MaterialForm({ initial }: { initial?: Partial<MaterialDa
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Ссылка на изображение материала</label>
             <p className="text-xs text-gray-400 mb-1">Главное фото — отображается на карточке и странице материала</p>
-            <input className="form-input w-full font-mono text-sm" type="url" value={data.image} onChange={e => set("image", e.target.value)} placeholder="https://example.com/material-photo.jpg" />
+            <div className="mb-2 flex flex-wrap gap-2">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/png,image/jpeg,image/webp,image/gif"
+                className="hidden"
+                onChange={handleImageUpload}
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploadingImage}
+                className="px-3 py-2 bg-primary text-white rounded-lg text-sm font-medium disabled:opacity-50"
+              >
+                {uploadingImage ? "Загрузка..." : "Загрузить фото"}
+              </button>
+              {data.image ? (
+                <button
+                  type="button"
+                  onClick={handleRemoveImage}
+                  disabled={removingImage}
+                  className="px-3 py-2 text-sm font-medium text-red-600 border border-red-200 rounded-lg hover:bg-red-50 disabled:opacity-50"
+                >
+                  {removingImage ? "Удаление..." : "Удалить фото"}
+                </button>
+              ) : null}
+            </div>
+            <input className="form-input w-full font-mono text-sm" type="text" value={data.image} onChange={e => set("image", e.target.value)} placeholder="https://example.com/material-photo.jpg" />
+            <p className="text-xs text-gray-400 mt-1">Можно загрузить файл в админке или вставить прямую ссылку/локальный путь вида /uploads/materials/...</p>
             {data.image ? (
               <div className="mt-2 relative rounded-lg overflow-hidden border border-gray-200 aspect-video bg-gray-50">
                 <img src={data.image} alt="Превью" className="w-full h-full object-cover"

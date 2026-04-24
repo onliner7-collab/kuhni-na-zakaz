@@ -104,7 +104,7 @@ export function PortfolioFilters({ cases }: { cases: Case[] }) {
               className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
               <div className="h-56 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center overflow-hidden relative">
                 {c.mainImage ? (
-                  <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <img src={c.mainImage} alt={c.title} className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300" />
                 ) : (
                   <span className="text-stone-400 text-sm">Фото проекта</span>
                 )}

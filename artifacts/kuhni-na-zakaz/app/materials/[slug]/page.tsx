@@ -116,7 +116,7 @@ export default async function MaterialPage({ params }: Props) {
                 </h1>
                 <div className="h-64 bg-gradient-to-br from-stone-200 to-stone-300 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
                   {m.image ? (
-                    <img src={m.image} alt={m.title} className="w-full h-full object-cover" />
+                    <img src={m.image} alt={m.title} className="w-full h-full object-contain object-center" />
                   ) : (
                     <span className="text-stone-400">Образец материала</span>
                   )}
@@ -243,7 +243,7 @@ export default async function MaterialPage({ params }: Props) {
                         className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all bg-white">
                         <div className="h-44 overflow-hidden bg-gradient-to-br from-stone-100 to-stone-200">
                           {c.mainImage
-                            ? <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            ? <img src={c.mainImage} alt={c.title} className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500" />
                             : <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-4xl">🏠</div>
                           }
                         </div>
@@ -278,7 +278,7 @@ export default async function MaterialPage({ params }: Props) {
                       <Link key={st.slug} href={`/styles/${st.slug}`}
                         className="card-base p-4 flex gap-4 hover:shadow-md transition-shadow group">
                         <div className="w-16 h-16 bg-gradient-to-br from-stone-200 to-amber-100 rounded-lg shrink-0 overflow-hidden">
-                          {st.image && <img src={st.image} alt={st.title} className="w-full h-full object-cover" />}
+                          {st.image && <img src={st.image} alt={st.title} className="w-full h-full object-contain object-center" />}
                         </div>
                         <div>
                           <p className="font-semibold text-sm group-hover:text-primary transition-colors">{st.title}</p>

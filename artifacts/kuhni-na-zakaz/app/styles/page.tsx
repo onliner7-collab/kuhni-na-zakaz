@@ -68,7 +68,7 @@ export default async function StylesPage() {
                   className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
                   <div className="h-52 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center relative overflow-hidden">
                     {s.image ? (
-                      <img src={s.image} alt={s.title} className="w-full h-full object-cover" />
+                      <img src={s.image} alt={s.title} className="w-full h-full object-contain object-center" />
                     ) : (
                       <span className="text-stone-400 text-sm">Фото стиля</span>
                     )}

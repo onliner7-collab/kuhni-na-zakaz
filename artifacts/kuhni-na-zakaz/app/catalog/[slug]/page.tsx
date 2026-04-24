@@ -133,7 +133,7 @@ export default async function CatalogItemPage({ params }: Props) {
             <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
             {data.mainImage && (
               <div className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-stone-200 to-stone-300">
-                <img src={data.mainImage} alt={data.title} className="h-80 w-full object-cover" />
+                <img src={data.mainImage} alt={data.title} className="h-80 w-full object-contain object-center" />
               </div>
             )}
             <p className="text-muted-foreground text-lg mb-6">{data.content}</p>

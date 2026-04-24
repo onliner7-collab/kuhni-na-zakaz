@@ -101,7 +101,7 @@ export default async function MaterialsPage() {
                 className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
                 <div className="h-44 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center relative overflow-hidden">
                   {m.image ? (
-                    <img src={m.image} alt={m.title} className="w-full h-full object-cover" />
+                    <img src={m.image} alt={m.title} className="w-full h-full object-contain object-center" />
                   ) : (
                     <span className="text-stone-400 text-sm">Образец материала</span>
                   )}
