@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, CheckCircle, Phone, Star, Shield, Clock, MapPin, FileCheck } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -253,7 +254,15 @@ export default async function HomePage() {
                 <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
                   <div className="h-56 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
                     {c.mainImage
-                      ? <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      ? (
+                        <Image
+                          src={c.mainImage}
+                          alt={c.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )
                       : <div className="w-full h-full flex items-center justify-center text-4xl">🏠</div>
                     }
                   </div>
@@ -291,7 +300,15 @@ export default async function HomePage() {
                 <Link key={k.id} href={`/catalog/${k.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
                   <div className="h-48 overflow-hidden bg-gradient-to-br from-violet-50 to-blue-50">
                     {k.mainImage
-                      ? <img src={k.mainImage} alt={k.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      ? (
+                        <Image
+                          src={k.mainImage}
+                          alt={k.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )
                       : <div className="w-full h-full flex items-center justify-center text-4xl">🍳</div>
                     }
                   </div>

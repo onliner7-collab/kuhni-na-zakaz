@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, BookOpen } from "lucide-react";
@@ -185,7 +186,14 @@ export default async function BlogPostPage({ params }: Props) {
                       className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all bg-white">
                       <div className="h-36 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
                         {c.mainImage
-                          ? <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          ? <Image
+                            src={c.mainImage}
+                            alt={c.title}
+                            width={640}
+                            height={360}
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
                           : <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-3xl">🏠</div>
                         }
                       </div>
@@ -212,7 +220,16 @@ export default async function BlogPostPage({ params }: Props) {
                     <Link key={s.slug} href={`/styles/${s.slug}`}
                       className="group flex gap-4 p-4 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md bg-white transition-all">
                       <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-stone-200 to-amber-100">
-                        {s.image && <img src={s.image} alt={s.title} className="w-full h-full object-cover" />}
+                        {s.image && (
+                          <Image
+                            src={s.image}
+                            alt={s.title}
+                            width={112}
+                            height={112}
+                            sizes="56px"
+                            className="w-full h-full object-cover"
+                          />
+                        )}
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold text-sm group-hover:text-primary transition-colors">{s.title}</p>

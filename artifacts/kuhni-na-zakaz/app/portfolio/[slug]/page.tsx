@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MapPin, Square, Paintbrush, Layers, Clock, ArrowRight, CheckCircle, AlertTriangle, Lightbulb, Star } from "lucide-react";
@@ -118,7 +119,15 @@ export default async function PortfolioCasePage({ params }: Props) {
                 {/* Main photo */}
                 <div className="h-80 bg-gradient-to-br from-stone-200 to-amber-100 rounded-2xl overflow-hidden mb-4">
                   {c.mainImage ? (
-                    <img src={c.mainImage} alt={c.title} className="w-full h-full object-contain object-center" />
+                    <Image
+                      src={c.mainImage}
+                      alt={c.title}
+                      width={1280}
+                      height={720}
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 66vw"
+                      className="w-full h-full object-contain object-center"
+                    />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-stone-400">Фото проекта</div>
                   )}
@@ -129,7 +138,14 @@ export default async function PortfolioCasePage({ params }: Props) {
                   <div className="grid grid-cols-3 gap-2 mb-4">
                     {allPhotos.slice(1, 4).map((img, i) => (
                       <div key={i} className="h-28 rounded-xl overflow-hidden bg-stone-200">
-                        <img src={img} alt={`${c.title} фото ${i + 2}`} className="w-full h-full object-contain object-center" />
+                        <Image
+                          src={img}
+                          alt={`${c.title} фото ${i + 2}`}
+                          width={480}
+                          height={320}
+                          sizes="(max-width: 1024px) 33vw, 240px"
+                          className="w-full h-full object-contain object-center"
+                        />
                       </div>
                     ))}
                   </div>
@@ -208,7 +224,14 @@ export default async function PortfolioCasePage({ params }: Props) {
                       <div>
                         <p className="text-sm font-medium text-muted-foreground mb-2 text-center uppercase tracking-wide">До</p>
                         <div className="rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
-                          <img src={c.photosBefore[0]} alt="До" className="w-full h-full object-contain object-center" />
+                          <Image
+                            src={c.photosBefore[0]}
+                            alt="До"
+                            width={800}
+                            height={600}
+                            sizes="(max-width: 1024px) 50vw, 400px"
+                            className="w-full h-full object-contain object-center"
+                          />
                         </div>
                       </div>
                     )}
@@ -216,7 +239,14 @@ export default async function PortfolioCasePage({ params }: Props) {
                       <div>
                         <p className="text-sm font-medium text-primary mb-2 text-center uppercase tracking-wide">После</p>
                         <div className="rounded-xl overflow-hidden aspect-[4/3] bg-stone-200">
-                          <img src={c.photosAfter[0]} alt="После" className="w-full h-full object-contain object-center" />
+                          <Image
+                            src={c.photosAfter[0]}
+                            alt="После"
+                            width={800}
+                            height={600}
+                            sizes="(max-width: 1024px) 50vw, 400px"
+                            className="w-full h-full object-contain object-center"
+                          />
                         </div>
                       </div>
                     )}
@@ -273,7 +303,7 @@ export default async function PortfolioCasePage({ params }: Props) {
                     {style && (
                       <Link href={`/styles/${style.slug}`} className="card-base p-4 flex gap-3 hover:shadow-md transition-shadow group">
                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-stone-200 to-amber-100 shrink-0 overflow-hidden">
-                          {style.image && <img src={style.image} alt={style.title} className="w-full h-full object-contain object-center" />}
+                          {style.image && <Image src={style.image} alt={style.title} width={96} height={96} sizes="48px" className="w-full h-full object-contain object-center" />}
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Стиль</p>
@@ -285,7 +315,7 @@ export default async function PortfolioCasePage({ params }: Props) {
                     {materials.map(m => (
                       <Link key={m.slug} href={`/materials/${m.slug}`} className="card-base p-4 flex gap-3 hover:shadow-md transition-shadow group">
                         <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-stone-200 to-stone-300 shrink-0 overflow-hidden">
-                          {m.image && <img src={m.image} alt={m.title} className="w-full h-full object-contain object-center" />}
+                          {m.image && <Image src={m.image} alt={m.title} width={96} height={96} sizes="48px" className="w-full h-full object-contain object-center" />}
                         </div>
                         <div>
                           <p className="text-xs text-muted-foreground">Материал</p>
@@ -315,7 +345,7 @@ export default async function PortfolioCasePage({ params }: Props) {
                     {others.map(o => (
                       <Link key={o.slug} href={`/portfolio/${o.slug}`} className="card-base overflow-hidden hover:shadow-md transition-shadow group">
                         <div className="h-36 bg-gradient-to-br from-stone-200 to-amber-100 overflow-hidden">
-                          {o.mainImage ? <img src={o.mainImage} alt={o.title} className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300" />
+                          {o.mainImage ? <Image src={o.mainImage} alt={o.title} width={640} height={360} sizes="(max-width: 1024px) 100vw, 33vw" className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300" />
                             : <div className="w-full h-full flex items-center justify-center text-stone-400 text-xs">Фото</div>}
                         </div>
                         <div className="p-3">

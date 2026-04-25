@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
@@ -57,7 +58,17 @@ export default async function CatalogPage() {
               ? kitchens.map((k) => (
                   <Link key={k.id} href={`/catalog/${k.slug}`} className="card-base hover:shadow-md transition-shadow group">
                     <div className="h-52 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center overflow-hidden">
-                      {k.mainImage ? <img src={k.mainImage} alt={k.title} className="w-full h-full object-contain object-center" /> : <span className="text-stone-400 text-sm">Фото</span>}
+                      {k.mainImage ? (
+                        <div className="relative h-full w-full">
+                          <Image
+                            src={k.mainImage}
+                            alt={k.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-contain object-center"
+                          />
+                        </div>
+                      ) : <span className="text-stone-400 text-sm">Фото</span>}
                     </div>
                     <div className="p-5">
                       <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{k.title}</h2>

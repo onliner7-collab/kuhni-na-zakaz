@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Square, Clock, Star } from "lucide-react";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
 
@@ -104,7 +105,13 @@ export function PortfolioFilters({ cases }: { cases: Case[] }) {
               className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
               <div className="h-56 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center overflow-hidden relative">
                 {c.mainImage ? (
-                  <img src={c.mainImage} alt={c.title} className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300" />
+                  <Image
+                    src={c.mainImage}
+                    alt={c.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-contain object-center group-hover:scale-105 transition-transform duration-300"
+                  />
                 ) : (
                   <span className="text-stone-400 text-sm">Фото проекта</span>
                 )}

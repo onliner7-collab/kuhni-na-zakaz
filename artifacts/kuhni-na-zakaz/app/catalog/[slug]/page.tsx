@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -132,8 +133,15 @@ export default async function CatalogItemPage({ params }: Props) {
           <div className="lg:col-span-2">
             <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
             {data.mainImage && (
-              <div className="mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-stone-200 to-stone-300">
-                <img src={data.mainImage} alt={data.title} className="h-80 w-full object-contain object-center" />
+              <div className="relative mb-6 h-80 overflow-hidden rounded-2xl bg-gradient-to-br from-stone-200 to-stone-300">
+                <Image
+                  src={data.mainImage}
+                  alt={data.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-contain object-center"
+                />
               </div>
             )}
             <p className="text-muted-foreground text-lg mb-6">{data.content}</p>

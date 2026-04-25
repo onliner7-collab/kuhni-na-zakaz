@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
@@ -182,7 +183,7 @@ export default async function LocationPage({ params }: Props) {
       <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
         {loc.images[0] && (
           <div className="absolute inset-0 opacity-15">
-            <img src={loc.images[0]} alt={loc.city} className="w-full h-full object-cover" />
+            <Image src={loc.images[0]} alt={loc.city} fill priority sizes="100vw" className="object-cover" />
           </div>
         )}
         <div className="relative container-site section-padding py-16 md:py-24">
@@ -311,7 +312,14 @@ export default async function LocationPage({ params }: Props) {
                 <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden bg-white border border-border hover:shadow-lg transition-all">
                   <div className="aspect-[4/3] overflow-hidden bg-muted">
                     {c.mainImage ? (
-                      <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <Image
+                        src={c.mainImage}
+                        alt={c.title}
+                        width={640}
+                        height={480}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-4xl">🏠</div>
                     )}
@@ -375,7 +383,14 @@ export default async function LocationPage({ params }: Props) {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {loc.images.map((img, i) => (
                 <div key={i} className={`rounded-xl overflow-hidden bg-muted ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
-                  <img src={img} alt={`Кухня в ${loc.city} — фото ${i + 1}`} className="w-full h-full object-cover aspect-square" />
+                  <Image
+                    src={img}
+                    alt={`Кухня в ${loc.city} — фото ${i + 1}`}
+                    width={900}
+                    height={900}
+                    sizes={i === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
+                    className="w-full h-full object-cover aspect-square"
+                  />
                 </div>
               ))}
             </div>

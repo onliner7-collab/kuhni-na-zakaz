@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Lightbulb, Star } from "lucide-react";
@@ -214,7 +215,14 @@ export default async function ScenarioDetailPage({ params }: Props) {
                 <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl transition-all bg-white">
                   <div className="h-52 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
                     {c.mainImage
-                      ? <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      ? <Image
+                        src={c.mainImage}
+                        alt={c.title}
+                        width={720}
+                        height={520}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
                       : <div className="w-full h-full flex items-center justify-center text-5xl">{scenario.icon}</div>
                     }
                   </div>
@@ -245,7 +253,14 @@ export default async function ScenarioDetailPage({ params }: Props) {
                 <Link key={s.id} href={`/styles/${s.slug}`} className="group flex gap-4 p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg bg-white transition-all">
                   {s.image && (
                     <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
-                      <img src={s.image} alt={s.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                      <Image
+                        src={s.image}
+                        alt={s.title}
+                        width={160}
+                        height={160}
+                        sizes="80px"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                      />
                     </div>
                   )}
                   <div className="flex-1">
@@ -271,7 +286,14 @@ export default async function ScenarioDetailPage({ params }: Props) {
                 <Link key={m.id} href={`/materials/${m.slug}`} className="group flex gap-4 p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg bg-white transition-all">
                   {m.image && (
                     <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
-                      <img src={m.image} alt={m.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                      <Image
+                        src={m.image}
+                        alt={m.title}
+                        width={160}
+                        height={160}
+                        sizes="80px"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                      />
                     </div>
                   )}
                   <div className="flex-1">

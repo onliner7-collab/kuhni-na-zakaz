@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 
@@ -68,7 +69,13 @@ export default async function StylesPage() {
                   className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
                   <div className="h-52 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center relative overflow-hidden">
                     {s.image ? (
-                      <img src={s.image} alt={s.title} className="w-full h-full object-contain object-center" />
+                      <Image
+                        src={s.image}
+                        alt={s.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-contain object-center"
+                      />
                     ) : (
                       <span className="text-stone-400 text-sm">Фото стиля</span>
                     )}

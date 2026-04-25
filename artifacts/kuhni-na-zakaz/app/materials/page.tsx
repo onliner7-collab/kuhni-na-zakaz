@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { CheckCircle, XCircle } from "lucide-react";
@@ -101,7 +102,14 @@ export default async function MaterialsPage() {
                 className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
                 <div className="h-44 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center relative overflow-hidden">
                   {m.image ? (
-                    <img src={m.image} alt={m.title} className="w-full h-full object-contain object-center" />
+                    <Image
+                      src={m.image}
+                      alt={m.title}
+                      width={720}
+                      height={480}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="w-full h-full object-contain object-center"
+                    />
                   ) : (
                     <span className="text-stone-400 text-sm">Образец материала</span>
                   )}
