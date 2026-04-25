@@ -5,10 +5,15 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
   const { id } = await params;
   const numId = parseInt(id, 10);
   if (isNaN(numId)) return NextResponse.json({ error: "Bad id" }, { status: 400 });
+  const sessionId = _req.nextUrl.searchParams.get("sessionId");
+  if (!sessionId) return NextResponse.json({ error: "Missing sessionId" }, { status: 400 });
 
   try {
     const project = await prisma.visualProject.findUnique({ where: { id: numId } });
     if (!project) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    if (project.sessionId !== sessionId) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
     return NextResponse.json(project);
   } catch {
     return NextResponse.json({ error: "DB error" }, { status: 500 });

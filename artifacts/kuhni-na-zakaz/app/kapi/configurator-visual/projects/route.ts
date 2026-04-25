@@ -5,7 +5,7 @@ import type { Prisma } from "@prisma/client";
 
 const saveSchema = z.object({
   id: z.number().optional(),
-  sessionId: z.string().optional(),
+  sessionId: z.string().min(1).max(100),
   name: z.string().max(200).default("Мой проект"),
   roomConfig: z.record(z.unknown()).default({}),
   modulePlacement: z.array(z.unknown()).default([]),
@@ -20,8 +20,9 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: "Неверный формат", details: parsed.error.flatten() }, { status: 400 });
     }
-    const { id, ...data } = parsed.data;
+    const { id, sessionId, ...data } = parsed.data;
     const payload: Prisma.VisualProjectUncheckedCreateInput = {
+      sessionId,
       ...data,
       roomConfig: data.roomConfig as Prisma.InputJsonValue,
       modulePlacement: data.modulePlacement as Prisma.InputJsonValue,
@@ -31,6 +32,17 @@ export async function POST(req: NextRequest) {
 
     let project;
     if (id) {
+      const existing = await prisma.visualProject.findUnique({
+        where: { id },
+        select: { sessionId: true },
+      });
+      if (!existing) {
+        return NextResponse.json({ error: "Not found" }, { status: 404 });
+      }
+      if (existing.sessionId !== sessionId) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
+
       project = await prisma.visualProject.update({
         where: { id },
         data: payload,

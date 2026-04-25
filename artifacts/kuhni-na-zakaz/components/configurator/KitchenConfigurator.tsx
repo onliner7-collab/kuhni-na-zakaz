@@ -163,11 +163,13 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
 
   async function handleSaveToServer() {
     try {
+      const sessionId = state.sessionId ?? crypto.randomUUID();
       const res = await fetch("/kapi/configurator-visual/projects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: state.id,
+          sessionId,
           name: state.name,
           roomConfig: state.roomConfig as unknown as Record<string, unknown>,
           modulePlacement: state.placedModules as unknown[],
@@ -177,7 +179,10 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
       });
       const data = await res.json();
       if (data.project) {
-        dispatch({ type: "MARK_SAVED", payload: { id: data.project.id, savedAt: new Date() } });
+        dispatch({
+          type: "MARK_SAVED",
+          payload: { id: data.project.id, sessionId, savedAt: new Date() },
+        });
         return { id: data.project.id };
       }
     } catch {

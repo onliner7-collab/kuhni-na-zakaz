@@ -125,6 +125,7 @@ export function configuratorReducer(
       return {
         ...state,
         id: action.payload.id,
+        sessionId: action.payload.sessionId,
         isDirty: false,
         lastSavedAt: action.payload.savedAt,
       };

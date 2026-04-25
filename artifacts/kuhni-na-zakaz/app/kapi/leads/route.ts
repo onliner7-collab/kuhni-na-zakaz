@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { getSession } from "@/lib/auth";
 import { sendLeadNotifications } from "@/lib/telegram";
 import { sendEmailNotification } from "@/lib/email";
 import type { Prisma } from "@prisma/client";
@@ -82,6 +83,11 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    const session = await getSession();
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const leads = await prisma.lead.findMany({
       orderBy: { createdAt: "desc" },
       take: 100,

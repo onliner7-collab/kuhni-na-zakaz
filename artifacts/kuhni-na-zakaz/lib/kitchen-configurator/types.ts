@@ -267,5 +267,5 @@ export type ConfiguratorAction =
   | { type: "SET_WARNINGS"; payload: ConfigWarning[] }
   | { type: "UPDATE_PRICE"; payload: PriceBreakdown }
   | { type: "LOAD_PROJECT"; payload: VisualProjectState }
-  | { type: "MARK_SAVED"; payload: { id: number; savedAt: Date } }
+  | { type: "MARK_SAVED"; payload: { id: number; sessionId: string; savedAt: Date } }
   | { type: "RESET" };
