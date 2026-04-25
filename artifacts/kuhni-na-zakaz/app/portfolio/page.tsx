@@ -15,7 +15,11 @@ export const metadata: Metadata = {
 
 export default async function PortfolioPage() {
   const cases = await prisma.portfolioCase.findMany({
-    where: { published: true },
+    where: {
+      published: true,
+      slug: { not: "" },
+      title: { not: "" },
+    },
     orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
   });
 
