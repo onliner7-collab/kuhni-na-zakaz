@@ -9,14 +9,13 @@ WorkingDirectory=__APP_DIR__/artifacts/kuhni-na-zakaz
 Environment=NODE_ENV=production
 Environment=PORT=3001
 Environment=HOST=127.0.0.1
-EnvironmentFile=__APP_DIR__/artifacts/kuhni-na-zakaz/.env
+EnvironmentFile=/etc/kuhni-na-zakaz.env
 ExecStart=/usr/bin/env pnpm run start
 Restart=always
 RestartSec=5
 NoNewPrivileges=true
 PrivateTmp=true
 PrivateDevices=true
-ProtectHome=true
 ProtectSystem=strict
 ProtectControlGroups=true
 ProtectKernelModules=true
@@ -27,7 +26,7 @@ CapabilityBoundingSet=
 AmbientCapabilities=
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
 SystemCallArchitectures=native
-ReadWritePaths=__APP_DIR__/artifacts/kuhni-na-zakaz/public/uploads __APP_DIR__/artifacts/kuhni-na-zakaz/.tmp
+ReadWritePaths=__APP_DIR__/artifacts/kuhni-na-zakaz/public/uploads __APP_DIR__/artifacts/kuhni-na-zakaz/.tmp /home/__APP_USER__/.cache/node/corepack
 
 [Install]
 WantedBy=multi-user.target

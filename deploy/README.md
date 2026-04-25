@@ -23,6 +23,8 @@ Active production target:
 Before using them:
 
 1. Replace `__APP_DIR__`, `__APP_USER__`, `__DOMAIN__`, and `__PORT__`.
-2. Create a real `.env` on the server from `artifacts/kuhni-na-zakaz/.env.example`.
-3. Run the app build and start commands from `artifacts/kuhni-na-zakaz`.
-4. If the server is on Timeweb VPS, follow `timeweb/README.md` for the live production workflow.
+2. Create a real production env file at `/etc/kuhni-na-zakaz.env` from `artifacts/kuhni-na-zakaz/.env.example`.
+3. Symlink `/var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.env` to `/etc/kuhni-na-zakaz.env` for build and Prisma commands.
+4. Set env file permissions to `640` with owner `root` and group `kuhni`.
+5. Run the app build and start commands from `artifacts/kuhni-na-zakaz`.
+6. If the server is on Timeweb VPS, follow `timeweb/README.md` for the live production workflow.

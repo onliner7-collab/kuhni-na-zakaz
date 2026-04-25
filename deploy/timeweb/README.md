@@ -35,22 +35,25 @@ This guide is the baseline for the first production deploy to a Timeweb VPS with
 1. Install system packages: `git`, `curl`, `nginx`, `postgresql` if local DB is needed.
 2. Install Node.js 22 and `pnpm`.
 3. Clone the repository into `/var/www/kuhni-na-zakaz`.
-4. Copy `artifacts/kuhni-na-zakaz/.env.example` to `artifacts/kuhni-na-zakaz/.env`.
+4. Copy `artifacts/kuhni-na-zakaz/.env.example` to `/etc/kuhni-na-zakaz.env`.
 5. Fill in `DATABASE_URL`, `SESSION_SECRET`, and `NEXT_PUBLIC_SITE_URL`.
-6. Run `pnpm install` in the repository root.
-7. Run `pnpm run build` inside `artifacts/kuhni-na-zakaz`.
-8. Run `pnpm exec prisma db push` inside `artifacts/kuhni-na-zakaz`.
-9. Run seed scripts only if the production database is empty and test content is desired.
-10. Install the `systemd` service from `deploy/systemd/kuhni-na-zakaz.service`.
-11. Install the nginx config from `deploy/nginx/kuhni-na-zakaz.conf`.
-12. Issue SSL certificates with `certbot` after nginx is serving the domain.
+6. Set secure permissions: `chown root:kuhni /etc/kuhni-na-zakaz.env && chmod 640 /etc/kuhni-na-zakaz.env`.
+7. Create a symlink for local build tooling: `ln -s /etc/kuhni-na-zakaz.env /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.env`.
+8. Run `pnpm install` in the repository root.
+9. Run `pnpm run build` inside `artifacts/kuhni-na-zakaz`.
+10. Run `pnpm exec prisma db push` inside `artifacts/kuhni-na-zakaz`.
+11. Run seed scripts only if the production database is empty and test content is desired.
+12. Install the `systemd` service from `deploy/systemd/kuhni-na-zakaz.service`.
+13. Install the nginx config from `deploy/nginx/kuhni-na-zakaz.conf`.
+14. Issue SSL certificates with `certbot` after nginx is serving the domain.
 
 ## Notes
 
 - `pnpm run start` now respects `PORT` and `HOST`, so the same app scripts work on Windows and Linux.
-- Keep the production `.env` only on the server.
+- Keep the production env only on the server and outside the repository tree.
 - Do not run local demo seeds on production unless we explicitly decide which content is safe to publish.
 - After the first deploy you can automate updates with `deploy/scripts/update-production.sh`.
+- If the host was ever compromised, rotate `SESSION_SECRET`, the PostgreSQL password, Telegram bot token, SMTP credentials, and any suspect SSH credentials.
 
 ## Current production update workflow
 
