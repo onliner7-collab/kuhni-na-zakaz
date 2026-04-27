@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { CheckCircle2, CookingPot, Grid2X2, Grip, PanelTop, SquareStack } from "lucide-react";
 import type {
-  CatalogFacade, CatalogCountertop, CatalogSkinal,
-  CatalogHandle, CatalogAppliance, MaterialsConfig,
+  CatalogAppliance,
+  CatalogCountertop,
+  CatalogFacade,
+  CatalogHandle,
+  CatalogSkinal,
+  MaterialsConfig,
 } from "@/lib/kitchen-configurator";
 
 interface MaterialsStepProps {
@@ -20,18 +24,21 @@ interface MaterialsStepProps {
 
 type Tab = "facade" | "countertop" | "skinal" | "handle" | "appliances";
 
-const TABS: { key: Tab; label: string; emoji: string }[] = [
-  { key: "facade", label: "Фасады", emoji: "🎨" },
-  { key: "countertop", label: "Столешница", emoji: "🪨" },
-  { key: "skinal", label: "Скиналь", emoji: "🧱" },
-  { key: "handle", label: "Ручки", emoji: "🔩" },
-  { key: "appliances", label: "Техника", emoji: "🔌" },
+const TABS: { key: Tab; label: string; Icon: typeof PanelTop }[] = [
+  { key: "facade", label: "Фасады", Icon: PanelTop },
+  { key: "countertop", label: "Столешница", Icon: SquareStack },
+  { key: "skinal", label: "Скиналь", Icon: Grid2X2 },
+  { key: "handle", label: "Ручки", Icon: Grip },
+  { key: "appliances", label: "Техника", Icon: CookingPot },
 ];
 
 const APPLIANCE_LABELS: Record<string, string> = {
-  oven: "Духовой шкаф", hob: "Варочная панель",
-  dishwasher: "Посудомойка", fridge: "Холодильник",
-  microwave: "Микроволновка", hood: "Вытяжка",
+  oven: "Духовой шкаф",
+  hob: "Варочная панель",
+  dishwasher: "Посудомоечная машина",
+  fridge: "Холодильник",
+  microwave: "Микроволновка",
+  hood: "Вытяжка",
 };
 
 export function MaterialsStep({ facades, countertops, skinals, handles, appliances, config, onChange }: MaterialsStepProps) {
@@ -39,26 +46,23 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
 
   function toggleAppliance(slug: string) {
     const current = config.appliances ?? [];
-    if (current.includes(slug)) {
-      onChange({ appliances: current.filter((s) => s !== slug) });
-    } else {
-      onChange({ appliances: [...current, slug] });
-    }
+    onChange({ appliances: current.includes(slug) ? current.filter((item) => item !== slug) : [...current, slug] });
   }
 
   return (
     <div className="space-y-4">
-      {/* Tab bar */}
-      <div className="flex gap-1 overflow-x-auto rounded-xl bg-muted p-1 text-sm scrollbar-none">
-        {TABS.map((t) => (
+      <div className="flex gap-1 overflow-x-auto rounded-lg bg-muted p-1 text-sm">
+        {TABS.map(({ key, label, Icon }) => (
           <button
-            key={t.key}
-            onClick={() => setTab(t.key)}
-            className={`flex items-center gap-1.5 rounded-lg px-3 py-2 font-medium whitespace-nowrap transition-all shrink-0 ${
-              tab === t.key ? "bg-background shadow text-foreground" : "text-muted-foreground hover:text-foreground"
+            key={key}
+            type="button"
+            onClick={() => setTab(key)}
+            className={`flex min-h-10 shrink-0 items-center gap-1.5 rounded-md px-3 py-2 font-semibold transition-all ${
+              tab === key ? "bg-background text-foreground shadow" : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            <span>{t.emoji}</span> {t.label}
+            <Icon className="h-4 w-4" />
+            {label}
           </button>
         ))}
       </div>
@@ -67,11 +71,14 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
         {tab === "facade" && (
           <motion.div key="facade" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <MaterialGrid
-              items={facades.map((f) => ({
-                id: f.id, slug: f.slug, name: f.name,
-                subtitle: `${f.material} · ${f.finish}`,
-                colorHex: f.colorHex, imageUrl: f.imageUrl,
-                price: `×${f.priceMultiplier}`,
+              items={facades.map((item) => ({
+                id: item.id,
+                slug: item.slug,
+                name: item.name,
+                subtitle: `${item.material} · ${item.finish}`,
+                colorHex: item.colorHex,
+                imageUrl: item.imageUrl,
+                price: `×${item.priceMultiplier}`,
               }))}
               selected={config.facadeSlug}
               onSelect={(slug) => onChange({ facadeSlug: slug })}
@@ -83,11 +90,13 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
         {tab === "countertop" && (
           <motion.div key="countertop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <MaterialGrid
-              items={countertops.map((c) => ({
-                id: c.id, slug: c.slug, name: c.name,
-                subtitle: `${c.material} · ${c.thicknessMm} мм`,
-                imageUrl: c.imageUrl,
-                price: `${c.pricePerMeter.toLocaleString("ru-RU")} ₽/пм`,
+              items={countertops.map((item) => ({
+                id: item.id,
+                slug: item.slug,
+                name: item.name,
+                subtitle: `${item.material} · ${item.thicknessMm} мм`,
+                imageUrl: item.imageUrl,
+                price: `${item.pricePerMeter.toLocaleString("ru-RU")} ₽/пм`,
               }))}
               selected={config.countertopSlug}
               onSelect={(slug) => onChange({ countertopSlug: slug })}
@@ -99,11 +108,13 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
         {tab === "skinal" && (
           <motion.div key="skinal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <MaterialGrid
-              items={skinals.map((s) => ({
-                id: s.id, slug: s.slug, name: s.name,
-                subtitle: s.material,
-                imageUrl: s.imageUrl,
-                price: `${s.pricePerSqMeter.toLocaleString("ru-RU")} ₽/м²`,
+              items={skinals.map((item) => ({
+                id: item.id,
+                slug: item.slug,
+                name: item.name,
+                subtitle: item.material,
+                imageUrl: item.imageUrl,
+                price: `${item.pricePerSqMeter.toLocaleString("ru-RU")} ₽/м²`,
               }))}
               selected={config.skinalSlug}
               onSelect={(slug) => onChange({ skinalSlug: slug })}
@@ -115,11 +126,13 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
         {tab === "handle" && (
           <motion.div key="handle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <MaterialGrid
-              items={handles.map((h) => ({
-                id: h.id, slug: h.slug, name: h.name,
-                subtitle: `${h.material} · ${h.finishName}`,
-                imageUrl: h.imageUrl,
-                price: `${h.pricePerPiece.toLocaleString("ru-RU")} ₽/шт.`,
+              items={handles.map((item) => ({
+                id: item.id,
+                slug: item.slug,
+                name: item.name,
+                subtitle: `${item.material} · ${item.finishName}`,
+                imageUrl: item.imageUrl,
+                price: `${item.pricePerPiece.toLocaleString("ru-RU")} ₽/шт.`,
               }))}
               selected={config.handleSlug}
               onSelect={(slug) => onChange({ handleSlug: slug })}
@@ -133,32 +146,37 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
             {appliances.length === 0 ? (
               <EmptyState entity="Техника" />
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {appliances.map((a, idx) => {
-                  const selected = (config.appliances ?? []).includes(a.slug);
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {appliances.map((item, idx) => {
+                  const selected = (config.appliances ?? []).includes(item.slug);
                   return (
                     <motion.button
-                      key={a.id}
-                      initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.04 }}
-                      onClick={() => toggleAppliance(a.slug)}
-                      className={`relative rounded-xl border-2 text-left overflow-hidden transition-all ${
-                        selected ? "border-amber-500 shadow-md" : "border-transparent hover:border-stone-300"
+                      key={item.id}
+                      type="button"
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.03 }}
+                      onClick={() => toggleAppliance(item.slug)}
+                      className={`relative overflow-hidden rounded-lg border-2 bg-white text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 ${
+                        selected ? "border-amber-500 shadow-lg shadow-amber-100" : "border-stone-200 hover:border-stone-300 hover:shadow-md"
                       }`}
                     >
-                      <div className="aspect-video bg-stone-100 flex items-center justify-center">
-                        {a.imageUrl
-                          ? <img src={a.imageUrl} alt={a.name} className="w-full h-full object-cover" />
-                          : <span className="text-3xl">{a.applianceType === "oven" ? "♨️" : a.applianceType === "hob" ? "🍳" : "🔌"}</span>
-                        }
+                      <div className="flex aspect-video items-center justify-center bg-stone-100">
+                        {item.imageUrl ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={item.imageUrl} alt={item.name} className="h-full w-full object-cover" />
+                        ) : (
+                          <CookingPot className="h-9 w-9 text-stone-500" />
+                        )}
                       </div>
-                      <div className="p-2 bg-white">
-                        <p className="text-xs font-semibold">{a.name}</p>
-                        <p className="text-xs text-muted-foreground">{APPLIANCE_LABELS[a.applianceType] ?? a.applianceType}</p>
-                        <p className="text-xs text-stone-600 font-medium mt-0.5">{a.priceBase.toLocaleString("ru-RU")} ₽</p>
+                      <div className="space-y-1 p-3">
+                        <p className="text-sm font-extrabold text-stone-900">{item.name}</p>
+                        <p className="text-xs text-muted-foreground">{APPLIANCE_LABELS[item.applianceType] ?? item.applianceType}</p>
+                        <p className="text-xs font-semibold text-stone-700">{item.priceBase.toLocaleString("ru-RU")} ₽</p>
                       </div>
                       {selected && (
-                        <div className="absolute top-1 right-1 bg-amber-500 rounded-full text-white">
-                          <CheckCircle2 className="w-4 h-4" />
+                        <div className="absolute right-2 top-2 rounded-full bg-amber-500 text-white shadow">
+                          <CheckCircle2 className="h-5 w-5" />
                         </div>
                       )}
                     </motion.button>
@@ -173,48 +191,50 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
   );
 }
 
-// ── MaterialGrid ──────────────────────────────────────
-
 interface GridItem {
-  id: number; slug: string; name: string; subtitle?: string;
-  colorHex?: string; imageUrl?: string; price?: string;
+  id: number;
+  slug: string;
+  name: string;
+  subtitle?: string;
+  colorHex?: string;
+  imageUrl?: string;
+  price?: string;
 }
 
-function MaterialGrid({ items, selected, onSelect }: {
-  items: GridItem[]; selected: string; onSelect: (slug: string) => void;
-}) {
+function MaterialGrid({ items, selected, onSelect }: { items: GridItem[]; selected: string; onSelect: (slug: string) => void }) {
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {items.map((item, idx) => {
         const isSelected = item.slug === selected;
         return (
           <motion.button
             key={item.id}
-            initial={{ opacity: 0, scale: 0.95 }}
+            type="button"
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: idx * 0.03 }}
+            transition={{ delay: idx * 0.02 }}
             onClick={() => onSelect(item.slug)}
-            className={`relative rounded-xl border-2 overflow-hidden text-left transition-all ${
-              isSelected ? "border-amber-500 shadow-lg shadow-amber-100" : "border-transparent hover:border-stone-300 hover:shadow-sm"
+            className={`relative overflow-hidden rounded-lg border-2 bg-white text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 ${
+              isSelected ? "border-amber-500 shadow-lg shadow-amber-100" : "border-stone-200 hover:border-stone-300 hover:shadow-md"
             }`}
           >
             <div
               className="aspect-square"
               style={{
-                backgroundColor: item.colorHex || "#e8e4e0",
-                backgroundImage: item.imageUrl ? `url(${item.imageUrl})` : undefined,
-                backgroundSize: "cover",
+                backgroundColor: item.colorHex || "#e8e1d6",
+                backgroundImage: item.imageUrl ? `url(${item.imageUrl})` : "linear-gradient(135deg, rgba(255,255,255,.35), rgba(0,0,0,.08))",
                 backgroundPosition: "center",
+                backgroundSize: "cover",
               }}
             />
-            <div className="p-1.5 bg-white">
-              <p className="text-xs font-semibold leading-tight truncate">{item.name}</p>
-              {item.subtitle && <p className="text-xs text-muted-foreground truncate">{item.subtitle}</p>}
-              {item.price && <p className="text-xs text-stone-600">{item.price}</p>}
+            <div className="space-y-0.5 p-2">
+              <p className="truncate text-xs font-extrabold text-stone-900">{item.name}</p>
+              {item.subtitle && <p className="truncate text-xs text-muted-foreground">{item.subtitle}</p>}
+              {item.price && <p className="text-xs font-semibold text-stone-700">{item.price}</p>}
             </div>
             {isSelected && (
-              <div className="absolute top-1 right-1 bg-amber-500 rounded-full text-white">
-                <CheckCircle2 className="w-4 h-4" />
+              <div className="absolute right-1.5 top-1.5 rounded-full bg-amber-500 text-white shadow">
+                <CheckCircle2 className="h-4 w-4" />
               </div>
             )}
           </motion.button>
@@ -226,8 +246,8 @@ function MaterialGrid({ items, selected, onSelect }: {
 
 function EmptyState({ entity }: { entity: string }) {
   return (
-    <div className="rounded-xl border bg-muted/40 p-8 text-center">
-      <p className="text-sm text-muted-foreground">{entity} не добавлены. Перейдите в администрирование.</p>
+    <div className="rounded-lg border bg-muted/40 p-8 text-center">
+      <p className="text-sm text-muted-foreground">{entity} пока не добавлены в админке.</p>
     </div>
   );
 }

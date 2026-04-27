@@ -2,10 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
 
 export function MobileCTA() {
   const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
+  const isConfigurator =
+    pathname === "/kitchen-configurator" || pathname.startsWith("/kitchen-configurator/");
 
   useEffect(() => {
     const onScroll = () => {
@@ -15,7 +19,7 @@ export function MobileCTA() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (!visible) return null;
+  if (!visible || isConfigurator) return null;
 
   return (
     <div

@@ -1,7 +1,7 @@
 "use client";
 
-import { useReducer, useEffect, useCallback, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { AlertTriangle, ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 
 import {
@@ -12,22 +12,30 @@ import {
 } from "@/lib/kitchen-configurator/store";
 import { checkCompatibility } from "@/lib/kitchen-configurator/compatibility";
 import { calculatePrice } from "@/lib/kitchen-configurator/price";
-import { saveProjectToIDB, loadProjectFromIDB } from "@/lib/kitchen-configurator/idb-storage";
+import { loadProjectFromIDB, saveProjectToIDB } from "@/lib/kitchen-configurator/idb-storage";
 import type {
-  CatalogModule, CatalogTemplate, CatalogFacade, CatalogCountertop,
-  CatalogSkinal, CatalogHandle, CatalogAppliance, ConfiguratorStep,
-  PlacedModule, RoomConfig, MaterialsConfig,
+  CatalogAppliance,
+  CatalogCountertop,
+  CatalogFacade,
+  CatalogHandle,
+  CatalogModule,
+  CatalogSkinal,
+  CatalogTemplate,
+  ConfiguratorStep,
+  MaterialsConfig,
+  PlacedModule,
+  RoomConfig,
 } from "@/lib/kitchen-configurator";
 import type { StylePreset } from "@/lib/kitchen-configurator/style-presets";
 
 import { ConfiguratorStepper, STEPS } from "./ConfiguratorStepper";
-import { RoomStep } from "./steps/RoomStep";
-import { TemplateStep } from "./steps/TemplateStep";
-import { ModulesStep } from "./steps/ModulesStep";
-import { StyleStep } from "./steps/StyleStep";
 import { MaterialsStep } from "./steps/MaterialsStep";
-import { View3DStep } from "./steps/View3DStep";
+import { ModulesStep } from "./steps/ModulesStep";
+import { RoomStep } from "./steps/RoomStep";
+import { StyleStep } from "./steps/StyleStep";
 import { SummaryStep } from "./steps/SummaryStep";
+import { TemplateStep } from "./steps/TemplateStep";
+import { View3DStep } from "./steps/View3DStep";
 
 interface Catalog {
   modules: CatalogModule[];
@@ -37,7 +45,13 @@ interface Catalog {
   skinals: CatalogSkinal[];
   handles: CatalogHandle[];
   appliances: CatalogAppliance[];
-  settings?: { shareTextTemplate: string; exportBrandingText: string; defaultRoomWidthCm: number; defaultRoomDepthCm: number; defaultRoomHeightCm: number } | null;
+  settings?: {
+    shareTextTemplate: string;
+    exportBrandingText: string;
+    defaultRoomWidthCm: number;
+    defaultRoomDepthCm: number;
+    defaultRoomHeightCm: number;
+  } | null;
 }
 
 interface KitchenConfiguratorProps {
@@ -45,9 +59,6 @@ interface KitchenConfiguratorProps {
 }
 
 const AUTOSAVE_INTERVAL_MS = 8000;
-
-// Материалы-вкладка объединяет Style + Materials
-// Логика: сначала StyleStep (выбор пресета), потом MaterialsStep (ручная настройка)
 
 export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
   const initState = createInitialState();
@@ -63,29 +74,26 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
   const [restoredFromIDB, setRestoredFromIDB] = useState(false);
   const autosaveTimer = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // ── Restore from IndexedDB on mount ────────────────────
   useEffect(() => {
     loadProjectFromIDB().then((saved) => {
-      if (saved) {
-        dispatch({ type: "LOAD_PROJECT", payload: saved });
-        setRestoredFromIDB(true);
-        setTimeout(() => setRestoredFromIDB(false), 4000);
-      }
+      if (!saved) return;
+      dispatch({ type: "LOAD_PROJECT", payload: saved });
+      setRestoredFromIDB(true);
+      setTimeout(() => setRestoredFromIDB(false), 3500);
     });
   }, []);
 
-  // ── Autosave ────────────────────────────────────────────
   useEffect(() => {
     if (autosaveTimer.current) clearInterval(autosaveTimer.current);
     autosaveTimer.current = setInterval(() => {
       if (state.isDirty) saveProjectToIDB(state);
     }, AUTOSAVE_INTERVAL_MS);
+
     return () => {
       if (autosaveTimer.current) clearInterval(autosaveTimer.current);
     };
   }, [state]);
 
-  // ── Recompute warnings + price on state change ──────────
   useEffect(() => {
     const warnings = checkCompatibility({
       roomConfig: state.roomConfig,
@@ -108,48 +116,25 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
       applianceCatalog: catalog.appliances,
     });
     dispatch({ type: "UPDATE_PRICE", payload: price });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.placedModules, state.materialsConfig, state.roomConfig]);
 
-  // ── Navigation ──────────────────────────────────────────
   const currentIdx = STEPS.findIndex((s) => s.key === state.currentStep);
+  const stepMeta = STEPS[currentIdx] ?? STEPS[0];
+  const hasGlobalErrors = selectHasErrors(state);
+
+  const canProceed = useCallback(
+    (step: ConfiguratorStep) => selectCanProceedToStep(state, step),
+    [state],
+  );
 
   function goPrev() {
     if (currentIdx > 0) dispatch({ type: "SET_STEP", payload: STEPS[currentIdx - 1].key });
   }
 
   function goNext() {
-    if (currentIdx < STEPS.length - 1) dispatch({ type: "SET_STEP", payload: STEPS[currentIdx + 1].key });
-  }
-
-  const canProceed = useCallback(
-    (step: ConfiguratorStep) => selectCanProceedToStep(state, step),
-    [state]
-  );
-
-  // ── Handlers ────────────────────────────────────────────
-  function handleRoomChange(patch: Partial<RoomConfig>) {
-    dispatch({ type: "UPDATE_ROOM", payload: patch });
-  }
-
-  function handleTemplateSelect(template: CatalogTemplate) {
-    dispatch({ type: "APPLY_TEMPLATE", payload: template });
-  }
-
-  function handleAddModule(pm: PlacedModule) {
-    dispatch({ type: "ADD_MODULE", payload: pm });
-  }
-
-  function handleRemoveModule(id: string) {
-    dispatch({ type: "REMOVE_MODULE", payload: id });
-  }
-
-  function handleMoveModule(id: string, wallSide: string, offsetCm: number) {
-    dispatch({ type: "MOVE_MODULE", payload: { id, wallSide: wallSide as PlacedModule["wallSide"], offsetCm } });
-  }
-
-  function handleMaterialsChange(patch: Partial<MaterialsConfig>) {
-    dispatch({ type: "UPDATE_MATERIALS", payload: patch });
+    const next = STEPS[currentIdx + 1];
+    if (next && canProceed(next.key)) dispatch({ type: "SET_STEP", payload: next.key });
   }
 
   function handlePresetApply(preset: StylePreset) {
@@ -159,7 +144,7 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
     if (preset.countertopSlug) patch.countertopSlug = preset.countertopSlug;
     if (preset.skinalSlug) patch.skinalSlug = preset.skinalSlug;
     if (preset.handleSlug) patch.handleSlug = preset.handleSlug;
-    if (Object.keys(patch).length) dispatch({ type: "UPDATE_MATERIALS", payload: patch });
+    dispatch({ type: "UPDATE_MATERIALS", payload: patch });
     setMaterialsSubTab("materials");
   }
 
@@ -179,27 +164,34 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
           priceEstimate: state.priceBreakdown.total,
         }),
       });
+      if (!res.ok) return null;
       const data = await res.json();
-      if (data.project) {
-        dispatch({
-          type: "MARK_SAVED",
-          payload: { id: data.project.id, sessionId, savedAt: new Date() },
-        });
-        return { id: data.project.id };
-      }
+      if (!data.project) return null;
+      dispatch({ type: "MARK_SAVED", payload: { id: data.project.id, sessionId, savedAt: new Date() } });
+      return { id: data.project.id };
     } catch {
-      // silent
+      return null;
     }
-    return null;
   }
 
-  // ── Render step content ─────────────────────────────────
   function renderStep() {
     switch (state.currentStep) {
       case "room":
-        return <RoomStep roomConfig={state.roomConfig} warnings={state.warnings} onChange={handleRoomChange} />;
+        return (
+          <RoomStep
+            roomConfig={state.roomConfig}
+            warnings={state.warnings}
+            onChange={(patch: Partial<RoomConfig>) => dispatch({ type: "UPDATE_ROOM", payload: patch })}
+          />
+        );
       case "template":
-        return <TemplateStep templates={catalog.templates} selectedSlug={state.selectedTemplateSlug} onSelect={handleTemplateSelect} />;
+        return (
+          <TemplateStep
+            templates={catalog.templates}
+            selectedSlug={state.selectedTemplateSlug}
+            onSelect={(template) => dispatch({ type: "APPLY_TEMPLATE", payload: template })}
+          />
+        );
       case "modules":
         return (
           <ModulesStep
@@ -207,25 +199,27 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
             placedModules={state.placedModules}
             moduleCatalog={catalog.modules}
             warnings={state.warnings}
-            onAddModule={handleAddModule}
-            onRemoveModule={handleRemoveModule}
-            onMoveModule={handleMoveModule}
+            onAddModule={(module) => dispatch({ type: "ADD_MODULE", payload: module })}
+            onRemoveModule={(id) => dispatch({ type: "REMOVE_MODULE", payload: id })}
+            onMoveModule={(id, wallSide, offsetCm) =>
+              dispatch({ type: "MOVE_MODULE", payload: { id, wallSide: wallSide as PlacedModule["wallSide"], offsetCm } })
+            }
           />
         );
       case "materials":
         return (
           <div className="space-y-4">
-            {/* Sub-tabs: Style Preset / Manual */}
-            <div className="flex gap-1 rounded-xl bg-muted p-1 text-sm w-fit">
+            <div className="inline-flex rounded-lg bg-muted p-1 text-sm">
               {(["style", "materials"] as const).map((tab) => (
                 <button
                   key={tab}
+                  type="button"
                   onClick={() => setMaterialsSubTab(tab)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                    materialsSubTab === tab ? "bg-background shadow text-foreground" : "text-muted-foreground"
+                  className={`rounded-md px-4 py-2 font-semibold transition-all ${
+                    materialsSubTab === tab ? "bg-background text-foreground shadow" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {tab === "style" ? "🎨 Стиль-пресет" : "⚙️ Вручную"}
+                  {tab === "style" ? "Стиль-пресет" : "Вручную"}
                 </button>
               ))}
             </div>
@@ -235,7 +229,7 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
                   <StyleStep config={state.materialsConfig} onApplyPreset={handlePresetApply} activePresetId={activePresetId} />
                 </motion.div>
               ) : (
-                <motion.div key="mat" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <motion.div key="materials" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                   <MaterialsStep
                     facades={catalog.facades}
                     countertops={catalog.countertops}
@@ -243,7 +237,7 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
                     handles={catalog.handles}
                     appliances={catalog.appliances}
                     config={state.materialsConfig}
-                    onChange={handleMaterialsChange}
+                    onChange={(patch) => dispatch({ type: "UPDATE_MATERIALS", payload: patch })}
                   />
                 </motion.div>
               )}
@@ -272,31 +266,22 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
     }
   }
 
-  const stepMeta = STEPS[currentIdx];
-  const hasGlobalErrors = selectHasErrors(state);
-
   return (
-    <div className="flex flex-col gap-0 bg-background min-h-[calc(100vh-120px)]">
-      {/* Stepper header */}
-      <div className="sticky top-0 z-20 bg-background/95 backdrop-blur border-b px-4 py-3">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-between gap-4 mb-3">
-            <h2 className="font-bold text-base text-stone-800 flex items-center gap-2">
-              <span>{stepMeta.emoji}</span>
-              <span>{stepMeta.label}</span>
-            </h2>
+    <div className="flex min-h-[calc(100vh-120px)] flex-col bg-background">
+      <div className="sticky top-0 z-20 border-b bg-background/95 px-4 py-3 backdrop-blur">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-3 flex items-center justify-between gap-4">
+            <h2 className="text-base font-extrabold text-stone-900">{stepMeta.label}</h2>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
               {state.isDirty && (
-                <span className="flex items-center gap-1 text-amber-600">
-                  <Loader2 className="w-3 h-3 animate-spin" />не сохранено
+                <span className="flex items-center gap-1 text-amber-700">
+                  <Loader2 className="h-3 w-3 animate-spin" /> не сохранено
                 </span>
               )}
-              {!state.isDirty && state.lastSavedAt && (
-                <span className="text-green-600">✓ сохранено</span>
-              )}
+              {!state.isDirty && state.lastSavedAt && <span className="text-emerald-700">сохранено</span>}
               {hasGlobalErrors && (
                 <span className="flex items-center gap-1 text-red-600">
-                  <AlertTriangle className="w-3 h-3" />ошибки
+                  <AlertTriangle className="h-3 w-3" /> есть ошибки
                 </span>
               )}
             </div>
@@ -309,21 +294,21 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
         </div>
       </div>
 
-      {/* Restored from IDB notification */}
       <AnimatePresence>
         {restoredFromIDB && (
           <motion.div
-            initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}
-            className="bg-green-50 border-b border-green-200 px-4 py-2 text-sm text-green-800 text-center"
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            className="border-b border-emerald-200 bg-emerald-50 px-4 py-2 text-center text-sm text-emerald-800"
           >
-            ✓ Восстановлен предыдущий черновик
+            Восстановлен предыдущий черновик
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Step content */}
       <div className="flex-1 px-4 py-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={state.currentStep}
@@ -338,34 +323,35 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
         </div>
       </div>
 
-      {/* Bottom navigation — sticky on mobile */}
-      <div className="sticky bottom-0 z-20 bg-background/95 backdrop-blur border-t px-4 py-3">
-        <div className="max-w-5xl mx-auto flex items-center justify-between gap-3">
+      <div className="sticky bottom-0 z-20 border-t bg-background/95 px-4 py-3 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
           <button
+            type="button"
             onClick={goPrev}
             disabled={currentIdx === 0}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium hover:bg-muted transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            aria-label="Назад"
+            className="flex min-h-11 items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-40"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Назад</span>
           </button>
 
-          {/* Price indicator */}
           {state.priceBreakdown.total > 0 && (
             <div className="text-center">
               <p className="text-xs text-muted-foreground">Оценка</p>
-              <p className="font-bold text-amber-700">{state.priceBreakdown.total.toLocaleString("ru-RU")} ₽</p>
+              <p className="font-extrabold text-amber-700">{state.priceBreakdown.total.toLocaleString("ru-RU")} ₽</p>
             </div>
           )}
 
           <button
+            type="button"
             onClick={goNext}
             disabled={currentIdx === STEPS.length - 1 || !canProceed(STEPS[currentIdx + 1]?.key)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white text-sm font-medium transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-            style={{ background: "linear-gradient(135deg, #92400e, #d97706)" }}
+            aria-label={currentIdx === STEPS.length - 2 ? "К итогу" : "Далее"}
+            className="flex min-h-11 items-center gap-2 rounded-lg bg-amber-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-amber-200 transition-all hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            <span className="hidden sm:inline">Далее</span>
-            <ArrowRight className="w-4 h-4" />
+            <span className="hidden sm:inline">{currentIdx === STEPS.length - 2 ? "К итогу" : "Далее"}</span>
+            <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       </div>

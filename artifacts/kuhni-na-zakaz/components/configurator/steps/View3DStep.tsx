@@ -1,19 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useState } from "react";
-import { RotateCcw, Maximize2, ZoomIn, ZoomOut, Smartphone } from "lucide-react";
-import type { RoomConfig, PlacedModule, CatalogModule, CatalogFacade, MaterialsConfig } from "@/lib/kitchen-configurator";
-
-// Динамический импорт — Three.js не должен рендериться на сервере
-const Scene3D = dynamic(() => import("@/components/configurator/canvas/Scene3D").then((m) => ({ default: m.Scene3D })), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-80 rounded-xl bg-stone-100 flex items-center justify-center">
-      <div className="text-sm text-muted-foreground animate-pulse">Загрузка 3D-сцены…</div>
-    </div>
-  ),
-});
+import { useMemo, useState } from "react";
+import type { CSSProperties } from "react";
+import { Home, RotateCcw, ZoomIn, ZoomOut } from "lucide-react";
+import type { CatalogFacade, CatalogModule, MaterialsConfig, PlacedModule, RoomConfig } from "@/lib/kitchen-configurator";
 
 interface View3DStepProps {
   roomConfig: RoomConfig;
@@ -23,80 +13,130 @@ interface View3DStepProps {
   materialsConfig: MaterialsConfig;
 }
 
-const PRESETS = [
-  { label: "Спереди", icon: "↑" },
-  { label: "Угол", icon: "↗" },
-  { label: "Сверху", icon: "⊙" },
-];
+const WALL_ROTATION: Record<string, number> = {
+  top: 0,
+  right: 90,
+  bottom: 180,
+  left: -90,
+  island: 0,
+};
 
-export function View3DStep(props: View3DStepProps) {
-  const [lite, setLite] = useState(false);
-  const [key, setKey] = useState(0); // для сброса камеры
+export function View3DStep({ roomConfig, placedModules, moduleCatalog, facadeCatalog, materialsConfig }: View3DStepProps) {
+  const [view, setView] = useState<"front" | "corner" | "top">("corner");
+  const [zoom, setZoom] = useState(1);
+  const hasModules = placedModules.length > 0;
+  const facadeColor = useMemo(() => {
+    const facade = facadeCatalog.find((item) => item.slug === materialsConfig.facadeSlug);
+    return facade?.colorHex || "#d8cec1";
+  }, [facadeCatalog, materialsConfig.facadeSlug]);
 
-  const hasModules = props.placedModules.length > 0;
+  const roomWidth = Math.max(roomConfig.dimensions.widthCm, 240);
+  const roomDepth = Math.max(roomConfig.dimensions.depthCm, 200);
 
   return (
     <div className="space-y-4">
-      {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-2">
         <div className="flex gap-1 rounded-lg bg-muted p-1">
-          {PRESETS.map((p) => (
+          {[
+            { key: "front", label: "Фронт" },
+            { key: "corner", label: "Угол" },
+            { key: "top", label: "Сверху" },
+          ].map((item) => (
             <button
-              key={p.label}
-              title={p.label}
-              className="px-3 py-1.5 rounded text-xs font-medium hover:bg-background hover:shadow-sm transition-all"
-              onClick={() => setKey((k) => k + 1)}
+              key={item.key}
+              type="button"
+              onClick={() => setView(item.key as typeof view)}
+              className={`min-h-10 rounded-md px-3 py-2 text-xs font-semibold transition-all ${
+                view === item.key ? "bg-background text-foreground shadow" : "text-muted-foreground hover:text-foreground"
+              }`}
             >
-              {p.icon} {p.label}
+              {item.label}
             </button>
           ))}
         </div>
-
-        <div className="flex gap-1 ml-auto">
-          <button
-            onClick={() => setLite((l) => !l)}
-            title={lite ? "Высокое качество" : "Облегчённый режим"}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs transition-colors ${lite ? "bg-amber-50 border-amber-300 text-amber-700" : "hover:bg-muted"}`}
-          >
-            <Smartphone className="w-3.5 h-3.5" />
-            {lite ? "Lite ON" : "Lite"}
+        <div className="ml-auto flex gap-1">
+          <button type="button" onClick={() => setZoom((value) => Math.max(0.82, value - 0.08))} className="flex min-h-10 items-center justify-center rounded-lg border px-3 py-2 transition-colors hover:bg-muted" aria-label="Уменьшить">
+            <ZoomOut className="h-4 w-4" />
           </button>
-          <button
-            onClick={() => setKey((k) => k + 1)}
-            title="Сбросить камеру"
-            className="px-2.5 py-1.5 rounded-lg border hover:bg-muted transition-colors"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
+          <button type="button" onClick={() => setZoom(1)} className="flex min-h-10 items-center justify-center rounded-lg border px-3 py-2 transition-colors hover:bg-muted" aria-label="Сбросить вид">
+            <RotateCcw className="h-4 w-4" />
+          </button>
+          <button type="button" onClick={() => setZoom((value) => Math.min(1.18, value + 0.08))} className="flex min-h-10 items-center justify-center rounded-lg border px-3 py-2 transition-colors hover:bg-muted" aria-label="Увеличить">
+            <ZoomIn className="h-4 w-4" />
           </button>
         </div>
       </div>
 
       {!hasModules ? (
-        <div className="w-full h-80 rounded-xl border bg-stone-50 flex flex-col items-center justify-center gap-2 text-muted-foreground">
-          <span className="text-4xl">🏠</span>
-          <p className="text-sm">Добавьте модули в шаге «Модули»</p>
-          <p className="text-xs">3D-сцена появится здесь</p>
+        <div className="flex h-80 w-full flex-col items-center justify-center gap-2 rounded-lg border bg-stone-50 text-muted-foreground">
+          <Home className="h-10 w-10" />
+          <p className="text-sm font-semibold">Добавьте модули на предыдущем шаге</p>
+          <p className="text-xs">После этого здесь появится 3D-просмотр.</p>
         </div>
       ) : (
-        <div className="relative w-full" style={{ height: "480px" }}>
-          <Scene3D key={key} {...props} lite={lite} />
-          {/* Controls hint */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 text-xs text-stone-400 bg-white/80 backdrop-blur rounded-full px-3 py-1.5">
-            <span className="flex items-center gap-1"><ZoomIn className="w-3 h-3" />Прокрутка — зум</span>
-            <span>·</span>
-            <span className="flex items-center gap-1"><ZoomOut className="w-3 h-3" />Перетащить — поворот</span>
+        <div className="relative h-[420px] overflow-hidden rounded-lg border bg-[linear-gradient(180deg,#f8f6f2_0%,#eee7de_100%)] sm:h-[520px]">
+          <div
+            className="absolute left-1/2 top-1/2 h-[260px] w-[320px] origin-center -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 sm:h-[330px] sm:w-[460px]"
+            style={{
+              transform: `translate(-50%, -50%) scale(${zoom}) rotateX(${view === "top" ? 58 : 58}deg) rotateZ(${view === "front" ? 0 : view === "top" ? 45 : 38}deg)`,
+              transformStyle: "preserve-3d",
+            }}
+          >
+            <div className="absolute inset-0 rounded-md border-4 border-stone-700 bg-stone-100 shadow-2xl" />
+            <div className="absolute inset-x-0 top-0 h-6 origin-top bg-stone-200 shadow" style={{ transform: "rotateX(-90deg)" }} />
+            <div className="absolute bottom-0 left-0 top-0 w-6 origin-left bg-stone-300 shadow" style={{ transform: "rotateY(90deg)" }} />
+
+            {placedModules.map((module) => {
+              const catalogItem = moduleCatalog.find((item) => item.slug === module.moduleSlug);
+              if (!catalogItem) return null;
+
+              const widthPct = Math.max(12, (catalogItem.widthCm / roomWidth) * 100);
+              const depthPct = Math.max(11, (catalogItem.depthCm / roomDepth) * 100);
+              const offsetPct = Math.min(86, (module.offsetCm / (module.wallSide === "left" || module.wallSide === "right" ? roomDepth : roomWidth)) * 100);
+              const isTall = catalogItem.moduleType === "TALL";
+              const isUpper = catalogItem.moduleType === "UPPER" || catalogItem.moduleType === "GLASS_DOOR" || catalogItem.moduleType === "LIFT_MECHANISM";
+
+              const style = moduleStyle(module, offsetPct, widthPct, depthPct);
+              return (
+                <div
+                  key={module.id}
+                  className="absolute rounded-sm border border-stone-800/25 shadow-lg"
+                  style={{
+                    ...style,
+                    background: facadeColor,
+                    height: isTall ? 58 : isUpper ? 24 : 34,
+                    transform: `${style.transform} translateZ(${isUpper ? 58 : isTall ? 34 : 17}px) rotateZ(${WALL_ROTATION[module.wallSide] ?? 0}deg)`,
+                    transformStyle: "preserve-3d",
+                  }}
+                  title={catalogItem.name}
+                >
+                  <span className="absolute inset-x-1 top-1 h-1 rounded bg-white/35" />
+                  <span className="absolute bottom-1 left-1 right-1 h-1 rounded bg-black/10" />
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-white/85 px-3 py-1.5 text-xs text-stone-600 shadow backdrop-blur">
+            SVG 3D-просмотр: без WebGL, работает на мобильных и в старых браузерах
           </div>
         </div>
       )}
-
-      <div className="rounded-xl border bg-muted/30 p-4 text-sm text-muted-foreground">
-        <p className="font-medium text-stone-700 mb-1">Управление камерой</p>
-        <ul className="text-xs space-y-0.5 list-disc ml-4">
-          <li>Левая кнопка мыши / один палец — поворот</li>
-          <li>Колесо / щипок двумя пальцами — зум</li>
-          <li>Правая кнопка / два пальца — панорама</li>
-        </ul>
-      </div>
     </div>
   );
+}
+
+function moduleStyle(module: PlacedModule, offsetPct: number, widthPct: number, depthPct: number): CSSProperties {
+  switch (module.wallSide) {
+    case "top":
+      return { left: `${offsetPct}%`, top: "5%", width: `${widthPct}%`, transform: "translateZ(0)" };
+    case "bottom":
+      return { left: `${offsetPct}%`, bottom: "5%", width: `${widthPct}%`, transform: "translateZ(0)" };
+    case "left":
+      return { left: "5%", top: `${offsetPct}%`, width: `${depthPct}%`, transform: "translateZ(0)" };
+    case "right":
+      return { right: "5%", top: `${offsetPct}%`, width: `${depthPct}%`, transform: "translateZ(0)" };
+    default:
+      return { left: "42%", top: "42%", width: `${widthPct}%`, transform: "translateZ(0)" };
+  }
 }

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Plus, Trash2, Info } from "lucide-react";
+import { Info, Plus, Trash2 } from "lucide-react";
 import { Room2D } from "@/components/configurator/canvas/Room2D";
-import type { CatalogModule, PlacedModule, RoomConfig, ConfigWarning, WallSide } from "@/lib/kitchen-configurator";
+import type { CatalogModule, ConfigWarning, PlacedModule, RoomConfig, WallSide } from "@/lib/kitchen-configurator";
 
 interface ModulesStepProps {
   roomConfig: RoomConfig;
@@ -17,9 +17,14 @@ interface ModulesStepProps {
 }
 
 const TYPE_LABELS: Record<string, string> = {
-  LOWER: "Нижний", UPPER: "Верхний", TALL: "Пенал",
-  CORNER: "Угловой", SINK: "Под мойку", DRAWER: "С ящиками",
-  GLASS_DOOR: "Витрина", LIFT_MECHANISM: "Подъёмный мех.",
+  LOWER: "Нижние",
+  UPPER: "Верхние",
+  TALL: "Пеналы",
+  CORNER: "Угловые",
+  SINK: "Под мойку",
+  DRAWER: "Ящики",
+  GLASS_DOOR: "Витрины",
+  LIFT_MECHANISM: "Подъемные",
 };
 
 const WALL_OPTIONS: { value: WallSide; label: string }[] = [
@@ -30,102 +35,105 @@ const WALL_OPTIONS: { value: WallSide; label: string }[] = [
   { value: "island", label: "Остров" },
 ];
 
-function uid() { return Math.random().toString(36).slice(2, 9); }
+function uid() {
+  return crypto.randomUUID?.() ?? Math.random().toString(36).slice(2, 9);
+}
 
 export function ModulesStep({
-  roomConfig, placedModules, moduleCatalog, warnings,
-  onAddModule, onRemoveModule, onMoveModule,
+  roomConfig,
+  placedModules,
+  moduleCatalog,
+  warnings,
+  onAddModule,
+  onRemoveModule,
+  onMoveModule,
 }: ModulesStepProps) {
-  const [selectedModuleId, setSelectedModuleId] = useState<string | undefined>();
-  const [filterType, setFilterType] = useState<string>("ALL");
+  const [selectedModuleId, setSelectedModuleId] = useState<string>();
+  const [filterType, setFilterType] = useState("ALL");
   const [addWall, setAddWall] = useState<WallSide>("bottom");
 
-  const types = ["ALL", ...Array.from(new Set(moduleCatalog.map((m) => m.moduleType)))];
-  const filtered = filterType === "ALL" ? moduleCatalog : moduleCatalog.filter((m) => m.moduleType === filterType);
+  const types = ["ALL", ...Array.from(new Set(moduleCatalog.map((module) => module.moduleType)))];
+  const filtered = filterType === "ALL" ? moduleCatalog : moduleCatalog.filter((module) => module.moduleType === filterType);
+  const selectedModule = placedModules.find((module) => module.id === selectedModuleId);
+  const selectedCatalog = selectedModule ? moduleCatalog.find((module) => module.slug === selectedModule.moduleSlug) : null;
+  const errorIds = new Set(warnings.flatMap((warning) => warning.relatedIds ?? []));
 
-  function handleAdd(mod: CatalogModule) {
-    const pm: PlacedModule = {
-      id: uid(),
-      moduleSlug: mod.slug,
-      wallSide: addWall,
-      offsetCm: 10,
-    };
-    onAddModule(pm);
+  function handleAdd(module: CatalogModule) {
+    onAddModule({ id: uid(), moduleSlug: module.slug, wallSide: addWall, offsetCm: 10 });
   }
 
-  const selectedModule = placedModules.find((m) => m.id === selectedModuleId);
-  const selectedCatalog = selectedModule ? moduleCatalog.find((m) => m.slug === selectedModule.moduleSlug) : null;
-
-  const errorIds = new Set(warnings.flatMap((w) => w.relatedIds ?? []));
-
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-      {/* Catalog */}
-      <div className="lg:col-span-2 space-y-3">
-        <p className="text-sm font-medium">Каталог модулей</p>
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
+      <div className="space-y-4 lg:col-span-2">
+        <div>
+          <p className="font-extrabold text-stone-900">Каталог модулей</p>
+          <p className="text-sm text-muted-foreground">Выберите стену и добавляйте шкафы одним нажатием.</p>
+        </div>
 
-        {/* Type filter */}
         <div className="flex flex-wrap gap-1">
-          {types.map((t) => (
+          {types.map((type) => (
             <button
-              key={t}
-              onClick={() => setFilterType(t)}
-              className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
-                filterType === t ? "bg-amber-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted/70"
+              key={type}
+              type="button"
+              onClick={() => setFilterType(type)}
+              className={`min-h-9 rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                filterType === type ? "bg-amber-600 text-white" : "bg-muted text-muted-foreground hover:bg-stone-200"
               }`}
             >
-              {t === "ALL" ? "Все" : (TYPE_LABELS[t] ?? t)}
+              {type === "ALL" ? "Все" : TYPE_LABELS[type] ?? type}
             </button>
           ))}
         </div>
 
-        {/* Wall selector */}
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-muted-foreground shrink-0">Разместить на:</span>
+        <label className="block text-xs font-semibold text-muted-foreground">
+          Размещать на
           <select
             value={addWall}
-            onChange={(e) => setAddWall(e.target.value as WallSide)}
-            className="text-xs border rounded-lg px-2 py-1.5 bg-background"
+            onChange={(event) => setAddWall(event.target.value as WallSide)}
+            className="mt-1 w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground"
           >
-            {WALL_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>{o.label}</option>
+            {WALL_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
             ))}
           </select>
-        </div>
+        </label>
 
         {moduleCatalog.length === 0 ? (
-          <div className="rounded-xl border bg-muted/40 p-8 text-center">
-            <p className="text-xs text-muted-foreground">Модули не добавлены. Добавьте их через администрирование.</p>
+          <div className="rounded-lg border bg-muted/40 p-8 text-center">
+            <p className="text-sm text-muted-foreground">Модули пока не добавлены.</p>
           </div>
         ) : (
-          <div className="space-y-1.5 max-h-80 overflow-y-auto pr-1">
-            {filtered.map((mod, i) => (
+          <div className="max-h-[27rem] space-y-2 overflow-y-auto pr-1">
+            {filtered.map((module, idx) => (
               <motion.button
-                key={mod.id}
+                key={module.id}
+                type="button"
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.02 }}
-                onClick={() => handleAdd(mod)}
-                className="w-full text-left flex items-center gap-3 rounded-xl border bg-card p-2.5 hover:border-amber-400 hover:shadow-sm transition-all group"
+                transition={{ delay: idx * 0.02 }}
+                onClick={() => handleAdd(module)}
+                className="group flex w-full items-center gap-3 rounded-lg border bg-white p-3 text-left transition-all hover:border-amber-400 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
               >
-                <div className="w-10 h-10 rounded-lg bg-stone-100 flex items-center justify-center shrink-0 text-xs font-mono text-stone-500">
-                  {mod.widthCm}
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-stone-100 text-xs font-black text-stone-600">
+                  {module.widthCm}
                 </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-medium truncate">{mod.name}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-sm font-extrabold text-stone-900">{module.name}</p>
                   <p className="text-xs text-muted-foreground">
-                    {TYPE_LABELS[mod.moduleType]} · {mod.widthCm}×{mod.heightCm}×{mod.depthCm} см
+                    {TYPE_LABELS[module.moduleType]} · {module.widthCm}×{module.heightCm}×{module.depthCm} см
                   </p>
+                  <p className="text-xs font-semibold text-stone-700">{module.priceBase.toLocaleString("ru-RU")} ₽</p>
                 </div>
-                <Plus className="w-4 h-4 text-muted-foreground group-hover:text-amber-600 shrink-0 ml-auto" />
+                <Plus className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-amber-700" />
               </motion.button>
             ))}
           </div>
         )}
       </div>
 
-      {/* Canvas + placed list */}
-      <div className="lg:col-span-3 space-y-3">
+      <div className="space-y-4 lg:col-span-3">
         <Room2D
           roomConfig={roomConfig}
           placedModules={placedModules}
@@ -136,68 +144,82 @@ export function ModulesStep({
           onMoveModule={onMoveModule}
         />
 
-        {/* Selected module panel */}
         {selectedModule && selectedCatalog && (
           <motion.div
-            initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-            className={`rounded-xl border p-3 space-y-2 ${errorIds.has(selectedModule.id) ? "border-red-300 bg-red-50" : "bg-card"}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`space-y-3 rounded-lg border p-4 ${errorIds.has(selectedModule.id) ? "border-red-300 bg-red-50" : "bg-white"}`}
           >
-            <div className="flex items-center justify-between">
-              <p className="font-medium text-sm">{selectedCatalog.name}</p>
-              <button onClick={() => { onRemoveModule(selectedModule.id); setSelectedModuleId(undefined); }}
-                className="text-muted-foreground hover:text-destructive transition-colors">
-                <Trash2 className="w-4 h-4" />
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-extrabold text-stone-900">{selectedCatalog.name}</p>
+              <button
+                type="button"
+                onClick={() => {
+                  onRemoveModule(selectedModule.id);
+                  setSelectedModuleId(undefined);
+                }}
+                className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-red-50 hover:text-destructive"
+                aria-label="Удалить модуль"
+              >
+                <Trash2 className="h-4 w-4" />
               </button>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label className="text-xs text-muted-foreground">Стена</label>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <label className="text-xs font-semibold text-muted-foreground">
+                Стена
                 <select
                   value={selectedModule.wallSide}
-                  onChange={(e) => onMoveModule(selectedModule.id, e.target.value, selectedModule.offsetCm)}
-                  className="w-full text-xs border rounded-lg px-2 py-1.5 bg-background mt-0.5"
+                  onChange={(event) => onMoveModule(selectedModule.id, event.target.value, selectedModule.offsetCm)}
+                  className="mt-1 w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground"
                 >
-                  {WALL_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+                  {WALL_OPTIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
-              </div>
-              <div>
-                <label className="text-xs text-muted-foreground">Отступ, см</label>
+              </label>
+              <label className="text-xs font-semibold text-muted-foreground">
+                Отступ, см
                 <input
-                  type="number" min={0}
+                  type="number"
+                  min={0}
                   value={selectedModule.offsetCm}
-                  onChange={(e) => onMoveModule(selectedModule.id, selectedModule.wallSide, Number(e.target.value))}
-                  className="w-full text-xs border rounded-lg px-2 py-1.5 bg-background mt-0.5"
+                  onChange={(event) => onMoveModule(selectedModule.id, selectedModule.wallSide, Number(event.target.value))}
+                  className="mt-1 w-full rounded-lg border bg-background px-3 py-2 text-sm text-foreground"
                 />
-              </div>
+              </label>
             </div>
             {errorIds.has(selectedModule.id) && (
-              <p className="text-xs text-red-600 flex items-center gap-1">
-                <Info className="w-3 h-3" />
-                {warnings.find((w) => w.relatedIds?.includes(selectedModule.id))?.message}
+              <p className="flex items-start gap-1 text-xs text-red-700">
+                <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+                {warnings.find((warning) => warning.relatedIds?.includes(selectedModule.id))?.message}
               </p>
             )}
           </motion.div>
         )}
 
-        {/* Placed modules list */}
         {placedModules.length > 0 && (
           <div>
-            <p className="text-xs text-muted-foreground mb-2">Размещено модулей: {placedModules.length}</p>
+            <p className="mb-2 text-xs text-muted-foreground">Размещено модулей: {placedModules.length}</p>
             <div className="flex flex-wrap gap-1.5">
-              {placedModules.map((pm) => {
-                const cat = moduleCatalog.find((m) => m.slug === pm.moduleSlug);
-                const hasErr = errorIds.has(pm.id);
+              {placedModules.map((module) => {
+                const catalogItem = moduleCatalog.find((item) => item.slug === module.moduleSlug);
+                const hasError = errorIds.has(module.id);
                 return (
                   <button
-                    key={pm.id}
-                    onClick={() => setSelectedModuleId(pm.id)}
-                    className={`px-2 py-1 rounded-lg text-xs font-medium border transition-colors ${
-                      pm.id === selectedModuleId ? "border-amber-500 bg-amber-50" :
-                      hasErr ? "border-red-400 bg-red-50 text-red-700" :
-                      "border-stone-200 bg-stone-50 hover:border-stone-400"
+                    key={module.id}
+                    type="button"
+                    onClick={() => setSelectedModuleId(module.id)}
+                    className={`rounded-md border px-2.5 py-1.5 text-xs font-semibold transition-colors ${
+                      module.id === selectedModuleId
+                        ? "border-amber-500 bg-amber-50"
+                        : hasError
+                        ? "border-red-400 bg-red-50 text-red-700"
+                        : "border-stone-200 bg-stone-50 hover:border-stone-400"
                     }`}
                   >
-                    {cat?.widthCm ?? "?"} · {pm.wallSide[0].toUpperCase()}
+                    {catalogItem?.widthCm ?? "?"} см · {module.wallSide}
                   </button>
                 );
               })}

@@ -2,7 +2,17 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/db";
 import { KitchenConfiguratorPage } from "@/components/configurator/KitchenConfiguratorPage";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
-import type { PlacedModule } from "@/lib/kitchen-configurator";
+import type { CatalogTemplate, PlacedModule } from "@/lib/kitchen-configurator";
+import {
+  fallbackAppliances,
+  fallbackConfiguratorSettings,
+  fallbackCountertops,
+  fallbackFacades,
+  fallbackHandles,
+  fallbackModules,
+  fallbackSkinals,
+  fallbackTemplates,
+} from "@/lib/kitchen-configurator/fallback-catalog";
 
 export const metadata: Metadata = {
   title: "Визуальный конфигуратор кухни",
@@ -29,32 +39,55 @@ async function getCatalog() {
         prisma.kitchenAppliance.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
         prisma.kitchenConfiguratorSettings.findUnique({ where: { id: 1 } }).catch(() => null),
       ]);
-    return {
-      modules,
-      templates: templates.map((template) => ({
+    const normalizedTemplates = templates.map((template) => ({
         ...template,
         modulesConfig: Array.isArray(template.modulesConfig)
           ? (template.modulesConfig as unknown as PlacedModule[])
           : [],
         minWidthCm: template.minWidthCm ?? undefined,
         maxWidthCm: template.maxWidthCm ?? undefined,
-      })),
-      facades,
-      countertops,
-      skinals,
-      handles,
+      }));
+    return {
+      modules: modules.length ? modules : fallbackModules,
+      templates: withRequiredTemplates(normalizedTemplates),
+      facades: facades.length ? facades : fallbackFacades,
+      countertops: countertops.length ? countertops : fallbackCountertops,
+      skinals: skinals.length ? skinals : fallbackSkinals,
+      handles: handles.length ? handles : fallbackHandles,
       mechanisms,
-      appliances: appliances.map((appliance) => ({
+      appliances: appliances.length ? appliances.map((appliance) => ({
         ...appliance,
         widthCm: appliance.widthCm ?? undefined,
         heightCm: appliance.heightCm ?? undefined,
         depthCm: appliance.depthCm ?? undefined,
-      })),
-      settings,
+      })) : fallbackAppliances,
+      settings: settings ?? fallbackConfiguratorSettings,
     };
   } catch {
-    return { modules: [], templates: [], facades: [], countertops: [], skinals: [], handles: [], mechanisms: [], appliances: [], settings: null };
+    return {
+      modules: fallbackModules,
+      templates: fallbackTemplates,
+      facades: fallbackFacades,
+      countertops: fallbackCountertops,
+      skinals: fallbackSkinals,
+      handles: fallbackHandles,
+      mechanisms: [],
+      appliances: fallbackAppliances,
+      settings: fallbackConfiguratorSettings,
+    };
   }
+}
+
+function withRequiredTemplates(templates: CatalogTemplate[]) {
+  if (!templates.length) return fallbackTemplates;
+
+  const requiredLayouts = new Set(["STRAIGHT", "CORNER", "U_SHAPE", "ISLAND"]);
+  const presentLayouts = new Set(templates.map((template) => template.layoutType));
+  const missingFallbacks = fallbackTemplates.filter(
+    (template) => requiredLayouts.has(template.layoutType) && !presentLayouts.has(template.layoutType),
+  );
+
+  return [...templates, ...missingFallbacks];
 }
 
 export default async function Page() {
