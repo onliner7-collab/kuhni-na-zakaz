@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "entity": "LocationPage",
+  "allowed_modes": ["read_only", "draft_safe"],
+  "read_sources": [
+    "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+    "artifacts/kuhni-na-zakaz/components/admin/LocationForm.tsx",
+    "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+    "artifacts/kuhni-na-zakaz/prisma/seed-locations.ts",
+    "project-docs/SEO_STRATEGY.md",
+    "ai/policies/entities.json",
+    "ai/policies/review.json",
+    "ai/policies/actions.json"
+  ],
+  "safe_outputs": [
+    "ai/reports/locationpage-seo-audit.json",
+    "ai/reports/locationpage-content-plans.json",
+    "ai/reports/locationpage-gap-report.md"
+  ],
+  "safe_planning_fields": [
+    "intro",
+    "description",
+    "localIntro",
+    "uniquePoints",
+    "contentBlocks",
+    "faq",
+    "features",
+    "ctaHeadline",
+    "ctaSubtext"
+  ],
+  "review_required_fields": [
+    "slug",
+    "title",
+    "h1",
+    "seoTitle",
+    "seoDescription",
+    "priceFrom",
+    "deliveryCost",
+    "deliveryDays",
+    "measureCost",
+    "timelineText",
+    "phone",
+    "address",
+    "mapEmbed",
+    "caseSlugs",
+    "reviewIds",
+    "published"
+  ],
+  "forbidden_actions": [
+    "create_location_page",
+    "publish_location_page",
+    "change_location_slug",
+    "change_publish_status",
+    "change_route_logic",
+    "change_metadata_core",
+    "change_pricing_fields",
+    "change_auth",
+    "change_settings"
+  ],
+  "non_fabrication_rules": [
+    "Do not invent prices, delivery promises, addresses, phone numbers, or map data.",
+    "Do not invent local case studies or customer reviews.",
+    "Do not claim coverage of a location unless it appears in trusted project data.",
+    "If a claim is not supported by current project files, mark it as data_needed instead of writing it as fact."
+  ],
+  "minimum_quality_targets": {
+    "title_max_chars": 60,
+    "meta_description_target_chars": [140, 160],
+    "body_min_words": 500,
+    "internal_links_min": 3,
+    "faq_min_items": 3
+  },
+  "missing_data_behavior": [
+    "Keep the page in planning-only mode.",
+    "Generate placeholders only as recommendations, not as approved facts.",
+    "Attach risk_flags and data_needs to every uncertain recommendation."
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "taskId": "example-locationpage-seo-planning",
+  "taskType": "seo_planning",
+  "entity": "LocationPage",
+  "mode": "read_only",
+  "intent": "audit location page SEO coverage and generate planning packet"
+}

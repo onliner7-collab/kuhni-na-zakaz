@@ -1,0 +1,31 @@
+{
+  "request": {
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "currentState": {
+      "description": "Старое draft описание."
+    },
+    "patchPayload": {
+      "description": "Безопасное описание draft-пакета для локальной страницы."
+    }
+  },
+  "reviewPacket": {
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "oldSummary": "description=Старое draft описание.",
+    "newSummary": "description=Безопасное описание draft-пакета для локальной страницы.",
+    "changedFields": [
+      "description"
+    ],
+    "reviewRequiredFields": [],
+    "blockedFields": [],
+    "riskLevel": "low",
+    "reviewRequired": false
+  },
+  "appliedPatch": {
+    "description": "Безопасное описание draft-пакета для локальной страницы."
+  },
+  "result": "applied"
+}

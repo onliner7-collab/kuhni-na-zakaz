@@ -1,0 +1,5 @@
+{
+  "reviewPacketPath": "ai/reports/review-workflow/entity-draft-writer-example-blocked-pricing-publish.json",
+  "rejectedBy": "human-reviewer",
+  "reason": "Request touches pricing and publish surfaces, so it stays rejected."
+}

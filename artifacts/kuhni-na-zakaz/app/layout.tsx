@@ -116,7 +116,7 @@ export default async function RootLayout({
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",
-                "@type": "Organization",
+                "@type": "LocalBusiness",
                 name: siteSettings?.siteName || "КухниBY",
                 url: siteUrl,
                 telephone: siteSettings?.phone || "+375291234567",

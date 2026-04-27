@@ -14,7 +14,7 @@ interface Props { params: Promise<{ slug: string }> }
 
 async function getCase(slug: string) {
   try {
-    return await prisma.portfolioCase.findUnique({ where: { slug, published: true } });
+    return await prisma.portfolioCase.findFirst({ where: { slug, published: true } });
   } catch { return null; }
 }
 

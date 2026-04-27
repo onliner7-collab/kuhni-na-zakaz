@@ -1,0 +1,44 @@
+{
+  "taskId": "locationpage-admin-safe-draft-example",
+  "timestamp": "2026-04-13T15:41:44.695Z",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "verdict": "NEEDS_REVIEW",
+  "riskLevel": "high",
+  "safeFields": [
+    "ctaHeadline",
+    "ctaSubtext",
+    "description",
+    "faq",
+    "features",
+    "intro",
+    "localIntro"
+  ],
+  "blockedFields": [
+    "h1",
+    "priceFrom",
+    "published",
+    "seoDescription",
+    "seoTitle",
+    "slug",
+    "title"
+  ],
+  "issues": [
+    {
+      "code": "blocked_fields_present",
+      "severity": "high",
+      "message": "Admin payload contains fields that are blocked from local/test draft-safe integration.",
+      "fields": [
+        "h1",
+        "priceFrom",
+        "published",
+        "seoDescription",
+        "seoTitle",
+        "slug",
+        "title"
+      ],
+      "category": "safety"
+    }
+  ],
+  "summary": "Admin payload contains safe fields, but blocked fields remain present and must not be applied."
+}

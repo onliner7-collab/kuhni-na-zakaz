@@ -1,0 +1,497 @@
+{
+  "generatedAt": "2026-04-13T15:50:45.307Z",
+  "mode": "read_only",
+  "plans": [
+    {
+      "slug": "brest",
+      "city": "Брест",
+      "region": "Брестская область",
+      "source": "seed",
+      "status": "existing",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Брест",
+        "region": "Брестская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Брест | КухниBY",
+        "h1": "Кухни на заказ в Брест",
+        "metaDescription": "Кухни на заказ в Брест: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Брест with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Брест?",
+        "Как проходит замер и проектирование в Брест?",
+        "Какие сроки изготовления и монтажа для Брест?",
+        "Есть ли реальные проекты кухни для клиентов из Брест?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Брест",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links"
+      ]
+    },
+    {
+      "slug": "vitebsk",
+      "city": "Витебск",
+      "region": "Витебская область",
+      "source": "seed",
+      "status": "existing",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Витебск",
+        "region": "Витебская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Витебск | КухниBY",
+        "h1": "Кухни на заказ в Витебск",
+        "metaDescription": "Кухни на заказ в Витебск: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Витебск with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Витебск?",
+        "Как проходит замер и проектирование в Витебск?",
+        "Какие сроки изготовления и монтажа для Витебск?",
+        "Есть ли реальные проекты кухни для клиентов из Витебск?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Витебск",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links"
+      ]
+    },
+    {
+      "slug": "gomel",
+      "city": "Гомель",
+      "region": "Гомельская область",
+      "source": "seed",
+      "status": "existing",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Гомель",
+        "region": "Гомельская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Гомель | КухниBY",
+        "h1": "Кухни на заказ в Гомель",
+        "metaDescription": "Кухни на заказ в Гомель: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Гомель with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Гомель?",
+        "Как проходит замер и проектирование в Гомель?",
+        "Какие сроки изготовления и монтажа для Гомель?",
+        "Есть ли реальные проекты кухни для клиентов из Гомель?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Гомель",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links"
+      ]
+    },
+    {
+      "slug": "grodno",
+      "city": "Гродно",
+      "region": "Гродненская область",
+      "source": "seed",
+      "status": "existing",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Гродно",
+        "region": "Гродненская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Гродно | КухниBY",
+        "h1": "Кухни на заказ в Гродно",
+        "metaDescription": "Кухни на заказ в Гродно: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Гродно with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Гродно?",
+        "Как проходит замер и проектирование в Гродно?",
+        "Какие сроки изготовления и монтажа для Гродно?",
+        "Есть ли реальные проекты кухни для клиентов из Гродно?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Гродно",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links"
+      ]
+    },
+    {
+      "slug": "zhodzina",
+      "city": "Жодино",
+      "region": "Минская область",
+      "source": "seed",
+      "status": "existing",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Жодино",
+        "region": "Минская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Жодино | КухниBY",
+        "h1": "Кухни на заказ в Жодино",
+        "metaDescription": "Кухни на заказ в Жодино: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Жодино with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Жодино?",
+        "Как проходит замер и проектирование в Жодино?",
+        "Какие сроки изготовления и монтажа для Жодино?",
+        "Есть ли реальные проекты кухни для клиентов из Жодино?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Жодино",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links"
+      ]
+    },
+    {
+      "slug": "minskaya-oblast",
+      "city": "Минская область",
+      "region": "Минская область",
+      "source": "admin-template",
+      "status": "proposed",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Минская область",
+        "region": "Минская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Минская область | КухниBY",
+        "h1": "Кухни на заказ в Минская область",
+        "metaDescription": "Кухни на заказ в Минская область: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Минская область with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Минская область?",
+        "Как проходит замер и проектирование в Минская область?",
+        "Какие сроки изготовления и монтажа для Минская область?",
+        "Есть ли реальные проекты кухни для клиентов из Минская область?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Минская область",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "low_local_proof",
+        "proposal_without_verified_content",
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links",
+        "city_specific_local_intro"
+      ]
+    },
+    {
+      "slug": "mogilev",
+      "city": "Могилёв",
+      "region": "Могилёвская область",
+      "source": "seed",
+      "status": "existing",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Могилёв",
+        "region": "Могилёвская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Могилёв | КухниBY",
+        "h1": "Кухни на заказ в Могилёв",
+        "metaDescription": "Кухни на заказ в Могилёв: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Могилёв with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Могилёв?",
+        "Как проходит замер и проектирование в Могилёв?",
+        "Какие сроки изготовления и монтажа для Могилёв?",
+        "Есть ли реальные проекты кухни для клиентов из Могилёв?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Могилёв",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links"
+      ]
+    },
+    {
+      "slug": "molodechno",
+      "city": "Молодечно",
+      "region": "Минская область",
+      "source": "seed",
+      "status": "existing",
+      "pageIntent": "commercial_local_service_page",
+      "targetLocation": {
+        "city": "Молодечно",
+        "region": "Минская область"
+      },
+      "recommendedDrafts": {
+        "title": "Кухни на заказ в Молодечно | КухниBY",
+        "h1": "Кухни на заказ в Молодечно",
+        "metaDescription": "Кухни на заказ в Молодечно: замер, проектирование и установка под задачи клиента. Проверьте локальные условия и факты перед публикацией."
+      },
+      "recommendedBodyOutline": [
+        "Hero section for Молодечно with verified local offer",
+        "City-specific intro with local service proof and work zone",
+        "Portfolio and trust section with real cases and reviews",
+        "Operational block for measurement, delivery, and installation",
+        "FAQ block answering local commercial concerns",
+        "CTA block with measurement request and consultation form"
+      ],
+      "recommendedFaqOutline": [
+        "Сколько стоит кухня на заказ в Молодечно?",
+        "Как проходит замер и проектирование в Молодечно?",
+        "Какие сроки изготовления и монтажа для Молодечно?",
+        "Есть ли реальные проекты кухни для клиентов из Молодечно?"
+      ],
+      "recommendedCtaBlocks": [
+        "Request a measurement in Молодечно",
+        "Ask for project consultation and layout discussion",
+        "Request a draft estimate only after human-reviewed pricing confirmation"
+      ],
+      "recommendedInternalLinks": [
+        {
+          "href": "/catalog",
+          "reason": "Connect local intent to commercial catalog pages.",
+          "priority": "high"
+        },
+        {
+          "href": "/portfolio",
+          "reason": "Support conversion with proof-oriented examples.",
+          "priority": "high"
+        },
+        {
+          "href": "/contacts",
+          "reason": "Reinforce local trust and conversion readiness.",
+          "priority": "medium"
+        }
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ],
+      "dataNeeds": [
+        "verified_location_images",
+        "verified_local_case_links",
+        "verified_local_review_links"
+      ]
+    }
+  ]
+}

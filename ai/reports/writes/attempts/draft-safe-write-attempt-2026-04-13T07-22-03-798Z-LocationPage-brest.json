@@ -1,0 +1,31 @@
+{
+  "request": {
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "currentState": {
+      "intro": "Старый intro."
+    },
+    "patchPayload": {
+      "intro": "Этот безопасный intro можно сохранить как draft artifact."
+    }
+  },
+  "reviewPacket": {
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "oldSummary": "intro=Старый intro.",
+    "newSummary": "intro=Этот безопасный intro можно сохранить как draft artifact.",
+    "changedFields": [
+      "intro"
+    ],
+    "reviewRequiredFields": [],
+    "blockedFields": [],
+    "riskLevel": "low",
+    "reviewRequired": false
+  },
+  "appliedPatch": {
+    "intro": "Этот безопасный intro можно сохранить как draft artifact."
+  },
+  "result": "applied"
+}

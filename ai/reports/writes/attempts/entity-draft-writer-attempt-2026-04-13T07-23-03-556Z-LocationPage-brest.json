@@ -1,0 +1,155 @@
+{
+  "request": {
+    "taskId": "entity-draft-writer-example-blocked-slug",
+    "mode": "draft_safe",
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "requestedPatch": {
+      "intro": "Этот безопасный intro можно сохранить как draft artifact.",
+      "slug": "kuhni-na-zakaz-brest-new"
+    },
+    "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json",
+    "currentState": {
+      "intro": "Старый intro."
+    }
+  },
+  "qaOutcome": {
+    "verdict": "NEEDS_REVIEW",
+    "riskLevel": "high",
+    "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope.",
+    "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+    "issues": [
+      {
+        "code": "body_too_short",
+        "category": "content",
+        "severity": "medium",
+        "message": "Body draft is too short for useful review.",
+        "fields": [
+          "bodySections"
+        ]
+      },
+      {
+        "code": "keyword_spam_signal",
+        "category": "content",
+        "severity": "medium",
+        "message": "Possible keyword repetition detected: brest, кухни, заказ.",
+        "fields": [
+          "title",
+          "h1",
+          "metaDescription",
+          "bodySections"
+        ]
+      },
+      {
+        "code": "slug_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+        "fields": [
+          "slug"
+        ]
+      },
+      {
+        "code": "publish_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+        "fields": [
+          "published"
+        ]
+      },
+      {
+        "code": "pricing_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Pricing fields remain blocked from draft-safe apply.",
+        "fields": [
+          "priceFrom"
+        ]
+      },
+      {
+        "code": "metadata_stays_in_review_scope",
+        "category": "safety",
+        "severity": "medium",
+        "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+        "fields": [
+          "seoTitle",
+          "seoDescription"
+        ]
+      },
+      {
+        "code": "entity_review_required_fields",
+        "category": "safety",
+        "severity": "medium",
+        "message": "Packet includes fields that must stay in human review.",
+        "fields": [
+          "slug",
+          "title",
+          "h1",
+          "seoTitle",
+          "seoDescription",
+          "priceFrom",
+          "published"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "allowedFields": [
+      "intro"
+    ],
+    "blockedFields": [
+      "slug"
+    ],
+    "reviewRequiredFields": [],
+    "reasons": [
+      "slug_change_blocked"
+    ]
+  },
+  "result": {
+    "taskId": "entity-draft-writer-example-blocked-slug",
+    "timestamp": "2026-04-13T07:23:03.556Z",
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "qaVerdict": "NEEDS_REVIEW",
+    "requestedFields": [
+      "intro",
+      "slug"
+    ],
+    "allowedFields": [
+      "intro"
+    ],
+    "blockedFields": [
+      "slug"
+    ],
+    "reviewRequiredFields": [],
+    "status": "partial",
+    "artifactPath": "ai/reports/writes/state/LocationPage/brest.draft.json",
+    "reasons": [
+      "slug_change_blocked",
+      "qa_review_required",
+      "blocked_fields_present"
+    ],
+    "writerResult": {
+      "timestamp": "2026-04-13T07:23:03.558Z",
+      "entity": "LocationPage",
+      "identifier": "brest",
+      "mode": "draft_safe",
+      "requestedFields": [
+        "intro"
+      ],
+      "appliedFields": [
+        "intro"
+      ],
+      "blockedFields": [],
+      "reviewRequiredFields": [],
+      "result": "applied",
+      "statePath": "ai/reports/writes/state/LocationPage/brest.draft.json",
+      "reviewPacketPath": "ai/reports/reviews/draft-safe-write-review-2026-04-13T07-23-03-558Z-LocationPage-brest.json",
+      "attemptPath": "ai/reports/writes/attempts/draft-safe-write-attempt-2026-04-13T07-23-03-558Z-LocationPage-brest.json",
+      "logPath": "ai/logs/draft-safe-writer.jsonl"
+    },
+    "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json"
+  }
+}

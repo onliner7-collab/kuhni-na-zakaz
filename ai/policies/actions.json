@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "allowed_actions": [
+    {
+      "id": "read_code",
+      "description": "Read source files, docs, and schemas."
+    },
+    {
+      "id": "read_docs",
+      "description": "Read project documentation and policy files."
+    },
+    {
+      "id": "inspect_entities",
+      "description": "Inspect Prisma models and admin forms."
+    },
+    {
+      "id": "inspect_admin_structure",
+      "description": "Map admin UI and admin route structure."
+    },
+    {
+      "id": "create_reports",
+      "description": "Write audit, review, or planning reports under ai/reports."
+    },
+    {
+      "id": "write_draft_content",
+      "description": "Prepare non-destructive draft content artifacts."
+    },
+    {
+      "id": "update_draft_safe_fields",
+      "description": "Prepare or apply changes limited to draft-safe fields on first-wave entities."
+    },
+    {
+      "id": "prepare_review_packets",
+      "description": "Generate review packets for human approval."
+    },
+    {
+      "id": "propose_sensitive_changes",
+      "description": "Describe sensitive changes without applying them."
+    },
+    {
+      "id": "prepare_diff_review",
+      "description": "Summarize a planned diff for review."
+    },
+    {
+      "id": "prepare_risk_review",
+      "description": "Explain why a requested change is risky."
+    }
+  ],
+  "forbidden_actions": [
+    {
+      "id": "publish_content",
+      "description": "Change live publication state automatically."
+    },
+    {
+      "id": "edit_prices",
+      "description": "Edit pricing entities or commercial price values without explicit review."
+    },
+    {
+      "id": "edit_price_logic",
+      "description": "Change calculator pricing code or rule engine behavior."
+    },
+    {
+      "id": "edit_auth",
+      "description": "Change authentication or session behavior."
+    },
+    {
+      "id": "edit_middleware",
+      "description": "Change route protection or middleware behavior."
+    },
+    {
+      "id": "edit_settings",
+      "description": "Change global settings or system-level admin configuration."
+    },
+    {
+      "id": "change_slug",
+      "description": "Change entity routing slugs without review."
+    },
+    {
+      "id": "change_publish_flag",
+      "description": "Flip published flags without review."
+    },
+    {
+      "id": "change_sensitive_metadata",
+      "description": "Apply sensitive SEO metadata changes without review."
+    },
+    {
+      "id": "run_migrations",
+      "description": "Run or generate database migrations."
+    },
+    {
+      "id": "touch_production_business_routes",
+      "description": "Modify production business logic routes in the first foundation phase."
+    }
+  ]
+}

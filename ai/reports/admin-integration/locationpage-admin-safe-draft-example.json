@@ -1,0 +1,71 @@
+{
+  "taskId": "locationpage-admin-safe-draft-example",
+  "timestamp": "2026-04-13T15:41:44.697Z",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "source": "local_test_admin",
+  "requestedFields": [
+    "city",
+    "slug",
+    "title",
+    "h1",
+    "intro",
+    "description",
+    "localIntro",
+    "features",
+    "faq",
+    "ctaHeadline",
+    "ctaSubtext",
+    "priceFrom",
+    "published",
+    "seoTitle",
+    "seoDescription"
+  ],
+  "safeFields": [
+    "ctaHeadline",
+    "ctaSubtext",
+    "description",
+    "faq",
+    "features",
+    "intro",
+    "localIntro"
+  ],
+  "blockedFields": [
+    "h1",
+    "priceFrom",
+    "published",
+    "seoDescription",
+    "seoTitle",
+    "slug",
+    "title"
+  ],
+  "readOnlyFields": [
+    "city"
+  ],
+  "safePatch": {
+    "intro": "Обновлённый безопасный intro для local/test admin flow.",
+    "description": "Безопасное описание для draft-артефакта без live apply.",
+    "localIntro": "Локальный вводный блок для черновика.",
+    "features": [
+      "Бесплатный замер",
+      "Монтаж под ключ"
+    ],
+    "faq": [
+      {
+        "question": "Можно ли уточнить проект после замера?",
+        "answer": "Да, финальные детали подтверждаются после ручного review."
+      }
+    ],
+    "ctaHeadline": "Обсудим проект кухни для Бреста",
+    "ctaSubtext": "Сначала готовим safe draft packet без publish и без изменения slug."
+  },
+  "qaArtifactPath": "ai/reports/admin-integration/locationpage-admin-qa-locationpage-admin-safe-draft-example.json",
+  "reviewWorkflowPacketPath": "ai/reports/review-workflow/locationpage-admin-safe-draft-example.json",
+  "reviewWorkflowSummaryPath": "ai/reports/review-workflow/locationpage-admin-safe-draft-example.md",
+  "notes": [
+    "No Prisma writes were performed.",
+    "No internal admin API route was called.",
+    "Only draft-safe LocationPage fields were forwarded into the pipeline.",
+    "Publish, slug, pricing, and metadata-sensitive fields remained blocked."
+  ]
+}

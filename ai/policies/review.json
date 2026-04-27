@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "review_rules": {
+    "always_require_review_for": [
+      "publish_flag_changes",
+      "slug_changes",
+      "seo_metadata_changes",
+      "pricing_changes",
+      "settings_changes",
+      "auth_changes",
+      "middleware_changes",
+      "route_metadata_core_changes",
+      "calculator_price_logic_changes"
+    ],
+    "first_wave_review_targets": [
+      "LocationPage.slug",
+      "LocationPage.title",
+      "LocationPage.h1",
+      "LocationPage.seoTitle",
+      "LocationPage.seoDescription",
+      "LocationPage.priceFrom",
+      "LocationPage.published",
+      "Kitchen.slug",
+      "Kitchen.priceFrom",
+      "Kitchen.priceTo",
+      "Kitchen.seoTitle",
+      "Kitchen.seoDescription",
+      "Kitchen.published",
+      "BlogPost.slug",
+      "BlogPost.seoTitle",
+      "BlogPost.seoDescription",
+      "BlogPost.published",
+      "PortfolioCase.slug",
+      "PortfolioCase.priceFrom",
+      "PortfolioCase.priceTo",
+      "PortfolioCase.days",
+      "PortfolioCase.reviewIds",
+      "PortfolioCase.seoTitle",
+      "PortfolioCase.seoDescription",
+      "PortfolioCase.published",
+      "PriceRule.*"
+    ],
+    "review_packet_requirements": [
+      "entity_name",
+      "entity_identifier",
+      "requested_action",
+      "risk_level",
+      "reason",
+      "affected_fields",
+      "source_files",
+      "human_approval_status"
+    ],
+    "default_risk_levels": {
+      "content_copy_update": "medium",
+      "seo_metadata_update": "high",
+      "slug_change": "critical",
+      "publish_change": "critical",
+      "pricing_change": "critical",
+      "auth_change": "critical",
+      "settings_change": "high"
+    }
+  }
+}

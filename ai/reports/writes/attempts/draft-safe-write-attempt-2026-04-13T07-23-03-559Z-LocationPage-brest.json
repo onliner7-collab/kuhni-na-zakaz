@@ -1,0 +1,51 @@
+{
+  "request": {
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "currentState": {
+      "intro": "Старый draft intro.",
+      "ctaHeadline": "Старый CTA."
+    },
+    "patchPayload": {
+      "intro": "Обновленный безопасный draft intro для страницы кухни на заказ в Бресте.",
+      "faq": [
+        {
+          "question": "Можно ли уточнить проект после замера?",
+          "answer": "Да, финальные детали должны подтверждаться на ручном ревью и после замера."
+        }
+      ],
+      "ctaHeadline": "Обсудим проект кухни для Бреста",
+      "ctaSubtext": "Сначала собираем безопасный draft-пакет, без публикации и без изменения slug."
+    }
+  },
+  "reviewPacket": {
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "oldSummary": "intro=Старый draft intro.; ctaHeadline=Старый CTA.",
+    "newSummary": "intro=Обновленный безопасный draft intro для страницы кухни на зак; ctaHeadline=Обсудим проект кухни для Бреста; faq=[1 items]; ctaSubtext=Сначала собираем безопасный draft-пакет, без публикации и бе",
+    "changedFields": [
+      "intro",
+      "faq",
+      "ctaHeadline",
+      "ctaSubtext"
+    ],
+    "reviewRequiredFields": [],
+    "blockedFields": [],
+    "riskLevel": "low",
+    "reviewRequired": false
+  },
+  "appliedPatch": {
+    "intro": "Обновленный безопасный draft intro для страницы кухни на заказ в Бресте.",
+    "faq": [
+      {
+        "question": "Можно ли уточнить проект после замера?",
+        "answer": "Да, финальные детали должны подтверждаться на ручном ревью и после замера."
+      }
+    ],
+    "ctaHeadline": "Обсудим проект кухни для Бреста",
+    "ctaSubtext": "Сначала собираем безопасный draft-пакет, без публикации и без изменения slug."
+  },
+  "result": "applied"
+}

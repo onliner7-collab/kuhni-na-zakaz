@@ -1,0 +1,887 @@
+{
+  "generatedAt": "2026-04-12T07:54:02.658Z",
+  "surfaces": [
+    {
+      "name": "route-level-metadata-core",
+      "path": "artifacts/kuhni-na-zakaz/app",
+      "source": "policy",
+      "risk": "high-risk",
+      "reason": "Global SEO and route metadata behavior."
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/blog/[id]/edit/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/blog/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/blog/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/appliances/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/appliances/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/appliances/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/compatibility/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/compatibility/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/countertops/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/countertops/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/countertops/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/facades/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/facades/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/handles/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/handles/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/handles/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/mechanisms/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/mechanisms/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/mechanisms/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/modules/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/modules/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/modules/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: settings"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/projects/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/projects/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/settings/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/skinals/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/skinals/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/skinals/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/templates/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator-visual/templates/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/configurator/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/contacts/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: settings"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/dashboard/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: settings; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/faq/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/homepage/page.tsx",
+      "source": "scanner",
+      "risk": "review-required",
+      "reason": "Contains hint: published; Contains hint: publish"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/kitchens/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: published; Contains hint: publish; Contains hint: slug"
+    },
+    {
+      "name": "layout.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/layout.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/leads/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/locations/[id]/edit/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: slug; Contains hint: seoTitle; Contains hint: seoDescription; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/locations/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/locations/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: published; Contains hint: publish; Contains hint: slug"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/login/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/materials/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/materials/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/materials/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/notifications/page.tsx",
+      "source": "scanner",
+      "risk": "review-required",
+      "reason": "Contains hint: password"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/pages/[id]/edit/page.tsx",
+      "source": "scanner",
+      "risk": "review-required",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: seoTitle; Contains hint: seoDescription"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/pages/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/portfolio/[id]/edit/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/portfolio/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: seoTitle; Contains hint: seoDescription; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/portfolio/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/portfolio/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/prices/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/profile/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/reviews/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/scenarios/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/scenarios/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/settings/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: settings"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/styles/[id]/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/styles/new/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/styles/page.tsx",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "page.tsx",
+      "path": "artifacts/kuhni-na-zakaz/app/admin/users/page.tsx",
+      "source": "scanner",
+      "risk": "review-required",
+      "reason": "Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/blog/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: seoTitle; Contains hint: seoDescription; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/blog/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: seoTitle; Contains hint: seoDescription; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/appliances/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/appliances/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/compatibility/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/compatibility/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/countertops/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/countertops/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/facades/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/facades/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/handles/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/handles/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/mechanisms/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/mechanisms/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/modules/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/modules/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/projects/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/projects/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/settings/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: settings; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/skinals/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/skinals/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/templates/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: slug; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator-visual/templates/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator/options/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator/options/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator/steps/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/configurator/steps/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/faq/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/faq/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/guest-access/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/homepage/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/homepage/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/kitchens/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: seoTitle; Contains hint: seoDescription; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/kitchens/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: seoTitle; Contains hint: seoDescription; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/leads/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/locations/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/locations/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: published; Contains hint: publish; Contains hint: slug; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/materials/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/materials/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/notifications/telegram/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/notifications/telegram/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: settings; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/portfolio/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/portfolio/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/prices/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/prices/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: price; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/profile/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth; Contains hint: role; Contains hint: password"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/reviews/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: publish; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/saved-configs/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/scenarios/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/scenarios/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/settings/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: settings; Contains hint: auth; Contains hint: role"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/static-pages/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: published; Contains hint: publish; Contains hint: seoTitle; Contains hint: seoDescription; Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/static-pages/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/styles/[id]/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/styles/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth"
+    },
+    {
+      "name": "route.ts",
+      "path": "artifacts/kuhni-na-zakaz/app/kapi/admin/users/route.ts",
+      "source": "scanner",
+      "risk": "high-risk",
+      "reason": "Contains hint: auth; Contains hint: role; Contains hint: password"
+    },
+    {
+      "name": "settings",
+      "path": "artifacts/kuhni-na-zakaz/components/admin/SettingsForm.tsx",
+      "source": "policy",
+      "risk": "high-risk",
+      "reason": "Global settings surface."
+    },
+    {
+      "name": "auth",
+      "path": "artifacts/kuhni-na-zakaz/lib/auth.ts",
+      "source": "policy",
+      "risk": "high-risk",
+      "reason": "Authentication and session boundary."
+    },
+    {
+      "name": "kitchen-configurator-price",
+      "path": "artifacts/kuhni-na-zakaz/lib/kitchen-configurator/price.ts",
+      "source": "policy",
+      "risk": "high-risk",
+      "reason": "Core calculator pricing logic."
+    },
+    {
+      "name": "middleware",
+      "path": "artifacts/kuhni-na-zakaz/middleware.ts",
+      "source": "policy",
+      "risk": "high-risk",
+      "reason": "Route protection and access control."
+    },
+    {
+      "name": "PriceRule",
+      "path": "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+      "source": "policy",
+      "risk": "high-risk",
+      "reason": "Commercial pricing entity."
+    }
+  ]
+}

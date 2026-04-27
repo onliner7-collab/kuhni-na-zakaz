@@ -5,6 +5,17 @@
   "type": "module",
   "scripts": {
     "hello": "tsx ./src/hello.ts",
+    "ai:scan": "tsx ./src/ai/run-analysis.ts",
+    "ai:locationpage-plan": "tsx ./src/ai/run-locationpage-planner.ts",
+    "ai:content-drafts": "tsx ./src/ai/run-content-draft-generator.ts",
+    "ai:qa-review": "tsx ./src/ai/run-publication-qa-reviewer.ts",
+    "ai:draft-write": "tsx ./src/ai/run-draft-safe-writer.ts",
+    "ai:entity-draft-write": "tsx ./src/ai/run-entity-draft-writer.ts",
+    "ai:seo-metadata-audit": "tsx ./src/ai/run-seo-metadata-auditor.ts",
+    "ai:review-workflow": "tsx ./src/ai/run-review-workflow.ts",
+    "ai:locationpage-admin-integration": "tsx ./src/ai/run-locationpage-admin-integration.ts",
+    "ai:locationpage-seo-loop": "tsx ./src/ai/run-locationpage-seo-operator-loop.ts",
+    "ai:skill-runtime": "tsx ./src/ai/run-skill-runtime.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {

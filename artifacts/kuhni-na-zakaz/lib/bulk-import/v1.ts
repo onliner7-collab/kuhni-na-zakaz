@@ -236,6 +236,29 @@ function asBoolean(value: unknown, fallback = false) {
   return fallback;
 }
 
+function isBooleanLike(value: unknown) {
+  if (value === undefined || value === null || asString(value, "") === "") return true;
+  if (typeof value === "boolean") return true;
+
+  const normalized = asString(value, "").toLowerCase();
+  return [
+    "1",
+    "true",
+    "yes",
+    "y",
+    "РґР°",
+    "published",
+    "РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ",
+    "0",
+    "false",
+    "no",
+    "n",
+    "РЅРµС‚",
+    "draft",
+    "С‡РµСЂРЅРѕРІРёРє",
+  ].includes(normalized);
+}
+
 function asStringArray(value: unknown) {
   if (Array.isArray(value)) {
     return value.map((item) => asString(item)).filter(Boolean);
@@ -287,6 +310,31 @@ function asObjectArray(value: unknown) {
   }
 
   return [];
+}
+
+function asObjectArrayField(value: unknown, field: string) {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is Record<string, unknown> => !!item && typeof item === "object" && !Array.isArray(item));
+  }
+
+  const normalized = asString(value, "");
+  if (!normalized) return [];
+
+  try {
+    const parsed = JSON.parse(normalized);
+    if (!Array.isArray(parsed)) {
+      throw new ImportFieldError(field, `Column "${field}" must contain a JSON array`);
+    }
+
+    if (!parsed.every((item) => !!item && typeof item === "object" && !Array.isArray(item))) {
+      throw new ImportFieldError(field, `Column "${field}" must contain a JSON array of objects`);
+    }
+
+    return parsed as Record<string, unknown>[];
+  } catch (error) {
+    if (error instanceof ImportFieldError) throw error;
+    throw new ImportFieldError(field, `Column "${field}" must contain valid JSON`);
+  }
 }
 
 function slugify(value: string) {
@@ -561,6 +609,15 @@ type ImageValidationResult =
   | { valid: true }
   | { valid: false; message: string };
 type ImageValidationCache = Map<string, Promise<ImageValidationResult>>;
+
+class ImportFieldError extends Error {
+  field: string;
+
+  constructor(field: string, message: string) {
+    super(message);
+    this.field = field;
+  }
+}
 
 type ScopedImportEntity = Extract<
   ImportEntity,
@@ -1005,6 +1062,18 @@ const NUMERIC_FIELD_ALIASES: Partial<Record<ImportEntity, Record<string, string[
   },
 };
 
+const BOOLEAN_FIELD_ALIASES: Partial<Record<ImportEntity, Record<string, string[]>>> = {
+  kitchens: { published: ["published", "isPublished", "РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"] },
+  styles: { published: ["published", "isPublished", "РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"] },
+  materials: { published: ["published", "isPublished", "РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"] },
+  scenarios: { published: ["published", "isPublished", "РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"] },
+  portfolio: {
+    featured: ["featured", "isFeatured"],
+    published: ["published", "isPublished", "РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"],
+  },
+  locations: { published: ["published", "isPublished", "РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ"] },
+};
+
 function createIssue(
   severity: IssueSeverity,
   sheet: string,
@@ -1121,6 +1190,33 @@ function validateNumericInputs(
     if (isIntegerLike(rawValue)) continue;
     issues.push(
       createIssue("error", sheetName, rowNumber, field, `Field "${field}" must be a valid number`)
+    );
+  }
+
+  return issues;
+}
+
+function validateBooleanInputs(
+  entity: ImportEntity,
+  sheetName: string,
+  rowNumber: number,
+  row: RawSheetRow
+) {
+  const issues: ImportIssue[] = [];
+  const aliases = BOOLEAN_FIELD_ALIASES[entity];
+  if (!aliases) return issues;
+
+  for (const [field, fieldAliases] of Object.entries(aliases)) {
+    const rawValue = getField(row, fieldAliases);
+    if (isBooleanLike(rawValue)) continue;
+    issues.push(
+      createIssue(
+        "error",
+        sheetName,
+        rowNumber,
+        field,
+        `Field "${field}" must be boolean: true/false, 1/0, yes/no, published/draft`
+      )
     );
   }
 
@@ -1389,6 +1485,7 @@ async function validateScopedEntityRow(
   const rules = BULK_IMPORT_V1_RULES[entity];
   const issues: ImportIssue[] = [
     ...validateNumericInputs(entity, sheetName, rowNumber, row),
+    ...validateBooleanInputs(entity, sheetName, rowNumber, row),
     ...validateTextLimits(sheetName, rowNumber, payload as Record<string, unknown>, rules.textMax),
     ...validateArrayLimits(sheetName, rowNumber, payload as Record<string, unknown>, rules.arrayMax),
   ];
@@ -1712,10 +1809,19 @@ const SHEET_ORDER: ImportEntity[] = [
   "locations",
 ];
 
+const SHEET_NAMES: Record<ImportEntity, string> = {
+  kitchens: "Kitchens",
+  styles: "Styles",
+  materials: "Materials",
+  scenarios: "Scenarios",
+  portfolio: "Portfolio",
+  locations: "Locations",
+};
+
 function inferEntity(sheetName: string): ImportEntity | null {
-  const normalized = normalizeHeader(sheetName);
+  const normalized = sheetName.trim();
   for (const entity of SHEET_ORDER) {
-    if (SHEET_ALIASES[entity].some((alias) => normalizeHeader(alias) === normalized)) {
+    if (SHEET_NAMES[entity] === normalized) {
       return entity;
     }
   }
@@ -1726,6 +1832,21 @@ function normalizeWithIssues<T>(sheetName: string, rowNumber: number, fn: () => 
   try {
     return { payload: fn(), issues: [] as ImportIssue[] };
   } catch (error) {
+    if (error instanceof ImportFieldError) {
+      return {
+        payload: null,
+        issues: [
+          {
+            severity: "error" as const,
+            sheet: sheetName,
+            rowNumber,
+            field: error.field,
+            message: error.message,
+          },
+        ],
+      };
+    }
+
     if (error instanceof z.ZodError) {
       return {
         payload: null,
@@ -1861,7 +1982,7 @@ function normalizeScenarioRow(row: RawSheetRow) {
     seoKeywords: asString(getField(row, ["seoKeywords", "metaKeywords"])),
     needs: asStringArray(getField(row, ["needs", "потребности"])),
     solutions: asStringArray(getField(row, ["solutions", "решения"])),
-    features: asObjectArray(getField(row, ["features", "особенности"])),
+    features: asObjectArrayField(getField(row, ["features", "особенности"]), "features"),
     tips: asStringArray(getField(row, ["tips", "советы"])),
     relatedStyles: asStringArray(getField(row, ["relatedStyles", "related_styles"])),
     relatedMaterials: asStringArray(getField(row, ["relatedMaterials", "related_materials"])),
@@ -1939,10 +2060,10 @@ function normalizeLocationRow(row: RawSheetRow) {
     workZone: asString(getField(row, ["workZone", "work_zone"])),
     mapEmbed: asString(getField(row, ["mapEmbed", "map_embed"])),
     features: asStringArray(getField(row, ["features", "особенности"])),
-    faq: asObjectArray(getField(row, ["faq"])),
+    faq: asObjectArrayField(getField(row, ["faq"]), "faq"),
     localIntro: asString(getField(row, ["localIntro", "local_intro"])),
-    uniquePoints: asObjectArray(getField(row, ["uniquePoints", "unique_points"])),
-    contentBlocks: asObjectArray(getField(row, ["contentBlocks", "content_blocks"])),
+    uniquePoints: asObjectArrayField(getField(row, ["uniquePoints", "unique_points"]), "uniquePoints"),
+    contentBlocks: asObjectArrayField(getField(row, ["contentBlocks", "content_blocks"]), "contentBlocks"),
     caseSlugs: asStringArray(getField(row, ["caseSlugs", "case_slugs"])),
     reviewIds: asNumberArray(getField(row, ["reviewIds", "review_ids"])),
     ctaHeadline: asString(getField(row, ["ctaHeadline", "cta_headline"])),
@@ -2402,9 +2523,9 @@ async function buildSession(buffer: Buffer, fileName: string): Promise<ImportSes
     const entity = inferEntity(sheetName);
     if (!entity) {
       issues.push({
-        severity: "warning",
+        severity: "error",
         sheet: sheetName,
-        message: "Sheet skipped: not part of bulk import v1",
+        message: `Unsupported sheet. Bulk import v1 supports only: ${Object.values(SHEET_NAMES).join(", ")}`,
       });
       continue;
     }

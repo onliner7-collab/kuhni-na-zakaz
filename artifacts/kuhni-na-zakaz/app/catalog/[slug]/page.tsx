@@ -343,7 +343,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   try {
     const kitchen = await prisma.kitchen.findUnique({ where: { slug } });
-    if (kitchen) {
+    if (kitchen?.published) {
       return {
         title: cleanSeoTitle(kitchen.seoTitle, kitchen.title),
         description: trimMetaDescription(kitchen.seoDescription, kitchen.description),

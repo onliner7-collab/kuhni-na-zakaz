@@ -1,0 +1,110 @@
+{
+  "generatedAt": "2026-04-13T15:50:45.315Z",
+  "entity": "PortfolioCase",
+  "mode": "draft_safe",
+  "packets": [
+    {
+      "entity": "PortfolioCase",
+      "identifier": "portfolio-case-template",
+      "source": "form-template",
+      "status": "template",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кейс кухни на заказ",
+        "slugLike": "portfolio-case-template",
+        "categoryOrRegion": "portfolio",
+        "trustedFacts": [
+          "portfolio case",
+          "Современный",
+          "Классический",
+          "Скандинавский",
+          "Лофт"
+        ]
+      },
+      "drafts": {
+        "title": "Кейс кухни на заказ: обзор проекта",
+        "h1": "Кейс кухни на заказ",
+        "metaDescription": "Черновой кейс для review: заполните факты проекта, задачи клиента, ограничения, решение и подтверждённый результат перед публикацией.",
+        "bodySections": [
+          {
+            "heading": "Задача клиента",
+            "purpose": "Problem statement",
+            "draft": "Опишите исходный запрос клиента: помещение, пожелания, ограничения и ожидаемый результат. Не добавляйте непроверенные детали."
+          },
+          {
+            "heading": "Ограничения проекта",
+            "purpose": "Credibility",
+            "draft": "Зафиксируйте реальные ограничения: размеры, бюджетные рамки, сроки ремонта, инженерные особенности."
+          },
+          {
+            "heading": "Наше решение",
+            "purpose": "Case story",
+            "draft": "Покажите, как команда решила задачу: планировка, материалы, механизмы, стилистика. Только подтверждённые решения."
+          },
+          {
+            "heading": "Результат",
+            "purpose": "Outcome proof",
+            "draft": "Заполнить после подтверждения фактического результата, сроков, стоимости и отзыва клиента."
+          }
+        ],
+        "faq": [
+          "Какие вводные были у этого проекта?",
+          "За счёт чего удалось решить ограничения клиента?",
+          "Какие материалы и стиль использовались в проекте?"
+        ],
+        "cta": [
+          "Обсудить похожий проект со специалистом",
+          "Получить консультацию по планировке кухни"
+        ],
+        "altTextSuggestions": [
+          "Проект кухни Кейс кухни на заказ",
+          "Результат проекта portfolio-case-template",
+          "Фото кейса кухни portfolio-case-template"
+        ],
+        "internalLinks": [
+          {
+            "href": "/portfolio",
+            "anchor": "Смотреть другие кейсы",
+            "reason": "Portfolio navigation"
+          },
+          {
+            "href": "/catalog",
+            "anchor": "Выбрать подходящий тип кухни",
+            "reason": "Commercial bridge"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Оставить заявку на проект",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "title",
+        "slug",
+        "city",
+        "priceFrom",
+        "priceTo",
+        "days",
+        "seoTitle",
+        "seoDescription",
+        "published"
+      ],
+      "riskFlags": [
+        "no_fabricated_results",
+        "no_fabricated_timeline",
+        "no_fabricated_budget"
+      ],
+      "dataNeeds": [
+        "city",
+        "layout",
+        "style",
+        "materials",
+        "timeline",
+        "budget",
+        "result",
+        "images"
+      ]
+    }
+  ]
+}

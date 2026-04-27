@@ -1,0 +1,68 @@
+{
+  "entity": "LocationPage",
+  "fields": [
+    {
+      "field": "intro",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "description",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "localIntro",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "uniquePoints",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "contentBlocks",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "faq",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "features",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "ctaHeadline",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    },
+    {
+      "field": "ctaSubtext",
+      "editableInAdminForm": true,
+      "classification": "allowed",
+      "reason": "LocationPage draft_safe policy allows local/test draft integration for this field.",
+      "source": "ai/policies/entities.json"
+    }
+  ]
+}

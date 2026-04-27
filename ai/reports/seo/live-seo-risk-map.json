@@ -1,0 +1,1285 @@
+{
+  "generatedAt": "2026-04-13T15:19:41.767Z",
+  "mode": "read_only",
+  "entries": [
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "medium",
+      "trigger": "route_metadata",
+      "requiredMode": "read_only",
+      "reasons": [
+        "Detected route_metadata in artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug affects canonical or route lookup",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published affects metadata eligibility",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoTitle",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoDescription",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "publishedAt",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "canonical behavior",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "entity": "BlogPost",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "route-level generateMetadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "BlogPost generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data.",
+        "Metadata path can read entity by slug without explicit published filter."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data.",
+        "Metadata path can read entity by slug without explicit published filter."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data.",
+        "Metadata path can read entity by slug without explicit published filter."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data.",
+        "Metadata path can read entity by slug without explicit published filter."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data.",
+        "Metadata path can read entity by slug without explicit published filter."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "unpublished_metadata_fetch",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data.",
+        "Metadata path can read entity by slug without explicit published filter."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug affects canonical or route lookup",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published affects metadata eligibility",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoTitle",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoDescription",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "canonical behavior",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "entity": "Kitchen",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "route-level generateMetadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Kitchen generateMetadata resolves by slug before published check in page render."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/layout.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "high",
+      "trigger": "live_metadata_override",
+      "requiredMode": "read_only",
+      "reasons": [
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug affects canonical or route lookup",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published affects metadata eligibility",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "title",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoTitle",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoDescription",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "canonical behavior",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "entity": "LocationPage",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "route-level generateMetadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug affects canonical or route lookup",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published affects metadata eligibility",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "title",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "slug",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoTitle",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "seoDescription",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "published",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "canonical behavior",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "entity-level",
+      "riskLevel": "critical",
+      "trigger": "route-level generateMetadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "PortfolioCase also drives live keywords through seoKeywords."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/robots.ts",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "robots_control",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Robots behavior affects crawl and indexing policy."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Sitemap behavior affects live discovery and indexing."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Sitemap behavior affects live discovery and indexing."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+      "entity": "LocationPage",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "sitemap_control",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Sitemap behavior affects live discovery and indexing."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "publish_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "entity": "PortfolioCase",
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface depends on published/indexable state.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/warranty/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "route_metadata",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/warranty/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "canonical_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/warranty/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "slug_sensitive_logic",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    },
+    {
+      "surface": "artifacts/kuhni-na-zakaz/app/warranty/page.tsx",
+      "entity": null,
+      "category": "app-level",
+      "riskLevel": "critical",
+      "trigger": "live_metadata_override",
+      "requiredMode": "review_required",
+      "reasons": [
+        "Route controls canonical output.",
+        "Surface depends on slug-derived routing or canonical behavior.",
+        "Surface can override live title/description/keywords from entity data."
+      ]
+    }
+  ]
+}

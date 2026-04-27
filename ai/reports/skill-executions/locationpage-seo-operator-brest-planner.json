@@ -1,0 +1,25 @@
+{
+  "taskId": "locationpage-seo-operator-brest-planner",
+  "skill": "locationpage-seo-planner",
+  "mode": "read_only",
+  "entity": "LocationPage",
+  "status": "completed",
+  "decision": {
+    "taskId": "locationpage-seo-operator-brest-planner",
+    "selectedSkill": "locationpage-seo-planner",
+    "mode": "read_only",
+    "entity": "LocationPage",
+    "matchedRuleId": "route-location-seo",
+    "reasons": [
+      "matched_rule:route-location-seo"
+    ]
+  },
+  "result": {
+    "skill": "locationpage-seo-planner",
+    "auditPath": "ai/reports/locationpage-seo-audit.json",
+    "plansPath": "ai/reports/locationpage-content-plans.json",
+    "gapReportPath": "ai/reports/locationpage-gap-report.md",
+    "existingPages": 7,
+    "proposedPages": 1
+  }
+}

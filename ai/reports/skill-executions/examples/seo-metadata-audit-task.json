@@ -1,0 +1,6 @@
+{
+  "taskId": "example-seo-metadata-audit",
+  "taskType": "seo_metadata_audit",
+  "mode": "read_only",
+  "intent": "review live metadata surfaces for first-wave entities"
+}

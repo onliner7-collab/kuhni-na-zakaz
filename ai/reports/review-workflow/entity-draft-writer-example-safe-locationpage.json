@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "sourceRequest": {
+    "taskId": "entity-draft-writer-example-safe-locationpage",
+    "mode": "draft_safe",
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "requestedPatch": {
+      "intro": "Обновленный безопасный draft intro для страницы кухни на заказ в Бресте.",
+      "faq": [
+        {
+          "question": "Можно ли уточнить проект после замера?",
+          "answer": "Да, финальные детали должны подтверждаться на ручном ревью и после замера."
+        }
+      ],
+      "ctaHeadline": "Обсудим проект кухни для Бреста",
+      "ctaSubtext": "Сначала собираем безопасный draft-пакет, без публикации и без изменения slug."
+    },
+    "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json",
+    "currentState": {
+      "intro": "Старый draft intro.",
+      "ctaHeadline": "Старый CTA."
+    }
+  },
+  "task": {
+    "taskId": "entity-draft-writer-example-safe-locationpage",
+    "mode": "draft_safe",
+    "requestedAction": "draft_safe_apply_review",
+    "requestedAt": "2026-04-13T15:32:12.032Z"
+  },
+  "entity": {
+    "name": "LocationPage",
+    "identifier": "brest"
+  },
+  "changes": {
+    "requestedFields": [
+      "intro",
+      "faq",
+      "ctaHeadline",
+      "ctaSubtext"
+    ],
+    "safeFields": [
+      "intro",
+      "faq",
+      "ctaHeadline",
+      "ctaSubtext"
+    ],
+    "blockedFields": [],
+    "reviewRequiredFields": [],
+    "requestedPatch": {
+      "intro": "Обновленный безопасный draft intro для страницы кухни на заказ в Бресте.",
+      "faq": [
+        {
+          "question": "Можно ли уточнить проект после замера?",
+          "answer": "Да, финальные детали должны подтверждаться на ручном ревью и после замера."
+        }
+      ],
+      "ctaHeadline": "Обсудим проект кухни для Бреста",
+      "ctaSubtext": "Сначала собираем безопасный draft-пакет, без публикации и без изменения slug."
+    },
+    "safePatch": {
+      "intro": "Обновленный безопасный draft intro для страницы кухни на заказ в Бресте.",
+      "faq": [
+        {
+          "question": "Можно ли уточнить проект после замера?",
+          "answer": "Да, финальные детали должны подтверждаться на ручном ревью и после замера."
+        }
+      ],
+      "ctaHeadline": "Обсудим проект кухни для Бреста",
+      "ctaSubtext": "Сначала собираем безопасный draft-пакет, без публикации и без изменения slug."
+    }
+  },
+  "riskLevel": "high",
+  "qaResult": {
+    "verdict": "NEEDS_REVIEW",
+    "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope.",
+    "sourceReport": "ai/reports/reviews/publication-qa-review.json",
+    "issues": [
+      {
+        "code": "body_too_short",
+        "category": "content",
+        "severity": "medium",
+        "message": "Body draft is too short for useful review.",
+        "fields": [
+          "bodySections"
+        ]
+      },
+      {
+        "code": "keyword_spam_signal",
+        "category": "content",
+        "severity": "medium",
+        "message": "Possible keyword repetition detected: brest, кухни, заказ.",
+        "fields": [
+          "title",
+          "h1",
+          "metaDescription",
+          "bodySections"
+        ]
+      },
+      {
+        "code": "slug_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+        "fields": [
+          "slug"
+        ]
+      },
+      {
+        "code": "publish_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+        "fields": [
+          "published"
+        ]
+      },
+      {
+        "code": "pricing_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Pricing fields remain blocked from draft-safe apply.",
+        "fields": [
+          "priceFrom"
+        ]
+      },
+      {
+        "code": "metadata_stays_in_review_scope",
+        "category": "safety",
+        "severity": "medium",
+        "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+        "fields": [
+          "seoTitle",
+          "seoDescription"
+        ]
+      },
+      {
+        "code": "entity_review_required_fields",
+        "category": "safety",
+        "severity": "medium",
+        "message": "Packet includes fields that must stay in human review.",
+        "fields": [
+          "slug",
+          "title",
+          "h1",
+          "seoTitle",
+          "seoDescription",
+          "priceFrom",
+          "published"
+        ]
+      }
+    ]
+  },
+  "writerEligibility": {
+    "eligible": true,
+    "requiresExplicitApproval": true,
+    "allowedMode": true,
+    "safeEntity": true,
+    "safeFieldsAvailable": true,
+    "qaNotFail": true,
+    "reasons": [
+      "qa_review_required"
+    ]
+  },
+  "reviewState": "approved_for_safe_apply",
+  "suggestedNextAction": "run_safe_apply",
+  "reasons": [
+    "qa_review_required"
+  ],
+  "artifacts": {
+    "reviewPacketPath": "ai/reports/review-workflow/entity-draft-writer-example-safe-locationpage.json",
+    "markdownSummaryPath": "ai/reports/review-workflow/entity-draft-writer-example-safe-locationpage.md",
+    "approvalArtifactPath": "ai/reports/approvals/entity-draft-writer-example-safe-locationpage.json",
+    "rejectionArtifactPath": null,
+    "qaReferencePath": "ai/reports/reviews/publication-qa-review.json"
+  }
+}

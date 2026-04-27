@@ -1,0 +1,100 @@
+{
+  "generatedAt": "2026-04-13T15:50:45.327Z",
+  "entity": "LocationPage",
+  "scope": "local_test_admin_only",
+  "architecture": {
+    "formComponent": "artifacts/kuhni-na-zakaz/components/admin/LocationForm.tsx",
+    "listPage": "artifacts/kuhni-na-zakaz/app/admin/locations/page.tsx",
+    "newPage": "artifacts/kuhni-na-zakaz/app/admin/locations/new/page.tsx",
+    "editPage": "artifacts/kuhni-na-zakaz/app/admin/locations/[id]/edit/page.tsx",
+    "apiCollectionRoute": "artifacts/kuhni-na-zakaz/app/kapi/admin/locations/route.ts",
+    "apiItemRoute": "artifacts/kuhni-na-zakaz/app/kapi/admin/locations/[id]/route.ts",
+    "liveRoute": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+    "validatorLayer": "none_detected",
+    "writePath": "client_fetch_to_internal_admin_api_to_prisma"
+  },
+  "formFields": [
+    "address",
+    "areas",
+    "caseSlugs",
+    "city",
+    "contentBlocks",
+    "ctaHeadline",
+    "ctaSubtext",
+    "deliveryCost",
+    "deliveryDays",
+    "description",
+    "faq",
+    "features",
+    "h1",
+    "id",
+    "images",
+    "installDetails",
+    "intro",
+    "localIntro",
+    "mapEmbed",
+    "measureCost",
+    "phone",
+    "priceFrom",
+    "published",
+    "region",
+    "reviewIds",
+    "seoDescription",
+    "seoTitle",
+    "slug",
+    "timelineText",
+    "title",
+    "uniquePoints",
+    "visitDetails",
+    "workZone"
+  ],
+  "liveSensitiveFields": [
+    "address",
+    "caseSlugs",
+    "deliveryCost",
+    "deliveryDays",
+    "h1",
+    "mapEmbed",
+    "measureCost",
+    "phone",
+    "priceFrom",
+    "published",
+    "reviewIds",
+    "seoDescription",
+    "seoTitle",
+    "slug",
+    "timelineText",
+    "title"
+  ],
+  "safestIntegrationOption": {
+    "selected": "local_test_draft_adapter",
+    "comparison": [
+      {
+        "option": "direct_data_layer",
+        "safety": "low",
+        "invasiveLevel": "high",
+        "notes": "Direct Prisma updates bypass current review and approval controls."
+      },
+      {
+        "option": "internal_admin_api",
+        "safety": "low",
+        "invasiveLevel": "medium",
+        "notes": "Existing admin API accepts broad payloads and can update publish, slug, pricing, and SEO fields."
+      },
+      {
+        "option": "browser_driven_workflow",
+        "safety": "medium",
+        "invasiveLevel": "high",
+        "notes": "Safer than direct DB writes but brittle, UI-coupled, and unnecessary for local/test-only draft flow."
+      },
+      {
+        "option": "local_test_draft_adapter",
+        "safety": "high",
+        "invasiveLevel": "low",
+        "notes": "Reads LocationForm-shaped payload, filters to draft-safe fields, and writes only AI review/draft artifacts."
+      }
+    ]
+  },
+  "allowedFieldMapPath": "ai/reports/admin-integration/locationpage-allowed-field-map.json",
+  "blockedFieldMapPath": "ai/reports/admin-integration/locationpage-blocked-field-map.json"
+}

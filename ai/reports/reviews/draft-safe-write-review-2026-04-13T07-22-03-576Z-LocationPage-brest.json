@@ -1,0 +1,17 @@
+{
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "mode": "draft_safe",
+  "oldSummary": "intro=Старый draft intro.; ctaHeadline=Старый CTA.",
+  "newSummary": "intro=Обновленный безопасный draft intro для страницы кухни на зак; ctaHeadline=Обсудим проект кухни для Бреста; faq=[1 items]; ctaSubtext=Сначала собираем безопасный draft-пакет, без публикации и бе",
+  "changedFields": [
+    "intro",
+    "faq",
+    "ctaHeadline",
+    "ctaSubtext"
+  ],
+  "reviewRequiredFields": [],
+  "blockedFields": [],
+  "riskLevel": "low",
+  "reviewRequired": false
+}

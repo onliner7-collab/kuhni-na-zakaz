@@ -3,126 +3,163 @@ import { prisma } from "@/lib/db";
 import { getSiteUrl } from "@/lib/site-url";
 
 const BASE_URL = getSiteUrl();
-const TECHNICAL_STATIC_SLUGS = new Set(["personal-data", "privacy-policy", "terms"]);
+const STATIC_PATHS = [
+  "/",
+  "/about",
+  "/catalog",
+  "/prices",
+  "/contacts",
+  "/portfolio",
+  "/blog",
+  "/delivery-installation",
+  "/styles",
+  "/materials",
+  "/scenarios",
+  "/locations",
+  "/warranty",
+] as const;
+
+const STATIC_CATALOG_SLUGS = [
+  "uglovye-kuhni",
+  "pryamye-kuhni",
+  "p-obraznye-kuhni",
+  "kuhni-s-ostrovom",
+  "malenkie-kuhni",
+  "kuhni-do-potolka",
+  "kuhni-bez-ruchek",
+] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: `${BASE_URL}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE_URL}/catalog`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/scenarios`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/styles`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/materials`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/prices`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${BASE_URL}/portfolio`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${BASE_URL}/reviews`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE_URL}/contacts`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${BASE_URL}/delivery-installation`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE_URL}/warranty`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${BASE_URL}/calculator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${BASE_URL}/kitchen-configurator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-  ];
-
-  const catalogSlugs = [
-    "uglovye-kuhni",
-    "pryamye-kuhni",
-    "p-obraznye-kuhni",
-    "kuhni-s-ostrovom",
-    "malenkie-kuhni",
-    "kuhni-do-potolka",
-    "kuhni-bez-ruchek",
-  ];
-
-  const catalogPages: MetadataRoute.Sitemap = catalogSlugs.map((slug) => ({
-    url: `${BASE_URL}/catalog/${slug}`,
+  const staticPages = STATIC_PATHS.map((path) => ({
+    url: absoluteUrl(path),
     lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
+    changeFrequency: "weekly" as const,
+    priority: path === "/" ? 1 : 0.8,
   }));
 
+  let kitchenPages: MetadataRoute.Sitemap = [];
   let portfolioPages: MetadataRoute.Sitemap = [];
   let blogPages: MetadataRoute.Sitemap = [];
   let locationPages: MetadataRoute.Sitemap = [];
   let stylePages: MetadataRoute.Sitemap = [];
   let materialPages: MetadataRoute.Sitemap = [];
   let scenarioPages: MetadataRoute.Sitemap = [];
-  let staticCmsPages: MetadataRoute.Sitemap = [];
 
   try {
-    const [cases, posts, locations, staticPgs, styles, materials, scenarios] = await Promise.all([
+    const [kitchens, cases, posts, locations, styles, materials, scenarios] = await Promise.all([
+      prisma.kitchen.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.portfolioCase.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.locationPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
-      prisma.staticPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.stylePage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.materialPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.scenarioPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
     ]);
 
-    portfolioPages = cases.map((c) => ({
-      url: `${BASE_URL}/portfolio/${c.slug}`,
-      lastModified: c.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
-
-    blogPages = posts.map((p) => ({
-      url: `${BASE_URL}/blog/${p.slug}`,
-      lastModified: p.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
-
-    locationPages = locations.map((l) => ({
-      url: `${BASE_URL}/locations/${l.slug}`,
-      lastModified: l.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    }));
-
-    stylePages = styles.map((s) => ({
-      url: `${BASE_URL}/styles/${s.slug}`,
-      lastModified: s.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
-
-    materialPages = materials.map((m) => ({
-      url: `${BASE_URL}/materials/${m.slug}`,
-      lastModified: m.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
-
-    scenarioPages = scenarios.map((s) => ({
-      url: `${BASE_URL}/scenarios/${s.slug}`,
-      lastModified: s.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }));
-
-    staticCmsPages = staticPgs
-      .filter((p) => !TECHNICAL_STATIC_SLUGS.has(p.slug))
-      .map((p) => ({
-        url: `${BASE_URL}/${p.slug}`,
-        lastModified: p.updatedAt,
-        changeFrequency: "monthly" as const,
-        priority: 0.5,
-      }));
+    kitchenPages = kitchens.map((item) => sitemapEntry(`/catalog/${item.slug}`, item.updatedAt, 0.8));
+    portfolioPages = cases.map((item) => sitemapEntry(`/portfolio/${item.slug}`, item.updatedAt, 0.7));
+    blogPages = posts.map((item) => sitemapEntry(`/blog/${item.slug}`, item.updatedAt, 0.7));
+    locationPages = locations.map((item) => sitemapEntry(`/locations/${item.slug}`, item.updatedAt, 0.8));
+    stylePages = styles.map((item) => sitemapEntry(`/styles/${item.slug}`, item.updatedAt, 0.7));
+    materialPages = materials.map((item) => sitemapEntry(`/materials/${item.slug}`, item.updatedAt, 0.7));
+    scenarioPages = scenarios.map((item) => sitemapEntry(`/scenarios/${item.slug}`, item.updatedAt, 0.7));
   } catch {}
 
-  return [
+  const staticCatalogPages = STATIC_CATALOG_SLUGS.map((slug) =>
+    sitemapEntry(`/catalog/${slug}`, now, 0.8),
+  );
+
+  return uniqueIndexableEntries([
     ...staticPages,
-    ...catalogPages,
+    ...staticCatalogPages,
+    ...kitchenPages,
     ...stylePages,
     ...materialPages,
     ...scenarioPages,
     ...portfolioPages,
     ...blogPages,
     ...locationPages,
-    ...staticCmsPages,
-  ];
+  ]);
+}
+
+function sitemapEntry(
+  path: string,
+  lastModified: Date,
+  priority: number,
+): MetadataRoute.Sitemap[number] {
+  return {
+    url: absoluteUrl(path),
+    lastModified,
+    changeFrequency: "monthly",
+    priority,
+  };
+}
+
+function absoluteUrl(path: string) {
+  const normalizedPath = normalizePath(path);
+  return `${BASE_URL}${normalizedPath}`;
+}
+
+function uniqueIndexableEntries(entries: MetadataRoute.Sitemap) {
+  const seen = new Set<string>();
+  const result: MetadataRoute.Sitemap = [];
+
+  for (const entry of entries) {
+    const url = typeof entry.url === "string" ? entry.url : "";
+    const canonicalUrl = canonicalizeSitemapUrl(url);
+
+    if (!canonicalUrl || seen.has(canonicalUrl)) {
+      continue;
+    }
+
+    seen.add(canonicalUrl);
+    result.push({ ...entry, url: canonicalUrl });
+  }
+
+  return result;
+}
+
+function canonicalizeSitemapUrl(url: string) {
+  if (!url) return null;
+
+  try {
+    const parsed = new URL(url);
+    parsed.protocol = "https:";
+    parsed.hostname = parsed.hostname.replace(/^www\./i, "");
+    parsed.pathname = normalizePath(parsed.pathname);
+    parsed.search = "";
+    parsed.hash = "";
+
+    const canonicalUrl = parsed.toString().replace(/\/$/, parsed.pathname === "/" ? "/" : "");
+    return isIndexableUrl(canonicalUrl) ? canonicalUrl : null;
+  } catch {
+    return null;
+  }
+}
+
+function normalizePath(path: string) {
+  const pathname = path.startsWith("/") ? path : `/${path}`;
+  if (pathname === "/") return "/";
+
+  return pathname.replace(/\/+$/g, "");
+}
+
+function isIndexableUrl(url: string) {
+  const blockedPathPrefixes = ["/admin", "/login", "/api", "/kapi", "/search"];
+
+  try {
+    const { pathname, search } = new URL(url);
+    if (search) return false;
+    if (pathname.includes("/draft")) return false;
+    if (pathname.includes("/preview")) return false;
+    if (pathname.includes("//")) return false;
+
+    return !blockedPathPrefixes.some(
+      (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+    );
+  } catch {
+    return false;
+  }
 }

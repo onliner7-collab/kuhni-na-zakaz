@@ -1,0 +1,519 @@
+{
+  "generatedAt": "2026-04-13T15:50:45.313Z",
+  "entity": "BlogPost",
+  "mode": "draft_safe",
+  "packets": [
+    {
+      "entity": "BlogPost",
+      "identifier": "kak-vybrat-kuhnyu",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Как выбрать кухню на заказ: 7 вопросов перед заказом",
+        "slugLike": "kak-vybrat-kuhnyu",
+        "categoryOrRegion": "Советы",
+        "trustedFacts": [
+          "Советы",
+          "советы",
+          "выбор",
+          "заказ"
+        ]
+      },
+      "drafts": {
+        "title": "Как выбрать кухню на заказ: 7 вопросов перед заказом",
+        "h1": "Как выбрать кухню на заказ: 7 вопросов перед заказом",
+        "metaDescription": "Подготовьте читабельную статью по теме \"Как выбрать кухню на заказ: 7 вопросов перед заказом\" с практической пользой, внутренними ссылками и review-safe формулировками.",
+        "bodySections": [
+          {
+            "heading": "Что важно знать до выбора",
+            "purpose": "Search intent match",
+            "draft": "Сформулируйте основной вопрос статьи и коротко объясните, какую проблему читатель решает."
+          },
+          {
+            "heading": "Практические критерии выбора",
+            "purpose": "Main value",
+            "draft": "Дайте структурированный список критериев, на что смотреть и какие ошибки избегать."
+          },
+          {
+            "heading": "Как это связано с проектом кухни",
+            "purpose": "Commercial bridge",
+            "draft": "Свяжите тему статьи с реальным выбором кухни, материалами, стилями или кейсами без навязчивого SEO."
+          }
+        ],
+        "faq": [
+          "Что важно учесть по теме \"Как выбрать кухню на заказ: 7 вопросов перед заказом\"?",
+          "Какие ошибки встречаются чаще всего?",
+          "Какие страницы сайта помогут углубиться в тему?"
+        ],
+        "cta": [
+          "Получить консультацию по своей кухне",
+          "Посмотреть связанные кейсы и стили"
+        ],
+        "altTextSuggestions": [
+          "Иллюстрация к статье Как выбрать кухню на заказ: 7 вопросов перед заказом",
+          "Схема или пример для статьи kak-vybrat-kuhnyu",
+          "Обложка статьи Как выбрать кухню на заказ: 7 вопросов перед заказом"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Каталог кухонь",
+            "reason": "Commercial bridge"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Реальные проекты",
+            "reason": "Proof bridge"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Задать вопрос менеджеру",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "seoTitle",
+        "seoDescription",
+        "published",
+        "publishedAt"
+      ],
+      "riskFlags": [
+        "no_autopublish"
+      ],
+      "dataNeeds": [
+        "cover_image",
+        "reviewed_related_links"
+      ]
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "skolko-stoit-kuhnya-na-zakaz",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Сколько стоит кухня на заказ в Беларуси: честные цифры",
+        "slugLike": "skolko-stoit-kuhnya-na-zakaz",
+        "categoryOrRegion": "Цены",
+        "trustedFacts": [
+          "Цены",
+          "цены",
+          "стоимость",
+          "бюджет"
+        ]
+      },
+      "drafts": {
+        "title": "Сколько стоит кухня на заказ в Беларуси: честные цифры",
+        "h1": "Сколько стоит кухня на заказ в Беларуси: честные цифры",
+        "metaDescription": "Подготовьте читабельную статью по теме \"Сколько стоит кухня на заказ в Беларуси: честные цифры\" с практической пользой, внутренними ссылками и review-safe формулировками.",
+        "bodySections": [
+          {
+            "heading": "Что важно знать до выбора",
+            "purpose": "Search intent match",
+            "draft": "Сформулируйте основной вопрос статьи и коротко объясните, какую проблему читатель решает."
+          },
+          {
+            "heading": "Практические критерии выбора",
+            "purpose": "Main value",
+            "draft": "Дайте структурированный список критериев, на что смотреть и какие ошибки избегать."
+          },
+          {
+            "heading": "Как это связано с проектом кухни",
+            "purpose": "Commercial bridge",
+            "draft": "Свяжите тему статьи с реальным выбором кухни, материалами, стилями или кейсами без навязчивого SEO."
+          }
+        ],
+        "faq": [
+          "Что важно учесть по теме \"Сколько стоит кухня на заказ в Беларуси: честные цифры\"?",
+          "Какие ошибки встречаются чаще всего?",
+          "Какие страницы сайта помогут углубиться в тему?"
+        ],
+        "cta": [
+          "Получить консультацию по своей кухне",
+          "Посмотреть связанные кейсы и стили"
+        ],
+        "altTextSuggestions": [
+          "Иллюстрация к статье Сколько стоит кухня на заказ в Беларуси: честные цифры",
+          "Схема или пример для статьи skolko-stoit-kuhnya-na-zakaz",
+          "Обложка статьи Сколько стоит кухня на заказ в Беларуси: честные цифры"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Каталог кухонь",
+            "reason": "Commercial bridge"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Реальные проекты",
+            "reason": "Proof bridge"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Задать вопрос менеджеру",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "seoTitle",
+        "seoDescription",
+        "published",
+        "publishedAt"
+      ],
+      "riskFlags": [
+        "no_autopublish"
+      ],
+      "dataNeeds": [
+        "cover_image",
+        "reviewed_related_links"
+      ]
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kuhnya-dlya-malenkoy-kvartiry",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухня для маленькой квартиры: 10 приёмов дизайнеров",
+        "slugLike": "kuhnya-dlya-malenkoy-kvartiry",
+        "categoryOrRegion": "Дизайн",
+        "trustedFacts": [
+          "Дизайн",
+          "дизайн",
+          "маленькая кухня",
+          "советы"
+        ]
+      },
+      "drafts": {
+        "title": "Кухня для маленькой квартиры: 10 приёмов дизайнеров",
+        "h1": "Кухня для маленькой квартиры: 10 приёмов дизайнеров",
+        "metaDescription": "Подготовьте читабельную статью по теме \"Кухня для маленькой квартиры: 10 приёмов дизайнеров\" с практической пользой, внутренними ссылками и review-safe формулировками.",
+        "bodySections": [
+          {
+            "heading": "Что важно знать до выбора",
+            "purpose": "Search intent match",
+            "draft": "Сформулируйте основной вопрос статьи и коротко объясните, какую проблему читатель решает."
+          },
+          {
+            "heading": "Практические критерии выбора",
+            "purpose": "Main value",
+            "draft": "Дайте структурированный список критериев, на что смотреть и какие ошибки избегать."
+          },
+          {
+            "heading": "Как это связано с проектом кухни",
+            "purpose": "Commercial bridge",
+            "draft": "Свяжите тему статьи с реальным выбором кухни, материалами, стилями или кейсами без навязчивого SEO."
+          }
+        ],
+        "faq": [
+          "Что важно учесть по теме \"Кухня для маленькой квартиры: 10 приёмов дизайнеров\"?",
+          "Какие ошибки встречаются чаще всего?",
+          "Какие страницы сайта помогут углубиться в тему?"
+        ],
+        "cta": [
+          "Получить консультацию по своей кухне",
+          "Посмотреть связанные кейсы и стили"
+        ],
+        "altTextSuggestions": [
+          "Иллюстрация к статье Кухня для маленькой квартиры: 10 приёмов дизайнеров",
+          "Схема или пример для статьи kuhnya-dlya-malenkoy-kvartiry",
+          "Обложка статьи Кухня для маленькой квартиры: 10 приёмов дизайнеров"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Каталог кухонь",
+            "reason": "Commercial bridge"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Реальные проекты",
+            "reason": "Proof bridge"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Задать вопрос менеджеру",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "seoTitle",
+        "seoDescription",
+        "published",
+        "publishedAt"
+      ],
+      "riskFlags": [
+        "no_autopublish"
+      ],
+      "dataNeeds": [
+        "cover_image",
+        "reviewed_related_links"
+      ]
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kakie-fasady-luchshe",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Какие фасады лучше: МДФ, пластик, эмаль или шпон",
+        "slugLike": "kakie-fasady-luchshe",
+        "categoryOrRegion": "Материалы",
+        "trustedFacts": [
+          "Материалы",
+          "материалы",
+          "фасады",
+          "МДФ",
+          "эмаль"
+        ]
+      },
+      "drafts": {
+        "title": "Какие фасады лучше: МДФ, пластик, эмаль или шпон",
+        "h1": "Какие фасады лучше: МДФ, пластик, эмаль или шпон",
+        "metaDescription": "Подготовьте читабельную статью по теме \"Какие фасады лучше: МДФ, пластик, эмаль или шпон\" с практической пользой, внутренними ссылками и review-safe формулировками.",
+        "bodySections": [
+          {
+            "heading": "Что важно знать до выбора",
+            "purpose": "Search intent match",
+            "draft": "Сформулируйте основной вопрос статьи и коротко объясните, какую проблему читатель решает."
+          },
+          {
+            "heading": "Практические критерии выбора",
+            "purpose": "Main value",
+            "draft": "Дайте структурированный список критериев, на что смотреть и какие ошибки избегать."
+          },
+          {
+            "heading": "Как это связано с проектом кухни",
+            "purpose": "Commercial bridge",
+            "draft": "Свяжите тему статьи с реальным выбором кухни, материалами, стилями или кейсами без навязчивого SEO."
+          }
+        ],
+        "faq": [
+          "Что важно учесть по теме \"Какие фасады лучше: МДФ, пластик, эмаль или шпон\"?",
+          "Какие ошибки встречаются чаще всего?",
+          "Какие страницы сайта помогут углубиться в тему?"
+        ],
+        "cta": [
+          "Получить консультацию по своей кухне",
+          "Посмотреть связанные кейсы и стили"
+        ],
+        "altTextSuggestions": [
+          "Иллюстрация к статье Какие фасады лучше: МДФ, пластик, эмаль или шпон",
+          "Схема или пример для статьи kakie-fasady-luchshe",
+          "Обложка статьи Какие фасады лучше: МДФ, пластик, эмаль или шпон"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Каталог кухонь",
+            "reason": "Commercial bridge"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Реальные проекты",
+            "reason": "Proof bridge"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Задать вопрос менеджеру",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "seoTitle",
+        "seoDescription",
+        "published",
+        "publishedAt"
+      ],
+      "riskFlags": [
+        "no_autopublish"
+      ],
+      "dataNeeds": [
+        "cover_image",
+        "reviewed_related_links"
+      ]
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kuhni-blum-hettich-gtv",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Фурнитура Blum, Hettich, GTV: в чём разница и что выбрать",
+        "slugLike": "kuhni-blum-hettich-gtv",
+        "categoryOrRegion": "Материалы",
+        "trustedFacts": [
+          "Материалы",
+          "фурнитура",
+          "Blum",
+          "Hettich",
+          "GTV"
+        ]
+      },
+      "drafts": {
+        "title": "Фурнитура Blum, Hettich, GTV: в чём разница и что выбрать",
+        "h1": "Фурнитура Blum, Hettich, GTV: в чём разница и что выбрать",
+        "metaDescription": "Подготовьте читабельную статью по теме \"Фурнитура Blum, Hettich, GTV: в чём разница и что выбрать\" с практической пользой, внутренними ссылками и review-safe формулировками.",
+        "bodySections": [
+          {
+            "heading": "Что важно знать до выбора",
+            "purpose": "Search intent match",
+            "draft": "Сформулируйте основной вопрос статьи и коротко объясните, какую проблему читатель решает."
+          },
+          {
+            "heading": "Практические критерии выбора",
+            "purpose": "Main value",
+            "draft": "Дайте структурированный список критериев, на что смотреть и какие ошибки избегать."
+          },
+          {
+            "heading": "Как это связано с проектом кухни",
+            "purpose": "Commercial bridge",
+            "draft": "Свяжите тему статьи с реальным выбором кухни, материалами, стилями или кейсами без навязчивого SEO."
+          }
+        ],
+        "faq": [
+          "Что важно учесть по теме \"Фурнитура Blum, Hettich, GTV: в чём разница и что выбрать\"?",
+          "Какие ошибки встречаются чаще всего?",
+          "Какие страницы сайта помогут углубиться в тему?"
+        ],
+        "cta": [
+          "Получить консультацию по своей кухне",
+          "Посмотреть связанные кейсы и стили"
+        ],
+        "altTextSuggestions": [
+          "Иллюстрация к статье Фурнитура Blum, Hettich, GTV: в чём разница и что выбрать",
+          "Схема или пример для статьи kuhni-blum-hettich-gtv",
+          "Обложка статьи Фурнитура Blum, Hettich, GTV: в чём разница и что выбрать"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Каталог кухонь",
+            "reason": "Commercial bridge"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Реальные проекты",
+            "reason": "Proof bridge"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Задать вопрос менеджеру",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "seoTitle",
+        "seoDescription",
+        "published",
+        "publishedAt"
+      ],
+      "riskFlags": [
+        "no_autopublish"
+      ],
+      "dataNeeds": [
+        "cover_image",
+        "reviewed_related_links"
+      ]
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kuhnya-s-ostrovom",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухня с островом: когда это работает и сколько стоит",
+        "slugLike": "kuhnya-s-ostrovom",
+        "categoryOrRegion": "Дизайн",
+        "trustedFacts": [
+          "Дизайн",
+          "остров",
+          "дизайн",
+          "планировка"
+        ]
+      },
+      "drafts": {
+        "title": "Кухня с островом: когда это работает и сколько стоит",
+        "h1": "Кухня с островом: когда это работает и сколько стоит",
+        "metaDescription": "Подготовьте читабельную статью по теме \"Кухня с островом: когда это работает и сколько стоит\" с практической пользой, внутренними ссылками и review-safe формулировками.",
+        "bodySections": [
+          {
+            "heading": "Что важно знать до выбора",
+            "purpose": "Search intent match",
+            "draft": "Сформулируйте основной вопрос статьи и коротко объясните, какую проблему читатель решает."
+          },
+          {
+            "heading": "Практические критерии выбора",
+            "purpose": "Main value",
+            "draft": "Дайте структурированный список критериев, на что смотреть и какие ошибки избегать."
+          },
+          {
+            "heading": "Как это связано с проектом кухни",
+            "purpose": "Commercial bridge",
+            "draft": "Свяжите тему статьи с реальным выбором кухни, материалами, стилями или кейсами без навязчивого SEO."
+          }
+        ],
+        "faq": [
+          "Что важно учесть по теме \"Кухня с островом: когда это работает и сколько стоит\"?",
+          "Какие ошибки встречаются чаще всего?",
+          "Какие страницы сайта помогут углубиться в тему?"
+        ],
+        "cta": [
+          "Получить консультацию по своей кухне",
+          "Посмотреть связанные кейсы и стили"
+        ],
+        "altTextSuggestions": [
+          "Иллюстрация к статье Кухня с островом: когда это работает и сколько стоит",
+          "Схема или пример для статьи kuhnya-s-ostrovom",
+          "Обложка статьи Кухня с островом: когда это работает и сколько стоит"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Каталог кухонь",
+            "reason": "Commercial bridge"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Реальные проекты",
+            "reason": "Proof bridge"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Задать вопрос менеджеру",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "seoTitle",
+        "seoDescription",
+        "published",
+        "publishedAt"
+      ],
+      "riskFlags": [
+        "no_autopublish"
+      ],
+      "dataNeeds": [
+        "cover_image",
+        "reviewed_related_links"
+      ]
+    }
+  ]
+}

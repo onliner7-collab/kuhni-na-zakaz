@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "source_of_truth": "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+  "entities": [
+    {
+      "name": "LocationPage",
+      "tier": "first_wave",
+      "default_mode": "draft_safe",
+      "high_risk": false,
+      "notes": "Primary local SEO entity for first-wave safe automation.",
+      "field_groups": {
+        "draft_safe": [
+          "intro",
+          "description",
+          "localIntro",
+          "uniquePoints",
+          "contentBlocks",
+          "faq",
+          "features",
+          "ctaHeadline",
+          "ctaSubtext"
+        ],
+        "review_required": [
+          "slug",
+          "title",
+          "h1",
+          "seoTitle",
+          "seoDescription",
+          "priceFrom",
+          "deliveryCost",
+          "deliveryDays",
+          "measureCost",
+          "timelineText",
+          "phone",
+          "address",
+          "mapEmbed",
+          "caseSlugs",
+          "reviewIds",
+          "published"
+        ]
+      }
+    },
+    {
+      "name": "Kitchen",
+      "tier": "first_wave",
+      "default_mode": "draft_safe",
+      "high_risk": false,
+      "notes": "Catalog entity with commercial significance.",
+      "field_groups": {
+        "draft_safe": [
+          "title",
+          "description",
+          "features"
+        ],
+        "review_required": [
+          "slug",
+          "category",
+          "style",
+          "material",
+          "priceFrom",
+          "priceTo",
+          "images",
+          "mainImage",
+          "seoTitle",
+          "seoDescription",
+          "published"
+        ]
+      }
+    },
+    {
+      "name": "BlogPost",
+      "tier": "first_wave",
+      "default_mode": "draft_safe",
+      "high_risk": false,
+      "notes": "Safe content-focused entity, but publishing and routing stay gated.",
+      "field_groups": {
+        "draft_safe": [
+          "title",
+          "excerpt",
+          "content",
+          "category",
+          "tags",
+          "readTime"
+        ],
+        "review_required": [
+          "slug",
+          "relatedCaseSlugs",
+          "relatedStyleSlugs",
+          "relatedScenarioSlugs",
+          "coverImage",
+          "seoTitle",
+          "seoDescription",
+          "published",
+          "publishedAt"
+        ]
+      }
+    },
+    {
+      "name": "PortfolioCase",
+      "tier": "first_wave",
+      "default_mode": "draft_safe",
+      "high_risk": false,
+      "notes": "Proof-oriented content entity with sensitive factual and commercial fields.",
+      "field_groups": {
+        "draft_safe": [
+          "description",
+          "task",
+          "constraints",
+          "solution",
+          "result"
+        ],
+        "review_required": [
+          "title",
+          "slug",
+          "city",
+          "region",
+          "area",
+          "layout",
+          "style",
+          "styleSlug",
+          "material",
+          "materialSlugs",
+          "scenarioSlugs",
+          "priceFrom",
+          "priceTo",
+          "days",
+          "completedAt",
+          "mainImage",
+          "images",
+          "photosBefore",
+          "photosAfter",
+          "reviewIds",
+          "featured",
+          "seoTitle",
+          "seoDescription",
+          "seoKeywords",
+          "published"
+        ]
+      }
+    },
+    {
+      "name": "PriceRule",
+      "tier": "high_risk",
+      "default_mode": "review_required",
+      "high_risk": true,
+      "notes": "Commercial pricing surface. No autonomous editing in V1.",
+      "field_groups": {
+        "draft_safe": [],
+        "review_required": [
+          "*"
+        ]
+      }
+    }
+  ],
+  "high_risk_surfaces": [
+    {
+      "name": "PriceRule",
+      "path": "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+      "reason": "Commercial pricing entity."
+    },
+    {
+      "name": "kitchen-configurator-price",
+      "path": "artifacts/kuhni-na-zakaz/lib/kitchen-configurator/price.ts",
+      "reason": "Core calculator pricing logic."
+    },
+    {
+      "name": "auth",
+      "path": "artifacts/kuhni-na-zakaz/lib/auth.ts",
+      "reason": "Authentication and session boundary."
+    },
+    {
+      "name": "middleware",
+      "path": "artifacts/kuhni-na-zakaz/middleware.ts",
+      "reason": "Route protection and access control."
+    },
+    {
+      "name": "settings",
+      "path": "artifacts/kuhni-na-zakaz/components/admin/SettingsForm.tsx",
+      "reason": "Global settings surface."
+    },
+    {
+      "name": "route-level-metadata-core",
+      "path": "artifacts/kuhni-na-zakaz/app",
+      "reason": "Global SEO and route metadata behavior."
+    }
+  ]
+}

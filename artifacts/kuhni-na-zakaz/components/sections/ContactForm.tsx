@@ -38,6 +38,16 @@ export function ContactForm({ source = "website", city }: { source?: string; cit
       source,
       city: data.city || city,
     });
+    trackAnalyticsEvent(ANALYTICS_EVENTS.MEASURE_REQUEST, {
+      source,
+      city: data.city || city,
+    });
+    if (source.includes("calculator") || source.includes("price")) {
+      trackAnalyticsEvent(ANALYTICS_EVENTS.COST_CALCULATION, {
+        source,
+        city: data.city || city,
+      });
+    }
 
     try {
       const res = await fetch("/kapi/leads", {

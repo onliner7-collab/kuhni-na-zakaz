@@ -1,0 +1,24 @@
+{
+  "taskId": "example-seo-metadata-audit",
+  "skill": "seo-metadata-auditor",
+  "mode": "read_only",
+  "entity": null,
+  "status": "completed",
+  "decision": {
+    "taskId": "example-seo-metadata-audit",
+    "selectedSkill": "seo-metadata-auditor",
+    "mode": "read_only",
+    "entity": null,
+    "matchedRuleId": "route-seo-metadata-audit",
+    "reasons": [
+      "matched_rule:route-seo-metadata-audit"
+    ]
+  },
+  "result": {
+    "skill": "seo-metadata-auditor",
+    "metadataAuditPath": "ai/reports/seo/metadata-audit.json",
+    "summaryPath": "ai/reports/seo/metadata-audit-summary.md",
+    "riskMapPath": "ai/reports/seo/live-seo-risk-map.json",
+    "riskLevel": "critical"
+  }
+}

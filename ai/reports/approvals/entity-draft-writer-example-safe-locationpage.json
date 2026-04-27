@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "taskId": "entity-draft-writer-example-safe-locationpage",
+  "reviewPacketPath": "ai/reports/review-workflow/entity-draft-writer-example-safe-locationpage.json",
+  "reviewState": "approved_for_safe_apply",
+  "approvalMarker": "approved:2026-04-13T15:32:40.974Z:human-reviewer",
+  "approvedBy": "human-reviewer",
+  "approvedAt": "2026-04-13T15:32:40.974Z",
+  "note": "Safe draft fields approved for draft artifact apply.",
+  "safeApplyEligible": true,
+  "allowedFields": [
+    "intro",
+    "faq",
+    "ctaHeadline",
+    "ctaSubtext"
+  ],
+  "blockedFields": [],
+  "constraints": [
+    "apply only for draft_safe mode",
+    "apply only with explicit approval marker",
+    "apply only when QA is not FAIL",
+    "no live publish",
+    "no live admin writes",
+    "no slug changes",
+    "no pricing changes"
+  ],
+  "applyResult": {
+    "taskId": "entity-draft-writer-example-safe-locationpage",
+    "timestamp": "2026-04-13T15:33:00.573Z",
+    "status": "partial",
+    "appliedFields": [
+      "intro",
+      "faq",
+      "ctaHeadline",
+      "ctaSubtext"
+    ],
+    "blockedFields": [],
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "artifactPath": "ai/reports/writes/state/LocationPage/brest.draft.json",
+    "logPath": "ai/logs/entity-draft-writer.jsonl",
+    "reviewPacketPath": "ai/reports/reviews/entity-draft-writer-review-2026-04-13T15-33-00-573Z-LocationPage-brest.json",
+    "reasons": [
+      "qa_review_required"
+    ]
+  }
+}

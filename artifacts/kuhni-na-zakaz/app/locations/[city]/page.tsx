@@ -89,7 +89,7 @@ function fallbackLocation(slug: string): LocationPage | null {
 
 async function getLocation(slug: string): Promise<LocationPage | null> {
   return prisma.locationPage
-    .findUnique({ where: { slug, published: true } })
+    .findFirst({ where: { slug, published: true } })
     .then((location) => location ?? fallbackLocation(slug))
     .catch(() => fallbackLocation(slug));
 }

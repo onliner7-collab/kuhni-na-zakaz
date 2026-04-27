@@ -11,7 +11,7 @@ type Props = { params: Promise<{ slug: string }> };
 
 async function getScenario(slug: string) {
   try {
-    return await prisma.scenarioPage.findUnique({ where: { slug, published: true } });
+    return await prisma.scenarioPage.findFirst({ where: { slug, published: true } });
   } catch { return null; }
 }
 

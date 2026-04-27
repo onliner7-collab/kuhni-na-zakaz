@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "modes": [
+    {
+      "id": "read_only",
+      "label": "Read Only",
+      "description": "Inspection-only mode for schema, docs, entities, and admin structure.",
+      "writes_allowed": false,
+      "review_required": false,
+      "allowed_actions": [
+        "read_code",
+        "read_docs",
+        "inspect_entities",
+        "inspect_admin_structure",
+        "create_reports"
+      ],
+      "blocked_actions": [
+        "write_entities",
+        "publish_content",
+        "edit_prices",
+        "edit_auth",
+        "edit_middleware",
+        "edit_settings",
+        "change_slug",
+        "change_seo_metadata"
+      ]
+    },
+    {
+      "id": "draft_safe",
+      "label": "Draft Safe",
+      "description": "Limited write mode for non-destructive drafts and safe content preparation.",
+      "writes_allowed": true,
+      "review_required": false,
+      "allowed_actions": [
+        "write_draft_content",
+        "update_draft_safe_fields",
+        "create_reports",
+        "prepare_review_packets"
+      ],
+      "blocked_actions": [
+        "publish_content",
+        "edit_prices",
+        "edit_auth",
+        "edit_middleware",
+        "edit_settings",
+        "change_slug",
+        "change_publish_flag",
+        "change_sensitive_metadata"
+      ]
+    },
+    {
+      "id": "review_required",
+      "label": "Review Required",
+      "description": "Sensitive action mode where changes may only be proposed and must be explicitly approved by a human.",
+      "writes_allowed": false,
+      "review_required": true,
+      "allowed_actions": [
+        "propose_sensitive_changes",
+        "prepare_diff_review",
+        "prepare_risk_review"
+      ],
+      "blocked_actions": [
+        "apply_sensitive_changes_without_review",
+        "publish_content",
+        "edit_auth",
+        "edit_middleware",
+        "edit_price_logic",
+        "run_migrations"
+      ]
+    }
+  ]
+}

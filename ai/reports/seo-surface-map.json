@@ -1,0 +1,125 @@
+{
+  "generatedAt": "2026-04-12T07:54:02.637Z",
+  "surfaces": [
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/layout.tsx",
+      "type": "global-layout",
+      "notes": [
+        "Global metadata surface",
+        "Site-wide SEO defaults"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/robots.ts",
+      "type": "robots",
+      "notes": [
+        "Robots policy surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+      "type": "sitemap",
+      "notes": [
+        "Sitemap generation surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    },
+    {
+      "path": "artifacts/kuhni-na-zakaz/app/warranty/page.tsx",
+      "type": "route-generateMetadata",
+      "notes": [
+        "Route-level metadata surface"
+      ]
+    }
+  ]
+}

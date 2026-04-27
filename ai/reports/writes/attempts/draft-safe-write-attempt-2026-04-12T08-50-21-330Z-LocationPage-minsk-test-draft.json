@@ -1,0 +1,52 @@
+{
+  "request": {
+    "entity": "LocationPage",
+    "identifier": "minsk-test-draft",
+    "mode": "draft_safe",
+    "currentState": {
+      "intro": "Existing intro for the location draft.",
+      "description": "Existing description that should be safely updated."
+    },
+    "patchPayload": {
+      "intro": "Updated draft intro for the location page.",
+      "faq": [
+        {
+          "question": "How does local measurement work?",
+          "answer": "Measurement details must still be confirmed during review."
+        }
+      ],
+      "slug": "must-stay-blocked",
+      "published": true,
+      "seoTitle": "Needs human review"
+    }
+  },
+  "reviewPacket": {
+    "entity": "LocationPage",
+    "identifier": "minsk-test-draft",
+    "mode": "draft_safe",
+    "oldSummary": "intro=Existing intro for the location draft.; description=Existing description that should be safely updated.",
+    "newSummary": "intro=Updated draft intro for the location page.; description=Existing description that should be safely updated.; faq=[1 items]",
+    "changedFields": [
+      "intro",
+      "faq"
+    ],
+    "reviewRequiredFields": [],
+    "blockedFields": [
+      "published",
+      "seoTitle",
+      "slug"
+    ],
+    "riskLevel": "critical",
+    "reviewRequired": true
+  },
+  "appliedPatch": {
+    "intro": "Updated draft intro for the location page.",
+    "faq": [
+      {
+        "question": "How does local measurement work?",
+        "answer": "Measurement details must still be confirmed during review."
+      }
+    ]
+  },
+  "result": "partial"
+}

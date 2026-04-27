@@ -1,0 +1,46 @@
+{
+  "taskId": "entity-draft-writer-example-blocked-slug",
+  "timestamp": "2026-04-13T07:22:03.795Z",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "mode": "draft_safe",
+  "qaVerdict": "NEEDS_REVIEW",
+  "requestedFields": [
+    "intro",
+    "slug"
+  ],
+  "allowedFields": [
+    "intro"
+  ],
+  "blockedFields": [
+    "slug"
+  ],
+  "reviewRequiredFields": [],
+  "status": "partial",
+  "artifactPath": "../ai/reports/writes/state/LocationPage/brest.draft.json",
+  "reasons": [
+    "slug_change_blocked",
+    "qa_review_required",
+    "blocked_fields_present"
+  ],
+  "writerResult": {
+    "timestamp": "2026-04-13T07:22:03.798Z",
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "requestedFields": [
+      "intro"
+    ],
+    "appliedFields": [
+      "intro"
+    ],
+    "blockedFields": [],
+    "reviewRequiredFields": [],
+    "result": "applied",
+    "statePath": "../ai/reports/writes/state/LocationPage/brest.draft.json",
+    "reviewPacketPath": "../ai/reports/reviews/draft-safe-write-review-2026-04-13T07-22-03-798Z-LocationPage-brest.json",
+    "attemptPath": "../ai/reports/writes/attempts/draft-safe-write-attempt-2026-04-13T07-22-03-798Z-LocationPage-brest.json",
+    "logPath": "../ai/logs/draft-safe-writer.jsonl"
+  },
+  "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json"
+}

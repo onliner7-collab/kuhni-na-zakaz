@@ -1,0 +1,28 @@
+{
+  "taskId": "locationpage-seo-operator-brest-qa",
+  "skill": "publication-qa-reviewer",
+  "mode": "draft_safe",
+  "entity": "LocationPage",
+  "status": "completed",
+  "decision": {
+    "taskId": "locationpage-seo-operator-brest-qa",
+    "selectedSkill": "publication-qa-reviewer",
+    "mode": "draft_safe",
+    "entity": "LocationPage",
+    "matchedRuleId": "route-qa-review",
+    "reasons": [
+      "matched_rule:route-qa-review"
+    ]
+  },
+  "result": {
+    "skill": "publication-qa-reviewer",
+    "reviewPath": "ai/reports/reviews/publication-qa-review.json",
+    "summaryPath": "ai/reports/reviews/publication-qa-summary.md",
+    "summary": {
+      "total": 22,
+      "pass": 0,
+      "needsReview": 22,
+      "fail": 0
+    }
+  }
+}

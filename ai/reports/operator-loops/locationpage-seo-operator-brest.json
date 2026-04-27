@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-04-13T15:50:45.331Z",
+  "task": {
+    "schemaVersion": 1,
+    "taskId": "locationpage-seo-operator-brest",
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "mode": "draft_safe",
+    "source": "local_test_operator",
+    "intent": "Build a safe local SEO draft loop for the Brest LocationPage without publish or live SEO changes.",
+    "storageTarget": "safe_admin_draft_integration",
+    "currentState": {
+      "intro": "Старый локальный intro для Бреста.",
+      "description": "Старое описание локальной страницы.",
+      "ctaHeadline": "Старый CTA"
+    }
+  },
+  "architecture": {
+    "selectedEntity": "LocationPage",
+    "selectedStorageTarget": "safe_admin_draft_integration",
+    "guardrails": [
+      "LocationPage only",
+      "draft_safe only",
+      "no publish",
+      "no slug changes",
+      "no pricing changes",
+      "no settings/auth/middleware changes",
+      "local/test storage only"
+    ],
+    "loopSteps": [
+      "receive_task",
+      "route_skill",
+      "build_plan",
+      "generate_draft",
+      "run_qa",
+      "create_review_packet",
+      "store_safe_draft",
+      "produce_final_summary"
+    ]
+  },
+  "routing": {
+    "planner": {
+      "taskId": "locationpage-seo-operator-brest-planner",
+      "selectedSkill": "locationpage-seo-planner",
+      "mode": "read_only",
+      "entity": "LocationPage",
+      "matchedRuleId": "route-location-seo",
+      "reasons": [
+        "matched_rule:route-location-seo"
+      ]
+    },
+    "drafter": {
+      "taskId": "locationpage-seo-operator-brest-draft",
+      "selectedSkill": "content-draft-generator",
+      "mode": "draft_safe",
+      "entity": "LocationPage",
+      "matchedRuleId": "route-content-drafts",
+      "reasons": [
+        "matched_rule:route-content-drafts"
+      ]
+    },
+    "qa": {
+      "taskId": "locationpage-seo-operator-brest-qa",
+      "selectedSkill": "publication-qa-reviewer",
+      "mode": "draft_safe",
+      "entity": "LocationPage",
+      "matchedRuleId": "route-qa-review",
+      "reasons": [
+        "matched_rule:route-qa-review"
+      ]
+    }
+  },
+  "executions": {
+    "planner": {
+      "taskId": "locationpage-seo-operator-brest-planner",
+      "skill": "locationpage-seo-planner",
+      "mode": "read_only",
+      "entity": "LocationPage",
+      "status": "completed",
+      "decision": {
+        "taskId": "locationpage-seo-operator-brest-planner",
+        "selectedSkill": "locationpage-seo-planner",
+        "mode": "read_only",
+        "entity": "LocationPage",
+        "matchedRuleId": "route-location-seo",
+        "reasons": [
+          "matched_rule:route-location-seo"
+        ]
+      },
+      "result": {
+        "skill": "locationpage-seo-planner",
+        "auditPath": "ai/reports/locationpage-seo-audit.json",
+        "plansPath": "ai/reports/locationpage-content-plans.json",
+        "gapReportPath": "ai/reports/locationpage-gap-report.md",
+        "existingPages": 7,
+        "proposedPages": 1
+      }
+    },
+    "drafter": {
+      "taskId": "locationpage-seo-operator-brest-draft",
+      "skill": "content-draft-generator",
+      "mode": "draft_safe",
+      "entity": "LocationPage",
+      "status": "completed",
+      "decision": {
+        "taskId": "locationpage-seo-operator-brest-draft",
+        "selectedSkill": "content-draft-generator",
+        "mode": "draft_safe",
+        "entity": "LocationPage",
+        "matchedRuleId": "route-content-drafts",
+        "reasons": [
+          "matched_rule:route-content-drafts"
+        ]
+      },
+      "result": {
+        "skill": "content-draft-generator",
+        "summaryPath": "ai/reports/drafts/content-draft-summary.md",
+        "reportPaths": [
+          "ai/reports/drafts/locationpage-drafts.json",
+          "ai/reports/drafts/kitchen-drafts.json",
+          "ai/reports/drafts/blogpost-drafts.json",
+          "ai/reports/drafts/portfoliocase-drafts.json"
+        ],
+        "counts": {
+          "locationPage": 8,
+          "kitchen": 7,
+          "blogPost": 6,
+          "portfolioCase": 1
+        }
+      }
+    },
+    "qa": {
+      "taskId": "locationpage-seo-operator-brest-qa",
+      "skill": "publication-qa-reviewer",
+      "mode": "draft_safe",
+      "entity": "LocationPage",
+      "status": "completed",
+      "decision": {
+        "taskId": "locationpage-seo-operator-brest-qa",
+        "selectedSkill": "publication-qa-reviewer",
+        "mode": "draft_safe",
+        "entity": "LocationPage",
+        "matchedRuleId": "route-qa-review",
+        "reasons": [
+          "matched_rule:route-qa-review"
+        ]
+      },
+      "result": {
+        "skill": "publication-qa-reviewer",
+        "reviewPath": "ai/reports/reviews/publication-qa-review.json",
+        "summaryPath": "ai/reports/reviews/publication-qa-summary.md",
+        "summary": {
+          "total": 22,
+          "pass": 0,
+          "needsReview": 22,
+          "fail": 0
+        }
+      }
+    }
+  },
+  "selectedArtifacts": {
+    "planSlug": "brest",
+    "draftIdentifier": "brest",
+    "qaVerdict": "NEEDS_REVIEW",
+    "qaReviewReportPath": "ai/reports/reviews/publication-qa-review.json",
+    "qaSourceReport": "ai/reports/drafts/locationpage-drafts.json",
+    "adminOperationPath": "ai/reports/admin-integration/locationpage-seo-operator-brest-store.json",
+    "reviewPacketPath": "ai/reports/review-workflow/locationpage-seo-operator-brest-store.json",
+    "reviewSummaryPath": "ai/reports/review-workflow/locationpage-seo-operator-brest-store.md"
+  },
+  "safeDraftPayload": {
+    "city": "Брест",
+    "intro": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты.",
+    "description": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review.",
+    "localIntro": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений.",
+    "features": [
+      "Брест",
+      "Брестская область",
+      "Московский район",
+      "Ленинский район"
+    ],
+    "uniquePoints": [
+      {
+        "label": "Local signal 1",
+        "text": "Брест"
+      },
+      {
+        "label": "Local signal 2",
+        "text": "Брестская область"
+      },
+      {
+        "label": "Local signal 3",
+        "text": "Московский район"
+      },
+      {
+        "label": "Local signal 4",
+        "text": "Ленинский район"
+      }
+    ],
+    "contentBlocks": [
+      {
+        "type": "text",
+        "title": "Почему клиенты в городе выбирают кухни на заказ",
+        "text": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+      },
+      {
+        "type": "text",
+        "title": "Как проходит работа по городу",
+        "text": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+      },
+      {
+        "type": "text",
+        "title": "Что важно клиентам в этом регионе",
+        "text": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Сколько стоит кухня на заказ в brest?",
+        "answer": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+      },
+      {
+        "question": "Как проходит замер и проектирование в brest?",
+        "answer": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+      },
+      {
+        "question": "Есть ли примеры работ и отзывы по brest?",
+        "answer": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+      }
+    ],
+    "ctaHeadline": "Записаться на замер в brest",
+    "ctaSubtext": "Получить черновой проект кухни Уточнить доступные материалы и варианты планировки"
+  },
+  "review": {
+    "reviewState": "needs_review",
+    "suggestedNextAction": "manual_review",
+    "safeFields": [
+      "intro",
+      "description",
+      "localIntro",
+      "features",
+      "uniquePoints",
+      "contentBlocks",
+      "faq",
+      "ctaHeadline",
+      "ctaSubtext"
+    ],
+    "blockedFields": [],
+    "qaVerdict": "NEEDS_REVIEW",
+    "riskLevel": "high"
+  },
+  "transitions": [
+    {
+      "state": "task_received",
+      "timestamp": "2026-04-13T15:50:45.275Z",
+      "detail": "Accepted a local/test LocationPage safe-draft SEO task."
+    },
+    {
+      "state": "skill_routed",
+      "timestamp": "2026-04-13T15:50:45.276Z",
+      "detail": "Planner=locationpage-seo-planner, drafter=content-draft-generator, QA=publication-qa-reviewer."
+    },
+    {
+      "state": "plan_built",
+      "timestamp": "2026-04-13T15:50:45.309Z",
+      "detail": "Built plan for slug \"brest\" with 3 data needs."
+    },
+    {
+      "state": "draft_generated",
+      "timestamp": "2026-04-13T15:50:45.317Z",
+      "detail": "Generated draft packet for \"brest\" with 3 body sections."
+    },
+    {
+      "state": "qa_completed",
+      "timestamp": "2026-04-13T15:50:45.326Z",
+      "detail": "Publication QA verdict for \"brest\" is \"NEEDS_REVIEW\"."
+    },
+    {
+      "state": "review_packet_created",
+      "timestamp": "2026-04-13T15:50:45.331Z",
+      "detail": "Normalized review packet created with state \"needs_review\"."
+    },
+    {
+      "state": "draft_stored",
+      "timestamp": "2026-04-13T15:50:45.331Z",
+      "detail": "Stored safe draft operation via \"safe_admin_draft_integration\" without live admin or DB writes."
+    },
+    {
+      "state": "final_summary_ready",
+      "timestamp": "2026-04-13T15:50:45.331Z",
+      "detail": "Final machine-readable report and human-readable summary were written."
+    }
+  ],
+  "outputs": {
+    "machineReportPath": "ai/reports/operator-loops/locationpage-seo-operator-brest.json",
+    "humanSummaryPath": "ai/reports/operator-loops/locationpage-seo-operator-brest.md"
+  },
+  "reusableParts": [
+    "skill-runtime registry routing for planner/draft/QA stages",
+    "publication-qa-reviewer packets as normalized upstream QA input",
+    "review-workflow packet format and states",
+    "safe admin draft integration pattern for local/test-only storage",
+    "draft-to-safe-field mapping strategy reusable for other entities after field-policy mapping"
+  ]
+}

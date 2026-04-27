@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "sourceRequest": {
+    "taskId": "entity-draft-writer-example-blocked-pricing-publish",
+    "mode": "draft_safe",
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "requestedPatch": {
+      "description": "Безопасное описание draft-пакета для локальной страницы.",
+      "priceFrom": 4500,
+      "published": true
+    },
+    "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json",
+    "currentState": {
+      "description": "Старое draft описание."
+    }
+  },
+  "task": {
+    "taskId": "entity-draft-writer-example-blocked-pricing-publish",
+    "mode": "draft_safe",
+    "requestedAction": "draft_safe_apply_review",
+    "requestedAt": "2026-04-13T15:32:40.794Z"
+  },
+  "entity": {
+    "name": "LocationPage",
+    "identifier": "brest"
+  },
+  "changes": {
+    "requestedFields": [
+      "description",
+      "priceFrom",
+      "published"
+    ],
+    "safeFields": [
+      "description"
+    ],
+    "blockedFields": [
+      "priceFrom",
+      "published"
+    ],
+    "reviewRequiredFields": [],
+    "requestedPatch": {
+      "description": "Безопасное описание draft-пакета для локальной страницы.",
+      "priceFrom": 4500,
+      "published": true
+    },
+    "safePatch": {
+      "description": "Безопасное описание draft-пакета для локальной страницы."
+    }
+  },
+  "riskLevel": "high",
+  "qaResult": {
+    "verdict": "NEEDS_REVIEW",
+    "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope.",
+    "sourceReport": "ai/reports/reviews/publication-qa-review.json",
+    "issues": [
+      {
+        "code": "body_too_short",
+        "category": "content",
+        "severity": "medium",
+        "message": "Body draft is too short for useful review.",
+        "fields": [
+          "bodySections"
+        ]
+      },
+      {
+        "code": "keyword_spam_signal",
+        "category": "content",
+        "severity": "medium",
+        "message": "Possible keyword repetition detected: brest, кухни, заказ.",
+        "fields": [
+          "title",
+          "h1",
+          "metaDescription",
+          "bodySections"
+        ]
+      },
+      {
+        "code": "slug_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+        "fields": [
+          "slug"
+        ]
+      },
+      {
+        "code": "publish_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+        "fields": [
+          "published"
+        ]
+      },
+      {
+        "code": "pricing_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Pricing fields remain blocked from draft-safe apply.",
+        "fields": [
+          "priceFrom"
+        ]
+      },
+      {
+        "code": "metadata_stays_in_review_scope",
+        "category": "safety",
+        "severity": "medium",
+        "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+        "fields": [
+          "seoTitle",
+          "seoDescription"
+        ]
+      },
+      {
+        "code": "entity_review_required_fields",
+        "category": "safety",
+        "severity": "medium",
+        "message": "Packet includes fields that must stay in human review.",
+        "fields": [
+          "slug",
+          "title",
+          "h1",
+          "seoTitle",
+          "seoDescription",
+          "priceFrom",
+          "published"
+        ]
+      }
+    ]
+  },
+  "writerEligibility": {
+    "eligible": true,
+    "requiresExplicitApproval": true,
+    "allowedMode": true,
+    "safeEntity": true,
+    "safeFieldsAvailable": true,
+    "qaNotFail": true,
+    "reasons": [
+      "pricing_change_blocked",
+      "publish_change_blocked",
+      "qa_review_required",
+      "blocked_fields_present"
+    ]
+  },
+  "reviewState": "rejected",
+  "suggestedNextAction": "revise_request",
+  "reasons": [
+    "pricing_change_blocked",
+    "publish_change_blocked",
+    "qa_review_required",
+    "blocked_fields_present"
+  ],
+  "artifacts": {
+    "reviewPacketPath": "ai/reports/review-workflow/entity-draft-writer-example-blocked-pricing-publish.json",
+    "markdownSummaryPath": "ai/reports/review-workflow/entity-draft-writer-example-blocked-pricing-publish.md",
+    "approvalArtifactPath": null,
+    "rejectionArtifactPath": "ai/reports/rejections/entity-draft-writer-example-blocked-pricing-publish.json",
+    "qaReferencePath": "ai/reports/reviews/publication-qa-review.json"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "taskId": "entity-draft-writer-example-safe-locationpage",
+  "mode": "draft_safe",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "requestedPatch": {
+    "intro": "Обновленный безопасный draft intro для страницы кухни на заказ в Бресте.",
+    "faq": [
+      {
+        "question": "Можно ли уточнить проект после замера?",
+        "answer": "Да, финальные детали должны подтверждаться на ручном ревью и после замера."
+      }
+    ],
+    "ctaHeadline": "Обсудим проект кухни для Бреста",
+    "ctaSubtext": "Сначала собираем безопасный draft-пакет, без публикации и без изменения slug."
+  },
+  "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json",
+  "currentState": {
+    "intro": "Старый draft intro.",
+    "ctaHeadline": "Старый CTA."
+  }
+}

@@ -13,7 +13,7 @@ interface Props { params: Promise<{ slug: string }> }
 
 async function getStyle(slug: string) {
   try {
-    return await prisma.stylePage.findUnique({ where: { slug, published: true } });
+    return await prisma.stylePage.findFirst({ where: { slug, published: true } });
   } catch { return null; }
 }
 

@@ -1,0 +1,175 @@
+{
+  "entity": "LocationPage",
+  "blocked": [
+    {
+      "field": "address",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "caseSlugs",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "deliveryCost",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "deliveryDays",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "h1",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "mapEmbed",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "measureCost",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "phone",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "priceFrom",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "published",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "reviewIds",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "seoDescription",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "seoTitle",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "slug",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "timelineText",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    },
+    {
+      "field": "title",
+      "editableInAdminForm": true,
+      "classification": "blocked",
+      "reason": "Field is review_required, live-sensitive, or explicitly forbidden for draft-safe admin integration.",
+      "source": "ai/policies/entities.json + integration guardrails"
+    }
+  ],
+  "readOnly": [
+    {
+      "field": "areas",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    },
+    {
+      "field": "city",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    },
+    {
+      "field": "id",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    },
+    {
+      "field": "images",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    },
+    {
+      "field": "installDetails",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    },
+    {
+      "field": "region",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    },
+    {
+      "field": "visitDetails",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    },
+    {
+      "field": "workZone",
+      "editableInAdminForm": true,
+      "classification": "read_only",
+      "reason": "Field may be inspected/mapped but is not auto-forwarded into draft-safe admin updates.",
+      "source": "integration adapter classification"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "taskId": "locationpage-seo-operator-brest",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "mode": "draft_safe",
+  "source": "local_test_operator",
+  "intent": "Build a safe local SEO draft loop for the Brest LocationPage without publish or live SEO changes.",
+  "storageTarget": "safe_admin_draft_integration",
+  "currentState": {
+    "intro": "Старый локальный intro для Бреста.",
+    "description": "Старое описание локальной страницы.",
+    "ctaHeadline": "Старый CTA"
+  }
+}

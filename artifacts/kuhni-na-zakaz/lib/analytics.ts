@@ -4,6 +4,8 @@ export const ANALYTICS_EVENTS = {
   FORM_SUBMIT: "form_submit",
   PHONE_CLICK: "phone_click",
   MESSENGER_CLICK: "messenger_click",
+  MEASURE_REQUEST: "measure_request",
+  COST_CALCULATION: "cost_calculation",
   CALCULATOR_OPEN: "calculator_open",
   LEAD_SUCCESS: "lead_success",
 } as const;

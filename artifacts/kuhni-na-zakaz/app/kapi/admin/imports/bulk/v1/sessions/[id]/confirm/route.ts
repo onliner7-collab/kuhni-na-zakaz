@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 import { requireAdmin } from "@/lib/auth";
 import { applyBulkImportSession } from "@/lib/bulk-import/v1";
@@ -17,6 +18,9 @@ export async function POST(_: NextRequest, { params }: Context) {
   try {
     const { id } = await params;
     const result = await applyBulkImportSession(id);
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/robots.txt");
+    revalidatePath("/", "layout");
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(

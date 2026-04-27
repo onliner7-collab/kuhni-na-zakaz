@@ -1,0 +1,16 @@
+{
+  "entity": "LocationPage",
+  "identifier": "minsk-test-draft",
+  "mode": "draft_safe",
+  "updatedAt": "2026-04-12T08:50:21.330Z",
+  "draftState": {
+    "intro": "Updated draft intro for the location page.",
+    "description": "Existing description that should be safely updated.",
+    "faq": [
+      {
+        "question": "How does local measurement work?",
+        "answer": "Measurement details must still be confirmed during review."
+      }
+    ]
+  }
+}

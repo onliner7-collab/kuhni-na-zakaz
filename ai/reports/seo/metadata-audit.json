@@ -1,0 +1,921 @@
+{
+  "generatedAt": "2026-04-13T15:19:41.767Z",
+  "mode": "read_only",
+  "sourceInputs": [
+    "artifacts/kuhni-na-zakaz/app/layout.tsx",
+    "artifacts/kuhni-na-zakaz/app/robots.ts",
+    "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+    "ai/reports/prisma-entity-map.json",
+    "ai/policies/entities.json",
+    "ai/reports/seo-surface-map.json"
+  ],
+  "appLevel": {
+    "affectedFiles": [
+      "artifacts/kuhni-na-zakaz/app/layout.tsx",
+      "artifacts/kuhni-na-zakaz/app/robots.ts",
+      "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+      "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/warranty/page.tsx"
+    ],
+    "globalMetadataFiles": [
+      "artifacts/kuhni-na-zakaz/app/layout.tsx",
+      "artifacts/kuhni-na-zakaz/app/robots.ts",
+      "artifacts/kuhni-na-zakaz/app/sitemap.ts"
+    ],
+    "routeMetadataFiles": [
+      "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/warranty/page.tsx"
+    ],
+    "metadataSourceOfTruth": [
+      "route-level generateMetadata",
+      "prisma-backed metadata",
+      "static fallback metadata",
+      "layout metadata export",
+      "NEXT_PUBLIC_SITE_URL",
+      "robots metadata route",
+      "sitemap metadata route"
+    ],
+    "conflicts": [
+      "Base URL mismatch: layout uses \"https://kuhniby.by\" but robots uses \"https://kuhniminsk.by\"."
+    ],
+    "gaps": [
+      "Some route-level metadata surfaces do not declare canonical output: artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx."
+    ],
+    "riskySurfaces": [
+      "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/robots.ts",
+      "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+      "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/warranty/page.tsx"
+    ],
+    "surfaces": [
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "route_metadata"
+        ],
+        "riskLevel": "medium",
+        "reviewRequired": false,
+        "notes": [],
+        "suggestedNextActions": []
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata",
+          "static fallback metadata"
+        ],
+        "affectedEntities": [
+          "BlogPost",
+          "PortfolioCase"
+        ],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata",
+          "static fallback metadata"
+        ],
+        "affectedEntities": [
+          "Kitchen"
+        ],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "live_metadata_override",
+          "unpublished_metadata_fetch"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Surface can override live title/description/keywords from entity data.",
+          "Metadata path can read entity by slug without explicit published filter."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually.",
+          "Verify whether unpublished entities can affect live metadata."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/layout.tsx",
+        "surfaceType": "global-metadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "keywords",
+          "openGraph",
+          "twitter",
+          "robots",
+          "metadataBase"
+        ],
+        "metadataSourceOfTruth": [
+          "layout metadata export",
+          "NEXT_PUBLIC_SITE_URL",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "live_metadata_override"
+        ],
+        "riskLevel": "high",
+        "reviewRequired": false,
+        "notes": [
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": []
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "openGraph",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [
+          "LocationPage",
+          "PortfolioCase"
+        ],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "keywords",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [
+          "PortfolioCase"
+        ],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "keywords",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [
+          "LocationPage",
+          "PortfolioCase"
+        ],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/robots.ts",
+        "surfaceType": "robots",
+        "metadataKeys": [],
+        "metadataSourceOfTruth": [
+          "robots metadata route",
+          "NEXT_PUBLIC_SITE_URL"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "robots_control"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Robots behavior affects crawl and indexing policy."
+        ],
+        "suggestedNextActions": [
+          "Audit robots changes under review_required only."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "keywords",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [
+          "PortfolioCase"
+        ],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+        "surfaceType": "sitemap",
+        "metadataKeys": [],
+        "metadataSourceOfTruth": [
+          "sitemap metadata route",
+          "NEXT_PUBLIC_SITE_URL",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [
+          "LocationPage",
+          "BlogPost",
+          "PortfolioCase"
+        ],
+        "riskSignals": [
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "sitemap_control"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Sitemap behavior affects live discovery and indexing."
+        ],
+        "suggestedNextActions": [
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually.",
+          "Audit sitemap generation changes before any proposal."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "keywords",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [
+          "PortfolioCase"
+        ],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "publish_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface depends on published/indexable state.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required.",
+          "Review publish-sensitive metadata changes manually."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required."
+        ]
+      },
+      {
+        "path": "artifacts/kuhni-na-zakaz/app/warranty/page.tsx",
+        "surfaceType": "route-generateMetadata",
+        "metadataKeys": [
+          "title",
+          "description",
+          "alternates",
+          "canonical"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "affectedEntities": [],
+        "riskSignals": [
+          "route_metadata",
+          "canonical_logic",
+          "slug_sensitive_logic",
+          "live_metadata_override"
+        ],
+        "riskLevel": "critical",
+        "reviewRequired": true,
+        "notes": [
+          "Route controls canonical output.",
+          "Surface depends on slug-derived routing or canonical behavior.",
+          "Surface can override live title/description/keywords from entity data."
+        ],
+        "suggestedNextActions": [
+          "Treat canonical changes as review_required.",
+          "Keep slug-linked metadata work in review_required."
+        ]
+      }
+    ]
+  },
+  "entityLevel": {
+    "affectedEntities": [
+      "LocationPage",
+      "Kitchen",
+      "BlogPost",
+      "PortfolioCase"
+    ],
+    "entities": [
+      {
+        "entity": "LocationPage",
+        "routeFile": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+        "seoFieldsPresent": [
+          "slug",
+          "title",
+          "description",
+          "seoTitle",
+          "seoDescription",
+          "published"
+        ],
+        "liveMetadataFields": [
+          "slug",
+          "title",
+          "description",
+          "seoTitle",
+          "seoDescription",
+          "published"
+        ],
+        "liveMetadataDependencies": [
+          "seoTitle overrides title",
+          "seoDescription overrides description",
+          "slug affects canonical or route lookup",
+          "published affects metadata eligibility",
+          "title is fallback for live title",
+          "body copy is fallback for live description"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "riskLevel": "critical",
+        "safeToDraft": [
+          "draft SEO title suggestions in report artifacts only",
+          "draft meta description suggestions in report artifacts only",
+          "draft title/excerpt copy suggestions without applying live metadata changes"
+        ],
+        "reviewOnly": [
+          "slug",
+          "title",
+          "seoTitle",
+          "seoDescription",
+          "published",
+          "canonical behavior",
+          "route-level generateMetadata"
+        ],
+        "notes": [
+          "LocationPage live metadata uses seoTitle/seoDescription with title/description fallback and canonical based on route param."
+        ]
+      },
+      {
+        "entity": "Kitchen",
+        "routeFile": "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+        "seoFieldsPresent": [
+          "title",
+          "slug",
+          "description",
+          "seoTitle",
+          "seoDescription",
+          "published"
+        ],
+        "liveMetadataFields": [
+          "title",
+          "slug",
+          "description",
+          "seoTitle",
+          "seoDescription",
+          "published"
+        ],
+        "liveMetadataDependencies": [
+          "seoTitle overrides title",
+          "seoDescription overrides description",
+          "slug affects canonical or route lookup",
+          "published affects metadata eligibility",
+          "title is fallback for live title",
+          "body copy is fallback for live description"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata",
+          "static fallback metadata"
+        ],
+        "riskLevel": "critical",
+        "safeToDraft": [
+          "draft SEO title suggestions in report artifacts only",
+          "draft meta description suggestions in report artifacts only",
+          "draft title/excerpt copy suggestions without applying live metadata changes"
+        ],
+        "reviewOnly": [
+          "slug",
+          "seoTitle",
+          "seoDescription",
+          "published",
+          "canonical behavior",
+          "route-level generateMetadata"
+        ],
+        "notes": [
+          "Kitchen generateMetadata resolves by slug before published check in page render."
+        ]
+      },
+      {
+        "entity": "BlogPost",
+        "routeFile": "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+        "seoFieldsPresent": [
+          "title",
+          "slug",
+          "excerpt",
+          "seoTitle",
+          "seoDescription",
+          "published",
+          "publishedAt"
+        ],
+        "liveMetadataFields": [
+          "title",
+          "slug",
+          "excerpt",
+          "seoTitle",
+          "seoDescription",
+          "published"
+        ],
+        "liveMetadataDependencies": [
+          "seoTitle overrides title",
+          "seoDescription overrides description",
+          "slug affects canonical or route lookup",
+          "published affects metadata eligibility",
+          "title is fallback for live title",
+          "body copy is fallback for live description"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata",
+          "static fallback metadata"
+        ],
+        "riskLevel": "critical",
+        "safeToDraft": [
+          "draft SEO title suggestions in report artifacts only",
+          "draft meta description suggestions in report artifacts only",
+          "draft title/excerpt copy suggestions without applying live metadata changes"
+        ],
+        "reviewOnly": [
+          "slug",
+          "seoTitle",
+          "seoDescription",
+          "published",
+          "publishedAt",
+          "canonical behavior",
+          "route-level generateMetadata"
+        ],
+        "notes": [
+          "BlogPost generateMetadata resolves by slug before published check in page render."
+        ]
+      },
+      {
+        "entity": "PortfolioCase",
+        "routeFile": "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+        "seoFieldsPresent": [
+          "title",
+          "slug",
+          "description",
+          "seoTitle",
+          "seoDescription",
+          "seoKeywords",
+          "published"
+        ],
+        "liveMetadataFields": [
+          "title",
+          "slug",
+          "description",
+          "seoTitle",
+          "seoDescription",
+          "seoKeywords",
+          "published"
+        ],
+        "liveMetadataDependencies": [
+          "seoTitle overrides title",
+          "seoDescription overrides description",
+          "seoKeywords affects live keywords",
+          "slug affects canonical or route lookup",
+          "published affects metadata eligibility",
+          "title is fallback for live title",
+          "body copy is fallback for live description"
+        ],
+        "metadataSourceOfTruth": [
+          "route-level generateMetadata",
+          "prisma-backed metadata"
+        ],
+        "riskLevel": "critical",
+        "safeToDraft": [
+          "draft SEO title suggestions in report artifacts only",
+          "draft meta description suggestions in report artifacts only",
+          "draft title/excerpt copy suggestions without applying live metadata changes"
+        ],
+        "reviewOnly": [
+          "title",
+          "slug",
+          "seoTitle",
+          "seoDescription",
+          "published",
+          "canonical behavior",
+          "route-level generateMetadata"
+        ],
+        "notes": [
+          "PortfolioCase also drives live keywords through seoKeywords."
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "affectedFiles": [
+      "artifacts/kuhni-na-zakaz/app/layout.tsx",
+      "artifacts/kuhni-na-zakaz/app/robots.ts",
+      "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+      "artifacts/kuhni-na-zakaz/app/about/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/catalog/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/delivery-installation/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/materials/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/personal-data/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/privacy-policy/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/scenarios/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/styles/[slug]/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/terms/page.tsx",
+      "artifacts/kuhni-na-zakaz/app/warranty/page.tsx"
+    ],
+    "affectedEntities": [
+      "LocationPage",
+      "Kitchen",
+      "BlogPost",
+      "PortfolioCase"
+    ],
+    "metadataSourceOfTruth": [
+      "layout metadata export",
+      "route-level generateMetadata",
+      "robots metadata route",
+      "sitemap metadata route",
+      "prisma-backed metadata",
+      "static fallback metadata"
+    ],
+    "riskLevel": "critical",
+    "suggestedNextActions": [
+      "Review base URL consistency across layout, robots, and sitemap.",
+      "Review Kitchen and BlogPost metadata fetch paths for unpublished slug behavior.",
+      "Keep canonical, slug, publish, robots, and sitemap proposals in review_required."
+    ],
+    "safeToDraft": [
+      "Draft SEO title suggestions in report artifacts only.",
+      "Draft meta description suggestions in report artifacts only.",
+      "Draft entity-level SEO recommendation packets without applying live metadata changes."
+    ],
+    "reviewOnly": [
+      "slug-linked route metadata behavior",
+      "canonical behavior",
+      "published/indexing behavior",
+      "robots policy",
+      "sitemap generation",
+      "live route-level generateMetadata changes"
+    ]
+  }
+}

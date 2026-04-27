@@ -1,0 +1,7700 @@
+{
+  "generatedAt": "2026-04-12T07:54:02.623Z",
+  "schemaPath": "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+  "models": [
+    {
+      "name": "User",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "passwordHash",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "role",
+          "type": "UserRole",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(MANAGER)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "lastLoginAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "guestAccessCreated",
+          "type": "GuestAccess",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "relation",
+            "target": "GuestAccess"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "activityLogs",
+          "type": "ActivityLog",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "relation",
+            "target": "ActivityLog"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "moderatedReviews",
+          "type": "Review",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [
+            "@relation(\"ModeratedBy\")"
+          ],
+          "relation": {
+            "kind": "relation",
+            "target": "Review"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "GuestAccess",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdById",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdBy",
+          "type": "User",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@relation(fields:"
+          ],
+          "relation": {
+            "kind": "relation",
+            "target": "User"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "allowedSections",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "allowedActions",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "loginToken",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique",
+            "@default(cuid())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "loginLogin",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "loginPasswordHash",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "expiresAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "revokedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "activityLogs",
+          "type": "ActivityLog",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "relation",
+            "target": "ActivityLog"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "ActivityLog",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "userId",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "user",
+          "type": "User",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [
+            "@relation(fields:"
+          ],
+          "relation": {
+            "kind": "relation",
+            "target": "User"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "guestAccessId",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "guestAccess",
+          "type": "GuestAccess",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [
+            "@relation(fields:"
+          ],
+          "relation": {
+            "kind": "relation",
+            "target": "GuestAccess"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "action",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "entity",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "entityId",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "details",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"{}\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "ip",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "userAgent",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "Kitchen",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "category",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "style",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceTo",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "features",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "images",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "mainImage",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "PortfolioCase",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "area",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "layout",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "style",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "styleSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "materialSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "scenarioSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceTo",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "days",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "completedAt",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "task",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "constraints",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "solution",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "result",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "mainImage",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "images",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "photosBefore",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "photosAfter",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "reviewIds",
+          "type": "Int",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoKeywords",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "Review",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "rating",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "date",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "caseSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"website\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sourceUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "managerNote",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "status",
+          "type": "ReviewStatus",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(NEW)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "moderatedById",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "moderatedBy",
+          "type": "User",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [
+            "@relation(\"ModeratedBy\","
+          ],
+          "relation": {
+            "kind": "relation",
+            "target": "User"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "moderatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "rejectionReason",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "BlogPost",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "excerpt",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "content",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "category",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "tags",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "readTime",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(5)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "relatedCaseSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "relatedStyleSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "relatedScenarioSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "coverImage",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "publishedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "FAQItem",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "question",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "answer",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "page",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"home\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "LocationPage",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "h1",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "intro",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(900)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "deliveryCost",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "deliveryDays",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(1)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "measureCost",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Бесплатно\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "timelineText",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "visitDetails",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "installDetails",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "images",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "areas",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "workZone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "mapEmbed",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "features",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "faq",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "localIntro",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "uniquePoints",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "contentBlocks",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "caseSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "reviewIds",
+          "type": "Int",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "ctaHeadline",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "ctaSubtext",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "Lead",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "comment",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "source",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"website\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "formType",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"contact\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "answers",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"{}\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "configSessionId",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "scenarioSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "styleSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "materialSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "budgetLevel",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"new\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "managerNote",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "assignedTo",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "visualProject",
+          "type": "VisualProject",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "relation",
+            "target": "VisualProject"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "SavedConfig",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sessionId",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "answers",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"{}\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "tags",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "styleSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "materialSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "scenarioSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "budgetLevel",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "leadId",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "FavoriteCase",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sessionId",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "caseSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "StylePage",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "headline",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "intro",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "content",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "suitableFor",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pros",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "cons",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "careGuide",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pairsWith",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "budgetLevel",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "image",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedMaterials",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedCaseSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedScenarioSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoKeywords",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "MaterialPage",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "headline",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "intro",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "content",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pros",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "cons",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "suitableFor",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "careGuide",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "budgetLevel",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pricePer",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "image",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedStyles",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedCaseSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedScenarioSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoKeywords",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "SiteSettings",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(1)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "siteName",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"КухниBY\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"+375291234567\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "phoneDisplay",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"+375"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "phone2",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "phoneDisplay2",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"info@kuhniby.by\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"г."
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "addressMap",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "workingHours",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Пн–Сб"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "telegram",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "viber",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "whatsapp",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "instagram",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "vk",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "facebook",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "youtube",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "telegramBotToken",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "telegramChatId",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "metaTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Кухни"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "metaDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Кухни"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "TelegramRecipient",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "chatId",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "StaticPage",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "content",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "HomepageBlock",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "subtitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "icon",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "href",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "badge",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "PriceRule",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "category",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "value",
+          "type": "Float",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "unit",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        }
+      ]
+    },
+    {
+      "name": "ConfigStep",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "question",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "hint",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"choice\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "emoji",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "options",
+          "type": "ConfigOption",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "relation",
+            "target": "ConfigOption"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "ConfigOption",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "stepId",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "step",
+          "type": "ConfigStep",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@relation(fields:"
+          ],
+          "relation": {
+            "kind": "relation",
+            "target": "ConfigStep"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "emoji",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "tags",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "ConfigResult",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sessionId",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(cuid())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "answers",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "tags",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "leadId",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenModule",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "moduleType",
+          "type": "KitchenModuleType",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "widthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "heightCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "depthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "priceBase",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "imageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "tags",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenTemplate",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "layoutType",
+          "type": "KitchenLayoutType",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "previewImageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "modulesConfig",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "minWidthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "maxWidthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isPublished",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenFacade",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "finish",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "colorHex",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "colorName",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "imageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "priceMultiplier",
+          "type": "Float",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(1.0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenCountertop",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "thicknessMm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(38)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "colorName",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "imageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pricePerMeter",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenSkinal",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "colorName",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "imageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pricePerSqMeter",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenHandle",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "handleType",
+          "type": "KitchenHandleType",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "finishName",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "imageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pricePerPiece",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenMechanism",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "brand",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "mechanismType",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "imageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "pricePerPiece",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenAppliance",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "brand",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "applianceType",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "widthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "heightCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "depthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "imageUrl",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "priceBase",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sortOrder",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "VisualProject",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sessionId",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Мой"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "roomConfig",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"{}\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "modulePlacement",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "materialsConfig",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"{}\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "priceEstimate",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isDraft",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isArchived",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "leadId",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "lead",
+          "type": "Lead",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [
+            "@relation(fields:"
+          ],
+          "relation": {
+            "kind": "relation",
+            "target": "Lead"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "CompatibilityRule",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "ruleType",
+          "type": "CompatibilityRuleType",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sourceEntity",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "sourceSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "targetEntity",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "targetSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "message",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "KitchenConfiguratorSettings",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(1)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "isEnabled",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "defaultRoomWidthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(300)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "defaultRoomDepthCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(250)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "defaultRoomHeightCm",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(250)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "shareTextTemplate",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Смотри"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "exportBrandingText",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Создано"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "ScenarioPage",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "icon",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"🏠\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "badge",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "headline",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "intro",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoKeywords",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "needs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "solutions",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "features",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "tips",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedStyles",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedMaterials",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "relatedCaseSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "ctaText",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Заказать"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "ctaHref",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"/contacts#form\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    }
+  ],
+  "focusedEntities": [
+    {
+      "name": "Kitchen",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "category",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "style",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceTo",
+          "type": "Int",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "features",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "images",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "mainImage",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "PortfolioCase",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "area",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "layout",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "style",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "styleSlug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "material",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "materialSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "scenarioSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "priceTo",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "days",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "completedAt",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "task",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "constraints",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "solution",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "result",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "mainImage",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "images",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "photosBefore",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "photosAfter",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "reviewIds",
+          "type": "Int",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "featured",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoKeywords",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "BlogPost",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "excerpt",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "content",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "category",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "tags",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "readTime",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(5)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "relatedCaseSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "relatedStyleSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "relatedScenarioSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "coverImage",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(false)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "publishedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "LocationPage",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "slug",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "h1",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "intro",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "priceFrom",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(900)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "deliveryCost",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "deliveryDays",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(1)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "measureCost",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"Бесплатно\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "timelineText",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "visitDetails",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "installDetails",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "images",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "areas",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "workZone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "mapEmbed",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "features",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "faq",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "localIntro",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "uniquePoints",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "contentBlocks",
+          "type": "Json",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"[]\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "caseSlugs",
+          "type": "String",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "reviewIds",
+          "type": "Int",
+          "isList": true,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "ctaHeadline",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "ctaSubtext",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_draft_write"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "address",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoTitle",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "seoDescription",
+          "type": "String",
+          "isList": false,
+          "isOptional": true,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "published",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "review_required"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "safe_read"
+        }
+      ]
+    },
+    {
+      "name": "PriceRule",
+      "fields": [
+        {
+          "name": "id",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@id",
+            "@default(autoincrement())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@unique"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "category",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "label",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "value",
+          "type": "Float",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "unit",
+          "type": "String",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(\"\")"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "order",
+          "type": "Int",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(0)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(true)"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "createdAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@default(now())"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        },
+        {
+          "name": "updatedAt",
+          "type": "DateTime",
+          "isList": false,
+          "isOptional": false,
+          "attributes": [
+            "@updatedAt"
+          ],
+          "relation": {
+            "kind": "scalar"
+          },
+          "safety": "forbidden"
+        }
+      ]
+    }
+  ]
+}

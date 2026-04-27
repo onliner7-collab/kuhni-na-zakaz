@@ -1,0 +1,22 @@
+{
+  "taskId": "locationpage-seo-operator-brest-store",
+  "timestamp": "2026-04-13T15:50:45.329Z",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "verdict": "PASS",
+  "riskLevel": "low",
+  "safeFields": [
+    "contentBlocks",
+    "ctaHeadline",
+    "ctaSubtext",
+    "description",
+    "faq",
+    "features",
+    "intro",
+    "localIntro",
+    "uniquePoints"
+  ],
+  "blockedFields": [],
+  "issues": [],
+  "summary": "Admin payload contains only draft-safe LocationPage fields."
+}

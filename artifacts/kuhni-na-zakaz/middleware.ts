@@ -10,22 +10,48 @@ const CLOSED_ROBOTS_PATHS = [
   "/account",
   "/dashboard",
   "/login",
+  "/search",
   "/thanks",
   "/user",
 ];
 const NOINDEX_HEADER_VALUE = "noindex, nofollow, noarchive";
+const CANONICAL_HOST = "kuhni.minsk.by";
+
+const LEGACY_REDIRECTS: Record<string, string> = {
+  "/kuhni": "/catalog",
+  "/katalog": "/catalog",
+  "/catalog.html": "/catalog",
+  "/portfolio.html": "/portfolio",
+  "/ceny": "/prices",
+  "/price": "/prices",
+  "/prices.html": "/prices",
+  "/kontakty": "/contacts",
+  "/contacts.html": "/contacts",
+  "/blog.html": "/blog",
+};
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const hostname = (req.headers.get("host") || req.nextUrl.host)
     .split(":")[0]
     .toLowerCase();
+  const forwardedProto = req.headers.get("x-forwarded-proto");
+  const isLocalhost = ["localhost", "127.0.0.1", "0.0.0.0", "::1"].includes(hostname);
+  const shouldForceHttps =
+    !isLocalhost && (req.nextUrl.protocol === "http:" || forwardedProto === "http");
+  const legacyTarget = LEGACY_REDIRECTS[normalizePathname(pathname)];
 
-  if (hostname === "www.kuhni.minsk.by") {
+  if (shouldForceHttps || hostname === `www.${CANONICAL_HOST}` || legacyTarget) {
     const url = req.nextUrl.clone();
-    url.protocol = "https:";
-    url.hostname = "kuhni.minsk.by";
-    url.port = "";
+    if (!isLocalhost) {
+      url.protocol = "https:";
+      url.hostname = CANONICAL_HOST;
+      url.port = "";
+    }
+    if (legacyTarget) {
+      url.pathname = legacyTarget;
+      url.search = "";
+    }
     return NextResponse.redirect(url, 301);
   }
 
@@ -79,6 +105,14 @@ function addPathnameHeader(req: NextRequest, pathname: string) {
 function withNoindexHeader(response: NextResponse) {
   response.headers.set("X-Robots-Tag", NOINDEX_HEADER_VALUE);
   return response;
+}
+
+function normalizePathname(pathname: string) {
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return pathname.slice(0, -1).toLowerCase();
+  }
+
+  return pathname.toLowerCase();
 }
 
 export const config = {

@@ -1,0 +1,32 @@
+{
+  "taskId": "example-protected-pricing-task",
+  "skill": "pricing-risk-guard",
+  "mode": "draft_safe",
+  "entity": "LocationPage",
+  "status": "completed",
+  "decision": {
+    "taskId": "example-protected-pricing-task",
+    "selectedSkill": "pricing-risk-guard",
+    "mode": "draft_safe",
+    "entity": "LocationPage",
+    "matchedRuleId": "guard-protected-fields",
+    "reasons": [
+      "matched_rule:guard-protected-fields"
+    ]
+  },
+  "result": {
+    "skill": "pricing-risk-guard",
+    "decision": "blocked",
+    "reasons": [
+      "protected_fields_requested",
+      "protected_intent"
+    ],
+    "blockedFields": [
+      "priceFrom",
+      "published"
+    ],
+    "reviewedEntity": "LocationPage",
+    "modeRequested": "draft_safe",
+    "artifactPath": "ai/reports/skill-executions/example-protected-pricing-task.json"
+  }
+}

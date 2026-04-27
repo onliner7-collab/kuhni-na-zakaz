@@ -1,0 +1,2556 @@
+{
+  "generatedAt": "2026-04-13T15:50:45.324Z",
+  "scope": "draft-packets",
+  "inputReports": [
+    "ai/reports/drafts/locationpage-drafts.json",
+    "ai/reports/drafts/kitchen-drafts.json",
+    "ai/reports/drafts/blogpost-drafts.json",
+    "ai/reports/drafts/portfoliocase-drafts.json"
+  ],
+  "packets": [
+    {
+      "entity": "LocationPage",
+      "identifier": "brest",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 51,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: brest, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "grodno",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 51,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: grodno, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "vitebsk",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 51,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: vitebsk, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "gomel",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 51,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: gomel, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "mogilev",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 51,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: mogilev, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "zhodzina",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 51,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: zhodzina, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "molodechno",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 51,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: molodechno, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "minskaya-oblast",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 52,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 3,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, заказ, minskaya, oblast.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "Kitchen",
+      "identifier": "uglovye-kuhni",
+      "sourceReport": "ai/reports/drafts/kitchen-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 41,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, угловые, заказ, минске.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "Kitchen",
+      "identifier": "pryamye-kuhni",
+      "sourceReport": "ai/reports/drafts/kitchen-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 41,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, прямые, заказ, минске.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "Kitchen",
+      "identifier": "p-obraznye-kuhni",
+      "sourceReport": "ai/reports/drafts/kitchen-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 41,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, п-образные, заказ, минске.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "Kitchen",
+      "identifier": "kuhni-s-ostrovom",
+      "sourceReport": "ai/reports/drafts/kitchen-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 42,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, островом, заказ, минске.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "Kitchen",
+      "identifier": "malenkie-kuhni",
+      "sourceReport": "ai/reports/drafts/kitchen-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 41,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, маленькие, заказ, минске.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "Kitchen",
+      "identifier": "kuhni-do-potolka",
+      "sourceReport": "ai/reports/drafts/kitchen-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 42,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, потолка, заказ, минске.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "Kitchen",
+      "identifier": "kuhni-bez-ruchek",
+      "sourceReport": "ai/reports/drafts/kitchen-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 42,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: кухни, ручек, заказ, минске.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kak-vybrat-kuhnyu",
+      "sourceReport": "ai/reports/drafts/blogpost-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 36,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published",
+            "publishedAt"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, slug_stays_in_review_scope, publish_stays_in_review_scope."
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "skolko-stoit-kuhnya-na-zakaz",
+      "sourceReport": "ai/reports/drafts/blogpost-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 36,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published",
+            "publishedAt"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, slug_stays_in_review_scope, publish_stays_in_review_scope."
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kuhnya-dlya-malenkoy-kvartiry",
+      "sourceReport": "ai/reports/drafts/blogpost-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 36,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published",
+            "publishedAt"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, slug_stays_in_review_scope, publish_stays_in_review_scope."
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kakie-fasady-luchshe",
+      "sourceReport": "ai/reports/drafts/blogpost-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 36,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: какие.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published",
+            "publishedAt"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope."
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kuhni-blum-hettich-gtv",
+      "sourceReport": "ai/reports/drafts/blogpost-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 36,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published",
+            "publishedAt"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, slug_stays_in_review_scope, publish_stays_in_review_scope."
+    },
+    {
+      "entity": "BlogPost",
+      "identifier": "kuhnya-s-ostrovom",
+      "sourceReport": "ai/reports/drafts/blogpost-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 36,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published",
+            "publishedAt"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published",
+            "publishedAt"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, slug_stays_in_review_scope, publish_stays_in_review_scope."
+    },
+    {
+      "entity": "PortfolioCase",
+      "identifier": "portfolio-case-template",
+      "sourceReport": "ai/reports/drafts/portfoliocase-drafts.json",
+      "mode": "draft_safe",
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "checks": {
+        "contentQuality": {
+          "wordCount": 46,
+          "structureOk": true,
+          "faqCount": 3,
+          "ctaCount": 2,
+          "internalLinkCount": 3,
+          "duplicateBlocks": 0
+        },
+        "seoQuality": {
+          "hasTitle": true,
+          "hasH1": true,
+          "hasMetaDescription": true,
+          "hasFaq": true,
+          "hasCta": true,
+          "hasInternalLinks": true
+        },
+        "safetyQuality": {
+          "modeAllowed": true,
+          "forbiddenFieldsTouched": [],
+          "reviewRequiredFields": [
+            "title",
+            "slug",
+            "city",
+            "priceFrom",
+            "priceTo",
+            "days",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ],
+          "blockedSurfaceHits": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      },
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom",
+            "priceTo"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "priceFrom",
+            "priceTo",
+            "days",
+            "seoTitle",
+            "seoDescription",
+            "published"
+          ]
+        }
+      ],
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, slug_stays_in_review_scope, publish_stays_in_review_scope."
+    }
+  ],
+  "summary": {
+    "total": 22,
+    "pass": 0,
+    "needsReview": 22,
+    "fail": 0
+  }
+}

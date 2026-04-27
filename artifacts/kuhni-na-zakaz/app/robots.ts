@@ -2,27 +2,16 @@ import type { MetadataRoute } from "next";
 import { getSiteUrl } from "@/lib/site-url";
 
 const BASE_URL = getSiteUrl();
-const HOST = new URL(BASE_URL).host;
 
 export default function robots(): MetadataRoute.Robots {
   const closedPaths = [
-    "/admin",
     "/admin/",
-    "/admin/login",
-    "/api",
-    "/api/",
-    "/kapi",
-    "/kapi/",
-    "/account",
-    "/account/",
-    "/dashboard",
-    "/dashboard/",
-    "/login",
+    "/admin/imports/",
     "/login/",
-    "/thanks",
-    "/thanks/",
-    "/user",
-    "/user/",
+    "/api/",
+    "/kapi/",
+    "/search/",
+    "/*?*",
   ];
 
   return {
@@ -34,6 +23,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
-    host: HOST,
   };
 }

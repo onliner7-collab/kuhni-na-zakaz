@@ -1,0 +1,33 @@
+{
+  "taskId": "locationpage-seo-operator-brest-draft",
+  "skill": "content-draft-generator",
+  "mode": "draft_safe",
+  "entity": "LocationPage",
+  "status": "completed",
+  "decision": {
+    "taskId": "locationpage-seo-operator-brest-draft",
+    "selectedSkill": "content-draft-generator",
+    "mode": "draft_safe",
+    "entity": "LocationPage",
+    "matchedRuleId": "route-content-drafts",
+    "reasons": [
+      "matched_rule:route-content-drafts"
+    ]
+  },
+  "result": {
+    "skill": "content-draft-generator",
+    "summaryPath": "ai/reports/drafts/content-draft-summary.md",
+    "reportPaths": [
+      "ai/reports/drafts/locationpage-drafts.json",
+      "ai/reports/drafts/kitchen-drafts.json",
+      "ai/reports/drafts/blogpost-drafts.json",
+      "ai/reports/drafts/portfoliocase-drafts.json"
+    ],
+    "counts": {
+      "locationPage": 8,
+      "kitchen": 7,
+      "blogPost": 6,
+      "portfolioCase": 1
+    }
+  }
+}

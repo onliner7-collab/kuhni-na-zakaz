@@ -1,0 +1,14 @@
+{
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "mode": "draft_safe",
+  "oldSummary": "description=Старое draft описание.",
+  "newSummary": "description=Безопасное описание draft-пакета для локальной страницы.",
+  "changedFields": [
+    "description"
+  ],
+  "reviewRequiredFields": [],
+  "blockedFields": [],
+  "riskLevel": "low",
+  "reviewRequired": false
+}

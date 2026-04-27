@@ -1,0 +1,717 @@
+{
+  "generatedAt": "2026-04-13T15:50:45.309Z",
+  "entity": "LocationPage",
+  "mode": "draft_safe",
+  "packets": [
+    {
+      "entity": "LocationPage",
+      "identifier": "brest",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в Бресте | КухниBY",
+        "slugLike": "brest",
+        "categoryOrRegion": "Брестская область",
+        "trustedFacts": [
+          "Брест",
+          "Брестская область",
+          "Московский район",
+          "Ленинский район",
+          "Берёза",
+          "Бесплатный выезд замерщика",
+          "3D-проект за 3 рабочих дня"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в brest | КухниBY",
+        "h1": "Кухни на заказ в brest",
+        "metaDescription": "Кухни на заказ в brest: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в brest?",
+          "Как проходит замер и проектирование в brest?",
+          "Есть ли примеры работ и отзывы по brest?"
+        ],
+        "cta": [
+          "Записаться на замер в brest",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в Бресте | КухниBY",
+          "Интерьер кухни для клиентов из brest",
+          "Пример кухни на заказ для страницы brest"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [],
+      "dataNeeds": [
+        "verified_local_images",
+        "verified_case_links",
+        "verified_review_links"
+      ]
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "grodno",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в Гродно | КухниBY",
+        "slugLike": "grodno",
+        "categoryOrRegion": "Гродненская область",
+        "trustedFacts": [
+          "Гродно",
+          "Гродненская область",
+          "Лида",
+          "Слоним",
+          "Выезд замерщика в Гродно 1–2 раза в неделю",
+          "Бесплатный 3D-проект"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в grodno | КухниBY",
+        "h1": "Кухни на заказ в grodno",
+        "metaDescription": "Кухни на заказ в grodno: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в grodno требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в grodno?",
+          "Как проходит замер и проектирование в grodno?",
+          "Есть ли примеры работ и отзывы по grodno?"
+        ],
+        "cta": [
+          "Записаться на замер в grodno",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в Гродно | КухниBY",
+          "Интерьер кухни для клиентов из grodno",
+          "Пример кухни на заказ для страницы grodno"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [],
+      "dataNeeds": [
+        "verified_local_images",
+        "verified_case_links",
+        "verified_review_links"
+      ]
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "vitebsk",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в Витебске | КухниBY",
+        "slugLike": "vitebsk",
+        "categoryOrRegion": "Витебская область",
+        "trustedFacts": [
+          "Витебск",
+          "Витебская область",
+          "Полоцк",
+          "Новополоцк",
+          "Выезд замерщика 1–2 раза в неделю",
+          "3D-проект бесплатно"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в vitebsk | КухниBY",
+        "h1": "Кухни на заказ в vitebsk",
+        "metaDescription": "Кухни на заказ в vitebsk: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в vitebsk требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в vitebsk?",
+          "Как проходит замер и проектирование в vitebsk?",
+          "Есть ли примеры работ и отзывы по vitebsk?"
+        ],
+        "cta": [
+          "Записаться на замер в vitebsk",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в Витебске | КухниBY",
+          "Интерьер кухни для клиентов из vitebsk",
+          "Пример кухни на заказ для страницы vitebsk"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [],
+      "dataNeeds": [
+        "verified_local_images",
+        "verified_case_links",
+        "verified_review_links"
+      ]
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "gomel",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в Гомеле | КухниBY",
+        "slugLike": "gomel",
+        "categoryOrRegion": "Гомельская область",
+        "trustedFacts": [
+          "Гомель",
+          "Гомельская область",
+          "Мозырь",
+          "Жлобин",
+          "Бесплатный замер и 3D-проект",
+          "Производство от 14 дней"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в gomel | КухниBY",
+        "h1": "Кухни на заказ в gomel",
+        "metaDescription": "Кухни на заказ в gomel: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в gomel требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в gomel?",
+          "Как проходит замер и проектирование в gomel?",
+          "Есть ли примеры работ и отзывы по gomel?"
+        ],
+        "cta": [
+          "Записаться на замер в gomel",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в Гомеле | КухниBY",
+          "Интерьер кухни для клиентов из gomel",
+          "Пример кухни на заказ для страницы gomel"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [],
+      "dataNeeds": [
+        "verified_local_images",
+        "verified_case_links",
+        "verified_review_links"
+      ]
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "mogilev",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в Могилёве | КухниBY",
+        "slugLike": "mogilev",
+        "categoryOrRegion": "Могилёвская область",
+        "trustedFacts": [
+          "Могилёв",
+          "Могилёвская область",
+          "Бобруйск",
+          "Бобруйский район",
+          "Бесплатный выезд замерщика",
+          "3D-проект за 3 рабочих дня"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в mogilev | КухниBY",
+        "h1": "Кухни на заказ в mogilev",
+        "metaDescription": "Кухни на заказ в mogilev: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в mogilev требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в mogilev?",
+          "Как проходит замер и проектирование в mogilev?",
+          "Есть ли примеры работ и отзывы по mogilev?"
+        ],
+        "cta": [
+          "Записаться на замер в mogilev",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в Могилёве | КухниBY",
+          "Интерьер кухни для клиентов из mogilev",
+          "Пример кухни на заказ для страницы mogilev"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [],
+      "dataNeeds": [
+        "verified_local_images",
+        "verified_case_links",
+        "verified_review_links"
+      ]
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "zhodzina",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в Жодино | КухниBY",
+        "slugLike": "zhodzina",
+        "categoryOrRegion": "Минская область",
+        "trustedFacts": [
+          "Жодино",
+          "Минская область",
+          "Борисов",
+          "Зеленоборск",
+          "Близость к Минску — быстрая доставка",
+          "Бесплатный замер"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в zhodzina | КухниBY",
+        "h1": "Кухни на заказ в zhodzina",
+        "metaDescription": "Кухни на заказ в zhodzina: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в zhodzina требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в zhodzina?",
+          "Как проходит замер и проектирование в zhodzina?",
+          "Есть ли примеры работ и отзывы по zhodzina?"
+        ],
+        "cta": [
+          "Записаться на замер в zhodzina",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в Жодино | КухниBY",
+          "Интерьер кухни для клиентов из zhodzina",
+          "Пример кухни на заказ для страницы zhodzina"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [],
+      "dataNeeds": [
+        "verified_local_images",
+        "verified_case_links",
+        "verified_review_links"
+      ]
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "molodechno",
+      "source": "seed",
+      "status": "existing",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в Молодечно | КухниBY",
+        "slugLike": "molodechno",
+        "categoryOrRegion": "Минская область",
+        "trustedFacts": [
+          "Молодечно",
+          "Минская область",
+          "Вилейка",
+          "Мядель",
+          "Бесплатный замер",
+          "3D-проект"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в molodechno | КухниBY",
+        "h1": "Кухни на заказ в molodechno",
+        "metaDescription": "Кухни на заказ в molodechno: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в molodechno требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в molodechno?",
+          "Как проходит замер и проектирование в molodechno?",
+          "Есть ли примеры работ и отзывы по molodechno?"
+        ],
+        "cta": [
+          "Записаться на замер в molodechno",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в Молодечно | КухниBY",
+          "Интерьер кухни для клиентов из molodechno",
+          "Пример кухни на заказ для страницы molodechno"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [],
+      "dataNeeds": [
+        "verified_local_images",
+        "verified_case_links",
+        "verified_review_links"
+      ]
+    },
+    {
+      "entity": "LocationPage",
+      "identifier": "minskaya-oblast",
+      "source": "admin-template",
+      "status": "proposed",
+      "safeMode": "draft_safe",
+      "inputSummary": {
+        "titleLike": "Кухни на заказ в minskaya-oblast",
+        "slugLike": "minskaya-oblast",
+        "categoryOrRegion": null,
+        "trustedFacts": [
+          "minskaya-oblast"
+        ]
+      },
+      "drafts": {
+        "title": "Кухни на заказ в minskaya oblast | КухниBY",
+        "h1": "Кухни на заказ в minskaya oblast",
+        "metaDescription": "Кухни на заказ в minskaya oblast: подготовьте страницу под локальный спрос, кейсы и FAQ. Перед публикацией проверьте локальные факты и коммерческие данные.",
+        "bodySections": [
+          {
+            "heading": "Почему клиенты в городе выбирают кухни на заказ",
+            "purpose": "Local intent intro",
+            "draft": "Опишите, почему заказ кухни в minskaya oblast требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+          },
+          {
+            "heading": "Как проходит работа по городу",
+            "purpose": "Operational clarity",
+            "draft": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+          },
+          {
+            "heading": "Что важно клиентам в этом регионе",
+            "purpose": "Local differentiation",
+            "draft": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+          }
+        ],
+        "faq": [
+          "Сколько стоит кухня на заказ в minskaya oblast?",
+          "Как проходит замер и проектирование в minskaya oblast?",
+          "Есть ли примеры работ и отзывы по minskaya oblast?"
+        ],
+        "cta": [
+          "Записаться на замер в minskaya oblast",
+          "Получить черновой проект кухни",
+          "Уточнить доступные материалы и варианты планировки"
+        ],
+        "altTextSuggestions": [
+          "Кухня на заказ в Кухни на заказ в minskaya-oblast",
+          "Интерьер кухни для клиентов из minskaya-oblast",
+          "Пример кухни на заказ для страницы minskaya-oblast"
+        ],
+        "internalLinks": [
+          {
+            "href": "/catalog",
+            "anchor": "Смотреть каталог кухонь",
+            "reason": "Commercial support"
+          },
+          {
+            "href": "/portfolio",
+            "anchor": "Посмотреть реальные проекты",
+            "reason": "Proof block"
+          },
+          {
+            "href": "/contacts",
+            "anchor": "Связаться с менеджером",
+            "reason": "Conversion support"
+          }
+        ]
+      },
+      "reviewRequiredFields": [
+        "slug",
+        "title",
+        "h1",
+        "seoTitle",
+        "seoDescription",
+        "priceFrom",
+        "published"
+      ],
+      "riskFlags": [
+        "proposal_without_verified_local_content"
+      ],
+      "dataNeeds": [
+        "city_specific_intro",
+        "verified_local_proof",
+        "verified_images"
+      ]
+    }
+  ]
+}

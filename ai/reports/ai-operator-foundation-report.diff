@@ -1,0 +1,290 @@
+*** AI Operator Foundation Report
+*** Repository: onliner7-collab/kuhni-na-zakaz
+*** Scope: OpenClaw-style safe AI operator foundation for kuhni-na-zakaz
+*** Status: in-progress foundation layer, no production writes
+
+--- Summary
+
++ Added a dedicated `ai/` layer for policies, prompts, skills, reports, logs, and knowledge placeholders.
++ Added read-only project scanners for structure, Prisma entities, SEO surfaces, admin/API surfaces, and risk surfaces.
++ Added `LocationPage` SEO planner for local SEO planning and gap analysis.
++ Added content draft generator for `LocationPage`, `Kitchen`, `BlogPost`, and `PortfolioCase`.
++ Added QA reviewer for draft packets with `PASS / NEEDS_REVIEW / FAIL` outcomes.
++ Added router layer to force skill selection, mode selection, and risk-aware routing.
++ Added strictly limited draft-safe writer that only writes sanitized draft artifacts under `ai/reports/writes/`.
++ Preserved hard restrictions around pricing, auth, middleware, settings, publish state, slug changes, and route-level SEO core.
+
+--- Files Added Or Extended
+
++ `ai/AI_AGENT_ARCHITECTURE.md`
++ `ai/policies/modes.json`
++ `ai/policies/entities.json`
++ `ai/policies/actions.json`
++ `ai/policies/review.json`
++ `ai/policies/locationpage.json`
++ `ai/policies/router-rules.json`
++ `ai/prompts/locationpage-guardrails.md`
++ `ai/prompts/content-draft-generator.md`
++ `ai/prompts/publication-qa-reviewer.md`
++ `ai/prompts/router.md`
++ `ai/skills/locationpage-seo-planner.md`
++ `ai/skills/content-draft-generator.md`
++ `ai/skills/publication-qa-reviewer.md`
++ `scripts/src/ai/project-structure-scanner.ts`
++ `scripts/src/ai/prisma-entity-mapper.ts`
++ `scripts/src/ai/seo-surface-scanner.ts`
++ `scripts/src/ai/admin-surface-scanner.ts`
++ `scripts/src/ai/risk-surface-builder.ts`
++ `scripts/src/ai/locationpage-planner.ts`
++ `scripts/src/ai/content-draft-generator.ts`
++ `scripts/src/ai/publication-qa-reviewer.ts`
++ `scripts/src/ai/draft-safe-writer.ts`
++ `scripts/src/ai/run-analysis.ts`
++ `scripts/src/ai/run-locationpage-planner.ts`
++ `scripts/src/ai/run-content-draft-generator.ts`
++ `scripts/src/ai/run-publication-qa-reviewer.ts`
++ `scripts/src/ai/run-draft-safe-writer.ts`
++ `scripts/src/ai/shared/fs-utils.ts`
++ `scripts/src/ai/shared/paths.ts`
++ `scripts/src/ai/shared/types.ts`
++ `scripts/package.json`
+
+--- Policy Layer
+
++ Safety modes are defined in `ai/policies/modes.json`:
++ - `read_only`
++ - `draft_safe`
++ - `review_required`
++
++ Entity safety matrix is defined in `ai/policies/entities.json`:
++ - allowed first-wave entities:
++   - `LocationPage`
++   - `Kitchen`
++   - `BlogPost`
++   - `PortfolioCase`
++ - blocked high-risk entity:
++   - `PriceRule`
++
++ Forbidden and review-sensitive actions are defined in:
++ - `ai/policies/actions.json`
++ - `ai/policies/review.json`
++
++ Router policy is defined in `ai/policies/router-rules.json`.
+
+--- Implemented Modules
+
++ `project-structure-scanner`
++ - scans key folders and files
++ - finds Prisma schema
++ - finds admin and metadata files
++ - writes `ai/reports/project-structure.json`
++
++ `prisma-entity-mapper`
++ - reads `artifacts/kuhni-na-zakaz/prisma/schema.prisma`
++ - extracts models and fields
++ - maps safety classes
++ - writes `ai/reports/prisma-entity-map.json`
++
++ `seo-surface-scanner`
++ - maps `app/layout.tsx`
++ - maps `app/robots.ts`
++ - maps `app/sitemap.ts`
++ - maps route-level `generateMetadata`
++ - writes `ai/reports/seo-surface-map.json`
++
++ `admin-surface-scanner`
++ - scans `app/admin/**`
++ - scans `app/kapi/admin/**`
++ - marks safe-looking, review-required, and high-risk surfaces
++ - writes `ai/reports/admin-surface-map.json`
++
++ `risk-surface-builder`
++ - merges policy-defined and scanner-detected risk surfaces
++ - writes `ai/reports/risk-surfaces.json`
++
++ `locationpage-seo-planner`
++ - reads trusted project artifacts for `LocationPage`
++ - audits local SEO coverage
++ - generates planning outputs
++ - writes:
++   - `ai/reports/locationpage-seo-audit.json`
++   - `ai/reports/locationpage-content-plans.json`
++   - `ai/reports/locationpage-gap-report.md`
++
++ `content-draft-generator`
++ - generates draft packets for:
++   - `LocationPage`
++   - `Kitchen`
++   - `BlogPost`
++   - `PortfolioCase`
++ - writes:
++   - `ai/reports/drafts/locationpage-drafts.json`
++   - `ai/reports/drafts/kitchen-drafts.json`
++   - `ai/reports/drafts/blogpost-drafts.json`
++   - `ai/reports/drafts/portfoliocase-drafts.json`
++   - `ai/reports/drafts/content-draft-summary.md`
++
++ `publication-qa-reviewer`
++ - reviews draft packets for content quality, SEO completeness, and safety
++ - emits `PASS / NEEDS_REVIEW / FAIL`
++ - writes:
++   - `ai/reports/reviews/publication-qa-review.json`
++   - `ai/reports/reviews/publication-qa-summary.md`
++
++ `draft-safe-writer`
++ - accepts:
++   - `entity`
++   - `identifier`
++   - `mode`
++   - `patchPayload`
++   - optional `currentState`
++ - enforces policy-based field filtering
++ - writes only sanitized draft state under `ai/reports/writes/state/`
++ - writes attempt packet and review packet
++ - appends JSONL logs under `ai/logs/draft-safe-writer.jsonl`
+
+--- Router Layer
+
++ Router prompt is defined in `ai/prompts/router.md`.
++ Router machine rules are defined in `ai/policies/router-rules.json`.
++
++ Supported router targets:
++ - `project-structure-reader`
++ - `prisma-entity-mapper`
++ - `locationpage-seo-planner`
++ - `content-draft-generator`
++ - `entity-draft-writer`
++ - `seo-metadata-auditor`
++ - `publication-qa-reviewer`
++ - `pricing-risk-guard`
++ - `admin-route-surface-mapper`
++
++ Special cases are explicitly routed:
++ - `PriceRule` and `lib/kitchen-configurator/price.ts` -> `pricing-risk-guard`, `review_required`
++ - `auth.ts`, `middleware.ts`, `settings` -> review-only / forbidden for autonomous apply
++ - `slug`, `published`, `publishedAt`, sensitive metadata -> `review_required`
++ - route-level SEO core -> audit only unless escalated to review
++ - `LocationPage` planning -> `locationpage-seo-planner`
+
+--- Writer Enforcement
+
++ Draft-safe writer only accepts mode `draft_safe`.
++ Draft-safe writer only accepts entities:
++ - `LocationPage`
++ - `Kitchen`
++ - `BlogPost`
++ - `PortfolioCase`
++
++ Writer blocks:
++ - `PriceRule`
++ - `slug`
++ - `published`
++ - `publishedAt`
++ - pricing fields
++ - sensitive metadata fields
++ - auth-related fields
++ - settings-related fields
++ - middleware-like fields
++
++ Writer outputs:
++ - sanitized draft state
++ - attempt report
++ - review packet
++ - JSONL log entry
++
++ Example request:
++ - `ai/reports/writes/examples/locationpage-safe-request.json`
++
++ Example result from current run:
++ - entity: `LocationPage`
++ - identifier: `minsk-test-draft`
++ - applied fields: `intro`, `faq`
++ - blocked fields: `published`, `seoTitle`, `slug`
++ - result: `partial`
+
+--- QA Reviewer Outcomes
+
++ Current review run checked `22` draft packets.
++ Current summary:
++ - `PASS: 0`
++ - `NEEDS_REVIEW: 22`
++ - `FAIL: 0`
++
++ Common reasons:
++ - `body_too_short`
++ - `keyword_spam_signal`
++ - `slug_stays_in_review_scope`
++ - `publish_stays_in_review_scope`
++
++ This is expected for first-pass draft packets because the reviewer is designed to stop unsafe or incomplete material from being treated as apply-ready.
+
+--- Generated Artifacts
+
++ Read-only reports:
++ - `ai/reports/project-structure.json`
++ - `ai/reports/prisma-entity-map.json`
++ - `ai/reports/seo-surface-map.json`
++ - `ai/reports/admin-surface-map.json`
++ - `ai/reports/risk-surfaces.json`
++
++ Planning reports:
++ - `ai/reports/locationpage-seo-audit.json`
++ - `ai/reports/locationpage-content-plans.json`
++ - `ai/reports/locationpage-gap-report.md`
++
++ Draft reports:
++ - `ai/reports/drafts/locationpage-drafts.json`
++ - `ai/reports/drafts/kitchen-drafts.json`
++ - `ai/reports/drafts/blogpost-drafts.json`
++ - `ai/reports/drafts/portfoliocase-drafts.json`
++ - `ai/reports/drafts/content-draft-summary.md`
++
++ Review reports:
++ - `ai/reports/reviews/publication-qa-review.json`
++ - `ai/reports/reviews/publication-qa-summary.md`
++ - `ai/reports/reviews/draft-safe-write-review-*.json`
++
++ Write-state artifacts:
++ - `ai/reports/writes/examples/locationpage-safe-request.json`
++ - `ai/reports/writes/attempts/draft-safe-write-attempt-*.json`
++ - `ai/reports/writes/state/LocationPage/minsk-test-draft.draft.json`
++
++ Logs:
++ - `ai/logs/draft-safe-writer.jsonl`
+
+--- Commands Verified
+
++ `pnpm --filter @workspace/scripts run typecheck`
++ `pnpm --filter @workspace/scripts run ai:scan`
++ `pnpm --filter @workspace/scripts run ai:locationpage-plan`
++ `pnpm --filter @workspace/scripts run ai:content-drafts`
++ `pnpm --filter @workspace/scripts run ai:qa-review`
++ `pnpm --filter @workspace/scripts run ai:draft-write -- --input ai/reports/writes/examples/locationpage-safe-request.json`
+
+--- Explicit Non-Changes
+
+-- No DB writes
+-- No Prisma schema edits
+-- No admin API calls
+-- No publish changes
+-- No slug changes
+-- No pricing logic changes
+-- No changes to `lib/auth.ts`
+-- No changes to `middleware.ts`
+-- No changes to settings routes or settings forms
+-- No changes to route-level SEO core
+-- No changes to production business routes
+
+--- Known Follow-Ups
+
++ Connect router decision output to writer and reviewer, so every write attempt is gated by explicit routing.
++ Improve `LocationPage` drafts to use normalized city display names instead of slug-like identifiers where needed.
++ Add a dedicated `seo-metadata-auditor` implementation.
++ Add a dedicated `pricing-risk-guard` implementation.
++ Add a production-disabled `entity-draft-writer` skill spec aligned with the implemented writer module.
++ Optionally gate writer apply on fresh QA packets.
+
+--- Notes
+
++ This report covers the AI foundation work only.
++ Existing unrelated repository changes outside this scope were not modified by this AI foundation layer.

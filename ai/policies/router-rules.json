@@ -1,0 +1,472 @@
+{
+  "version": 1,
+  "router_scope": "ai-operator-skill-selection",
+  "source_inputs": [
+    "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+    "ai/policies/modes.json",
+    "ai/policies/entities.json",
+    "ai/policies/actions.json",
+    "ai/policies/review.json",
+    "ai/reports/prisma-entity-map.json",
+    "ai/reports/admin-surface-map.json",
+    "ai/reports/seo-surface-map.json",
+    "ai/reports/risk-surfaces.json"
+  ],
+  "entities": [
+    "LocationPage",
+    "Kitchen",
+    "BlogPost",
+    "PortfolioCase",
+    "PriceRule"
+  ],
+  "surfaces": [
+    {
+      "id": "project-structure",
+      "paths": [
+        "artifacts/kuhni-na-zakaz",
+        "project-docs",
+        "ai/reports/project-structure.json"
+      ],
+      "risk": "low"
+    },
+    {
+      "id": "prisma-schema",
+      "paths": [
+        "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+        "ai/reports/prisma-entity-map.json"
+      ],
+      "risk": "low"
+    },
+    {
+      "id": "admin-routes",
+      "paths": [
+        "artifacts/kuhni-na-zakaz/app/admin",
+        "artifacts/kuhni-na-zakaz/app/kapi/admin",
+        "ai/reports/admin-surface-map.json"
+      ],
+      "risk": "medium"
+    },
+    {
+      "id": "route-level-seo-core",
+      "paths": [
+        "artifacts/kuhni-na-zakaz/app/layout.tsx",
+        "artifacts/kuhni-na-zakaz/app/robots.ts",
+        "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+        "ai/reports/seo-surface-map.json"
+      ],
+      "risk": "high"
+    },
+    {
+      "id": "pricing-core",
+      "paths": [
+        "artifacts/kuhni-na-zakaz/lib/kitchen-configurator/price.ts",
+        "artifacts/kuhni-na-zakaz/app/admin/prices/page.tsx",
+        "artifacts/kuhni-na-zakaz/app/kapi/admin/prices/route.ts"
+      ],
+      "risk": "critical"
+    },
+    {
+      "id": "auth-core",
+      "paths": [
+        "artifacts/kuhni-na-zakaz/lib/auth.ts",
+        "artifacts/kuhni-na-zakaz/middleware.ts"
+      ],
+      "risk": "critical"
+    },
+    {
+      "id": "settings-core",
+      "paths": [
+        "artifacts/kuhni-na-zakaz/components/admin/SettingsForm.tsx",
+        "artifacts/kuhni-na-zakaz/app/admin/settings/page.tsx",
+        "artifacts/kuhni-na-zakaz/app/kapi/admin/settings/route.ts"
+      ],
+      "risk": "critical"
+    }
+  ],
+  "skills": [
+    {
+      "id": "project-structure-reader",
+      "status": "planned",
+      "default_mode": "read_only",
+      "task_types": [
+        "project_read"
+      ],
+      "allowed_entities": [],
+      "allowed_surfaces": [
+        "project-structure",
+        "admin-routes",
+        "prisma-schema"
+      ]
+    },
+    {
+      "id": "prisma-entity-mapper",
+      "status": "implemented",
+      "default_mode": "read_only",
+      "task_types": [
+        "entity_mapping"
+      ],
+      "allowed_entities": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase",
+        "PriceRule"
+      ],
+      "allowed_surfaces": [
+        "prisma-schema"
+      ]
+    },
+    {
+      "id": "locationpage-seo-planner",
+      "status": "implemented",
+      "default_mode": "read_only",
+      "task_types": [
+        "seo_planning"
+      ],
+      "allowed_entities": [
+        "LocationPage"
+      ],
+      "allowed_surfaces": []
+    },
+    {
+      "id": "content-draft-generator",
+      "status": "implemented",
+      "default_mode": "draft_safe",
+      "task_types": [
+        "content_drafting"
+      ],
+      "allowed_entities": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase"
+      ],
+      "allowed_surfaces": []
+    },
+    {
+      "id": "entity-draft-writer",
+      "status": "implemented",
+      "default_mode": "draft_safe",
+      "task_types": [
+        "draft_writing"
+      ],
+      "allowed_entities": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase"
+      ],
+      "allowed_surfaces": []
+    },
+    {
+      "id": "seo-metadata-auditor",
+      "status": "implemented",
+      "default_mode": "read_only",
+      "task_types": [
+        "seo_metadata_audit"
+      ],
+      "allowed_entities": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase"
+      ],
+      "allowed_surfaces": [
+        "route-level-seo-core"
+      ]
+    },
+    {
+      "id": "publication-qa-reviewer",
+      "status": "implemented",
+      "default_mode": "draft_safe",
+      "task_types": [
+        "qa_review"
+      ],
+      "allowed_entities": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase"
+      ],
+      "allowed_surfaces": []
+    },
+    {
+      "id": "pricing-risk-guard",
+      "status": "planned",
+      "default_mode": "review_required",
+      "task_types": [
+        "pricing_risk_check"
+      ],
+      "allowed_entities": [
+        "PriceRule"
+      ],
+      "allowed_surfaces": [
+        "pricing-core",
+        "auth-core",
+        "settings-core"
+      ]
+    },
+    {
+      "id": "admin-route-surface-mapper",
+      "status": "implemented",
+      "default_mode": "read_only",
+      "task_types": [
+        "admin_surface_analysis"
+      ],
+      "allowed_entities": [],
+      "allowed_surfaces": [
+        "admin-routes"
+      ]
+    }
+  ],
+  "task_routing": [
+    {
+      "task_type": "project_read",
+      "when_keywords_any": [
+        "where is",
+        "find file",
+        "project structure",
+        "folder",
+        "route location",
+        "source of truth"
+      ],
+      "select_skill": "project-structure-reader",
+      "mode": "read_only",
+      "risk": "low",
+      "next_step": "scan real files and confirm paths before any deeper routing"
+    },
+    {
+      "task_type": "entity_mapping",
+      "when_keywords_any": [
+        "model",
+        "field",
+        "relation",
+        "prisma",
+        "entity map",
+        "schema"
+      ],
+      "select_skill": "prisma-entity-mapper",
+      "mode": "read_only",
+      "risk": "low",
+      "next_step": "read schema and map real entity fields"
+    },
+    {
+      "task_type": "seo_planning",
+      "when_keywords_any": [
+        "location page",
+        "local seo",
+        "city page",
+        "location planning",
+        "local landing"
+      ],
+      "entity": "LocationPage",
+      "select_skill": "locationpage-seo-planner",
+      "mode": "read_only",
+      "risk": "medium",
+      "next_step": "build planning output and gap report"
+    },
+    {
+      "task_type": "content_drafting",
+      "when_keywords_any": [
+        "draft content",
+        "title draft",
+        "h1 draft",
+        "meta description draft",
+        "body draft",
+        "faq draft",
+        "cta draft"
+      ],
+      "entity_any": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase"
+      ],
+      "select_skill": "content-draft-generator",
+      "mode": "draft_safe",
+      "risk": "medium",
+      "next_step": "generate draft packets under ai/reports/drafts"
+    },
+    {
+      "task_type": "draft_writing",
+      "when_keywords_any": [
+        "write draft",
+        "save patch",
+        "apply safe fields",
+        "draft writer"
+      ],
+      "entity_any": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase"
+      ],
+      "select_skill": "entity-draft-writer",
+      "mode": "draft_safe",
+      "risk": "high",
+      "next_step": "validate patch against entity safety matrix before any write"
+    },
+    {
+      "task_type": "seo_metadata_audit",
+      "when_keywords_any": [
+        "metadata audit",
+        "seo title",
+        "meta description",
+        "generateMetadata",
+        "robots",
+        "sitemap"
+      ],
+      "select_skill": "seo-metadata-auditor",
+      "mode": "read_only",
+      "risk": "medium",
+      "next_step": "audit metadata surfaces and escalate changes to review_required"
+    },
+    {
+      "task_type": "qa_review",
+      "when_keywords_any": [
+        "qa review",
+        "review packet",
+        "pass fail",
+        "content quality review",
+        "publication qa"
+      ],
+      "entity_any": [
+        "LocationPage",
+        "Kitchen",
+        "BlogPost",
+        "PortfolioCase"
+      ],
+      "select_skill": "publication-qa-reviewer",
+      "mode": "draft_safe",
+      "risk": "medium",
+      "next_step": "run review checks and emit PASS/NEEDS_REVIEW/FAIL"
+    },
+    {
+      "task_type": "pricing_risk_check",
+      "when_keywords_any": [
+        "PriceRule",
+        "price.ts",
+        "pricing",
+        "calculator price",
+        "price formula",
+        "commercial logic"
+      ],
+      "select_skill": "pricing-risk-guard",
+      "mode": "review_required",
+      "risk": "critical",
+      "next_step": "do not apply changes; produce risk review only"
+    },
+    {
+      "task_type": "admin_surface_analysis",
+      "when_keywords_any": [
+        "admin route",
+        "kapi",
+        "admin api",
+        "surface map",
+        "endpoint risk"
+      ],
+      "select_skill": "admin-route-surface-mapper",
+      "mode": "read_only",
+      "risk": "medium",
+      "next_step": "map admin surfaces without calling endpoints"
+    }
+  ],
+  "special_cases": [
+    {
+      "match_any": [
+        "PriceRule",
+        "artifacts/kuhni-na-zakaz/lib/kitchen-configurator/price.ts",
+        "app/admin/prices",
+        "app/kapi/admin/prices"
+      ],
+      "force_skill": "pricing-risk-guard",
+      "force_mode": "review_required",
+      "risk": "critical",
+      "allowed_to_proceed": false,
+      "next_step": "prepare risk review only"
+    },
+    {
+      "match_any": [
+        "artifacts/kuhni-na-zakaz/lib/auth.ts",
+        "artifacts/kuhni-na-zakaz/middleware.ts",
+        "artifacts/kuhni-na-zakaz/components/admin/SettingsForm.tsx",
+        "app/admin/settings/page.tsx",
+        "app/kapi/admin/settings/route.ts"
+      ],
+      "force_mode": "review_required",
+      "risk": "critical",
+      "allowed_to_proceed": false,
+      "next_step": "treat as forbidden for autonomous apply; review only"
+    },
+    {
+      "match_fields_any": [
+        "slug",
+        "published",
+        "publishedAt",
+        "seoTitle",
+        "seoDescription"
+      ],
+      "force_mode": "review_required",
+      "risk": "high",
+      "allowed_to_proceed": true,
+      "next_step": "prepare proposal or review packet; do not auto-apply"
+    },
+    {
+      "match_any": [
+        "artifacts/kuhni-na-zakaz/app/layout.tsx",
+        "artifacts/kuhni-na-zakaz/app/robots.ts",
+        "artifacts/kuhni-na-zakaz/app/sitemap.ts",
+        "generateMetadata"
+      ],
+      "force_skill": "seo-metadata-auditor",
+      "force_mode": "review_required",
+      "risk": "high",
+      "allowed_to_proceed": true,
+      "next_step": "audit first, then escalate any change to review"
+    },
+    {
+      "match_entity": "LocationPage",
+      "match_keywords_any": [
+        "planning",
+        "local seo",
+        "city coverage",
+        "gap report"
+      ],
+      "force_skill": "locationpage-seo-planner",
+      "force_mode": "read_only",
+      "risk": "medium",
+      "allowed_to_proceed": true,
+      "next_step": "generate planning artifacts before drafting"
+    }
+  ],
+  "mode_escalation": [
+    {
+      "from": "read_only",
+      "to": "draft_safe",
+      "when": "task is limited to first-wave draft generation or QA on allowed entities"
+    },
+    {
+      "from": "draft_safe",
+      "to": "review_required",
+      "when": "task touches review-required fields or high-risk surfaces"
+    }
+  ],
+  "hard_rules": [
+    "Never infer entity fields that are not confirmed by prisma/schema.prisma or generated entity map reports.",
+    "Never route pricing work to a content or draft-writing skill.",
+    "Never treat auth, middleware, or settings as first-wave draft-safe targets.",
+    "Never allow autonomous publish or slug changes.",
+    "Never allow autonomous edits to route-level SEO core."
+  ],
+  "required_output_fields": [
+    "task_type",
+    "target_entity",
+    "target_surface",
+    "selected_skill",
+    "selected_mode",
+    "risk_level",
+    "allowed_to_proceed",
+    "why",
+    "next_step"
+  ]
+}

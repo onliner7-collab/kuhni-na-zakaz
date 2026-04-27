@@ -1,0 +1,106 @@
+{
+  "taskId": "locationpage-seo-operator-brest-store",
+  "timestamp": "2026-04-13T15:50:45.331Z",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "source": "local_test_admin",
+  "requestedFields": [
+    "city",
+    "intro",
+    "description",
+    "localIntro",
+    "features",
+    "uniquePoints",
+    "contentBlocks",
+    "faq",
+    "ctaHeadline",
+    "ctaSubtext"
+  ],
+  "safeFields": [
+    "contentBlocks",
+    "ctaHeadline",
+    "ctaSubtext",
+    "description",
+    "faq",
+    "features",
+    "intro",
+    "localIntro",
+    "uniquePoints"
+  ],
+  "blockedFields": [],
+  "readOnlyFields": [
+    "city"
+  ],
+  "safePatch": {
+    "intro": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты.",
+    "description": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review.",
+    "localIntro": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений.",
+    "features": [
+      "Брест",
+      "Брестская область",
+      "Московский район",
+      "Ленинский район"
+    ],
+    "uniquePoints": [
+      {
+        "label": "Local signal 1",
+        "text": "Брест"
+      },
+      {
+        "label": "Local signal 2",
+        "text": "Брестская область"
+      },
+      {
+        "label": "Local signal 3",
+        "text": "Московский район"
+      },
+      {
+        "label": "Local signal 4",
+        "text": "Ленинский район"
+      }
+    ],
+    "contentBlocks": [
+      {
+        "type": "text",
+        "title": "Почему клиенты в городе выбирают кухни на заказ",
+        "text": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+      },
+      {
+        "type": "text",
+        "title": "Как проходит работа по городу",
+        "text": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+      },
+      {
+        "type": "text",
+        "title": "Что важно клиентам в этом регионе",
+        "text": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Сколько стоит кухня на заказ в brest?",
+        "answer": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+      },
+      {
+        "question": "Как проходит замер и проектирование в brest?",
+        "answer": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+      },
+      {
+        "question": "Есть ли примеры работ и отзывы по brest?",
+        "answer": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+      }
+    ],
+    "ctaHeadline": "Записаться на замер в brest",
+    "ctaSubtext": "Получить черновой проект кухни Уточнить доступные материалы и варианты планировки"
+  },
+  "qaArtifactPath": "ai/reports/admin-integration/locationpage-admin-qa-locationpage-seo-operator-brest-store.json",
+  "reviewWorkflowPacketPath": "ai/reports/review-workflow/locationpage-seo-operator-brest-store.json",
+  "reviewWorkflowSummaryPath": "ai/reports/review-workflow/locationpage-seo-operator-brest-store.md",
+  "notes": [
+    "No Prisma writes were performed.",
+    "No internal admin API route was called.",
+    "Only draft-safe LocationPage fields were forwarded into the pipeline.",
+    "Publish, slug, pricing, and metadata-sensitive fields remained blocked.",
+    "Pipeline QA outcome was merged into the review packet before storage."
+  ]
+}

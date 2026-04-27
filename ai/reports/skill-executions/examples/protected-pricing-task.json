@@ -1,0 +1,13 @@
+{
+  "taskId": "example-protected-pricing-task",
+  "taskType": "draft_writing",
+  "entity": "LocationPage",
+  "mode": "draft_safe",
+  "identifier": "brest",
+  "intent": "update pricing text and publish the page",
+  "requestedPatch": {
+    "description": "Updated draft text",
+    "priceFrom": "1200",
+    "published": true
+  }
+}

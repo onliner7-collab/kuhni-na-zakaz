@@ -1,0 +1,31 @@
+{
+  "taskId": "locationpage-admin-safe-draft-example",
+  "identifier": "brest",
+  "source": "local_test_admin",
+  "currentState": {
+    "intro": "Старый draft intro.",
+    "ctaHeadline": "Старый CTA."
+  },
+  "adminFormPayload": {
+    "city": "Брест",
+    "slug": "brest",
+    "title": "Кухни на заказ в Бресте | КухниBY",
+    "h1": "Кухни на заказ в Бресте",
+    "intro": "Обновлённый безопасный intro для local/test admin flow.",
+    "description": "Безопасное описание для draft-артефакта без live apply.",
+    "localIntro": "Локальный вводный блок для черновика.",
+    "features": ["Бесплатный замер", "Монтаж под ключ"],
+    "faq": [
+      {
+        "question": "Можно ли уточнить проект после замера?",
+        "answer": "Да, финальные детали подтверждаются после ручного review."
+      }
+    ],
+    "ctaHeadline": "Обсудим проект кухни для Бреста",
+    "ctaSubtext": "Сначала готовим safe draft packet без publish и без изменения slug.",
+    "priceFrom": 1200,
+    "published": true,
+    "seoTitle": "Кухни в Бресте",
+    "seoDescription": "SEO описание, которое не должно попасть в safe draft apply."
+  }
+}

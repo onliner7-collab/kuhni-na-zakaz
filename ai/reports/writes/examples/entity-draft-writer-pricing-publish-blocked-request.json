@@ -1,0 +1,15 @@
+{
+  "taskId": "entity-draft-writer-example-blocked-pricing-publish",
+  "mode": "draft_safe",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "requestedPatch": {
+    "description": "Безопасное описание draft-пакета для локальной страницы.",
+    "priceFrom": 4500,
+    "published": true
+  },
+  "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json",
+  "currentState": {
+    "description": "Старое draft описание."
+  }
+}

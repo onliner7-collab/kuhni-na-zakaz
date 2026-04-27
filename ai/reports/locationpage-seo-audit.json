@@ -1,0 +1,427 @@
+{
+  "generatedAt": "2026-04-13T15:50:45.307Z",
+  "allowedModes": [
+    "read_only",
+    "draft_safe"
+  ],
+  "inputs": {
+    "prismaEntitySource": "artifacts/kuhni-na-zakaz/prisma/schema.prisma",
+    "routeSource": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+    "adminFormSource": "artifacts/kuhni-na-zakaz/components/admin/LocationForm.tsx",
+    "seedSource": "artifacts/kuhni-na-zakaz/prisma/seed-locations.ts",
+    "seoStrategySource": "project-docs/SEO_STRATEGY.md",
+    "policySource": "ai/policies/locationpage.json"
+  },
+  "liveSurface": {
+    "routePath": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+    "metadataPath": "artifacts/kuhni-na-zakaz/app/locations/[city]/page.tsx",
+    "usedFields": [
+      "areas",
+      "caseSlugs",
+      "city",
+      "contentBlocks",
+      "ctaHeadline",
+      "ctaSubtext",
+      "deliveryCost",
+      "deliveryDays",
+      "description",
+      "faq",
+      "features",
+      "h1",
+      "images",
+      "installDetails",
+      "intro",
+      "localIntro",
+      "mapEmbed",
+      "measureCost",
+      "phone",
+      "priceFrom",
+      "region",
+      "reviewIds",
+      "seoDescription",
+      "seoTitle",
+      "slug",
+      "timelineText",
+      "title",
+      "uniquePoints",
+      "visitDetails",
+      "workZone"
+    ],
+    "reviewRequiredFields": [
+      "caseSlugs",
+      "deliveryCost",
+      "deliveryDays",
+      "h1",
+      "mapEmbed",
+      "measureCost",
+      "phone",
+      "priceFrom",
+      "reviewIds",
+      "seoDescription",
+      "seoTitle",
+      "slug",
+      "timelineText",
+      "title"
+    ]
+  },
+  "inventory": [
+    {
+      "source": "seed",
+      "status": "existing",
+      "slug": "brest",
+      "city": "Брест",
+      "region": "Брестская область",
+      "published": true,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": true,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": true,
+        "ctaSubtext": true
+      },
+      "contentCounts": {
+        "features": 5,
+        "faq": 3,
+        "uniquePoints": 3,
+        "contentBlocks": 1,
+        "images": 0,
+        "areas": 5,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 33,
+        "metaDescriptionLength": 94,
+        "estimatedBodyWords": 92
+      },
+      "gaps": [
+        "body_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ]
+    },
+    {
+      "source": "seed",
+      "status": "existing",
+      "slug": "vitebsk",
+      "city": "Витебск",
+      "region": "Витебская область",
+      "published": true,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": true,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": true,
+        "ctaSubtext": true
+      },
+      "contentCounts": {
+        "features": 5,
+        "faq": 3,
+        "uniquePoints": 3,
+        "contentBlocks": 1,
+        "images": 0,
+        "areas": 5,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 35,
+        "metaDescriptionLength": 85,
+        "estimatedBodyWords": 81
+      },
+      "gaps": [
+        "body_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ]
+    },
+    {
+      "source": "seed",
+      "status": "existing",
+      "slug": "gomel",
+      "city": "Гомель",
+      "region": "Гомельская область",
+      "published": true,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": true,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": true,
+        "ctaSubtext": true
+      },
+      "contentCounts": {
+        "features": 5,
+        "faq": 3,
+        "uniquePoints": 3,
+        "contentBlocks": 1,
+        "images": 0,
+        "areas": 5,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 33,
+        "metaDescriptionLength": 80,
+        "estimatedBodyWords": 82
+      },
+      "gaps": [
+        "body_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ]
+    },
+    {
+      "source": "seed",
+      "status": "existing",
+      "slug": "grodno",
+      "city": "Гродно",
+      "region": "Гродненская область",
+      "published": true,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": true,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": true,
+        "ctaSubtext": true
+      },
+      "contentCounts": {
+        "features": 5,
+        "faq": 3,
+        "uniquePoints": 3,
+        "contentBlocks": 1,
+        "images": 0,
+        "areas": 5,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 33,
+        "metaDescriptionLength": 90,
+        "estimatedBodyWords": 89
+      },
+      "gaps": [
+        "body_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ]
+    },
+    {
+      "source": "seed",
+      "status": "existing",
+      "slug": "zhodzina",
+      "city": "Жодино",
+      "region": "Минская область",
+      "published": true,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": true,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": true,
+        "ctaSubtext": true
+      },
+      "contentCounts": {
+        "features": 5,
+        "faq": 2,
+        "uniquePoints": 3,
+        "contentBlocks": 0,
+        "images": 0,
+        "areas": 3,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 33,
+        "metaDescriptionLength": 80,
+        "estimatedBodyWords": 51
+      },
+      "gaps": [
+        "body_below_target",
+        "faq_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ]
+    },
+    {
+      "source": "admin-template",
+      "status": "proposed",
+      "slug": "minskaya-oblast",
+      "city": "Минская область",
+      "region": "Минская область",
+      "published": null,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": false,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": false,
+        "ctaSubtext": false
+      },
+      "contentCounts": {
+        "features": 0,
+        "faq": 0,
+        "uniquePoints": 0,
+        "contentBlocks": 0,
+        "images": 0,
+        "areas": 0,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 42,
+        "metaDescriptionLength": 118,
+        "estimatedBodyWords": 40
+      },
+      "gaps": [
+        "body_below_target",
+        "faq_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "missing_local_story",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "low_local_proof",
+        "proposal_without_verified_content",
+        "route_uses_review_required_fields"
+      ]
+    },
+    {
+      "source": "seed",
+      "status": "existing",
+      "slug": "mogilev",
+      "city": "Могилёв",
+      "region": "Могилёвская область",
+      "published": true,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": true,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": true,
+        "ctaSubtext": true
+      },
+      "contentCounts": {
+        "features": 5,
+        "faq": 3,
+        "uniquePoints": 3,
+        "contentBlocks": 1,
+        "images": 0,
+        "areas": 5,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 35,
+        "metaDescriptionLength": 74,
+        "estimatedBodyWords": 80
+      },
+      "gaps": [
+        "body_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ]
+    },
+    {
+      "source": "seed",
+      "status": "existing",
+      "slug": "molodechno",
+      "city": "Молодечно",
+      "region": "Минская область",
+      "published": true,
+      "fieldPresence": {
+        "title": true,
+        "h1": true,
+        "intro": true,
+        "description": true,
+        "localIntro": true,
+        "seoTitle": true,
+        "seoDescription": true,
+        "ctaHeadline": true,
+        "ctaSubtext": true
+      },
+      "contentCounts": {
+        "features": 5,
+        "faq": 2,
+        "uniquePoints": 2,
+        "contentBlocks": 0,
+        "images": 0,
+        "areas": 3,
+        "caseSlugs": 0,
+        "reviewIds": 0
+      },
+      "metrics": {
+        "titleLength": 36,
+        "metaDescriptionLength": 80,
+        "estimatedBodyWords": 41
+      },
+      "gaps": [
+        "body_below_target",
+        "faq_below_target",
+        "missing_case_links",
+        "missing_location_images",
+        "meta_description_needs_review"
+      ],
+      "riskFlags": [
+        "route_uses_review_required_fields"
+      ]
+    }
+  ],
+  "summary": {
+    "existingPages": 7,
+    "proposedPages": 1,
+    "thinContentPages": 8,
+    "metadataReviewCandidates": 8,
+    "pagesMissingFaq": 3,
+    "pagesMissingLocalProof": 1
+  }
+}

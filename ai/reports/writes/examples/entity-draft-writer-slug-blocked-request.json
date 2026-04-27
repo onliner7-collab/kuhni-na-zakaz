@@ -1,0 +1,14 @@
+{
+  "taskId": "entity-draft-writer-example-blocked-slug",
+  "mode": "draft_safe",
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "requestedPatch": {
+    "intro": "Этот безопасный intro можно сохранить как draft artifact.",
+    "slug": "kuhni-na-zakaz-brest-new"
+  },
+  "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json",
+  "currentState": {
+    "intro": "Старый intro."
+  }
+}

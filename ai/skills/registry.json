@@ -1,0 +1,377 @@
+{
+  "version": 1,
+  "model": "openclaw-compatible-skill-registry",
+  "skills": [
+    {
+      "name": "project-structure-reader",
+      "description": "Scan real project files and produce a trusted structure map for routing and follow-up task selection.",
+      "allowed_modes": ["read_only"],
+      "supported_entities": [],
+      "safety_level": "low",
+      "invokes_writer": false,
+      "requires_qa": false,
+      "entrypoint": "project-structure-reader",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "project_read" },
+          "mode": { "enum": ["read_only"] },
+          "intent": { "type": "string" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "reportPath"],
+        "properties": {
+          "skill": { "const": "project-structure-reader" },
+          "status": { "enum": ["completed"] },
+          "reportPath": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "prisma-entity-mapper",
+      "description": "Read Prisma schema and entity policies to produce a focused field and relation map with safety categories.",
+      "allowed_modes": ["read_only"],
+      "supported_entities": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase", "PriceRule"],
+      "safety_level": "low",
+      "invokes_writer": false,
+      "requires_qa": false,
+      "entrypoint": "prisma-entity-mapper",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "entity_mapping" },
+          "mode": { "enum": ["read_only"] },
+          "entity": { "enum": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase", "PriceRule"] }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "reportPath", "focusedEntities"],
+        "properties": {
+          "skill": { "const": "prisma-entity-mapper" },
+          "status": { "enum": ["completed"] },
+          "reportPath": { "type": "string" },
+          "focusedEntities": { "type": "array" }
+        }
+      }
+    },
+    {
+      "name": "locationpage-seo-planner",
+      "description": "Audit LocationPage SEO coverage and generate safe planning artifacts for local landing pages.",
+      "allowed_modes": ["read_only", "draft_safe"],
+      "supported_entities": ["LocationPage"],
+      "safety_level": "medium",
+      "invokes_writer": false,
+      "requires_qa": false,
+      "entrypoint": "locationpage-seo-planner",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode", "entity"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "seo_planning" },
+          "mode": { "enum": ["read_only", "draft_safe"] },
+          "entity": { "const": "LocationPage" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "auditPath", "plansPath", "gapReportPath"],
+        "properties": {
+          "skill": { "const": "locationpage-seo-planner" },
+          "status": { "enum": ["completed"] },
+          "auditPath": { "type": "string" },
+          "plansPath": { "type": "string" },
+          "gapReportPath": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "content-draft-generator",
+      "description": "Generate draft content packets for supported entities as report artifacts only.",
+      "allowed_modes": ["read_only", "draft_safe"],
+      "supported_entities": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase"],
+      "safety_level": "medium",
+      "invokes_writer": false,
+      "requires_qa": true,
+      "entrypoint": "content-draft-generator",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "content_drafting" },
+          "mode": { "enum": ["read_only", "draft_safe"] },
+          "entity": { "enum": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase"] }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "summaryPath", "reportPaths"],
+        "properties": {
+          "skill": { "const": "content-draft-generator" },
+          "status": { "enum": ["completed"] },
+          "summaryPath": { "type": "string" },
+          "reportPaths": { "type": "array" }
+        }
+      }
+    },
+    {
+      "name": "entity-draft-writer",
+      "description": "Validate a reviewed draft-writing task, enforce policy and QA gates, and call the safe writer only for allowed draft fields.",
+      "allowed_modes": ["read_only", "draft_safe", "review_required"],
+      "supported_entities": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase"],
+      "safety_level": "high",
+      "invokes_writer": true,
+      "requires_qa": true,
+      "entrypoint": "entity-draft-writer",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode", "entity", "identifier", "requestedPatch"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "draft_writing" },
+          "mode": { "enum": ["read_only", "draft_safe", "review_required"] },
+          "entity": { "enum": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase"] },
+          "identifier": { "type": "string" },
+          "requestedPatch": { "type": "object" },
+          "qaOutcome": { "type": "object" },
+          "reviewPacketReference": { "type": "string" },
+          "currentState": { "type": "object" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "result"],
+        "properties": {
+          "skill": { "const": "entity-draft-writer" },
+          "status": { "enum": ["completed"] },
+          "result": { "type": "object" }
+        }
+      }
+    },
+    {
+      "name": "seo-metadata-auditor",
+      "description": "Run a read-only audit of app-level and entity-level SEO metadata surfaces and risk points.",
+      "allowed_modes": ["read_only"],
+      "supported_entities": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase"],
+      "safety_level": "high",
+      "invokes_writer": false,
+      "requires_qa": false,
+      "entrypoint": "seo-metadata-auditor",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "seo_metadata_audit" },
+          "mode": { "enum": ["read_only"] },
+          "entity": { "enum": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase"] }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "metadataAuditPath", "summaryPath", "riskMapPath"],
+        "properties": {
+          "skill": { "const": "seo-metadata-auditor" },
+          "status": { "enum": ["completed"] },
+          "metadataAuditPath": { "type": "string" },
+          "summaryPath": { "type": "string" },
+          "riskMapPath": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "publication-qa-reviewer",
+      "description": "Review generated draft packets for quality, SEO completeness, and safety compliance before any apply step.",
+      "allowed_modes": ["draft_safe", "review_required"],
+      "supported_entities": ["LocationPage", "Kitchen", "BlogPost", "PortfolioCase"],
+      "safety_level": "medium",
+      "invokes_writer": false,
+      "requires_qa": false,
+      "entrypoint": "publication-qa-reviewer",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "qa_review" },
+          "mode": { "enum": ["draft_safe", "review_required"] }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "reviewPath", "summaryPath"],
+        "properties": {
+          "skill": { "const": "publication-qa-reviewer" },
+          "status": { "enum": ["completed"] },
+          "reviewPath": { "type": "string" },
+          "summaryPath": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "pricing-risk-guard",
+      "description": "Block or escalate tasks touching pricing, publish, slug, auth, settings, or middleware surfaces.",
+      "allowed_modes": ["read_only", "review_required", "draft_safe"],
+      "supported_entities": ["PriceRule", "LocationPage", "Kitchen", "BlogPost", "PortfolioCase"],
+      "safety_level": "critical",
+      "invokes_writer": false,
+      "requires_qa": false,
+      "entrypoint": "pricing-risk-guard",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "enum": ["pricing_risk_check", "draft_writing", "content_drafting", "seo_planning"] },
+          "mode": { "enum": ["read_only", "review_required", "draft_safe"] },
+          "entity": { "enum": ["PriceRule", "LocationPage", "Kitchen", "BlogPost", "PortfolioCase"] },
+          "requestedPatch": { "type": "object" },
+          "requestedFields": { "type": "array" },
+          "intent": { "type": "string" }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "decision", "reasons"],
+        "properties": {
+          "skill": { "const": "pricing-risk-guard" },
+          "status": { "enum": ["completed"] },
+          "decision": { "enum": ["blocked", "review_required"] },
+          "reasons": { "type": "array" }
+        }
+      }
+    },
+    {
+      "name": "admin-route-surface-mapper",
+      "description": "Scan admin pages and admin API routes and classify risk surfaces for downstream routing.",
+      "allowed_modes": ["read_only"],
+      "supported_entities": [],
+      "safety_level": "medium",
+      "invokes_writer": false,
+      "requires_qa": false,
+      "entrypoint": "admin-route-surface-mapper",
+      "input_schema": {
+        "type": "object",
+        "required": ["taskId", "taskType", "mode"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "taskType": { "const": "admin_surface_analysis" },
+          "mode": { "enum": ["read_only"] }
+        }
+      },
+      "output_schema": {
+        "type": "object",
+        "required": ["skill", "status", "reportPath", "surfaceCount"],
+        "properties": {
+          "skill": { "const": "admin-route-surface-mapper" },
+          "status": { "enum": ["completed"] },
+          "reportPath": { "type": "string" },
+          "surfaceCount": { "type": "number" }
+        }
+      }
+    }
+  ],
+  "routing": {
+    "protected_field_patterns": ["slug", "published", "publishedAt", "priceFrom", "priceTo", "deliveryCost", "deliveryDays", "measureCost", "timelineText", "seoTitle", "seoDescription"],
+    "protected_intent_keywords": ["pricing", "publish", "slug", "auth", "settings", "middleware"],
+    "rules": [
+      {
+        "id": "guard-protected-fields",
+        "priority": 100,
+        "match": {
+          "requested_fields_any": ["slug", "published", "publishedAt", "priceFrom", "priceTo", "deliveryCost", "deliveryDays", "measureCost", "timelineText", "seoTitle", "seoDescription"]
+        },
+        "select_skill": "pricing-risk-guard"
+      },
+      {
+        "id": "guard-protected-entity",
+        "priority": 95,
+        "match": {
+          "entity_any": ["PriceRule"]
+        },
+        "select_skill": "pricing-risk-guard"
+      },
+      {
+        "id": "guard-protected-intent",
+        "priority": 90,
+        "match": {
+          "intent_keywords_any": ["pricing", "publish", "slug", "auth", "settings", "middleware"]
+        },
+        "select_skill": "pricing-risk-guard"
+      },
+      {
+        "id": "route-project-read",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["project_read"]
+        },
+        "select_skill": "project-structure-reader"
+      },
+      {
+        "id": "route-entity-mapping",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["entity_mapping"]
+        },
+        "select_skill": "prisma-entity-mapper"
+      },
+      {
+        "id": "route-location-seo",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["seo_planning"],
+          "entity_any": ["LocationPage"]
+        },
+        "select_skill": "locationpage-seo-planner"
+      },
+      {
+        "id": "route-content-drafts",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["content_drafting"]
+        },
+        "select_skill": "content-draft-generator"
+      },
+      {
+        "id": "route-draft-writing",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["draft_writing"]
+        },
+        "select_skill": "entity-draft-writer"
+      },
+      {
+        "id": "route-seo-metadata-audit",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["seo_metadata_audit"]
+        },
+        "select_skill": "seo-metadata-auditor"
+      },
+      {
+        "id": "route-qa-review",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["qa_review"]
+        },
+        "select_skill": "publication-qa-reviewer"
+      },
+      {
+        "id": "route-admin-surface",
+        "priority": 50,
+        "match": {
+          "task_type_any": ["admin_surface_analysis"]
+        },
+        "select_skill": "admin-route-surface-mapper"
+      }
+    ]
+  }
+}

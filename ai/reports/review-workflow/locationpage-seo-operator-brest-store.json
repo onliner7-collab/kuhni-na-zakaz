@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 1,
+  "sourceRequest": {
+    "taskId": "locationpage-seo-operator-brest-store",
+    "mode": "draft_safe",
+    "entity": "LocationPage",
+    "identifier": "brest",
+    "requestedPatch": {
+      "intro": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты.",
+      "description": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review.",
+      "localIntro": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений.",
+      "features": [
+        "Брест",
+        "Брестская область",
+        "Московский район",
+        "Ленинский район"
+      ],
+      "uniquePoints": [
+        {
+          "label": "Local signal 1",
+          "text": "Брест"
+        },
+        {
+          "label": "Local signal 2",
+          "text": "Брестская область"
+        },
+        {
+          "label": "Local signal 3",
+          "text": "Московский район"
+        },
+        {
+          "label": "Local signal 4",
+          "text": "Ленинский район"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "text",
+          "title": "Почему клиенты в городе выбирают кухни на заказ",
+          "text": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+        },
+        {
+          "type": "text",
+          "title": "Как проходит работа по городу",
+          "text": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+        },
+        {
+          "type": "text",
+          "title": "Что важно клиентам в этом регионе",
+          "text": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Сколько стоит кухня на заказ в brest?",
+          "answer": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+        },
+        {
+          "question": "Как проходит замер и проектирование в brest?",
+          "answer": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+        },
+        {
+          "question": "Есть ли примеры работ и отзывы по brest?",
+          "answer": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+        }
+      ],
+      "ctaHeadline": "Записаться на замер в brest",
+      "ctaSubtext": "Получить черновой проект кухни Уточнить доступные материалы и варианты планировки"
+    },
+    "qaOutcome": {
+      "verdict": "NEEDS_REVIEW",
+      "riskLevel": "high",
+      "sourceReport": "ai/reports/drafts/locationpage-drafts.json",
+      "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope. | Admin payload contains only draft-safe LocationPage fields.",
+      "issues": [
+        {
+          "code": "body_too_short",
+          "category": "content",
+          "severity": "medium",
+          "message": "Body draft is too short for useful review.",
+          "fields": [
+            "bodySections"
+          ]
+        },
+        {
+          "code": "keyword_spam_signal",
+          "category": "content",
+          "severity": "medium",
+          "message": "Possible keyword repetition detected: brest, кухни, заказ.",
+          "fields": [
+            "title",
+            "h1",
+            "metaDescription",
+            "bodySections"
+          ]
+        },
+        {
+          "code": "slug_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+          "fields": [
+            "slug"
+          ]
+        },
+        {
+          "code": "publish_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+          "fields": [
+            "published"
+          ]
+        },
+        {
+          "code": "pricing_stays_in_review_scope",
+          "category": "safety",
+          "severity": "high",
+          "message": "Pricing fields remain blocked from draft-safe apply.",
+          "fields": [
+            "priceFrom"
+          ]
+        },
+        {
+          "code": "metadata_stays_in_review_scope",
+          "category": "safety",
+          "severity": "medium",
+          "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+          "fields": [
+            "seoTitle",
+            "seoDescription"
+          ]
+        },
+        {
+          "code": "entity_review_required_fields",
+          "category": "safety",
+          "severity": "medium",
+          "message": "Packet includes fields that must stay in human review.",
+          "fields": [
+            "slug",
+            "title",
+            "h1",
+            "seoTitle",
+            "seoDescription",
+            "priceFrom",
+            "published"
+          ]
+        }
+      ]
+    },
+    "reviewPacketReference": "ai/reports/reviews/publication-qa-review.json",
+    "currentState": {
+      "intro": "Старый локальный intro для Бреста.",
+      "description": "Старое описание локальной страницы.",
+      "ctaHeadline": "Старый CTA"
+    }
+  },
+  "task": {
+    "taskId": "locationpage-seo-operator-brest-store",
+    "mode": "draft_safe",
+    "requestedAction": "draft_safe_apply_review",
+    "requestedAt": "2026-04-13T15:50:45.329Z"
+  },
+  "entity": {
+    "name": "LocationPage",
+    "identifier": "brest"
+  },
+  "changes": {
+    "requestedFields": [
+      "intro",
+      "description",
+      "localIntro",
+      "features",
+      "uniquePoints",
+      "contentBlocks",
+      "faq",
+      "ctaHeadline",
+      "ctaSubtext"
+    ],
+    "safeFields": [
+      "intro",
+      "description",
+      "localIntro",
+      "features",
+      "uniquePoints",
+      "contentBlocks",
+      "faq",
+      "ctaHeadline",
+      "ctaSubtext"
+    ],
+    "blockedFields": [],
+    "reviewRequiredFields": [],
+    "requestedPatch": {
+      "intro": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты.",
+      "description": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review.",
+      "localIntro": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений.",
+      "features": [
+        "Брест",
+        "Брестская область",
+        "Московский район",
+        "Ленинский район"
+      ],
+      "uniquePoints": [
+        {
+          "label": "Local signal 1",
+          "text": "Брест"
+        },
+        {
+          "label": "Local signal 2",
+          "text": "Брестская область"
+        },
+        {
+          "label": "Local signal 3",
+          "text": "Московский район"
+        },
+        {
+          "label": "Local signal 4",
+          "text": "Ленинский район"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "text",
+          "title": "Почему клиенты в городе выбирают кухни на заказ",
+          "text": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+        },
+        {
+          "type": "text",
+          "title": "Как проходит работа по городу",
+          "text": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+        },
+        {
+          "type": "text",
+          "title": "Что важно клиентам в этом регионе",
+          "text": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Сколько стоит кухня на заказ в brest?",
+          "answer": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+        },
+        {
+          "question": "Как проходит замер и проектирование в brest?",
+          "answer": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+        },
+        {
+          "question": "Есть ли примеры работ и отзывы по brest?",
+          "answer": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+        }
+      ],
+      "ctaHeadline": "Записаться на замер в brest",
+      "ctaSubtext": "Получить черновой проект кухни Уточнить доступные материалы и варианты планировки"
+    },
+    "safePatch": {
+      "intro": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты.",
+      "description": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review.",
+      "localIntro": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений.",
+      "features": [
+        "Брест",
+        "Брестская область",
+        "Московский район",
+        "Ленинский район"
+      ],
+      "uniquePoints": [
+        {
+          "label": "Local signal 1",
+          "text": "Брест"
+        },
+        {
+          "label": "Local signal 2",
+          "text": "Брестская область"
+        },
+        {
+          "label": "Local signal 3",
+          "text": "Московский район"
+        },
+        {
+          "label": "Local signal 4",
+          "text": "Ленинский район"
+        }
+      ],
+      "contentBlocks": [
+        {
+          "type": "text",
+          "title": "Почему клиенты в городе выбирают кухни на заказ",
+          "text": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+        },
+        {
+          "type": "text",
+          "title": "Как проходит работа по городу",
+          "text": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+        },
+        {
+          "type": "text",
+          "title": "Что важно клиентам в этом регионе",
+          "text": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Сколько стоит кухня на заказ в brest?",
+          "answer": "Опишите, почему заказ кухни в brest требует локального подхода: замер, проект, логистика и монтаж. Используйте только подтверждённые факты."
+        },
+        {
+          "question": "Как проходит замер и проектирование в brest?",
+          "answer": "Соберите блок про замер, сроки согласования проекта, монтаж и зону обслуживания. Если данные не подтверждены, оставьте на review."
+        },
+        {
+          "question": "Есть ли примеры работ и отзывы по brest?",
+          "answer": "Добавьте 2–3 локально релевантных тезиса: типы квартир, типичные запросы, районные особенности, реальные примеры обращений."
+        }
+      ],
+      "ctaHeadline": "Записаться на замер в brest",
+      "ctaSubtext": "Получить черновой проект кухни Уточнить доступные материалы и варианты планировки"
+    }
+  },
+  "riskLevel": "high",
+  "qaResult": {
+    "verdict": "NEEDS_REVIEW",
+    "summary": "Packet needs attention before manual apply. Top issues: body_too_short, keyword_spam_signal, slug_stays_in_review_scope. | Admin payload contains only draft-safe LocationPage fields.",
+    "sourceReport": "ai/reports/reviews/publication-qa-review.json",
+    "issues": [
+      {
+        "code": "body_too_short",
+        "category": "content",
+        "severity": "medium",
+        "message": "Body draft is too short for useful review.",
+        "fields": [
+          "bodySections"
+        ]
+      },
+      {
+        "code": "keyword_spam_signal",
+        "category": "content",
+        "severity": "medium",
+        "message": "Possible keyword repetition detected: brest, кухни, заказ.",
+        "fields": [
+          "title",
+          "h1",
+          "metaDescription",
+          "bodySections"
+        ]
+      },
+      {
+        "code": "slug_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Slug remains a review-only surface and cannot be auto-applied from this packet.",
+        "fields": [
+          "slug"
+        ]
+      },
+      {
+        "code": "publish_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Publish state remains review-only and must stay outside draft-safe apply.",
+        "fields": [
+          "published"
+        ]
+      },
+      {
+        "code": "pricing_stays_in_review_scope",
+        "category": "safety",
+        "severity": "high",
+        "message": "Pricing fields remain blocked from draft-safe apply.",
+        "fields": [
+          "priceFrom"
+        ]
+      },
+      {
+        "code": "metadata_stays_in_review_scope",
+        "category": "safety",
+        "severity": "medium",
+        "message": "SEO metadata is still review-required and should not be treated as auto-approved.",
+        "fields": [
+          "seoTitle",
+          "seoDescription"
+        ]
+      },
+      {
+        "code": "entity_review_required_fields",
+        "category": "safety",
+        "severity": "medium",
+        "message": "Packet includes fields that must stay in human review.",
+        "fields": [
+          "slug",
+          "title",
+          "h1",
+          "seoTitle",
+          "seoDescription",
+          "priceFrom",
+          "published"
+        ]
+      }
+    ]
+  },
+  "writerEligibility": {
+    "eligible": true,
+    "requiresExplicitApproval": true,
+    "allowedMode": true,
+    "safeEntity": true,
+    "safeFieldsAvailable": true,
+    "qaNotFail": true,
+    "reasons": [
+      "qa_review_required"
+    ]
+  },
+  "reviewState": "needs_review",
+  "suggestedNextAction": "manual_review",
+  "reasons": [
+    "qa_review_required"
+  ],
+  "artifacts": {
+    "reviewPacketPath": "ai/reports/review-workflow/locationpage-seo-operator-brest-store.json",
+    "markdownSummaryPath": "ai/reports/review-workflow/locationpage-seo-operator-brest-store.md",
+    "approvalArtifactPath": null,
+    "rejectionArtifactPath": null,
+    "qaReferencePath": "ai/reports/reviews/publication-qa-review.json"
+  }
+}

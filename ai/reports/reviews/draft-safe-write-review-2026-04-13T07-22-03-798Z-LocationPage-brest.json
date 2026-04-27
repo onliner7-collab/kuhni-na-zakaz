@@ -1,0 +1,14 @@
+{
+  "entity": "LocationPage",
+  "identifier": "brest",
+  "mode": "draft_safe",
+  "oldSummary": "intro=Старый intro.",
+  "newSummary": "intro=Этот безопасный intro можно сохранить как draft artifact.",
+  "changedFields": [
+    "intro"
+  ],
+  "reviewRequiredFields": [],
+  "blockedFields": [],
+  "riskLevel": "low",
+  "reviewRequired": false
+}
