@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Shield } from "lucide-react";
-import { prisma } from "@/lib/db";
 import { renderContent } from "@/lib/render-content";
+import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
+import { getStaticPage } from "@/lib/static-page";
 
 const WARRANTY_CARDS = [
   { years: "5 лет", label: "на фурнитуру Blum" },
@@ -11,22 +13,40 @@ const WARRANTY_CARDS = [
 ];
 
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await prisma.staticPage.findUnique({ where: { slug: "warranty" } });
+  const page = await getStaticPage("warranty");
   return {
-    title: page?.seoTitle || "Гарантия на кухни — 5 лет на фурнитуру",
-    description: page?.seoDescription || "Гарантия: 5 лет на фурнитуру Blum, 2 года на корпус, 1 год на монтаж.",
+    title: cleanSeoTitle(page?.seoTitle, "Гарантия на кухни"),
+    description: trimMetaDescription(
+      page?.seoDescription,
+      "Гарантия на кухни на заказ: 5 лет на фурнитуру Blum, 2 года на корпус и фасады, 1 год на монтажные работы.",
+    ),
     alternates: { canonical: "/warranty" },
   };
 }
 
 export default async function WarrantyPage() {
-  const page = await prisma.staticPage.findUnique({ where: { slug: "warranty" } });
+  const page = await getStaticPage("warranty");
   const title = page?.title || "Гарантия";
   const content = page?.content || "";
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: title, path: "/warranty" },
+  ]);
+  const jsonLdService = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    description: page?.seoDescription,
+    url: siteUrl("/warranty"),
+    provider: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
+    serviceType: "Warranty",
+  });
 
   return (
-    <div className="section-padding">
-      <div className="container-site max-w-4xl">
+    <>
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdService]} />
+      <div className="section-padding">
+        <div className="container-site max-w-4xl">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
           <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
           <span className="text-foreground">{title}</span>
@@ -46,7 +66,8 @@ export default async function WarrantyPage() {
         <div className="space-y-4">
           {renderContent(content)}
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -132,7 +132,7 @@ export function ModulesStep({
           moduleCatalog={moduleCatalog}
           warnings={warnings}
           selectedModuleId={selectedModuleId}
-          onSelectModule={setSelectedModuleId}
+          onSelectModule={(id) => setSelectedModuleId(id ?? undefined)}
           onMoveModule={onMoveModule}
         />
 

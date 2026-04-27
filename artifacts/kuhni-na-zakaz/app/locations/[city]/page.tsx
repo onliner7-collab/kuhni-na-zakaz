@@ -3,15 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { ReviewStatus } from "@prisma/client";
+import { ReviewStatus, type LocationPage } from "@prisma/client";
 import { ContactForm } from "@/components/sections/ContactForm";
 import {
   CheckCircle, MapPin, Clock, Ruler, Wrench, ChevronRight,
   Star, Phone, CalendarDays, ArrowRight, MessageSquare
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { optimizedImageSrc } from "@/lib/image-optimization";
 
 export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 interface Props { params: Promise<{ city: string }> }
 
@@ -21,8 +24,74 @@ type FaqItem = { q: string; a: string };
 type PortfolioCase = { id: number; title: string; slug: string; mainImage: string; style: string; priceFrom: number; area: number; days: number; city: string };
 type ReviewItem = { id: number; name: string; city: string; rating: number; text: string; date: string; region: string; source: string };
 
-async function getLocation(slug: string) {
-  return prisma.locationPage.findUnique({ where: { slug, published: true } }).catch(() => null);
+const catalogLinks = [
+  { href: "/catalog", title: "Каталог кухонь", text: "Все форматы кухонь по размерам, стилю и бюджету." },
+  { href: "/catalog/uglovye-kuhni", title: "Угловые кухни", text: "Практичный вариант для квартир и частных домов." },
+  { href: "/catalog/kuhni-do-potolka", title: "Кухни до потолка", text: "Больше хранения и аккуратная линия фасадов." },
+];
+
+const FALLBACK_LOCATIONS: Record<string, Record<string, unknown>> = {
+  minsk: { city: "Минск", region: "Минск", h1: "Кухни на заказ в Минске" },
+  brest: { city: "Брест", region: "Брестская область", h1: "Кухни на заказ в Бресте" },
+  grodno: { city: "Гродно", region: "Гродненская область", h1: "Кухни на заказ в Гродно" },
+  vitebsk: { city: "Витебск", region: "Витебская область", h1: "Кухни на заказ в Витебске" },
+  gomel: { city: "Гомель", region: "Гомельская область", h1: "Кухни на заказ в Гомеле" },
+  mogilev: { city: "Могилёв", region: "Могилёвская область", h1: "Кухни на заказ в Могилёве" },
+  "minskaya-oblast": { city: "Минская область", region: "Минская область", h1: "Кухни на заказ по Минской области" },
+};
+
+function fallbackLocation(slug: string): LocationPage | null {
+  const item = FALLBACK_LOCATIONS[slug];
+  if (!item) return null;
+
+  const city = String(item.city);
+  const h1 = String(item.h1);
+
+  return {
+    id: 0,
+    externalId: null,
+    slug,
+    city,
+    region: String(item.region),
+    title: h1,
+    h1,
+    seoTitle: h1,
+    seoDescription: `Проектируем, изготавливаем и устанавливаем кухни на заказ: замер, 3D-проект, производство и монтаж.`,
+    description: `Кухни на заказ для клиентов в регионе ${city}: индивидуальный проект, подбор материалов, изготовление и монтаж.`,
+    intro: "Подберём планировку, материалы и комплектацию под помещение, бюджет и сроки.",
+    localIntro: "",
+    features: ["Бесплатный замер", "3D-проект", "Договор и гарантия"],
+    uniquePoints: [],
+    contentBlocks: [],
+    timelineText: "",
+    visitDetails: "",
+    installDetails: "",
+    faq: [],
+    images: [],
+    areas: [city],
+    workZone: "",
+    deliveryCost: "",
+    mapEmbed: "",
+    phone: "+375291234567",
+    address: "",
+    priceFrom: 0,
+    deliveryDays: 1,
+    measureCost: "Бесплатно",
+    ctaHeadline: `Заказать кухню в ${city}`,
+    ctaSubtext: "Оставьте заявку, и специалист свяжется с вами для консультации и записи на замер.",
+    caseSlugs: [],
+    reviewIds: [],
+    published: true,
+    createdAt: new Date(0),
+    updatedAt: new Date(0),
+  };
+}
+
+async function getLocation(slug: string): Promise<LocationPage | null> {
+  return prisma.locationPage
+    .findUnique({ where: { slug, published: true } })
+    .then((location) => location ?? fallbackLocation(slug))
+    .catch(() => fallbackLocation(slug));
 }
 
 async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocation>>>) {
@@ -77,22 +146,19 @@ async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocatio
   return { cases, reviews };
 }
 
-export async function generateStaticParams() {
-  const locs = await prisma.locationPage.findMany({ where: { published: true }, select: { slug: true } }).catch(() => []);
-  return locs.map(l => ({ city: l.slug }));
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
   const loc = await getLocation(city);
   if (!loc) return { title: "Не найдено" };
+  const title = cleanSeoTitle(loc.seoTitle, loc.title);
+  const description = trimMetaDescription(loc.seoDescription, loc.description);
   return {
-    title: loc.seoTitle || loc.title,
-    description: loc.seoDescription || loc.description,
+    title,
+    description,
     alternates: { canonical: `/locations/${city}` },
     openGraph: {
-      title: loc.seoTitle || loc.title,
-      description: loc.seoDescription || loc.description,
+      title,
+      description,
       images: loc.images[0] ? [{ url: loc.images[0] }] : [],
     },
   };
@@ -137,7 +203,7 @@ export default async function LocationPage({ params }: Props) {
   const jsonLdLocalBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `https://kuhniby.by/locations/${loc.slug}`,
+    "@id": `https://kuhni.minsk.by/locations/${loc.slug}`,
     name: "КухниBY",
     description: loc.description,
     telephone: loc.phone || "+375291234567",
@@ -150,7 +216,7 @@ export default async function LocationPage({ params }: Props) {
     areaServed: loc.areas,
     priceRange: `от ${loc.priceFrom} BYN`,
     image: loc.images[0] || undefined,
-    url: `https://kuhniby.by/locations/${loc.slug}`,
+    url: `https://kuhni.minsk.by/locations/${loc.slug}`,
   };
 
   const jsonLdFaq = faqItems.length > 0 ? {
@@ -167,9 +233,9 @@ export default async function LocationPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhniby.by/" },
-      { "@type": "ListItem", position: 2, name: "Города", item: "https://kuhniby.by/locations/" },
-      { "@type": "ListItem", position: 3, name: loc.city, item: `https://kuhniby.by/locations/${loc.slug}` },
+      { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by/" },
+      { "@type": "ListItem", position: 2, name: "Города", item: "https://kuhni.minsk.by/locations/" },
+      { "@type": "ListItem", position: 3, name: loc.city, item: `https://kuhni.minsk.by/locations/${loc.slug}` },
     ],
   };
 
@@ -183,7 +249,7 @@ export default async function LocationPage({ params }: Props) {
       <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
         {loc.images[0] && (
           <div className="absolute inset-0 opacity-15">
-            <Image src={loc.images[0]} alt={loc.city} fill priority sizes="100vw" className="object-cover" />
+            <Image src={optimizedImageSrc(loc.images[0]) || loc.images[0]} alt={loc.city} fill priority fetchPriority="high" sizes="100vw" className="object-cover" />
           </div>
         )}
         <div className="relative container-site section-padding py-16 md:py-24">
@@ -313,11 +379,12 @@ export default async function LocationPage({ params }: Props) {
                   <div className="aspect-[4/3] overflow-hidden bg-muted">
                     {c.mainImage ? (
                       <Image
-                        src={c.mainImage}
+                        src={optimizedImageSrc(c.mainImage) || c.mainImage}
                         alt={c.title}
                         width={640}
                         height={480}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        loading="lazy"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 280px"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
@@ -372,6 +439,38 @@ export default async function LocationPage({ params }: Props) {
         </section>
       )}
 
+      <section className="section-padding bg-white">
+        <div className="container-site">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
+                Что посмотреть перед заказом
+              </h2>
+              <p className="text-muted-foreground mt-1">
+                Подберите формат кухни и сравните реальные проекты перед замером в {cityGen}
+              </p>
+            </div>
+            <Link href="/portfolio" className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm">
+              Перейти в портфолио <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <Link href="/portfolio" className="rounded-2xl border border-border bg-muted/30 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors">
+              <h3 className="font-semibold text-foreground mb-2">Портфолио</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Посмотрите кухни, которые уже изготовили и установили для клиентов.
+              </p>
+            </Link>
+            {catalogLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="rounded-2xl border border-border bg-muted/30 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors">
+                <h3 className="font-semibold text-foreground mb-2">{link.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{link.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PHOTO GALLERY */}
       {loc.images.length > 1 && (
         <section className="section-padding bg-white">
@@ -384,10 +483,11 @@ export default async function LocationPage({ params }: Props) {
               {loc.images.map((img, i) => (
                 <div key={i} className={`rounded-xl overflow-hidden bg-muted ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
                   <Image
-                    src={img}
+                    src={optimizedImageSrc(img) || img}
                     alt={`Кухня в ${loc.city} — фото ${i + 1}`}
                     width={900}
                     height={900}
+                    loading="lazy"
                     sizes={i === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
                     className="w-full h-full object-cover aspect-square"
                   />

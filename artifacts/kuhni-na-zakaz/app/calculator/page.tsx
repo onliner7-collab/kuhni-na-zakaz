@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Calculator, CheckCircle } from "lucide-react";
 import { CalculatorWizard } from "@/components/calculator/CalculatorWizard";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
-  title: "Калькулятор стоимости кухни — ориентировочный расчёт | КухниBY",
+  title: "Калькулятор стоимости кухни",
   description: "Рассчитайте ориентировочную стоимость кухни на заказ в Беларуси. Выберите форму, материал, стиль и получите диапазон цены за 2 минуты. Бесплатно.",
   alternates: { canonical: "/calculator" },
 };
@@ -18,9 +19,25 @@ const INCLUDED = [
 ];
 
 export default function CalculatorPage() {
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Калькулятор", path: "/calculator" },
+  ]);
+  const jsonLdService = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Расчет стоимости кухни",
+    url: siteUrl("/calculator"),
+    provider: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
+    serviceType: "Kitchen price estimate",
+    offers: { "@type": "Offer", price: 0, priceCurrency: "BYN", url: siteUrl("/calculator") },
+  });
+
   return (
-    <div className="section-padding">
-      <div className="container-site">
+    <>
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdService]} />
+      <div className="section-padding">
+        <div className="container-site">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
           <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
           <span className="text-foreground">Калькулятор</span>
@@ -89,7 +106,8 @@ export default function CalculatorPage() {
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

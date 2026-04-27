@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { prisma } from "@/lib/db";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
-  title: "Контакты КухниBY — кухни на заказ по Беларуси",
-  description: "Контакты КухниBY: телефон, email, адрес. Заказать замер бесплатно.",
+  title: "Контакты и бесплатный замер",
+  description: "Контакты производителя кухонь на заказ: телефоны, email, адрес и форма заявки. Закажите бесплатный замер и консультацию по всей Беларуси.",
   alternates: { canonical: "/contacts" },
 };
 
@@ -31,10 +32,27 @@ export default async function ContactsPage() {
     address: s?.address || DEFAULTS.address,
     workingHours: s?.workingHours || DEFAULTS.workingHours,
   };
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Контакты", path: "/contacts" },
+  ]);
+  const jsonLdLocalBusiness = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: s?.siteName || "КухниBY",
+    url: siteUrl("/contacts"),
+    telephone: c.phone,
+    email: c.email,
+    address: c.address,
+    openingHours: ["Mo-Sa 09:00-19:00", "Su 10:00-17:00"],
+    areaServed: { "@type": "Country", name: "Belarus" },
+  });
 
   return (
-    <div className="section-padding">
-      <div className="container-site">
+    <>
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdLocalBusiness]} />
+      <div className="section-padding">
+        <div className="container-site">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
           <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
           <span className="text-foreground">Контакты</span>
@@ -100,7 +118,8 @@ export default async function ContactsPage() {
             <ContactForm source="contacts" />
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

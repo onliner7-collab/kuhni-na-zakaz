@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/db";
+import { optimizedImageSrc } from "@/lib/image-optimization";
 
 export const metadata: Metadata = {
-  title: "Каталог кухонь на заказ по Беларуси — КухниBY",
+  title: "Каталог кухонь на заказ",
   description: "Каталог кухонь на заказ: угловые, прямые, П-образные, с островом, маленькие. Цены от 900 BYN. Доставка и монтаж по всей Беларуси.",
   alternates: { canonical: "/catalog" },
 };
@@ -61,10 +62,11 @@ export default async function CatalogPage() {
                       {k.mainImage ? (
                         <div className="relative h-full w-full">
                           <Image
-                            src={k.mainImage}
+                            src={optimizedImageSrc(k.mainImage) || k.mainImage}
                             alt={k.title}
                             fill
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            loading="lazy"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 360px"
                             className="object-contain object-center"
                           />
                         </div>

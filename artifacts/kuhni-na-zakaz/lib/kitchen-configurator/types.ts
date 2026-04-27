@@ -202,6 +202,7 @@ export interface CompatibilityRule {
   targetEntity: string;
   targetSlug: string;
   message: string;
+  isEnabled?: boolean;
 }
 
 // ── Предупреждения ─────────────────────────────────────

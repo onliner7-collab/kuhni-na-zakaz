@@ -1,17 +1,32 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/site-url";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniminsk.by";
+const BASE_URL = getSiteUrl();
+const HOST = new URL(BASE_URL).host;
 
 export default function robots(): MetadataRoute.Robots {
+  const closedPaths = [
+    "/admin",
+    "/admin/",
+    "/admin/login",
+    "/api",
+    "/api/",
+    "/kapi",
+    "/kapi/",
+    "/login",
+    "/thanks",
+    "/thanks/",
+  ];
+
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin/", "/admin/login", "/kapi/", "/thanks"],
+        disallow: closedPaths,
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
-    host: BASE_URL,
+    host: HOST,
   };
 }

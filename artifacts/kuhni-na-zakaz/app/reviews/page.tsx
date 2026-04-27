@@ -4,9 +4,10 @@ import { Star, ExternalLink, Globe, Send } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ReviewForm } from "@/components/sections/ReviewForm";
 import { cn } from "@/lib/utils";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
-  title: "Отзывы клиентов о кухнях на заказ — КухниBY",
+  title: "Отзывы клиентов о кухнях",
   description: "Реальные отзывы клиентов о кухнях на заказ по всей Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Все отзывы проходят модерацию.",
   alternates: { canonical: "/reviews" },
 };
@@ -65,29 +66,35 @@ export default async function ReviewsPage() {
     ? reviews.reduce((a, r) => a + r.rating, 0) / totalCount
     : 4.9;
 
-  const jsonLd = {
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Отзывы", path: "/reviews" },
+  ]);
+
+  const jsonLdBusiness = compactJsonLd({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "КухниBY",
-    url: "https://kuhniby.by",
-    aggregateRating: {
+    url: siteUrl(),
+    aggregateRating: totalCount > 0 ? {
       "@type": "AggregateRating",
       ratingValue: avgRating.toFixed(1),
-      reviewCount: totalCount || 5,
+      reviewCount: totalCount,
       bestRating: 5,
-    },
-    review: reviews.slice(0, 5).map((r) => ({
+      worstRating: 1,
+    } : undefined,
+    review: reviews.length > 0 ? reviews.slice(0, 5).map((r) => ({
       "@type": "Review",
       author: { "@type": "Person", name: r.name },
       reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
       reviewBody: r.text,
       datePublished: r.createdAt.toISOString().split("T")[0],
-    })),
-  };
+    })) : undefined,
+  });
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdBusiness]} />
       <div className="section-padding">
         <div className="container-site">
 

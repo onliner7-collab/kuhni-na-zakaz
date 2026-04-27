@@ -3,10 +3,11 @@ import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { PriceQuiz } from "@/components/sections/PriceQuiz";
+import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
-  title: "Цены на кухни на заказ — КухниBY | Прайс 2025 по Беларуси",
-  description: "Цены на кухни на заказ по Беларуси от 900 BYN. Прямые, угловые, П-образные, с островом. Эконом, стандарт, премиум. Расчёт онлайн.",
+  title: "Цены на кухни на заказ в Беларуси",
+  description: "Цены на кухни на заказ по Беларуси от 900 BYN. Прямые, угловые, П-образные и кухни с островом. Эконом, стандарт, премиум, расчёт онлайн.",
   alternates: { canonical: "/prices" },
 };
 
@@ -81,9 +82,35 @@ const EXTRA_WORKS = [
 ];
 
 export default function PricesPage() {
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Цены", path: "/prices" },
+  ]);
+  const jsonLdService = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Кухни на заказ",
+    url: siteUrl("/prices"),
+    provider: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
+    areaServed: { "@type": "Country", name: "Belarus" },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Цены на кухни",
+      itemListElement: SEGMENTS.map((segment) => ({
+        "@type": "Offer",
+        name: segment.name,
+        priceCurrency: "BYN",
+        price: segment.priceFrom,
+        url: siteUrl("/prices"),
+      })),
+    },
+  };
+
   return (
-    <div className="section-padding">
-      <div className="container-site">
+    <>
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdService]} />
+      <div className="section-padding">
+        <div className="container-site">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
           <Link href="/" className="hover:text-primary">Главная</Link>
           <span>/</span>
@@ -153,7 +180,8 @@ export default function PricesPage() {
           <p className="text-center text-muted-foreground mb-8">Оставьте заявку — рассчитаем под ваши параметры</p>
           <ContactForm source="prices" />
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

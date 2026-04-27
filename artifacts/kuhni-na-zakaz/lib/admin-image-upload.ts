@@ -3,6 +3,7 @@ import { mkdir, rm, writeFile } from "fs/promises";
 import path from "path";
 
 import { NextRequest, NextResponse } from "next/server";
+import sharp from "sharp";
 
 import { requireAdmin } from "@/lib/auth";
 
@@ -12,6 +13,7 @@ export type ImageUploadBucket = (typeof IMAGE_UPLOAD_BUCKETS)[number];
 
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const MAX_FILE_SIZE = 8 * 1024 * 1024;
+const MAX_IMAGE_WIDTH = 1600;
 
 function sanitizeBaseName(name: string) {
   return (
@@ -46,6 +48,25 @@ function getUploadDir(bucket: ImageUploadBucket) {
 
 function getPublicPrefix(bucket: ImageUploadBucket) {
   return `/uploads/${bucket}/`;
+}
+
+async function optimizeUploadedImage(buffer: Buffer, file: File) {
+  if (file.type === "image/gif") return buffer;
+
+  const pipeline = sharp(buffer, { failOn: "none" })
+    .rotate()
+    .resize({ width: MAX_IMAGE_WIDTH, withoutEnlargement: true });
+
+  switch (file.type) {
+    case "image/jpeg":
+      return pipeline.jpeg({ quality: 78, mozjpeg: true }).toBuffer();
+    case "image/png":
+      return pipeline.png({ compressionLevel: 9, quality: 76, effort: 10, palette: true }).toBuffer();
+    case "image/webp":
+      return pipeline.webp({ quality: 76, effort: 6 }).toBuffer();
+    default:
+      return buffer;
+  }
 }
 
 export function isImageUploadBucket(value: string): value is ImageUploadBucket {
@@ -91,7 +112,8 @@ export async function handleImageUpload(req: NextRequest, bucket: ImageUploadBuc
     const absolutePath = path.join(uploadDir, filename);
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    await writeFile(absolutePath, buffer);
+    const optimizedBuffer = await optimizeUploadedImage(buffer, file);
+    await writeFile(absolutePath, optimizedBuffer);
 
     return NextResponse.json({ url: `${getPublicPrefix(bucket)}${filename}` }, { status: 201 });
   } catch (error) {

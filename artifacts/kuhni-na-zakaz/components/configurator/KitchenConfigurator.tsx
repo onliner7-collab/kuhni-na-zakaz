@@ -61,7 +61,7 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
   const [activePresetId, setActivePresetId] = useState<string>();
   const [materialsSubTab, setMaterialsSubTab] = useState<"style" | "materials">("style");
   const [restoredFromIDB, setRestoredFromIDB] = useState(false);
-  const autosaveTimer = useRef<ReturnType<typeof setInterval>>();
+  const autosaveTimer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // ── Restore from IndexedDB on mount ────────────────────
   useEffect(() => {
@@ -80,7 +80,9 @@ export function KitchenConfigurator({ catalog }: KitchenConfiguratorProps) {
     autosaveTimer.current = setInterval(() => {
       if (state.isDirty) saveProjectToIDB(state);
     }, AUTOSAVE_INTERVAL_MS);
-    return () => clearInterval(autosaveTimer.current);
+    return () => {
+      if (autosaveTimer.current) clearInterval(autosaveTimer.current);
+    };
   }, [state]);
 
   // ── Recompute warnings + price on state change ──────────

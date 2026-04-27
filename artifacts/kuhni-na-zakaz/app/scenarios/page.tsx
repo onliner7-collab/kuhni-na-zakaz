@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: "Как выбрать кухню — сценарии под разные задачи | КухниBY",
+  title: "Как выбрать кухню под ваши задачи",
   description:
     "Подберите кухню под вашу ситуацию: семья с детьми, маленькая площадь, кухня-гостиная, любите готовить, нужна экономия или максимум хранения. Советы и решения.",
   alternates: { canonical: "/scenarios" },
@@ -33,7 +33,7 @@ export default async function ScenariosPage() {
       "@type": "ListItem",
       position: i + 1,
       name: s.title,
-      url: `https://kuhniby.by/scenarios/${s.slug}`,
+      url: `https://kuhni.minsk.by/scenarios/${s.slug}`,
     })),
   };
 

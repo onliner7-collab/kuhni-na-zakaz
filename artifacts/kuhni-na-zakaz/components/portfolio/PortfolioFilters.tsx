@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Square, Clock, Star } from "lucide-react";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
+import { optimizedImageSrc } from "@/lib/image-optimization";
 
 const STYLE_OPTS = ["Все стили", "Современный", "Классический", "Скандинавский", "Минимализм", "Лофт", "Прованс"];
 const AREA_OPTS = [
@@ -106,10 +107,11 @@ export function PortfolioFilters({ cases }: { cases: Case[] }) {
               <div className="h-56 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center overflow-hidden relative">
                 {c.mainImage ? (
                   <Image
-                    src={c.mainImage}
+                    src={optimizedImageSrc(c.mainImage) || c.mainImage}
                     alt={c.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 360px"
                     className="object-contain object-center group-hover:scale-105 transition-transform duration-300"
                   />
                 ) : (

@@ -7,6 +7,8 @@ import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
 import { ReviewStatus } from "@prisma/client";
+import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { optimizedImageSrc } from "@/lib/image-optimization";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -45,8 +47,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = await getCase(slug);
   if (!c) return { title: "Проект кухни" };
   return {
-    title: c.seoTitle || `${c.title} — КухниBY`,
-    description: c.seoDescription || c.description,
+    title: cleanSeoTitle(c.seoTitle, c.title),
+    description: trimMetaDescription(c.seoDescription, c.description),
     keywords: c.seoKeywords || undefined,
     alternates: { canonical: `/portfolio/${slug}` },
   };
@@ -63,15 +65,15 @@ export default async function PortfolioCasePage({ params }: Props) {
     "@type": "Article",
     headline: c.title,
     description: c.seoDescription || c.description,
-    url: `https://kuhniby.by/portfolio/${slug}`,
+    url: `https://kuhni.minsk.by/portfolio/${slug}`,
     datePublished: c.createdAt.toISOString(),
     dateModified: c.updatedAt.toISOString(),
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhniby.by" },
-        { "@type": "ListItem", position: 2, name: "Портфолио", item: "https://kuhniby.by/portfolio" },
-        { "@type": "ListItem", position: 3, name: c.title, item: `https://kuhniby.by/portfolio/${slug}` },
+        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by" },
+        { "@type": "ListItem", position: 2, name: "Портфолио", item: "https://kuhni.minsk.by/portfolio" },
+        { "@type": "ListItem", position: 3, name: c.title, item: `https://kuhni.minsk.by/portfolio/${slug}` },
       ],
     },
   };
@@ -120,12 +122,13 @@ export default async function PortfolioCasePage({ params }: Props) {
                 <div className="h-80 bg-gradient-to-br from-stone-200 to-amber-100 rounded-2xl overflow-hidden mb-4">
                   {c.mainImage ? (
                     <Image
-                      src={c.mainImage}
+                      src={optimizedImageSrc(c.mainImage) || c.mainImage}
                       alt={c.title}
                       width={1280}
                       height={720}
                       priority
-                      sizes="(max-width: 1024px) 100vw, 66vw"
+                      fetchPriority="high"
+                      sizes="(max-width: 1024px) 100vw, 820px"
                       className="w-full h-full object-contain object-center"
                     />
                   ) : (
@@ -139,10 +142,11 @@ export default async function PortfolioCasePage({ params }: Props) {
                     {allPhotos.slice(1, 4).map((img, i) => (
                       <div key={i} className="h-28 rounded-xl overflow-hidden bg-stone-200">
                         <Image
-                          src={img}
+                          src={optimizedImageSrc(img) || img}
                           alt={`${c.title} фото ${i + 2}`}
                           width={480}
                           height={320}
+                          loading="lazy"
                           sizes="(max-width: 1024px) 33vw, 240px"
                           className="w-full h-full object-contain object-center"
                         />
@@ -345,7 +349,7 @@ export default async function PortfolioCasePage({ params }: Props) {
                     {others.map(o => (
                       <Link key={o.slug} href={`/portfolio/${o.slug}`} className="card-base overflow-hidden hover:shadow-md transition-shadow group">
                         <div className="h-36 bg-gradient-to-br from-stone-200 to-amber-100 overflow-hidden">
-                          {o.mainImage ? <Image src={o.mainImage} alt={o.title} width={640} height={360} sizes="(max-width: 1024px) 100vw, 33vw" className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300" />
+                          {o.mainImage ? <Image src={optimizedImageSrc(o.mainImage) || o.mainImage} alt={o.title} width={640} height={360} loading="lazy" sizes="(max-width: 1024px) 100vw, 320px" className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-300" />
                             : <div className="w-full h-full flex items-center justify-center text-stone-400 text-xs">Фото</div>}
                         </div>
                         <div className="p-3">

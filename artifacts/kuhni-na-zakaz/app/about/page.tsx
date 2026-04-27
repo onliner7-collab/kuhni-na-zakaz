@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { prisma } from "@/lib/db";
 import { renderContent } from "@/lib/render-content";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
+import { getStaticPage } from "@/lib/static-page";
 
 const FACTS = [
   { n: "10+", t: "лет на рынке", d: "Работаем с 2015 года" },
@@ -11,39 +13,38 @@ const FACTS = [
   { n: "14 дней", t: "минимальный срок", d: "Для стандартных моделей" },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "КухниBY",
-  foundingDate: "2015",
-  description: "Производитель кухонь на заказ по всей Беларуси",
-  telephone: "+375291234567",
-  email: "info@kuhniby.by",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Минск",
-    addressCountry: "BY",
-    streetAddress: "ул. Притыцкого, 100",
-  },
-};
-
 export async function generateMetadata(): Promise<Metadata> {
-  const page = await prisma.staticPage.findUnique({ where: { slug: "about" } });
+  const page = await getStaticPage("about");
   return {
-    title: page?.seoTitle || "О компании КухниBY — кухни на заказ по Беларуси",
-    description: page?.seoDescription || "КухниBY — производитель кухонь на заказ по всей Беларуси.",
+    title: cleanSeoTitle(page?.seoTitle, "О компании и производство кухонь"),
+    description: trimMetaDescription(
+      page?.seoDescription,
+      "Производитель кухонь на заказ по всей Беларуси: собственное производство, опыт с 2015 года, договор, гарантия и бесплатный замер.",
+    ),
     alternates: { canonical: "/about" },
   };
 }
 
 export default async function AboutPage() {
-  const page = await prisma.staticPage.findUnique({ where: { slug: "about" } });
+  const page = await getStaticPage("about");
   const title = page?.title || "О компании";
   const content = page?.content || "";
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: title, path: "/about" },
+  ]);
+  const jsonLdPage = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: title,
+    url: siteUrl("/about"),
+    description: page?.seoDescription,
+    mainEntity: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
+  });
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdPage]} />
       <div className="section-padding">
         <div className="container-site">
           <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">

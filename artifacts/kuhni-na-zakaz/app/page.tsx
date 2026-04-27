@@ -5,9 +5,28 @@ import { ArrowRight, CheckCircle, Phone, Star, Shield, Clock, MapPin, FileCheck 
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { JsonLd, faqJsonLd } from "@/lib/schema-org";
+import { optimizedImageSrc } from "@/lib/image-optimization";
+
+type HomeAdvantage = {
+  id: number;
+  icon: string;
+  title: string;
+  description: string;
+  badge?: string;
+  href?: string;
+};
+
+type HomeStep = {
+  id: number;
+  icon: string;
+  title: string;
+  description: string;
+  badge?: string;
+};
 
 export const metadata: Metadata = {
-  title: "Кухни на заказ по Беларуси — замер и проект бесплатно | КухниBY",
+  title: "Кухни на заказ по Беларуси",
   description:
     "Проектируем, изготавливаем и устанавливаем кухни под заказ по всей Беларуси. Подберём решение под ваш размер, бюджет и стиль. Замер и 3D-проект бесплатно.",
   alternates: { canonical: "/" },
@@ -15,7 +34,7 @@ export const metadata: Metadata = {
 
 async function getHomeData() {
   try {
-    const [kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust] = await Promise.all([
+    const [kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
       prisma.kitchen.findMany({ where: { published: true }, take: 6, orderBy: { createdAt: "desc" } }),
       prisma.portfolioCase.findMany({ where: { published: true }, take: 3, orderBy: { createdAt: "desc" } }),
       prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 4, orderBy: { createdAt: "desc" } }),
@@ -24,15 +43,21 @@ async function getHomeData() {
       prisma.homepageBlock.findMany({ where: { type: "step", published: true }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "advantage", published: true }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "trust", published: true }, orderBy: { order: "asc" } }),
+      prisma.locationPage.findMany({
+        where: { published: true },
+        take: 8,
+        orderBy: [{ region: "asc" }, { city: "asc" }],
+        select: { id: true, slug: true, city: true, region: true, priceFrom: true },
+      }),
     ]);
-    return { kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust };
+    return { kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust, locations };
   } catch {
-    return { kitchens: [], cases: [], reviews: [], faqs: [], scenarios: [], steps: [], advantages: [], trust: [] };
+    return { kitchens: [], cases: [], reviews: [], faqs: [], scenarios: [], steps: [], advantages: [], trust: [], locations: [] };
   }
 }
 
 export default async function HomePage() {
-  const { kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust } = await getHomeData();
+  const { kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust, locations } = await getHomeData();
 
   const avgRating = reviews.length > 0
     ? (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)
@@ -61,6 +86,8 @@ export default async function HomePage() {
       }
     } : {}),
   };
+  const jsonLdFaq = faqJsonLd(faqs);
+  const jsonLdItems = jsonLdFaq ? [jsonLd, jsonLdFaq] : [jsonLd];
 
   const FALLBACK_SCENARIOS = [
     { id: 1, icon: "🏠", title: "Подобрать кухню", subtitle: "по образу жизни", description: "Угловая, прямая, с островом — подберём под вашу планировку и привычки", href: "/catalog", badge: "" },
@@ -70,7 +97,7 @@ export default async function HomePage() {
     { id: 5, icon: "✏️", title: "Собрать кухню", subtitle: "под свои задачи", description: "Расскажите о планировке, мы предложим решение и бесплатный выезд на замер", href: "/contacts#form", badge: "Старт" },
   ];
 
-  const FALLBACK_ADVANTAGES = [
+  const FALLBACK_ADVANTAGES: HomeAdvantage[] = [
     { id: 1, icon: "🏭", title: "Собственный завод", description: "Производим в своём цеху — контролируем качество на каждом этапе" },
     { id: 2, icon: "🛡️", title: "Гарантия 5 лет", description: "На фурнитуру Blum. На корпус и фасады — 2 года. Всё в договоре" },
     { id: 3, icon: "📐", title: "Замер и проект бесплатно", description: "Выезжаем в день обращения. 3D-проект за 3 дня — без предоплаты" },
@@ -79,7 +106,7 @@ export default async function HomePage() {
     { id: 6, icon: "⏱️", title: "От 14 рабочих дней", description: "Минимальный срок для стандартных кухонь. Сложные — 30–45 дней" },
   ];
 
-  const FALLBACK_STEPS = [
+  const FALLBACK_STEPS: HomeStep[] = [
     { id: 1, icon: "01", title: "Заявка", description: "Оставьте заявку или позвоните — ответим за 30 минут в рабочее время" },
     { id: 2, icon: "02", title: "Консультация", description: "Обсуждаем вашу планировку, бюджет и стиль. Без давления" },
     { id: 3, icon: "03", title: "Выезд на замер", description: "Бесплатный замер по всей Беларуси. Приедем в удобное время" },
@@ -99,10 +126,20 @@ export default async function HomePage() {
   const displayAdvantages = advantages.length > 0 ? advantages : FALLBACK_ADVANTAGES;
   const displaySteps = steps.length > 0 ? steps : FALLBACK_STEPS;
   const displayTrust = trust.length > 0 ? trust : FALLBACK_TRUST;
+  const displayLocations = locations.length > 0
+    ? locations
+    : [
+        { id: 1, slug: "minsk", city: "Минск", region: "Минская область", priceFrom: 900 },
+        { id: 2, slug: "brest", city: "Брест", region: "Брестская область", priceFrom: 900 },
+        { id: 3, slug: "grodno", city: "Гродно", region: "Гродненская область", priceFrom: 900 },
+        { id: 4, slug: "gomel", city: "Гомель", region: "Гомельская область", priceFrom: 900 },
+        { id: 5, slug: "vitebsk", city: "Витебск", region: "Витебская область", priceFrom: 900 },
+        { id: 6, slug: "mogilev", city: "Могилёв", region: "Могилёвская область", priceFrom: 900 },
+      ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLdItems} />
 
       {/* ===== HERO ===== */}
       <section
@@ -256,10 +293,11 @@ export default async function HomePage() {
                     {c.mainImage
                       ? (
                         <Image
-                          src={c.mainImage}
+                          src={optimizedImageSrc(c.mainImage) || c.mainImage}
                           alt={c.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
+                          loading="lazy"
+                          sizes="(max-width: 768px) 100vw, 360px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )
@@ -302,10 +340,11 @@ export default async function HomePage() {
                     {k.mainImage
                       ? (
                         <Image
-                          src={k.mainImage}
+                          src={optimizedImageSrc(k.mainImage) || k.mainImage}
                           alt={k.title}
                           fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          loading="lazy"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 360px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )
@@ -341,6 +380,32 @@ export default async function HomePage() {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* ===== COMMERCIAL HUBS ===== */}
+      <section className="section-padding bg-white border-y border-border/60">
+        <div className="container-site">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+            {[
+              { href: "/catalog", title: "Категории кухонь", text: "Угловые, прямые, П-образные, с островом и до потолка." },
+              { href: "/prices", title: "Цены и расчет", text: "Ориентиры по бюджету и быстрый переход к заявке на расчет." },
+              { href: "/portfolio", title: "Портфолио", text: "Реальные кухни с городом, стилем, размером и стоимостью." },
+              { href: "/materials", title: "Материалы", text: "Фасады, корпуса, столешницы и практичные варианты отделки." },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-2xl border border-border bg-muted/20 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+              >
+                <h2 className="font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                  Перейти <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -396,6 +461,44 @@ export default async function HomePage() {
                   </Link>
                 )}
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== LOCATIONS ===== */}
+      <section className="section-padding bg-white">
+        <div className="container-site">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
+            <div>
+              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Кухни на заказ в городах Беларуси</h2>
+              <p className="text-muted-foreground mt-1 text-sm">
+                Перейдите на страницу города, чтобы посмотреть условия, сроки, релевантные кейсы и популярные категории.
+              </p>
+            </div>
+            <Link href="/contacts" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
+              Уточнить выезд <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {displayLocations.map((loc) => (
+              <Link
+                key={loc.id}
+                href={`/locations/${loc.slug}`}
+                className="group rounded-2xl border border-border bg-muted/20 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Кухни в {loc.city}</h3>
+                    {loc.region && <p className="mt-1 text-xs text-muted-foreground">{loc.region}</p>}
+                  </div>
+                  <MapPin className="h-5 w-5 text-primary/70 shrink-0" />
+                </div>
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">от {loc.priceFrom.toLocaleString("ru")} BYN</span>
+                  <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>

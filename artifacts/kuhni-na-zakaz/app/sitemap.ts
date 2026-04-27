@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 import { prisma } from "@/lib/db";
+import { getSiteUrl } from "@/lib/site-url";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by";
+const BASE_URL = getSiteUrl();
+const TECHNICAL_STATIC_SLUGS = new Set(["personal-data", "privacy-policy", "terms"]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
@@ -21,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/warranty`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/calculator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE_URL}/kitchen-configurator`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
   ];
 
   const catalogSlugs = [
@@ -101,12 +104,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     }));
 
-    staticCmsPages = staticPgs.map((p) => ({
-      url: `${BASE_URL}/${p.slug}`,
-      lastModified: p.updatedAt,
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    }));
+    staticCmsPages = staticPgs
+      .filter((p) => !TECHNICAL_STATIC_SLUGS.has(p.slug))
+      .map((p) => ({
+        url: `${BASE_URL}/${p.slug}`,
+        lastModified: p.updatedAt,
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      }));
   } catch {}
 
   return [

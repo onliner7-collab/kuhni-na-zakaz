@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/db";
 import { KitchenConfiguratorPage } from "@/components/configurator/KitchenConfiguratorPage";
+import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import type { PlacedModule } from "@/lib/kitchen-configurator";
 
 export const metadata: Metadata = {
-  title: "Визуальный конфигуратор кухни — спроектируйте онлайн",
+  title: "Визуальный конфигуратор кухни",
   description:
     "Задайте размеры помещения, выберите планировку, модули, фасады и увидьте кухню в 2D и 3D. Сохраните проект и поделитесь с дизайнером.",
+  alternates: { canonical: "/kitchen-configurator" },
   openGraph: {
     title: "Визуальный конфигуратор кухни",
     description: "Спроектируйте кухню мечты онлайн: 2D/3D, расчёт стоимости, сохранение и шаринг.",
@@ -26,7 +29,29 @@ async function getCatalog() {
         prisma.kitchenAppliance.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
         prisma.kitchenConfiguratorSettings.findUnique({ where: { id: 1 } }).catch(() => null),
       ]);
-    return { modules, templates, facades, countertops, skinals, handles, mechanisms, appliances, settings };
+    return {
+      modules,
+      templates: templates.map((template) => ({
+        ...template,
+        modulesConfig: Array.isArray(template.modulesConfig)
+          ? (template.modulesConfig as unknown as PlacedModule[])
+          : [],
+        minWidthCm: template.minWidthCm ?? undefined,
+        maxWidthCm: template.maxWidthCm ?? undefined,
+      })),
+      facades,
+      countertops,
+      skinals,
+      handles,
+      mechanisms,
+      appliances: appliances.map((appliance) => ({
+        ...appliance,
+        widthCm: appliance.widthCm ?? undefined,
+        heightCm: appliance.heightCm ?? undefined,
+        depthCm: appliance.depthCm ?? undefined,
+      })),
+      settings,
+    };
   } catch {
     return { modules: [], templates: [], facades: [], countertops: [], skinals: [], handles: [], mechanisms: [], appliances: [], settings: null };
   }
@@ -34,5 +59,24 @@ async function getCatalog() {
 
 export default async function Page() {
   const catalog = await getCatalog();
-  return <KitchenConfiguratorPage catalog={catalog} />;
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Конфигуратор кухни", path: "/kitchen-configurator" },
+  ]);
+  const jsonLdService = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Визуальный конфигуратор кухни",
+    url: siteUrl("/kitchen-configurator"),
+    provider: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
+    serviceType: "Kitchen design configurator",
+    offers: { "@type": "Offer", price: 0, priceCurrency: "BYN", url: siteUrl("/kitchen-configurator") },
+  };
+
+  return (
+    <>
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdService]} />
+      <KitchenConfiguratorPage catalog={catalog} />
+    </>
+  );
 }

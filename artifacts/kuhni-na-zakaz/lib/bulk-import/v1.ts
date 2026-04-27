@@ -1406,13 +1406,13 @@ async function validateScopedEntityRow(
         ))
       );
       issues.push(
-        ...(await validateImageList(
+        ...((await validateImageList(
           sheetName,
           rowNumber,
           "images",
           kitchen.images,
           imageValidationCache
-        ))
+        )) ?? [])
       );
       break;
     }
@@ -1543,31 +1543,31 @@ async function validateScopedEntityRow(
         ))
       );
       issues.push(
-        ...(await validateImageList(
+        ...((await validateImageList(
           sheetName,
           rowNumber,
           "images",
           portfolio.images,
           imageValidationCache
-        ))
+        )) ?? [])
       );
       issues.push(
-        ...(await validateImageList(
+        ...((await validateImageList(
           sheetName,
           rowNumber,
           "photosBefore",
           portfolio.photosBefore,
           imageValidationCache
-        ))
+        )) ?? [])
       );
       issues.push(
-        ...(await validateImageList(
+        ...((await validateImageList(
           sheetName,
           rowNumber,
           "photosAfter",
           portfolio.photosAfter,
           imageValidationCache
-        ))
+        )) ?? [])
       );
       if (portfolio.images.length > 0 && portfolio.mainImage && !portfolio.images.includes(portfolio.mainImage)) {
         issues.push(
@@ -1635,13 +1635,13 @@ async function validateScopedEntityRow(
     case "locations": {
       const location = payload as LocationPayload;
       issues.push(
-        ...(await validateImageList(
+        ...((await validateImageList(
           sheetName,
           rowNumber,
           "images",
           location.images,
           imageValidationCache
-        ))
+        )) ?? [])
       );
       break;
     }

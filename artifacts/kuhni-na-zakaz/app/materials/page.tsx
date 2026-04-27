@@ -6,7 +6,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Материалы для кухонь на заказ — МДФ, эмаль, шпон, пластик | КухниBY",
+  title: "Материалы для кухонных фасадов",
   description: "Материалы для кухонных фасадов по всей Беларуси: МДФ плёнка, пластик HPL, эмаль матовая, шпон, ЛДСП EGGER. Цены, плюсы и минусы каждого.",
   alternates: { canonical: "/materials" },
 };
@@ -35,7 +35,7 @@ export default async function MaterialsPage() {
       "@type": "ListItem",
       position: i + 1,
       name: m.title,
-      url: `https://kuhniby.by/materials/${m.slug}`,
+      url: `https://kuhni.minsk.by/materials/${m.slug}`,
     })),
   };
 

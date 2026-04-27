@@ -6,10 +6,15 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileCTA } from "@/components/layout/MobileCTA";
 import { Toaster } from "@/components/ui/toaster";
+import {
+  AnalyticsProvider,
+  GoogleTagManagerNoScript,
+} from "@/components/analytics/AnalyticsProvider";
+import { getSiteUrl } from "@/lib/site-url";
 
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhniby.by";
+const siteUrl = getSiteUrl();
 const faviconVersion = "20260421b";
 
 export const metadata: Metadata = {
@@ -93,6 +98,8 @@ export default async function RootLayout({
   return (
     <html lang="ru">
       <body>
+        {!isAdmin && <GoogleTagManagerNoScript />}
+        {!isAdmin && <AnalyticsProvider />}
         {!isAdmin && (
           <Header
             phone={siteSettings?.phoneDisplay}

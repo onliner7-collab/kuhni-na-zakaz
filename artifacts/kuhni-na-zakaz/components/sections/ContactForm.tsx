@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().min(2, "Введите имя"),
@@ -32,6 +33,12 @@ export function ContactForm({ source = "website", city }: { source?: string; cit
   const onSubmit = async (data: FormData) => {
     if (data.honeypot) return;
     setLoading(true);
+    trackAnalyticsEvent(ANALYTICS_EVENTS.FORM_SUBMIT, {
+      form_type: "contact",
+      source,
+      city: data.city || city,
+    });
+
     try {
       const res = await fetch("/kapi/leads", {
         method: "POST",
@@ -41,6 +48,11 @@ export function ContactForm({ source = "website", city }: { source?: string; cit
       if (res.ok) {
         setSent(true);
         reset();
+        trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUCCESS, {
+          form_type: "contact",
+          source,
+          city: data.city || city,
+        });
         toast.success("Заявка отправлена! Перезвоним в течение 30 минут.");
       } else {
         toast.error("Ошибка отправки. Попробуйте ещё раз или позвоните нам.");

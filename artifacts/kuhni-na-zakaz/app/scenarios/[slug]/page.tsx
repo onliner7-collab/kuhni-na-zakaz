@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle, Lightbulb, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -56,8 +57,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = await getScenario(slug);
   if (!s) return { title: "Сценарий не найден" };
   return {
-    title: s.seoTitle || `${s.title} — кухня на заказ | КухниBY`,
-    description: s.seoDescription || s.intro.slice(0, 155),
+    title: cleanSeoTitle(s.seoTitle, `${s.title} — кухня на заказ`),
+    description: trimMetaDescription(s.seoDescription, s.intro),
     keywords: s.seoKeywords || undefined,
     alternates: { canonical: `/scenarios/${s.slug}` },
   };
@@ -79,14 +80,14 @@ export default async function ScenarioDetailPage({ params }: Props) {
     "@type": "Article",
     headline: scenario.headline || scenario.title,
     description: scenario.seoDescription || scenario.intro,
-    url: `https://kuhniby.by/scenarios/${scenario.slug}`,
+    url: `https://kuhni.minsk.by/scenarios/${scenario.slug}`,
     publisher: { "@type": "Organization", name: "КухниBY" },
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhniby.by" },
-        { "@type": "ListItem", position: 2, name: "Как выбрать кухню", item: "https://kuhniby.by/scenarios" },
-        { "@type": "ListItem", position: 3, name: scenario.title, item: `https://kuhniby.by/scenarios/${scenario.slug}` },
+        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by" },
+        { "@type": "ListItem", position: 2, name: "Как выбрать кухню", item: "https://kuhni.minsk.by/scenarios" },
+        { "@type": "ListItem", position: 3, name: scenario.title, item: `https://kuhni.minsk.by/scenarios/${scenario.slug}` },
       ],
     },
   };

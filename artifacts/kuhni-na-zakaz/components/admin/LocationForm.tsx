@@ -739,7 +739,7 @@ export default function LocationForm({ initial, isEdit }: Props) {
                 "areaServed": data.city || "Минск",
                 "priceRange": `от ${data.priceFrom} BYN`,
                 "telephone": data.phone || "+375291234567",
-                "@id": `https://kuhniby.by/locations/${data.slug || ""}`,
+                "@id": `https://kuhni.minsk.by/locations/${data.slug || ""}`,
               }, null, 2)}</pre>
             </div>
             <p className="text-xs text-muted-foreground">Разметка генерируется автоматически при публикации страницы</p>

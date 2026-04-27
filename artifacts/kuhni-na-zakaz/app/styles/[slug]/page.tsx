@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CheckCircle, XCircle, Droplets, ArrowRight, Layers, Users, Wallet } from "lucide-react";
+import { CheckCircle, XCircle, Droplets, ArrowRight, Layers, Users, Wallet, Camera, HelpCircle, Lightbulb, Link2 } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { renderContent } from "@/lib/render-content";
+import { getStyleEnrichment } from "@/lib/kitchen-page-enrichment";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -56,8 +59,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const s = await getStyle(slug);
   if (!s) return { title: "Стиль кухни" };
   return {
-    title: s.seoTitle || `${s.title} — КухниBY`,
-    description: s.seoDescription || s.description,
+    title: cleanSeoTitle(s.seoTitle, s.title),
+    description: trimMetaDescription(s.seoDescription, s.description),
     keywords: s.seoKeywords || undefined,
     alternates: { canonical: `/styles/${slug}` },
   };
@@ -71,6 +74,7 @@ export default async function StylePage({ params }: Props) {
     getRelatedData(s),
     getOtherStyles(slug),
   ]);
+  const enrichment = getStyleEnrichment(slug, s.title, s.priceFrom);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -78,20 +82,30 @@ export default async function StylePage({ params }: Props) {
     headline: s.headline || s.title,
     description: s.seoDescription || s.description,
     name: s.title,
-    url: `https://kuhniby.by/styles/${slug}`,
+    url: `https://kuhni.minsk.by/styles/${slug}`,
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhniby.by" },
-        { "@type": "ListItem", position: 2, name: "Стили", item: "https://kuhniby.by/styles" },
-        { "@type": "ListItem", position: 3, name: s.title, item: `https://kuhniby.by/styles/${slug}` },
+        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by" },
+        { "@type": "ListItem", position: 2, name: "Стили", item: "https://kuhni.minsk.by/styles" },
+        { "@type": "ListItem", position: 3, name: s.title, item: `https://kuhni.minsk.by/styles/${slug}` },
       ],
     },
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: enrichment.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <div className="section-padding">
         <div className="container-site">
@@ -138,6 +152,12 @@ export default async function StylePage({ params }: Props) {
                 )}
               </div>
 
+              {s.content && s.intro && (
+                <section className="prose prose-stone max-w-none rounded-2xl border border-border bg-white p-6">
+                  {renderContent(s.content)}
+                </section>
+              )}
+
               {/* Price block */}
               {s.priceFrom > 0 && (
                 <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -153,6 +173,37 @@ export default async function StylePage({ params }: Props) {
                   </Link>
                 </div>
               )}
+
+              <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-xl bg-violet-100 flex items-center justify-center shrink-0">
+                    <Lightbulb className="w-5 h-5 text-violet-600" />
+                  </div>
+                  <h2 className="font-serif text-2xl font-bold">Как спроектировать без шаблона</h2>
+                </div>
+                <div className="card-base p-5 space-y-4">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{enrichment.angle}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {enrichment.selectionTips.map((tip, i) => (
+                      <div key={i} className="rounded-xl bg-violet-50/70 border border-violet-100 p-4 text-sm text-foreground leading-relaxed">
+                        {tip}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <h2 className="font-serif text-2xl font-bold mb-4">Что влияет на цену</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {enrichment.priceNotes.map((note, i) => (
+                    <div key={i} className="card-base p-4">
+                      <span className="text-xs font-semibold text-primary">Фактор {i + 1}</span>
+                      <p className="text-sm text-muted-foreground leading-relaxed mt-2">{note}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
 
               {/* Кому подходит */}
               {s.suitableFor.length > 0 && (
@@ -253,6 +304,22 @@ export default async function StylePage({ params }: Props) {
               )}
 
               {/* Реальные работы в этом стиле */}
+              <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-xl bg-rose-100 flex items-center justify-center shrink-0">
+                    <Camera className="w-5 h-5 text-rose-600" />
+                  </div>
+                  <h2 className="font-serif text-2xl font-bold">Фото и кейсы: на что смотреть</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {enrichment.photoBrief.map((item, i) => (
+                    <div key={i} className="rounded-xl border border-border bg-white p-4 text-sm text-muted-foreground leading-relaxed">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
               {cases.length > 0 && (
                 <section>
                   <div className="flex items-center justify-between mb-4">
@@ -328,6 +395,46 @@ export default async function StylePage({ params }: Props) {
                   </div>
                 </section>
               )}
+
+              <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0">
+                    <HelpCircle className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <h2 className="font-serif text-2xl font-bold">FAQ по этому стилю</h2>
+                </div>
+                <div className="space-y-3">
+                  {enrichment.faq.map((item, i) => (
+                    <details key={i} className="group card-base p-5" open={i === 0}>
+                      <summary className="cursor-pointer list-none font-semibold flex items-start justify-between gap-4">
+                        <span>{item.question}</span>
+                        <ArrowRight className="w-4 h-4 text-muted-foreground group-open:rotate-90 transition-transform shrink-0 mt-1" />
+                      </summary>
+                      <p className="text-sm text-muted-foreground leading-relaxed mt-3">{item.answer}</p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
+                    <Link2 className="w-5 h-5 text-slate-600" />
+                  </div>
+                  <h2 className="font-serif text-2xl font-bold">Куда перейти дальше</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {enrichment.internalLinks.map((item) => (
+                    <Link key={`${item.href}-${item.label}`} href={item.href} className="card-base p-4 hover:shadow-md transition-shadow group">
+                      <p className="font-semibold text-sm group-hover:text-primary transition-colors flex items-center justify-between gap-3">
+                        {item.label}
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.description}</p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
             </div>
 
             {/* Sidebar */}

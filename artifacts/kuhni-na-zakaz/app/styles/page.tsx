@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Стили кухонь на заказ — современный, классический, скандинавский | КухниBY",
+  title: "Стили кухонь на заказ",
   description: "Кухни на заказ в разных стилях по всей Беларуси: современный, классический, скандинавский, минимализм, лофт. Фото, цены, советы по выбору.",
   alternates: { canonical: "/styles" },
 };
@@ -39,7 +39,7 @@ export default async function StylesPage() {
       "@type": "ListItem",
       position: i + 1,
       name: s.title,
-      url: `https://kuhniby.by/styles/${s.slug}`,
+      url: `https://kuhni.minsk.by/styles/${s.slug}`,
     })),
   };
 

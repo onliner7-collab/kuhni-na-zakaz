@@ -4,11 +4,12 @@ import { MapPin, Square, Clock, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { PortfolioFilters } from "@/components/portfolio/PortfolioFilters";
+import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Портфолио — реализованные проекты кухонь по всей Беларуси | КухниBY",
+  title: "Портфолио кухонь на заказ",
   description: "Готовые проекты кухонь на заказ в Минске и всей Беларуси. Фото, стоимость, сроки, истории клиентов. Угловые, П-образные, кухни с островом.",
   alternates: { canonical: "/portfolio" },
 };
@@ -21,11 +22,32 @@ export default async function PortfolioPage() {
       title: { not: "" },
     },
     orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
-  });
+  }).catch(() => []);
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Портфолио", path: "/portfolio" },
+  ]);
+  const jsonLdCollection = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Портфолио кухонь",
+    url: siteUrl("/portfolio"),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: cases.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.title,
+        url: siteUrl(`/portfolio/${item.slug}`),
+      })),
+    },
+  };
 
   return (
-    <div className="section-padding">
-      <div className="container-site">
+    <>
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdCollection]} />
+      <div className="section-padding">
+        <div className="container-site">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
           <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
           <span className="text-foreground">Портфолио</span>
@@ -47,7 +69,8 @@ export default async function PortfolioPage() {
             <ContactForm source="portfolio-index" />
           </div>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

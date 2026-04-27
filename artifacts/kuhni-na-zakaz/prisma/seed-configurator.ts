@@ -1,4 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import {
+  KitchenHandleType,
+  KitchenLayoutType,
+  KitchenModuleType,
+  PrismaClient,
+} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -42,7 +47,7 @@ async function main() {
   ];
 
   for (const m of modules) {
-    const moduleTypeMap: Record<string, string> = {
+    const moduleTypeMap: Record<string, KitchenModuleType> = {
       DRAWER_UNIT: "DRAWER",
       SINK_MODULE: "SINK",
       COOKTOP_MODULE: "LOWER",
@@ -55,7 +60,7 @@ async function main() {
     };
     const normalized = {
       ...m,
-      moduleType: moduleTypeMap[m.moduleType] ?? m.moduleType,
+      moduleType: moduleTypeMap[m.moduleType] ?? (m.moduleType as KitchenModuleType),
       tags: [m.slug, (moduleTypeMap[m.moduleType] ?? m.moduleType).toLowerCase()],
     };
     await prisma.kitchenModule.upsert({
@@ -148,10 +153,11 @@ async function main() {
   ];
 
   for (const h of handles) {
+    const normalized = { ...h, handleType: h.handleType as KitchenHandleType };
     await prisma.kitchenHandle.upsert({
-      where: { slug: h.slug },
-      update: h,
-      create: h,
+      where: { slug: normalized.slug },
+      update: normalized,
+      create: normalized,
     });
   }
   console.log(`  ✅ ${handles.length} handles`);
@@ -281,7 +287,7 @@ async function main() {
   ];
 
   for (const t of templates) {
-    const layoutTypeMap: Record<string, string> = {
+    const layoutTypeMap: Record<string, KitchenLayoutType> = {
       LINEAR: "STRAIGHT",
       L_SHAPED: "CORNER",
       U_SHAPED: "U_SHAPE",
@@ -289,7 +295,7 @@ async function main() {
     const normalized = {
       slug: t.slug,
       name: t.name,
-      layoutType: layoutTypeMap[t.layoutType] ?? t.layoutType,
+      layoutType: layoutTypeMap[t.layoutType] ?? (t.layoutType as KitchenLayoutType),
       description: t.description,
       minWidthCm: t.minRoomWidthCm,
       modulesConfig: t.modulesConfig as object[],

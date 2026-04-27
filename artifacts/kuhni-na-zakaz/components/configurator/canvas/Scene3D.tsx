@@ -2,9 +2,16 @@
 
 import { Suspense, useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import type { ThreeElements } from "@react-three/fiber";
 import { OrbitControls, Environment, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 import type { RoomConfig, PlacedModule, CatalogModule, CatalogFacade, MaterialsConfig } from "@/lib/kitchen-configurator";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements extends ThreeElements {}
+  }
+}
 
 interface Scene3DProps {
   roomConfig: RoomConfig;
