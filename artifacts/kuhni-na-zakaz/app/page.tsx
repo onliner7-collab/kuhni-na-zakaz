@@ -289,7 +289,7 @@ export default async function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {cases.map((c) => (
                 <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <div className="h-56 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
+                  <div className="relative h-56 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
                     {c.mainImage
                       ? (
                         <Image
@@ -336,7 +336,7 @@ export default async function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {kitchens.map((k) => (
                 <Link key={k.id} href={`/catalog/${k.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <div className="h-48 overflow-hidden bg-gradient-to-br from-violet-50 to-blue-50">
+                  <div className="relative h-48 overflow-hidden bg-gradient-to-br from-violet-50 to-blue-50">
                     {k.mainImage
                       ? (
                         <Image
