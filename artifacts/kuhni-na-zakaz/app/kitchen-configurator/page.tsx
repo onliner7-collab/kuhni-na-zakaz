@@ -1,97 +1,35 @@
 import type { Metadata } from "next";
-import { prisma } from "@/lib/db";
-import { KitchenConfiguratorPage } from "@/components/configurator/KitchenConfiguratorPage";
+import Link from "next/link";
+import { ArrowRight, Calculator, CheckCircle2, Clock3, Phone, Ruler } from "lucide-react";
+
+import { ContactForm } from "@/components/sections/ContactForm";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
-import type { CatalogTemplate, PlacedModule } from "@/lib/kitchen-configurator";
-import {
-  fallbackAppliances,
-  fallbackConfiguratorSettings,
-  fallbackCountertops,
-  fallbackFacades,
-  fallbackHandles,
-  fallbackModules,
-  fallbackSkinals,
-  fallbackTemplates,
-} from "@/lib/kitchen-configurator/fallback-catalog";
 
 export const metadata: Metadata = {
-  title: "Визуальный конфигуратор кухни",
+  title: "Конфигуратор кухни скоро будет доступен",
   description:
-    "Задайте размеры помещения, выберите планировку, модули, фасады и увидьте кухню в 2D и 3D. Сохраните проект и поделитесь с дизайнером.",
+    "Визуальный конфигуратор кухни временно обновляется. Оставьте заявку, и мы бесплатно подготовим расчет кухни по вашим размерам, планировке и материалам.",
   alternates: { canonical: "/kitchen-configurator" },
   openGraph: {
-    title: "Визуальный конфигуратор кухни",
-    description: "Спроектируйте кухню мечты онлайн: 2D/3D, расчёт стоимости, сохранение и шаринг.",
+    title: "Конфигуратор кухни скоро будет доступен",
+    description:
+      "Пока онлайн-конфигуратор в разработке, дизайнер поможет подобрать планировку, материалы и подготовить предварительный расчет кухни.",
   },
 };
 
-async function getCatalog() {
-  try {
-    const [modules, templates, facades, countertops, skinals, handles, mechanisms, appliances, settings] =
-      await Promise.all([
-        prisma.kitchenModule.findMany({ where: { isEnabled: true }, orderBy: [{ moduleType: "asc" }, { sortOrder: "asc" }] }),
-        prisma.kitchenTemplate.findMany({ where: { isEnabled: true, isPublished: true }, orderBy: { sortOrder: "asc" } }),
-        prisma.kitchenFacade.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
-        prisma.kitchenCountertop.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
-        prisma.kitchenSkinal.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
-        prisma.kitchenHandle.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
-        prisma.kitchenMechanism.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
-        prisma.kitchenAppliance.findMany({ where: { isEnabled: true }, orderBy: { sortOrder: "asc" } }),
-        prisma.kitchenConfiguratorSettings.findUnique({ where: { id: 1 } }).catch(() => null),
-      ]);
-    const normalizedTemplates = templates.map((template) => ({
-        ...template,
-        modulesConfig: Array.isArray(template.modulesConfig)
-          ? (template.modulesConfig as unknown as PlacedModule[])
-          : [],
-        minWidthCm: template.minWidthCm ?? undefined,
-        maxWidthCm: template.maxWidthCm ?? undefined,
-      }));
-    return {
-      modules: modules.length ? modules : fallbackModules,
-      templates: withRequiredTemplates(normalizedTemplates),
-      facades: facades.length ? facades : fallbackFacades,
-      countertops: countertops.length ? countertops : fallbackCountertops,
-      skinals: skinals.length ? skinals : fallbackSkinals,
-      handles: handles.length ? handles : fallbackHandles,
-      mechanisms,
-      appliances: appliances.length ? appliances.map((appliance) => ({
-        ...appliance,
-        widthCm: appliance.widthCm ?? undefined,
-        heightCm: appliance.heightCm ?? undefined,
-        depthCm: appliance.depthCm ?? undefined,
-      })) : fallbackAppliances,
-      settings: settings ?? fallbackConfiguratorSettings,
-    };
-  } catch {
-    return {
-      modules: fallbackModules,
-      templates: fallbackTemplates,
-      facades: fallbackFacades,
-      countertops: fallbackCountertops,
-      skinals: fallbackSkinals,
-      handles: fallbackHandles,
-      mechanisms: [],
-      appliances: fallbackAppliances,
-      settings: fallbackConfiguratorSettings,
-    };
-  }
-}
+const STEPS = [
+  "Пришлете размеры помещения или фото",
+  "Уточним планировку, материалы и технику",
+  "Подготовим ориентир по цене и срокам",
+];
 
-function withRequiredTemplates(templates: CatalogTemplate[]) {
-  if (!templates.length) return fallbackTemplates;
+const OPTIONS = [
+  { icon: Ruler, title: "По вашим размерам", text: "Учтем стены, углы, трубы, окна и место под встроенную технику." },
+  { icon: Calculator, title: "Расчет бюджета", text: "Подскажем диапазон стоимости до финального замера и проекта." },
+  { icon: Clock3, title: "Без ожидания релиза", text: "Заявку можно оставить уже сейчас, а конфигуратор добавим позже." },
+];
 
-  const requiredLayouts = new Set(["STRAIGHT", "CORNER", "U_SHAPE", "ISLAND"]);
-  const presentLayouts = new Set(templates.map((template) => template.layoutType));
-  const missingFallbacks = fallbackTemplates.filter(
-    (template) => requiredLayouts.has(template.layoutType) && !presentLayouts.has(template.layoutType),
-  );
-
-  return [...templates, ...missingFallbacks];
-}
-
-export default async function Page() {
-  const catalog = await getCatalog();
+export default function KitchenConfiguratorPlaceholderPage() {
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Конфигуратор кухни", path: "/kitchen-configurator" },
@@ -99,17 +37,113 @@ export default async function Page() {
   const jsonLdService = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Визуальный конфигуратор кухни",
+    name: "Предварительный расчет кухни на заказ",
     url: siteUrl("/kitchen-configurator"),
     provider: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
-    serviceType: "Kitchen design configurator",
+    serviceType: "Kitchen design estimate",
     offers: { "@type": "Offer", price: 0, priceCurrency: "BYN", url: siteUrl("/kitchen-configurator") },
   };
 
   return (
     <>
       <JsonLd data={[jsonLdBreadcrumb, jsonLdService]} />
-      <KitchenConfiguratorPage catalog={catalog} />
+      <main className="bg-background">
+        <section className="section-padding">
+          <div className="container-site">
+            <nav className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+              <Link href="/" className="hover:text-primary">
+                Главная
+              </Link>
+              <span>/</span>
+              <span className="text-foreground">Конфигуратор кухни</span>
+            </nav>
+
+            <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="max-w-2xl">
+                <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary">
+                  <Clock3 className="h-4 w-4" />
+                  Конфигуратор обновляется
+                </div>
+
+                <h1 className="mb-5 font-serif text-4xl font-bold leading-tight text-foreground sm:text-5xl">
+                  Онлайн-конфигуратор кухни скоро появится на сайте
+                </h1>
+
+                <p className="mb-7 text-lg leading-relaxed text-muted-foreground">
+                  Мы временно убрали визуальный конструктор, чтобы спокойно доработать его без ошибок для посетителей.
+                  Страница остается полезной: оставьте заявку, и дизайнер подготовит предварительный расчет кухни по
+                  вашим размерам, планировке и пожеланиям.
+                </p>
+
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="#form"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+                  >
+                    Получить расчет
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="tel:+375291234567"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                  >
+                    <Phone className="h-4 w-4" />
+                    +375 (29) 123-45-67
+                  </a>
+                </div>
+
+                <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                  {OPTIONS.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <div key={item.title} className="rounded-lg border bg-card p-4">
+                        <Icon className="mb-3 h-5 w-5 text-primary" />
+                        <h2 className="mb-1 text-sm font-semibold text-foreground">{item.title}</h2>
+                        <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <aside id="form" className="rounded-lg border bg-card p-5 shadow-sm lg:p-6">
+                <div className="mb-5">
+                  <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">Заявка на расчет</p>
+                  <h2 className="font-serif text-2xl font-semibold text-foreground">Расскажите о будущей кухне</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    Перезвоним, уточним размеры и предложим следующий шаг: консультацию, замер или предварительную
+                    комплектацию.
+                  </p>
+                </div>
+                <ContactForm source="kitchen-configurator-placeholder" />
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t bg-muted/30 py-12">
+          <div className="container-site">
+            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">Что будет дальше</p>
+                <h2 className="font-serif text-3xl font-bold text-foreground">
+                  Конфигуратор вернем после полноценной доработки
+                </h2>
+              </div>
+
+              <div className="grid gap-3">
+                {STEPS.map((step) => (
+                  <div key={step} className="flex items-start gap-3 rounded-lg bg-background p-4">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                    <p className="text-sm leading-relaxed text-muted-foreground">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
