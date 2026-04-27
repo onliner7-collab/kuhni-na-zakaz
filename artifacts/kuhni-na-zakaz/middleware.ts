@@ -3,7 +3,16 @@ import { getSessionFromRequest } from "@/lib/auth";
 
 const ADMIN_PATHS = ["/admin"];
 const PUBLIC_ADMIN_PATHS = ["/admin/login"];
-const CLOSED_ROBOTS_PATHS = ["/admin", "/api", "/kapi", "/login", "/thanks"];
+const CLOSED_ROBOTS_PATHS = [
+  "/admin",
+  "/api",
+  "/kapi",
+  "/account",
+  "/dashboard",
+  "/login",
+  "/thanks",
+  "/user",
+];
 const NOINDEX_HEADER_VALUE = "noindex, nofollow, noarchive";
 
 export async function middleware(req: NextRequest) {
@@ -38,7 +47,7 @@ export async function middleware(req: NextRequest) {
     const url = req.nextUrl.clone();
     url.pathname = "/admin/login";
     url.searchParams.set("from", pathname);
-    return NextResponse.redirect(url);
+    return withNoindexHeader(NextResponse.redirect(url));
   }
 
   // Guest access: check allowed sections
@@ -48,7 +57,7 @@ export async function middleware(req: NextRequest) {
     if (!isAllowed && pathname !== "/admin/dashboard") {
       const url = req.nextUrl.clone();
       url.pathname = "/admin/dashboard";
-      return NextResponse.redirect(url);
+      return withNoindexHeader(NextResponse.redirect(url));
     }
   }
 
@@ -61,9 +70,14 @@ function addPathnameHeader(req: NextRequest, pathname: string) {
   const response = NextResponse.next({ request: { headers: requestHeaders } });
 
   if (CLOSED_ROBOTS_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
-    response.headers.set("X-Robots-Tag", NOINDEX_HEADER_VALUE);
+    return withNoindexHeader(response);
   }
 
+  return response;
+}
+
+function withNoindexHeader(response: NextResponse) {
+  response.headers.set("X-Robots-Tag", NOINDEX_HEADER_VALUE);
   return response;
 }
 

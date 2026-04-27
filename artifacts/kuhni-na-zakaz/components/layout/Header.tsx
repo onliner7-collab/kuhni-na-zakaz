@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, LogIn, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Menu, Phone, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -43,8 +43,6 @@ const EXTRA_NAV_ARIA = "\u0414\u043e\u043f\u043e\u043b\u043d\u0438\u0442\u0435\u
 const MOBILE_NAV_ARIA = "\u041c\u043e\u0431\u0438\u043b\u044c\u043d\u0430\u044f \u043d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044f";
 const OPEN_MENU = "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e";
 const CLOSE_MENU = "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e";
-const LOGIN_LABEL = "\u0412\u0445\u043e\u0434";
-const LOGIN_ADMIN_LABEL = "\u0412\u0445\u043e\u0434 \u0432 \u0430\u0434\u043c\u0438\u043d\u043a\u0443";
 const CTA_LABEL = "\u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0439 \u0437\u0430\u043c\u0435\u0440";
 const CONSULTATION_LABEL = "\u041a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044f";
 const USEFUL_SECTIONS_LABEL = "\u041f\u043e\u043b\u0435\u0437\u043d\u044b\u0435 \u0440\u0430\u0437\u0434\u0435\u043b\u044b";
@@ -189,15 +187,6 @@ export function Header({
             </a>
 
             <Link
-              href="/admin/login"
-              className="hidden items-center gap-2 rounded-2xl border border-border px-4 py-3 text-sm font-semibold text-foreground/60 transition-colors hover:bg-muted hover:text-foreground xl:inline-flex"
-              data-testid="header-login"
-            >
-              <LogIn className="h-4 w-4" />
-              {LOGIN_LABEL}
-            </Link>
-
-            <Link
               href="/contacts#form"
               className="btn-primary rounded-2xl px-5 py-3 text-sm shadow-xl shadow-primary/20"
               data-testid="header-cta"
@@ -215,15 +204,6 @@ export function Header({
             >
               <Phone className="h-4 w-4" />
             </a>
-            <Link
-              href="/admin/login"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-2xl border border-border bg-white px-3.5 text-sm font-semibold text-foreground/75 transition-colors hover:bg-muted hover:text-foreground"
-              aria-label={LOGIN_ADMIN_LABEL}
-              data-testid="header-login-mobile"
-            >
-              <LogIn className="h-4 w-4" />
-              <span className="hidden min-[380px]:inline">{LOGIN_LABEL}</span>
-            </Link>
             <button
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white transition-colors hover:bg-muted"
               onClick={() => setOpen((value) => !value)}
@@ -302,13 +282,6 @@ export function Header({
                 {phoneDisplay}
               </a>
 
-              <Link
-                href="/admin/login"
-                className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-white px-4 py-3.5 text-sm font-semibold text-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <LogIn className="h-4 w-4" />
-                {LOGIN_ADMIN_LABEL}
-              </Link>
             </div>
           </div>
         </div>

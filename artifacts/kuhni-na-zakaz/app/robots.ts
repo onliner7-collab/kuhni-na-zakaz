@@ -13,9 +13,16 @@ export default function robots(): MetadataRoute.Robots {
     "/api/",
     "/kapi",
     "/kapi/",
+    "/account",
+    "/account/",
+    "/dashboard",
+    "/dashboard/",
     "/login",
+    "/login/",
     "/thanks",
     "/thanks/",
+    "/user",
+    "/user/",
   ];
 
   return {
