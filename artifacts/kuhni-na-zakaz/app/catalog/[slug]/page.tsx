@@ -454,7 +454,7 @@ export default async function CatalogItemPage({ params }: Props) {
           <div className="lg:col-span-2">
             <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
             <div className="mb-6 overflow-hidden rounded-2xl border bg-card shadow-sm">
-              <CatalogCategoryImage src={heroImage.src} alt={heroImage.alt} priority />
+              <CatalogCategoryImage src={heroImage.src} alt={heroImage.alt} priority sizes="(max-width: 1024px) 100vw, 820px" />
             </div>
             <p className="text-muted-foreground text-lg mb-6">{data.content}</p>
             <div className="card-base p-6 mb-6">

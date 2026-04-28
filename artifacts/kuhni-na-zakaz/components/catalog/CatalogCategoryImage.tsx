@@ -8,9 +8,15 @@ type CatalogCategoryImageProps = {
   src?: string | null;
   alt: string;
   priority?: boolean;
+  sizes?: string;
 };
 
-export function CatalogCategoryImage({ src, alt, priority = false }: CatalogCategoryImageProps) {
+export function CatalogCategoryImage({
+  src,
+  alt,
+  priority = false,
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px",
+}: CatalogCategoryImageProps) {
   const [failed, setFailed] = useState(false);
   const shouldShowImage = Boolean(src) && !failed;
 
@@ -20,10 +26,11 @@ export function CatalogCategoryImage({ src, alt, priority = false }: CatalogCate
         <Image
           src={src as string}
           alt={alt}
-          width={640}
-          height={480}
+          width={1200}
+          height={900}
+          quality={90}
           {...(priority ? { priority: true } : { loading: "lazy" as const })}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
+          sizes={sizes}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           onError={() => setFailed(true)}
         />
