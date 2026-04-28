@@ -22,7 +22,7 @@ Active production target:
 
 Before using them:
 
-1. Replace `__APP_DIR__`, `__APP_USER__`, `__DOMAIN__`, and `__PORT__`.
+1. Replace `__APP_DIR__`, `__APP_USER__`, `__DOMAIN__`, `__PORT__`, `__SSL_CERTIFICATE__`, and `__SSL_CERTIFICATE_KEY__`.
 2. Create a real production env file at `/etc/kuhni-na-zakaz.env` from `artifacts/kuhni-na-zakaz/.env.example`.
 3. Symlink `/var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.env` to `/etc/kuhni-na-zakaz.env` for build and Prisma commands.
 4. Set env file permissions to `640` with owner `root` and group `kuhni`.

@@ -124,7 +124,7 @@ export async function sendEmailNotification(lead: EmailLeadData): Promise<void> 
 
   const from = smtp.auth.user
     ? `"КухниBY" <${smtp.auth.user}>`
-    : `"КухниBY" <noreply@kuhniby.by>`;
+    : `"КухниBY" <noreply@kuhni.minsk.by>`;
 
   const formLabel = FORM_TYPE_LABELS[lead.formType] ?? lead.formType;
   const subject = `Новая заявка #${lead.id} — ${formLabel} | КухниBY`;

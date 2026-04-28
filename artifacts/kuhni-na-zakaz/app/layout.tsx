@@ -120,7 +120,7 @@ export default async function RootLayout({
                 name: siteSettings?.siteName || "КухниBY",
                 url: siteUrl,
                 telephone: siteSettings?.phone || "+375291234567",
-                email: siteSettings?.email || "info@kuhniby.by",
+                email: siteSettings?.email || "info@kuhni.minsk.by",
                 address: siteSettings?.address || "Минск, Беларусь",
               }),
             }}

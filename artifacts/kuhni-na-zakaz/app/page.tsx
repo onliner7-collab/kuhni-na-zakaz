@@ -7,6 +7,8 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { JsonLd, faqJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
+import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 
 type HomeAdvantage = {
   id: number;
@@ -25,6 +27,15 @@ type HomeStep = {
   badge?: string;
 };
 
+const CATALOG_CATEGORIES = [
+  { slug: "uglovye-kuhni", title: "Угловые кухни", price: "от 1 800 BYN" },
+  { slug: "pryamye-kuhni", title: "Прямые кухни", price: "от 1 200 BYN" },
+  { slug: "p-obraznye-kuhni", title: "П-образные кухни", price: "от 3 500 BYN" },
+  { slug: "kuhni-s-ostrovom", title: "Кухни с островом", price: "от 4 500 BYN" },
+  { slug: "malenkie-kuhni", title: "Маленькие кухни", price: "от 900 BYN" },
+  { slug: "kuhni-do-potolka", title: "Кухни до потолка", price: "от 2 200 BYN" },
+];
+
 export const metadata: Metadata = {
   title: "Кухни на заказ по Беларуси",
   description:
@@ -34,8 +45,7 @@ export const metadata: Metadata = {
 
 async function getHomeData() {
   try {
-    const [kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
-      prisma.kitchen.findMany({ where: { published: true }, take: 6, orderBy: { createdAt: "desc" } }),
+    const [cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
       prisma.portfolioCase.findMany({ where: { published: true }, take: 3, orderBy: { createdAt: "desc" } }),
       prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 4, orderBy: { createdAt: "desc" } }),
       prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" }, take: 8 }),
@@ -50,14 +60,14 @@ async function getHomeData() {
         select: { id: true, slug: true, city: true, region: true, priceFrom: true },
       }),
     ]);
-    return { kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust, locations };
+    return { cases, reviews, faqs, scenarios, steps, advantages, trust, locations };
   } catch {
-    return { kitchens: [], cases: [], reviews: [], faqs: [], scenarios: [], steps: [], advantages: [], trust: [], locations: [] };
+    return { cases: [], reviews: [], faqs: [], scenarios: [], steps: [], advantages: [], trust: [], locations: [] };
   }
 }
 
 export default async function HomePage() {
-  const { kitchens, cases, reviews, faqs, scenarios, steps, advantages, trust, locations } = await getHomeData();
+  const { cases, reviews, faqs, scenarios, steps, advantages, trust, locations } = await getHomeData();
 
   const avgRating = reviews.length > 0
     ? (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)
@@ -69,7 +79,7 @@ export default async function HomePage() {
     name: "КухниBY",
     description: "Кухни на заказ по всей Беларуси. Собственное производство.",
     telephone: "+375291234567",
-    email: "info@kuhniby.by",
+    email: "info@kuhni.minsk.by",
     address: { "@type": "PostalAddress", addressLocality: "Минск", addressCountry: "BY" },
     areaServed: [
       { "@type": "AdministrativeArea", name: "Беларусь" }
@@ -332,54 +342,24 @@ export default async function HomePage() {
               Все категории <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          {kitchens.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {kitchens.map((k) => (
-                <Link key={k.id} href={`/catalog/${k.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <div className="relative h-48 overflow-hidden bg-gradient-to-br from-violet-50 to-blue-50">
-                    {k.mainImage
-                      ? (
-                        <Image
-                          src={optimizedImageSrc(k.mainImage) || k.mainImage}
-                          alt={k.title}
-                          fill
-                          loading="lazy"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 45vw, 360px"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      )
-                      : <div className="w-full h-full flex items-center justify-center text-4xl">🍳</div>
-                    }
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{k.title}</h3>
-                    {k.priceFrom > 0 && <p className="text-primary font-bold mt-1 text-sm">от {k.priceFrom.toLocaleString("ru")} BYN</p>}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {[
-                { slug: "uglovye-kuhni", t: "Угловые кухни", p: "от 1 800 BYN", emoji: "📐" },
-                { slug: "pryamye-kuhni", t: "Прямые кухни", p: "от 1 200 BYN", emoji: "➖" },
-                { slug: "p-obraznye-kuhni", t: "П-образные кухни", p: "от 3 500 BYN", emoji: "🔄" },
-                { slug: "kuhni-s-ostrovom", t: "Кухни с островом", p: "от 4 500 BYN", emoji: "🏝️" },
-                { slug: "malenkie-kuhni", t: "Маленькие кухни", p: "от 900 BYN", emoji: "🤏" },
-                { slug: "kuhni-do-potolka", t: "Кухни до потолка", p: "от 2 200 BYN", emoji: "⬆️" },
-              ].map((cat) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {CATALOG_CATEGORIES.map((cat, index) => {
+              const image = resolveCatalogCategoryImage({
+                slug: cat.slug,
+                title: cat.title,
+              });
+
+              return (
                 <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <div className="h-48 flex items-center justify-center text-5xl" style={{ background: "linear-gradient(135deg, #f3f0ff, #e0f2fe)" }}>
-                    {cat.emoji}
-                  </div>
+                  <CatalogCategoryImage src={image.src} alt={image.alt} priority={index < 3} />
                   <div className="p-5">
-                    <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{cat.t}</h3>
-                    <p className="text-primary font-bold mt-1 text-sm">{cat.p}</p>
+                    <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{cat.title}</h3>
+                    <p className="text-primary font-bold mt-1 text-sm">{cat.price}</p>
                   </div>
                 </Link>
-              ))}
-            </div>
-          )}
+              );
+            })}
+          </div>
         </div>
       </section>
 

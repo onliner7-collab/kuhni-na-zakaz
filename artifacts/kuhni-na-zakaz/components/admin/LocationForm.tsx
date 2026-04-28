@@ -723,7 +723,7 @@ export default function LocationForm({ initial, isEdit }: Props) {
               <p className="text-sm text-[#1a0dab] font-medium hover:underline cursor-pointer">
                 {data.seoTitle || data.title || "Заголовок страницы"}
               </p>
-              <p className="text-xs text-[#006621]">kuhniby.by/locations/{data.slug || "..."}</p>
+              <p className="text-xs text-[#006621]">kuhni.minsk.by/locations/{data.slug || "..."}</p>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 {data.seoDescription || data.description || "Описание страницы в поиске..."}
               </p>

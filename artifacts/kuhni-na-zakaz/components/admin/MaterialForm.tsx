@@ -293,7 +293,7 @@ export default function MaterialForm({ initial }: { initial?: Partial<MaterialDa
           <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
             <p className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wide">Превью в поиске</p>
             <p className="text-blue-700 text-sm font-medium">{data.seoTitle || data.title || "SEO заголовок"}</p>
-            <p className="text-green-700 text-xs">{`kuhniby.by/materials/${data.slug}`}</p>
+            <p className="text-green-700 text-xs">{`kuhni.minsk.by/materials/${data.slug}`}</p>
             <p className="text-gray-600 text-xs mt-1">{data.seoDescription || data.description || "SEO описание"}</p>
           </div>
           <div>

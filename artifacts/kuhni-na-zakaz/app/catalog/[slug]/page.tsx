@@ -334,6 +334,8 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
   },
 };
 
+const PRIMARY_CATEGORY_SLUGS = new Set(Object.keys(STATIC_CATEGORIES));
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -341,25 +343,37 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  try {
-    const kitchen = await prisma.kitchen.findUnique({ where: { slug } });
-    if (kitchen?.published) {
-      return {
-        title: cleanSeoTitle(kitchen.seoTitle, kitchen.title),
-        description: trimMetaDescription(kitchen.seoDescription, kitchen.description),
-        alternates: { canonical: `/catalog/${slug}` },
-      };
-    }
-  } catch {}
-
   const cat = STATIC_CATEGORIES[slug];
   if (cat) {
     return {
       title: cleanSeoTitle(cat.title, "Кухня на заказ"),
       description: trimMetaDescription(cat.description, cat.description),
       alternates: { canonical: `/catalog/${slug}` },
+      robots: { index: true, follow: true },
     };
   }
+
+  try {
+    const kitchen = await prisma.kitchen.findUnique({ where: { slug } });
+    if (kitchen?.published) {
+      const canonicalSlug = resolvePrimaryCategorySlug({
+        slug,
+        title: kitchen.title,
+        category: kitchen.category,
+      });
+      const isPrimaryCategory = PRIMARY_CATEGORY_SLUGS.has(slug);
+
+      return {
+        title: cleanSeoTitle(kitchen.seoTitle, kitchen.title),
+        description: trimMetaDescription(kitchen.seoDescription, kitchen.description),
+        alternates: { canonical: canonicalSlug === "catalog" ? "/catalog" : `/catalog/${canonicalSlug}` },
+        robots: isPrimaryCategory
+          ? { index: true, follow: true }
+          : { index: false, follow: true },
+      };
+    }
+  } catch {}
+
   return { title: "Кухня на заказ" };
 }
 
@@ -376,23 +390,23 @@ export default async function CatalogItemPage({ params }: Props) {
     images?: string[];
   } | null = null;
 
-  try {
-    const kitchen = await prisma.kitchen.findUnique({ where: { slug } });
-    if (kitchen && kitchen.published) {
-      data = {
-        title: kitchen.title,
-        description: kitchen.description,
-        priceFrom: kitchen.priceFrom,
-        features: kitchen.features,
-        content: kitchen.description,
-        mainImage: kitchen.mainImage || undefined,
-        images: kitchen.images,
-      };
-    }
-  } catch {}
+  data = STATIC_CATEGORIES[slug] || null;
 
   if (!data) {
-    data = STATIC_CATEGORIES[slug] || null;
+    try {
+      const kitchen = await prisma.kitchen.findUnique({ where: { slug } });
+      if (kitchen && kitchen.published) {
+        data = {
+          title: kitchen.title,
+          description: kitchen.description,
+          priceFrom: kitchen.priceFrom,
+          features: kitchen.features,
+          content: kitchen.description,
+          mainImage: kitchen.mainImage || undefined,
+          images: kitchen.images,
+        };
+      }
+    } catch {}
   }
 
   if (!data) notFound();
@@ -592,4 +606,28 @@ function RelatedLinks({ title, links }: { title: string; links: SeoLink[] }) {
       </div>
     </div>
   );
+}
+
+function resolvePrimaryCategorySlug({
+  slug,
+  title,
+  category,
+}: {
+  slug: string;
+  title: string;
+  category?: string | null;
+}) {
+  if (PRIMARY_CATEGORY_SLUGS.has(slug)) return slug;
+
+  const text = `${slug} ${title} ${category ?? ""}`;
+
+  if (/bez-ruchek|без ручек/i.test(text)) return "kuhni-bez-ruchek";
+  if (/do-potolka|до потолка/i.test(text)) return "kuhni-do-potolka";
+  if (/malenk|маленьк|небольш|studii|студи/i.test(text)) return "malenkie-kuhni";
+  if (/pryam|прям/i.test(text)) return "pryamye-kuhni";
+  if (/uglov|углов/i.test(text)) return "uglovye-kuhni";
+  if (/p-obraz|п-образ/i.test(text)) return "p-obraznye-kuhni";
+  if (/ostrov|остров/i.test(text)) return "kuhni-s-ostrovom";
+
+  return "catalog";
 }

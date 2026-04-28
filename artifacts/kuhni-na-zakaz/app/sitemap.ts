@@ -3,6 +3,9 @@ import { prisma } from "@/lib/db";
 import { getSiteUrl } from "@/lib/site-url";
 
 const BASE_URL = getSiteUrl();
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 const STATIC_PATHS = [
   "/",
   "/about",
@@ -39,7 +42,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: path === "/" ? 1 : 0.8,
   }));
 
-  let kitchenPages: MetadataRoute.Sitemap = [];
   let portfolioPages: MetadataRoute.Sitemap = [];
   let blogPages: MetadataRoute.Sitemap = [];
   let locationPages: MetadataRoute.Sitemap = [];
@@ -48,8 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let scenarioPages: MetadataRoute.Sitemap = [];
 
   try {
-    const [kitchens, cases, posts, locations, styles, materials, scenarios] = await Promise.all([
-      prisma.kitchen.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
+    const [cases, posts, locations, styles, materials, scenarios] = await Promise.all([
       prisma.portfolioCase.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.blogPost.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
       prisma.locationPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
@@ -58,7 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       prisma.scenarioPage.findMany({ where: { published: true }, select: { slug: true, updatedAt: true } }),
     ]);
 
-    kitchenPages = kitchens.map((item) => sitemapEntry(`/catalog/${item.slug}`, item.updatedAt, 0.8));
     portfolioPages = cases.map((item) => sitemapEntry(`/portfolio/${item.slug}`, item.updatedAt, 0.7));
     blogPages = posts.map((item) => sitemapEntry(`/blog/${item.slug}`, item.updatedAt, 0.7));
     locationPages = locations.map((item) => sitemapEntry(`/locations/${item.slug}`, item.updatedAt, 0.8));
@@ -74,7 +74,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return uniqueIndexableEntries([
     ...staticPages,
     ...staticCatalogPages,
-    ...kitchenPages,
     ...stylePages,
     ...materialPages,
     ...scenarioPages,

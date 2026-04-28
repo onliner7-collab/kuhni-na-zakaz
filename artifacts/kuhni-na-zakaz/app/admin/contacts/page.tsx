@@ -197,7 +197,7 @@ export default function ContactsPage() {
           name="email"
           value={form.email}
           onChange={set("email")}
-          placeholder="info@kuhniby.by"
+          placeholder="info@kuhni.minsk.by"
           type="email"
         />
 

@@ -361,7 +361,7 @@ export function ScenarioForm({ initial }: { initial?: Partial<ScenarioData> }) {
           <div className="mt-4 p-4 rounded-xl bg-muted/30 border border-border">
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">Превью в поиске</p>
             <p className="text-blue-600 text-sm font-medium">{data.seoTitle || data.title || "Название сценария"}</p>
-            <p className="text-green-700 text-xs">kuhniby.by › scenarios › {data.slug || "slug"}</p>
+            <p className="text-green-700 text-xs">kuhni.minsk.by › scenarios › {data.slug || "slug"}</p>
             <p className="text-muted-foreground text-sm mt-1">{data.seoDescription || data.intro.slice(0, 155) || "Описание страницы..."}</p>
           </div>
         </div>

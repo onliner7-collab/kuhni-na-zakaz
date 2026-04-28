@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { prisma } from "@/lib/db";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 
@@ -20,17 +19,7 @@ const DEFAULT_CATEGORIES = [
   { slug: "uglovye-kuhni", title: "Угловые кухни", description: "Оптимальное использование угловых зон. Подходят для кухонь от 2 п.м.", priceFrom: 1800, features: ["Эффективный угол", "Вместительность", "Зонирование"] },
 ];
 
-async function getKitchens() {
-  try {
-    return await prisma.kitchen.findMany({ where: { published: true }, orderBy: { createdAt: "desc" } });
-  } catch {
-    return [];
-  }
-}
-
 export default async function CatalogPage() {
-  const kitchens = await getKitchens();
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -55,38 +44,23 @@ export default async function CatalogPage() {
             Изготавливаем кухни по индивидуальным размерам. Каждый проект — отдельный дизайн и расчёт.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {kitchens.length > 0
-              ? kitchens.map((k, index) => {
-                  const image = resolveCatalogCategoryImage(k);
+            {DEFAULT_CATEGORIES.map((cat, index) => {
+              const image = resolveCatalogCategoryImage(cat);
 
-                  return (
-                  <Link key={k.id} href={`/catalog/${k.slug}`} className="card-base hover:shadow-md transition-shadow group">
-                    <CatalogCategoryImage src={image.src} alt={image.alt} priority={index < 3} />
-                    <div className="p-5">
-                      <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{k.title}</h2>
-                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{k.description}</p>
-                      <p className="text-primary font-semibold mt-2">от {k.priceFrom.toLocaleString("ru")} BYN</p>
+              return (
+                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base hover:shadow-md transition-shadow group">
+                  <CatalogCategoryImage src={image.src} alt={image.alt} priority={index < 3} />
+                  <div className="p-5">
+                    <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{cat.title}</h2>
+                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{cat.description}</p>
+                    <p className="text-primary font-semibold mt-2">от {cat.priceFrom.toLocaleString("ru")} BYN</p>
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      {cat.features.map((f) => <span key={f} className="text-xs bg-muted px-2 py-0.5 rounded-full">{f}</span>)}
                     </div>
-                  </Link>
-                  );
-                })
-              : DEFAULT_CATEGORIES.map((cat, index) => {
-                  const image = resolveCatalogCategoryImage(cat);
-
-                  return (
-                  <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base hover:shadow-md transition-shadow group">
-                    <CatalogCategoryImage src={image.src} alt={image.alt} priority={index < 3} />
-                    <div className="p-5">
-                      <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{cat.title}</h2>
-                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{cat.description}</p>
-                      <p className="text-primary font-semibold mt-2">от {cat.priceFrom.toLocaleString("ru")} BYN</p>
-                      <div className="flex flex-wrap gap-1 mt-2">
-                        {cat.features.map((f) => <span key={f} className="text-xs bg-muted px-2 py-0.5 rounded-full">{f}</span>)}
-                      </div>
-                    </div>
-                  </Link>
-                  );
-                })}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

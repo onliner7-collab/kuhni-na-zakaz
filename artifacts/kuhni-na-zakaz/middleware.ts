@@ -28,6 +28,20 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   "/kontakty": "/contacts",
   "/contacts.html": "/contacts",
   "/blog.html": "/blog",
+  "/catalog/kuhnya-bez-ruchek": "/catalog/kuhni-bez-ruchek",
+  "/catalog/kuhnya-bez-ruchek-minsk": "/catalog/kuhni-bez-ruchek",
+  "/catalog/kuhnya-do-potolka": "/catalog/kuhni-do-potolka",
+  "/catalog/kuhnya-do-potolka-minsk": "/catalog/kuhni-do-potolka",
+  "/catalog/malenkaya-kuhnya": "/catalog/malenkie-kuhni",
+  "/catalog/malenkaya-kuhnya-minsk": "/catalog/malenkie-kuhni",
+  "/catalog/pryamaya-kuhnya": "/catalog/pryamye-kuhni",
+  "/catalog/pryamaya-kuhnya-minsk": "/catalog/pryamye-kuhni",
+  "/catalog/uglovaya-kuhnya": "/catalog/uglovye-kuhni",
+  "/catalog/uglovaya-kuhnya-minsk": "/catalog/uglovye-kuhni",
+  "/catalog/p-obraznaya-kuhnya": "/catalog/p-obraznye-kuhni",
+  "/catalog/p-obraznaya-kuhnya-minsk": "/catalog/p-obraznye-kuhni",
+  "/catalog/kuhnya-s-ostrovom-minsk": "/catalog/kuhni-s-ostrovom",
+  "/catalog/kuhnya-dlya-studii-minsk": "/catalog/malenkie-kuhni",
 };
 
 export async function middleware(req: NextRequest) {

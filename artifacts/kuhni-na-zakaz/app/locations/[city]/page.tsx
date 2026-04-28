@@ -46,6 +46,7 @@ function fallbackLocation(slug: string): LocationPage | null {
 
   const city = String(item.city);
   const h1 = String(item.h1);
+  const cityPrep = cityGenitive(city);
 
   return {
     id: 0,
@@ -77,7 +78,7 @@ function fallbackLocation(slug: string): LocationPage | null {
     priceFrom: 0,
     deliveryDays: 1,
     measureCost: "Бесплатно",
-    ctaHeadline: `Заказать кухню в ${city}`,
+    ctaHeadline: city === "Минская область" ? "Заказать кухню по Минской области" : `Заказать кухню в ${cityPrep}`,
     ctaSubtext: "Оставьте заявку, и специалист свяжется с вами для консультации и записи на замер.",
     caseSlugs: [],
     reviewIds: [],
@@ -177,6 +178,19 @@ function cityGenitive(city: string) {
   return city;
 }
 
+function citySourceForm(city: string) {
+  if (city === "Минск") return "Минска";
+  if (city === "Минская область") return "Минской области";
+  if (city === "Борисов") return "Борисова";
+  if (city === "Молодечно") return "Молодечно";
+  if (city === "Брест") return "Бреста";
+  if (city === "Гродно") return "Гродно";
+  if (city === "Гомель") return "Гомеля";
+  if (city === "Витебск") return "Витебска";
+  if (city === "Могилёв") return "Могилёва";
+  return city;
+}
+
 function StarRow({ rating }: { rating: number }) {
   return (
     <div className="flex gap-0.5">
@@ -199,6 +213,7 @@ export default async function LocationPage({ params }: Props) {
   const contentBlocks: ContentBlock[] = Array.isArray(loc.contentBlocks) ? (loc.contentBlocks as ContentBlock[]) : [];
   const timelineSteps = loc.timelineText ? loc.timelineText.split("→").map(s => s.trim()).filter(Boolean) : [];
   const cityGen = cityGenitive(loc.city);
+  const cityFrom = citySourceForm(loc.city);
 
   const jsonLdLocalBusiness = {
     "@context": "https://schema.org",
@@ -256,7 +271,7 @@ export default async function LocationPage({ params }: Props) {
           <nav className="text-sm text-white/60 mb-6 flex items-center gap-2 flex-wrap">
             <Link href="/" className="hover:text-white transition-colors">Главная</Link>
             <ChevronRight className="w-3 h-3" />
-            <span className="text-white/80">Кухни в {loc.city}</span>
+            <span className="text-white/80">Кухни в {cityGen}</span>
           </nav>
 
           <div className="max-w-3xl">
@@ -570,7 +585,7 @@ export default async function LocationPage({ params }: Props) {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-                  Отзывы клиентов из {cityGen}
+                  Отзывы клиентов из {cityFrom}
                 </h2>
                 <p className="text-muted-foreground mt-1">Что говорят наши клиенты в регионе</p>
               </div>

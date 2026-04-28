@@ -16,7 +16,7 @@ const DEFAULTS = {
   phoneDisplay: "+375 (29) 123-45-67",
   phone2: "",
   phoneDisplay2: "",
-  email: "info@kuhniby.by",
+  email: "info@kuhni.minsk.by",
   address: "г. Минск, ул. Притыцкого, 100",
   workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
 };

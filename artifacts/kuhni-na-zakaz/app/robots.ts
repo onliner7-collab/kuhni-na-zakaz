@@ -3,6 +3,8 @@ import { getSiteUrl } from "@/lib/site-url";
 
 const BASE_URL = getSiteUrl();
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   const closedPaths = [
     "/admin/",
@@ -11,7 +13,6 @@ export default function robots(): MetadataRoute.Robots {
     "/api/",
     "/kapi/",
     "/search/",
-    "/*?*",
   ];
 
   return {
