@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CheckCircle } from "lucide-react";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
-import { optimizedImageSrc } from "@/lib/image-optimization";
+import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
+import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 
 type SeoLink = {
   href: string;
@@ -373,6 +373,7 @@ export default async function CatalogItemPage({ params }: Props) {
     features: string[];
     content: string;
     mainImage?: string;
+    images?: string[];
   } | null = null;
 
   try {
@@ -385,6 +386,7 @@ export default async function CatalogItemPage({ params }: Props) {
         features: kitchen.features,
         content: kitchen.description,
         mainImage: kitchen.mainImage || undefined,
+        images: kitchen.images,
       };
     }
   } catch {}
@@ -396,6 +398,12 @@ export default async function CatalogItemPage({ params }: Props) {
   if (!data) notFound();
 
   const seo = STATIC_CATEGORIES[slug]?.seo;
+  const heroImage = resolveCatalogCategoryImage({
+    slug,
+    title: data.title,
+    mainImage: data.mainImage,
+    images: data.images,
+  });
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -408,7 +416,7 @@ export default async function CatalogItemPage({ params }: Props) {
     "@type": "Product",
     name: data.title,
     description: data.description || data.content,
-    image: data.mainImage ? siteUrl(data.mainImage) : undefined,
+    image: heroImage.src ? siteUrl(heroImage.src) : undefined,
     url: siteUrl(`/catalog/${slug}`),
     category: "Кухни на заказ",
     brand: { "@type": "Brand", name: "КухниBY" },
@@ -445,19 +453,9 @@ export default async function CatalogItemPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <h1 className="font-serif text-4xl font-bold mb-4">{data.title}</h1>
-            {data.mainImage && (
-              <div className="relative mb-6 h-80 overflow-hidden rounded-2xl bg-gradient-to-br from-stone-200 to-stone-300">
-                <Image
-                  src={optimizedImageSrc(data.mainImage) || data.mainImage}
-                  alt={data.title}
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="(max-width: 1024px) 100vw, 820px"
-                  className="object-contain object-center"
-                />
-              </div>
-            )}
+            <div className="mb-6 overflow-hidden rounded-2xl border bg-card shadow-sm">
+              <CatalogCategoryImage src={heroImage.src} alt={heroImage.alt} priority />
+            </div>
             <p className="text-muted-foreground text-lg mb-6">{data.content}</p>
             <div className="card-base p-6 mb-6">
               <h2 className="font-semibold mb-4">Особенности</h2>
