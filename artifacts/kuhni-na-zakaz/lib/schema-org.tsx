@@ -14,12 +14,30 @@ export type JsonLdObject = { [key: string]: JsonLdValue };
 export function JsonLd({ data }: { data: JsonLdObject | JsonLdObject[] | null | undefined }) {
   if (!data || (Array.isArray(data) && data.length === 0)) return null;
 
+  const jsonLdData = Array.isArray(data) ? dedupeFaqPageJsonLd(data) : data;
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
     />
   );
+}
+
+function dedupeFaqPageJsonLd(items: JsonLdObject[]) {
+  let hasFaqPage = false;
+
+  return items.filter((item) => {
+    if (!isFaqPageJsonLd(item)) return true;
+    if (hasFaqPage) return false;
+
+    hasFaqPage = true;
+    return true;
+  });
+}
+
+function isFaqPageJsonLd(item: JsonLdObject) {
+  return item["@type"] === "FAQPage";
 }
 
 export function siteUrl(path = "") {

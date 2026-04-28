@@ -10,25 +10,34 @@ interface FAQItem {
   answer: string;
 }
 
-export function FAQSection({ items }: { items: FAQItem[] }) {
+interface FAQSectionProps {
+  items: FAQItem[];
+  generateSchema?: boolean;
+}
+
+export function FAQSection({ items, generateSchema = true }: FAQSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
-  };
+  const jsonLd = generateSchema
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }
+    : null;
 
   return (
     <section className="section-padding bg-muted/30">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
       <div className="container-site max-w-3xl">
         <h2 className="font-serif text-3xl lg:text-4xl font-bold text-center mb-10">
           Часто задаваемые вопросы

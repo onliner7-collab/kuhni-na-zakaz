@@ -583,7 +583,7 @@ export default async function HomePage() {
       )}
 
       {/* ===== FAQ ===== */}
-      {faqs.length > 0 && <FAQSection items={faqs} />}
+      {faqs.length > 0 && <FAQSection items={faqs} generateSchema={false} />}
 
       {/* ===== CTA BANNER ===== */}
       <section
