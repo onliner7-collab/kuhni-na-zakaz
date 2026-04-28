@@ -67,6 +67,18 @@ const CATEGORY_IMAGES: Record<string, { src: string; alt: string }> = {
     src: "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp",
     alt: "Угловая кухня на заказ в Минске",
   },
+  "sovremennaya-kuhnya-minsk": {
+    src: "/uploads/seo-showcase/kuhnya-mdf-emal-1.webp",
+    alt: "Современная кухня на заказ в Минске",
+  },
+  "kuhnya-dlya-studii-minsk": {
+    src: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
+    alt: "Кухня для студии на заказ в Минске",
+  },
+  "kuhnya-ekonom-minsk": {
+    src: "/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
+    alt: "Кухня эконом-класса на заказ в Минске",
+  },
 };
 
 const CATEGORY_IMAGE_KEYWORDS = [
@@ -77,6 +89,9 @@ const CATEGORY_IMAGE_KEYWORDS = [
   { test: /п-образ/i, key: "p-obraznye-kuhni" },
   { test: /прям/i, key: "pryamye-kuhni" },
   { test: /углов/i, key: "uglovye-kuhni" },
+  { test: /соврем/i, key: "sovremennaya-kuhnya-minsk" },
+  { test: /студи/i, key: "kuhnya-dlya-studii-minsk" },
+  { test: /эконом/i, key: "kuhnya-ekonom-minsk" },
 ];
 
 const DEFAULT_CATEGORIES = [
