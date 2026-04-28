@@ -102,9 +102,10 @@ export function resolveCatalogCategoryImage({
     CATEGORY_IMAGES[slug] ? slug : CATEGORY_IMAGE_KEYWORDS.find(({ test }) => test.test(`${title} ${category ?? ""}`))?.key;
   const fallback = fallbackKey ? CATEGORY_IMAGES[fallbackKey] : undefined;
   const rawSrc = databaseImage || fallback?.src || "";
+  const databaseAlt = `${title}${/на заказ/i.test(title) ? "" : " на заказ"}${/минск/i.test(title) ? "" : " в Минске"}`;
 
   return {
     src: optimizedImageSrc(rawSrc) || rawSrc,
-    alt: databaseImage ? `${title} на заказ в Минске` : fallback?.alt || `${title} на заказ`,
+    alt: databaseImage ? databaseAlt : fallback?.alt || `${title} на заказ`,
   };
 }
