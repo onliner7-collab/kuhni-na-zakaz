@@ -1,11 +1,12 @@
 "use client";
 
 export const ANALYTICS_EVENTS = {
-  FORM_SUBMIT: "form_submit",
+  FORM_SUBMIT: "lead_form_submit",
   PHONE_CLICK: "phone_click",
   MESSENGER_CLICK: "messenger_click",
+  EMAIL_CLICK: "email_click",
   MEASURE_REQUEST: "measure_request",
-  COST_CALCULATION: "cost_calculation",
+  COST_CALCULATION: "price_calc_click",
   CALCULATOR_OPEN: "calculator_open",
   LEAD_SUCCESS: "lead_success",
 } as const;
@@ -23,7 +24,8 @@ declare global {
   }
 }
 
-const yandexMetrikaId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
+export const YANDEX_METRIKA_ID =
+  process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "108969876";
 
 export function trackAnalyticsEvent(
   event: AnalyticsEvent,
@@ -43,9 +45,9 @@ export function trackAnalyticsEvent(
 
   window.gtag?.("event", event, payload);
 
-  const counterId = yandexMetrikaId ? Number(yandexMetrikaId) : NaN;
+  const counterId = Number(YANDEX_METRIKA_ID);
   if (window.ym && Number.isFinite(counterId)) {
-    window.ym(counterId, "reachGoal", event, payload);
+    window.ym(counterId, "reachGoal", event);
   }
 }
 

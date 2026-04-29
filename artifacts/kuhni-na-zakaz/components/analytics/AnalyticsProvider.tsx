@@ -4,13 +4,18 @@ import Script from "next/script";
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
-import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
+import {
+  ANALYTICS_EVENTS,
+  YANDEX_METRIKA_ID,
+  trackAnalyticsEvent,
+} from "@/lib/analytics";
 
-const yandexMetrikaId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
 const gaId =
-  process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  process.env.NEXT_PUBLIC_GA_ID ||
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
+  "G-2135HXQLTN";
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-const isYandexMetrikaEnabled = yandexMetrikaId && /^\d+$/.test(yandexMetrikaId);
+const isYandexMetrikaEnabled = /^\d+$/.test(YANDEX_METRIKA_ID);
 
 const MESSENGER_PATTERNS = [
   "t.me",
@@ -66,6 +71,14 @@ export function AnalyticsProvider() {
         return;
       }
 
+      if (href.startsWith("mailto:")) {
+        trackAnalyticsEvent(ANALYTICS_EVENTS.EMAIL_CLICK, {
+          href,
+          path: window.location.pathname,
+        });
+        return;
+      }
+
       if (isMessengerHref(href)) {
         trackAnalyticsEvent(ANALYTICS_EVENTS.MESSENGER_CLICK, {
           href,
@@ -73,6 +86,21 @@ export function AnalyticsProvider() {
           path: window.location.pathname,
         });
         return;
+      }
+
+      if (isMeasureRequestHref(href)) {
+        trackAnalyticsEvent(ANALYTICS_EVENTS.MEASURE_REQUEST, {
+          href,
+          path: window.location.pathname,
+        });
+        return;
+      }
+
+      if (isPriceCalculatorHref(href)) {
+        trackAnalyticsEvent(ANALYTICS_EVENTS.COST_CALCULATION, {
+          href,
+          path: window.location.pathname,
+        });
       }
     };
 
@@ -106,7 +134,9 @@ export function AnalyticsProvider() {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${gaId}');
+              gtag('config', '${gaId}', {
+                debug_mode: location.hostname === 'localhost' || location.hostname === '127.0.0.1' || new URLSearchParams(location.search).has('ga_debug')
+              });
             `}
           </Script>
         </>
@@ -120,7 +150,7 @@ export function AnalyticsProvider() {
             for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
             (window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-            ym(${yandexMetrikaId}, 'init', {
+            ym(${YANDEX_METRIKA_ID}, 'init', {
               clickmap: true,
               trackLinks: true,
               accurateTrackBounce: true,
@@ -172,4 +202,21 @@ function detectMessenger(href: string) {
   }
 
   return "messenger";
+}
+
+function isMeasureRequestHref(href: string) {
+  const normalized = href.toLowerCase();
+  return (
+    normalized.includes("/contacts#form") ||
+    normalized.includes("#contact-form")
+  );
+}
+
+function isPriceCalculatorHref(href: string) {
+  const normalized = href.toLowerCase();
+  return (
+    normalized === "/calculator" ||
+    normalized.startsWith("/calculator?") ||
+    normalized.includes("/prices#calculator")
+  );
 }

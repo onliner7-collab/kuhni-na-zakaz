@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle, AlertCircle, Phone, Calculator } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 interface PriceResult {
   priceFrom: number;
@@ -123,6 +124,9 @@ export function CalculatorWizard() {
 
   async function calculate() {
     setLoading(true);
+    trackAnalyticsEvent(ANALYTICS_EVENTS.COST_CALCULATION, {
+      source: "calculator_wizard",
+    });
     try {
       const res = await fetch("/kapi/calculator", {
         method: "POST",
@@ -183,7 +187,12 @@ export function CalculatorWizard() {
         {/* CTA */}
         {!showForm ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button onClick={() => setShowForm(true)}
+            <button onClick={() => {
+              trackAnalyticsEvent(ANALYTICS_EVENTS.MEASURE_REQUEST, {
+                source: "calculator_result",
+              });
+              setShowForm(true);
+            }}
               className="flex items-center justify-center gap-2 py-3 px-5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-colors">
               <Phone className="w-4 h-4" /> Заказать бесплатный замер
             </button>

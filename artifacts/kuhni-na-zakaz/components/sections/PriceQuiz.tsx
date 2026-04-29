@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const STEPS = [
@@ -86,6 +87,9 @@ export function PriceQuiz() {
   async function submitCalc() {
     setLoading(true);
     setError(null);
+    trackAnalyticsEvent(ANALYTICS_EVENTS.COST_CALCULATION, {
+      source: "price_quiz",
+    });
     try {
       const input = mapToCalcInput(answers);
       const res = await fetch("/kapi/calculator", {
