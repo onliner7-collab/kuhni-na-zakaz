@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone } from "lucide-react";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
-export function MobileCTA() {
+export function MobileCTA({ phoneHref }: { phoneHref?: string }) {
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
   const isConfigurator =
@@ -28,7 +29,7 @@ export function MobileCTA() {
     >
       <div className="flex items-center gap-2 p-3 pb-safe">
         <a
-          href="tel:+375291234567"
+          href={phoneHref || `tel:${CONTACT_DEFAULTS.phone}`}
           className="flex-1 flex items-center justify-center gap-2 bg-muted text-foreground py-3 rounded-xl font-semibold text-sm"
           data-testid="mobile-cta-call"
         >

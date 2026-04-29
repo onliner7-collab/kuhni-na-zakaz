@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 interface Settings {
   siteName: string; phone: string; phoneDisplay: string; email: string;
@@ -17,9 +18,9 @@ export function SettingsForm({ settings }: { settings: Settings | null }) {
   const [loading, setLoading] = useState(false);
 
   const defaults: Settings = {
-    siteName: "КухниMinsk", phone: "+375291234567", phoneDisplay: "+375 (29) 123-45-67",
-    email: "info@kuhniminsk.by", address: "г. Минск, ул. Притыцкого, 100",
-    workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00", telegram: "", viber: "",
+    siteName: "КухниBY", phone: CONTACT_DEFAULTS.phone, phoneDisplay: CONTACT_DEFAULTS.phoneDisplay,
+    email: CONTACT_DEFAULTS.email, address: CONTACT_DEFAULTS.address,
+    workingHours: CONTACT_DEFAULTS.workingHours, telegram: "", viber: "",
     whatsapp: "", telegramBotToken: "", telegramChatId: "",
     metaTitle: "Кухни на заказ в Минске | КухниMinsk",
     metaDescription: "Кухни на заказ в Минске и Минской области. Собственное производство.",

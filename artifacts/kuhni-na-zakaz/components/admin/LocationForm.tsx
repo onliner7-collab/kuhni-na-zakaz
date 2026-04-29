@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 interface FaqItem { q: string; a: string; }
 interface UniquePoint { emoji: string; title: string; text: string; }
@@ -366,7 +367,7 @@ export default function LocationForm({ initial, isEdit }: Props) {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className={labelCls}>Телефон (локальный)</label>
-                <input className={inputCls} value={data.phone} onChange={e => set("phone", e.target.value)} placeholder="+375 (29) 123-45-67" />
+                <input className={inputCls} value={data.phone} onChange={e => set("phone", e.target.value)} placeholder={CONTACT_DEFAULTS.phoneDisplay} />
               </div>
               <div>
                 <label className={labelCls}>Адрес офиса/шоурума</label>
@@ -738,7 +739,7 @@ export default function LocationForm({ initial, isEdit }: Props) {
                 "name": "КухниBY",
                 "areaServed": data.city || "Минск",
                 "priceRange": `от ${data.priceFrom} BYN`,
-                "telephone": data.phone || "+375291234567",
+                "telephone": data.phone || CONTACT_DEFAULTS.phone,
                 "@id": `https://kuhni.minsk.by/locations/${data.slug || ""}`,
               }, null, 2)}</pre>
             </div>

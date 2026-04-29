@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, Phone, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 type NavLink = {
   href: string;
@@ -115,8 +116,8 @@ export function Header({
   phone?: string;
   phoneHref?: string;
 }) {
-  const phoneDisplay = phone || "+375 (29) 123-45-67";
-  const phoneLink = phoneHref || "tel:+375291234567";
+  const phoneDisplay = phone || CONTACT_DEFAULTS.phoneDisplay;
+  const phoneLink = phoneHref || `tel:${CONTACT_DEFAULTS.phone}`;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();

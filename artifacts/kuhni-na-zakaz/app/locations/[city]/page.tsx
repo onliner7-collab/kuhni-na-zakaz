@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 export const revalidate = 3600;
 export const dynamic = "force-dynamic";
@@ -73,7 +74,7 @@ function fallbackLocation(slug: string): LocationPage | null {
     workZone: "",
     deliveryCost: "",
     mapEmbed: "",
-    phone: "+375291234567",
+    phone: CONTACT_DEFAULTS.phone,
     address: "",
     priceFrom: 0,
     deliveryDays: 1,
@@ -221,7 +222,7 @@ export default async function LocationPage({ params }: Props) {
     "@id": `https://kuhni.minsk.by/locations/${loc.slug}`,
     name: "КухниBY",
     description: loc.description,
-    telephone: loc.phone || "+375291234567",
+    telephone: loc.phone || CONTACT_DEFAULTS.phone,
     address: {
       "@type": "PostalAddress",
       addressLocality: loc.city,
@@ -286,7 +287,7 @@ export default async function LocationPage({ params }: Props) {
 
             <div className="flex flex-wrap gap-3 mb-10">
               <a
-                href={`tel:${(loc.phone || "+375291234567").replace(/\D/g, "").replace(/^/, "+")}`}
+                href={`tel:${(loc.phone || CONTACT_DEFAULTS.phone).replace(/\D/g, "").replace(/^/, "+")}`}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[#2d0a5e] font-bold hover:bg-white/90 transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />

@@ -4,6 +4,7 @@ import { ArrowRight, Calculator, CheckCircle2, Clock3, Phone, Ruler } from "luci
 
 import { ContactForm } from "@/components/sections/ContactForm";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 export const metadata: Metadata = {
   title: "Конфигуратор кухни скоро будет доступен",
@@ -84,11 +85,11 @@ export default function KitchenConfiguratorPlaceholderPage() {
                     <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
-                    href="tel:+375291234567"
+                    href={`tel:${CONTACT_DEFAULTS.phone}`}
                     className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
                   >
                     <Phone className="h-4 w-4" />
-                    +375 (29) 123-45-67
+                    {CONTACT_DEFAULTS.phoneDisplay}
                   </a>
                 </div>
 

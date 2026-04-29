@@ -11,6 +11,7 @@ import {
   GoogleTagManagerNoScript,
 } from "@/components/analytics/AnalyticsProvider";
 import { getSiteUrl } from "@/lib/site-url";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 import "./globals.css";
 
@@ -108,7 +109,11 @@ export default async function RootLayout({
         )}
         {isAdmin ? children : <main>{children}</main>}
         {!isAdmin && <Footer />}
-        {!isAdmin && <MobileCTA />}
+        {!isAdmin && (
+          <MobileCTA
+            phoneHref={siteSettings?.phone ? `tel:${siteSettings.phone}` : undefined}
+          />
+        )}
         {!isAdmin && (
           <script
             type="application/ld+json"
@@ -119,9 +124,9 @@ export default async function RootLayout({
                 "@type": "LocalBusiness",
                 name: siteSettings?.siteName || "КухниBY",
                 url: siteUrl,
-                telephone: siteSettings?.phone || "+375291234567",
-                email: siteSettings?.email || "info@kuhni.minsk.by",
-                address: siteSettings?.address || "Минск, Беларусь",
+                telephone: siteSettings?.phone || CONTACT_DEFAULTS.phone,
+                email: siteSettings?.email || CONTACT_DEFAULTS.email,
+                address: siteSettings?.address || CONTACT_DEFAULTS.address,
               }),
             }}
           />

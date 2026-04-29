@@ -28,12 +28,12 @@ async function main() {
     where: { id: 1 },
     create: {
       id: 1,
-      siteName: "КухниMinsk",
-      phone: "+375291234567",
-      phoneDisplay: "+375 (29) 123-45-67",
-      email: "info@kuhniminsk.by",
-      address: "г. Минск, ул. Притыцкого, 100",
-      workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
+      siteName: "КухниBY",
+      phone: "+375296261547",
+      phoneDisplay: "+375 (29) 626-15-47",
+      email: "onliner7@gmail.com",
+      address: "222520, г. Борисов, ул. Дзержинского, д. 90, каб. 1а",
+      workingHours: "Пн-Сб 9:00-19:00, Вс 10:00-17:00",
     },
     update: {},
   });

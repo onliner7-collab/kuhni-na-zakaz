@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 const FOOTER_LINKS = {
   catalog: [
@@ -27,11 +28,11 @@ const FOOTER_LINKS = {
 };
 
 const FOOTER_DEFAULTS = {
-  phone: "+375291234567",
-  phoneDisplay: "+375 (29) 123-45-67",
-  email: "info@kuhni.minsk.by",
-  address: "г. Минск, ул. Притыцкого, 100",
-  workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
+  phone: CONTACT_DEFAULTS.phone,
+  phoneDisplay: CONTACT_DEFAULTS.phoneDisplay,
+  email: CONTACT_DEFAULTS.email,
+  address: CONTACT_DEFAULTS.address,
+  workingHours: CONTACT_DEFAULTS.workingHours,
 };
 
 export async function Footer() {
@@ -182,7 +183,7 @@ export async function Footer() {
             © {new Date().getFullYear()} КухниBY. Все права защищены.
           </p>
           <p className="text-sm text-white/30">
-            УНП 000000000 | г. Минск, Беларусь
+            УНП {CONTACT_DEFAULTS.unp} | {c.address}
           </p>
         </div>
       </div>

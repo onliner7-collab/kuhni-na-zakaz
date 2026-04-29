@@ -9,6 +9,7 @@ import {
   Phone, Mail, MapPin, Clock, MessageCircle, Globe,
   Instagram, Youtube, Save, ExternalLink,
 } from "lucide-react";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 interface Settings {
   siteName: string;
@@ -31,14 +32,14 @@ interface Settings {
 
 const DEFAULTS: Settings = {
   siteName: "КухниBY",
-  phone: "+375291234567",
-  phoneDisplay: "+375 (29) 123-45-67",
-  phone2: "",
-  phoneDisplay2: "",
-  email: "info@kuhniminsk.by",
-  address: "г. Минск, ул. Притыцкого, 100",
+  phone: CONTACT_DEFAULTS.phone,
+  phoneDisplay: CONTACT_DEFAULTS.phoneDisplay,
+  phone2: CONTACT_DEFAULTS.phone2,
+  phoneDisplay2: CONTACT_DEFAULTS.phoneDisplay2,
+  email: CONTACT_DEFAULTS.email,
+  address: CONTACT_DEFAULTS.address,
   addressMap: "",
-  workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
+  workingHours: CONTACT_DEFAULTS.workingHours,
   telegram: "",
   viber: "",
   whatsapp: "",
@@ -148,7 +149,7 @@ export default function ContactsPage() {
             name="phone"
             value={form.phone}
             onChange={set("phone")}
-            placeholder="+375291234567"
+            placeholder={CONTACT_DEFAULTS.phone}
             hint="Используется в ссылке tel:... (без пробелов и скобок)"
           />
           <Field
@@ -156,7 +157,7 @@ export default function ContactsPage() {
             name="phoneDisplay"
             value={form.phoneDisplay}
             onChange={set("phoneDisplay")}
-            placeholder="+375 (29) 123-45-67"
+            placeholder={CONTACT_DEFAULTS.phoneDisplay}
             hint="Как телефон выглядит для посетителей"
           />
         </div>
@@ -181,7 +182,7 @@ export default function ContactsPage() {
         </div>
 
         <div className="bg-muted/50 rounded-xl p-4 text-sm text-muted-foreground">
-          💡 Совет: укажите телефон оба варианта — для набора (<code className="bg-muted px-1 rounded">+375291234567</code>) и отображения (<code className="bg-muted px-1 rounded">+375 (29) 123-45-67</code>)
+          💡 Совет: укажите телефон оба варианта — для набора (<code className="bg-muted px-1 rounded">{CONTACT_DEFAULTS.phone}</code>) и отображения (<code className="bg-muted px-1 rounded">{CONTACT_DEFAULTS.phoneDisplay}</code>)
         </div>
       </section>
 
@@ -197,7 +198,7 @@ export default function ContactsPage() {
           name="email"
           value={form.email}
           onChange={set("email")}
-          placeholder="info@kuhni.minsk.by"
+          placeholder={CONTACT_DEFAULTS.email}
           type="email"
         />
 
@@ -206,7 +207,7 @@ export default function ContactsPage() {
           name="address"
           value={form.address}
           onChange={set("address")}
-          placeholder="г. Минск, ул. Притыцкого, 100"
+          placeholder={CONTACT_DEFAULTS.address}
           hint="Отображается в подвале сайта и на странице Контакты"
         />
 
@@ -244,7 +245,7 @@ export default function ContactsPage() {
           name="workingHours"
           value={form.workingHours}
           onChange={set("workingHours")}
-          placeholder="Пн–Сб 9:00–19:00, Вс 10:00–17:00"
+          placeholder={CONTACT_DEFAULTS.workingHours}
           hint="Отображается в подвале и на странице Контакты"
         />
       </section>
@@ -271,7 +272,7 @@ export default function ContactsPage() {
             name="viber"
             value={form.viber}
             onChange={set("viber")}
-            placeholder="+375291234567"
+            placeholder={CONTACT_DEFAULTS.phone}
             hint="Номер телефона Viber"
           />
           <Field
@@ -279,7 +280,7 @@ export default function ContactsPage() {
             name="whatsapp"
             value={form.whatsapp}
             onChange={set("whatsapp")}
-            placeholder="+375291234567"
+            placeholder={CONTACT_DEFAULTS.phone}
             hint="Номер телефона WhatsApp"
           />
         </div>

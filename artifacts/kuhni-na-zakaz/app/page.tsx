@@ -9,6 +9,7 @@ import { JsonLd, faqJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 type HomeAdvantage = {
   id: number;
@@ -78,9 +79,9 @@ export default async function HomePage() {
     "@type": "HomeAndConstructionBusiness",
     name: "КухниBY",
     description: "Кухни на заказ по всей Беларуси. Собственное производство.",
-    telephone: "+375291234567",
-    email: "info@kuhni.minsk.by",
-    address: { "@type": "PostalAddress", addressLocality: "Минск", addressCountry: "BY" },
+    telephone: CONTACT_DEFAULTS.phone,
+    email: CONTACT_DEFAULTS.email,
+    address: CONTACT_DEFAULTS.address,
     areaServed: [
       { "@type": "AdministrativeArea", name: "Беларусь" }
     ],
@@ -584,11 +585,11 @@ export default async function HomePage() {
               Заказать бесплатный замер
             </Link>
             <a
-              href="tel:+375291234567"
+              href={`tel:${CONTACT_DEFAULTS.phone}`}
               className="flex items-center justify-center gap-2 text-white border-2 border-white/30 hover:border-white hover:bg-white/10 px-8 py-3.5 rounded-xl font-bold transition-all"
             >
               <Phone className="w-4 h-4" />
-              +375 (29) 123-45-67
+              {CONTACT_DEFAULTS.phoneDisplay}
             </a>
           </div>
         </div>

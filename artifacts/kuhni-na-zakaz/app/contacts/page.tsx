@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { prisma } from "@/lib/db";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 export const metadata: Metadata = {
   title: "Контакты и бесплатный замер",
@@ -12,13 +13,13 @@ export const metadata: Metadata = {
 };
 
 const DEFAULTS = {
-  phone: "+375291234567",
-  phoneDisplay: "+375 (29) 123-45-67",
-  phone2: "",
-  phoneDisplay2: "",
-  email: "info@kuhni.minsk.by",
-  address: "г. Минск, ул. Притыцкого, 100",
-  workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
+  phone: CONTACT_DEFAULTS.phone,
+  phoneDisplay: CONTACT_DEFAULTS.phoneDisplay,
+  phone2: CONTACT_DEFAULTS.phone2,
+  phoneDisplay2: CONTACT_DEFAULTS.phoneDisplay2,
+  email: CONTACT_DEFAULTS.email,
+  address: CONTACT_DEFAULTS.address,
+  workingHours: CONTACT_DEFAULTS.workingHours,
 };
 
 export default async function ContactsPage() {
