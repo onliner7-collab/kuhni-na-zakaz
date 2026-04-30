@@ -16,6 +16,9 @@ sudo -u kuhni bash -lc "cd '$APP_DIR' && pnpm install --frozen-lockfile"
 echo "[deploy] applying prisma changes"
 sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm exec prisma generate && pnpm run db:push"
 
+echo "[deploy] importing prepared kitchen photos as safe drafts"
+sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run photos:import-prepared"
+
 echo "[deploy] building app"
 sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run build"
 

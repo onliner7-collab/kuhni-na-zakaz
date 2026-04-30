@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CheckCircle } from "lucide-react";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
-import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
+import { getCatalogCategoryGallery, resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 
@@ -418,6 +418,7 @@ export default async function CatalogItemPage({ params }: Props) {
     mainImage: data.mainImage,
     images: data.images,
   });
+  const galleryImages = getCatalogCategoryGallery(slug);
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -470,6 +471,18 @@ export default async function CatalogItemPage({ params }: Props) {
             <div className="mb-6 overflow-hidden rounded-2xl border bg-card shadow-sm">
               <CatalogCategoryImage src={heroImage.src} alt={heroImage.alt} priority sizes="(max-width: 1024px) 100vw, 820px" />
             </div>
+            {galleryImages.length > 0 && (
+              <section className="mb-8">
+                <h2 className="font-serif text-2xl font-semibold mb-4">Примеры кухонь</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {galleryImages.map((image) => (
+                    <div key={image.src} className="overflow-hidden rounded-xl border bg-card">
+                      <CatalogCategoryImage src={image.src} alt={image.alt} sizes="(max-width: 640px) 100vw, 260px" />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
             <p className="text-muted-foreground text-lg mb-6">{data.content}</p>
             <div className="card-base p-6 mb-6">
               <h2 className="font-semibold mb-4">Особенности</h2>

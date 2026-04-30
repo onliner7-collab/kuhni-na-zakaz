@@ -1,9 +1,14 @@
 import { optimizedImageSrc } from "@/lib/image-optimization";
 
-const CATEGORY_IMAGES: Record<string, { src: string; alt: string }> = {
+export interface CatalogImageAsset {
+  src: string;
+  alt: string;
+}
+
+const CATEGORY_IMAGES: Record<string, CatalogImageAsset> = {
   "kuhni-bez-ruchek": {
-    src: "/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
-    alt: "Кухня без ручек на заказ в Минске",
+    src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-sovremennaya-kombinacii-009-main.webp",
+    alt: "Кухня с островом в современном стиле без ручек",
   },
   "kuhnya-bez-ruchek-minsk": {
     src: "/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
@@ -50,8 +55,8 @@ const CATEGORY_IMAGES: Record<string, { src: string; alt: string }> = {
     alt: "Прямая кухня на заказ для небольшой квартиры",
   },
   "uglovye-kuhni": {
-    src: "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp",
-    alt: "Угловая кухня на заказ в Минске",
+    src: "/uploads/kitchens/catalog/uglovaya-kuhnya-neoklassika-belaya-002-main.webp",
+    alt: "Угловая белая кухня в стиле неоклассика",
   },
   "uglovaya-kuhnya-minsk": {
     src: "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp",
@@ -69,6 +74,37 @@ const CATEGORY_IMAGES: Record<string, { src: string; alt: string }> = {
     src: "/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
     alt: "Кухня эконом-класса на заказ в Минске",
   },
+};
+
+const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
+  "uglovye-kuhni": [
+    {
+      src: "/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
+      alt: "Угловая зелёная кухня в скандинавском стиле",
+    },
+    {
+      src: "/uploads/kitchens/catalog/uglovaya-kuhnya-neoklassika-bezhevaya-014-main.webp",
+      alt: "Угловая бежевая кухня в стиле неоклассика",
+    },
+    {
+      src: "/uploads/kitchens/catalog/uglovaya-kuhnya-minimalizm-seraya-017-main.webp",
+      alt: "Угловая серая кухня до потолка",
+    },
+  ],
+  "kuhni-bez-ruchek": [
+    {
+      src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
+      alt: "Белая кухня без ручек в стиле минимализм",
+    },
+    {
+      src: "/uploads/kitchens/catalog/uglovaya-kuhnya-minimalizm-seraya-017-main.webp",
+      alt: "Серая угловая кухня без ручек",
+    },
+    {
+      src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-minimalizm-seraya-025-main.webp",
+      alt: "Серая кухня с островом без ручек",
+    },
+  ],
 };
 
 const CATEGORY_IMAGE_KEYWORDS = [
@@ -108,4 +144,11 @@ export function resolveCatalogCategoryImage({
     src: optimizedImageSrc(rawSrc) || rawSrc,
     alt: databaseImage ? databaseAlt : fallback?.alt || `${title} на заказ`,
   };
+}
+
+export function getCatalogCategoryGallery(slug: string) {
+  return (CATEGORY_GALLERIES[slug] || []).map((image) => ({
+    ...image,
+    src: optimizedImageSrc(image.src) || image.src,
+  }));
 }
