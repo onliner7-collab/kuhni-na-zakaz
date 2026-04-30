@@ -1,28 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MapPin, Square, Clock, Star } from "lucide-react";
-import { prisma } from "@/lib/db";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { PortfolioFilters } from "@/components/portfolio/PortfolioFilters";
+import { portfolioProjects } from "@/data/portfolio-projects";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Портфолио кухонь на заказ",
-  description: "Готовые проекты кухонь на заказ в Минске и всей Беларуси. Фото, стоимость, сроки, истории клиентов. Угловые, П-образные, кухни с островом.",
+  description:
+    "Каталог реализованных проектов кухонь на заказ: фото, города, типы планировок, материалы, стили и подробные страницы проектов.",
   alternates: { canonical: "/portfolio" },
 };
 
-export default async function PortfolioPage() {
-  const cases = await prisma.portfolioCase.findMany({
-    where: {
-      published: true,
-      slug: { not: "" },
-      title: { not: "" },
-    },
-    orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
-  }).catch(() => []);
+export default function PortfolioPage() {
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Портфолио", path: "/portfolio" },
@@ -30,15 +21,17 @@ export default async function PortfolioPage() {
   const jsonLdCollection = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Портфолио кухонь",
+    name: "Портфолио кухонь на заказ",
+    description: metadata.description,
     url: siteUrl("/portfolio"),
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: cases.map((item, index) => ({
+      itemListElement: portfolioProjects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        name: item.title,
-        url: siteUrl(`/portfolio/${item.slug}`),
+        name: project.title,
+        image: siteUrl(project.mainImage),
+        url: siteUrl(`/portfolio/${project.slug}`),
       })),
     },
   };
@@ -46,31 +39,92 @@ export default async function PortfolioPage() {
   return (
     <>
       <JsonLd data={[jsonLdBreadcrumb, jsonLdCollection]} />
-      <div className="section-padding">
+      <main className="section-padding">
         <div className="container-site">
-        <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-          <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-          <span className="text-foreground">Портфолио</span>
-        </nav>
+          <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground" aria-label="Хлебные крошки">
+            <Link href="/" className="transition-colors hover:text-primary">
+              Главная
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span className="text-foreground">Портфолио</span>
+          </nav>
 
-        <div className="max-w-2xl mb-10">
-          <h1 className="font-serif text-4xl font-bold mb-4">Наши работы</h1>
-          <p className="text-muted-foreground text-lg">
-            {cases.length} реализованных проектов кухонь по всей Беларуси. Фото, разбор задачи и решения, стоимость и сроки.
-          </p>
-        </div>
+          <section className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+            <div className="max-w-3xl">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">
+                Реальные проекты
+              </p>
+              <h1 className="font-serif text-4xl font-bold leading-tight sm:text-5xl">
+                Портфолио кухонь на заказ
+              </h1>
+              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                Собрали каталог выполненных кухонь, чтобы было проще сравнить планировки,
+                фасады, материалы и решения для хранения. В карточках есть фото, город,
+                тип кухни и ссылка на подробную страницу проекта.
+              </p>
+            </div>
 
-        <PortfolioFilters cases={cases} />
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
+              <h2 className="font-serif text-2xl font-bold">Подберём похожее решение</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Покажем варианты под ваш размер, бюджет и стиль, а после замера подготовим точную смету.
+              </p>
+              <Link
+                href="#portfolio-request"
+                className="mt-4 inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+              >
+                Обсудить проект
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </section>
 
-        <div className="max-w-xl mx-auto mt-16">
-          <h2 className="font-serif text-2xl font-bold text-center mb-2">Хотите похожий проект?</h2>
-          <p className="text-center text-muted-foreground mb-6">Расскажите о вашей кухне — пришлём смету в течение дня</p>
-          <div className="card-base p-6">
-            <ContactForm source="portfolio-index" />
-          </div>
+          <PortfolioFilters projects={portfolioProjects} />
+
+          <section id="portfolio-request" className="mt-16 grid gap-8 rounded-lg bg-gray-50 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,1fr)]">
+            <div>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">
+                Бесплатная консультация
+              </p>
+              <h2 className="font-serif text-3xl font-bold">Хотите кухню как в портфолио?</h2>
+              <p className="mt-4 text-muted-foreground">
+                Расскажите, какой проект ближе по стилю и планировке. Мы уточним размеры,
+                материалы, технику и подготовим расчёт для вашей кухни.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-foreground">
+                {["Замер и консультация", "Подбор материалов", "Расчёт стоимости"].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card-base p-5">
+              <ContactForm source="portfolio-index" />
+            </div>
+          </section>
+
+          <section className="mx-auto mt-16 max-w-4xl text-muted-foreground">
+            <h2 className="font-serif text-3xl font-bold text-foreground">
+              Каталог проектов кухонь для выбора идеи и планировки
+            </h2>
+            <div className="mt-5 space-y-4 leading-relaxed">
+              <p>
+                Портфолио помогает заранее понять, какая кухня подойдёт под вашу квартиру или дом:
+                угловая, прямая, маленькая, с фасадами до потолка или с комбинированными материалами.
+                Каждый проект в каталоге связан с городом, типом кухни, стилем, цветом и набором
+                материалов, поэтому подбор можно начать с практичных параметров, а не только с фото.
+              </p>
+              <p>
+                На подробных страницах проектов можно посмотреть больше информации о задаче,
+                решении, особенностях хранения и использованных материалах. Это удобно для сравнения
+                вариантов перед замером и помогает быстрее сформулировать пожелания к будущей кухне.
+              </p>
+            </div>
+          </section>
         </div>
-        </div>
-      </div>
+      </main>
     </>
   );
 }
