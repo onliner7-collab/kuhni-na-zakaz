@@ -32,6 +32,9 @@ const catalogLinks = [
   { href: "/catalog/kuhni-do-potolka", title: "Кухни до потолка", text: "Больше хранения и аккуратная линия фасадов." },
 ];
 
+const LOCAL_BUSINESS_IMAGE =
+  "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
+
 const FALLBACK_LOCATIONS: Record<string, Record<string, unknown>> = {
   minsk: { city: "Минск", region: "Минск", h1: "Кухни на заказ в Минске" },
   brest: { city: "Брест", region: "Брестская область", h1: "Кухни на заказ в Бресте" },
@@ -216,6 +219,7 @@ export default async function LocationPage({ params }: Props) {
   const timelineSteps = loc.timelineText ? loc.timelineText.split("→").map(s => s.trim()).filter(Boolean) : [];
   const cityGen = cityGenitive(loc.city);
   const cityFrom = citySourceForm(loc.city);
+  const schemaPriceFrom = loc.priceFrom > 0 ? loc.priceFrom : 900;
 
   const jsonLdLocalBusiness = {
     "@context": "https://schema.org",
@@ -231,8 +235,8 @@ export default async function LocationPage({ params }: Props) {
       addressCountry: "BY",
     },
     areaServed: loc.areas,
-    priceRange: `от ${loc.priceFrom} BYN`,
-    image: loc.images[0] || undefined,
+    priceRange: `от ${schemaPriceFrom} BYN`,
+    image: loc.images[0] || LOCAL_BUSINESS_IMAGE,
     url: siteUrl(`/locations/${loc.slug}`),
   };
 

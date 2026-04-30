@@ -37,6 +37,9 @@ const CATALOG_CATEGORIES = [
   { slug: "kuhni-do-potolka", title: "Кухни до потолка", price: "от 2 200 BYN" },
 ];
 
+const LOCAL_BUSINESS_IMAGE =
+  "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
+
 export const metadata: Metadata = {
   title: "Кухни на заказ по Беларуси",
   description:
@@ -81,7 +84,12 @@ export default async function HomePage() {
     description: "Кухни на заказ по всей Беларуси. Собственное производство.",
     telephone: CONTACT_DEFAULTS.phone,
     email: CONTACT_DEFAULTS.email,
-    address: CONTACT_DEFAULTS.address,
+    image: LOCAL_BUSINESS_IMAGE,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Минск",
+      addressCountry: "BY",
+    },
     areaServed: [
       { "@type": "AdministrativeArea", name: "Беларусь" }
     ],

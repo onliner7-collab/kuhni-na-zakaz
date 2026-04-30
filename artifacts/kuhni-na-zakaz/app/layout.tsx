@@ -17,6 +17,8 @@ import "./globals.css";
 
 const siteUrl = getSiteUrl();
 const faviconVersion = "20260421b";
+const localBusinessImage =
+  "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
 
 export const metadata: Metadata = {
   title: {
@@ -126,7 +128,13 @@ export default async function RootLayout({
                 url: siteUrl,
                 telephone: siteSettings?.phone || CONTACT_DEFAULTS.phone,
                 email: siteSettings?.email || CONTACT_DEFAULTS.email,
-                address: siteSettings?.address || CONTACT_DEFAULTS.address,
+                image: localBusinessImage,
+                priceRange: "от 900 BYN",
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Минск",
+                  addressCountry: "BY",
+                },
               }),
             }}
           />
