@@ -1,4 +1,4 @@
-import { getSiteUrl } from "@/lib/site-url";
+import { DEFAULT_SITE_URL } from "@/lib/site-url";
 
 type JsonLdValue =
   | string
@@ -41,12 +41,32 @@ function isFaqPageJsonLd(item: JsonLdObject) {
 }
 
 export function siteUrl(path = "") {
-  if (!path) return getSiteUrl();
-  if (/^https?:\/\//i.test(path)) return path;
+  const base = DEFAULT_SITE_URL;
+  if (!path || path === "#") return base;
 
-  const base = getSiteUrl();
+  if (/^https?:\/\//i.test(path)) {
+    try {
+      const url = new URL(path);
+      url.protocol = "https:";
+      url.hostname = url.hostname.replace(/^www\./i, "");
+      url.pathname = normalizePathname(url.pathname);
+      url.search = "";
+      url.hash = "";
+
+      if (url.origin === base) return url.pathname === "/" ? `${base}/` : url.toString().replace(/\/$/, "");
+
+      return `${base}${normalizePathname(url.pathname)}`;
+    } catch {
+      return base;
+    }
+  }
+
+  return `${base}${normalizePathname(path)}`;
+}
+
+function normalizePathname(path: string) {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return `${base}${normalizedPath}`;
+  return normalizedPath.replace(/\/{2,}/g, "/");
 }
 
 export function compactJsonLd<T extends JsonLdObject>(value: T): T {

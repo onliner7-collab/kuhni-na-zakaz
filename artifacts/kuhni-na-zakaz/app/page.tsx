@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle, Phone, Star, Shield, Clock, MapPin, FileCheck 
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { JsonLd, faqJsonLd } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
@@ -97,8 +97,9 @@ export default async function HomePage() {
       }
     } : {}),
   };
+  const jsonLdBreadcrumb = breadcrumbJsonLd([{ name: "Главная", path: "/" }]);
   const jsonLdFaq = faqJsonLd(faqs);
-  const jsonLdItems = jsonLdFaq ? [jsonLd, jsonLdFaq] : [jsonLd];
+  const jsonLdItems = jsonLdFaq ? [jsonLdBreadcrumb, jsonLd, jsonLdFaq] : [jsonLdBreadcrumb, jsonLd];
 
   const FALLBACK_SCENARIOS = [
     { id: 1, icon: "🏠", title: "Подобрать кухню", subtitle: "по образу жизни", description: "Угловая, прямая, с островом — подберём под вашу планировку и привычки", href: "/catalog", badge: "" },

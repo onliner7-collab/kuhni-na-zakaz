@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle, Lightbulb, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -80,16 +81,13 @@ export default async function ScenarioDetailPage({ params }: Props) {
     "@type": "Article",
     headline: scenario.headline || scenario.title,
     description: scenario.seoDescription || scenario.intro,
-    url: `https://kuhni.minsk.by/scenarios/${scenario.slug}`,
+    url: siteUrl(`/scenarios/${scenario.slug}`),
     publisher: { "@type": "Organization", name: "КухниBY" },
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by" },
-        { "@type": "ListItem", position: 2, name: "Как выбрать кухню", item: "https://kuhni.minsk.by/scenarios" },
-        { "@type": "ListItem", position: 3, name: scenario.title, item: `https://kuhni.minsk.by/scenarios/${scenario.slug}` },
-      ],
-    },
+    breadcrumb: breadcrumbJsonLd([
+      { name: "Главная", path: "/" },
+      { name: "Как выбрать кухню", path: "/scenarios" },
+      { name: scenario.title, path: `/scenarios/${scenario.slug}` },
+    ]),
   };
 
   return (

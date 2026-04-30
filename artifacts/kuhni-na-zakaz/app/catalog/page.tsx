@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
+import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
   title: "Каталог кухонь на заказ",
@@ -20,18 +21,14 @@ const DEFAULT_CATEGORIES = [
 ];
 
 export default async function CatalogPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Главная", item: "/" },
-      { "@type": "ListItem", position: 2, name: "Каталог", item: "/catalog" },
-    ],
-  };
+  const jsonLd = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Каталог", path: "/catalog" },
+  ]);
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
       <div className="section-padding">
         <div className="container-site">
           <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">

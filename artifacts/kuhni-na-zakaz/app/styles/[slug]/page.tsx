@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { renderContent } from "@/lib/render-content";
 import { getStyleEnrichment } from "@/lib/kitchen-page-enrichment";
+import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -82,15 +83,12 @@ export default async function StylePage({ params }: Props) {
     headline: s.headline || s.title,
     description: s.seoDescription || s.description,
     name: s.title,
-    url: `https://kuhni.minsk.by/styles/${slug}`,
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by" },
-        { "@type": "ListItem", position: 2, name: "Стили", item: "https://kuhni.minsk.by/styles" },
-        { "@type": "ListItem", position: 3, name: s.title, item: `https://kuhni.minsk.by/styles/${slug}` },
-      ],
-    },
+    url: siteUrl(`/styles/${slug}`),
+    breadcrumb: breadcrumbJsonLd([
+      { name: "Главная", path: "/" },
+      { name: "Стили", path: "/styles" },
+      { name: s.title, path: `/styles/${slug}` },
+    ]),
   };
   const faqJsonLd = {
     "@context": "https://schema.org",

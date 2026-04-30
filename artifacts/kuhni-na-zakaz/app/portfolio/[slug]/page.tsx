@@ -9,6 +9,7 @@ import { FavoriteButton } from "@/components/ui/FavoriteButton";
 import { ReviewStatus } from "@prisma/client";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -65,17 +66,14 @@ export default async function PortfolioCasePage({ params }: Props) {
     "@type": "Article",
     headline: c.title,
     description: c.seoDescription || c.description,
-    url: `https://kuhni.minsk.by/portfolio/${slug}`,
+    url: siteUrl(`/portfolio/${slug}`),
     datePublished: c.createdAt.toISOString(),
     dateModified: c.updatedAt.toISOString(),
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by" },
-        { "@type": "ListItem", position: 2, name: "Портфолио", item: "https://kuhni.minsk.by/portfolio" },
-        { "@type": "ListItem", position: 3, name: c.title, item: `https://kuhni.minsk.by/portfolio/${slug}` },
-      ],
-    },
+    breadcrumb: breadcrumbJsonLd([
+      { name: "Главная", path: "/" },
+      { name: "Портфолио", path: "/portfolio" },
+      { name: c.title, path: `/portfolio/${slug}` },
+    ]),
   };
 
   const allPhotos = [...(c.images.length > 0 ? c.images : c.mainImage ? [c.mainImage] : [])];

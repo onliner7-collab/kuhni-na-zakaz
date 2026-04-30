@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { renderContent } from "@/lib/render-content";
 import { getMaterialEnrichment } from "@/lib/kitchen-page-enrichment";
+import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -82,15 +83,12 @@ export default async function MaterialPage({ params }: Props) {
     headline: m.headline || m.title,
     description: m.seoDescription || m.description,
     name: m.title,
-    url: `https://kuhni.minsk.by/materials/${slug}`,
-    breadcrumb: {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by" },
-        { "@type": "ListItem", position: 2, name: "Материалы", item: "https://kuhni.minsk.by/materials" },
-        { "@type": "ListItem", position: 3, name: m.title, item: `https://kuhni.minsk.by/materials/${slug}` },
-      ],
-    },
+    url: siteUrl(`/materials/${slug}`),
+    breadcrumb: breadcrumbJsonLd([
+      { name: "Главная", path: "/" },
+      { name: "Материалы", path: "/materials" },
+      { name: m.title, path: `/materials/${slug}` },
+    ]),
   };
   const faqJsonLd = {
     "@context": "https://schema.org",

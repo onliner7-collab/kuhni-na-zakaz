@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const revalidate = 3600;
 export const dynamic = "force-dynamic";
@@ -219,7 +220,7 @@ export default async function LocationPage({ params }: Props) {
   const jsonLdLocalBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `https://kuhni.minsk.by/locations/${loc.slug}`,
+    "@id": siteUrl(`/locations/${loc.slug}`),
     name: "КухниBY",
     description: loc.description,
     telephone: loc.phone || CONTACT_DEFAULTS.phone,
@@ -232,7 +233,7 @@ export default async function LocationPage({ params }: Props) {
     areaServed: loc.areas,
     priceRange: `от ${loc.priceFrom} BYN`,
     image: loc.images[0] || undefined,
-    url: `https://kuhni.minsk.by/locations/${loc.slug}`,
+    url: siteUrl(`/locations/${loc.slug}`),
   };
 
   const jsonLdFaq = faqItems.length > 0 ? {
@@ -245,15 +246,11 @@ export default async function LocationPage({ params }: Props) {
     })),
   } : null;
 
-  const jsonLdBreadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Главная", item: "https://kuhni.minsk.by/" },
-      { "@type": "ListItem", position: 2, name: "Города", item: "https://kuhni.minsk.by/locations/" },
-      { "@type": "ListItem", position: 3, name: loc.city, item: `https://kuhni.minsk.by/locations/${loc.slug}` },
-    ],
-  };
+  const jsonLdBreadcrumb = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Города", path: "/locations" },
+    { name: loc.city, path: `/locations/${loc.slug}` },
+  ]);
 
   return (
     <>
