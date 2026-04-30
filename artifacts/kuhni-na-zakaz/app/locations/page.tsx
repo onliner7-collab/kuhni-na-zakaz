@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 
 import { ContactForm } from "@/components/sections/ContactForm";
+import { regionalLocations } from "@/data/locations";
 import { prisma } from "@/lib/db";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
@@ -16,7 +17,18 @@ export const metadata: Metadata = {
 };
 
 async function getLocations() {
-  return prisma.locationPage
+  const regionalFallback = regionalLocations.map((location) => ({
+    slug: location.slug,
+    city: location.cityName,
+    region: location.regionName,
+    h1: location.h1,
+    intro: location.introText,
+    priceFrom: location.priceFrom,
+    deliveryDays: 1,
+    measureCost: "Бесплатно",
+  }));
+
+  const locations = await prisma.locationPage
     .findMany({
       where: { published: true },
       orderBy: [{ region: "asc" }, { city: "asc" }],
@@ -32,6 +44,13 @@ async function getLocations() {
       },
     })
     .catch(() => []);
+
+  const existingSlugs = new Set(locations.map((location) => location.slug));
+  const missingRegionalLocations = regionalFallback.filter(
+    (location) => !existingSlugs.has(location.slug),
+  );
+
+  return [...locations, ...missingRegionalLocations];
 }
 
 export default async function LocationsPage() {

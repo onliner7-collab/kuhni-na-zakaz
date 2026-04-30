@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getRegionalLocation, type RegionalLocationData } from "@/data/locations";
 import { prisma } from "@/lib/db";
 import { ReviewStatus, type LocationPage } from "@prisma/client";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -35,35 +36,92 @@ const catalogLinks = [
 const LOCAL_BUSINESS_IMAGE =
   "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
 
-const FALLBACK_LOCATIONS: Record<string, Record<string, unknown>> = {
-  minsk: { city: "Минск", region: "Минск", h1: "Кухни на заказ в Минске" },
-  brest: { city: "Брест", region: "Брестская область", h1: "Кухни на заказ в Бресте" },
-  grodno: { city: "Гродно", region: "Гродненская область", h1: "Кухни на заказ в Гродно" },
-  vitebsk: { city: "Витебск", region: "Витебская область", h1: "Кухни на заказ в Витебске" },
-  gomel: { city: "Гомель", region: "Гомельская область", h1: "Кухни на заказ в Гомеле" },
-  mogilev: { city: "Могилёв", region: "Могилёвская область", h1: "Кухни на заказ в Могилёве" },
-  "minskaya-oblast": { city: "Минская область", region: "Минская область", h1: "Кухни на заказ по Минской области" },
-};
-
 function fallbackLocation(slug: string): LocationPage | null {
-  const item = FALLBACK_LOCATIONS[slug];
-  if (!item) return null;
+  const item = getRegionalLocation(slug);
+  if (!item) return legacyFallbackLocation(slug);
 
-  const city = String(item.city);
-  const h1 = String(item.h1);
+  return regionalLocationToPage(item);
+}
+
+function regionalLocationToPage(item: RegionalLocationData): LocationPage {
+  const city = item.cityName;
   const cityPrep = cityGenitive(city);
 
   return {
     id: 0,
     externalId: null,
-    slug,
+    slug: item.slug,
     city,
-    region: String(item.region),
-    title: h1,
-    h1,
-    seoTitle: h1,
-    seoDescription: `Проектируем, изготавливаем и устанавливаем кухни на заказ: замер, 3D-проект, производство и монтаж.`,
-    description: `Кухни на заказ для клиентов в регионе ${city}: индивидуальный проект, подбор материалов, изготовление и монтаж.`,
+    region: item.regionName,
+    title: item.title,
+    h1: item.h1,
+    seoTitle: item.title,
+    seoDescription: item.description,
+    description: item.description,
+    intro: item.introText,
+    localIntro: "",
+    features: [
+      item.measurementText,
+      item.deliveryText,
+      item.installationText,
+      item.warrantyText,
+    ],
+    uniquePoints: [
+      { emoji: "📐", title: "Замер", text: item.measurementText },
+      { emoji: "🚚", title: "Доставка", text: item.deliveryText },
+      { emoji: "🔧", title: "Монтаж", text: item.installationText },
+      { emoji: "✅", title: "Гарантия", text: item.warrantyText },
+    ],
+    contentBlocks: [
+      { type: "highlight", title: `Особенности работы: ${city}`, text: item.seoText },
+      { type: "text", title: "Замер и доставка", text: `${item.measurementText} ${item.deliveryText}` },
+      { type: "text", title: "Монтаж и гарантия", text: `${item.installationText} ${item.warrantyText}` },
+    ],
+    timelineText: `Заявка → Замер в ${cityPrep} → 3D-проект → Производство → Доставка и монтаж`,
+    visitDetails: item.measurementText,
+    installDetails: item.installationText,
+    faq: item.faq.map(({ question, answer }) => ({ q: question, a: answer })),
+    images: [],
+    areas: item.areas,
+    workZone: `Работаем в регионе: ${item.regionName}.`,
+    deliveryCost: item.deliveryText,
+    mapEmbed: "",
+    phone: CONTACT_DEFAULTS.phone,
+    address: "",
+    priceFrom: item.priceFrom,
+    deliveryDays: 1,
+    measureCost: "Бесплатно",
+    ctaHeadline: city === "Минская область" ? "Заказать кухню по Минской области" : `Заказать кухню в ${cityPrep}`,
+    ctaSubtext: "Оставьте заявку, и специалист свяжется с вами для консультации и записи на замер.",
+    caseSlugs: [],
+    reviewIds: [],
+    published: true,
+    createdAt: new Date(0),
+    updatedAt: new Date(0),
+  };
+}
+
+function legacyFallbackLocation(slug: string): LocationPage | null {
+  const legacyLocations: Record<string, { city: string; region: string; h1: string }> = {
+    brest: { city: "Брест", region: "Брестская область", h1: "Кухни на заказ в Бресте" },
+    grodno: { city: "Гродно", region: "Гродненская область", h1: "Кухни на заказ в Гродно" },
+  };
+  const item = legacyLocations[slug];
+  if (!item) return null;
+
+  const cityPrep = cityGenitive(item.city);
+
+  return {
+    id: 0,
+    externalId: null,
+    slug,
+    city: item.city,
+    region: item.region,
+    title: item.h1,
+    h1: item.h1,
+    seoTitle: item.h1,
+    seoDescription: "Проектируем, изготавливаем и устанавливаем кухни на заказ: замер, 3D-проект, производство и монтаж.",
+    description: `Кухни на заказ для клиентов в регионе ${item.city}: индивидуальный проект, подбор материалов, изготовление и монтаж.`,
     intro: "Подберём планировку, материалы и комплектацию под помещение, бюджет и сроки.",
     localIntro: "",
     features: ["Бесплатный замер", "3D-проект", "Договор и гарантия"],
@@ -74,7 +132,7 @@ function fallbackLocation(slug: string): LocationPage | null {
     installDetails: "",
     faq: [],
     images: [],
-    areas: [city],
+    areas: [item.city],
     workZone: "",
     deliveryCost: "",
     mapEmbed: "",
@@ -83,7 +141,7 @@ function fallbackLocation(slug: string): LocationPage | null {
     priceFrom: 0,
     deliveryDays: 1,
     measureCost: "Бесплатно",
-    ctaHeadline: city === "Минская область" ? "Заказать кухню по Минской области" : `Заказать кухню в ${cityPrep}`,
+    ctaHeadline: `Заказать кухню в ${cityPrep}`,
     ctaSubtext: "Оставьте заявку, и специалист свяжется с вами для консультации и записи на замер.",
     caseSlugs: [],
     reviewIds: [],
