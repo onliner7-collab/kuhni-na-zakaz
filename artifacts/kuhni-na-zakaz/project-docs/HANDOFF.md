@@ -74,7 +74,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 | Этап 10 | ✅ Done | Персонализация — Lead (+8 полей), SavedConfig, FavoriteCase (новые модели); usePersonalization hook; FavoriteButton; ConfigResultActions; SavedConfigBanner; admin/leads полный перепис с статусами/заметками/config-данными |
 | Admin UX audit | ✅ Done | FAQ admin CRUD (/admin/faq + API), LeadAssignedEditor, поиск заявок, Dashboard новые заявки |
 | Security & Cleanup | ✅ Done | `lib/auth.ts` — убран fallback secret, throw если SESSION_SECRET не задан; `.next/` удалён из git-индекса; `asChild` bug fixed |
-| Brand & positioning cleanup | ✅ Done | Убраны минские fallback-домены из metadataBase/OG/Footer. Статические страницы: "КухниMinsk" → "КухниBY", домен → kuhniby.by |
+| Brand & positioning cleanup | ✅ Done | Убраны минские fallback-домены из metadataBase/OG/Footer. Статические страницы: "КухниMinsk" → "КухниBY", домен → kuhni.minsk.by |
 | Contacts DB cleanup | ✅ Done | `/contacts` читает phone/email/address/workingHours из SiteSettings (id=1) с fallback. Schema default email исправлен. |
 | StaticPage CMS | ✅ Done | StaticPage model + /admin/pages (CRUD, редактор: /admin/pages/[id]/edit) + 6 страниц посеяно; публичные about/warranty/delivery/privacy/terms/personal-data читают контент из БД |
 | Blog seed + Regional expansion | ✅ Done | 6 blog posts посеяно; 10 LocationPages (все 6 областных центров + Борисов/Жодино/Молодечно); sitemap.ts DB-driven; renderContent поддерживает bold+lists |
@@ -115,7 +115,7 @@ Stack: **Next.js 15.3.3 App Router** + PostgreSQL + Prisma + Tailwind + Sonner.
 - **⚠️ Do not add** `SESSION_SECRET` fallback back — intentional security hardening.
 
 ### Sitemap
-`app/sitemap.ts` dynamically fetches LocationPages, BlogPosts, PortfolioCases, StaticPages from DB. BASE_URL = `https://kuhniby.by`.
+`app/sitemap.ts` dynamically fetches LocationPages, BlogPosts, PortfolioCases, StaticPages from DB. BASE_URL = `https://kuhni.minsk.by`.
 
 ### Design tokens
 - Primary: `hsl(263, 85%, 62%)` (violet)

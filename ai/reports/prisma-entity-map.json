@@ -3197,7 +3197,7 @@
           "isList": false,
           "isOptional": false,
           "attributes": [
-            "@default(\"info@kuhniby.by\")"
+            "@default(\"onliner7@gmail.com\")"
           ],
           "relation": {
             "kind": "scalar"

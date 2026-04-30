@@ -60,7 +60,7 @@
       "sitemap metadata route"
     ],
     "conflicts": [
-      "Base URL mismatch: layout uses \"https://kuhniby.by\" but robots uses \"https://kuhniminsk.by\"."
+      "Base URL mismatch: layout uses \"https://kuhni.minsk.by\" but robots uses \"https://kuhni.minsk.by\"."
     ],
     "gaps": [
       "Some route-level metadata surfaces do not declare canonical output: artifacts/kuhni-na-zakaz/app/admin/scenarios/[id]/page.tsx."

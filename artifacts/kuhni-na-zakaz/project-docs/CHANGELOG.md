@@ -1,4 +1,4 @@
-﻿# Changelog вЂ” РљСѓС…РЅРёBY
+# Changelog вЂ” РљСѓС…РЅРёBY
 
 ## [Unreleased] - 2026-04-21 (Production styles fix and deploy access refresh)
 
@@ -132,7 +132,7 @@
 
 ### Changed
 - **`app/contacts/page.tsx`** вЂ” РєРѕРЅРІРµСЂС‚РёСЂРѕРІР°РЅ РІ `async` Server Component. Р§РёС‚Р°РµС‚ `phone`, `phoneDisplay`, `phone2`, `phoneDisplay2`, `email`, `address`, `workingHours` РёР· `SiteSettings` (id=1) С‡РµСЂРµР· Prisma. РџСЂРё DB-РѕС€РёР±РєРµ вЂ” `catch(() => null)`, РєРѕРґ РїРѕРєР°Р·С‹РІР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РёР· `DEFAULTS`. РЎС‚СЂР°РЅРёС†Р° Р±РѕР»РµРµ РЅРµ РѕС‚РѕСЂРІР°РЅР° РѕС‚ РіР»РѕР±Р°Р»СЊРЅС‹С… РЅР°СЃС‚СЂРѕРµРє.
-- **`prisma/schema.prisma`** вЂ” РёСЃРїСЂР°РІР»РµРЅ `default` РґР»СЏ `SiteSettings.email`: `"info@kuhniminsk.by"` в†’ `"info@kuhniby.by"`. Р’Р»РёСЏРµС‚ С‚РѕР»СЊРєРѕ РЅР° СЃРѕР·РґР°РЅРёРµ РЅРѕРІС‹С… Р·Р°РїРёСЃРµР№ (СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ РґР°РЅРЅС‹Рµ РІ Р‘Р” РЅРµ Р·Р°С‚СЂРѕРЅСѓС‚С‹).
+- **`prisma/schema.prisma`** вЂ” РёСЃРїСЂР°РІР»РµРЅ `default` РґР»СЏ `SiteSettings.email`: `"onliner7@gmail.com"` в†’ `"onliner7@gmail.com"`. Р’Р»РёСЏРµС‚ С‚РѕР»СЊРєРѕ РЅР° СЃРѕР·РґР°РЅРёРµ РЅРѕРІС‹С… Р·Р°РїРёСЃРµР№ (СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРµ РґР°РЅРЅС‹Рµ РІ Р‘Р” РЅРµ Р·Р°С‚СЂРѕРЅСѓС‚С‹).
 - **`project-docs/HANDOFF.md`** вЂ” СѓРґР°Р»РµРЅР° СЃС‚СЂРѕРєР° В«Contacts page вЂ” currently staticВ» РёР· Pending tasks (Р·Р°РґР°С‡Р° РІС‹РїРѕР»РЅРµРЅР°); РЅСѓРјРµСЂР°С†РёСЏ СЃРїРёСЃРєР° РёСЃРїСЂР°РІР»РµРЅР°.
 
 ### Р§С‚Рѕ СЃС‚Р°Р»Рѕ DB-driven
@@ -164,18 +164,18 @@
 ### РџРѕРґСЌС‚Р°Рї B вЂ” static pages & global content hygiene
 
 #### РР·РјРµРЅРµРЅРѕ: `app/layout.tsx`
-- metadataBase fallback: `"https://kuhniminsk.by"` в†’ `"https://kuhniby.by"`
+- metadataBase fallback: `"https://kuhni.minsk.by"` в†’ `"https://kuhni.minsk.by"`
 - OG url fallback: С‚Рѕ Р¶Рµ
 
 #### РР·РјРµРЅРµРЅРѕ: `components/layout/Footer.tsx`
-- `FOOTER_DEFAULTS.email`: `"info@kuhniminsk.by"` в†’ `"info@kuhniby.by"`
+- `FOOTER_DEFAULTS.email`: `"onliner7@gmail.com"` в†’ `"onliner7@gmail.com"`
 
 #### РР·РјРµРЅРµРЅРѕ: `app/about/page.tsx`
 - metadata title: "Рћ РєРѕРјРїР°РЅРёРё вЂ” РєСѓС…РЅРё РЅР° Р·Р°РєР°Р· РІ РњРёРЅСЃРєРµ" в†’ "Рћ РєРѕРјРїР°РЅРёРё РљСѓС…РЅРёBY вЂ” РєСѓС…РЅРё РЅР° Р·Р°РєР°Р· РїРѕ Р‘РµР»Р°СЂСѓСЃРё"
 - metadata description: СѓР±СЂР°РЅ "РІ РњРёРЅСЃРєРµ", Р±СЂРµРЅРґ РёСЃРїСЂР°РІР»РµРЅ РЅР° "РљСѓС…РЅРёBY"
 - JSON-LD `name`: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY"
 - JSON-LD `description`: "РІ РњРёРЅСЃРєРµ Рё РњРёРЅСЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё" в†’ "РїРѕ РІСЃРµР№ Р‘РµР»Р°СЂСѓСЃРё"
-- JSON-LD `email`: "info@kuhniminsk.by" в†’ "info@kuhniby.by"
+- JSON-LD `email`: "onliner7@gmail.com" в†’ "onliner7@gmail.com"
 - Body: "РљСѓС…РЅРёMinsk вЂ” РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ РєСѓС…РѕРЅСЊ РЅР° Р·Р°РєР°Р· РІ РњРёРЅСЃРєРµ Рё РњРёРЅСЃРєРѕР№ РѕР±Р»Р°СЃС‚Рё" в†’ Р±СЂРµРЅРґ + РѕС…РІР°С‚ РёСЃРїСЂР°РІР»РµРЅС‹
 
 #### РР·РјРµРЅРµРЅРѕ: `app/delivery-installation/page.tsx`
@@ -185,29 +185,29 @@
 
 #### РР·РјРµРЅРµРЅРѕ: `app/warranty/page.tsx`
 - metadata description: СѓР±СЂР°РЅРѕ "Р“Р°СЂР°РЅС‚РёР№РЅРѕРµ РѕР±СЃР»СѓР¶РёРІР°РЅРёРµ РІ РњРёРЅСЃРєРµ" вЂ” СЃС‚СЂР°РЅРёС†Р° РѕРїРёСЃС‹РІР°РµС‚ РѕР±С‰РёР№ СЃРµСЂРІРёСЃ
-- Body email: "info@kuhniminsk.by" в†’ "info@kuhniby.by"
+- Body email: "onliner7@gmail.com" в†’ "onliner7@gmail.com"
 
 #### РР·РјРµРЅРµРЅРѕ: `app/privacy-policy/page.tsx`
 - metadata description: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY"
 - Body: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY" (2 РјРµСЃС‚Р°)
-- Body: "info@kuhniminsk.by" в†’ "info@kuhniby.by" (2 РјРµСЃС‚Р°)
+- Body: "onliner7@gmail.com" в†’ "onliner7@gmail.com" (2 РјРµСЃС‚Р°)
 
 #### РР·РјРµРЅРµРЅРѕ: `app/terms/page.tsx`
 - metadata description: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY"
-- Body: "kuhniminsk.by" в†’ "kuhniby.by"
+- Body: "kuhni.minsk.by" в†’ "kuhni.minsk.by"
 - Body: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY"
 
 #### РР·РјРµРЅРµРЅРѕ: `app/personal-data/page.tsx`
 - metadata description: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY"
-- Body: "kuhniminsk.by" в†’ "kuhniby.by"
-- Body: "info@kuhniminsk.by" в†’ "info@kuhniby.by"
+- Body: "kuhni.minsk.by" в†’ "kuhni.minsk.by"
+- Body: "onliner7@gmail.com" в†’ "onliner7@gmail.com"
 - Body: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY" (РІРєР»СЋС‡Р°СЏ Р±Р»РѕРє РѕРїРµСЂР°С‚РѕСЂР° РґР°РЅРЅС‹С…)
 - Р¤РёР·РёС‡РµСЃРєРёР№ Р°РґСЂРµСЃ "Рі. РњРёРЅСЃРє, СѓР». РџСЂРёС‚С‹С†РєРѕРіРѕ, 100" вЂ” РѕСЃС‚Р°РІР»РµРЅ (С„Р°РєС‚РёС‡РµСЃРєРёР№ Р°РґСЂРµСЃ РѕРїРµСЂР°С‚РѕСЂР°)
 
 #### РР·РјРµРЅРµРЅРѕ: `app/contacts/page.tsx`
 - metadata title: "РљРѕРЅС‚Р°РєС‚С‹ вЂ” РєСѓС…РЅРё РЅР° Р·Р°РєР°Р· РІ РњРёРЅСЃРєРµ" в†’ "РљРѕРЅС‚Р°РєС‚С‹ РљСѓС…РЅРёBY вЂ” РєСѓС…РЅРё РЅР° Р·Р°РєР°Р· РїРѕ Р‘РµР»Р°СЂСѓСЃРё"
 - metadata description: "РљСѓС…РЅРёMinsk" в†’ "РљСѓС…РЅРёBY", СѓР±СЂР°РЅРѕ "Р°РґСЂРµСЃ РІ РњРёРЅСЃРєРµ" РєР°Рє РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ
-- Body email: "info@kuhniminsk.by" в†’ "info@kuhniby.by"
+- Body email: "onliner7@gmail.com" в†’ "onliner7@gmail.com"
 - Р¤РёР·РёС‡РµСЃРєРёР№ Р°РґСЂРµСЃ "Рі. РњРёРЅСЃРє, СѓР». РџСЂРёС‚С‹С†РєРѕРіРѕ, 100" вЂ” РѕСЃС‚Р°РІР»РµРЅ (С„Р°РєС‚РёС‡РµСЃРєРёРµ РґР°РЅРЅС‹Рµ)
 - Placeholder РєР°СЂС‚С‹ "РљР°СЂС‚Р° вЂ” Рі. РњРёРЅСЃРє, СѓР». РџСЂРёС‚С‹С†РєРѕРіРѕ, 100" вЂ” РѕСЃС‚Р°РІР»РµРЅ
 

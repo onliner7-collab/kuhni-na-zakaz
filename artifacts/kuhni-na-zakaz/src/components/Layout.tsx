@@ -37,8 +37,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <a href="tel:+375291234567" className="font-medium hover:text-primary transition-colors">
-              +375 (29) 123-45-67
+            <a href="tel:+375296261547" className="font-medium hover:text-primary transition-colors">
+              +375 (29) 626-15-47
             </a>
             <Button data-testid="button-header-calculate">Рассчитать стоимость</Button>
           </div>
@@ -66,8 +66,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   {link.label}
                 </Link>
               ))}
-              <a href="tel:+375291234567" className="text-lg font-medium mt-4">
-                +375 (29) 123-45-67
+              <a href="tel:+375296261547" className="text-lg font-medium mt-4">
+                +375 (29) 626-15-47
               </a>
             </nav>
           </div>
@@ -110,8 +110,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <h4 className="font-bold mb-4 font-serif text-lg">Контакты</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>г. Минск, ул. Притыцкого, 100</li>
-              <li><a href="tel:+375291234567" className="hover:text-primary">+375 (29) 123-45-67</a></li>
-              <li><a href="mailto:info@kuhniminsk.by" className="hover:text-primary">info@kuhniminsk.by</a></li>
+              <li><a href="tel:+375296261547" className="hover:text-primary">+375 (29) 626-15-47</a></li>
+              <li><a href="mailto:onliner7@gmail.com" className="hover:text-primary">onliner7@gmail.com</a></li>
             </ul>
           </div>
         </div>
@@ -127,7 +127,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Mobile CTA Panel */}
       <div className="md:hidden fixed bottom-0 left-0 w-full bg-background border-t p-4 flex gap-4 z-50 pb-safe">
         <Button variant="outline" className="flex-1" asChild>
-          <a href="tel:+375291234567"><Phone className="w-4 h-4 mr-2" /> Позвонить</a>
+          <a href="tel:+375296261547"><Phone className="w-4 h-4 mr-2" /> Позвонить</a>
         </Button>
         <Button className="flex-1" asChild>
           <Link href="/#contact-form"><Calculator className="w-4 h-4 mr-2" /> Оставить заявку</Link>

@@ -10,7 +10,7 @@ Mode: read_only
 
 ### Conflicts
 
-- Base URL mismatch: layout uses "https://kuhniby.by" but robots uses "https://kuhniminsk.by".
+- Base URL mismatch: layout uses "https://kuhni.minsk.by" but robots uses "https://kuhni.minsk.by".
 
 ### Gaps
 

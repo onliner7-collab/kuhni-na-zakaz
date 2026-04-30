@@ -1,13 +1,13 @@
 export const SITE_CONFIG = {
   name: "КухниMinsk",
-  phone: "+375291234567",
-  phoneDisplay: "+375 (29) 123-45-67",
-  email: "info@kuhniminsk.by",
+  phone: "+375296261547",
+  phoneDisplay: "+375 (29) 626-15-47",
+  email: "onliner7@gmail.com",
   address: "г. Минск, ул. Притыцкого, 100",
   workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
   telegram: "https://t.me/kuhniminsk",
-  viber: "viber://chat?number=%2B375291234567",
-  whatsapp: "https://wa.me/375291234567",
+  viber: "viber://chat?number=%2B375296261547",
+  whatsapp: "https://wa.me/375296261547",
 };
 
 export const PORTFOLIO_ITEMS = [

@@ -7,18 +7,18 @@ async function main() {
   console.log("🌱 Seeding database...");
 
   // Create super admin
-  const existing = await prisma.user.findUnique({ where: { email: "admin@kuhniminsk.by" } });
+  const existing = await prisma.user.findUnique({ where: { email: "onliner7@gmail.com" } });
   if (!existing) {
     const passwordHash = await bcrypt.hash("Admin123!", 10);
     await prisma.user.create({
       data: {
-        email: "admin@kuhniminsk.by",
+        email: "onliner7@gmail.com",
         name: "Администратор",
         passwordHash,
         role: "SUPER_ADMIN",
       },
     });
-    console.log("✅ Super Admin created: admin@kuhniminsk.by / Admin123!");
+    console.log("✅ Super Admin created: onliner7@gmail.com / Admin123!");
   } else {
     console.log("ℹ️  Super Admin already exists");
   }

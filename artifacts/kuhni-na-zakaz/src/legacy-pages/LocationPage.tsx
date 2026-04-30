@@ -1,4 +1,4 @@
-﻿import { Link, useParams } from "wouter";
+import { Link, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
@@ -112,7 +112,7 @@ export function LocationPage() {
                 <Link href="/contacts">РћСЃС‚Р°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</Link>
               </Button>
               <Button variant="outline" className="w-full" asChild>
-                <a href="tel:+375291234567">РџРѕР·РІРѕРЅРёС‚СЊ</a>
+                <a href="tel:+375296261547">РџРѕР·РІРѕРЅРёС‚СЊ</a>
               </Button>
             </CardContent>
           </Card>

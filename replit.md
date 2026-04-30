@@ -103,7 +103,7 @@ artifacts/kuhni-na-zakaz/
 
 ### Пользователи (из seed)
 
-- **Super Admin**: `admin@kuhniminsk.by` / `Admin123!`
+- **Super Admin**: `onliner7@gmail.com` / `Admin123!`
 
 ### Роли
 
