@@ -26,7 +26,7 @@ CapabilityBoundingSet=
 AmbientCapabilities=
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
 SystemCallArchitectures=native
-ReadWritePaths=__APP_DIR__/artifacts/kuhni-na-zakaz/public/uploads __APP_DIR__/artifacts/kuhni-na-zakaz/.tmp /home/__APP_USER__/.cache/node/corepack
+ReadWritePaths=__APP_DIR__/artifacts/kuhni-na-zakaz/public/uploads __APP_DIR__/artifacts/kuhni-na-zakaz/.tmp __APP_DIR__/artifacts/kuhni-na-zakaz/.next/cache /home/__APP_USER__/.cache/node/corepack
 
 [Install]
 WantedBy=multi-user.target

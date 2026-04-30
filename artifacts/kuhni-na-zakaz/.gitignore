@@ -34,6 +34,7 @@ coverage/
 .parcel-cache/
 .tmp/
 backups/
+public/sitemap-static.xml
 test-results/
 
 # OS

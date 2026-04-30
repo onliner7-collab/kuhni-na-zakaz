@@ -12,6 +12,7 @@
     "smoke:post-import:headed": "playwright test -c playwright.smoke.config.ts --headed",
     "bulk-import:audit-external-ids": "tsx scripts/audit-bulk-import-v1-external-ids.ts",
     "photos:import-prepared": "tsx scripts/import-prepared-kitchen-photos.ts",
+    "sitemap:write-static": "tsx scripts/write-static-sitemap.ts",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:seed-static": "tsx prisma/seed-static-pages.ts",
