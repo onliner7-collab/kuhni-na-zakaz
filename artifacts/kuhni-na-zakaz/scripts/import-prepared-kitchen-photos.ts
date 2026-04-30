@@ -88,7 +88,9 @@ function isSafe(row: { confidence: string; needs_review: string }) {
 function publicImagePath(sourcePath: string, section: "portfolio" | "styles" | "catalog" | "materials") {
   if (!sourcePath) return "";
 
-  return `/uploads/kitchens/${section}/${path.basename(sourcePath)}`;
+  const fileName = sourcePath.split(/[\\/]/).filter(Boolean).at(-1) || "";
+
+  return fileName ? `/uploads/kitchens/${section}/${fileName}` : "";
 }
 
 function publicImageList(sourcePaths: string, section: "portfolio" | "styles" | "catalog" | "materials") {
