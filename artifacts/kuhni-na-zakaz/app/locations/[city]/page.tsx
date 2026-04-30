@@ -3,6 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getRegionalLocation, type RegionalLocationData } from "@/data/locations";
+import {
+  RegionalLocationPage,
+  type PortfolioCasePreview,
+} from "@/components/locations/RegionalLocationPage";
 import { prisma } from "@/lib/db";
 import { ReviewStatus, type LocationPage } from "@prisma/client";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -210,8 +214,69 @@ async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocatio
   return { cases, reviews };
 }
 
+async function getRegionalPortfolioCases(location: RegionalLocationData) {
+  const localCases = await prisma.portfolioCase.findMany({
+    where: {
+      published: true,
+      OR: [
+        { city: { contains: location.portfolioCityKey, mode: "insensitive" } },
+        { region: { contains: location.regionName, mode: "insensitive" } },
+      ],
+    },
+    orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
+    take: 3,
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+      mainImage: true,
+      style: true,
+      priceFrom: true,
+      area: true,
+      days: true,
+      city: true,
+    },
+  }).catch(() => []);
+
+  if (localCases.length > 0) {
+    return { cases: localCases as PortfolioCasePreview[], hasLocalCases: true };
+  }
+
+  const generalCases = await prisma.portfolioCase.findMany({
+    where: { published: true, slug: { not: "" }, title: { not: "" } },
+    orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
+    take: 3,
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+      mainImage: true,
+      style: true,
+      priceFrom: true,
+      area: true,
+      days: true,
+      city: true,
+    },
+  }).catch(() => []);
+
+  return { cases: generalCases as PortfolioCasePreview[], hasLocalCases: false };
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
+  const regionalLocation = getRegionalLocation(city);
+  if (regionalLocation) {
+    return {
+      title: regionalLocation.title,
+      description: regionalLocation.description,
+      alternates: { canonical: `/locations/${city}` },
+      openGraph: {
+        title: regionalLocation.title,
+        description: regionalLocation.description,
+      },
+    };
+  }
+
   const loc = await getLocation(city);
   if (!loc) return { title: "Не найдено" };
   const title = cleanSeoTitle(loc.seoTitle, loc.title);
@@ -336,6 +401,19 @@ function StarRow({ rating }: { rating: number }) {
 
 export default async function LocationPage({ params }: Props) {
   const { city } = await params;
+  const regionalLocation = getRegionalLocation(city);
+  if (regionalLocation) {
+    const { cases, hasLocalCases } = await getRegionalPortfolioCases(regionalLocation);
+
+    return (
+      <RegionalLocationPage
+        location={regionalLocation}
+        cases={cases}
+        hasLocalCases={hasLocalCases}
+      />
+    );
+  }
+
   const loc = await getLocation(city);
   if (!loc) notFound();
 
