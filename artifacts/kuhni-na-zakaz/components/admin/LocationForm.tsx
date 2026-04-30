@@ -63,7 +63,7 @@ const CITY_TEMPLATES: Record<string, Partial<LocationData>> = {
     city: "Минск", slug: "minsk", region: "г. Минск",
     title: "Кухни на заказ в Минске | КухниBY",
     h1: "Кухни на заказ в Минске",
-    intro: "Производим и устанавливаем кухни на заказ в Минске с 2012 года. Собственный цех, штат дизайнеров и монтажников. Работаем во всех районах города.",
+    intro: "Производим и устанавливаем кухни на заказ по индивидуальным размерам. Работаем с частными заказами по Беларуси.",
     description: "Кухни на заказ в Минске от производителя. Замер и 3D-проект бесплатно. Гарантия 5 лет. Изготовление от 14 рабочих дней.",
     priceFrom: 900, deliveryCost: "Бесплатно при заказе от 3 000 BYN",
     deliveryDays: 1, measureCost: "Бесплатно",
@@ -474,7 +474,7 @@ export default function LocationForm({ initial, isEdit }: Props) {
               rows={5}
               value={data.localIntro}
               onChange={e => set("localIntro", e.target.value)}
-              placeholder="Минск — наш основной рынок с 2012 года. За это время мы изготовили более 800 кухонь..."
+              placeholder="Работаем в городе и ближайших населённых пунктах. Уточняем адрес, особенности помещения и удобное время для замера..."
             />
             <p className="text-xs text-muted-foreground">{data.localIntro.length} символов</p>
           </div>

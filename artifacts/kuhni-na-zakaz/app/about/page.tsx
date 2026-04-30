@@ -7,8 +7,8 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-o
 import { getStaticPage } from "@/lib/static-page";
 
 const FACTS = [
-  { n: "10+", t: "лет на рынке", d: "Работаем с 2015 года" },
-  { n: "1000+", t: "кухонь изготовлено", d: "За всё время работы" },
+  { n: "BY", t: "частные заказы", d: "Работаем с клиентами по Беларуси" },
+  { n: "1:1", t: "индивидуальные размеры", d: "Проектируем под конкретное помещение" },
   { n: "5 лет", t: "гарантия", d: "На фурнитуру Blum" },
   { n: "14 дней", t: "минимальный срок", d: "Для стандартных моделей" },
 ];
@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: cleanSeoTitle(page?.seoTitle, "О компании и производство кухонь"),
     description: trimMetaDescription(
       page?.seoDescription,
-      "Производитель кухонь на заказ по всей Беларуси: собственное производство, опыт с 2015 года, договор, гарантия и бесплатный замер.",
+      "Производитель кухонь на заказ по всей Беларуси: индивидуальные размеры, договор, гарантия и бесплатный замер.",
     ),
     alternates: { canonical: "/about" },
   };

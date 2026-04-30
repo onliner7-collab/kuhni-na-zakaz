@@ -136,7 +136,7 @@ export default async function HomePage() {
   ];
 
   const FALLBACK_TRUST = [
-    { id: 1, icon: "🏆", title: "500+ проектов", subtitle: "с 2012 года" },
+    { id: 1, icon: "🏆", title: "Частные заказы", subtitle: "по Беларуси" },
     { id: 2, icon: "🛡️", title: "5 лет гарантии", subtitle: "на фурнитуру" },
     { id: 3, icon: "🗺️", title: "6 областей", subtitle: "по всей Беларуси" },
     { id: 4, icon: "📄", title: "Договор и смета", subtitle: "до начала работ" },
