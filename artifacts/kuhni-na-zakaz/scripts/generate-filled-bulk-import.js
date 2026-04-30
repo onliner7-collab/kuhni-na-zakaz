@@ -162,7 +162,7 @@ function makeLocation({
 }) {
   const faq = [
     {
-      q: `Сколько стоит кухня на заказ в ${city}?`,
+      q: locationPriceQuestion(city),
       a: `Базовые проекты начинаются от ${priceFrom} BYN за погонный метр. Точную стоимость мы считаем после замера, выбора материалов и конфигурации.`,
     },
     {
@@ -208,6 +208,14 @@ function makeLocation({
     seoDescription,
     published: "published",
   };
+}
+
+function locationPriceQuestion(city) {
+  if (city === "Минская область") {
+    return "Сколько стоит кухня на заказ по Минской области?";
+  }
+
+  return `Сколько стоит кухня на заказ в ${city}?`;
 }
 
 const kitchens = [

@@ -96,8 +96,8 @@ function fallbackLocation(slug: string): LocationPage | null {
 async function getLocation(slug: string): Promise<LocationPage | null> {
   return prisma.locationPage
     .findFirst({ where: { slug, published: true } })
-    .then((location) => location ?? fallbackLocation(slug))
-    .catch(() => fallbackLocation(slug));
+    .then((location) => normalizeLocationCopy(location ?? fallbackLocation(slug)))
+    .catch(() => normalizeLocationCopy(fallbackLocation(slug)));
 }
 
 async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocation>>>) {
@@ -194,6 +194,76 @@ function citySourceForm(city: string) {
   if (city === "Витебск") return "Витебска";
   if (city === "Могилёв") return "Могилёва";
   return city;
+}
+
+function normalizeLocationCopy(location: LocationPage | null): LocationPage | null {
+  if (!location) return null;
+
+  const normalized = { ...location };
+  const stringFields = [
+    "title",
+    "h1",
+    "seoTitle",
+    "seoDescription",
+    "description",
+    "intro",
+    "localIntro",
+    "timelineText",
+    "visitDetails",
+    "installDetails",
+    "workZone",
+    "deliveryCost",
+    "measureCost",
+    "ctaHeadline",
+    "ctaSubtext",
+  ] as const;
+  const jsonFields = ["features", "uniquePoints", "contentBlocks", "faq", "areas"] as const;
+
+  for (const field of stringFields) {
+    normalized[field] = normalizeLocationText(normalized[field], location.city) as never;
+  }
+
+  for (const field of jsonFields) {
+    normalized[field] = normalizeLocationJson(normalized[field], location.city) as never;
+  }
+
+  return normalized;
+}
+
+function normalizeLocationJson(value: unknown, city: string): unknown {
+  if (typeof value === "string") return normalizeLocationText(value, city);
+  if (Array.isArray(value)) return value.map((item) => normalizeLocationJson(item, city));
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [key, normalizeLocationJson(item, city)]),
+    );
+  }
+
+  return value;
+}
+
+function normalizeLocationText(value: string | null, city: string): string | null {
+  if (!value) return value;
+
+  const cityPrep = cityGenitive(city);
+  const measurementText =
+    city === "Минск"
+      ? "Замерщик приезжает по Минску в согласованное время и учитывает особенности помещения."
+      : "Замерщик приезжает по указанному адресу в согласованное время и учитывает особенности помещения.";
+
+  return value
+    .replace(
+      new RegExp(`Замерщик приезжает в ${escapeRegExp(cityPrep)} в согласованное время и учитывает особенности помещения\\.`, "g"),
+      measurementText,
+    )
+    .replace(/Сколько стоит кухня на заказ в Минская область\?/g, "Сколько стоит кухня на заказ по Минской области?")
+    .replace(/кухни в Минск(?!е)/gi, "кухни в Минске")
+    .replace(/кухню в Минск(?!е)/gi, "кухню в Минске")
+    .replace(/в городе Минск(?!е)/gi, "в городе Минске");
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function StarRow({ rating }: { rating: number }) {
