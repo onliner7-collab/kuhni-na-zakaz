@@ -6,11 +6,6 @@ import { MapPin, Square, Paintbrush, Layers, Clock, ArrowRight, CheckCircle, Ale
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
-import {
-  getPortfolioProjectBySlug,
-  portfolioProjects,
-  type PortfolioProject,
-} from "@/data/portfolio-projects";
 import { ReviewStatus } from "@prisma/client";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { optimizedImageSrc } from "@/lib/image-optimization";
@@ -18,68 +13,10 @@ import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 interface Props { params: Promise<{ slug: string }> }
 
-function parseProjectNumber(value: string) {
-  const parsed = Number.parseInt(value, 10);
-  return Number.isFinite(parsed) ? parsed : 0;
-}
-
-function toStaticPortfolioCase(project: PortfolioProject, index = 0) {
-  const createdAt = new Date(project.createdAt);
-
-  return {
-    id: index + 1,
-    externalId: project.id,
-    title: project.title,
-    slug: project.slug,
-    city: project.city,
-    region: project.region,
-    area: parseProjectNumber(project.size),
-    layout: project.kitchenType,
-    style: project.style,
-    styleSlug: "",
-    material: project.materials.join(", "),
-    materialSlugs: [],
-    scenarioSlugs: [],
-    priceFrom: 0,
-    priceTo: 0,
-    days: parseProjectNumber(project.workDuration),
-    completedAt: "",
-    description: project.description,
-    task: project.task,
-    constraints: "",
-    solution: project.solution,
-    result: project.features.join(". "),
-    mainImage: project.mainImage,
-    images: project.images.map((image) => image.src),
-    photosBefore: [],
-    photosAfter: [],
-    reviewIds: [],
-    featured: project.isFeatured,
-    order: index,
-    seoTitle: project.title,
-    seoDescription: project.description,
-    seoKeywords: [
-      project.kitchenType,
-      project.style,
-      project.city,
-      ...project.materials,
-    ].filter(Boolean).join(", "),
-    published: true,
-    createdAt,
-    updatedAt: createdAt,
-  };
-}
-
 async function getCase(slug: string) {
   try {
-    const dbCase = await prisma.portfolioCase.findFirst({ where: { slug, published: true } });
-    if (dbCase) return dbCase;
-  } catch {}
-
-  const project = getPortfolioProjectBySlug(slug);
-  if (!project) return null;
-
-  return toStaticPortfolioCase(project, portfolioProjects.findIndex((item) => item.slug === slug));
+    return await prisma.portfolioCase.findFirst({ where: { slug, published: true } });
+  } catch { return null; }
 }
 
 async function getRelated(c: Awaited<ReturnType<typeof getCase>>) {
@@ -98,18 +35,12 @@ async function getRelated(c: Awaited<ReturnType<typeof getCase>>) {
 
 async function getOtherCases(slug: string) {
   try {
-    const dbCases = await prisma.portfolioCase.findMany({
+    return await prisma.portfolioCase.findMany({
       where: { published: true, slug: { not: slug } },
       orderBy: [{ featured: "desc" }, { order: "asc" }],
       take: 3,
     });
-    if (dbCases.length > 0) return dbCases;
-  } catch {}
-
-  return portfolioProjects
-    .filter((project) => project.slug !== slug)
-    .slice(0, 3)
-    .map(toStaticPortfolioCase);
+  } catch { return []; }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

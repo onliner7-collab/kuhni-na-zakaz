@@ -4,6 +4,66 @@ import { prisma } from "@/lib/db";
 
 interface Ctx { params: Promise<{ id: string }> }
 
+const portfolioCaseFields = [
+  "externalId",
+  "title",
+  "shortTitle",
+  "slug",
+  "city",
+  "cityKey",
+  "region",
+  "district",
+  "kitchenType",
+  "area",
+  "layout",
+  "style",
+  "styleSlug",
+  "color",
+  "material",
+  "materials",
+  "materialSlugs",
+  "scenarioSlugs",
+  "priceFrom",
+  "priceTo",
+  "priceNote",
+  "size",
+  "facades",
+  "countertop",
+  "fittings",
+  "workDuration",
+  "days",
+  "completedAt",
+  "description",
+  "task",
+  "constraints",
+  "solution",
+  "result",
+  "features",
+  "relatedLocationSlugs",
+  "mainImage",
+  "images",
+  "imageAlts",
+  "imageCaptions",
+  "alt",
+  "photosBefore",
+  "photosAfter",
+  "reviewIds",
+  "featured",
+  "order",
+  "seoTitle",
+  "seoDescription",
+  "seoKeywords",
+  "published",
+] as const;
+
+function cleanPortfolioCaseInput(input: Record<string, unknown>) {
+  return Object.fromEntries(
+    portfolioCaseFields
+      .filter((field) => field in input)
+      .map((field) => [field, input[field]]),
+  );
+}
+
 export async function GET(_: NextRequest, { params }: Ctx) {
   try { await requireAdmin(); } catch {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -25,7 +85,7 @@ export async function PUT(req: NextRequest, { params }: Ctx) {
   const { id } = await params;
   try {
     const data = await req.json();
-    const c = await prisma.portfolioCase.update({ where: { id: Number(id) }, data });
+    const c = await prisma.portfolioCase.update({ where: { id: Number(id) }, data: cleanPortfolioCaseInput(data) as any });
     return NextResponse.json(c);
   } catch (e: any) {
     if (e.code === "P2002") return NextResponse.json({ error: "Slug уже занят" }, { status: 409 });

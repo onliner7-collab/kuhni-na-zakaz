@@ -91,18 +91,30 @@ model PortfolioCase {
   id              Int      @id @default(autoincrement())
   externalId      String?  @unique
   title           String
+  shortTitle      String   @default("")
   slug            String   @unique
   city            String
+  cityKey         String   @default("")
   region          String   @default("")
+  district        String   @default("")
+  kitchenType     String   @default("")
   area            Int      @default(0)
   layout          String   @default("")
   style           String   @default("")
   styleSlug       String   @default("")
+  color           String   @default("")
   material        String   @default("")
+  materials       String[] @default([])
   materialSlugs   String[]
   scenarioSlugs   String[]
   priceFrom       Int      @default(0)
   priceTo         Int      @default(0)
+  priceNote       String   @default("Стоимость зависит от размеров, материалов и комплектации.")
+  size            String   @default("")
+  facades         String   @default("")
+  countertop      String   @default("")
+  fittings        String   @default("")
+  workDuration    String   @default("")
   days            Int      @default(0)
   completedAt     String   @default("")
   description     String   @default("")
@@ -110,8 +122,13 @@ model PortfolioCase {
   constraints     String   @default("")
   solution        String   @default("")
   result          String   @default("")
+  features        String[] @default([])
+  relatedLocationSlugs String[] @default([])
   mainImage       String   @default("")
   images          String[]
+  imageAlts       String[] @default([])
+  imageCaptions   String[] @default([])
+  alt             String   @default("")
   photosBefore    String[]
   photosAfter     String[]
   reviewIds       Int[]

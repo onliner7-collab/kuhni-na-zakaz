@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { PortfolioFilters } from "@/components/portfolio/PortfolioFilters";
-import { portfolioProjects } from "@/data/portfolio-projects";
+import { toPortfolioProject } from "@/data/portfolio-projects";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Портфолио кухонь на заказ",
@@ -13,7 +16,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/portfolio" },
 };
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const portfolioCases = await prisma.portfolioCase.findMany({
+    where: {
+      published: true,
+      slug: { not: "" },
+      title: { not: "" },
+    },
+    orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
+  }).catch(() => []);
+  const projects = portfolioCases.map(toPortfolioProject);
+
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Портфолио", path: "/portfolio" },
@@ -26,7 +39,7 @@ export default function PortfolioPage() {
     url: siteUrl("/portfolio"),
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: portfolioProjects.map((project, index) => ({
+      itemListElement: projects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
         name: project.title,
@@ -79,7 +92,7 @@ export default function PortfolioPage() {
             </div>
           </section>
 
-          <PortfolioFilters projects={portfolioProjects} />
+          <PortfolioFilters projects={projects} />
 
           <section id="portfolio-request" className="mt-16 grid gap-8 rounded-lg bg-gray-50 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,1fr)]">
             <div>

@@ -32,13 +32,14 @@ const TABS = ["Основное", "История проекта", "Фото", "
 
 interface CaseData {
   id?: number;
-  title: string; slug: string; city: string; region: string;
-  area: number; layout: string; completedAt: string;
-  style: string; styleSlug: string; material: string; materialSlugs: string[];
+  title: string; shortTitle: string; slug: string; city: string; cityKey: string; region: string; district: string;
+  area: number; layout: string; kitchenType: string; color: string; completedAt: string;
+  style: string; styleSlug: string; material: string; materials: string[]; materialSlugs: string[];
   scenarioSlugs: string[];
-  priceFrom: number; priceTo: number; days: number;
+  priceFrom: number; priceTo: number; priceNote: string; size: string; facades: string; countertop: string; fittings: string; workDuration: string; days: number;
   description: string; task: string; constraints: string; solution: string; result: string;
-  mainImage: string; images: string[]; photosBefore: string[]; photosAfter: string[];
+  features: string[]; relatedLocationSlugs: string[];
+  mainImage: string; images: string[]; imageAlts: string[]; imageCaptions: string[]; alt: string; photosBefore: string[]; photosAfter: string[];
   featured: boolean; order: number; published: boolean;
   seoTitle: string; seoDescription: string; seoKeywords: string;
 }
@@ -228,29 +229,74 @@ function ArrayUrlField({
   );
 }
 
+function ArrayTextField({
+  label,
+  value,
+  onChange,
+  placeholder,
+  hint,
+}: {
+  label: string;
+  value: string[];
+  onChange: (v: string[]) => void;
+  placeholder?: string;
+  hint?: string;
+}) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      {hint && <p className="text-xs text-gray-400 mb-1">{hint}</p>}
+      <textarea
+        className="form-input w-full"
+        rows={4}
+        value={value.join("\n")}
+        onChange={(event) => onChange(event.target.value.split("\n").map((item) => item.trim()).filter(Boolean))}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+}
+
 const EMPTY: CaseData = {
   title: "",
+  shortTitle: "",
   slug: "",
   city: "Минск",
+  cityKey: "minsk",
   region: "Минск",
+  district: "",
   area: 12,
   layout: "Угловая",
+  kitchenType: "Угловая",
+  color: "Светлая",
   completedAt: "",
   style: "Современный",
   styleSlug: "sovremennye",
   material: "МДФ плёнка ПВХ",
+  materials: ["МДФ"],
   materialSlugs: ["mdf"],
   scenarioSlugs: [],
   priceFrom: 0,
   priceTo: 0,
+  priceNote: "Стоимость зависит от размеров, материалов и комплектации.",
+  size: "",
+  facades: "",
+  countertop: "",
+  fittings: "",
+  workDuration: "",
   days: 21,
   description: "",
   task: "",
   constraints: "",
   solution: "",
   result: "",
+  features: [],
+  relatedLocationSlugs: ["minsk"],
   mainImage: "",
   images: [],
+  imageAlts: [],
+  imageCaptions: [],
+  alt: "",
   photosBefore: [],
   photosAfter: [],
   featured: false,
@@ -412,18 +458,54 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
             </div>
           </div>
 
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Короткое название</label>
+              <input
+                className="form-input w-full"
+                value={form.shortTitle}
+                onChange={e => set("shortTitle", e.target.value)}
+                placeholder="Угловая кухня в Минске"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Alt проекта</label>
+              <input
+                className="form-input w-full"
+                value={form.alt}
+                onChange={e => set("alt", e.target.value)}
+                placeholder="Угловая кухня на заказ в Минске"
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Город *</label>
               <input className="form-input w-full" value={form.city} onChange={e => set("city", e.target.value)} placeholder="Минск" />
             </div>
             <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Ключ города</label>
+              <input className="form-input w-full font-mono text-sm" value={form.cityKey} onChange={e => set("cityKey", e.target.value)} placeholder="minsk" />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Регион / область</label>
               <input className="form-input w-full" value={form.region} onChange={e => set("region", e.target.value)} placeholder="Минская область" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Район</label>
+              <input className="form-input w-full" value={form.district} onChange={e => set("district", e.target.value)} placeholder="Центральный район" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Дата завершения</label>
               <input className="form-input w-full" value={form.completedAt} onChange={e => set("completedAt", e.target.value)} placeholder="Март 2025" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Цвет</label>
+              <input className="form-input w-full" value={form.color} onChange={e => set("color", e.target.value)} placeholder="Светлая" />
             </div>
           </div>
 
@@ -440,8 +522,23 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
               </select>
             </div>
             <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Тип кухни для каталога</label>
+              <input className="form-input w-full" value={form.kitchenType} onChange={e => set("kitchenType", e.target.value)} placeholder="Угловая" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Размер текстом</label>
+              <input className="form-input w-full" value={form.size} onChange={e => set("size", e.target.value)} placeholder="3 п.м" />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Срок выполнения (дней)</label>
               <input className="form-input w-full" type="number" min={1} value={form.days} onChange={e => set("days", Number(e.target.value))} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Срок текстом</label>
+              <input className="form-input w-full" value={form.workDuration} onChange={e => set("workDuration", e.target.value)} placeholder="21 день" />
             </div>
           </div>
 
@@ -454,6 +551,11 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
               <label className="block text-sm font-medium text-gray-700 mb-1">Стоимость до (BYN)</label>
               <input className="form-input w-full" type="number" min={0} value={form.priceTo} onChange={e => set("priceTo", Number(e.target.value))} />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Примечание к цене</label>
+            <input className="form-input w-full" value={form.priceNote} onChange={e => set("priceNote", e.target.value)} />
           </div>
 
           <div>
@@ -488,6 +590,29 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
             </div>
           </div>
 
+          <ArrayTextField
+            label="Материалы для каталога"
+            value={form.materials}
+            onChange={v => set("materials", v)}
+            placeholder={"МДФ\nЛДСП"}
+            hint="Каждый материал с новой строки. Эти значения показываются на /portfolio."
+          />
+
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Фасады</label>
+              <input className="form-input w-full" value={form.facades} onChange={e => set("facades", e.target.value)} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Столешница</label>
+              <input className="form-input w-full" value={form.countertop} onChange={e => set("countertop", e.target.value)} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Фурнитура</label>
+              <input className="form-input w-full" value={form.fittings} onChange={e => set("fittings", e.target.value)} />
+            </div>
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Сценарии</label>
             <div className="flex flex-wrap gap-2">
@@ -503,6 +628,14 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
               ))}
             </div>
           </div>
+
+          <ArrayTextField
+            label="Связанные slug локаций"
+            value={form.relatedLocationSlugs}
+            onChange={v => set("relatedLocationSlugs", v)}
+            placeholder={"minsk\nminskaya-oblast"}
+            hint="Используется для связей с региональными страницами и фильтрами."
+          />
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Краткое описание проекта</label>
@@ -557,6 +690,13 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
             <p className="text-xs text-gray-400 mb-1">Что клиент получил в итоге?</p>
             <textarea className="form-input w-full" rows={4} value={form.result} onChange={e => set("result", e.target.value)} />
           </div>
+          <ArrayTextField
+            label="Особенности проекта"
+            value={form.features}
+            onChange={v => set("features", v)}
+            placeholder={"Угловая планировка\nВстроенная техника\nШкафы до потолка"}
+            hint="Каждая особенность с новой строки. Используется в каталоге и на странице проекта."
+          />
         </div>
       )}
 
@@ -622,6 +762,20 @@ export function PortfolioCaseForm({ portfolioCase }: Props) {
             value={form.images}
             onChange={v => set("images", v)}
             hint="Поддержка ручных URL сохранена. Upload добавляет локальные файлы."
+          />
+          <ArrayTextField
+            label="Alt для фото галереи"
+            value={form.imageAlts}
+            onChange={v => set("imageAlts", v)}
+            placeholder={"Угловая кухня на заказ в Минске со светлыми фасадами\nРакурс угловой кухни в Минске"}
+            hint="Одна строка соответствует одному фото в галерее."
+          />
+          <ArrayTextField
+            label="Подписи к фото галереи"
+            value={form.imageCaptions}
+            onChange={v => set("imageCaptions", v)}
+            placeholder={"Общий вид кухни\nВид с другого ракурса"}
+            hint="Одна строка соответствует одному фото в галерее."
           />
           <ArrayUrlField
             label="Фото ДО"
