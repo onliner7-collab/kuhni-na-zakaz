@@ -1,0 +1,42 @@
+{
+  "externalId": "portfolio-project-001",
+  "slug": "uglovaya-kuhnya-sovremennaya-042",
+  "title": "Угловая кухня в современном стиле",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-obshiy-view.webp",
+      "alt": "Кухня на заказ, общий вид",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-rakurs-sleva.webp",
+      "alt": "Кухня, ракурс слева",
+      "caption": "Ракурс слева"
+    }
+  ]
+}

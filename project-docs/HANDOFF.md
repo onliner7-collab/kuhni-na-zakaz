@@ -159,3 +159,10 @@ They contain current production/security status, deploy commands, git push flow,
 - Публичные URL, данные CMS и API не изменялись.
 - Остальные компоненты (`ProjectGallery`, `PortfolioProjectHeroImage`) продолжают использовать тот же API lightbox без миграции.
 - В импорт не попали группы с `needs_review=true` и `confidence=low`; для них требуется ручная валидация перед публикацией.
+
+### Массовая загрузка портфолио по папкам (2026-05-02)
+
+- Структура: `prepared-images/portfolio-projects/<папка-проекта>/manifest.json` + файлы изображений в той же папке; один объект кухни = один проект.
+- Импорт: `pnpm run photos:import-portfolio-folders` (из `artifacts/kuhni-na-zakaz`) — копирует в `public/uploads/kitchens/portfolio/`, заполняет `PortfolioCase`, включая `imageAlts` и `imageCaptions`; запрещает повторное использование одного и того же файла (по SHA-256) в разных проектах.
+- Инструкция: `project-docs/stage-4-2-photo-import/PORTFOLIO_MASS_UPLOAD.md`.
+- Деплой: `deploy/scripts/update-production.sh` после `photos:import-prepared` вызывает `photos:import-portfolio-folders`.

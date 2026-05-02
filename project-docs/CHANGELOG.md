@@ -198,3 +198,22 @@
 - `prepared-images/reports/portfolio-audit-summary.md`
 - `artifacts/kuhni-na-zakaz/project-docs/stage-4-2-photo-import/portfolio-draft-mapping.csv`
 - `artifacts/kuhni-na-zakaz/app/sitemap.ts`
+
+---
+
+## [0.5.3] — 2026-05-02 — Массовая загрузка портфолио по папкам
+
+### Добавлено
+- Каталог `prepared-images/portfolio-projects/` с шаблоном `_template/manifest.json`: один объект кухни = одна папка с фото и одним `manifest.json`.
+- Скрипт `pnpm run photos:import-portfolio-folders`: копирует файлы в `public/uploads/kitchens/portfolio/`, заполняет `PortfolioCase` (включая `imageAlts` и `imageCaptions`), проверяет дубликаты содержимого файлов между разными проектами.
+- Документация `project-docs/stage-4-2-photo-import/PORTFOLIO_MASS_UPLOAD.md`.
+- Шаг в `deploy/scripts/update-production.sh`: после CSV-импорта запускается импорт папок.
+
+### Нейтральные значения
+- При отсутствии данных применяются пустые строки для города, района, размера, срока; `materials: []`; цена не указана — `priceFrom`/`priceTo` = 0 и стандартный `priceNote`.
+
+### Затронутые файлы
+- `artifacts/kuhni-na-zakaz/scripts/import-portfolio-project-folders.ts`
+- `artifacts/kuhni-na-zakaz/package.json`
+- `deploy/scripts/update-production.sh`
+- `prepared-images/portfolio-projects/_template/manifest.json`

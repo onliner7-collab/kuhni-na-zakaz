@@ -19,6 +19,9 @@ sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm exec prisma generate && pn
 echo "[deploy] importing prepared kitchen photos as safe drafts"
 sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run photos:import-prepared"
 
+echo "[deploy] importing portfolio project folders (manifest + images)"
+sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run photos:import-portfolio-folders"
+
 echo "[deploy] writing static sitemap fallback"
 sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run sitemap:write-static"
 
