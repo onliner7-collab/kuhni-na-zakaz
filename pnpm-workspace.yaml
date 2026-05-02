@@ -68,9 +68,13 @@ catalog:
 autoInstallPeers: false
 
 onlyBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
   - '@swc/core'
   - esbuild
   - msw
+  - prisma
+  - sharp
   - unrs-resolver
 
 overrides:
