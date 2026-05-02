@@ -1,0 +1,42 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-minimalizm-010",
+  "slug": "pryamaya-kuhnya-minimalizm-010",
+  "title": "Прямая кухня зелёная в стиле минимизм",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "minimalizm",
+  "color": "zelenaya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp",
+      "alt": "Прямая зелёная кухня в стиле минимализм до потолка",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-pryamaya-kuhnya-minimalizm-zelenaya-010-side-026.webp",
+      "alt": "Прямая зелёная кухня в стиле минимализм до потолка",
+      "caption": "Ракурс сбоку"
+    }
+  ]
+}

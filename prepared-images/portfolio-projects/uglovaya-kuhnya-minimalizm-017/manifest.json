@@ -1,0 +1,42 @@
+{
+  "externalId": "portfolio-uglovaya-kuhnya-minimalizm-017",
+  "slug": "uglovaya-kuhnya-minimalizm-017",
+  "title": "Угловая кухня серая в стиле минимизм",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "minimalizm",
+  "color": "seraya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-uglovaya-kuhnya-minimalizm-seraya-017-main.webp",
+      "alt": "Угловая серая кухня в стиле минимализм до потолка",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-uglovaya-kuhnya-minimalizm-seraya-017-side-048.webp",
+      "alt": "Угловая серая кухня в стиле минимализм до потолка",
+      "caption": "Ракурс сбоку"
+    }
+  ]
+}

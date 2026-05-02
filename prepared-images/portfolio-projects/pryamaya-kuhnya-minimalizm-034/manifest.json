@@ -1,0 +1,47 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-minimalizm-034",
+  "slug": "pryamaya-kuhnya-minimalizm-034",
+  "title": "Прямая кухня серая в стиле минимизм",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "minimalizm",
+  "color": "seraya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 2,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-minimalizm-seraya-034-side-081.webp",
+      "alt": "Прямая серая кухня в стиле минимализм без ручек",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "02-pryamaya-kuhnya-minimalizm-seraya-034-side-082.webp",
+      "alt": "Прямая серая кухня в стиле минимализм без ручек",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "03-pryamaya-kuhnya-minimalizm-seraya-034-main.webp",
+      "alt": "Прямая серая кухня в стиле минимализм без ручек",
+      "caption": "Общий вид"
+    }
+  ]
+}

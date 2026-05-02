@@ -1,0 +1,52 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-minimalizm-003",
+  "slug": "pryamaya-kuhnya-minimalizm-003",
+  "title": "Прямая кухня комбинированная в стиле минимизм",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "minimalizm",
+  "color": "kombinacii",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 1,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-minimalizm-kombinacii-003-side-005.webp",
+      "alt": "Прямая комбинированная кухня в стиле минимализм без ручек",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "02-pryamaya-kuhnya-minimalizm-kombinacii-003-main.webp",
+      "alt": "Прямая комбинированная кухня в стиле минимализм без ручек",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "03-pryamaya-kuhnya-minimalizm-kombinacii-003-extra-02-007.webp",
+      "alt": "Прямая комбинированная кухня в стиле минимализм без ручек",
+      "caption": "Дополнительный ракурс"
+    },
+    {
+      "file": "04-pryamaya-kuhnya-minimalizm-kombinacii-003-extra-03-008.webp",
+      "alt": "Прямая комбинированная кухня в стиле минимализм без ручек",
+      "caption": "Дополнительный ракурс"
+    }
+  ]
+}

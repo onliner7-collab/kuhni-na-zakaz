@@ -1,0 +1,47 @@
+{
+  "externalId": "portfolio-uglovaya-kuhnya-sovremennaya-032",
+  "slug": "uglovaya-kuhnya-sovremennaya-032",
+  "title": "Угловая кухня серая в современном стиле",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "seraya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 1,
+  "images": [
+    {
+      "file": "01-uglovaya-kuhnya-sovremennaya-seraya-032-side-077.webp",
+      "alt": "Угловая серая кухня в современном стиле",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "02-uglovaya-kuhnya-sovremennaya-seraya-032-main.webp",
+      "alt": "Угловая серая кухня в современном стиле",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "03-uglovaya-kuhnya-sovremennaya-seraya-032-detail-079.webp",
+      "alt": "Угловая серая кухня в современном стиле с деревянной столешницей",
+      "caption": "Деталь кухни"
+    }
+  ]
+}

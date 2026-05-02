@@ -1,0 +1,47 @@
+{
+  "externalId": "portfolio-uglovaya-kuhnya-loft-023",
+  "slug": "uglovaya-kuhnya-loft-023",
+  "title": "Угловая кухня комбинированная в стиле лофт",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "loft",
+  "color": "kombinacii",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-uglovaya-kuhnya-loft-kombinacii-023-main.webp",
+      "alt": "Угловая комбинированная кухня в стиле лофт до потолка",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-uglovaya-kuhnya-loft-kombinacii-023-side-061.webp",
+      "alt": "Угловая комбинированная кухня в стиле лофт до потолка",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "03-uglovaya-kuhnya-loft-kombinacii-023-extra-02-062.webp",
+      "alt": "Угловая комбинированная кухня в стиле лофт до потолка",
+      "caption": "Дополнительный ракурс"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "externalId": "portfolio-malenkaya-kuhnya-sovremennaya-030",
+  "slug": "malenkaya-kuhnya-sovremennaya-030",
+  "title": "Маленькая кухня серая в современном стиле",
+  "shortTitle": "",
+  "layoutType": "malenkaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "seraya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-malenkaya-kuhnya-sovremennaya-seraya-030-main.webp",
+      "alt": "Маленькая серая кухня в современном стиле",
+      "caption": "Общий вид"
+    }
+  ]
+}

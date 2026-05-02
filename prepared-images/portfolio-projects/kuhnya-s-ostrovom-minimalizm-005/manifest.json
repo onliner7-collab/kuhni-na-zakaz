@@ -1,0 +1,52 @@
+{
+  "externalId": "portfolio-kuhnya-s-ostrovom-minimalizm-005",
+  "slug": "kuhnya-s-ostrovom-minimalizm-005",
+  "title": "Кухня с островом белая в стиле минимизм",
+  "shortTitle": "",
+  "layoutType": "kuhnya-s-ostrovom",
+  "style": "minimalizm",
+  "color": "belaya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-kuhnya-s-ostrovom-minimalizm-belaya-005-main.webp",
+      "alt": "Кухня с островом белая кухня в стиле минимализм без ручек",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-kuhnya-s-ostrovom-minimalizm-belaya-005-side-011.webp",
+      "alt": "Кухня с островом белая кухня в стиле минимализм без ручек",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "03-kuhnya-s-ostrovom-minimalizm-belaya-005-extra-02-012.webp",
+      "alt": "Кухня с островом белая кухня в стиле минимализм без ручек",
+      "caption": "Дополнительный ракурс"
+    },
+    {
+      "file": "04-kuhnya-s-ostrovom-minimalizm-belaya-005-extra-03-013.webp",
+      "alt": "Кухня с островом белая кухня в стиле минимализм без ручек",
+      "caption": "Дополнительный ракурс"
+    }
+  ]
+}

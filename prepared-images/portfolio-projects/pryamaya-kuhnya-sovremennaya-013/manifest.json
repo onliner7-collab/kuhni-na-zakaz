@@ -1,0 +1,52 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-sovremennaya-013",
+  "slug": "pryamaya-kuhnya-sovremennaya-013",
+  "title": "Прямая кухня комбинированная в современном стиле",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "kombinacii",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 1,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-sovremennaya-kombinacii-013-side-035.webp",
+      "alt": "Прямая комбинированная кухня в современном стиле",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "02-pryamaya-kuhnya-sovremennaya-kombinacii-013-main.webp",
+      "alt": "Прямая комбинированная кухня в современном стиле",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "03-pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-02-050.webp",
+      "alt": "Прямая комбинированная кухня в современном стиле",
+      "caption": "Дополнительный ракурс"
+    },
+    {
+      "file": "04-pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-03-051.webp",
+      "alt": "Прямая комбинированная кухня в современном стиле",
+      "caption": "Дополнительный ракурс"
+    }
+  ]
+}

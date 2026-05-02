@@ -1,0 +1,42 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-klassika-019",
+  "slug": "pryamaya-kuhnya-klassika-019",
+  "title": "Прямая кухня под дерево в классическом стиле",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "klassika",
+  "color": "derevo",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-klassika-derevo-019-main.webp",
+      "alt": "Прямая с деревянными фасадами кухня в классическом стиле",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-pryamaya-kuhnya-klassika-derevo-019-side-055.webp",
+      "alt": "Прямая с деревянными фасадами кухня в классическом стиле",
+      "caption": "Ракурс сбоку"
+    }
+  ]
+}

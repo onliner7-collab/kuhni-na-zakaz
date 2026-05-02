@@ -1,0 +1,37 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-minimalizm-027",
+  "slug": "pryamaya-kuhnya-minimalizm-027",
+  "title": "Прямая кухня бежевая в стиле минимизм",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "minimalizm",
+  "color": "bezhevaya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-minimalizm-bezhevaya-027-main.webp",
+      "alt": "Прямая бежевая кухня в стиле минимализм до потолка",
+      "caption": "Общий вид"
+    }
+  ]
+}

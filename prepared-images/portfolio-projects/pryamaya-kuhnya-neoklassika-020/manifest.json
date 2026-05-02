@@ -1,0 +1,37 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-neoklassika-020",
+  "slug": "pryamaya-kuhnya-neoklassika-020",
+  "title": "Прямая кухня белая в стиле неоклассика",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "neoklassika",
+  "color": "belaya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-neoklassika-belaya-020-main.webp",
+      "alt": "Прямая белая кухня в стиле неоклассика",
+      "caption": "Общий вид"
+    }
+  ]
+}

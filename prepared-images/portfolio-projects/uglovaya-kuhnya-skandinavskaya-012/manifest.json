@@ -1,0 +1,52 @@
+{
+  "externalId": "portfolio-uglovaya-kuhnya-skandinavskaya-012",
+  "slug": "uglovaya-kuhnya-skandinavskaya-012",
+  "title": "Угловая кухня зелёная в скандинавском стиле",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "skandinavskaya",
+  "color": "zelenaya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 3,
+  "images": [
+    {
+      "file": "01-uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp",
+      "alt": "Угловая зелёная кухня в скандинавском стиле",
+      "caption": "Дополнительный ракурс"
+    },
+    {
+      "file": "02-uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp",
+      "alt": "Угловая зелёная кухня в скандинавском стиле",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "03-uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp",
+      "alt": "Угловая зелёная кухня в скандинавском стиле",
+      "caption": "Деталь кухни"
+    },
+    {
+      "file": "04-uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
+      "alt": "Угловая зелёная кухня в скандинавском стиле",
+      "caption": "Общий вид"
+    }
+  ]
+}

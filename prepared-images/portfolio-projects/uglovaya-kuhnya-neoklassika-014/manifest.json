@@ -1,0 +1,42 @@
+{
+  "externalId": "portfolio-uglovaya-kuhnya-neoklassika-014",
+  "slug": "uglovaya-kuhnya-neoklassika-014",
+  "title": "Угловая кухня бежевая в стиле неоклассика",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "neoklassika",
+  "color": "bezhevaya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-uglovaya-kuhnya-neoklassika-bezhevaya-014-main.webp",
+      "alt": "Угловая бежевая кухня в стиле неоклассика",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-uglovaya-kuhnya-neoklassika-bezhevaya-014-side-038.webp",
+      "alt": "Угловая бежевая кухня в стиле неоклассика",
+      "caption": "Ракурс сбоку"
+    }
+  ]
+}

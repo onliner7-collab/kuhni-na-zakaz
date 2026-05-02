@@ -4,6 +4,16 @@
 
 Один объект кухни = одна папка = один проект в БД. Все ракурсы и детали лежат в одной папке и перечислены в `manifest.json` в массиве `images`.
 
+## Автогенерация из CSV (все группы из отчёта)
+
+Если актуальный полный маппинг лежит в `prepared-images/reports/portfolio-draft-mapping.csv`, можно пересобрать папки и `manifest.json` одной командой из корня репозитория:
+
+```bash
+python scripts/generate_portfolio_manifests_from_mapping.py
+```
+
+Скрипт читает `photo-classification.csv` для полей `alt`, копирует файлы в `prepared-images/portfolio-projects/<slug>/` и перезаписывает каталоги проектов (кроме `_template`).
+
 ## Структура
 
 ```

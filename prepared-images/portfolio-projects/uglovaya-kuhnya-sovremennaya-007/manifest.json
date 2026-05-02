@@ -1,0 +1,37 @@
+{
+  "externalId": "portfolio-uglovaya-kuhnya-sovremennaya-007",
+  "slug": "uglovaya-kuhnya-sovremennaya-007",
+  "title": "Угловая кухня комбинированная в современном стиле",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "kombinacii",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-uglovaya-kuhnya-sovremennaya-kombinacii-007-main.webp",
+      "alt": "Угловая комбинированная кухня в современном стиле",
+      "caption": "Общий вид"
+    }
+  ]
+}

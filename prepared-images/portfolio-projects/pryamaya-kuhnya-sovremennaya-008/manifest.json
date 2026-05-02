@@ -1,0 +1,37 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-sovremennaya-008",
+  "slug": "pryamaya-kuhnya-sovremennaya-008",
+  "title": "Прямая кухня комбинированная в современном стиле",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "kombinacii",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-sovremennaya-kombinacii-008-main.webp",
+      "alt": "Прямая комбинированная кухня в современном стиле",
+      "caption": "Общий вид"
+    }
+  ]
+}

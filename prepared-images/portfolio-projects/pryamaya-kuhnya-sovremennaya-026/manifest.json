@@ -1,0 +1,42 @@
+{
+  "externalId": "portfolio-pryamaya-kuhnya-sovremennaya-026",
+  "slug": "pryamaya-kuhnya-sovremennaya-026",
+  "title": "Прямая кухня серая в современном стиле",
+  "shortTitle": "",
+  "layoutType": "pryamaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "seraya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-pryamaya-kuhnya-sovremennaya-seraya-026-main.webp",
+      "alt": "Прямая серая кухня в современном стиле без ручек",
+      "caption": "Общий вид"
+    },
+    {
+      "file": "02-pryamaya-kuhnya-sovremennaya-seraya-026-side-068.webp",
+      "alt": "Прямая серая кухня в современном стиле без ручек",
+      "caption": "Ракурс сбоку"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "externalId": "portfolio-uglovaya-kuhnya-sovremennaya-001",
+  "slug": "uglovaya-kuhnya-sovremennaya-001",
+  "title": "Угловая кухня белая в современном стиле",
+  "shortTitle": "",
+  "layoutType": "uglovaya-kuhnya",
+  "style": "sovremennaya",
+  "color": "belaya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 0,
+  "images": [
+    {
+      "file": "01-uglovaya-kuhnya-sovremennaya-belaya-001-main.webp",
+      "alt": "Угловая белая кухня в современном стиле",
+      "caption": "Общий вид"
+    }
+  ]
+}

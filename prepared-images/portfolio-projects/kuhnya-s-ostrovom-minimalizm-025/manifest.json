@@ -1,0 +1,42 @@
+{
+  "externalId": "portfolio-kuhnya-s-ostrovom-minimalizm-025",
+  "slug": "kuhnya-s-ostrovom-minimalizm-025",
+  "title": "Кухня с островом серая в стиле минимизм",
+  "shortTitle": "",
+  "layoutType": "kuhnya-s-ostrovom",
+  "style": "minimalizm",
+  "color": "seraya",
+  "material": "",
+  "materials": [],
+  "city": "",
+  "region": "",
+  "district": "",
+  "size": "",
+  "workDuration": "",
+  "priceFrom": 0,
+  "priceTo": 0,
+  "priceNote": "Стоимость зависит от размеров, материалов и комплектации.",
+  "relatedLocationSlugs": [],
+  "description": "",
+  "task": "",
+  "constraints": "",
+  "solution": "",
+  "result": "",
+  "features": [],
+  "scenarioSlugs": [],
+  "published": true,
+  "featured": false,
+  "mainImageIndex": 1,
+  "images": [
+    {
+      "file": "01-kuhnya-s-ostrovom-minimalizm-seraya-025-side-065.webp",
+      "alt": "Кухня с островом серая кухня в стиле минимализм до потолка",
+      "caption": "Ракурс сбоку"
+    },
+    {
+      "file": "02-kuhnya-s-ostrovom-minimalizm-seraya-025-main.webp",
+      "alt": "Кухня с островом серая кухня в стиле минимализм до потолка",
+      "caption": "Общий вид"
+    }
+  ]
+}
