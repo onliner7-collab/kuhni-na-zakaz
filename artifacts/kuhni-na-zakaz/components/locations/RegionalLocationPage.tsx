@@ -36,6 +36,10 @@ interface RegionalLocationPageProps {
   hasLocalCases: boolean;
 }
 
+function isJsonLdObject<T>(value: T | null): value is T {
+  return value !== null;
+}
+
 const kitchenTypes = [
   "Угловые",
   "Прямые",
@@ -129,7 +133,7 @@ export function RegionalLocationPage({
 
   return (
     <>
-      <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq].filter(Boolean)} />
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq].filter(isJsonLdObject)} />
 
       <section className="relative overflow-hidden bg-stone-950 text-white">
         <div className="absolute inset-0 opacity-25">

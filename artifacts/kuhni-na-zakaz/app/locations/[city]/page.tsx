@@ -31,6 +31,10 @@ type FaqItem = { q: string; a: string };
 type PortfolioCase = { id: number; title: string; slug: string; mainImage: string; style: string; priceFrom: number; area: number; days: number; city: string };
 type ReviewItem = { id: number; name: string; city: string; rating: number; text: string; date: string; region: string; source: string };
 
+function isJsonLdObject<T>(value: T | null): value is T {
+  return value !== null;
+}
+
 const catalogLinks = [
   { href: "/catalog", title: "Каталог кухонь", text: "Все форматы кухонь по размерам, стилю и бюджету." },
   { href: "/catalog/uglovye-kuhni", title: "Угловые кухни", text: "Практичный вариант для квартир и частных домов." },
@@ -456,7 +460,7 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={[jsonLdWebPage, jsonLdFaq, jsonLdBreadcrumb].filter(Boolean)} />
+      <JsonLd data={[jsonLdWebPage, jsonLdFaq, jsonLdBreadcrumb].filter(isJsonLdObject)} />
 
       {/* HERO */}
       <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
