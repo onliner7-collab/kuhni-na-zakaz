@@ -10,6 +10,7 @@ const STATIC_PATHS = [
   "/",
   "/about",
   "/catalog",
+  "/calculator",
   "/prices",
   "/contacts",
   "/portfolio",
@@ -20,6 +21,14 @@ const STATIC_PATHS = [
   "/scenarios",
   "/locations",
   "/warranty",
+] as const;
+
+const STATIC_LOCATION_SLUGS = [
+  "minsk",
+  "minskaya-oblast",
+  "gomel",
+  "mogilev",
+  "vitebsk",
 ] as const;
 
 const STATIC_CATALOG_SLUGS = [
@@ -70,10 +79,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticCatalogPages = STATIC_CATALOG_SLUGS.map((slug) =>
     sitemapEntry(`/catalog/${slug}`, now, 0.8),
   );
+  const staticLocationPages = STATIC_LOCATION_SLUGS.map((slug) =>
+    sitemapEntry(`/locations/${slug}`, now, 0.8),
+  );
 
   return uniqueIndexableEntries([
     ...staticPages,
     ...staticCatalogPages,
+    ...staticLocationPages,
     ...stylePages,
     ...materialPages,
     ...scenarioPages,

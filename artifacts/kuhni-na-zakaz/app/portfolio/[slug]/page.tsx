@@ -6,10 +6,11 @@ import { AlertTriangle, ArrowRight, CheckCircle2, Clock, Lightbulb, MapPin, Pale
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
+import { PortfolioProjectHeroImage } from "@/components/portfolio/PortfolioProjectHeroImage";
 import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
 import { toPortfolioProject, type EditablePortfolioCase, type PortfolioProject } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
-import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
 
@@ -171,19 +172,51 @@ export default async function PortfolioProjectPage({ params }: Props) {
       { name: "Портфолио", path: "/portfolio" },
       { name: project.title, path: `/portfolio/${project.slug}` },
     ]),
-    {
+    compactJsonLd({
       "@context": "https://schema.org",
       "@type": "CreativeWork",
+      "@id": siteUrl(`/portfolio/${project.slug}`),
       name: project.title,
       description: project.description,
-      image: project.images.map((image) => siteUrl(image.src)),
       url: siteUrl(`/portfolio/${project.slug}`),
-    },
+      inLanguage: "ru-BY",
+      creator: {
+        "@type": "Organization",
+        name: "КухниBY",
+      },
+      contentLocation: project.city
+        ? compactJsonLd({
+            "@type": "Place",
+            name: project.city,
+            address: compactJsonLd({
+              "@type": "PostalAddress",
+              addressLocality: project.city,
+              addressRegion: project.region,
+              addressCountry: "BY",
+            }),
+          })
+        : undefined,
+      image: project.images.map((image) =>
+        compactJsonLd({
+          "@type": "ImageObject",
+          contentUrl: siteUrl(image.src),
+          caption: image.alt || project.title,
+        }),
+      ),
+      primaryImageOfPage: project.mainImage
+        ? compactJsonLd({
+            "@type": "ImageObject",
+            contentUrl: siteUrl(project.mainImage),
+            caption: project.alt || project.title,
+          })
+        : undefined,
+      url: siteUrl(`/portfolio/${project.slug}`),
+    }),
   ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
       <main className="section-padding">
         <div className="container-site">
           <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground" aria-label="Хлебные крошки">
@@ -244,14 +277,11 @@ export default async function PortfolioProjectPage({ params }: Props) {
 
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
               {project.mainImage ? (
-                <Image
-                  src={optimizedImageSrc(project.mainImage) || project.mainImage}
+                <PortfolioProjectHeroImage
+                  title={project.title}
+                  mainImage={project.mainImage}
                   alt={project.alt || project.title}
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="(max-width: 1024px) 100vw, 420px"
-                  className="object-contain object-center"
+                  images={project.images}
                 />
               ) : (
                 <div className="flex h-full items-center justify-center text-sm text-muted-foreground">

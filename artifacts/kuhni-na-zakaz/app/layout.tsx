@@ -123,18 +123,12 @@ export default async function RootLayout({
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",
-                "@type": "LocalBusiness",
+                "@type": "Organization",
                 name: siteSettings?.siteName || "КухниBY",
                 url: siteUrl,
                 telephone: siteSettings?.phone || CONTACT_DEFAULTS.phone,
                 email: siteSettings?.email || CONTACT_DEFAULTS.email,
                 image: localBusinessImage,
-                priceRange: "от 900 BYN",
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Минск",
-                  addressCountry: "BY",
-                },
               }),
             }}
           />

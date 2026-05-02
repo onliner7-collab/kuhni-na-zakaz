@@ -171,3 +171,30 @@
 - Старые страницы, API-роуты и админ-интерфейсы квиза-конфигуратора.
 - Логика сохранённых конфигураций и вспомогательные UI-компоненты старого подбора.
 - Остаточные упоминания квиза в FAQ и в типах заявок админ-панели.
+
+---
+
+## [0.5.2] — 2026-05-02 — Доработка lightbox в портфолио
+
+### Изменено
+- Улучшен `ImageLightbox`: усилен lock прокрутки (body + html), чтобы фон не скроллился при открытой галерее на мобильных и десктопе.
+- Улучшен trap фокуса для клавиатурной навигации: если фокус вышел из модального окна, `Tab` возвращает его в lightbox.
+- Сохранено существующее поведение галереи: открытие по клику на главное фото и миниатюры, листание стрелками/клавиатурой/свайпом, закрытие по `Esc` и клику по фону.
+- Обновлён UX миниатюр в `ProjectGallery`: клик по миниатюре переключает главное фото без открытия модального окна.
+- Добавлена отдельная кнопка увеличения на миниатюре для мгновенного открытия lightbox с выбранного кадра.
+- Активная миниатюра теперь явно выделяется (`border + ring`) для визуального состояния текущего фото.
+- Проведён автоматический аудит распределения фото из `фото кухни2/фото кухни 3`: из 36 групп приняты 11 проверенных групп (`needs_review=false`, `confidence=high|medium`).
+- Сформирован и применён vetted mapping для импорта портфолио: обновлён `portfolio-draft-mapping.csv` в `stage-4-2-photo-import`.
+- В продакшн-БД импортированы только проверенные кейсы (11 slug), после чего выполнены production build и restart сервиса.
+- Обновлён `sitemap`: добавлен `/calculator` и фиксированный набор региональных URL (`/locations/minsk`, `/locations/minskaya-oblast`, `/locations/gomel`, `/locations/mogilev`, `/locations/vitebsk`) как обязательные записи.
+- Проверены live `robots.txt`, canonical/metadata/OG/Twitter на ключевых страницах (`/portfolio`, `/calculator`, `/locations/minsk`) и 404 для несуществующего slug портфолио.
+- Подтверждено отсутствие `www` в canonical и редирект `https://www.kuhni.minsk.by/*` -> `https://kuhni.minsk.by/*`.
+
+### Затронутые файлы
+- `artifacts/kuhni-na-zakaz/components/ui/ImageLightbox.tsx`
+- `artifacts/kuhni-na-zakaz/components/portfolio/ProjectGallery.tsx`
+- `scripts/audit_portfolio_photo_distribution.py`
+- `prepared-images/reports/portfolio-vetted-mapping.csv`
+- `prepared-images/reports/portfolio-audit-summary.md`
+- `artifacts/kuhni-na-zakaz/project-docs/stage-4-2-photo-import/portfolio-draft-mapping.csv`
+- `artifacts/kuhni-na-zakaz/app/sitemap.ts`

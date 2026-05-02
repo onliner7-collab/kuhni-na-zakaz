@@ -130,3 +130,32 @@ Use these files first:
 - project-docs/GIT_PUSH_RUNBOOK_2026-04-12.md
 
 They contain current production/security status, deploy commands, git push flow, and next actions.
+
+---
+
+## 2026-05-02 Update (Lightbox portfolio UX/a11y)
+
+### Что сделано
+- Доработан `ImageLightbox` для более устойчивой работы на мобильных и с клавиатурой.
+- Включён lock прокрутки не только для `body`, но и для `html`.
+- Улучшен контроль фокуса: при уходе фокуса из модального окна `Tab` возвращает фокус в lightbox.
+- Доработан `ProjectGallery`: миниатюры стали управлять главным фото без открытия lightbox.
+- Добавлена отдельная иконка увеличения на миниатюрах для открытия lightbox с конкретного изображения.
+- Добавлено визуальное выделение активной миниатюры (граница + ring).
+- Добавлен скрипт аудита распределения фото: `scripts/audit_portfolio_photo_distribution.py`.
+- Сгенерирован vetted mapping: `prepared-images/reports/portfolio-vetted-mapping.csv` (11 принятых групп из 36).
+- Обновлён stage mapping для импорта: `artifacts/kuhni-na-zakaz/project-docs/stage-4-2-photo-import/portfolio-draft-mapping.csv`.
+- На проде выполнен импорт `photos:import-prepared` с обновлением 11 портфолио кейсов и последующим `build + restart`.
+- Для SEO обновлён `app/sitemap.ts`: добавлены обязательные URL `/calculator` и фиксированные региональные страницы (`minsk`, `minskaya-oblast`, `gomel`, `mogilev`, `vitebsk`).
+- На live проверены `robots.txt`, canonical/meta/OG/Twitter для ключевых URL и 404 на несуществующий `/portfolio/[slug]`.
+- Подтверждён редирект с `www` на основной домен и canonical в non-www виде.
+
+### Что проверено
+- `pnpm --dir artifacts/kuhni-na-zakaz run build` проходит успешно.
+- Локально в сборке нет ошибок линтера для `components/ui/ImageLightbox.tsx`.
+
+### Риски/совместимость
+- Изменения точечные, затрагивают только поведение модального окна.
+- Публичные URL, данные CMS и API не изменялись.
+- Остальные компоненты (`ProjectGallery`, `PortfolioProjectHeroImage`) продолжают использовать тот же API lightbox без миграции.
+- В импорт не попали группы с `needs_review=true` и `confidence=low`; для них требуется ручная валидация перед публикацией.

@@ -16,7 +16,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import type { RegionalLocationData } from "@/data/locations";
 import { regionalLocations } from "@/data/locations";
 import { optimizedImageSrc } from "@/lib/image-optimization";
-import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 
 export interface PortfolioCasePreview {
   id: number | string;
@@ -123,13 +123,13 @@ export function RegionalLocationPage({
     { name: "Города", path: "/locations" },
     { name: location.cityName, path: `/locations/${location.slug}` },
   ]);
+  const jsonLdFaq = faqJsonLd(
+    location.faq.map((item) => ({ question: item.question, answer: item.answer })),
+  );
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
-      />
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq].filter(Boolean)} />
 
       <section className="relative overflow-hidden bg-stone-950 text-white">
         <div className="absolute inset-0 opacity-25">
