@@ -224,3 +224,5 @@
 
 ### Дополнено — пересборка WebP по классификации
 - Скрипт `scripts/rebuild_prepared_webp_from_classification.py` перезаписывает файлы в `prepared-images/portfolio/` и `needs-review/` по `photo-classification.csv`: ресайз до **1920 px** по ширине, WebP **quality 82**; отчёт `prepared-images/reports/webp-rebuild-report.json`.
+- В репозитории версионируются источники `prepared-images/reports/photo-classification.csv` и `prepared-images/reports/portfolio-draft-mapping.csv` (дублирует логику с `artifacts/.../portfolio-draft-mapping.csv` для полной воспроизводимости пайплайна).
+- Скрипт `scripts/validate_portfolio_projects.py` проверяет, что в каждой папке `prepared-images/portfolio-projects/<slug>/` все файлы из `manifest.json` присутствуют на диске.

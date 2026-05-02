@@ -11,6 +11,7 @@
 ```bash
 python scripts/rebuild_prepared_webp_from_classification.py
 python scripts/generate_portfolio_manifests_from_mapping.py
+python scripts/validate_portfolio_projects.py
 ```
 
 Отчёт: `prepared-images/reports/webp-rebuild-report.json`.
