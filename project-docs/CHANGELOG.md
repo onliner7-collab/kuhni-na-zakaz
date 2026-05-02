@@ -221,3 +221,6 @@
 ### Дополнено — полная выгрузка 36 проектов
 - Скрипт `scripts/generate_portfolio_manifests_from_mapping.py` собирает папки `prepared-images/portfolio-projects/<slug>/` из `prepared-images/reports/portfolio-draft-mapping.csv`, подставляет **alt** из `photo-classification.csv`, копирует изображения и формирует `manifest.json`.
 - В репозиторий добавлены сгенерированные каталоги проектов и обновлён полный `portfolio-draft-mapping.csv` в `artifacts/kuhni-na-zakaz/project-docs/stage-4-2-photo-import/` для согласованного импорта на деплое.
+
+### Дополнено — пересборка WebP по классификации
+- Скрипт `scripts/rebuild_prepared_webp_from_classification.py` перезаписывает файлы в `prepared-images/portfolio/` и `needs-review/` по `photo-classification.csv`: ресайз до **1920 px** по ширине, WebP **quality 82**; отчёт `prepared-images/reports/webp-rebuild-report.json`.

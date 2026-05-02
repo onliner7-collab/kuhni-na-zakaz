@@ -1,0 +1,625 @@
+{
+  "maxWidth": 1920,
+  "quality": 82,
+  "ok": 88,
+  "skipped": 0,
+  "errors": [],
+  "files": [
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-belaya-001-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20220924_212953.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-belaya-001-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-belaya-002-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221107_230427.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-neoklassika-belaya-002-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-belaya-002-side-004.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221107_230437.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-neoklassika-belaya-002-side-004.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-003-side-005.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221111_191433.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-kombinacii-003-side-005.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-003-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221111_191435.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-kombinacii-003-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-003-extra-02-007.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221111_191447.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-kombinacii-003-extra-02-007.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-003-extra-03-008.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221111_191458.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-kombinacii-003-extra-03-008.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-belaya-004-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221115_001435.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-belaya-004-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-005-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221130_185228.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\kuhnya-s-ostrovom-minimalizm-belaya-005-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-005-side-011.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221130_185329.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\kuhnya-s-ostrovom-minimalizm-belaya-005-side-011.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-005-extra-02-012.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221130_185335.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\kuhnya-s-ostrovom-minimalizm-belaya-005-extra-02-012.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-005-extra-03-013.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221130_185411.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\kuhnya-s-ostrovom-minimalizm-belaya-005-extra-03-013.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-belaya-006-side-014.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221213_150859.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-belaya-006-side-014.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-belaya-006-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221213_150907.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-belaya-006-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-belaya-006-detail-016.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221213_150915.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-belaya-006-detail-016.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-belaya-006-detail-017.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221213_150925.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-belaya-006-detail-017.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-belaya-006-extra-04-018.webp",
+      "source": "E:\\фото кухни 3\\IMG_20221213_150937.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-belaya-006-extra-04-018.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-kombinacii-007-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230502_181606.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-kombinacii-007-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-kombinacii-008-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230606_183429.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-kombinacii-008-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-00-021.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230721_220421.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-00-021.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-sovremennaya-kombinacii-009-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230721_220427.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-sovremennaya-kombinacii-009-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-02-023.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230721_220455.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-02-023.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-03-024.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230721_220500.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-03-024.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230808_175518.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-zelenaya-010-side-026.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230808_175551.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-zelenaya-010-side-026.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-011-extra-00-027.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230818_122540.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-minimalizm-belaya-011-extra-00-027.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-011-side-028.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230818_122545.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-minimalizm-belaya-011-side-028.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230818_122551.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-011-extra-03-030.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230818_122600.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-minimalizm-belaya-011-extra-03-030.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-belaya-011-extra-04-031.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230818_122607.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-minimalizm-belaya-011-extra-04-031.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230821_163631.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230821_163637.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230821_163642.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-kombinacii-013-side-035.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230901_011421.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-kombinacii-013-side-035.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-kombinacii-013-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230901_011435.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-kombinacii-013-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-bezhevaya-014-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230902_231004.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-neoklassika-bezhevaya-014-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-bezhevaya-014-side-038.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230902_231007.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-neoklassika-bezhevaya-014-side-038.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-kombinacii-015-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230907_201447.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-kombinacii-015-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-kombinacii-015-side-040.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230907_201451.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-kombinacii-015-side-040.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-kombinacii-015-extra-02-041.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230907_234843.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-kombinacii-015-extra-02-041.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-016-extra-00-042.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230927_215343.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\pryamaya-kuhnya-minimalizm-kombinacii-016-extra-00-042.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-016-side-043.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230927_215354.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\pryamaya-kuhnya-minimalizm-kombinacii-016-side-043.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-016-extra-02-044.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230927_215402.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\pryamaya-kuhnya-minimalizm-kombinacii-016-extra-02-044.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-016-extra-03-045.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230927_215557.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\pryamaya-kuhnya-minimalizm-kombinacii-016-extra-03-045.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20230929_194731.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-seraya-017-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231007_183632.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-minimalizm-seraya-017-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-seraya-017-side-048.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231007_183636.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-minimalizm-seraya-017-side-048.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-016-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231016_130646.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\pryamaya-kuhnya-minimalizm-kombinacii-016-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-02-050.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231214_011859.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-02-050.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-03-051.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231214_011918.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-03-051.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-seraya-018-side-052.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231223_231352.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-minimalizm-seraya-018-side-052.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-seraya-018-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231223_231401.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-minimalizm-seraya-018-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-klassika-derevo-019-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231225_175812.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-klassika-derevo-019-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-klassika-derevo-019-side-055.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231225_175818.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-klassika-derevo-019-side-055.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-neoklassika-belaya-020-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20231229_213510.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-neoklassika-belaya-020-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-belaya-021-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20240412_172822.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-belaya-021-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-022-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20240905_233738.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-kombinacii-022-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-kombinacii-022-side-059.webp",
+      "source": "E:\\фото кухни 3\\IMG_20240912_234416.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-kombinacii-022-side-059.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-loft-kombinacii-023-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20240927_112720.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-loft-kombinacii-023-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-loft-kombinacii-023-side-061.webp",
+      "source": "E:\\фото кухни 3\\IMG_20240927_112734.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-loft-kombinacii-023-side-061.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-loft-kombinacii-023-extra-02-062.webp",
+      "source": "E:\\фото кухни 3\\IMG_20240927_112741.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-loft-kombinacii-023-extra-02-062.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-kombinacii-024-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241108_211337.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-sovremennaya-kombinacii-024-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-kombinacii-024-side-064.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241108_211345.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-sovremennaya-kombinacii-024-side-064.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-seraya-025-side-065.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241117_171434.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-minimalizm-seraya-025-side-065.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "kuhnya-s-ostrovom-minimalizm-seraya-025-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241117_171437.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\kuhnya-s-ostrovom-minimalizm-seraya-025-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-seraya-026-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241216_195156.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-seraya-026-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-seraya-026-side-068.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241216_195202.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-seraya-026-side-068.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-bezhevaya-027-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241221_010713.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-bezhevaya-027-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-neoklassika-belaya-028-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241224_181828.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-neoklassika-belaya-028-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-neoklassika-belaya-028-side-071.webp",
+      "source": "E:\\фото кухни 3\\IMG_20241224_181834.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-neoklassika-belaya-028-side-071.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-bezhevaya-029-side-072.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250104_192432.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-minimalizm-bezhevaya-029-side-072.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-bezhevaya-029-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250104_192437.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\portfolio\\uglovaya-kuhnya-minimalizm-bezhevaya-029-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "malenkaya-kuhnya-sovremennaya-seraya-030-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250123_193523.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\malenkaya-kuhnya-sovremennaya-seraya-030-main.webp",
+      "width": "1920",
+      "height": "2560"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-kombinacii-031-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250310_192307.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-kombinacii-031-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-sovremennaya-kombinacii-031-side-076.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250310_192321.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-sovremennaya-kombinacii-031-side-076.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-seraya-032-side-077.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250530_173736.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-seraya-032-side-077.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-seraya-032-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250530_173812.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-seraya-032-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-sovremennaya-seraya-032-detail-079.webp",
+      "source": "E:\\фото кухни 3\\IMG_20250530_173817.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-sovremennaya-seraya-032-detail-079.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-seraya-033-main.webp",
+      "source": "E:\\фото кухни 3\\IMG_20251024_184538.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-minimalizm-seraya-033-main.webp",
+      "width": "1920",
+      "height": "1440"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-seraya-034-side-081.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-36.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-seraya-034-side-081.webp",
+      "width": "1280",
+      "height": "960"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-seraya-034-side-082.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-37.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-seraya-034-side-082.webp",
+      "width": "1280",
+      "height": "960"
+    },
+    {
+      "file": "pryamaya-kuhnya-minimalizm-seraya-034-main.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-38.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\pryamaya-kuhnya-minimalizm-seraya-034-main.webp",
+      "width": "1280",
+      "height": "960"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-belaya-035-main.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-46.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-neoklassika-belaya-035-main.webp",
+      "width": "1280",
+      "height": "960"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-belaya-035-side-085.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-47 (2).jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-neoklassika-belaya-035-side-085.webp",
+      "width": "1280",
+      "height": "960"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-belaya-035-extra-02-086.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-47 (3).jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-neoklassika-belaya-035-extra-02-086.webp",
+      "width": "960",
+      "height": "1280"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-belaya-035-extra-03-087.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-47 (4).jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-neoklassika-belaya-035-extra-03-087.webp",
+      "width": "960",
+      "height": "1280"
+    },
+    {
+      "file": "uglovaya-kuhnya-neoklassika-belaya-035-detail-088.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-20-47.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-neoklassika-belaya-035-detail-088.webp",
+      "width": "1280",
+      "height": "960"
+    },
+    {
+      "file": "uglovaya-kuhnya-minimalizm-seraya-036-main.webp",
+      "source": "E:\\фото кухни 3\\photo_2026-04-29_18-21-00.jpg",
+      "dest": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\prepared-images\\needs-review\\uglovaya-kuhnya-minimalizm-seraya-036-main.webp",
+      "width": "1280",
+      "height": "960"
+    }
+  ]
+}

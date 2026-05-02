@@ -4,6 +4,17 @@
 
 Один объект кухни = одна папка = один проект в БД. Все ракурсы и детали лежат в одной папке и перечислены в `manifest.json` в массиве `images`.
 
+## Пересборка WebP по классификации (формат и размер)
+
+Из корня репозитория: заново записать `prepared-images/portfolio/` и `needs-review/` из исходников в `photo-classification.csv` (макс. ширина **1920 px**, WebP **quality 82**), затем пересобрать папки проектов:
+
+```bash
+python scripts/rebuild_prepared_webp_from_classification.py
+python scripts/generate_portfolio_manifests_from_mapping.py
+```
+
+Отчёт: `prepared-images/reports/webp-rebuild-report.json`.
+
 ## Автогенерация из CSV (все группы из отчёта)
 
 Если актуальный полный маппинг лежит в `prepared-images/reports/portfolio-draft-mapping.csv`, можно пересобрать папки и `manifest.json` одной командой из корня репозитория:
