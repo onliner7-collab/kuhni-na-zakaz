@@ -205,7 +205,7 @@ export function CalculatorWizard() {
           <div className="card-base p-5">
             <h3 className="font-serif text-xl font-semibold mb-1">Заказать бесплатный замер</h3>
             <p className="text-sm text-muted-foreground mb-4">Замерщик приедет, уточнит детали и назовёт точную цену</p>
-            <ContactForm source="calculator" />
+            <ContactForm source="calculator" sourceType="calculator" />
           </div>
         )}
 

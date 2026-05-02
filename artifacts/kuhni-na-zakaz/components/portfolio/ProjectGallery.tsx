@@ -7,6 +7,7 @@ import type { PortfolioProjectImage } from "@/data/portfolio-projects";
 import { ImageLightbox, type LightboxImage } from "@/components/ui/ImageLightbox";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { cn } from "@/lib/utils";
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 interface ProjectGalleryProps {
   title: string;
@@ -31,6 +32,11 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
   const activeImage = galleryImages[activeIndex];
 
   function openLightbox(index: number) {
+    trackAnalyticsEvent(ANALYTICS_EVENTS.LIGHTBOX_OPEN, {
+      source: "project-gallery",
+      image_index: index + 1,
+      gallery_size: galleryImages.length,
+    });
     setActiveIndex(index);
     setIsLightboxOpen(true);
   }

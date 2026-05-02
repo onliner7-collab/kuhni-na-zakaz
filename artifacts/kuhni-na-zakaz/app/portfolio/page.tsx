@@ -94,6 +94,31 @@ export default async function PortfolioPage() {
 
           <PortfolioFilters projects={projects} />
 
+          <section className="mt-12 rounded-lg border border-border bg-muted/20 p-5 sm:p-6">
+            <h2 className="font-serif text-2xl font-bold text-foreground">Кухни по регионам</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Подберите проекты из нужного региона и перейдите на страницу города с условиями
+              замера, доставки и монтажа.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              {[
+                { href: "/locations/minsk", label: "Минск" },
+                { href: "/locations/minskaya-oblast", label: "Минская область" },
+                { href: "/locations/gomel", label: "Гомель" },
+                { href: "/locations/mogilev", label: "Могилёв" },
+                { href: "/locations/vitebsk", label: "Витебск" },
+              ].map((region) => (
+                <Link
+                  key={region.href}
+                  href={region.href}
+                  className="rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                >
+                  {region.label}
+                </Link>
+              ))}
+            </div>
+          </section>
+
           <section id="portfolio-request" className="mt-16 grid gap-8 rounded-lg bg-gray-50 p-5 sm:p-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,1fr)]">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">
@@ -114,7 +139,7 @@ export default async function PortfolioPage() {
               </ul>
             </div>
             <div className="card-base p-5">
-              <ContactForm source="portfolio-index" />
+              <ContactForm source="portfolio-index" sourceType="portfolio-index" />
             </div>
           </section>
 

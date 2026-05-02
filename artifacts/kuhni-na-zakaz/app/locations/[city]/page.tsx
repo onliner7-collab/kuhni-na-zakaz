@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
-import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const revalidate = 3600;
 export const dynamic = "force-dynamic";
@@ -37,7 +37,7 @@ const catalogLinks = [
   { href: "/catalog/kuhni-do-potolka", title: "Кухни до потолка", text: "Больше хранения и аккуратная линия фасадов." },
 ];
 
-const LOCAL_BUSINESS_IMAGE =
+const LOCATION_PAGE_FALLBACK_IMAGE =
   "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
 
 function fallbackLocation(slug: string): LocationPage | null {
@@ -425,36 +425,28 @@ export default async function LocationPage({ params }: Props) {
   const timelineSteps = loc.timelineText ? loc.timelineText.split("→").map(s => s.trim()).filter(Boolean) : [];
   const cityGen = cityGenitive(loc.city);
   const cityFrom = citySourceForm(loc.city);
-  const schemaPriceFrom = loc.priceFrom > 0 ? loc.priceFrom : 900;
-
-  const jsonLdLocalBusiness = {
+  const jsonLdWebPage = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "WebPage",
     "@id": siteUrl(`/locations/${loc.slug}`),
-    name: "КухниBY",
-    description: loc.description,
-    telephone: loc.phone || CONTACT_DEFAULTS.phone,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: loc.city,
-      addressRegion: loc.region,
-      addressCountry: "BY",
-    },
-    areaServed: loc.areas,
-    priceRange: `от ${schemaPriceFrom} BYN`,
-    image: loc.images[0] || LOCAL_BUSINESS_IMAGE,
+    name: loc.h1 || loc.title || `Кухни на заказ в ${loc.city}`,
+    description: loc.description || loc.intro,
     url: siteUrl(`/locations/${loc.slug}`),
+    inLanguage: "ru-BY",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "КухниBY",
+      url: siteUrl("/"),
+    },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      contentUrl: siteUrl(loc.images[0] || LOCATION_PAGE_FALLBACK_IMAGE),
+    },
   };
 
-  const jsonLdFaq = faqItems.length > 0 ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqItems.map(item => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  } : null;
+  const jsonLdFaq = faqJsonLd(
+    faqItems.map((item) => ({ question: item.q, answer: item.a })),
+  );
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -464,9 +456,7 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdLocalBusiness) }} />
-      {jsonLdFaq && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
+      <JsonLd data={[jsonLdWebPage, jsonLdFaq, jsonLdBreadcrumb].filter(Boolean)} />
 
       {/* HERO */}
       <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
@@ -926,7 +916,12 @@ export default async function LocationPage({ params }: Props) {
               )}
             </div>
             <div className="bg-white/5 rounded-2xl border border-white/10 p-6 backdrop-blur-sm">
-              <ContactForm city={loc.city} />
+              <ContactForm
+                source={`location-${loc.slug}`}
+                sourceType="location-region"
+                city={loc.city}
+                cityKey={loc.slug}
+              />
             </div>
           </div>
         </div>

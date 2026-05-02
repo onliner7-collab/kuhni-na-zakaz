@@ -1,5 +1,32 @@
 # Changelog вЂ” РљСѓС…РЅРёBY
 
+## [Unreleased] - 2026-05-02 (Structured data safety update)
+
+### Changed
+- `app/layout.tsx` - replaced site-level schema from `LocalBusiness` to `Organization` to avoid implying physical offices in every location while keeping factual business identity data.
+- `app/locations/[city]/page.tsx` - replaced location-level `LocalBusiness` schema with `WebPage`, preserved real breadcrumbs, and generated `FAQPage` only from visible FAQ block content.
+- `components/locations/RegionalLocationPage.tsx` - added `FAQPage` JSON-LD for user-visible regional FAQ content and unified schema output via `JsonLd`.
+- `app/portfolio/[slug]/page.tsx` - expanded project schema with `CreativeWork` + `ImageObject` entries for project media without adding synthetic ratings or reviews.
+
+## [Unreleased] - 2026-05-02 (Internal linking update)
+
+### Changed
+- `components/layout/Footer.tsx` - updated footer city block to `Кухни по городам` with priority regional links: Минск, Минская область, Гомель, Могилёв, Витебск.
+- `app/page.tsx` - added a dedicated `Работаем по регионам` block with requested copy and direct links to key regional pages.
+- `app/portfolio/page.tsx` - added a regional linking section with direct transitions to major location pages.
+- `app/portfolio/[slug]/page.tsx` - reinforced links from project pages to related regional pages, including fallback mapping by city.
+- `components/locations/RegionalLocationPage.tsx` - added explicit navigation links to `/prices`, `/calculator`, `/portfolio`, `/contacts`.
+
+## [Unreleased] - 2026-05-02 (Lead form source fields and analytics hooks)
+
+### Changed
+- `components/sections/ContactForm.tsx` - added hidden form fields `sourcePage`, `sourceType`, `projectSlug`, `cityKey`; preserved existing submit flow and success UI.
+- `app/kapi/leads/route.ts` - extended lead payload validation and persisted extra source metadata into `answers` JSON to avoid schema-breaking DB changes.
+- `app/page.tsx`, `app/prices/page.tsx`, `app/portfolio/page.tsx`, `app/portfolio/[slug]/page.tsx`, `app/locations/[city]/page.tsx`, `components/locations/RegionalLocationPage.tsx`, `components/calculator/CalculatorWizard.tsx` - passed page-specific source context (`sourceType`, `projectSlug`, `cityKey`) into forms.
+- `lib/analytics.ts` - added analytics event keys: `portfolio_project_open`, `portfolio_filter_change`, `lightbox_open`.
+- `components/analytics/PortfolioProjectOpenTracker.tsx` - added page-open tracking hook for project pages.
+- `components/portfolio/PortfolioFilters.tsx`, `components/portfolio/ProjectGallery.tsx` - added event tracking for filter changes and lightbox opening.
+
 ## [Unreleased] - 2026-04-21 (Production styles fix and deploy access refresh)
 
 ### Added

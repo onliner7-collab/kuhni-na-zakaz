@@ -457,6 +457,37 @@ export default async function HomePage() {
       </section>
 
       {/* ===== LOCATIONS ===== */}
+      <section className="section-padding bg-muted/30 border-y border-border/60">
+        <div className="container-site">
+          <div className="max-w-4xl">
+            <h2 className="font-serif text-3xl lg:text-4xl font-bold">
+              Работаем по Минску, Минской области, Гомелю, Могилёву и Витебску
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              Изготавливаем кухни на заказ по индивидуальным размерам. Условия замера,
+              доставки и монтажа уточняются при расчёте проекта.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm">
+              {[
+                { href: "/locations/minsk", label: "Минск" },
+                { href: "/locations/minskaya-oblast", label: "Минская область" },
+                { href: "/locations/gomel", label: "Гомель" },
+                { href: "/locations/mogilev", label: "Могилёв" },
+                { href: "/locations/vitebsk", label: "Витебск" },
+              ].map((region) => (
+                <Link
+                  key={region.href}
+                  href={region.href}
+                  className="rounded-full border border-border bg-white px-4 py-2 font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                >
+                  {region.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding bg-white">
         <div className="container-site">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
@@ -609,7 +640,7 @@ export default async function HomePage() {
         <div className="container-site max-w-2xl">
           <h2 className="font-serif text-3xl font-bold text-center mb-2">Оставить заявку</h2>
           <p className="text-center text-muted-foreground mb-8">Замер и консультация — бесплатно по всей Беларуси</p>
-          <ContactForm source="home" />
+          <ContactForm source="home" sourceType="home" />
         </div>
       </section>
     </>

@@ -13,6 +13,10 @@ const leadSchema = z.object({
   comment: z.string().max(2000).optional().default(""),
   source: z.string().max(100).optional().default("website"),
   formType: z.string().max(50).optional().default("contact"),
+  sourcePage: z.string().max(255).optional().default(""),
+  sourceType: z.string().max(100).optional().default(""),
+  projectSlug: z.string().max(150).optional().default(""),
+  cityKey: z.string().max(100).optional().default(""),
   answers: z.record(z.unknown()).optional().default({}),
   // Этап 10: персонализация
   configSessionId: z.string().max(100).optional(),
@@ -39,6 +43,14 @@ export async function POST(req: NextRequest) {
 
     const data = parsed.data;
 
+    const answers = {
+      ...(data.answers || {}),
+      sourcePage: data.sourcePage || undefined,
+      sourceType: data.sourceType || undefined,
+      projectSlug: data.projectSlug || undefined,
+      cityKey: data.cityKey || undefined,
+    } as Prisma.InputJsonValue;
+
     const lead = await prisma.lead.create({
       data: {
         name: data.name,
@@ -47,7 +59,7 @@ export async function POST(req: NextRequest) {
         comment: data.comment || "",
         source: data.source || "website",
         formType: data.formType || "contact",
-        answers: (data.answers || {}) as Prisma.InputJsonValue,
+        answers,
         configSessionId: data.configSessionId || null,
         scenarioSlug: data.scenarioSlug || "",
         styleSlug: data.styleSlug || "",

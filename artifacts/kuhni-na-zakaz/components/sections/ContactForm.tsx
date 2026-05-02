@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -16,18 +17,57 @@ const schema = z.object({
   phone: z.string().min(7, "Введите корректный номер"),
   city: z.string().optional(),
   comment: z.string().optional(),
+  sourcePage: z.string().optional(),
+  sourceType: z.string().optional(),
+  projectSlug: z.string().optional(),
+  cityKey: z.string().optional(),
   honeypot: z.string().max(0, "Это поле должно быть пустым"),
 });
 
 type FormData = z.infer<typeof schema>;
 
-export function ContactForm({ source = "website", city }: { source?: string; city?: string }) {
+interface ContactFormProps {
+  source?: string;
+  city?: string;
+  sourcePage?: string;
+  sourceType?: string;
+  projectSlug?: string;
+  cityKey?: string;
+}
+
+function detectSourceType(pathname: string) {
+  if (pathname === "/") return "home";
+  if (pathname.startsWith("/portfolio/")) return "portfolio-project";
+  if (pathname === "/portfolio") return "portfolio-index";
+  if (pathname.startsWith("/locations/")) return "location-region";
+  if (pathname === "/prices") return "prices";
+  if (pathname === "/calculator") return "calculator";
+  return "website";
+}
+
+export function ContactForm({
+  source = "website",
+  city,
+  sourcePage,
+  sourceType,
+  projectSlug,
+  cityKey,
+}: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const pathname = usePathname() || "/";
+  const resolvedSourcePage = sourcePage || pathname;
+  const resolvedSourceType = sourceType || detectSourceType(pathname);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: { city: city || "" },
+    defaultValues: {
+      city: city || "",
+      sourcePage: resolvedSourcePage,
+      sourceType: resolvedSourceType,
+      projectSlug: projectSlug || "",
+      cityKey: cityKey || "",
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -36,6 +76,10 @@ export function ContactForm({ source = "website", city }: { source?: string; cit
     trackAnalyticsEvent(ANALYTICS_EVENTS.FORM_SUBMIT, {
       form_type: "contact",
       source,
+      source_page: resolvedSourcePage,
+      source_type: resolvedSourceType,
+      project_slug: projectSlug,
+      city_key: cityKey,
       city: data.city || city,
     });
     trackAnalyticsEvent(ANALYTICS_EVENTS.MEASURE_REQUEST, {
@@ -46,7 +90,15 @@ export function ContactForm({ source = "website", city }: { source?: string; cit
       const res = await fetch("/kapi/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source, formType: "contact" }),
+        body: JSON.stringify({
+          ...data,
+          source,
+          formType: "contact",
+          sourcePage: data.sourcePage || resolvedSourcePage,
+          sourceType: data.sourceType || resolvedSourceType,
+          projectSlug: data.projectSlug || projectSlug || "",
+          cityKey: data.cityKey || cityKey || "",
+        }),
       });
       if (res.ok) {
         setSent(true);
@@ -82,6 +134,10 @@ export function ContactForm({ source = "website", city }: { source?: string; cit
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-testid="contact-form">
       {/* Honeypot */}
       <input {...register("honeypot")} type="text" className="hidden" tabIndex={-1} aria-hidden="true" />
+      <input {...register("sourcePage")} type="hidden" />
+      <input {...register("sourceType")} type="hidden" />
+      <input {...register("projectSlug")} type="hidden" />
+      <input {...register("cityKey")} type="hidden" />
 
       <div>
         <Label htmlFor="name">Имя *</Label>

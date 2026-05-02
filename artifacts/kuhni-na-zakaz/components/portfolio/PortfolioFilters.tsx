@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Package, Palette, Ruler } from "lucide-react";
 import type { PortfolioProject } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 interface FilterOption {
   label: string;
@@ -155,7 +156,35 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
     [cityFilter, colorFilter, projects, styleFilter, typeFilter],
   );
 
+  function handleFilterChange(filterName: "city" | "type" | "style" | "color", value: string) {
+    const nextFilters = {
+      city: cityFilter,
+      type: typeFilter,
+      style: styleFilter,
+      color: colorFilter,
+      [filterName]: value,
+    };
+
+    trackAnalyticsEvent(ANALYTICS_EVENTS.PORTFOLIO_FILTER_CHANGE, {
+      filter_name: filterName,
+      filter_value: value,
+      city_filter: nextFilters.city,
+      type_filter: nextFilters.type,
+      style_filter: nextFilters.style,
+      color_filter: nextFilters.color,
+    });
+
+    if (filterName === "city") setCityFilter(value);
+    if (filterName === "type") setTypeFilter(value);
+    if (filterName === "style") setStyleFilter(value);
+    if (filterName === "color") setColorFilter(value);
+  }
+
   function resetFilters() {
+    trackAnalyticsEvent(ANALYTICS_EVENTS.PORTFOLIO_FILTER_CHANGE, {
+      filter_name: "reset",
+      filter_value: "all",
+    });
     setCityFilter("all");
     setTypeFilter("all");
     setStyleFilter("all");
@@ -186,10 +215,10 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
-          <FilterGroup label="Город" options={cityOptions} value={cityFilter} onChange={setCityFilter} />
-          <FilterGroup label="Тип кухни" options={kitchenTypeOptions} value={typeFilter} onChange={setTypeFilter} />
-          <FilterGroup label="Стиль" options={styleOptions} value={styleFilter} onChange={setStyleFilter} />
-          <FilterGroup label="Цвет" options={colorOptions} value={colorFilter} onChange={setColorFilter} />
+          <FilterGroup label="Город" options={cityOptions} value={cityFilter} onChange={(value) => handleFilterChange("city", value)} />
+          <FilterGroup label="Тип кухни" options={kitchenTypeOptions} value={typeFilter} onChange={(value) => handleFilterChange("type", value)} />
+          <FilterGroup label="Стиль" options={styleOptions} value={styleFilter} onChange={(value) => handleFilterChange("style", value)} />
+          <FilterGroup label="Цвет" options={colorOptions} value={colorFilter} onChange={(value) => handleFilterChange("color", value)} />
         </div>
       </div>
 

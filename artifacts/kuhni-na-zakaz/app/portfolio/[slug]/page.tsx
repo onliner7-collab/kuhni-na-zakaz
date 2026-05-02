@@ -8,11 +8,13 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
 import { PortfolioProjectHeroImage } from "@/components/portfolio/PortfolioProjectHeroImage";
 import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
+import { PortfolioProjectOpenTracker } from "@/components/analytics/PortfolioProjectOpenTracker";
 import { toPortfolioProject, type EditablePortfolioCase, type PortfolioProject } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
+import { regionalLocations } from "@/data/locations";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -165,6 +167,10 @@ export default async function PortfolioProjectPage({ params }: Props) {
     project,
     portfolioEntries.map((entry) => entry.project),
   );
+  const regionalLocationByCity = regionalLocations.find((location) => location.cityName === project.city) ?? null;
+  const regionalLink = locationPage?.slug ? `/locations/${locationPage.slug}` : regionalLocationByCity ? `/locations/${regionalLocationByCity.slug}` : null;
+  const regionalTitle = locationPage?.h1 || (project.city ? `Кухни в ${project.city}` : null);
+  const cityKey = locationPage?.slug || regionalLocationByCity?.slug || "";
 
   const jsonLd = [
     breadcrumbJsonLd([
@@ -210,12 +216,12 @@ export default async function PortfolioProjectPage({ params }: Props) {
             caption: project.alt || project.title,
           })
         : undefined,
-      url: siteUrl(`/portfolio/${project.slug}`),
     }),
   ];
 
   return (
     <>
+      <PortfolioProjectOpenTracker projectSlug={project.slug} cityKey={cityKey || undefined} />
       <JsonLd data={jsonLd} />
       <main className="section-padding">
         <div className="container-site">
@@ -491,7 +497,13 @@ export default async function PortfolioProjectPage({ params }: Props) {
                   </p>
                 </div>
                 <div className="rounded-lg border border-border bg-white p-5">
-                  <ContactForm source={`portfolio/${project.slug}`} city={project.city} />
+                  <ContactForm
+                    source={`portfolio/${project.slug}`}
+                    sourceType="portfolio-project"
+                    city={project.city}
+                    projectSlug={project.slug}
+                    cityKey={cityKey}
+                  />
                 </div>
               </section>
 
@@ -596,7 +608,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 </p>
               </div>
 
-              {locationPage && (
+              {regionalLink && (
                 <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
                   <h2 className="flex items-center gap-2 font-serif text-2xl font-bold">
                     <MapPin className="h-5 w-5 text-primary" />
@@ -606,10 +618,10 @@ export default async function PortfolioProjectPage({ params }: Props) {
                     Смотрите другие проекты, цены на доставку и замер в вашем городе.
                   </p>
                   <Link
-                    href={`/locations/${locationPage.slug}`}
+                    href={regionalLink}
                     className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
                   >
-                    {locationPage.h1 || `Кухни в ${project.city}`}
+                    {regionalTitle}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>

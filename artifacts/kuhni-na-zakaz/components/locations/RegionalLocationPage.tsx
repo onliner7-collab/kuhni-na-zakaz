@@ -426,7 +426,37 @@ export function RegionalLocationPage({
             </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
-            <ContactForm source={`location-${location.slug}`} city={location.cityName} />
+            <ContactForm
+              source={`location-${location.slug}`}
+              sourceType="location-region"
+              city={location.cityName}
+              cityKey={location.slug}
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white border-t border-border/60">
+        <div className="container-site">
+          <h2 className="font-serif text-2xl font-bold text-foreground">Полезные разделы перед заказом</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Сравните стоимость, посмотрите реальные проекты и оставьте заявку на расчёт кухни в вашем регионе.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            {[
+              { href: "/prices", label: "Цены" },
+              { href: "/calculator", label: "Калькулятор" },
+              { href: "/portfolio", label: "Портфолио" },
+              { href: "/contacts", label: "Контакты" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-full border border-border bg-muted/20 px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       </section>

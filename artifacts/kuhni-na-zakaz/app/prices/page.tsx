@@ -178,7 +178,7 @@ export default function PricesPage() {
         <div className="max-w-2xl mx-auto">
           <h2 className="font-serif text-3xl font-bold text-center mb-4">Точный расчёт — бесплатно</h2>
           <p className="text-center text-muted-foreground mb-8">Оставьте заявку — рассчитаем под ваши параметры</p>
-          <ContactForm source="prices" />
+          <ContactForm source="prices" sourceType="prices" />
         </div>
         </div>
       </div>

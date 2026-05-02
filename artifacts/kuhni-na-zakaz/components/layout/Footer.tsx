@@ -25,6 +25,13 @@ const FOOTER_LINKS = {
     { href: "/terms", label: "Условия использования" },
     { href: "/personal-data", label: "Персональные данные" },
   ],
+  priorityCities: [
+    { href: "/locations/minsk", label: "Минск" },
+    { href: "/locations/minskaya-oblast", label: "Минская область" },
+    { href: "/locations/gomel", label: "Гомель" },
+    { href: "/locations/mogilev", label: "Могилёв" },
+    { href: "/locations/vitebsk", label: "Витебск" },
+  ],
 };
 
 const FOOTER_DEFAULTS = {
@@ -153,15 +160,15 @@ export async function Footer() {
 
           {/* Cities + Legal */}
           <div>
-            <h3 className="font-bold text-white/90 mb-4 text-xs uppercase tracking-widest">Города</h3>
+            <h3 className="font-bold text-white/90 mb-4 text-xs uppercase tracking-widest">Кухни по городам</h3>
             <ul className="space-y-2.5">
-              <li><Link href="/locations/minsk" className="text-sm text-white/50 hover:text-white transition-colors">Кухни в Минске</Link></li>
-              <li><Link href="/locations/brest" className="text-sm text-white/50 hover:text-white transition-colors">Кухни в Бресте</Link></li>
-              <li><Link href="/locations/grodno" className="text-sm text-white/50 hover:text-white transition-colors">Кухни в Гродно</Link></li>
-              <li><Link href="/locations/vitebsk" className="text-sm text-white/50 hover:text-white transition-colors">Кухни в Витебске</Link></li>
-              <li><Link href="/locations/gomel" className="text-sm text-white/50 hover:text-white transition-colors">Кухни в Гомеле</Link></li>
-              <li><Link href="/locations/mogilev" className="text-sm text-white/50 hover:text-white transition-colors">Кухни в Могилёве</Link></li>
-              <li><Link href="/locations/minskaya-oblast" className="text-sm text-white/50 hover:text-white transition-colors">Кухни по Минской области</Link></li>
+              {FOOTER_LINKS.priorityCities.map((city) => (
+                <li key={city.href}>
+                  <Link href={city.href} className="text-sm text-white/50 hover:text-white transition-colors">
+                    {city.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
             <div className="mt-6">
               <h3 className="font-bold text-white/90 mb-4 text-xs uppercase tracking-widest">Правовое</h3>
