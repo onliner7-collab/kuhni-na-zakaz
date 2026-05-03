@@ -15,6 +15,8 @@ export interface PortfolioProject {
   district: string;
   kitchenType: string;
   style: string;
+  /** Slug страницы стиля (/styles/[slug]), совпадает с полем в БД */
+  styleSlug: string;
   color: string;
   price: string;
   priceNote: string;
@@ -50,6 +52,7 @@ export interface EditablePortfolioCase {
   area: number;
   layout: string;
   style: string;
+  styleSlug?: string;
   color: string;
   material: string;
   materials: string[];
@@ -170,6 +173,7 @@ export function toPortfolioProject(portfolioCase: EditablePortfolioCase): Portfo
     district: portfolioCase.district,
     kitchenType,
     style: portfolioCase.style,
+    styleSlug: portfolioCase.styleSlug ?? "",
     color: portfolioCase.color || "Светлая",
     price,
     priceNote: portfolioCase.priceNote || defaultPriceNote,

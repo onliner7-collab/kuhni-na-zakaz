@@ -31,6 +31,7 @@ const kitchenTypeOptions: FilterOption[] = [
   { label: "Угловые", value: "uglovye" },
   { label: "Прямые", value: "pryamye" },
   { label: "П-образные", value: "p-obraznye" },
+  { label: "С островом", value: "s-ostrovom" },
   { label: "До потолка", value: "do-potolka" },
   { label: "Маленькие", value: "malenkie" },
 ];
@@ -38,8 +39,11 @@ const kitchenTypeOptions: FilterOption[] = [
 const styleOptions: FilterOption[] = [
   { label: "Все", value: "all" },
   { label: "Современные", value: "sovremennye" },
-  { label: "Классические", value: "klassicheskie" },
   { label: "Минимализм", value: "minimalizm" },
+  { label: "Неоклассика", value: "neoklassika" },
+  { label: "Классические", value: "klassicheskie" },
+  { label: "Лофт", value: "loft" },
+  { label: "Скандинавский", value: "skandinavskie" },
 ];
 
 const colorOptions: FilterOption[] = [
@@ -53,9 +57,10 @@ const colorOptions: FilterOption[] = [
 function getKitchenTypeValue(project: PortfolioProject) {
   const type = project.kitchenType.toLowerCase();
 
+  if (type.includes("п-образ")) return "p-obraznye";
+  if (type.includes("остров")) return "s-ostrovom";
   if (type.includes("углов")) return "uglovye";
   if (type.includes("прям")) return "pryamye";
-  if (type.includes("п-образ")) return "p-obraznye";
   if (type.includes("потол")) return "do-potolka";
   if (type.includes("малень")) return "malenkie";
 
@@ -63,10 +68,25 @@ function getKitchenTypeValue(project: PortfolioProject) {
 }
 
 function getStyleValue(project: PortfolioProject) {
+  const slug = (project.styleSlug || "").trim();
+  if (
+    slug === "sovremennye" ||
+    slug === "minimalizm" ||
+    slug === "klassicheskie" ||
+    slug === "neoklassika" ||
+    slug === "loft" ||
+    slug === "skandinavskie"
+  ) {
+    return slug;
+  }
+
   const style = project.style.toLowerCase();
 
+  if (style.includes("неокласс")) return "neoklassika";
+  if (style.includes("лофт")) return "loft";
+  if (style.includes("скандинав")) return "skandinavskie";
   if (style.includes("современ")) return "sovremennye";
-  if (style.includes("класс") || style.includes("неокласс")) return "klassicheskie";
+  if (style.includes("классич") && !style.includes("неокласс")) return "klassicheskie";
   if (style.includes("минимал")) return "minimalizm";
 
   return "";
