@@ -16,8 +16,15 @@ async function ensureDir(dir) {
   await fs.promises.mkdir(dir, { recursive: true });
 }
 
+const DEFAULT_WEBP_Q = 85;
+const DEFAULT_AVIF_Q = 55;
+
 async function optimizeSeoShowcase() {
-  await optimizeDirectory(seoShowcaseDir, { width: 1400, webpQuality: 72, avifQuality: 48 });
+  await optimizeDirectory(seoShowcaseDir, {
+    width: 1400,
+    webpQuality: DEFAULT_WEBP_Q,
+    avifQuality: DEFAULT_AVIF_Q,
+  });
 }
 
 async function optimizeDirectory(dir, options) {
@@ -65,7 +72,11 @@ async function optimizeHeroImage() {
   const heroPath = path.join(imagesDir, "hero.png");
   if (!fs.existsSync(heroPath)) return;
 
-  await writeModernVariants(heroPath, { width: 1920, webpQuality: 76, avifQuality: 52 });
+  await writeModernVariants(heroPath, {
+    width: 1920,
+    webpQuality: DEFAULT_WEBP_Q,
+    avifQuality: DEFAULT_AVIF_Q,
+  });
 
   const stat = await fs.promises.stat(heroPath);
   const tempPath = `${heroPath}.tmp`;
@@ -120,9 +131,21 @@ async function main() {
   await optimizeSeoShowcase();
   await optimizeHeroImage();
   await createLegacyAliases();
-  await optimizeDirectory(kitchensDir, { width: 1400, webpQuality: 74, avifQuality: 50 });
-  await optimizeDirectory(portfolioDir, { width: 1400, webpQuality: 74, avifQuality: 50 });
-  await optimizeDirectory(stylesDir, { width: 1200, webpQuality: 72, avifQuality: 48 });
+  await optimizeDirectory(kitchensDir, {
+    width: 1400,
+    webpQuality: DEFAULT_WEBP_Q,
+    avifQuality: DEFAULT_AVIF_Q,
+  });
+  await optimizeDirectory(portfolioDir, {
+    width: 1400,
+    webpQuality: DEFAULT_WEBP_Q,
+    avifQuality: DEFAULT_AVIF_Q,
+  });
+  await optimizeDirectory(stylesDir, {
+    width: 1200,
+    webpQuality: DEFAULT_WEBP_Q,
+    avifQuality: DEFAULT_AVIF_Q,
+  });
   console.log("Optimized hero/showcase images, generated WebP/AVIF variants, and restored legacy aliases.");
 }
 

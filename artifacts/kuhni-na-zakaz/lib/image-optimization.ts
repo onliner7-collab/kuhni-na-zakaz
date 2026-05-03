@@ -1,10 +1,21 @@
-const WEBP_REWRITE_PREFIXES = ["/uploads/seo-showcase/", "/images/"] as const;
+/** Локальные пути, для которых `scripts/optimize-site-images.js` создаёт одноимённые `.webp`. */
+const WEBP_REWRITE_PREFIXES = [
+  "/uploads/seo-showcase/",
+  "/uploads/kitchens/",
+  "/uploads/portfolio/",
+  "/images/",
+] as const;
 
 export function optimizedImageSrc(src: string | null | undefined) {
   if (!src) return src;
 
-  const canUseGeneratedWebp =
-    src.endsWith(".png") && WEBP_REWRITE_PREFIXES.some((prefix) => src.startsWith(prefix));
+  const lower = src.toLowerCase();
+  const hasRasterExt = /\.(png|jpe?g)$/i.test(lower);
+  const inOptimizedTree = WEBP_REWRITE_PREFIXES.some((prefix) =>
+    src.startsWith(prefix),
+  );
 
-  return canUseGeneratedWebp ? src.replace(/\.png$/i, ".webp") : src;
+  return hasRasterExt && inOptimizedTree
+    ? src.replace(/\.(png|jpe?g)$/i, ".webp")
+    : src;
 }

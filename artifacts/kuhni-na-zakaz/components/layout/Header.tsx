@@ -47,7 +47,8 @@ const CLOSE_MENU = "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043
 const CTA_LABEL = "\u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0439 \u0437\u0430\u043c\u0435\u0440";
 const CONSULTATION_LABEL = "\u041a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044f";
 const USEFUL_SECTIONS_LABEL = "\u041f\u043e\u043b\u0435\u0437\u043d\u044b\u0435 \u0440\u0430\u0437\u0434\u0435\u043b\u044b";
-const HOME_ARIA = "\u041a\u0443\u0445\u043d\u0438BY - \u0433\u043b\u0430\u0432\u043d\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430";
+const HOME_ARIA =
+  "\u041a\u0443\u0445\u043d\u0438BY \u2014 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043a\u0443\u0445\u043e\u043d\u044c \u043d\u0430 \u0437\u0430\u043a\u0430\u0437 \u0432 \u0411\u0435\u043b\u0430\u0440\u0443\u0441\u0438";
 
 function isActivePath(pathname: string, href: string, exact = false) {
   if (exact) {
@@ -104,7 +105,7 @@ function MobileNavLink({
       )}
     >
       <span>{label}</span>
-      <ArrowRight className="h-4 w-4 opacity-60" />
+      <ArrowRight className="h-4 w-4 opacity-60" aria-hidden />
     </Link>
   );
 }
@@ -149,23 +150,25 @@ export function Header({
             className="group flex min-w-0 items-center gap-3"
             aria-label={HOME_ARIA}
           >
-            <div
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white shadow-lg shadow-primary/20 transition-transform duration-200 group-hover:scale-[1.03]"
-              style={{
-                background: "linear-gradient(135deg, #7C3AED, #4F46E5)",
-              }}
-            >
-              <span className="text-base font-black">{BRAND_LETTER}</span>
-            </div>
-            <div className="min-w-0">
-              <div className="text-xl font-black tracking-tight text-foreground sm:text-2xl">
-                {BRAND_NAME}
-                <span className="text-gradient">BY</span>
+            <span className="flex min-w-0 items-center gap-3" aria-hidden="true">
+              <div
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white shadow-lg shadow-primary/20 transition-transform duration-200 group-hover:scale-[1.03]"
+                style={{
+                  background: "linear-gradient(135deg, #7C3AED, #4F46E5)",
+                }}
+              >
+                <span className="text-base font-black">{BRAND_LETTER}</span>
               </div>
-              <p className="hidden text-xs text-muted-foreground lg:block">
-                {BRAND_SUBTITLE}
-              </p>
-            </div>
+              <div className="min-w-0">
+                <div className="text-xl font-black tracking-tight text-foreground sm:text-2xl">
+                  {BRAND_NAME}
+                  <span className="text-gradient">BY</span>
+                </div>
+                <p className="hidden text-xs text-muted-foreground lg:block">
+                  {BRAND_SUBTITLE}
+                </p>
+              </div>
+            </span>
           </Link>
 
           <div className="hidden min-w-0 flex-1 items-center justify-end gap-3 lg:flex">
@@ -175,7 +178,7 @@ export function Header({
               data-testid="header-phone"
             >
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4" aria-hidden />
               </span>
               <span className="min-w-0">
                 <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
@@ -203,7 +206,7 @@ export function Header({
               aria-label={phoneDisplay}
               data-testid="header-phone-mobile"
             >
-              <Phone className="h-4 w-4" />
+              <Phone className="h-4 w-4" aria-hidden />
             </a>
             <button
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white transition-colors hover:bg-muted"
@@ -213,7 +216,7 @@ export function Header({
               aria-label={open ? CLOSE_MENU : OPEN_MENU}
               data-testid="mobile-menu-btn"
             >
-              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {open ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
             </button>
           </div>
         </div>
@@ -279,7 +282,7 @@ export function Header({
                 href={phoneLink}
                 className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-white px-4 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
               >
-                <Phone className="h-4 w-4 text-primary" />
+                <Phone className="h-4 w-4 text-primary" aria-hidden />
                 {phoneDisplay}
               </a>
 

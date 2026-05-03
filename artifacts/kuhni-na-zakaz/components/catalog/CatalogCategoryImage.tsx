@@ -28,7 +28,8 @@ export function CatalogCategoryImage({
           alt={alt}
           width={1200}
           height={900}
-          quality={90}
+          quality={85}
+          decoding="async"
           {...(priority ? { priority: true } : { loading: "lazy" as const })}
           sizes={sizes}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"

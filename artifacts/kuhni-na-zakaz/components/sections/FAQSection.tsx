@@ -45,19 +45,23 @@ export function FAQSection({ items, generateSchema = true }: FAQSectionProps) {
         <div className="space-y-2">
           {items.map((item, i) => (
             <div key={item.id} className="card-base">
-              <button
-                className="w-full flex items-center justify-between p-5 text-left"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                data-testid={`faq-item-${i}`}
-              >
-                <span className="font-medium pr-4">{item.question}</span>
-                <ChevronDown
-                  className={cn(
-                    "w-5 h-5 text-muted-foreground shrink-0 transition-transform",
-                    openIndex === i && "rotate-180"
-                  )}
-                />
-              </button>
+              <h3 className="m-0 text-base font-semibold leading-snug">
+                <button
+                  type="button"
+                  className="w-full flex items-center justify-between gap-3 p-5 text-left font-semibold"
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  aria-expanded={openIndex === i}
+                  data-testid={`faq-item-${i}`}
+                >
+                  <span className="pr-2">{item.question}</span>
+                  <ChevronDown
+                    className={cn(
+                      "w-5 h-5 text-muted-foreground shrink-0 transition-transform",
+                      openIndex === i && "rotate-180"
+                    )}
+                  />
+                </button>
+              </h3>
               {openIndex === i && (
                 <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
                   {item.answer}

@@ -66,15 +66,21 @@ export async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2 group">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center shadow-md"
-                style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
-              >
-                <span className="text-white font-black text-sm">К</span>
-              </div>
-              <span className="font-black text-xl tracking-tight text-white">
-                Кухни<span style={{ background: "linear-gradient(135deg, #a78bfa, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>BY</span>
+            <Link
+              href="/"
+              className="flex items-center gap-2 group"
+              aria-label="КухниBY — производитель кухонь на заказ в Беларуси"
+            >
+              <span className="flex items-center gap-2" aria-hidden="true">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center shadow-md"
+                  style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
+                >
+                  <span className="text-white font-black text-sm">К</span>
+                </div>
+                <span className="font-black text-xl tracking-tight text-white">
+                  Кухни<span style={{ background: "linear-gradient(135deg, #a78bfa, #06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>BY</span>
+                </span>
               </span>
             </Link>
             <p className="mt-3 text-sm text-white/50 leading-relaxed">
@@ -82,21 +88,21 @@ export async function Footer() {
             </p>
             <div className="mt-4 space-y-2.5">
               <a href={`tel:${c.phone}`} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
-                <Phone className="w-4 h-4 shrink-0 text-violet-400" />
+                <Phone className="w-4 h-4 shrink-0 text-violet-400" aria-hidden />
                 {c.phoneDisplay}
               </a>
               {c.phone2 && c.phoneDisplay2 && (
                 <a href={`tel:${c.phone2}`} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
-                  <Phone className="w-4 h-4 shrink-0 text-violet-400" />
+                  <Phone className="w-4 h-4 shrink-0 text-violet-400" aria-hidden />
                   {c.phoneDisplay2}
                 </a>
               )}
               <a href={`mailto:${c.email}`} className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors">
-                <Mail className="w-4 h-4 shrink-0 text-violet-400" />
+                <Mail className="w-4 h-4 shrink-0 text-violet-400" aria-hidden />
                 {c.email}
               </a>
               <div className="flex items-start gap-2 text-sm text-white/60">
-                <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-violet-400" />
+                <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-violet-400" aria-hidden />
                 {c.address}
               </div>
               <div className="flex items-center gap-2 text-sm text-white/60">

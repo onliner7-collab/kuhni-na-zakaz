@@ -570,7 +570,16 @@ export default function LocationForm({ initial, isEdit }: Props) {
               {data.images.map((img, i) => (
                 <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-muted/30 border border-border">
                   <div className="w-12 h-9 rounded bg-muted overflow-hidden flex-shrink-0">
-                    <img src={img} alt="" className="w-full h-full object-cover" onError={e => (e.currentTarget.style.display = "none")} />
+                    <img
+                      src={img}
+                      alt=""
+                      width={48}
+                      height={36}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                      onError={(e) => (e.currentTarget.style.display = "none")}
+                    />
                   </div>
                   <span className="flex-1 text-xs text-muted-foreground font-mono truncate">{img}</span>
                   {i === 0 && <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">Обложка</span>}

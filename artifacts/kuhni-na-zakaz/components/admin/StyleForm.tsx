@@ -246,8 +246,18 @@ export default function StyleForm({ initial }: { initial?: Partial<StyleData> })
             <p className="text-xs text-gray-400 mt-1">Можно загрузить файл в админке или вставить прямую ссылку/локальный путь вида /uploads/styles/...</p>
             {data.image ? (
               <div className="mt-2 relative rounded-lg overflow-hidden border border-gray-200 aspect-video bg-gray-50">
-                <img src={data.image} alt="Превью" className="w-full h-full object-cover"
-                  onError={e => { (e.currentTarget.parentElement!.style.display = "none"); }} />
+                <img
+                  src={data.image}
+                  alt="Превью"
+                  width={1280}
+                  height={720}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                  onError={e => {
+                    e.currentTarget.parentElement!.style.display = "none";
+                  }}
+                />
               </div>
             ) : (
               <div className="mt-2 rounded-lg border-2 border-dashed border-gray-200 h-28 flex items-center justify-center bg-gray-50">

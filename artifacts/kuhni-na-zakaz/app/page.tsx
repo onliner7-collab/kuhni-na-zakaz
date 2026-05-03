@@ -28,6 +28,19 @@ type HomeStep = {
   badge?: string;
 };
 
+/** Подписи для эмодзи в блоке «Почему выбирают нас» (доступность / SEO). */
+function advantageEmojiAriaLabel(icon: string, title: string): string {
+  const labels: Record<string, string> = {
+    "🏭": "Собственный завод по производству кухонь",
+    "🛡️": "Гарантия 5 лет на кухни",
+    "📐": "Бесплатный замер и 3D-проект кухни",
+    "📋": "Фиксированная цена в договоре",
+    "🇧🇾": "Работаем по всей Беларуси",
+    "⏱️": "Сроки изготовления кухни",
+  };
+  return labels[icon.trim()] ?? title;
+}
+
 const CATALOG_CATEGORIES = [
   { slug: "uglovye-kuhni", title: "Угловые кухни", price: "от 1 800 BYN" },
   { slug: "pryamye-kuhni", title: "Прямые кухни", price: "от 1 200 BYN" },
@@ -40,11 +53,29 @@ const CATALOG_CATEGORIES = [
 const LOCAL_BUSINESS_IMAGE =
   "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
 
+/** Alt для витринного фото в первом экране (SEO / доступность). */
+const HERO_KITCHEN_ALT =
+  "Современная кухня на заказ с фасадами МДФ в Минске";
+
+const HOME_TITLE =
+  "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
+const HOME_DESCRIPTION =
+  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
+
 export const metadata: Metadata = {
-  title: "Кухни на заказ по Беларуси",
-  description:
-    "Проектируем, изготавливаем и устанавливаем кухни под заказ по всей Беларуси. Подберём решение под ваш размер, бюджет и стиль. Замер и 3D-проект бесплатно.",
+  title: "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D",
+  description: HOME_DESCRIPTION,
   alternates: { canonical: "/" },
+  openGraph: {
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+  },
 };
 
 async function getHomeData() {
@@ -52,7 +83,7 @@ async function getHomeData() {
     const [cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
       prisma.portfolioCase.findMany({ where: { published: true }, take: 3, orderBy: { createdAt: "desc" } }),
       prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 4, orderBy: { createdAt: "desc" } }),
-      prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" }, take: 8 }),
+      prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "scenario", published: true }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "step", published: true }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "advantage", published: true }, orderBy: { order: "asc" } }),
@@ -95,19 +126,30 @@ export default async function HomePage() {
     ],
     openingHours: ["Mo-Sa 09:00-19:00", "Su 10:00-17:00"],
     priceRange: "от 900 BYN",
-    ...(avgRating && reviews.length > 0 ? {
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: avgRating,
-        reviewCount: reviews.length,
-        bestRating: 5,
-        worstRating: 1,
-      }
-    } : {}),
   };
   const jsonLdBreadcrumb = breadcrumbJsonLd([{ name: "Главная", path: "/" }]);
   const jsonLdFaq = faqJsonLd(faqs);
-  const jsonLdItems = jsonLdFaq ? [jsonLdBreadcrumb, jsonLd, jsonLdFaq] : [jsonLdBreadcrumb, jsonLd];
+  const jsonLdProduct =
+    reviews.length > 0 && avgRating
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: "Кухни на заказ",
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: Number(avgRating),
+            reviewCount: reviews.length,
+            bestRating: 5,
+            worstRating: 1,
+          },
+        }
+      : null;
+  const jsonLdItems = [
+    jsonLdBreadcrumb,
+    jsonLd,
+    ...(jsonLdFaq ? [jsonLdFaq] : []),
+    ...(jsonLdProduct ? [jsonLdProduct] : []),
+  ];
 
   const FALLBACK_SCENARIOS = [
     { id: 1, icon: "🏠", title: "Подобрать кухню", subtitle: "по образу жизни", description: "Угловая, прямая, с островом — подберём под вашу планировку и привычки", href: "/catalog", badge: "" },
@@ -172,16 +214,24 @@ export default async function HomePage() {
           style={{ background: "radial-gradient(circle, #06B6D4, transparent)" }} />
 
         <div className="container-site relative z-10">
-          <div className="max-w-3xl">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold text-violet-200 border border-violet-500/30 bg-violet-500/10 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" aria-hidden />
               Работаем по всей Беларуси — от 14 рабочих дней
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-              Кухня на заказ —<br />
-              <span style={{ background: "linear-gradient(90deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-                именно под вас
+              Кухни на заказ в Беларуси —{" "}
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #a78bfa, #38bdf8)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                проектирование, производство и установка под ключ
               </span>
             </h1>
 
@@ -198,7 +248,7 @@ export default async function HomePage() {
                 data-testid="hero-cta-order"
               >
                 Заказать замер бесплатно
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" aria-hidden />
               </Link>
               <Link
                 href="/portfolio"
@@ -212,10 +262,24 @@ export default async function HomePage() {
             <div className="mt-8 flex flex-wrap gap-5">
               {["Замер бесплатно", "Проект за 3 дня", "Гарантия 5 лет", "Вся Беларусь"].map((t) => (
                 <div key={t} className="flex items-center gap-2 text-sm text-white/60">
-                  <CheckCircle className="w-4 h-4 text-violet-400 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-violet-400 shrink-0" aria-hidden />
                   {t}
                 </div>
               ))}
+            </div>
+            </div>
+
+            <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl border border-white/15 shadow-2xl shadow-black/30 lg:mx-0 lg:max-w-none">
+              <Image
+                src={optimizedImageSrc(LOCAL_BUSINESS_IMAGE) || LOCAL_BUSINESS_IMAGE}
+                alt={HERO_KITCHEN_ALT}
+                fill
+                priority
+                fetchPriority="high"
+                quality={85}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
@@ -242,12 +306,18 @@ export default async function HomePage() {
                     {s.badge}
                   </span>
                 )}
-                <span className="text-3xl mb-3">{s.icon}</span>
+                <span className="text-3xl mb-3" role="img" aria-label={s.title}>
+                  {s.icon}
+                </span>
                 <h3 className="font-bold text-foreground text-sm group-hover:text-primary transition-colors">{s.title}</h3>
                 {s.subtitle && <p className="text-xs text-muted-foreground mb-2">{s.subtitle}</p>}
                 {s.description && <p className="text-xs text-muted-foreground leading-relaxed mt-1 flex-1">{s.description}</p>}
                 <div className="mt-3 flex items-center gap-1 text-xs text-primary font-semibold">
-                  Перейти <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  Перейти{" "}
+                  <ArrowRight
+                    className="w-3 h-3 group-hover:translate-x-1 transition-transform"
+                    aria-hidden
+                  />
                 </div>
               </Link>
             ))}
@@ -267,7 +337,9 @@ export default async function HomePage() {
                   key={t.id}
                   className="flex items-center gap-3 bg-white border border-border rounded-2xl px-4 py-3 shadow-sm"
                 >
-                  <span className="text-xl leading-none flex-shrink-0">{t.icon}</span>
+                  <span className="text-xl leading-none flex-shrink-0" role="img" aria-label={t.title}>
+                    {t.icon}
+                  </span>
                   <div>
                     <p className="text-sm font-black text-foreground leading-tight">{t.title}</p>
                     {t.subtitle && (
@@ -282,7 +354,9 @@ export default async function HomePage() {
             <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-4 gap-6">
               {displayTrust.map((t) => (
                 <div key={t.id} className="text-center">
-                  <div className="text-3xl mb-1.5">{t.icon}</div>
+                  <div className="text-3xl mb-1.5" role="img" aria-label={t.title}>
+                    {t.icon}
+                  </div>
                   <p className="text-2xl font-black text-foreground">{t.title}</p>
                   {t.subtitle && <p className="text-sm text-muted-foreground mt-0.5">{t.subtitle}</p>}
                 </div>
@@ -303,25 +377,33 @@ export default async function HomePage() {
                 <p className="text-muted-foreground mt-1 text-sm">Реализованные проекты по всей Беларуси</p>
               </div>
               <Link href="/portfolio" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-                Все проекты <ArrowRight className="w-4 h-4" />
+                Все проекты <ArrowRight className="w-4 h-4" aria-hidden />
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {cases.map((c) => (
                 <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <div className="relative h-56 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
                     {c.mainImage
                       ? (
                         <Image
                           src={optimizedImageSrc(c.mainImage) || c.mainImage}
-                          alt={c.title}
+                          alt={`${c.title} — фото кухни на заказ, ${c.city}`}
                           fill
                           loading="lazy"
+                          decoding="async"
+                          quality={85}
                           sizes="(max-width: 768px) 100vw, 360px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )
-                      : <div className="w-full h-full flex items-center justify-center text-4xl">🏠</div>
+                      : (
+                        <div className="flex h-full w-full items-center justify-center text-4xl">
+                          <span role="img" aria-label="Нет фото проекта, значок дома">
+                            🏠
+                          </span>
+                        </div>
+                      )
                     }
                   </div>
                   <div className="p-5">
@@ -349,7 +431,7 @@ export default async function HomePage() {
               <p className="text-muted-foreground mt-1 text-sm">По конфигурации и назначению</p>
             </div>
             <Link href="/catalog" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-              Все категории <ArrowRight className="w-4 h-4" />
+              Все категории <ArrowRight className="w-4 h-4" aria-hidden />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -388,14 +470,33 @@ export default async function HomePage() {
                 href={item.href}
                 className="group rounded-2xl border border-border bg-muted/20 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
               >
-                <h2 className="font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</h2>
+                <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                  Перейти <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  Перейти{" "}
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden
+                  />
                 </span>
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ===== Производитель: цены / сроки / гарантии — перед этапами заказа ===== */}
+      <section
+        className="section-padding bg-white border-t border-border/60"
+        aria-labelledby="home-manufacturing-heading"
+      >
+        <div className="container-site">
+          <h2
+            id="home-manufacturing-heading"
+            className="text-3xl lg:text-4xl font-black text-foreground text-center max-w-4xl mx-auto leading-tight"
+          >
+            Изготовление кухонь на заказ от производителя: цены, сроки, гарантии
+          </h2>
         </div>
       </section>
 
@@ -415,6 +516,8 @@ export default async function HomePage() {
                 <div
                   className="text-2xl font-black shrink-0 leading-none mt-0.5"
                   style={{ background: "linear-gradient(135deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
+                  role="img"
+                  aria-label={s.title}
                 >
                   {s.icon || String(i + 1).padStart(2, "0")}
                 </div>
@@ -437,17 +540,23 @@ export default async function HomePage() {
             <p className="mt-3 text-muted-foreground text-base">Причины доверить кухню КухниBY</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {displayAdvantages.map((adv, i) => (
+            {displayAdvantages.map((adv) => (
               <div key={adv.id} className="group rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all bg-white">
                 <div className="flex items-start gap-4 mb-3">
-                  <span className="text-2xl flex-shrink-0">{adv.icon}</span>
+                  <span
+                    className="text-2xl flex-shrink-0"
+                    role="img"
+                    aria-label={advantageEmojiAriaLabel(adv.icon, adv.title)}
+                  >
+                    {adv.icon}
+                  </span>
                   {adv.badge && <span className="ml-auto text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold">{adv.badge}</span>}
                 </div>
                 <h3 className="font-bold text-base mb-1.5 group-hover:text-primary transition-colors">{adv.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{adv.description}</p>
                 {adv.href && (
                   <Link href={adv.href} className="mt-3 flex items-center gap-1 text-xs text-primary font-semibold hover:gap-2 transition-all">
-                    Подробнее <ArrowRight className="w-3 h-3" />
+                    Подробнее <ArrowRight className="w-3 h-3" aria-hidden />
                   </Link>
                 )}
               </div>
@@ -498,7 +607,7 @@ export default async function HomePage() {
               </p>
             </div>
             <Link href="/contacts" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-              Уточнить выезд <ArrowRight className="w-4 h-4" />
+              Уточнить выезд <ArrowRight className="w-4 h-4" aria-hidden />
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -513,11 +622,14 @@ export default async function HomePage() {
                     <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Кухни в {loc.city}</h3>
                     {loc.region && <p className="mt-1 text-xs text-muted-foreground">{loc.region}</p>}
                   </div>
-                  <MapPin className="h-5 w-5 text-primary/70 shrink-0" />
+                  <MapPin className="h-5 w-5 text-primary/70 shrink-0" aria-hidden />
                 </div>
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">от {loc.priceFrom.toLocaleString("ru")} BYN</span>
-                  <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
+                  <ArrowRight
+                    className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1"
+                    aria-hidden
+                  />
                 </div>
               </Link>
             ))}
@@ -536,10 +648,26 @@ export default async function HomePage() {
               </p>
               <div className="space-y-4">
                 {[
-                  { icon: <Shield className="w-5 h-5 text-primary" />, title: "Гарантия 5 лет", desc: "На фурнитуру Blum/Hettich. На корпус и фасады — 2 года. Письменно." },
-                  { icon: <Clock className="w-5 h-5 text-primary" />, title: "Сроки в договоре", desc: "Даём конкретную дату монтажа. Нарушение срока — пересчёт цены." },
-                  { icon: <FileCheck className="w-5 h-5 text-primary" />, title: "Смета до предоплаты", desc: "Сначала видите полную смету — потом подписываете договор." },
-                  { icon: <MapPin className="w-5 h-5 text-primary" />, title: "По всей Беларуси", desc: "Собственные замерщики и монтажники в Минске и регионах." },
+                  {
+                    icon: <Shield className="w-5 h-5 text-primary" aria-hidden />,
+                    title: "Гарантия 5 лет",
+                    desc: "На фурнитуру Blum/Hettich. На корпус и фасады — 2 года. Письменно.",
+                  },
+                  {
+                    icon: <Clock className="w-5 h-5 text-primary" aria-hidden />,
+                    title: "Сроки в договоре",
+                    desc: "Даём конкретную дату монтажа. Нарушение срока — пересчёт цены.",
+                  },
+                  {
+                    icon: <FileCheck className="w-5 h-5 text-primary" aria-hidden />,
+                    title: "Смета до предоплаты",
+                    desc: "Сначала видите полную смету — потом подписываете договор.",
+                  },
+                  {
+                    icon: <MapPin className="w-5 h-5 text-primary" aria-hidden />,
+                    title: "По всей Беларуси",
+                    desc: "Собственные замерщики и монтажники в Минске и регионах.",
+                  },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white border border-border">
                     <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">{item.icon}</div>
@@ -579,7 +707,7 @@ export default async function HomePage() {
                 <p className="text-muted-foreground mt-1 text-sm">Реальные клиенты из разных городов Беларуси</p>
               </div>
               <Link href="/reviews" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-                Все отзывы <ArrowRight className="w-4 h-4" />
+                Все отзывы <ArrowRight className="w-4 h-4" aria-hidden />
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -587,7 +715,7 @@ export default async function HomePage() {
                 <div key={r.id} className="card-base p-5">
                   <div className="flex items-center gap-1 mb-3">
                     {Array.from({ length: r.rating }).map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" aria-hidden />
                     ))}
                   </div>
                   <p className="text-sm text-foreground leading-relaxed line-clamp-4">&ldquo;{r.text}&rdquo;</p>
@@ -628,7 +756,7 @@ export default async function HomePage() {
               href={`tel:${CONTACT_DEFAULTS.phone}`}
               className="flex items-center justify-center gap-2 text-white border-2 border-white/30 hover:border-white hover:bg-white/10 px-8 py-3.5 rounded-xl font-bold transition-all"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4" aria-hidden />
               {CONTACT_DEFAULTS.phoneDisplay}
             </a>
           </div>

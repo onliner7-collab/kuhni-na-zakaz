@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { Inter, Manrope } from "next/font/google";
 
 import { prisma } from "@/lib/db";
 import { Footer } from "@/components/layout/Footer";
@@ -15,6 +16,22 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 import "./globals.css";
 
+const manrope = Manrope({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-manrope",
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+  adjustFontFallback: true,
+});
+
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-inter",
+  display: "swap",
+  weight: ["400", "500", "600"],
+  adjustFontFallback: true,
+});
+
 const siteUrl = getSiteUrl();
 const faviconVersion = "20260421b";
 const localBusinessImage =
@@ -22,14 +39,18 @@ const localBusinessImage =
 
 export const metadata: Metadata = {
   title: {
-    default: "Кухни на заказ по Беларуси | КухниBY",
+    default:
+      "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY",
     template: "%s | КухниBY",
   },
   description:
-    "Проектируем, изготавливаем и устанавливаем кухни на заказ по всей Беларуси. Собственное производство. Гарантия 5 лет. Замер и 3D-проект бесплатно.",
+    "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.",
   keywords: [
     "кухни на заказ",
+    "кухни на заказ Минск",
     "кухни на заказ Беларусь",
+    "кухни от производителя",
+    "бесплатный замер кухни",
     "кухни под заказ",
     "кухни Минск",
     "кухни Минская область",
@@ -55,15 +76,9 @@ export const metadata: Metadata = {
     locale: "ru_BY",
     url: siteUrl,
     siteName: "КухниBY",
-    title: "Кухни на заказ по Беларуси | КухниBY",
-    description:
-      "Проектируем, изготавливаем и устанавливаем кухни на заказ по всей Беларуси. Замер и 3D-проект бесплатно.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Кухни на заказ по Беларуси | КухниBY",
-    description:
-      "Проектируем, изготавливаем и устанавливаем кухни на заказ по всей Беларуси. Замер и 3D-проект бесплатно.",
   },
   robots: {
     index: true,
@@ -99,7 +114,7 @@ export default async function RootLayout({
       : null;
 
   return (
-    <html lang="ru">
+    <html lang="ru" className={`${manrope.variable} ${inter.variable}`}>
       <body>
         {!isAdmin && <GoogleTagManagerNoScript />}
         {!isAdmin && <AnalyticsProvider />}
@@ -126,9 +141,21 @@ export default async function RootLayout({
                 "@type": "Organization",
                 name: siteSettings?.siteName || "КухниBY",
                 url: siteUrl,
-                telephone: siteSettings?.phone || CONTACT_DEFAULTS.phone,
+                logo: `${siteUrl}/logo.png`,
                 email: siteSettings?.email || CONTACT_DEFAULTS.email,
                 image: localBusinessImage,
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  telephone: siteSettings?.phone || CONTACT_DEFAULTS.phone,
+                  contactType: "sales",
+                  areaServed: "BY",
+                  availableLanguage: ["Russian", "Belarusian"],
+                },
+                address: {
+                  "@type": "PostalAddress",
+                  addressLocality: "Минск",
+                  addressCountry: "BY",
+                },
               }),
             }}
           />

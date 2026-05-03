@@ -164,7 +164,15 @@ export function MaterialsStep({ facades, countertops, skinals, handles, applianc
                       <div className="flex aspect-video items-center justify-center bg-stone-100">
                         {item.imageUrl ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={item.imageUrl} alt={item.name} className="h-full w-full object-cover" />
+                          <img
+                            src={item.imageUrl}
+                            alt={item.name}
+                            width={640}
+                            height={360}
+                            loading="lazy"
+                            decoding="async"
+                            className="h-full w-full object-cover"
+                          />
                         ) : (
                           <CookingPot className="h-9 w-9 text-stone-500" />
                         )}

@@ -4,28 +4,53 @@ const nextConfig: NextConfig = {
   compress: true,
   devIndicators: false,
   poweredByHeader: false,
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
   async headers() {
+    const longImmutable = "public, max-age=31536000, immutable";
+    const longStatic =
+      "public, max-age=31536000, stale-while-revalidate=86400";
+
     return [
       {
+        source: "/_next/static/:path*",
+        headers: [{ key: "Cache-Control", value: longImmutable }],
+      },
+      {
+        source: "/_next/image",
+        headers: [{ key: "Cache-Control", value: longStatic }],
+      },
+      {
         source: "/uploads/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=2592000, stale-while-revalidate=86400",
-          },
-        ],
+        headers: [{ key: "Cache-Control", value: longStatic }],
       },
       {
         source: "/images/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=2592000, stale-while-revalidate=86400",
-          },
-        ],
+        headers: [{ key: "Cache-Control", value: longStatic }],
+      },
+      {
+        source: "/logo.png",
+        headers: [{ key: "Cache-Control", value: longStatic }],
+      },
+      {
+        source: "/favicon.ico",
+        headers: [{ key: "Cache-Control", value: longStatic }],
+      },
+      {
+        source: "/icon.svg",
+        headers: [{ key: "Cache-Control", value: longStatic }],
+      },
+      {
+        source: "/apple-icon.png",
+        headers: [{ key: "Cache-Control", value: longStatic }],
+      },
+      {
+        source: "/manifest.webmanifest",
+        headers: [{ key: "Cache-Control", value: longStatic }],
       },
       {
         source: "/:path*",
@@ -49,9 +74,10 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 85],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [48, 64, 80, 96, 112, 128, 160, 240, 384],
-    minimumCacheTTL: 604800,
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: "http",

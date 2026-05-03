@@ -92,7 +92,15 @@ export function TemplateStep({ templates, selectedSlug, onSelect }: TemplateStep
               <div className="aspect-[4/3] bg-stone-100">
                 {template.previewImageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={template.previewImageUrl} alt={template.name} className="h-full w-full object-cover" />
+                  <img
+                    src={template.previewImageUrl}
+                    alt={template.name}
+                    width={800}
+                    height={600}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
                 ) : (
                   <TemplatePreviewSVG layoutType={template.layoutType} />
                 )}
