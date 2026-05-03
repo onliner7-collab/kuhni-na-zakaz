@@ -19,6 +19,29 @@ export type SessionPayload = {
   exp?: number;
 };
 
+export class UnauthorizedError extends Error {
+  constructor(message = "Unauthorized") {
+    super(message);
+    this.name = "UnauthorizedError";
+  }
+}
+
+const STAFF_ROLES = new Set(["SUPER_ADMIN", "MANAGER"]);
+
+export function isStaffSession(
+  session: SessionPayload | null
+): session is SessionPayload {
+  return !!session && STAFF_ROLES.has(session.role);
+}
+
+export async function requireAdmin(): Promise<SessionPayload> {
+  const session = await getSession();
+  if (!isStaffSession(session)) {
+    throw new UnauthorizedError();
+  }
+  return session;
+}
+
 export async function createSession(payload: SessionPayload): Promise<string> {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
-import { getSession } from "@/lib/auth";
+import { getSession, isStaffSession } from "@/lib/auth";
 import { UtensilsCrossed, Star, FileText, BookOpen, Users, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = { title: "Дашборд" };
@@ -31,8 +31,48 @@ async function getRecentLeads() {
 
 export default async function DashboardPage() {
   const session = await getSession();
-  const stats = await getStats();
-  const recentLeads = await getRecentLeads();
+  const isStaff = isStaffSession(session);
+  const stats = isStaff ? await getStats() : { kitchens: 0, pendingReviews: 0, leads: 0, posts: 0, users: 0 };
+  const recentLeads = isStaff ? await getRecentLeads() : [];
+
+  if (!isStaff) {
+    const allowedSections = session?.guestSections ?? [];
+    const allowedLinks = [
+      { href: "/admin/kitchens", label: "Кухни", section: "kitchens" },
+      { href: "/admin/portfolio", label: "Портфолио", section: "portfolio" },
+      { href: "/admin/reviews", label: "Отзывы", section: "reviews" },
+      { href: "/admin/blog", label: "Блог", section: "blog" },
+      { href: "/admin/prices", label: "Цены", section: "prices" },
+    ].filter((link) => allowedSections.includes(link.section));
+
+    return (
+      <div>
+        <div className="mb-6">
+          <h1 className="font-serif text-3xl font-bold">Дашборд</h1>
+          <p className="text-muted-foreground text-sm mt-1">Добрый день, {session?.name}</p>
+        </div>
+
+        <div className="card-base p-6 max-w-2xl">
+          <h2 className="font-semibold mb-2">Гостевой доступ</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Вам доступны только назначенные разделы админ-панели.
+          </p>
+          {allowedLinks.length === 0 ? (
+            <p className="text-sm text-muted-foreground">Нет доступных разделов.</p>
+          ) : (
+            <div className="space-y-2">
+              {allowedLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="flex items-center justify-between p-3 rounded-lg hover:bg-muted transition-colors text-sm">
+                  {link.label}
+                  <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   const STAT_CARDS = [
     { label: "Кухни в каталоге", value: stats.kitchens, icon: UtensilsCrossed, href: "/admin/kitchens", color: "text-amber-600" },
