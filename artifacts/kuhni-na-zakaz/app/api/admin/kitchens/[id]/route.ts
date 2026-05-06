@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { getSession } from "@/lib/auth";
+import { requireAdmin } from "@/lib/auth";
 import { z } from "zod";
 
 const kitchenSchema = z.object({
@@ -23,8 +23,11 @@ const kitchenSchema = z.object({
 interface Params { params: Promise<{ id: string }> }
 
 export async function PUT(req: NextRequest, { params }: Params) {
-  const session = await getSession();
-  if (!session) return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  try {
+    await requireAdmin();
+  } catch {
+    return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  }
 
   const { id } = await params;
   const body = await req.json();
@@ -41,8 +44,13 @@ export async function PUT(req: NextRequest, { params }: Params) {
 }
 
 export async function DELETE(req: NextRequest, { params }: Params) {
-  const session = await getSession();
-  if (!session || session.role !== "SUPER_ADMIN") return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  let session;
+  try {
+    session = await requireAdmin();
+  } catch {
+    return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  }
+  if (session.role !== "SUPER_ADMIN") return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
 
   const { id } = await params;
   await prisma.kitchen.delete({ where: { id: parseInt(id) } }).catch(() => null);

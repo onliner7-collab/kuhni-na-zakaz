@@ -1,5 +1,20 @@
 # Журнал изменений
 
+## [0.3.1] — 2026-05-06
+
+### Исправлено
+- Восстановлены отсутствующие server exports для admin API (`requireAdmin`, `@/lib/prisma`), из-за которых Next.js/TypeScript сборка падала на маршрутах блога и портфолио.
+- Запись в admin kitchen API и просмотр заявок на dashboard ограничены staff-сессиями (`SUPER_ADMIN`, `MANAGER`), чтобы guest-token не давал доступ к критичным данным и изменениям каталога.
+
+### Затронуты файлы
+- `artifacts/kuhni-na-zakaz/lib/auth.ts`
+- `artifacts/kuhni-na-zakaz/lib/prisma.ts`
+- `artifacts/kuhni-na-zakaz/app/api/admin/kitchens/route.ts`
+- `artifacts/kuhni-na-zakaz/app/api/admin/kitchens/[id]/route.ts`
+- `artifacts/kuhni-na-zakaz/app/admin/dashboard/page.tsx`
+
+---
+
 ## [0.3.0] — 2025-04-05
 
 ### Добавлено
