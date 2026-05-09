@@ -187,8 +187,22 @@ export default async function BlogPostPage({ params }: Props) {
               <h1 className="font-serif text-4xl font-bold mb-6 leading-tight">
                 {data.title}
               </h1>
-              <div className="h-64 bg-gradient-to-br from-stone-200 to-amber-50 rounded-xl flex items-center justify-center mb-8">
-                <span className="text-stone-400">Иллюстрация к статье</span>
+              <div className="mb-8 h-64 overflow-hidden rounded-xl bg-gradient-to-br from-stone-200 to-amber-50">
+                {data.coverImage ? (
+                  <Image
+                    src={optimizedImageSrc(data.coverImage) || data.coverImage}
+                    alt={`Иллюстрация к статье: ${data.title}`}
+                    width={960}
+                    height={540}
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 760px"
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <span className="text-stone-400">Иллюстрация к статье</span>
+                  </div>
+                )}
               </div>
               <div className="space-y-4">{renderContent(data.content)}</div>
 

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { BLOG_POSTS } from "@/lib/blog-static";
+import { optimizedImageSrc } from "@/lib/image-optimization";
 
 const COMMERCIAL_LINKS = [
   { href: "/catalog", title: "Подобрать тип кухни", text: "Сравните угловые, прямые, П-образные кухни и варианты с островом." },
@@ -88,10 +90,23 @@ export default async function BlogPage() {
                 href={`/blog/${p.slug}`}
                 className="card-base hover:shadow-md transition-shadow group"
               >
-                <div className="h-48 bg-gradient-to-br from-stone-200 to-amber-50 flex items-center justify-center">
-                  <span className="text-stone-400 text-sm">
-                    Иллюстрация статьи
-                  </span>
+                <div className="h-48 overflow-hidden bg-gradient-to-br from-stone-200 to-amber-50">
+                  {p.coverImage ? (
+                    <Image
+                      src={optimizedImageSrc(p.coverImage) || p.coverImage}
+                      alt={`Иллюстрация к статье: ${p.title}`}
+                      width={720}
+                      height={420}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      <span className="text-stone-400 text-sm">
+                        Иллюстрация статьи
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
