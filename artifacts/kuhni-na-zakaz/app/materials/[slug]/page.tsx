@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { CheckCircle, XCircle, Droplets, ArrowRight, Palette, Users, Wallet, Camera, HelpCircle, Lightbulb, Link2 } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -11,6 +11,13 @@ import { getMaterialEnrichment } from "@/lib/kitchen-page-enrichment";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 interface Props { params: Promise<{ slug: string }> }
+
+const LEGACY_MATERIAL_SLUGS: Record<string, string> = {
+  egger: "ldsp",
+  emal: "mdf-emal",
+  mdf: "mdf-emal",
+  plastik: "plastik-hpl",
+};
 
 async function getMaterial(slug: string) {
   try {
@@ -69,6 +76,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function MaterialPage({ params }: Props) {
   const { slug } = await params;
+  const legacySlug = LEGACY_MATERIAL_SLUGS[slug];
+  if (legacySlug) permanentRedirect(`/materials/${legacySlug}`);
+
   const m = await getMaterial(slug);
   if (!m) notFound();
   const [{ styles, scenarios, cases }, otherMaterials] = await Promise.all([
