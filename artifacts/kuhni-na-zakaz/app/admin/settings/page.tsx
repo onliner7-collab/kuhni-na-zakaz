@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/db";
+import { requireSuperAdmin } from "@/lib/auth";
 import { SettingsForm } from "@/components/admin/SettingsForm";
 
 export const metadata: Metadata = { title: "Настройки сайта" };
 
 export default async function AdminSettingsPage() {
+  await requireSuperAdmin();
   const settings = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
 
   return (

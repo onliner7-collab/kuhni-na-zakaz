@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/db";
+import { requireSuperAdmin } from "@/lib/auth";
 import { Badge } from "@/components/ui/badge";
 import { AddUserForm } from "@/components/admin/AddUserForm";
 
 export const metadata: Metadata = { title: "Пользователи" };
 
 export default async function AdminUsersPage() {
+  await requireSuperAdmin();
   const users = await prisma.user.findMany({
     select: { id: true, email: true, name: true, role: true, createdAt: true, lastLoginAt: true },
     orderBy: { createdAt: "asc" },

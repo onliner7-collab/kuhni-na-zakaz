@@ -15,8 +15,8 @@ interface GuestAccess {
   createdAt: string; createdBy: { name: string };
 }
 
-const SECTIONS = ["reviews", "kitchens", "portfolio", "blog", "prices", "settings"];
-const ACTIONS = ["read", "publish", "reject", "edit", "delete"];
+const SECTIONS = ["reviews", "kitchens", "portfolio", "blog", "prices"];
+const ACTIONS = ["read", "publish", "reject", "edit"];
 
 export function GuestAccessList({ accesses: initial }: { accesses: GuestAccess[] }) {
   const [accesses, setAccesses] = useState(initial);

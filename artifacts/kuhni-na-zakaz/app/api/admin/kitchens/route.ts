@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { getSession } from "@/lib/auth";
+import { getSession, isAdminRole } from "@/lib/auth";
 import { z } from "zod";
 
 const kitchenSchema = z.object({
@@ -22,7 +22,7 @@ const kitchenSchema = z.object({
 
 export async function POST(req: NextRequest) {
   const session = await getSession();
-  if (!session) return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  if (!session || !isAdminRole(session.role)) return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
 
   const body = await req.json();
   const parsed = kitchenSchema.safeParse(body);

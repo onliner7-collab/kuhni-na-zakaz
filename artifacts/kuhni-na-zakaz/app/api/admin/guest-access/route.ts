@@ -3,10 +3,13 @@ import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { z } from "zod";
 
+const allowedGuestSections = ["reviews", "kitchens", "portfolio", "blog", "prices"] as const;
+const allowedGuestActions = ["read", "publish", "reject", "edit"] as const;
+
 const guestSchema = z.object({
   name: z.string().min(1),
-  allowedSections: z.array(z.string()),
-  allowedActions: z.array(z.string()),
+  allowedSections: z.array(z.enum(allowedGuestSections)).min(1),
+  allowedActions: z.array(z.enum(allowedGuestActions)).min(1),
   expiresAt: z.string().transform((s) => new Date(s)),
 });
 
