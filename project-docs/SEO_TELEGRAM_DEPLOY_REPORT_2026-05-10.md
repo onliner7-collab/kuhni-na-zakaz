@@ -15,6 +15,7 @@
 
 - `next.config.ts`: отключено скрытие TypeScript-ошибок во время production build.
 - `middleware.ts`: канонический host теперь берется из `NEXT_PUBLIC_SITE_URL`, а не из жестко заданного домена.
+- `middleware.ts`: редиректы защищенных admin-страниц теперь явно используют канонический продакшен-домен, чтобы не уводить пользователя на `localhost:3001`.
 - `lib/schema-org.tsx`: JSON-LD URL строятся через `getSiteUrl()`, чтобы schema.org, sitemap и canonical не расходились по доменам.
 - `lib/telegram.ts`: Telegram token и Chat ID нормализуются через `trim()`, а ошибки Telegram API переводятся в понятные сообщения для админки.
 

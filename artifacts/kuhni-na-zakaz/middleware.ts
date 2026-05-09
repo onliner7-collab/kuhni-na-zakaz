@@ -84,8 +84,7 @@ export async function middleware(req: NextRequest) {
   const session = await getSessionFromRequest(req);
 
   if (!session) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/admin/login";
+    const url = createRedirectUrl(req, "/admin/login", isLocalhost);
     url.searchParams.set("from", pathname);
     return withNoindexHeader(NextResponse.redirect(url));
   }
@@ -95,8 +94,7 @@ export async function middleware(req: NextRequest) {
     const allowedSections = session.guestSections;
     const isAllowed = allowedSections.some((s) => pathname.includes(s));
     if (!isAllowed && pathname !== "/admin/dashboard") {
-      const url = req.nextUrl.clone();
-      url.pathname = "/admin/dashboard";
+      const url = createRedirectUrl(req, "/admin/dashboard", isLocalhost);
       return withNoindexHeader(NextResponse.redirect(url));
     }
   }
@@ -137,6 +135,19 @@ function getCanonicalHost() {
   } catch {
     return "kuhni-by.by";
   }
+}
+
+function createRedirectUrl(req: NextRequest, pathname: string, isLocalhost: boolean) {
+  const url = req.nextUrl.clone();
+  url.pathname = pathname;
+
+  if (!isLocalhost) {
+    url.protocol = "https:";
+    url.hostname = CANONICAL_HOST;
+    url.port = "";
+  }
+
+  return url;
 }
 
 export const config = {
