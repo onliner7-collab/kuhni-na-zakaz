@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { getSession, isAdminRole } from "@/lib/auth";
 import { z } from "zod";
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
         comment: data.comment || "",
         source: data.source || "website",
         formType: data.formType || "contact",
-        answers: data.answers || {},
+        answers: (data.answers || {}) as Prisma.InputJsonValue,
       },
     });
 
