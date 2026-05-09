@@ -194,7 +194,7 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         { question: "Остров заменяет обеденный стол?", answer: "Иногда да, но для семьи с детьми чаще оставляют стол, а остров используют для завтраков, готовки и сервировки." },
       ],
       links: {
-        portfolio: [{ href: "/portfolio/kuhnya-s-ostrovom-minsk-partizansky", label: "Кухня с островом для новостройки" }],
+        portfolio: [{ href: "/portfolio/kuhnya-s-ostrovom-grodno", label: "Кухня с островом для новостройки" }],
         styles: [
           { href: "/styles/sovremennye", label: "Современные кухни" },
           { href: "/styles/loft", label: "Лофт" },
