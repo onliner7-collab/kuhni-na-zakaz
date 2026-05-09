@@ -29,10 +29,12 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
   const pathname = usePathname();
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
+  const currentPath = pathname ?? "";
+  const guestSections = session.guestSections?.map((s) => s.trim()).filter(Boolean);
 
   const visibleNav = NAV.filter((item) =>
-    session.guestSections
-      ? session.guestSections.some((s) => item.href.includes(s))
+    guestSections
+      ? guestSections.some((s) => item.href === `/admin/${s}` || item.href.startsWith(`/admin/${s}/`))
       : item.roles.includes(session.role)
   );
 
@@ -58,7 +60,7 @@ export function AdminSidebar({ session }: { session: SessionPayload }) {
       )}
       <nav className="flex-1 py-2 overflow-y-auto">
         {visibleNav.map((item) => {
-          const active = pathname === item.href || pathname.startsWith(item.href + "/");
+          const active = currentPath === item.href || currentPath.startsWith(item.href + "/");
           return (
             <Link
               key={item.href}
