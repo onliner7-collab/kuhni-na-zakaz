@@ -51,7 +51,7 @@ export default async function ScenariosPage() {
           <div className="max-w-2xl">
             <h1 className="text-4xl lg:text-5xl font-black text-foreground leading-tight">
               Как выбрать кухню
-              <br />
+              <br />{" "}
               <span className="text-primary">именно для вас?</span>
             </h1>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">

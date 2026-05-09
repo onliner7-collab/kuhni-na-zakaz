@@ -68,14 +68,14 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         { question: "Подойдёт ли угловая кухня для маленького помещения?", answer: "Подойдёт, если сохранить проход от 90 см и не перегрузить вторую стену высокими шкафами." },
       ],
       links: {
-        portfolio: [{ href: "/portfolio/uglovaya-kuhnya-minsk-kirova", label: "Угловая кухня в стиле минимализм" }],
+        portfolio: [{ href: "/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk", label: "Угловая кухня в стиле минимализм" }],
         styles: [
           { href: "/styles/sovremennye", label: "Современные кухни" },
           { href: "/styles/minimalizm", label: "Минимализм" },
         ],
         materials: [
-          { href: "/materials/mdf", label: "Фасады МДФ" },
-          { href: "/materials/emal", label: "Эмаль" },
+          { href: "/materials/mdf-emal", label: "Фасады МДФ" },
+          { href: "/materials/mdf-emal", label: "Эмаль" },
         ],
       },
     },
@@ -110,14 +110,14 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         { question: "Почему прямая кухня дешевле?", answer: "В ней меньше сложных угловых модулей, проще столешница и монтаж, поэтому бюджет легче контролировать." },
       ],
       links: {
-        portfolio: [{ href: "/portfolio/pryamaya-kuhnya-borisov", label: "Прямая кухня в скандинавском стиле" }],
+        portfolio: [{ href: "/portfolio/pryamaya-kuhnya-dlya-studii-brest", label: "Прямая кухня в скандинавском стиле" }],
         styles: [
           { href: "/styles/skandinavskie", label: "Скандинавские кухни" },
           { href: "/styles/sovremennye", label: "Современные кухни" },
         ],
         materials: [
-          { href: "/materials/egger", label: "EGGER" },
-          { href: "/materials/plastik", label: "Пластик" },
+          { href: "/materials/ldsp", label: "EGGER" },
+          { href: "/materials/plastik-hpl", label: "Пластик" },
         ],
       },
     },
@@ -152,13 +152,13 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         { question: "Не будет ли кухня выглядеть слишком массивной?", answer: "Можно облегчить верх: оставить шкафы только на одной-двух стенах, добавить витрины или сделать часть фасадов светлее." },
       ],
       links: {
-        portfolio: [{ href: "/portfolio/kuhnya-do-potolka-minsk-vostok", label: "Кухня до потолка с большим хранением" }],
+        portfolio: [{ href: "/portfolio/kuhnya-do-potolka-mogilev", label: "Кухня до потолка с большим хранением" }],
         styles: [
           { href: "/styles/klassicheskie", label: "Классические кухни" },
           { href: "/styles/sovremennye", label: "Современные кухни" },
         ],
         materials: [
-          { href: "/materials/emal", label: "Эмаль" },
+          { href: "/materials/mdf-emal", label: "Эмаль" },
           { href: "/materials/shpon", label: "Шпон" },
         ],
       },
@@ -201,7 +201,7 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         ],
         materials: [
           { href: "/materials/shpon", label: "Шпон" },
-          { href: "/materials/plastik", label: "Пластик" },
+          { href: "/materials/plastik-hpl", label: "Пластик" },
         ],
       },
     },
@@ -236,14 +236,14 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         { question: "Есть ли смысл делать шкафы до потолка?", answer: "Да, в маленькой кухне верхнее хранение часто решает половину задачи, особенно для сезонной посуды и запасов." },
       ],
       links: {
-        portfolio: [{ href: "/portfolio/malenkaya-kuhnya-studiya", label: "Кухня для квартиры-студии" }],
+        portfolio: [{ href: "/portfolio/malenkaya-kuhnya-gomel", label: "Кухня для квартиры-студии" }],
         styles: [
           { href: "/styles/skandinavskie", label: "Скандинавские кухни" },
           { href: "/styles/minimalizm", label: "Минимализм" },
         ],
         materials: [
-          { href: "/materials/egger", label: "EGGER" },
-          { href: "/materials/mdf", label: "МДФ" },
+          { href: "/materials/ldsp", label: "EGGER" },
+          { href: "/materials/mdf-emal", label: "МДФ" },
         ],
       },
     },
@@ -278,14 +278,14 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         { question: "Кухня до потолка выглядит тяжелее?", answer: "Не обязательно: светлые фасады, вертикальные линии и отсутствие открытого зазора часто делают интерьер спокойнее." },
       ],
       links: {
-        portfolio: [{ href: "/portfolio/kuhnya-do-potolka-minsk-vostok", label: "Кухня до потолка в Минске" }],
+        portfolio: [{ href: "/portfolio/kuhnya-do-potolka-mogilev", label: "Кухня до потолка в Минске" }],
         styles: [
           { href: "/styles/sovremennye", label: "Современные кухни" },
           { href: "/styles/minimalizm", label: "Минимализм" },
         ],
         materials: [
-          { href: "/materials/emal", label: "Эмалевые фасады" },
-          { href: "/materials/egger", label: "EGGER" },
+          { href: "/materials/mdf-emal", label: "Эмалевые фасады" },
+          { href: "/materials/ldsp", label: "EGGER" },
         ],
       },
     },
@@ -320,14 +320,14 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
         { question: "Можно ли сделать без ручек встроенный холодильник?", answer: "Да, но механизм и усилие открывания подбираются отдельно, особенно если фасад высокий и тяжёлый." },
       ],
       links: {
-        portfolio: [{ href: "/portfolio/uglovaya-kuhnya-minsk-kirova", label: "Минималистичная кухня со скрытым открыванием" }],
+        portfolio: [{ href: "/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk", label: "Минималистичная кухня со скрытым открыванием" }],
         styles: [
           { href: "/styles/minimalizm", label: "Минимализм" },
           { href: "/styles/sovremennye", label: "Современные кухни" },
         ],
         materials: [
-          { href: "/materials/emal", label: "Эмаль" },
-          { href: "/materials/plastik", label: "Пластик" },
+          { href: "/materials/mdf-emal", label: "Эмаль" },
+          { href: "/materials/plastik-hpl", label: "Пластик" },
         ],
       },
     },

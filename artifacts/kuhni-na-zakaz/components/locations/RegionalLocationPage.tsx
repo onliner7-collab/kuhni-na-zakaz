@@ -69,7 +69,7 @@ const fallbackCases: PortfolioCasePreview[] = [
   {
     id: "general-minsk",
     title: "Угловая кухня в стиле минимализм",
-    slug: "uglovaya-kuhnya-minsk-kirova",
+    slug: "uglovaya-kuhnya-dlya-novostroyki-minsk",
     mainImage: "/images/hero.webp",
     style: "Минимализм",
     priceFrom: 2800,
@@ -80,7 +80,7 @@ const fallbackCases: PortfolioCasePreview[] = [
   {
     id: "general-borisov",
     title: "Прямая кухня в скандинавском стиле",
-    slug: "pryamaya-kuhnya-borisov",
+    slug: "pryamaya-kuhnya-dlya-studii-brest",
     mainImage: "/images/hero.webp",
     style: "Скандинавский",
     priceFrom: 1800,
@@ -91,7 +91,7 @@ const fallbackCases: PortfolioCasePreview[] = [
   {
     id: "general-modern",
     title: "Кухня до потолка с продуманным хранением",
-    slug: "kuhnya-do-potolka-minsk-vostok",
+    slug: "kuhnya-do-potolka-mogilev",
     mainImage: "/images/hero.webp",
     style: "Современный",
     priceFrom: 3100,
@@ -139,7 +139,7 @@ export function RegionalLocationPage({
         <div className="absolute inset-0 opacity-25">
           <Image
             src="/images/hero.webp"
-            alt=""
+            alt={`Кухня на заказ в ${location.cityName} — пример интерьера`}
             fill
             priority
             sizes="100vw"
