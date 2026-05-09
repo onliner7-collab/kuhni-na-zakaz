@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { renderContent } from "@/lib/render-content";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
-import { optimizedImageSrc } from "@/lib/image-optimization";
+import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
 import {
   JsonLd,
   breadcrumbJsonLd,
@@ -194,6 +194,7 @@ export default async function BlogPostPage({ params }: Props) {
                     alt={`Иллюстрация к статье: ${data.title}`}
                     width={960}
                     height={540}
+                    unoptimized={isPreoptimizedRasterSrc(optimizedImageSrc(data.coverImage))}
                     priority
                     sizes="(max-width: 1024px) 100vw, 760px"
                     className="h-full w-full object-cover"

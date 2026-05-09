@@ -19,3 +19,9 @@ export function optimizedImageSrc(src: string | null | undefined) {
     ? src.replace(/\.(png|jpe?g)$/i, ".webp")
     : src;
 }
+
+export function isPreoptimizedRasterSrc(src: string | null | undefined) {
+  if (!src) return false;
+
+  return /\.(webp|avif)$/i.test(src);
+}

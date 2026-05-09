@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { BLOG_POSTS } from "@/lib/blog-static";
-import { optimizedImageSrc } from "@/lib/image-optimization";
+import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
 
 const COMMERCIAL_LINKS = [
   { href: "/catalog", title: "Подобрать тип кухни", text: "Сравните угловые, прямые, П-образные кухни и варианты с островом." },
@@ -97,6 +97,7 @@ export default async function BlogPage() {
                       alt={`Иллюстрация к статье: ${p.title}`}
                       width={720}
                       height={420}
+                      unoptimized={isPreoptimizedRasterSrc(optimizedImageSrc(p.coverImage))}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
