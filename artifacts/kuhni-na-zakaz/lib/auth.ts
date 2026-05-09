@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 
 const JWT_SECRET = new TextEncoder().encode(
@@ -53,6 +54,30 @@ export async function getSession(): Promise<SessionPayload | null> {
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return null;
   return verifySession(token);
+}
+
+export function isAdminRole(role: string | undefined): boolean {
+  return role === "SUPER_ADMIN" || role === "MANAGER";
+}
+
+export function isSuperAdminRole(role: string | undefined): boolean {
+  return role === "SUPER_ADMIN";
+}
+
+export async function requireAdmin(): Promise<SessionPayload> {
+  const session = await getSession();
+  if (!session || !isAdminRole(session.role)) {
+    redirect("/admin/login");
+  }
+  return session;
+}
+
+export async function requireSuperAdmin(): Promise<SessionPayload> {
+  const session = await getSession();
+  if (!session || !isSuperAdminRole(session.role)) {
+    redirect("/admin/dashboard");
+  }
+  return session;
 }
 
 export async function getSessionFromRequest(

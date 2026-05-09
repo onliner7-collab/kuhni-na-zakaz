@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
-import { getSession } from "@/lib/auth";
+import { getSession, isAdminRole } from "@/lib/auth";
 import { UtensilsCrossed, Star, FileText, BookOpen, Users, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = { title: "Дашборд" };
@@ -31,8 +31,9 @@ async function getRecentLeads() {
 
 export default async function DashboardPage() {
   const session = await getSession();
-  const stats = await getStats();
-  const recentLeads = await getRecentLeads();
+  const canViewAdminData = isAdminRole(session?.role);
+  const stats = canViewAdminData ? await getStats() : { kitchens: 0, pendingReviews: 0, leads: 0, posts: 0, users: 0 };
+  const recentLeads = canViewAdminData ? await getRecentLeads() : [];
 
   const STAT_CARDS = [
     { label: "Кухни в каталоге", value: stats.kitchens, icon: UtensilsCrossed, href: "/admin/kitchens", color: "text-amber-600" },

@@ -30,8 +30,12 @@ export async function middleware(req: NextRequest) {
 
   // Guest access: check allowed sections
   if (session.guestSections) {
-    const allowedSections = session.guestSections;
-    const isAllowed = allowedSections.some((s) => pathname.includes(s));
+    const allowedSections = session.guestSections
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const isAllowed = allowedSections.some(
+      (s) => pathname === `/admin/${s}` || pathname.startsWith(`/admin/${s}/`)
+    );
     if (!isAllowed && pathname !== "/admin/dashboard") {
       const url = req.nextUrl.clone();
       url.pathname = "/admin/dashboard";

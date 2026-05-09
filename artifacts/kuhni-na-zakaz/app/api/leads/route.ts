@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { getSession, isAdminRole } from "@/lib/auth";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -37,7 +39,7 @@ export async function POST(req: NextRequest) {
         comment: data.comment || "",
         source: data.source || "website",
         formType: data.formType || "contact",
-        answers: data.answers || {},
+        answers: (data.answers || {}) as Prisma.InputJsonValue,
       },
     });
 
@@ -54,6 +56,11 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  const session = await getSession();
+  if (!session || !isAdminRole(session.role)) {
+    return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  }
+
   try {
     const leads = await prisma.lead.findMany({
       orderBy: { createdAt: "desc" },
