@@ -1,4 +1,4 @@
-import { DEFAULT_SITE_URL } from "@/lib/site-url";
+import { getSiteUrl } from "@/lib/site-url";
 
 type JsonLdValue =
   | string
@@ -41,7 +41,7 @@ function isFaqPageJsonLd(item: JsonLdObject) {
 }
 
 export function siteUrl(path = "") {
-  const base = DEFAULT_SITE_URL;
+  const base = getSiteUrl();
   if (!path || path === "#") return base;
 
   if (/^https?:\/\//i.test(path)) {

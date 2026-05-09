@@ -15,7 +15,7 @@ const CLOSED_ROBOTS_PATHS = [
   "/user",
 ];
 const NOINDEX_HEADER_VALUE = "noindex, nofollow, noarchive";
-const CANONICAL_HOST = "kuhni.minsk.by";
+const CANONICAL_HOST = getCanonicalHost();
 
 const LEGACY_REDIRECTS: Record<string, string> = {
   "/kuhni": "/catalog",
@@ -127,6 +127,16 @@ function normalizePathname(pathname: string) {
   }
 
   return pathname.toLowerCase();
+}
+
+function getCanonicalHost() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhni-by.by";
+
+  try {
+    return new URL(siteUrl).hostname.replace(/^www\./i, "").toLowerCase();
+  } catch {
+    return "kuhni-by.by";
+  }
 }
 
 export const config = {

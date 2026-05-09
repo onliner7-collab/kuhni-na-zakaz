@@ -7,9 +7,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   async headers() {
     const longImmutable = "public, max-age=31536000, immutable";
     const longStatic =

@@ -94,16 +94,18 @@ export async function sendLeadNotifications(lead: LeadData): Promise<void> {
 }
 
 async function sendMessage(botToken: string, chatId: string, text: string): Promise<void> {
-  const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+  const token = botToken.trim();
+  const recipient = chatId.trim();
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+    body: JSON.stringify({ chat_id: recipient, text, parse_mode: "HTML" }),
   });
 
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Telegram API error ${res.status}: ${body}`);
+    throw new Error(formatTelegramError(res.status, body));
   }
 }
 
@@ -113,5 +115,40 @@ export async function testTelegramMessage(botToken: string, chatId: string): Pro
     return { ok: true };
   } catch (err) {
     return { ok: false, error: String(err) };
+  }
+}
+
+function formatTelegramError(status: number, body: string) {
+  const description = getTelegramDescription(body).toLowerCase();
+
+  if (status === 401 || description.includes("unauthorized")) {
+    return "Неверный токен Telegram-бота. Проверьте, что токен полностью скопирован из @BotFather и сохранен без пробелов.";
+  }
+
+  if (status === 400 && description.includes("chat not found")) {
+    return "Chat ID не найден. Сначала напишите этому боту любое сообщение в Telegram, затем проверьте правильный Chat ID.";
+  }
+
+  if (status === 400 && description.includes("can't parse")) {
+    return "Telegram не смог разобрать текст сообщения. Проверьте формат тестового сообщения или HTML-разметку.";
+  }
+
+  if (status === 403 && description.includes("bot was blocked")) {
+    return "Пользователь заблокировал бота. Разблокируйте бота в Telegram и отправьте ему /start.";
+  }
+
+  if (status === 404) {
+    return "Telegram API не нашел такого бота. Обычно это значит, что токен введен неверно.";
+  }
+
+  return `Telegram API error ${status}: ${body}`;
+}
+
+function getTelegramDescription(body: string) {
+  try {
+    const parsed = JSON.parse(body) as { description?: unknown };
+    return typeof parsed.description === "string" ? parsed.description : body;
+  } catch {
+    return body;
   }
 }
