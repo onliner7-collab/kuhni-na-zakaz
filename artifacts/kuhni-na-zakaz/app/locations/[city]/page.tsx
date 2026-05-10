@@ -896,12 +896,12 @@ export default async function LocationPage({ params }: Props) {
                 {loc.ctaHeadline || `Заказать кухню в ${cityGen}`}
               </h2>
               <p className="text-white/70 mb-8 leading-relaxed">
-                {loc.ctaSubtext || "Оставьте заявку — перезвоним в течение 15 минут и запишем на бесплатный выезд замерщика."}
+                {loc.ctaSubtext || "Оставьте заявку — свяжемся в рабочее время, уточним задачу и согласуем следующий шаг."}
               </p>
               <div className="space-y-4">
                 {[
-                  { icon: <Clock className="w-5 h-5" />, text: "Перезвоним в течение 15 минут" },
-                  { icon: <CalendarDays className="w-5 h-5" />, text: `Выезд замерщика — ${loc.deliveryDays === 1 ? "в день обращения" : `в течение ${loc.deliveryDays} дней`}` },
+                  { icon: <Clock className="w-5 h-5" />, text: "Свяжемся в рабочее время" },
+                  { icon: <CalendarDays className="w-5 h-5" />, text: "Выезд замерщика согласуем по адресу и готовности объекта" },
                   { icon: <MessageSquare className="w-5 h-5" />, text: "3D-проект бесплатно после замера" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 text-white/80">
@@ -925,6 +925,7 @@ export default async function LocationPage({ params }: Props) {
                 sourceType="location-region"
                 city={loc.city}
                 cityKey={loc.slug}
+                submitLabel="Рассчитать кухню"
               />
             </div>
           </div>

@@ -7,6 +7,8 @@ import {
   ClipboardList,
   Hammer,
   MapPin,
+  MessageCircle,
+  Phone,
   Ruler,
   Truck,
 } from "lucide-react";
@@ -15,10 +17,12 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import {
   minskRegionLocations,
   regionalLocations,
+  type PopularSolution,
   type RegionalInternalLink,
   type RegionalLocationData,
 } from "@/data/locations";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 
 export interface PortfolioCasePreview {
@@ -43,19 +47,14 @@ function isJsonLdObject<T>(value: T | null): value is T {
   return value !== null;
 }
 
-const serviceItems = [
-  "Консультация по планировке, материалам и бюджету",
-  "Замер с проверкой стен, коммуникаций и техники",
-  "3D-проект и предварительная смета до запуска",
-  "Производство кухни по индивидуальным размерам",
-  "Доставка, монтаж, регулировка фасадов и гарантия",
-];
-
 const orderSteps = [
-  "Заявка и короткое обсуждение задачи",
-  "Предварительный расчет по размерам и технике",
-  "Замер и финальное согласование проекта",
-  "Производство, доставка и монтаж кухни",
+  "Заявка",
+  "Консультация",
+  "Замер",
+  "3D-проект",
+  "Расчет",
+  "Изготовление",
+  "Доставка и монтаж",
 ];
 
 const fallbackCases: PortfolioCasePreview[] = [
@@ -132,6 +131,103 @@ function LinkPills({ links }: { links: RegionalInternalLink[] }) {
   );
 }
 
+function getServiceItems(location: RegionalLocationData) {
+  return [
+    {
+      title: "Проектирование",
+      text: `Подбираем планировку под помещение в ${location.cityPrepositional}, технику, хранение и сценарии готовки.`,
+    },
+    {
+      title: "Подбор материалов",
+      text: "Помогаем сравнить фасады, столешницы, фурнитуру и механизмы под бюджет и ежедневную нагрузку.",
+    },
+    {
+      title: "Изготовление",
+      text: "Перед запуском фиксируем размеры, комплектацию и смету, чтобы кухня изготавливалась по утвержденному проекту.",
+    },
+    {
+      title: "Доставка",
+      text: location.deliveryText,
+    },
+    {
+      title: "Монтаж",
+      text: location.installationText,
+    },
+    {
+      title: "Техника и фурнитура",
+      text: "Помогаем предусмотреть встроенную технику, петли, направляющие, подъемники, подсветку и доступ к коммуникациям.",
+    },
+  ];
+}
+
+function getPopularSolutions(location: RegionalLocationData) {
+  const required: PopularSolution[] = [
+    {
+      title: "Угловые кухни",
+      text: "Подходят для большинства квартир: удобно развести мойку, варочную поверхность, холодильник и рабочую зону.",
+    },
+    {
+      title: "Прямые кухни",
+      text: "Практичный вариант для узких помещений, студий и проектов, где важны понятная смета и компактный монтаж.",
+    },
+    {
+      title: "Кухни до потолка",
+      text: "Добавляют хранение, закрывают верхнюю линию шкафов и требуют точного замера высоты и вентиляции.",
+    },
+    {
+      title: "Кухни для маленькой кухни",
+      text: "Считаем каждый модуль: хранение, рабочую поверхность, сушку, технику и удобство проходов.",
+    },
+    {
+      title: "Кухни с островом",
+      text: "Уместны в просторных кухнях-гостиных и частных домах, если хватает проходов и есть понятная электрика.",
+    },
+    {
+      title: "Кухни с встроенной техникой",
+      text: "Заранее проверяем размеры приборов, вентиляцию, розетки, зазоры и доступ для обслуживания.",
+    },
+  ];
+  const byTitle = new Map<string, PopularSolution>();
+
+  for (const item of [...required, ...location.popularSolutions]) {
+    byTitle.set(item.title, item);
+  }
+
+  return Array.from(byTitle.values()).slice(0, 8);
+}
+
+function getFaqItems(location: RegionalLocationData) {
+  const extra: RegionalLocationData["faq"] = [
+    {
+      question: `Можно ли рассчитать кухню в ${location.cityPrepositional} до замера?`,
+      answer:
+        "Да, можно подготовить ориентир по размерам, фото помещения и списку техники. Точная цена фиксируется после замера и выбора материалов.",
+    },
+    {
+      question: "Что нужно подготовить для консультации?",
+      answer:
+        "Желательно прислать примерные размеры, фото кухни, пожелания по стилю, список техники и ограничения по бюджету. Если данных мало, менеджер подскажет, что уточнить.",
+    },
+    {
+      question: "Помогаете ли с подбором техники и фурнитуры?",
+      answer:
+        "Да, в проекте учитываем встроенную технику, петли, направляющие, подъемные механизмы, ручки, подсветку и доступ к коммуникациям.",
+    },
+    {
+      question: "Почему цена на странице указана ориентировочно?",
+      answer:
+        "Без точного замера нельзя честно учесть длину кухни, высоту шкафов, фасады, столешницу, фурнитуру, технику, доставку и монтажные условия.",
+    },
+  ];
+  const byQuestion = new Map<string, RegionalLocationData["faq"][number]>();
+
+  for (const item of [...location.faq, ...extra]) {
+    if (!byQuestion.has(item.question)) byQuestion.set(item.question, item);
+  }
+
+  return Array.from(byQuestion.values()).slice(0, 7);
+}
+
 export function RegionalLocationPage({
   location,
   cases,
@@ -139,13 +235,17 @@ export function RegionalLocationPage({
 }: RegionalLocationPageProps) {
   const displayCases = cases.length > 0 ? cases : fallbackCases;
   const isMinskRegionHub = location.slug === "minskaya-oblast";
+  const serviceItems = getServiceItems(location);
+  const popularSolutions = getPopularSolutions(location);
+  const faqItems = getFaqItems(location);
+  const phoneHref = `tel:${CONTACT_DEFAULTS.phone}`;
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Города", path: "/locations" },
     { name: location.cityName, path: `/locations/${location.slug}` },
   ]);
   const jsonLdFaq = faqJsonLd(
-    location.faq.map((item) => ({ question: item.question, answer: item.answer })),
+    faqItems.map((item) => ({ question: item.question, answer: item.answer })),
   );
 
   return (
@@ -190,19 +290,27 @@ export function RegionalLocationPage({
                 href="#form"
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-white/90"
               >
-                Оставить заявку
+                Рассчитать стоимость
                 <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href={phoneHref}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+              >
+                <Phone className="h-4 w-4" />
+                Получить консультацию
               </Link>
               <Link
                 href="/calculator"
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
               >
                 <Calculator className="h-4 w-4" />
-                Рассчитать стоимость
+                Онлайн-калькулятор
               </Link>
             </div>
+            <p className="mb-5 max-w-2xl text-sm leading-6 text-white/72">{location.serviceAreaText}</p>
             <div className="inline-flex flex-wrap items-end gap-3 rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
-              <span className="text-sm text-white/65">Ориентир для расчета</span>
+              <span className="text-sm text-white/65">Ориентировочно, зависит от проекта</span>
               <span className="text-3xl font-bold">от {location.priceFrom.toLocaleString("ru")} BYN</span>
             </div>
           </div>
@@ -261,16 +369,17 @@ export function RegionalLocationPage({
         <div className="container-site">
           <SectionTitle
             eyebrow="Состав услуги"
-            title="Что входит в услугу"
-            text="Описываем базовый состав работ без обещаний о неподтвержденных офисах, кейсах или отзывах."
+            title="Что вы получите"
+            text="Показываем реальный состав работ: от проектирования и материалов до доставки, монтажа и помощи с комплектацией."
           />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {serviceItems.map((item, index) => (
-              <div key={item} className="rounded-2xl border border-border bg-white p-5">
+              <div key={item.title} className="rounded-2xl border border-border bg-white p-5">
                 <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-sm font-bold text-primary">
                   {index + 1}
                 </div>
-                <p className="text-sm leading-6 text-foreground">{item}</p>
+                <h3 className="mb-2 text-base font-semibold text-foreground">{item.title}</h3>
+                <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
               </div>
             ))}
           </div>
@@ -284,7 +393,7 @@ export function RegionalLocationPage({
             title="Как проходит заказ"
             text={`Для ${location.cityGenitive} порядок не меняется по смыслу, но логистика замера и доставки согласуется отдельно.`}
           />
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-7">
             {orderSteps.map((step, index) => (
               <div key={step} className="rounded-2xl border border-border bg-white p-5 shadow-sm">
                 <ClipboardList className="mb-4 h-5 w-5 text-primary" />
@@ -301,10 +410,10 @@ export function RegionalLocationPage({
           <SectionTitle
             eyebrow="Стоимость"
             title="Что влияет на стоимость"
-            text={location.priceNote}
+            text={`Ориентир на сайте — от ${location.priceFrom.toLocaleString("ru")} BYN, но точную цену нельзя честно назвать без замера и комплектации. ${location.priceNote}`}
           />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {["Размер и форма", "Фасады и столешница", "Фурнитура и механизмы", "Техника и монтаж"].map((item) => (
+            {["Размер и форма", "Фасады и столешница", "Фурнитура и механизмы", "Техника, доставка и монтаж"].map((item) => (
               <div key={item} className="rounded-2xl border border-border bg-white p-5">
                 <CheckCircle className="mb-4 h-5 w-5 text-primary" />
                 <p className="font-semibold text-foreground">{item}</p>
@@ -353,7 +462,7 @@ export function RegionalLocationPage({
             text="Это не фиктивные кейсы, а типы кухонь, которые можно рассмотреть для похожих помещений."
           />
           <div className="grid gap-4 md:grid-cols-3">
-            {location.popularSolutions.map((item) => (
+            {popularSolutions.map((item) => (
               <div key={item.title} className="rounded-2xl border border-border bg-white p-6">
                 <h3 className="mb-3 text-lg font-semibold text-foreground">{item.title}</h3>
                 <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
@@ -408,9 +517,9 @@ export function RegionalLocationPage({
 
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
-          <SectionTitle eyebrow="FAQ" title="Частые вопросы" />
+          <SectionTitle eyebrow="FAQ" title={`Частые вопросы о кухнях в ${location.cityPrepositional}`} />
           <div className="max-w-3xl space-y-4">
-            {location.faq.map((item) => (
+            {faqItems.map((item) => (
               <details key={item.question} className="group rounded-2xl border border-border bg-white">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-foreground">
                   {item.question}
@@ -453,14 +562,31 @@ export function RegionalLocationPage({
               Оставьте заявку: менеджер уточнит размеры, город, технику и подскажет следующий шаг.
               Точные сроки замера и доставки нужно подтверждать по конкретному адресу.
             </p>
-            <LinkPills links={location.internalLinks.slice(0, 4)} />
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={phoneHref}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition-colors hover:bg-white/90"
+              >
+                <Phone className="h-4 w-4" />
+                {CONTACT_DEFAULTS.phoneDisplay}
+              </a>
+              <a
+                href="#form"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Написать размеры
+              </a>
+            </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
+            <h3 className="mb-4 text-xl font-semibold text-white">Рассчитать кухню</h3>
             <ContactForm
               source={`location-${location.slug}`}
               sourceType="location-region"
               city={location.cityName}
               cityKey={location.slug}
+              submitLabel="Рассчитать кухню"
             />
           </div>
         </div>

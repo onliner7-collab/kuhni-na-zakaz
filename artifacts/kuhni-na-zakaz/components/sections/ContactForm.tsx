@@ -33,6 +33,7 @@ interface ContactFormProps {
   sourceType?: string;
   projectSlug?: string;
   cityKey?: string;
+  submitLabel?: string;
 }
 
 function detectSourceType(pathname: string) {
@@ -52,6 +53,7 @@ export function ContactForm({
   sourceType,
   projectSlug,
   cityKey,
+  submitLabel = "Отправить заявку",
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
@@ -108,7 +110,7 @@ export function ContactForm({
           source,
           city: data.city || city,
         });
-        toast.success("Заявка отправлена! Перезвоним в течение 30 минут.");
+        toast.success("Заявка отправлена! Свяжемся с вами в рабочее время.");
       } else {
         toast.error("Ошибка отправки. Попробуйте ещё раз или позвоните нам.");
       }
@@ -124,7 +126,7 @@ export function ContactForm({
       <div className="text-center py-12 card-base px-8">
         <div className="text-4xl mb-4">✓</div>
         <h3 className="font-serif text-2xl font-semibold mb-2">Заявка получена!</h3>
-        <p className="text-muted-foreground mb-6">Перезвоним в течение 30 минут в рабочее время.</p>
+        <p className="text-muted-foreground mb-6">Свяжемся с вами в рабочее время.</p>
         <Button variant="outline" onClick={() => setSent(false)}>Отправить ещё</Button>
       </div>
     );
@@ -157,12 +159,12 @@ export function ContactForm({
       </div>
 
       <div>
-        <Label htmlFor="comment">Комментарий</Label>
-        <Textarea id="comment" {...register("comment")} placeholder="Размеры кухни, стиль, пожелания..." className="mt-1" data-testid="form-comment" />
+        <Label htmlFor="comment">Комментарий / размеры</Label>
+        <Textarea id="comment" {...register("comment")} placeholder="Размеры кухни, стиль, техника, пожелания..." className="mt-1" data-testid="form-comment" />
       </div>
 
       <Button type="submit" className="w-full" disabled={loading} data-testid="form-submit">
-        {loading ? "Отправляем..." : "Отправить заявку"}
+        {loading ? "Отправляем..." : submitLabel}
       </Button>
 
       <p className="text-xs text-muted-foreground text-center">
