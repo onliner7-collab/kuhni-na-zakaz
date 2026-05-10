@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { getSessionFromRequest } from "@/lib/auth";
+import type { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -37,7 +39,7 @@ export async function POST(req: NextRequest) {
         comment: data.comment || "",
         source: data.source || "website",
         formType: data.formType || "contact",
-        answers: data.answers || {},
+        answers: (data.answers || {}) as Prisma.InputJsonValue,
       },
     });
 
@@ -55,6 +57,15 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    const session = await getSessionFromRequest(req);
+    if (!session) {
+      return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
+    }
+
+    if (session.guestSections && !session.guestSections.includes("leads")) {
+      return NextResponse.json({ error: "Доступ запрещен" }, { status: 403 });
+    }
+
     const leads = await prisma.lead.findMany({
       orderBy: { createdAt: "desc" },
       take: 100,
