@@ -12,6 +12,7 @@ import {
   GoogleTagManagerNoScript,
 } from "@/components/analytics/AnalyticsProvider";
 import { getSiteUrl } from "@/lib/site-url";
+import { resolveContactInfo } from "@/lib/contact-info";
 
 import "./globals.css";
 
@@ -118,6 +119,7 @@ export default async function RootLayout({
           .findFirst({ where: { id: 1 } })
           .catch(() => null)
       : null;
+  const contactInfo = resolveContactInfo(siteSettings);
 
   return (
     <html lang="ru" className={`${manrope.variable} ${inter.variable}`}>
@@ -126,15 +128,15 @@ export default async function RootLayout({
         {!isAdmin && <AnalyticsProvider />}
         {!isAdmin && (
           <Header
-            phone={siteSettings?.phoneDisplay}
-            phoneHref={siteSettings?.phone ? `tel:${siteSettings.phone}` : undefined}
+            phone={contactInfo.phoneDisplay}
+            phoneHref={`tel:${contactInfo.phone}`}
           />
         )}
         {isAdmin ? children : <main>{children}</main>}
         {!isAdmin && <Footer />}
         {!isAdmin && (
           <MobileCTA
-            phoneHref={siteSettings?.phone ? `tel:${siteSettings.phone}` : undefined}
+            phoneHref={`tel:${contactInfo.phone}`}
           />
         )}
         <Toaster />

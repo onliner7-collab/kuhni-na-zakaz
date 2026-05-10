@@ -456,6 +456,42 @@ export function RegionalLocationPage({
 
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
+          <div className="grid gap-6 rounded-2xl border border-border bg-white p-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary">
+                Локальная заявка
+              </p>
+              <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
+                Работаем с заявками из {location.cityGenitive}
+              </h2>
+              <div className="mt-5 grid gap-3 text-sm leading-6 text-muted-foreground md:grid-cols-3">
+                <p>Расчет стоимости по размерам</p>
+                <p>Доставка и монтаж обсуждаются при расчете</p>
+                <p>Офис в городе не указываем без подтвержденных данных</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <a
+                href={`tel:${CONTACT_DEFAULTS.phone}`}
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+              >
+                <Phone className="h-4 w-4" aria-hidden />
+                {CONTACT_DEFAULTS.phoneDisplay}
+              </a>
+              <Link
+                href="#form"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+              >
+                Рассчитать по размерам
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-muted/30 section-padding">
+        <div className="container-site">
           <SectionTitle
             eyebrow="Решения"
             title={`Популярные решения для ${location.cityGenitive}`}

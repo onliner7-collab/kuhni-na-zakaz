@@ -64,7 +64,7 @@ test.describe("bulk import v1 post-import smoke", () => {
       "@type": "LocalBusiness",
       name: "КухниBY",
       url: "https://kuhni.minsk.by/",
-      telephone: "+375296261547",
+      telephone: "+375293720674",
       email: "onliner7@gmail.com",
       address: "222520, г. Борисов, ул. Дзержинского, д. 90, каб. 1а",
     });

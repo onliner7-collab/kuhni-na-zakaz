@@ -499,8 +499,8 @@ export function Home() {
             </div>
             <div className="flex flex-wrap gap-4">
               <Button variant="outline" asChild data-testid="btn-contacts-call">
-                <a href="tel:+375296261547" className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" /> +375 (29) 626-15-47
+                <a href="tel:+375293720674" className="flex items-center gap-2">
+                  <Phone className="w-4 h-4" /> +375 (29) 372-06-74
                 </a>
               </Button>
               <Button asChild>

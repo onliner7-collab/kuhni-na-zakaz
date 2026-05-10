@@ -354,6 +354,10 @@ function normalizeLocationCopy(location: LocationPage | null): LocationPage | nu
     normalized[field] = normalizeLocationJson(normalized[field], location.city) as never;
   }
 
+  if (!normalized.phone || normalized.phone === "+375296261547") {
+    normalized.phone = CONTACT_DEFAULTS.phone;
+  }
+
   return normalized;
 }
 
@@ -913,7 +917,7 @@ export default async function LocationPage({ params }: Props) {
                 ))}
               </div>
               {loc.phone && (
-                <a href={`tel:${loc.phone.replace(/\D/g, "")}`} className="mt-8 inline-flex items-center gap-2 text-white/90 font-semibold hover:text-white transition-colors">
+                <a href={`tel:+${loc.phone.replace(/\D/g, "")}`} className="mt-8 inline-flex items-center gap-2 text-white/90 font-semibold hover:text-white transition-colors">
                   <Phone className="w-4 h-4" />
                   {loc.phone}
                 </a>

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Clock, FileText, Handshake, Instagram, Mail, MapPin, Phone, Ruler, ShieldCheck } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { prisma } from "@/lib/db";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { getSameAsLinks, resolveContactInfo } from "@/lib/contact-info";
 
 export const metadata: Metadata = {
   title: "Контакты и бесплатный замер",
@@ -12,27 +13,43 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contacts" },
 };
 
-const DEFAULTS = {
-  phone: CONTACT_DEFAULTS.phone,
-  phoneDisplay: CONTACT_DEFAULTS.phoneDisplay,
-  phone2: CONTACT_DEFAULTS.phone2,
-  phoneDisplay2: CONTACT_DEFAULTS.phoneDisplay2,
-  email: CONTACT_DEFAULTS.email,
-  address: CONTACT_DEFAULTS.address,
-  workingHours: CONTACT_DEFAULTS.workingHours,
-};
+const serviceArea = [
+  "Минск",
+  "Минская область",
+  "Брест",
+  "Гродно",
+  "Гомель",
+  "Витебск",
+  "Могилёв",
+];
+
+const trustItems = [
+  {
+    title: "Договор и смета",
+    text: "До запуска работ фиксируем комплектацию, стоимость и сроки в договоре.",
+    icon: FileText,
+  },
+  {
+    title: "Согласование проекта",
+    text: "После замера готовим планировку и 3D-проект, затем вносим правки до утверждения.",
+    icon: Ruler,
+  },
+  {
+    title: "Оплата по этапам",
+    text: "Сначала видите смету, затем условия предоплаты и финального расчета прописываются в договоре.",
+    icon: Handshake,
+  },
+  {
+    title: "Гарантия письменно",
+    text: "Гарантия на фурнитуру, корпус, фасады и монтаж указывается в документах по заказу.",
+    icon: ShieldCheck,
+  },
+];
 
 export default async function ContactsPage() {
   const s = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
-  const c = {
-    phone: s?.phone || DEFAULTS.phone,
-    phoneDisplay: s?.phoneDisplay || DEFAULTS.phoneDisplay,
-    phone2: s?.phone2 || DEFAULTS.phone2,
-    phoneDisplay2: s?.phoneDisplay2 || DEFAULTS.phoneDisplay2,
-    email: s?.email || DEFAULTS.email,
-    address: s?.address || DEFAULTS.address,
-    workingHours: s?.workingHours || DEFAULTS.workingHours,
-  };
+  const c = resolveContactInfo(s);
+  const sameAs = getSameAsLinks(c);
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Контакты", path: "/contacts" },
@@ -40,13 +57,14 @@ export default async function ContactsPage() {
   const jsonLdLocalBusiness = compactJsonLd({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: s?.siteName || "КухниBY",
+    name: c.siteName,
     url: siteUrl("/contacts"),
     telephone: c.phone,
     email: c.email,
     address: c.address,
-    openingHours: ["Mo-Sa 09:00-19:00", "Su 10:00-17:00"],
+    openingHours: c.workingHours ? ["Mo-Sa 09:00-19:00", "Su 10:00-17:00"] : undefined,
     areaServed: { "@type": "Country", name: "Belarus" },
+    sameAs: sameAs.length > 0 ? sameAs : undefined,
   });
 
   return (
@@ -58,7 +76,10 @@ export default async function ContactsPage() {
           <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
           <span className="text-foreground">Контакты</span>
         </nav>
-        <h1 className="font-serif text-4xl font-bold mb-10">Контакты</h1>
+        <h1 className="font-serif text-4xl font-bold mb-4">Контакты для расчета кухни</h1>
+        <p className="mb-10 max-w-3xl text-muted-foreground">
+          Принимаем заявки на кухни по размерам, замер, проектирование, производство, доставку и монтаж по Беларуси.
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
             <div className="space-y-6 mb-10">
@@ -76,6 +97,27 @@ export default async function ContactsPage() {
                       {c.phoneDisplay2}
                     </a>
                   )}
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <a href={`tel:${c.phone}`} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90">
+                      <Phone className="h-4 w-4" aria-hidden />
+                      Позвонить
+                    </a>
+                    {c.whatsapp && (
+                      <a href={c.whatsapp} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted">
+                        WhatsApp
+                      </a>
+                    )}
+                    {c.viber && (
+                      <a href={c.viber} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted">
+                        Viber
+                      </a>
+                    )}
+                    {c.telegram && (
+                      <a href={c.telegram} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted">
+                        Telegram
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -96,6 +138,7 @@ export default async function ContactsPage() {
                 <div>
                   <div className="font-medium">Адрес</div>
                   <p className="text-muted-foreground">{c.address}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">УНП {CONTACT_DEFAULTS.unp}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -109,16 +152,66 @@ export default async function ContactsPage() {
                   ))}
                 </div>
               </div>
+              {c.instagram && (
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Instagram className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <div className="font-medium">Instagram</div>
+                    <a href={c.instagram} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                      {CONTACT_DEFAULTS.instagramLabel}
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="h-56 bg-gradient-to-br from-stone-200 to-stone-300 rounded-xl flex items-center justify-center">
-              <p className="text-stone-400 text-sm">Карта — {c.address}</p>
-            </div>
+            {c.addressMap && (
+              <div className="h-72 overflow-hidden rounded-xl border border-border">
+                <iframe
+                  src={c.addressMap}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Карта: ${c.address}`}
+                />
+              </div>
+            )}
           </div>
           <div id="form">
             <h2 className="font-serif text-2xl font-bold mb-6">Оставить заявку</h2>
             <ContactForm source="contacts" />
           </div>
         </div>
+
+        <section className="mt-14">
+          <h2 className="font-serif text-2xl font-bold mb-6">Как строится работа</h2>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {trustItems.map(({ title, text, icon: Icon }) => (
+              <div key={title} className="rounded-xl border border-border bg-white p-5">
+                <Icon className="mb-4 h-5 w-5 text-primary" aria-hidden />
+                <h3 className="mb-2 font-semibold text-foreground">{title}</h3>
+                <p className="text-sm leading-6 text-muted-foreground">{text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-14 rounded-2xl border border-border bg-muted/30 p-6">
+          <h2 className="font-serif text-2xl font-bold mb-3">Зона обслуживания</h2>
+          <p className="mb-5 text-muted-foreground">
+            Работаем с заявками по Беларуси. Условия замера, доставки и монтажа уточняются по адресу и составу проекта.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {serviceArea.map((item) => (
+              <span key={item} className="rounded-full bg-white px-3 py-1.5 text-sm font-medium text-foreground">
+                {item}
+              </span>
+            ))}
+          </div>
+        </section>
         </div>
       </div>
     </>

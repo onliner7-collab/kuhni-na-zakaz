@@ -112,7 +112,7 @@ export function LocationPage() {
                 <Link href="/contacts">РћСЃС‚Р°РІРёС‚СЊ Р·Р°СЏРІРєСѓ</Link>
               </Button>
               <Button variant="outline" className="w-full" asChild>
-                <a href="tel:+375296261547">РџРѕР·РІРѕРЅРёС‚СЊ</a>
+                <a href="tel:+375293720674">РџРѕР·РІРѕРЅРёС‚СЊ</a>
               </Button>
             </CardContent>
           </Card>

@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { regionalLocations } from "@/data/locations";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { resolveContactInfo } from "@/lib/contact-info";
 import { prisma } from "@/lib/db";
 
 const FOOTER_LINKS = {
@@ -29,27 +30,11 @@ const FOOTER_LINKS = {
   ],
 };
 
-const FOOTER_DEFAULTS = {
-  phone: CONTACT_DEFAULTS.phone,
-  phoneDisplay: CONTACT_DEFAULTS.phoneDisplay,
-  email: CONTACT_DEFAULTS.email,
-  address: CONTACT_DEFAULTS.address,
-  workingHours: CONTACT_DEFAULTS.workingHours,
-};
-
 export async function Footer() {
   const s = process.env.DATABASE_URL
     ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
     : null;
-  const c = {
-    phone: s?.phone || FOOTER_DEFAULTS.phone,
-    phoneDisplay: s?.phoneDisplay || FOOTER_DEFAULTS.phoneDisplay,
-    phone2: s?.phone2 || "",
-    phoneDisplay2: s?.phoneDisplay2 || "",
-    email: s?.email || FOOTER_DEFAULTS.email,
-    address: s?.address || FOOTER_DEFAULTS.address,
-    workingHours: s?.workingHours || FOOTER_DEFAULTS.workingHours,
-  };
+  const c = resolveContactInfo(s);
 
   const priorityCities = regionalLocations.map((location) => ({
     href: `/locations/${location.slug}`,

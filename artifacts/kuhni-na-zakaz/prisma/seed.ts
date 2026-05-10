@@ -29,13 +29,18 @@ async function main() {
     create: {
       id: 1,
       siteName: "КухниBY",
-      phone: "+375296261547",
-      phoneDisplay: "+375 (29) 626-15-47",
+      phone: "+375293720674",
+      phoneDisplay: "+375 (29) 372-06-74",
       email: "onliner7@gmail.com",
       address: "222520, г. Борисов, ул. Дзержинского, д. 90, каб. 1а",
       workingHours: "Пн-Сб 9:00-19:00, Вс 10:00-17:00",
+      instagram: "https://www.instagram.com/inside_home1983/",
     },
-    update: {},
+    update: {
+      phone: "+375293720674",
+      phoneDisplay: "+375 (29) 372-06-74",
+      instagram: "https://www.instagram.com/inside_home1983/",
+    },
   });
 
   // FAQs
