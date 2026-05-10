@@ -1,22 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import {
   ArrowRight,
   Calculator,
   CheckCircle,
+  ClipboardList,
   Hammer,
   MapPin,
   Ruler,
-  ShieldCheck,
   Truck,
 } from "lucide-react";
 
 import { ContactForm } from "@/components/sections/ContactForm";
-import type { RegionalLocationData } from "@/data/locations";
-import { regionalLocations } from "@/data/locations";
+import {
+  minskRegionLocations,
+  regionalLocations,
+  type RegionalInternalLink,
+  type RegionalLocationData,
+} from "@/data/locations";
 import { optimizedImageSrc } from "@/lib/image-optimization";
-import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 
 export interface PortfolioCasePreview {
   id: number | string;
@@ -40,56 +43,46 @@ function isJsonLdObject<T>(value: T | null): value is T {
   return value !== null;
 }
 
-const kitchenTypes = [
-  "Угловые",
-  "Прямые",
-  "П-образные",
-  "Маленькие",
-  "До потолка",
-  "С барной стойкой",
-  "Со встроенной техникой",
-];
-
-const priceFactors = [
-  "размер и форма гарнитура",
-  "материал фасадов и столешницы",
-  "фурнитура, механизмы и подсветка",
-  "встроенная техника и сложность монтажа",
-];
-
-const includedItems = [
+const serviceItems = [
   "Консультация по планировке, материалам и бюджету",
-  "Выезд на замер и проверка коммуникаций",
-  "3D-проект и предварительная смета",
-  "Изготовление кухни по индивидуальным размерам",
-  "Доставка, сборка, регулировка фасадов и гарантия",
+  "Замер с проверкой стен, коммуникаций и техники",
+  "3D-проект и предварительная смета до запуска",
+  "Производство кухни по индивидуальным размерам",
+  "Доставка, монтаж, регулировка фасадов и гарантия",
+];
+
+const orderSteps = [
+  "Заявка и короткое обсуждение задачи",
+  "Предварительный расчет по размерам и технике",
+  "Замер и финальное согласование проекта",
+  "Производство, доставка и монтаж кухни",
 ];
 
 const fallbackCases: PortfolioCasePreview[] = [
   {
-    id: "general-minsk",
-    title: "Угловая кухня в стиле минимализм",
+    id: "general-corner",
+    title: "Угловая кухня в современном стиле",
     slug: "uglovaya-kuhnya-dlya-novostroyki-minsk",
     mainImage: "/images/hero.webp",
-    style: "Минимализм",
+    style: "Современный",
     priceFrom: 2800,
     area: 3,
     days: 21,
-    city: "Минск",
+    city: "Общий пример",
   },
   {
-    id: "general-borisov",
-    title: "Прямая кухня в скандинавском стиле",
+    id: "general-straight",
+    title: "Прямая кухня для компактного помещения",
     slug: "pryamaya-kuhnya-dlya-studii-brest",
     mainImage: "/images/hero.webp",
-    style: "Скандинавский",
+    style: "Минимализм",
     priceFrom: 1800,
     area: 2,
     days: 18,
-    city: "Борисов",
+    city: "Общий пример",
   },
   {
-    id: "general-modern",
+    id: "general-tall",
     title: "Кухня до потолка с продуманным хранением",
     slug: "kuhnya-do-potolka-mogilev",
     mainImage: "/images/hero.webp",
@@ -97,21 +90,46 @@ const fallbackCases: PortfolioCasePreview[] = [
     priceFrom: 3100,
     area: 3,
     days: 24,
-    city: "Минск",
+    city: "Общий пример",
   },
 ];
 
-function cityGenitive(cityName: string) {
-  if (cityName === "Минск") return "Минске";
-  if (cityName === "Минская область") return "Минской области";
-  if (cityName === "Гомель") return "Гомеле";
-  if (cityName === "Могилёв") return "Могилёве";
-  if (cityName === "Витебск") return "Витебске";
-  return cityName;
+function SectionTitle({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow?: string;
+  title: string;
+  text?: string;
+}) {
+  return (
+    <div className="mb-8 max-w-3xl">
+      {eyebrow && (
+        <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary">
+          {eyebrow}
+        </p>
+      )}
+      <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">{title}</h2>
+      {text && <p className="mt-3 text-base leading-7 text-muted-foreground">{text}</p>}
+    </div>
+  );
 }
 
-function LeadText({ children }: { children: ReactNode }) {
-  return <p className="text-base leading-7 text-muted-foreground md:text-lg">{children}</p>;
+function LinkPills({ links }: { links: RegionalInternalLink[] }) {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {links.map((item) => (
+        <Link
+          key={`${item.href}-${item.label}`}
+          href={item.href}
+          className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+        >
+          {item.label}
+        </Link>
+      ))}
+    </div>
+  );
 }
 
 export function RegionalLocationPage({
@@ -120,8 +138,7 @@ export function RegionalLocationPage({
   hasLocalCases,
 }: RegionalLocationPageProps) {
   const displayCases = cases.length > 0 ? cases : fallbackCases;
-  const cityGen = cityGenitive(location.cityName);
-  const portfolioTitle = hasLocalCases ? `Примеры работ в ${cityGen}` : "Примеры наших работ";
+  const isMinskRegionHub = location.slug === "minskaya-oblast";
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Города", path: "/locations" },
@@ -136,10 +153,10 @@ export function RegionalLocationPage({
       <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq].filter(isJsonLdObject)} />
 
       <section className="relative overflow-hidden bg-stone-950 text-white">
-        <div className="absolute inset-0 opacity-25">
+        <div className="absolute inset-0 opacity-28">
           <Image
             src="/images/hero.webp"
-            alt={`Кухня на заказ в ${location.cityName} — пример интерьера`}
+            alt={`Кухня на заказ в ${location.cityPrepositional}`}
             fill
             priority
             sizes="100vw"
@@ -147,7 +164,7 @@ export function RegionalLocationPage({
           />
         </div>
         <div className="relative container-site py-10 md:py-16 lg:py-20">
-          <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-white/70">
+          <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-white/72">
             <Link href="/" className="hover:text-white">
               Главная
             </Link>
@@ -167,27 +184,25 @@ export function RegionalLocationPage({
             <h1 className="mb-5 font-serif text-3xl font-bold leading-tight md:text-5xl">
               {location.h1}
             </h1>
-            <p className="mb-8 max-w-2xl text-lg leading-8 text-white/80">
-              {location.introText}
-            </p>
+            <p className="mb-8 max-w-2xl text-lg leading-8 text-white/82">{location.intro}</p>
             <div className="mb-8 flex flex-wrap gap-3">
               <Link
-                href="/calculator"
+                href="#form"
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-white/90"
+              >
+                Оставить заявку
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/calculator"
+                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
               >
                 <Calculator className="h-4 w-4" />
                 Рассчитать стоимость
               </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
-              >
-                Посмотреть портфолио
-                <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
-            <div className="inline-flex items-end gap-3 rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
-              <span className="text-sm text-white/65">Расчет кухни</span>
+            <div className="inline-flex flex-wrap items-end gap-3 rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
+              <span className="text-sm text-white/65">Ориентир для расчета</span>
               <span className="text-3xl font-bold">от {location.priceFrom.toLocaleString("ru")} BYN</span>
             </div>
           </div>
@@ -195,65 +210,63 @@ export function RegionalLocationPage({
       </section>
 
       <section className="bg-white section-padding">
-        <div className="container-site grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+        <div className="container-site grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
-            <h2 className="mb-4 font-serif text-2xl font-bold md:text-3xl">
-              Кухня под ваш ремонт, бюджет и технику
-            </h2>
-            <LeadText>{location.seoText}</LeadText>
+            <SectionTitle
+              eyebrow="Региональная страница"
+              title={`Как работаем в ${location.cityPrepositional}`}
+              text={location.seoText}
+            />
+            <p className="text-base leading-7 text-muted-foreground">{location.serviceAreaText}</p>
           </div>
           <div className="rounded-2xl border border-border bg-muted/30 p-6">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-              Быстрый старт
+            <h2 className="mb-3 font-serif text-2xl font-bold">Быстрый старт</h2>
+            <p className="mb-5 text-sm leading-6 text-muted-foreground">
+              Напишите город, размеры и список техники. Мы подскажем порядок замера, ориентир по бюджету
+              и какие данные нужны для точной сметы.
             </p>
-            <p className="mb-5 text-lg font-semibold text-foreground">
-              Оставьте заявку, и мы подскажем порядок замера, примерный бюджет и ближайшие сроки.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/contacts" className="text-sm font-semibold text-primary hover:underline">
-                Контакты
-              </Link>
-              <Link href="/calculator" className="text-sm font-semibold text-primary hover:underline">
-                Калькулятор
-              </Link>
-            </div>
+            <LinkPills links={location.internalLinks.slice(0, 4)} />
           </div>
         </div>
       </section>
+
+      {isMinskRegionHub && (
+        <section className="bg-muted/30 section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Хаб области"
+              title="Города Минской области"
+              text={location.hubText}
+            />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {minskRegionLocations.map((city) => (
+                <Link
+                  key={city.slug}
+                  href={`/locations/${city.slug}`}
+                  className="group rounded-2xl border border-border bg-white p-5 transition-all hover:border-primary/40 hover:shadow-md"
+                >
+                  <p className="font-serif text-xl font-bold text-foreground">{city.cityName}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{city.intro}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                    Открыть страницу <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
-          <div className="mb-8 max-w-3xl">
-            <h2 className="mb-3 font-serif text-2xl font-bold md:text-3xl">Стоимость кухни</h2>
-            <LeadText>
-              Предварительный расчет начинается от {location.priceFrom.toLocaleString("ru")} BYN.
-              Итоговая смета зависит от размеров, материалов и комплектации.
-            </LeadText>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {priceFactors.map((factor) => (
-              <div key={factor} className="rounded-2xl border border-border bg-white p-5">
-                <CheckCircle className="mb-4 h-5 w-5 text-primary" />
-                <p className="font-medium text-foreground">{factor}</p>
-              </div>
-            ))}
-          </div>
-          <Link
-            href="/prices"
-            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-          >
-            Смотреть цены и примеры расчетов
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-
-      <section className="bg-white section-padding">
-        <div className="container-site">
-          <h2 className="mb-8 font-serif text-2xl font-bold md:text-3xl">Что входит в заказ</h2>
+          <SectionTitle
+            eyebrow="Состав услуги"
+            title="Что входит в услугу"
+            text="Описываем базовый состав работ без обещаний о неподтвержденных офисах, кейсах или отзывах."
+          />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {includedItems.map((item, index) => (
-              <div key={item} className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+            {serviceItems.map((item, index) => (
+              <div key={item} className="rounded-2xl border border-border bg-white p-5">
                 <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-sm font-bold text-primary">
                   {index + 1}
                 </div>
@@ -264,55 +277,68 @@ export function RegionalLocationPage({
         </div>
       </section>
 
+      <section className="bg-white section-padding">
+        <div className="container-site">
+          <SectionTitle
+            eyebrow="Процесс"
+            title="Как проходит заказ"
+            text={`Для ${location.cityGenitive} порядок не меняется по смыслу, но логистика замера и доставки согласуется отдельно.`}
+          />
+          <div className="grid gap-4 md:grid-cols-4">
+            {orderSteps.map((step, index) => (
+              <div key={step} className="rounded-2xl border border-border bg-white p-5 shadow-sm">
+                <ClipboardList className="mb-4 h-5 w-5 text-primary" />
+                <p className="mb-2 text-sm font-semibold text-primary">Шаг {index + 1}</p>
+                <p className="text-sm leading-6 text-foreground">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
-          <h2 className="mb-8 font-serif text-2xl font-bold md:text-3xl">
-            Замер, доставка и монтаж
-          </h2>
+          <SectionTitle
+            eyebrow="Стоимость"
+            title="Что влияет на стоимость"
+            text={location.priceNote}
+          />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {["Размер и форма", "Фасады и столешница", "Фурнитура и механизмы", "Техника и монтаж"].map((item) => (
+              <div key={item} className="rounded-2xl border border-border bg-white p-5">
+                <CheckCircle className="mb-4 h-5 w-5 text-primary" />
+                <p className="font-semibold text-foreground">{item}</p>
+              </div>
+            ))}
+          </div>
+          <Link
+            href="/prices"
+            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            Смотреть цены и примеры расчетов <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-white section-padding">
+        <div className="container-site">
+          <SectionTitle
+            eyebrow="Логистика"
+            title="Замер, доставка и монтаж"
+            text="Каждый региональный заказ считаем по фактическому адресу, готовности ремонта и составу кухни."
+          />
           <div className="grid gap-5 md:grid-cols-3">
             {[
               { title: "Замер", text: location.measurementText, icon: Ruler },
               { title: "Доставка", text: location.deliveryText, icon: Truck },
               { title: "Монтаж", text: location.installationText, icon: Hammer },
             ].map(({ title, text, icon: Icon }) => (
-              <div key={title} className="rounded-2xl border border-border bg-white p-6">
+              <div key={title} className="rounded-2xl border border-border bg-muted/30 p-6">
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
                   <Icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="mb-3 text-lg font-semibold">{title}</h3>
+                <h3 className="mb-3 text-lg font-semibold text-foreground">{title}</h3>
                 <p className="text-sm leading-6 text-muted-foreground">{text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-5 rounded-2xl border border-border bg-white p-6">
-            <div className="mb-3 flex items-center gap-3">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              <h3 className="text-lg font-semibold">Гарантия</h3>
-            </div>
-            <p className="text-sm leading-6 text-muted-foreground">{location.warrantyText}</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white section-padding">
-        <div className="container-site">
-          <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="mb-3 font-serif text-2xl font-bold md:text-3xl">
-                Какие кухни делаем
-              </h2>
-              <p className="text-muted-foreground">
-                Подбираем формат под площадь, сценарии готовки, хранение и технику.
-              </p>
-            </div>
-            <Link href="/calculator" className="text-sm font-semibold text-primary hover:underline">
-              Подобрать формат
-            </Link>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {kitchenTypes.map((type) => (
-              <div key={type} className="rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm font-medium">
-                {type}
               </div>
             ))}
           </div>
@@ -321,21 +347,33 @@ export function RegionalLocationPage({
 
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
-          <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <h2 className="mb-3 font-serif text-2xl font-bold md:text-3xl">
-                {portfolioTitle}
-              </h2>
-              <p className="text-muted-foreground">
-                {hasLocalCases
-                  ? "Показываем проекты, связанные с этим городом или регионом."
-                  : "По этому региону пока нет отдельной подборки, поэтому показываем общие проекты без привязки к городу."}
-              </p>
-            </div>
-            <Link href="/portfolio" className="text-sm font-semibold text-primary hover:underline">
-              Все портфолио
-            </Link>
+          <SectionTitle
+            eyebrow="Решения"
+            title={`Популярные решения для ${location.cityGenitive}`}
+            text="Это не фиктивные кейсы, а типы кухонь, которые можно рассмотреть для похожих помещений."
+          />
+          <div className="grid gap-4 md:grid-cols-3">
+            {location.popularSolutions.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="mb-3 text-lg font-semibold text-foreground">{item.title}</h3>
+                <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-white section-padding">
+        <div className="container-site">
+          <SectionTitle
+            eyebrow="Портфолио"
+            title={hasLocalCases ? `Подтвержденные работы в ${location.cityPrepositional}` : "Примеры работ без привязки к городу"}
+            text={
+              hasLocalCases
+                ? "Показываем проекты, которые связаны с этим городом или регионом в базе сайта."
+                : "По этому городу пока нет подтвержденной подборки. Чтобы не вводить посетителя в заблуждение, показываем общие примеры."
+            }
+          />
           <div className="grid gap-5 md:grid-cols-3">
             {displayCases.slice(0, 3).map((item) => (
               <Link
@@ -368,32 +406,13 @@ export function RegionalLocationPage({
         </div>
       </section>
 
-      <section className="bg-white section-padding">
-        <div className="container-site">
-          <h2 className="mb-6 font-serif text-2xl font-bold md:text-3xl">Работаем по регионам</h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {regionalLocations.map((region) => (
-              <Link
-                key={region.slug}
-                href={`/locations/${region.slug}`}
-                className="rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm font-semibold transition-colors hover:border-primary/40 hover:bg-primary/5"
-              >
-                {region.cityName}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
-          <h2 className="mb-8 font-serif text-2xl font-bold md:text-3xl">
-            Частые вопросы
-          </h2>
+          <SectionTitle eyebrow="FAQ" title="Частые вопросы" />
           <div className="max-w-3xl space-y-4">
             {location.faq.map((item) => (
               <details key={item.question} className="group rounded-2xl border border-border bg-white">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-semibold text-foreground">
                   {item.question}
                   <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
                 </summary>
@@ -404,30 +423,37 @@ export function RegionalLocationPage({
         </div>
       </section>
 
+      <section className="bg-white section-padding">
+        <div className="container-site">
+          <SectionTitle
+            eyebrow="Перелинковка"
+            title="Соседние города и полезные разделы"
+            text="Внутренние ссылки ведут на соседние направления и основные коммерческие страницы."
+          />
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-muted/30 p-6">
+              <h3 className="mb-4 text-lg font-semibold text-foreground">Соседние города</h3>
+              <LinkPills links={location.nearbyAreas.length > 0 ? location.nearbyAreas : regionalLocations.slice(0, 5).map((item) => ({ href: `/locations/${item.slug}`, label: item.cityName }))} />
+            </div>
+            <div className="rounded-2xl border border-border bg-muted/30 p-6">
+              <h3 className="mb-4 text-lg font-semibold text-foreground">Важные услуги</h3>
+              <LinkPills links={location.internalLinks} />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="form" className="bg-stone-950 text-white section-padding">
         <div className="container-site grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <h2 className="mb-4 font-serif text-2xl font-bold md:text-3xl">
-              Рассчитать кухню в {cityGen}
+              Рассчитать кухню в {location.cityPrepositional}
             </h2>
-            <p className="mb-6 leading-7 text-white/70">
-              Напишите город, примерные размеры и пожелания по материалам. Менеджер свяжется с вами,
-              уточнит детали и подскажет следующий шаг.
+            <p className="mb-6 leading-7 text-white/72">
+              Оставьте заявку: менеджер уточнит размеры, город, технику и подскажет следующий шаг.
+              Точные сроки замера и доставки нужно подтверждать по конкретному адресу.
             </p>
-            <div className="flex flex-wrap gap-4 text-sm">
-              <Link href="/prices" className="text-white/85 hover:text-white">
-                Цены
-              </Link>
-              <Link href="/calculator" className="text-white/85 hover:text-white">
-                Калькулятор
-              </Link>
-              <Link href="/portfolio" className="text-white/85 hover:text-white">
-                Портфолио
-              </Link>
-              <Link href="/contacts" className="text-white/85 hover:text-white">
-                Контакты
-              </Link>
-            </div>
+            <LinkPills links={location.internalLinks.slice(0, 4)} />
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
             <ContactForm
@@ -436,31 +462,6 @@ export function RegionalLocationPage({
               city={location.cityName}
               cityKey={location.slug}
             />
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-white border-t border-border/60">
-        <div className="container-site">
-          <h2 className="font-serif text-2xl font-bold text-foreground">Полезные разделы перед заказом</h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Сравните стоимость, посмотрите реальные проекты и оставьте заявку на расчёт кухни в вашем регионе.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            {[
-              { href: "/prices", label: "Цены" },
-              { href: "/calculator", label: "Калькулятор" },
-              { href: "/portfolio", label: "Портфолио" },
-              { href: "/contacts", label: "Контакты" },
-            ].map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-border bg-muted/20 px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
           </div>
         </div>
       </section>

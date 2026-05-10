@@ -4,6 +4,7 @@ import { CheckCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { PriceQuiz } from "@/components/sections/PriceQuiz";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { regionalLocations } from "@/data/locations";
 
 export const metadata: Metadata = {
   title: "Цены на кухни на заказ в Беларуси",
@@ -173,6 +174,25 @@ export default function PricesPage() {
           <p className="text-center text-muted-foreground mb-8">Ответьте на 5 вопросов — получите ориентировочный бюджет</p>
           <PriceQuiz />
         </div>
+
+        <section className="card-base p-6 mb-16">
+          <h2 className="font-serif text-2xl font-bold mb-3">Цены по городам</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground mb-5">
+            Базовые принципы расчета одинаковые, но замер, доставка и монтаж зависят от адреса.
+            Выберите город, чтобы посмотреть региональные условия без дублей и неподтвержденных обещаний.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {regionalLocations.map((location) => (
+              <Link
+                key={location.slug}
+                href={`/locations/${location.slug}`}
+                className="rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+              >
+                {location.cityName}
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* CTA */}
         <div className="max-w-2xl mx-auto">

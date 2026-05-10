@@ -10,6 +10,7 @@ import { optimizedImageSrc } from "@/lib/image-optimization";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { regionalLocations } from "@/data/locations";
 
 type HomeAdvantage = {
   id: number;
@@ -206,16 +207,18 @@ export default async function HomePage() {
   const displayAdvantages = advantages.length > 0 ? advantages : FALLBACK_ADVANTAGES;
   const displaySteps = steps.length > 0 ? steps : FALLBACK_STEPS;
   const displayTrust = trust.length > 0 ? trust : FALLBACK_TRUST;
-  const displayLocations = locations.length > 0
-    ? locations
-    : [
-        { id: 1, slug: "minsk", city: "Минск", region: "Минская область", priceFrom: 900 },
-        { id: 2, slug: "brest", city: "Брест", region: "Брестская область", priceFrom: 900 },
-        { id: 3, slug: "grodno", city: "Гродно", region: "Гродненская область", priceFrom: 900 },
-        { id: 4, slug: "gomel", city: "Гомель", region: "Гомельская область", priceFrom: 900 },
-        { id: 5, slug: "vitebsk", city: "Витебск", region: "Витебская область", priceFrom: 900 },
-        { id: 6, slug: "mogilev", city: "Могилёв", region: "Могилёвская область", priceFrom: 900 },
-      ];
+  const dbLocationsBySlug = new Map(locations.map((location) => [location.slug, location]));
+  const displayLocations = regionalLocations.map((location, index) => {
+    const dbLocation = dbLocationsBySlug.get(location.slug);
+
+    return {
+      id: dbLocation?.id ?? index + 1,
+      slug: location.slug,
+      city: location.cityName,
+      region: location.regionName,
+      priceFrom: dbLocation?.priceFrom && dbLocation.priceFrom > 0 ? dbLocation.priceFrom : location.priceFrom,
+    };
+  });
 
   return (
     <>
@@ -588,26 +591,20 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="max-w-4xl">
             <h2 className="font-serif text-3xl lg:text-4xl font-bold">
-              Работаем по Минску, Минской области, Гомелю, Могилёву и Витебску
+              Работаем по Минску, Минской области и крупным городам Беларуси
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Изготавливаем кухни на заказ по индивидуальным размерам. Условия замера,
               доставки и монтажа уточняются при расчёте проекта.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm">
-              {[
-                { href: "/locations/minsk", label: "Минск" },
-                { href: "/locations/minskaya-oblast", label: "Минская область" },
-                { href: "/locations/gomel", label: "Гомель" },
-                { href: "/locations/mogilev", label: "Могилёв" },
-                { href: "/locations/vitebsk", label: "Витебск" },
-              ].map((region) => (
+              {regionalLocations.map((region) => (
                 <Link
-                  key={region.href}
-                  href={region.href}
+                  key={region.slug}
+                  href={`/locations/${region.slug}`}
                   className="rounded-full border border-border bg-white px-4 py-2 font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
                 >
-                  {region.label}
+                  {region.cityName}
                 </Link>
               ))}
             </div>
