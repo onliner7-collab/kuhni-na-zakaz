@@ -1,6 +1,6 @@
 export const DEFAULT_SITE_URL = "https://kuhni.minsk.by";
 
-export function getSiteUrl(value = process.env.NEXT_PUBLIC_SITE_URL) {
+export function getSiteUrl(value = DEFAULT_SITE_URL) {
   const rawUrl = value || DEFAULT_SITE_URL;
 
   try {

@@ -12,7 +12,6 @@ import {
   GoogleTagManagerNoScript,
 } from "@/components/analytics/AnalyticsProvider";
 import { getSiteUrl } from "@/lib/site-url";
-import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 import "./globals.css";
 
@@ -32,19 +31,22 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
-const siteUrl = getSiteUrl();
+const preferredSiteUrl = "https://kuhni.minsk.by";
+const siteUrl = getSiteUrl(preferredSiteUrl);
 const faviconVersion = "20260421b";
-const localBusinessImage =
-  "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
+const siteName = "КухниBY";
+const homeTitle =
+  "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
+const homeDescription =
+  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
 
 export const metadata: Metadata = {
+  applicationName: siteName,
   title: {
-    default:
-      "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY",
-    template: "%s | КухниBY",
+    default: homeTitle,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.",
+  description: homeDescription,
   keywords: [
     "кухни на заказ",
     "кухни на заказ Минск",
@@ -75,10 +77,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ru_BY",
     url: siteUrl,
-    siteName: "КухниBY",
+    siteName,
+    title: homeTitle,
+    description: homeDescription,
   },
   twitter: {
     card: "summary_large_image",
+    title: homeTitle,
+    description: homeDescription,
   },
   robots: {
     index: true,
@@ -129,35 +135,6 @@ export default async function RootLayout({
         {!isAdmin && (
           <MobileCTA
             phoneHref={siteSettings?.phone ? `tel:${siteSettings.phone}` : undefined}
-          />
-        )}
-        {!isAdmin && (
-          <script
-            type="application/ld+json"
-            suppressHydrationWarning
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                name: siteSettings?.siteName || "КухниBY",
-                url: siteUrl,
-                logo: `${siteUrl}/logo.png`,
-                email: siteSettings?.email || CONTACT_DEFAULTS.email,
-                image: localBusinessImage,
-                contactPoint: {
-                  "@type": "ContactPoint",
-                  telephone: siteSettings?.phone || CONTACT_DEFAULTS.phone,
-                  contactType: "sales",
-                  areaServed: "BY",
-                  availableLanguage: ["Russian", "Belarusian"],
-                },
-                address: {
-                  "@type": "PostalAddress",
-                  addressLocality: "Минск",
-                  addressCountry: "BY",
-                },
-              }),
-            }}
           />
         )}
         <Toaster />

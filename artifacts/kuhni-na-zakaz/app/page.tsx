@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle, Phone, Star, Shield, Clock, MapPin, FileCheck 
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
@@ -51,7 +51,11 @@ const CATALOG_CATEGORIES = [
 ];
 
 const LOCAL_BUSINESS_IMAGE =
-  "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
+  "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
+const SITE_NAME = "КухниBY";
+const SITE_ALTERNATE_NAME = "Кухни Бай";
+const HOME_ORIGIN = "https://kuhni.minsk.by";
+const HOME_URL = `${HOME_ORIGIN}/`;
 
 /** Alt для витринного фото в первом экране (SEO / доступность). */
 const HERO_KITCHEN_ALT =
@@ -63,13 +67,15 @@ const HOME_DESCRIPTION =
   "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
 
 export const metadata: Metadata = {
-  title: "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D",
+  title: HOME_TITLE,
   description: HOME_DESCRIPTION,
-  alternates: { canonical: "/" },
+  alternates: { canonical: HOME_URL },
   openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
-    url: "/",
+    url: HOME_URL,
   },
   twitter: {
     card: "summary_large_image",
@@ -108,25 +114,36 @@ export default async function HomePage() {
     ? (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)
     : null;
 
-  const jsonLd = {
+  const websiteJsonLd = {
     "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
-    name: "КухниBY",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    alternateName: SITE_ALTERNATE_NAME,
+    url: HOME_URL,
+  };
+  const localBusinessJsonLd = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: SITE_NAME,
     description: "Кухни на заказ по всей Беларуси. Собственное производство.",
+    url: HOME_URL,
+    logo: `${HOME_ORIGIN}/logo.png`,
     telephone: CONTACT_DEFAULTS.phone,
     email: CONTACT_DEFAULTS.email,
-    image: LOCAL_BUSINESS_IMAGE,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Минск",
-      addressCountry: "BY",
-    },
+    image: `${HOME_ORIGIN}${LOCAL_BUSINESS_IMAGE}`,
+    address: CONTACT_DEFAULTS.address,
     areaServed: [
-      { "@type": "AdministrativeArea", name: "Беларусь" }
+      { "@type": "Country", name: "Беларусь" },
+      { "@type": "City", name: "Минск" },
+      { "@type": "AdministrativeArea", name: "Минская область" },
+      { "@type": "City", name: "Гомель" },
+      { "@type": "City", name: "Гродно" },
+      { "@type": "City", name: "Брест" },
+      { "@type": "City", name: "Витебск" },
+      { "@type": "City", name: "Могилёв" },
     ],
-    openingHours: ["Mo-Sa 09:00-19:00", "Su 10:00-17:00"],
     priceRange: "от 900 BYN",
-  };
+  });
   const jsonLdBreadcrumb = breadcrumbJsonLd([{ name: "Главная", path: "/" }]);
   const jsonLdFaq = faqJsonLd(faqs);
   const jsonLdProduct =
@@ -145,8 +162,9 @@ export default async function HomePage() {
         }
       : null;
   const jsonLdItems = [
+    websiteJsonLd,
+    localBusinessJsonLd,
     jsonLdBreadcrumb,
-    jsonLd,
     ...(jsonLdFaq ? [jsonLdFaq] : []),
     ...(jsonLdProduct ? [jsonLdProduct] : []),
   ];

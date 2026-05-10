@@ -9,6 +9,69 @@ async function expectNoHardFailure(page: import("@playwright/test").Page) {
 }
 
 test.describe("bulk import v1 post-import smoke", () => {
+  test("homepage exposes SEO head and site JSON-LD", async ({ page }) => {
+    const response = await page.goto("/", { waitUntil: "domcontentloaded" });
+
+    expect(response?.ok()).toBeTruthy();
+    await expectNoHardFailure(page);
+
+    await expect(page).toHaveTitle(
+      "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY",
+    );
+
+    const description =
+      "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
+
+    await expect(page.locator('head meta[name="description"]')).toHaveAttribute("content", description);
+    await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      /https:\/\/kuhni\.minsk\.by\/?/,
+    );
+    await expect(page.locator('head meta[property="og:site_name"]')).toHaveAttribute("content", "КухниBY");
+    await expect(page.locator('head meta[property="og:title"]')).toHaveAttribute(
+      "content",
+      "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY",
+    );
+    await expect(page.locator('head meta[property="og:description"]')).toHaveAttribute("content", description);
+    await expect(page.locator('head meta[property="og:url"]')).toHaveAttribute(
+      "content",
+      /https:\/\/kuhni\.minsk\.by\/?/,
+    );
+    await expect(page.locator('head meta[property="og:type"]')).toHaveAttribute("content", "website");
+    await expect(page.locator('head meta[name="twitter:card"]')).toHaveAttribute(
+      "content",
+      "summary_large_image",
+    );
+
+    const jsonLdItems = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+      nodes.flatMap((node) => {
+        const parsed = JSON.parse(node.textContent || "null");
+        return Array.isArray(parsed) ? parsed : [parsed];
+      }),
+    );
+    const website = jsonLdItems.find((item) => item?.["@type"] === "WebSite");
+    const localBusiness = jsonLdItems.find((item) => item?.["@type"] === "LocalBusiness");
+
+    expect(website).toMatchObject({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "КухниBY",
+      alternateName: "Кухни Бай",
+      url: "https://kuhni.minsk.by/",
+    });
+    expect(localBusiness).toMatchObject({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "КухниBY",
+      url: "https://kuhni.minsk.by/",
+      telephone: "+375296261547",
+      email: "onliner7@gmail.com",
+      address: "222520, г. Борисов, ул. Дзержинского, д. 90, каб. 1а",
+    });
+    expect(JSON.stringify(jsonLdItems)).not.toContain("undefined");
+    expect(JSON.stringify(jsonLdItems)).not.toContain("null");
+  });
+
   test("homepage renders critical sections and FAQ", async ({ page }) => {
     const response = await page.goto("/", { waitUntil: "domcontentloaded" });
 
