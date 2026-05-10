@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { regionalLocations } from "@/data/locations";
 import { prisma } from "@/lib/db";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -26,11 +27,9 @@ const STATIC_PATHS = [
 ] as const;
 
 const STATIC_LOCATION_SLUGS = [
-  "minsk",
-  "minskaya-oblast",
-  "gomel",
-  "mogilev",
-  "vitebsk",
+  ...regionalLocations.map((location) => location.slug),
+  "brest",
+  "grodno",
 ] as const;
 
 const STATIC_CATALOG_SLUGS = [
@@ -44,14 +43,9 @@ const STATIC_CATALOG_SLUGS = [
 ] as const;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
-
-  const staticPages = STATIC_PATHS.map((path) => ({
-    url: absoluteUrl(path),
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: path === "/" ? 1 : 0.8,
-  }));
+  const staticPages = STATIC_PATHS.map((path) =>
+    sitemapEntry(path, undefined, path === "/" ? 1 : 0.8, "weekly"),
+  );
 
   let portfolioPages: MetadataRoute.Sitemap = [];
   let blogPages: MetadataRoute.Sitemap = [];
@@ -79,36 +73,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   } catch {}
 
   const staticCatalogPages = STATIC_CATALOG_SLUGS.map((slug) =>
-    sitemapEntry(`/catalog/${slug}`, now, 0.8),
+    sitemapEntry(`/catalog/${slug}`, undefined, 0.8),
   );
   const staticLocationPages = STATIC_LOCATION_SLUGS.map((slug) =>
-    sitemapEntry(`/locations/${slug}`, now, 0.8),
+    sitemapEntry(`/locations/${slug}`, undefined, 0.8),
   );
 
   return uniqueIndexableEntries([
     ...staticPages,
     ...staticCatalogPages,
-    ...staticLocationPages,
     ...stylePages,
     ...materialPages,
     ...scenarioPages,
     ...portfolioPages,
     ...blogPages,
     ...locationPages,
+    ...staticLocationPages,
   ]);
 }
 
 function sitemapEntry(
   path: string,
-  lastModified: Date,
+  lastModified: Date | undefined,
   priority: number,
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly",
 ): MetadataRoute.Sitemap[number] {
-  return {
+  const entry: MetadataRoute.Sitemap[number] = {
     url: absoluteUrl(path),
-    lastModified,
-    changeFrequency: "monthly",
+    changeFrequency,
     priority,
   };
+
+  if (lastModified) {
+    entry.lastModified = lastModified;
+  }
+
+  return entry;
 }
 
 function absoluteUrl(path: string) {
