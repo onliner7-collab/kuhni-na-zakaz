@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { getSessionFromRequest } from "@/lib/auth";
+import type { Prisma } from "@prisma/client";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest) {
         comment: data.comment || "",
         source: data.source || "website",
         formType: data.formType || "contact",
-        answers: data.answers || {},
+        answers: (data.answers || {}) as Prisma.InputJsonValue,
       },
     });
 
