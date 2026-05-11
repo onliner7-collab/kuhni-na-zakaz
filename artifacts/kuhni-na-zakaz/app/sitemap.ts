@@ -5,6 +5,7 @@ import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { getSiteUrl } from "@/lib/site-url";
 
 const BASE_URL = getSiteUrl();
+const STATIC_LAST_MODIFIED = new Date("2026-05-11T00:00:00.000Z");
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -45,7 +46,7 @@ const STATIC_CATALOG_SLUGS = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = STATIC_PATHS.map((path) =>
-    sitemapEntry(path, undefined, path === "/" ? 1 : 0.8, "weekly"),
+    sitemapEntry(path, STATIC_LAST_MODIFIED, path === "/" ? 1 : 0.8, "weekly"),
   );
 
   let portfolioPages: MetadataRoute.Sitemap = [];
@@ -74,10 +75,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   } catch {}
 
   const staticCatalogPages = STATIC_CATALOG_SLUGS.map((slug) =>
-    sitemapEntry(`/catalog/${slug}`, undefined, 0.8),
+    sitemapEntry(`/catalog/${slug}`, STATIC_LAST_MODIFIED, 0.8),
   );
   const staticLocationPages = STATIC_LOCATION_SLUGS.map((slug) =>
-    sitemapEntry(`/locations/${slug}`, undefined, 0.8),
+    sitemapEntry(`/locations/${slug}`, STATIC_LAST_MODIFIED, 0.8),
   );
 
   return uniqueIndexableEntries([

@@ -34,7 +34,7 @@ const inter = Inter({
 
 const preferredSiteUrl = "https://kuhni.minsk.by";
 const siteUrl = getSiteUrl(preferredSiteUrl);
-const faviconVersion = "20260421b";
+const faviconVersion = "20260511";
 const siteName = "КухниBY";
 const homeTitle =
   "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
@@ -64,6 +64,16 @@ export const metadata: Metadata = {
     icon: [
       { url: `/favicon.ico?v=${faviconVersion}`, sizes: "any" },
       { url: `/icon.svg?v=${faviconVersion}`, type: "image/svg+xml" },
+      {
+        url: `/icon-192.png?v=${faviconVersion}`,
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: `/icon-512.png?v=${faviconVersion}`,
+        sizes: "512x512",
+        type: "image/png",
+      },
     ],
     shortcut: [`/favicon.ico?v=${faviconVersion}`],
     apple: [
