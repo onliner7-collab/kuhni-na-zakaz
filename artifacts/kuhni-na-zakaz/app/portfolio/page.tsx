@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { PortfolioFilters } from "@/components/portfolio/PortfolioFilters";
 import { toPortfolioProject } from "@/data/portfolio-projects";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const dynamic = "force-dynamic";
 
@@ -20,12 +21,12 @@ export default async function PortfolioPage() {
   const portfolioCases = await prisma.portfolioCase.findMany({
     where: {
       published: true,
-      slug: { not: "" },
+      slug: publicSlugWhere(),
       title: { not: "" },
     },
     orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
   }).catch(() => []);
-  const projects = portfolioCases.map(toPortfolioProject);
+  const projects = portfolioCases.filter((item) => isPublicContentSlug(item.slug)).map(toPortfolioProject);
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },

@@ -8,6 +8,7 @@ import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { getCatalogCategoryGallery, resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
+import { isPublicContentSlug } from "@/lib/public-content";
 
 type SeoLink = {
   href: string;
@@ -342,6 +343,9 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (!isPublicContentSlug(slug)) {
+    return { title: "Кухня на заказ", robots: { index: false, follow: false } };
+  }
 
   const cat = STATIC_CATEGORIES[slug];
   if (cat) {
@@ -379,6 +383,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CatalogItemPage({ params }: Props) {
   const { slug } = await params;
+  if (!isPublicContentSlug(slug)) notFound();
 
   let data: {
     title: string;

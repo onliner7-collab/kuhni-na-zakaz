@@ -12,6 +12,7 @@ import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage"
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { regionalLocations } from "@/data/locations";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 type HomeAdvantage = {
   id: number;
@@ -66,7 +67,7 @@ const HERO_KITCHEN_ALT =
 const HOME_TITLE =
   "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
 const HOME_DESCRIPTION =
-  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
+  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D-проект по согласованным условиям. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -89,7 +90,7 @@ export const metadata: Metadata = {
 async function getHomeData() {
   try {
     const [cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
-      prisma.portfolioCase.findMany({ where: { published: true }, take: 3, orderBy: { createdAt: "desc" } }),
+      prisma.portfolioCase.findMany({ where: { published: true, slug: publicSlugWhere() }, take: 3, orderBy: { createdAt: "desc" } }),
       prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 4, orderBy: { createdAt: "desc" } }),
       prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "scenario", published: true }, orderBy: { order: "asc" } }),
@@ -97,13 +98,22 @@ async function getHomeData() {
       prisma.homepageBlock.findMany({ where: { type: "advantage", published: true }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "trust", published: true }, orderBy: { order: "asc" } }),
       prisma.locationPage.findMany({
-        where: { published: true },
+        where: { published: true, slug: publicSlugWhere() },
         take: 8,
         orderBy: [{ region: "asc" }, { city: "asc" }],
         select: { id: true, slug: true, city: true, region: true, priceFrom: true },
       }),
     ]);
-    return { cases, reviews, faqs, scenarios, steps, advantages, trust, locations };
+    return {
+      cases: cases.filter((item) => isPublicContentSlug(item.slug)),
+      reviews,
+      faqs,
+      scenarios,
+      steps,
+      advantages,
+      trust,
+      locations: locations.filter((item) => isPublicContentSlug(item.slug)),
+    };
   } catch {
     return { cases: [], reviews: [], faqs: [], scenarios: [], steps: [], advantages: [], trust: [], locations: [] };
   }
@@ -182,7 +192,7 @@ export default async function HomePage() {
   const FALLBACK_ADVANTAGES: HomeAdvantage[] = [
     { id: 1, icon: "🏭", title: "Собственный завод", description: "Производим в своём цеху — контролируем качество на каждом этапе" },
     { id: 2, icon: "🛡️", title: "Гарантия 5 лет", description: "На фурнитуру Blum. На корпус и фасады — 2 года. Всё в договоре" },
-    { id: 3, icon: "📐", title: "Замер и проект бесплатно", description: "Выезжаем в день обращения. 3D-проект за 3 дня — без предоплаты" },
+    { id: 3, icon: "📐", title: "Замер и проект по заявке", description: "Согласуем удобное время замера и подготовим 3D-проект по условиям заказа" },
     { id: 4, icon: "📋", title: "Фиксированная цена", description: "Цена прописана в договоре до начала работ. Никаких доплат" },
     { id: 5, icon: "🇧🇾", title: "По всей Беларуси", description: "Минск, Брест, Гродно, Витебск, Гомель, Могилёв и районы — выезжаем" },
     { id: 6, icon: "⏱️", title: "От 14 рабочих дней", description: "Минимальный срок для стандартных кухонь. Сложные — 30–45 дней" },

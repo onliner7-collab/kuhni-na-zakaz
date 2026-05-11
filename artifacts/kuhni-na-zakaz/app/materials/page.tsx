@@ -4,6 +4,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { CheckCircle, XCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "Материалы для кухонных фасадов",
@@ -20,12 +21,12 @@ const budgetColor: Record<string, string> = {
 
 async function getMaterials() {
   try {
-    return await prisma.materialPage.findMany({ where: { published: true }, orderBy: [{ order: "asc" }, { id: "asc" }] });
+    return await prisma.materialPage.findMany({ where: { published: true, slug: publicSlugWhere() }, orderBy: [{ order: "asc" }, { id: "asc" }] });
   } catch { return []; }
 }
 
 export default async function MaterialsPage() {
-  const materials = await getMaterials();
+  const materials = (await getMaterials()).filter((item) => isPublicContentSlug(item.slug));
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -7,10 +7,15 @@ import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 type Props = { params: Promise<{ slug: string }> };
 
+export const dynamic = "force-dynamic";
+
 async function getScenario(slug: string) {
+  if (!isPublicContentSlug(slug)) return null;
+
   try {
     return await prisma.scenarioPage.findFirst({ where: { slug, published: true } });
   } catch { return null; }
@@ -48,8 +53,8 @@ async function getRelatedData(scenario: {
 
 export async function generateStaticParams() {
   try {
-    const scenarios = await prisma.scenarioPage.findMany({ where: { published: true }, select: { slug: true } });
-    return scenarios.map((s) => ({ slug: s.slug }));
+    const scenarios = await prisma.scenarioPage.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true } });
+    return scenarios.filter((s) => isPublicContentSlug(s.slug)).map((s) => ({ slug: s.slug }));
   } catch { return []; }
 }
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "Стили кухонь на заказ",
@@ -20,7 +21,7 @@ const budgetColor: Record<string, string> = {
 async function getStyles() {
   try {
     return await prisma.stylePage.findMany({
-      where: { published: true },
+      where: { published: true, slug: publicSlugWhere() },
       orderBy: [{ order: "asc" }, { id: "asc" }],
     });
   } catch {
@@ -29,7 +30,7 @@ async function getStyles() {
 }
 
 export default async function StylesPage() {
-  const styles = await getStyles();
+  const styles = (await getStyles()).filter((item) => isPublicContentSlug(item.slug));
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/db";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "Как выбрать кухню под ваши задачи",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 async function getScenarios() {
   try {
     return await prisma.scenarioPage.findMany({
-      where: { published: true },
+      where: { published: true, slug: publicSlugWhere() },
       orderBy: [{ order: "asc" }, { createdAt: "asc" }],
       select: { slug: true, icon: true, badge: true, title: true, intro: true },
     });
@@ -23,7 +24,7 @@ async function getScenarios() {
 }
 
 export default async function ScenariosPage() {
-  const scenarios = await getScenarios();
+  const scenarios = (await getScenarios()).filter((item) => isPublicContentSlug(item.slug));
 
   const jsonLd = {
     "@context": "https://schema.org",

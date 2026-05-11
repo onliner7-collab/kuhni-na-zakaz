@@ -16,12 +16,17 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-o
 import { trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
 import { regionalLocations } from "@/data/locations";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamic = "force-dynamic";
+
 async function getPortfolioCase(slug: string) {
+  if (!isPublicContentSlug(slug)) return null;
+
   return prisma.portfolioCase
     .findFirst({
       where: {
@@ -37,14 +42,14 @@ async function getPortfolioProjects() {
     .findMany({
       where: {
         published: true,
-        slug: { not: "" },
+        slug: publicSlugWhere(),
         title: { not: "" },
       },
       orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
     })
     .catch(() => []);
 
-  return cases.map((portfolioCase) => ({
+  return cases.filter((portfolioCase) => isPublicContentSlug(portfolioCase.slug)).map((portfolioCase) => ({
     source: portfolioCase,
     project: toPortfolioProject(portfolioCase as EditablePortfolioCase),
   }));

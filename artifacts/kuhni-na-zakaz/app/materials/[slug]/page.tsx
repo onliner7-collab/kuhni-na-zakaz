@@ -9,6 +9,7 @@ import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { renderContent } from "@/lib/render-content";
 import { getMaterialEnrichment } from "@/lib/kitchen-page-enrichment";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -20,6 +21,8 @@ const LEGACY_MATERIAL_SLUGS: Record<string, string> = {
 };
 
 async function getMaterial(slug: string) {
+  if (!isPublicContentSlug(slug)) return null;
+
   try {
     return await prisma.materialPage.findFirst({ where: { slug, published: true } });
   } catch { return null; }
@@ -52,7 +55,7 @@ async function getRelatedData(m: Awaited<ReturnType<typeof getMaterial>>) {
 async function getOtherMaterials(currentSlug: string) {
   try {
     return await prisma.materialPage.findMany({
-      where: { published: true, slug: { not: currentSlug } },
+      where: { published: true, slug: { ...publicSlugWhere(), not: currentSlug } },
       orderBy: [{ order: "asc" }, { id: "asc" }],
       take: 5,
       select: { slug: true, title: true },

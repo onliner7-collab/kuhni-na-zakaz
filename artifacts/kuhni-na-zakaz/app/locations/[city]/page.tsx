@@ -20,6 +20,7 @@ import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
+import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const revalidate = 3600;
 export const dynamic = "force-dynamic";
@@ -161,6 +162,8 @@ function legacyFallbackLocation(slug: string): LocationPage | null {
 }
 
 async function getLocation(slug: string): Promise<LocationPage | null> {
+  if (!isPublicContentSlug(slug)) return null;
+
   return prisma.locationPage
     .findFirst({ where: { slug, published: true } })
     .then((location) => normalizeLocationCopy(location ?? fallbackLocation(slug)))
@@ -174,12 +177,12 @@ async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocatio
   const [pinnedCases, autoCases, pinnedReviews, autoReviews] = await Promise.all([
     pinnedSlugs.length > 0
       ? prisma.portfolioCase.findMany({
-          where: { published: true, slug: { in: pinnedSlugs } },
+          where: { published: true, slug: { in: pinnedSlugs.filter(isPublicContentSlug) } },
           select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
         }).catch(() => [])
       : [],
     prisma.portfolioCase.findMany({
-      where: { published: true, city: { contains: loc.city, mode: "insensitive" } },
+      where: { published: true, slug: publicSlugWhere(), city: { contains: loc.city, mode: "insensitive" } },
       orderBy: { createdAt: "desc" },
       take: 6,
       select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
@@ -201,7 +204,7 @@ async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocatio
   const seenCaseIds = new Set<number>();
   const cases: PortfolioCase[] = [];
   for (const c of [...pinnedCases, ...autoCases]) {
-    if (!seenCaseIds.has(c.id) && cases.length < 4) {
+    if (isPublicContentSlug(c.slug) && !seenCaseIds.has(c.id) && cases.length < 4) {
       seenCaseIds.add(c.id);
       cases.push(c as PortfolioCase);
     }
@@ -223,6 +226,7 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
   const localCases = await prisma.portfolioCase.findMany({
     where: {
       published: true,
+      slug: publicSlugWhere(),
       OR: [
         { city: { contains: location.portfolioCityKey, mode: "insensitive" } },
         { region: { contains: location.regionName, mode: "insensitive" } },
@@ -244,11 +248,11 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
   }).catch(() => []);
 
   if (localCases.length > 0) {
-    return { cases: localCases as PortfolioCasePreview[], hasLocalCases: true };
+    return { cases: localCases.filter((item) => isPublicContentSlug(item.slug)) as PortfolioCasePreview[], hasLocalCases: true };
   }
 
   const generalCases = await prisma.portfolioCase.findMany({
-    where: { published: true, slug: { not: "" }, title: { not: "" } },
+    where: { published: true, slug: publicSlugWhere(), title: { not: "" } },
     orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
     take: 3,
     select: {
@@ -264,7 +268,7 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
     },
   }).catch(() => []);
 
-  return { cases: generalCases as PortfolioCasePreview[], hasLocalCases: false };
+  return { cases: generalCases.filter((item) => isPublicContentSlug(item.slug)) as PortfolioCasePreview[], hasLocalCases: false };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

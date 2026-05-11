@@ -20,7 +20,7 @@ test.describe("bulk import v1 post-import smoke", () => {
     );
 
     const description =
-      "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D за 3 дня бесплатно. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
+      "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D-проект по согласованным условиям. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
 
     await expect(page.locator('head meta[name="description"]')).toHaveAttribute("content", description);
     await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute(

@@ -17,6 +17,7 @@ import {
   siteUrl,
 } from "@/lib/schema-org";
 import { BLOG_POSTS, BLOG_POSTS_BY_SLUG } from "@/lib/blog-static";
+import { isPublicContentSlug } from "@/lib/public-content";
 
 const STATIC_POSTS = BLOG_POSTS_BY_SLUG;
 
@@ -80,6 +81,10 @@ async function getRelatedContent(
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (!isPublicContentSlug(slug)) {
+    return { title: "Статья", robots: { index: false, follow: false } };
+  }
+
   try {
     const p = await prisma.blogPost.findUnique({ where: { slug } });
     if (p?.published)
@@ -101,6 +106,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
+  if (!isPublicContentSlug(slug)) notFound();
+
   let data: {
     title: string;
     excerpt: string;
