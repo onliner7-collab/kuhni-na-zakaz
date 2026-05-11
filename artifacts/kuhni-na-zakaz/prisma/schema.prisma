@@ -208,7 +208,7 @@ model LocationPage {
   priceFrom       Int      @default(900)
   deliveryCost    String   @default("")
   deliveryDays    Int      @default(1)
-  measureCost     String   @default("Бесплатно")
+  measureCost     String   @default("Условия замера — по заявке")
   timelineText    String   @default("")
 
   visitDetails    String   @default("")
@@ -367,7 +367,7 @@ model SiteSettings {
   telegramBotToken String @default("")
   telegramChatId  String @default("")
   metaTitle       String @default("Кухни на заказ по Беларуси | КухниBY")
-  metaDescription String @default("Кухни на заказ по всей Беларуси. Собственное производство. Гарантия 5 лет. Замер и 3D-проект бесплатно.")
+  metaDescription String @default("Кухни на заказ по всей Беларуси. Собственное производство. Гарантия фиксируется в договоре. Условия замера и 3D-проекта уточняются при заявке.")
 }
 
 model TelegramRecipient {

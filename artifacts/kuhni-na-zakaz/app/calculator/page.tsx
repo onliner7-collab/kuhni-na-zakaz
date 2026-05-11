@@ -6,7 +6,7 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-o
 
 export const metadata: Metadata = {
   title: "Калькулятор стоимости кухни",
-  description: "Рассчитайте ориентировочную стоимость кухни на заказ в Беларуси. Выберите форму, материал, стиль и получите диапазон цены за 2 минуты. Бесплатно.",
+  description: "Рассчитайте ориентировочную стоимость кухни на заказ в Беларуси. Выберите форму, материал, стиль и получите диапазон цены за 2 минуты.",
   alternates: { canonical: "/calculator" },
 };
 

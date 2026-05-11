@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/imports/
+Disallow: /login/
+Disallow: /api/
+Disallow: /kapi/
+Disallow: /search/
+Disallow: /thanks/
+
+Sitemap: https://kuhni.minsk.by/sitemap.xml

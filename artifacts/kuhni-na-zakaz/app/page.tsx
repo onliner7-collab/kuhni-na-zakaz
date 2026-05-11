@@ -744,8 +744,8 @@ export default async function HomePage() {
           <div className="container-site">
             <div className="flex items-center justify-between mb-10">
               <div>
-                <h2 className="font-serif text-3xl lg:text-4xl font-bold">Отзывы клиентов</h2>
-                <p className="text-muted-foreground mt-1 text-sm">Публикуем отзывы после проверки и модерации</p>
+                <h2 className="font-serif text-3xl lg:text-4xl font-bold">Отзывы и примеры обратной связи</h2>
+                <p className="text-muted-foreground mt-1 text-sm">Публикуем только подтверждённые отзывы. Новые отзывы добавляются после проверки.</p>
               </div>
               <Link href="/reviews" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
                 Все отзывы <ArrowRight className="w-4 h-4" aria-hidden />

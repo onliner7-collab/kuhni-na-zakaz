@@ -100,7 +100,7 @@ function regionalLocationToPage(item: RegionalLocationData): LocationPage {
     address: "",
     priceFrom: item.priceFrom,
     deliveryDays: 1,
-    measureCost: "Бесплатно",
+    measureCost: "Условия замера — по заявке",
     ctaHeadline: city === "Минская область" ? "Заказать кухню по Минской области" : `Заказать кухню в ${cityPrep}`,
     ctaSubtext: "Оставьте заявку, и специалист свяжется с вами для консультации и записи на замер.",
     caseSlugs: [],
@@ -150,7 +150,7 @@ function legacyFallbackLocation(slug: string): LocationPage | null {
     address: "",
     priceFrom: 0,
     deliveryDays: 1,
-    measureCost: "Бесплатно",
+    measureCost: "Условия замера — по заявке",
     ctaHeadline: `Заказать кухню в ${cityPrep}`,
     ctaSubtext: "Оставьте заявку, и специалист свяжется с вами для консультации и записи на замер.",
     caseSlugs: [],
@@ -520,7 +520,7 @@ export default async function LocationPage({ params }: Props) {
                 </div>
               )}
               <div>
-                <p className="text-2xl font-bold">{loc.measureCost || "Бесплатно"}</p>
+                <p className="text-2xl font-bold">{loc.measureCost || "Условия замера — по заявке"}</p>
                 <p className="text-xs text-white/60">выезд на замер</p>
               </div>
               {loc.deliveryDays > 0 && (

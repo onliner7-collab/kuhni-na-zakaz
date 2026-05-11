@@ -353,7 +353,7 @@ export default async function ScenarioDetailPage({ params }: Props) {
         <div className="container-site max-w-2xl">
           <h2 className="font-serif text-3xl font-bold text-center mb-2">Обсудить вашу кухню</h2>
           <p className="text-center text-muted-foreground mb-8">
-            Расскажите о своей ситуации — подберём решение и назначим замер. Бесплатно.
+            Расскажите о своей ситуации — подберём решение и согласуем условия замера.
           </p>
           <ContactForm source={`scenario-${slug}`} />
         </div>

@@ -579,7 +579,7 @@ export default async function CatalogItemPage({ params }: Props) {
             <div className="sticky top-20 space-y-5">
               <div className="card-base p-6">
               <h2 className="font-serif text-xl font-semibold mb-4">Заказать замер</h2>
-              <p className="text-sm text-muted-foreground mb-4">Бесплатно и без обязательств</p>
+              <p className="text-sm text-muted-foreground mb-4">Условия замера уточняются при заявке</p>
               <ContactForm source={`catalog/${slug}`} />
               </div>
               <div className="card-base p-5">
