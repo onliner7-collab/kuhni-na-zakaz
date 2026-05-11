@@ -132,6 +132,155 @@ function LinkPills({ links }: { links: RegionalInternalLink[] }) {
   );
 }
 
+const borisovKitchenIdeas = [
+  {
+    title: "Светлая прямая кухня",
+    image: "/uploads/locations/borisov-3d/borisov-3d-pryamaya-svetlaya.webp",
+    alt: "3D-визуализация светлой прямой кухни для квартиры в Борисове",
+    caption:
+      "3D-визуализация: светлая кухня, которую можно спроектировать и изготовить для квартиры в Борисове.",
+    note: "Такую кухню можем рассчитать, адаптировать под размеры помещения и изготовить для Борисова.",
+  },
+  {
+    title: "Угловая кухня до потолка",
+    image: "/uploads/locations/borisov-3d/borisov-3d-uglovaya-do-potolka.webp",
+    alt: "3D-визуализация угловой кухни до потолка для типовой квартиры в Борисове",
+    caption: "Пример дизайна: угловая кухня до потолка для Борисова.",
+    note: "Идея для заказа кухни в вашем городе с высоким хранением и встроенной техникой.",
+  },
+  {
+    title: "Маленькая кухня с хранением",
+    image: "/uploads/locations/borisov-3d/borisov-3d-malenkaya-hranenie.webp",
+    alt: "3D-визуализация маленькой кухни с максимумом хранения для Борисова",
+    caption:
+      "3D-визуализация, не фото выполненной работы: вариант кухни для сомневающихся клиентов.",
+    note: "Поможем адаптировать идею под небольшую квартиру, размеры и бюджет.",
+  },
+  {
+    title: "Дерево и светлая столешница",
+    image: "/uploads/locations/borisov-3d/borisov-3d-derevo-svetlaya-stoleshnica.webp",
+    alt: "3D-визуализация кухни с деревянными фасадами и светлой столешницей для Борисова",
+    caption: "Пример дизайна: кухня с деревянными фасадами и светлой столешницей.",
+    note: "Подберем похожие материалы, фурнитуру и компоновку под вашу планировку.",
+  },
+  {
+    title: "Скрытые ручки и техника",
+    image: "/uploads/locations/borisov-3d/borisov-3d-vstroennaya-tehnika-skrytye-ruchki.webp",
+    alt: "3D-визуализация кухни со встроенной техникой и скрытыми ручками для Борисова",
+    caption: "3D-визуализация: кухня со встроенной техникой и скрытыми ручками.",
+    note: "Такую идею можно пересчитать под список техники, розетки и вентиляцию.",
+  },
+  {
+    title: "Семейная кухня для дома",
+    image: "/uploads/locations/borisov-3d/borisov-3d-semeynaya-dom.webp",
+    alt: "3D-визуализация просторной семейной кухни для дома в Борисове или Борисовском районе",
+    caption: "Пример дизайна: просторная семейная кухня для дома в Борисове или Борисовском районе.",
+    note: "Такую кухню можем спроектировать и изготовить для квартиры или дома в вашем городе.",
+  },
+];
+
+function BorisovKitchenIdeasSection() {
+  return (
+    <section className="bg-white section-padding">
+      <div className="container-site">
+        <SectionTitle
+          eyebrow="Пример дизайна"
+          title="Идеи кухонь для Борисова и других городов: 3D-визуализации перед заказом"
+          text="Если вы ещё не знаете, какую кухню хотите, посмотрите примеры решений. Это не фото выполненных работ, а 3D-визуализации — такие идеи можно адаптировать под размеры вашей квартиры или дома в Борисове."
+        />
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {borisovKitchenIdeas.map((idea) => (
+            <article key={idea.title} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
+              <div className="relative aspect-[4/3] bg-muted">
+                <Image
+                  src={idea.image}
+                  alt={idea.alt}
+                  title={idea.caption}
+                  width={720}
+                  height={540}
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="h-full w-full object-cover"
+                />
+                <span className="absolute left-3 top-3 rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                  3D-визуализация
+                </span>
+              </div>
+              <div className="p-5">
+                <h3 className="text-base font-semibold text-foreground">{idea.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{idea.caption}</p>
+                <p className="mt-3 text-sm leading-6 text-foreground">{idea.note}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-lg border border-primary/20 bg-primary/5 p-5">
+          <p className="text-sm leading-6 text-muted-foreground">
+            Мы можем адаптировать любую 3D-идею под реальные размеры кухни: прямую, угловую, до потолка,
+            с пеналами, встроенной техникой, барной стойкой или дополнительным хранением. Для Борисова и
+            Борисовского района расчёт начинается с размеров помещения, пожеланий по материалам и бюджета.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href="/calculator"
+              className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary"
+            >
+              Калькулятор
+            </Link>
+            <Link
+              href="/portfolio"
+              className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary"
+            >
+              Портфолио
+            </Link>
+            <Link
+              href="/prices"
+              className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary"
+            >
+              Цены
+            </Link>
+            <Link
+              href="/contacts"
+              className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary"
+            >
+              Контакты
+            </Link>
+            <Link
+              href="/locations/zhodino"
+              className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary"
+            >
+              Жодино
+            </Link>
+            <Link
+              href="/locations/smolevichi"
+              className="rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary"
+            >
+              Смолевичи
+            </Link>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="#form"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+            >
+              Хочу похожую кухню
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <Link
+              href="#form"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border bg-white px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+            >
+              Рассчитать по моим размерам
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function getServiceItems(location: RegionalLocationData) {
   return [
     {
@@ -430,6 +579,8 @@ export function RegionalLocationPage({
         </div>
       </section>
 
+      {location.slug === "borisov" && <BorisovKitchenIdeasSection />}
+
       <section className="bg-white section-padding">
         <div className="container-site">
           <SectionTitle
@@ -630,6 +781,7 @@ export function RegionalLocationPage({
             <h3 className="mb-4 text-xl font-semibold text-white">Рассчитать кухню</h3>
             <ContactForm
               source={`location-${location.slug}`}
+              sourcePage={`/locations/${location.slug}`}
               sourceType="location-region"
               city={location.cityName}
               cityKey={location.slug}

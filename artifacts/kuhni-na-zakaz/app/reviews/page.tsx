@@ -8,7 +8,7 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-o
 
 export const metadata: Metadata = {
   title: "Отзывы клиентов о кухнях",
-  description: "Реальные отзывы клиентов о кухнях на заказ по всей Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Все отзывы проходят модерацию.",
+  description: "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Все отзывы проходят модерацию перед публикацией.",
   alternates: { canonical: "/reviews" },
 };
 

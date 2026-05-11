@@ -443,7 +443,7 @@ export default async function StylePage({ params }: Props) {
               <div className="sticky top-24 space-y-5">
                 <div className="card-base p-6">
                   <h2 className="font-serif text-xl font-semibold mb-4">Заказать замер</h2>
-                  <p className="text-sm text-muted-foreground mb-4">Замер бесплатно. Выезд по всей Беларуси.</p>
+                  <p className="text-sm text-muted-foreground mb-4">Условия замера уточняются при заявке. Выезд согласуем по адресу.</p>
                   <ContactForm source={`styles/${slug}`} />
                 </div>
 

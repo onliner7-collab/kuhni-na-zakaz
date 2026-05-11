@@ -81,11 +81,11 @@ export default function CalculatorPage() {
             <div className="card-base p-5 bg-primary/5 border-primary/20">
               <p className="text-sm font-semibold text-primary mb-2">Нужна точная цена?</p>
               <p className="text-xs text-muted-foreground mb-4">
-                Замерщик приедет бесплатно, возьмёт все размеры и составит точную смету в тот же день.
+                Условия замера уточняются при заявке. Точная смета зависит от размеров, материалов и комплектации.
               </p>
               <Link href="/contacts#form"
                 className="block text-center py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition-colors">
-                Заказать бесплатный замер
+                Согласовать замер
               </Link>
             </div>
 

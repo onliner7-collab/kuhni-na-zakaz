@@ -134,7 +134,7 @@ function legacyFallbackLocation(slug: string): LocationPage | null {
     description: `Кухни на заказ для клиентов в регионе ${item.city}: индивидуальный проект, подбор материалов, изготовление и монтаж.`,
     intro: "Подберём планировку, материалы и комплектацию под помещение, бюджет и сроки.",
     localIntro: "",
-    features: ["Бесплатный замер", "3D-проект", "Договор и гарантия"],
+    features: ["Замер по заявке", "3D-проект по условиям заказа", "Договор и гарантия"],
     uniquePoints: [],
     contentBlocks: [],
     timelineText: "",
@@ -501,7 +501,7 @@ export default async function LocationPage({ params }: Props) {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[#2d0a5e] font-bold hover:bg-white/90 transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
-                Бесплатный замер
+                Согласовать замер
               </a>
               <a
                 href="#form"

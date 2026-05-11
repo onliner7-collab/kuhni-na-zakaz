@@ -8,8 +8,8 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { getSameAsLinks, resolveContactInfo } from "@/lib/contact-info";
 
 export const metadata: Metadata = {
-  title: "Контакты и бесплатный замер",
-  description: "Контакты производителя кухонь на заказ: телефоны, email, адрес и форма заявки. Закажите бесплатный замер и консультацию по всей Беларуси.",
+  title: "Контакты и заявка на замер",
+  description: "Контакты производителя кухонь на заказ: телефоны, email, адрес и форма заявки. Условия замера и консультации уточняются при заявке.",
   alternates: { canonical: "/contacts" },
 };
 

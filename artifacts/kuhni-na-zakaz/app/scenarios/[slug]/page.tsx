@@ -135,7 +135,7 @@ export default async function ScenarioDetailPage({ params }: Props) {
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white shadow-xl transition-all hover:scale-105"
                 style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
               >
-                {scenario.ctaText || "Заказать бесплатный замер"}
+                {scenario.ctaText || "Согласовать замер"}
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link href="/portfolio" className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white border border-white/20 hover:bg-white/10 transition-all">

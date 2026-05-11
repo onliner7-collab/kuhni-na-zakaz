@@ -80,10 +80,10 @@ function detectSourceType(pathname: string) {
   return "website";
 }
 
-function readTrackingFields(fallbackSourcePage: string): TrackingFields {
+function readTrackingFields(fallbackSourcePage: string, fixedSourcePage?: string): TrackingFields {
   if (typeof window === "undefined") {
     return {
-      sourcePage: fallbackSourcePage,
+      sourcePage: fixedSourcePage || fallbackSourcePage,
       utmSource: "",
       utmMedium: "",
       utmCampaign: "",
@@ -96,7 +96,7 @@ function readTrackingFields(fallbackSourcePage: string): TrackingFields {
   const params = new URLSearchParams(window.location.search);
 
   return {
-    sourcePage: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+    sourcePage: fixedSourcePage || `${window.location.pathname}${window.location.search}${window.location.hash}`,
     utmSource: params.get("utm_source") || "",
     utmMedium: params.get("utm_medium") || "",
     utmCampaign: params.get("utm_campaign") || "",
@@ -124,7 +124,7 @@ export function ContactForm({
   const formId = useId();
   const resolvedSourceType = sourceType || detectSourceType(pathname);
   const fallbackSourcePage = sourcePage || pathname;
-  const [trackingFields, setTrackingFields] = useState<TrackingFields>(() => readTrackingFields(fallbackSourcePage));
+  const [trackingFields, setTrackingFields] = useState<TrackingFields>(() => readTrackingFields(fallbackSourcePage, sourcePage));
   const nameId = `${formId}-lead-name`;
   const phoneId = `${formId}-lead-phone`;
   const cityId = `${formId}-lead-city`;
@@ -134,7 +134,7 @@ export function ContactForm({
   const formErrorSummaryId = `${formId}-lead-errors`;
 
   useEffect(() => {
-    setTrackingFields(readTrackingFields(sourcePage || pathname));
+    setTrackingFields(readTrackingFields(sourcePage || pathname, sourcePage));
   }, [pathname, sourcePage]);
 
   const defaultValues = useMemo<FormData>(() => ({
@@ -168,7 +168,7 @@ export function ContactForm({
   const onSubmit = async (data: FormData) => {
     if (data.honeypot) return;
 
-    const currentTracking = readTrackingFields(fallbackSourcePage);
+    const currentTracking = readTrackingFields(fallbackSourcePage, sourcePage);
     const payload = {
       ...data,
       source,

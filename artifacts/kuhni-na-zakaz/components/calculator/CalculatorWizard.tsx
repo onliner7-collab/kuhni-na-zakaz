@@ -221,7 +221,7 @@ export function CalculatorWizard() {
             }}
               data-testid="calculator-show-form"
               className="flex items-center justify-center gap-2 py-3 px-5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-colors">
-              <Phone className="w-4 h-4" /> Заказать бесплатный замер
+              <Phone className="w-4 h-4" /> Согласовать замер
             </button>
             <button onClick={() => { setResult(null); setStep(0); setAnswers({ ...DEFAULTS }); }}
               className="flex items-center justify-center gap-2 py-3 px-5 border border-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-50 transition-colors">
@@ -230,8 +230,8 @@ export function CalculatorWizard() {
           </div>
         ) : (
           <div className="card-base p-5">
-            <h3 className="font-serif text-xl font-semibold mb-1">Заказать бесплатный замер</h3>
-            <p className="text-sm text-muted-foreground mb-4">Замерщик приедет, уточнит детали и назовёт точную цену</p>
+            <h3 className="font-serif text-xl font-semibold mb-1">Согласовать замер</h3>
+            <p className="text-sm text-muted-foreground mb-4">Менеджер уточнит детали, адрес и ближайшее доступное время</p>
             <ContactForm
               source="calculator"
               sourceType="calculator"

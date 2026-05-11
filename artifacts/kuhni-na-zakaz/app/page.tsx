@@ -35,8 +35,8 @@ type HomeStep = {
 function advantageEmojiAriaLabel(icon: string, title: string): string {
   const labels: Record<string, string> = {
     "🏭": "Собственный завод по производству кухонь",
-    "🛡️": "Гарантия 5 лет на кухни",
-    "📐": "Бесплатный замер и 3D-проект кухни",
+    "🛡️": "Гарантийные условия по договору",
+    "📐": "Замер и 3D-проект кухни по условиям заявки",
     "📋": "Фиксированная цена в договоре",
     "🇧🇾": "Работаем по всей Беларуси",
     "⏱️": "Сроки изготовления кухни",
@@ -67,7 +67,7 @@ const HERO_KITCHEN_ALT =
 const HOME_TITLE =
   "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
 const HOME_DESCRIPTION =
-  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D-проект по согласованным условиям. Гарантия 5 лет, от 1200 BYN. Фикс. смета.";
+  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D-проект по согласованным условиям. Гарантия фиксируется в договоре, от 1200 BYN.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -186,23 +186,23 @@ export default async function HomePage() {
     { id: 2, icon: "💰", title: "Узнать стоимость", subtitle: "без обязательств", description: "Ответьте на несколько вопросов и получите примерный диапазон цены", href: "/prices", badge: "Быстро" },
     { id: 3, icon: "📸", title: "Посмотреть работы", subtitle: "портфолио", description: "Фото, 3D-визуализации и заполненные данные по проектам кухонь", href: "/portfolio", badge: "" },
     { id: 4, icon: "🎨", title: "Выбрать стиль", subtitle: "и материалы", description: "Современный, классика, минимализм, скандинавский — с примерами и ценами", href: "/styles", badge: "" },
-    { id: 5, icon: "✏️", title: "Собрать кухню", subtitle: "под свои задачи", description: "Расскажите о планировке, мы предложим решение и бесплатный выезд на замер", href: "/contacts#form", badge: "Старт" },
+    { id: 5, icon: "✏️", title: "Собрать кухню", subtitle: "под свои задачи", description: "Расскажите о планировке, мы предложим решение и согласуем условия замера", href: "/contacts#form", badge: "Старт" },
   ];
 
   const FALLBACK_ADVANTAGES: HomeAdvantage[] = [
     { id: 1, icon: "🏭", title: "Собственный завод", description: "Производим в своём цеху — контролируем качество на каждом этапе" },
-    { id: 2, icon: "🛡️", title: "Гарантия 5 лет", description: "На фурнитуру Blum. На корпус и фасады — 2 года. Всё в договоре" },
+    { id: 2, icon: "🛡️", title: "Гарантия по договору", description: "Гарантийные условия фиксируются в договоре и зависят от комплектации" },
     { id: 3, icon: "📐", title: "Замер и проект по заявке", description: "Согласуем удобное время замера и подготовим 3D-проект по условиям заказа" },
     { id: 4, icon: "📋", title: "Фиксированная цена", description: "Цена прописана в договоре до начала работ. Никаких доплат" },
-    { id: 5, icon: "🇧🇾", title: "По всей Беларуси", description: "Минск, Брест, Гродно, Витебск, Гомель, Могилёв и районы — выезжаем" },
+    { id: 5, icon: "🇧🇾", title: "По всей Беларуси", description: "Минск, Брест, Гродно, Витебск, Гомель, Могилёв и районы — условия выезда согласуем по заявке" },
     { id: 6, icon: "⏱️", title: "От 14 рабочих дней", description: "Минимальный срок для стандартных кухонь. Сложные — 30–45 дней" },
   ];
 
   const FALLBACK_STEPS: HomeStep[] = [
     { id: 1, icon: "01", title: "Заявка", description: "Оставьте заявку или позвоните — ответим за 30 минут в рабочее время" },
     { id: 2, icon: "02", title: "Консультация", description: "Обсуждаем вашу планировку, бюджет и стиль. Без давления" },
-    { id: 3, icon: "03", title: "Выезд на замер", description: "Бесплатный замер по всей Беларуси. Приедем в удобное время" },
-    { id: 4, icon: "04", title: "Проект и цена", description: "3D-проект и фиксированная цена в договоре. За 3 рабочих дня" },
+    { id: 3, icon: "03", title: "Выезд на замер", description: "Условия замера уточняются при заявке. Время выезда согласуем с менеджером" },
+    { id: 4, icon: "04", title: "Проект и цена", description: "Срок подготовки проекта зависит от сложности кухни. Цена фиксируется в договоре" },
     { id: 5, icon: "05", title: "Производство", description: "Изготовление на собственном заводе. 14–30 дней" },
     { id: 6, icon: "06", title: "Монтаж под ключ", description: "Доставка, сборка, подключение техники. Убираем мусор сами" },
   ];
@@ -250,7 +250,7 @@ export default async function HomePage() {
             <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold text-violet-200 border border-violet-500/30 bg-violet-500/10 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" aria-hidden />
-              Работаем по всей Беларуси — от 14 рабочих дней
+              Работаем по Беларуси — сроки зависят от проекта
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
@@ -269,7 +269,7 @@ export default async function HomePage() {
 
             <p className="mt-5 text-lg text-white/65 leading-relaxed max-w-xl">
               Проектируем, производим и устанавливаем кухни в Минске, Бресте, Гродно, Витебске, Гомеле и Могилёве.
-              Замер и 3D-проект — бесплатно. Цена фиксируется в договоре.
+              Условия замера и 3D-проекта согласуем при заявке. Цена фиксируется в договоре.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -279,7 +279,7 @@ export default async function HomePage() {
                 style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
                 data-testid="hero-cta-order"
               >
-                Заказать замер бесплатно
+                Согласовать замер
                 <ArrowRight className="w-4 h-4" aria-hidden />
               </Link>
               <Link
@@ -292,7 +292,7 @@ export default async function HomePage() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-5">
-              {["Замер бесплатно", "Проект за 3 дня", "Гарантия 5 лет", "Вся Беларусь"].map((t) => (
+              {["Замер по заявке", "Срок проекта зависит от сложности", "Гарантия в договоре", "Вся Беларусь"].map((t) => (
                 <div key={t} className="flex items-center gap-2 text-sm text-white/60">
                   <CheckCircle className="w-4 h-4 text-violet-400 shrink-0" aria-hidden />
                   {t}
@@ -688,7 +688,7 @@ export default async function HomePage() {
                 {[
                   {
                     icon: <Shield className="w-5 h-5 text-primary" aria-hidden />,
-                    title: "Гарантия 5 лет",
+                    title: "Гарантия по договору",
                     desc: "На фурнитуру Blum/Hettich. На корпус и фасады — 2 года. Письменно.",
                   },
                   {
@@ -742,7 +742,7 @@ export default async function HomePage() {
             <div className="flex items-center justify-between mb-10">
               <div>
                 <h2 className="font-serif text-3xl lg:text-4xl font-bold">Отзывы клиентов</h2>
-                <p className="text-muted-foreground mt-1 text-sm">Реальные клиенты из разных городов Беларуси</p>
+                <p className="text-muted-foreground mt-1 text-sm">Публикуем отзывы после проверки и модерации</p>
               </div>
               <Link href="/reviews" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
                 Все отзывы <ArrowRight className="w-4 h-4" aria-hidden />
@@ -788,7 +788,7 @@ export default async function HomePage() {
               className="bg-white text-violet-700 hover:bg-white/90 px-8 py-3.5 rounded-xl font-bold inline-flex items-center gap-2 transition-all hover:scale-105 shadow-xl"
               data-testid="banner-cta"
             >
-              Заказать бесплатный замер
+              Согласовать замер
             </Link>
             <a
               href={`tel:${CONTACT_DEFAULTS.phone}`}
@@ -805,7 +805,7 @@ export default async function HomePage() {
       <section id="form" className="section-padding bg-background">
         <div className="container-site max-w-2xl">
           <h2 className="font-serif text-3xl font-bold text-center mb-2">Оставить заявку</h2>
-          <p className="text-center text-muted-foreground mb-8">Замер и консультация — бесплатно по всей Беларуси</p>
+          <p className="text-center text-muted-foreground mb-8">Условия замера и консультации уточняются при заявке</p>
           <ContactForm source="home" sourceType="home" />
         </div>
       </section>

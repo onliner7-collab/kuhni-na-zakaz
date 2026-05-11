@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: cleanSeoTitle(page?.seoTitle, "О компании и производство кухонь"),
     description: trimMetaDescription(
       page?.seoDescription,
-      "Производитель кухонь на заказ по всей Беларуси: индивидуальные размеры, договор, гарантия и бесплатный замер.",
+      "Производитель кухонь на заказ по Беларуси: индивидуальные размеры, договор, гарантийные условия и замер по заявке.",
     ),
     alternates: { canonical: "/about" },
   };
