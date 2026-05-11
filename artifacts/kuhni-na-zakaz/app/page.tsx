@@ -477,7 +477,7 @@ export default async function HomePage() {
 
               return (
                 <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <CatalogCategoryImage src={image.src} alt={image.alt} priority={index < 3} />
+                  <CatalogCategoryImage src={image.src} alt={image.alt} />
                   <div className="p-5">
                     <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{cat.title}</h3>
                     <p className="text-primary font-bold mt-1 text-sm">{cat.price}</p>

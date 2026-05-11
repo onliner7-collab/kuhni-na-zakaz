@@ -46,7 +46,7 @@ export default async function CatalogPage() {
 
               return (
                 <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base hover:shadow-md transition-shadow group">
-                  <CatalogCategoryImage src={image.src} alt={image.alt} priority={index < 3} />
+                  <CatalogCategoryImage src={image.src} alt={image.alt} priority={index === 0} />
                   <div className="p-5">
                     <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{cat.title}</h2>
                     <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{cat.description}</p>

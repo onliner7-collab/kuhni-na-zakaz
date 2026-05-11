@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -121,9 +121,17 @@ export function ContactForm({
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const pathname = usePathname() || "/";
+  const formId = useId();
   const resolvedSourceType = sourceType || detectSourceType(pathname);
   const fallbackSourcePage = sourcePage || pathname;
   const [trackingFields, setTrackingFields] = useState<TrackingFields>(() => readTrackingFields(fallbackSourcePage));
+  const nameId = `${formId}-lead-name`;
+  const phoneId = `${formId}-lead-phone`;
+  const cityId = `${formId}-lead-city`;
+  const kitchenTypeId = `${formId}-lead-kitchen-type`;
+  const commentId = `${formId}-lead-comment`;
+  const agreementId = `${formId}-lead-agreement`;
+  const formErrorSummaryId = `${formId}-lead-errors`;
 
   useEffect(() => {
     setTrackingFields(readTrackingFields(sourcePage || pathname));
@@ -153,6 +161,9 @@ export function ContactForm({
     resolver: zodResolver(schema),
     defaultValues,
   });
+  const errorMessages = Object.values(errors)
+    .map((error) => error?.message)
+    .filter(Boolean);
 
   const onSubmit = async (data: FormData) => {
     if (data.honeypot) return;
@@ -238,8 +249,22 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-testid="contact-form" noValidate>
-      <input {...register("honeypot")} type="text" className="hidden" tabIndex={-1} aria-hidden="true" autoComplete="off" />
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-4"
+      data-testid="contact-form"
+      noValidate
+      aria-describedby={errorMessages.length > 0 ? formErrorSummaryId : undefined}
+    >
+      <input
+        {...register("honeypot")}
+        type="text"
+        className="hidden"
+        tabIndex={-1}
+        aria-hidden="true"
+        aria-label="Служебное поле"
+        autoComplete="off"
+      />
       <input {...register("sourcePage")} type="hidden" value={trackingFields.sourcePage} readOnly />
       <input {...register("sourceType")} type="hidden" value={resolvedSourceType} readOnly />
       <input {...register("projectSlug")} type="hidden" value={projectSlug || ""} readOnly />
@@ -251,25 +276,29 @@ export function ContactForm({
       <input {...register("utmContent")} type="hidden" value={trackingFields.utmContent} readOnly />
       <input {...register("referrer")} type="hidden" value={trackingFields.referrer} readOnly />
 
+      <div id={formErrorSummaryId} className="sr-only" role="alert" aria-live="assertive">
+        {errorMessages.length > 0 ? "В форме есть ошибки. Проверьте поля ниже." : ""}
+      </div>
+
       <div>
-        <Label htmlFor="lead-name">Имя *</Label>
+        <Label htmlFor={nameId}>Имя *</Label>
         <Input
-          id="lead-name"
+          id={nameId}
           {...register("name")}
           placeholder="Ваше имя"
           className="mt-1"
           autoComplete="name"
           aria-invalid={Boolean(errors.name)}
-          aria-describedby={errors.name ? "lead-name-error" : undefined}
+          aria-describedby={errors.name ? `${nameId}-error` : undefined}
           data-testid="form-name"
         />
-        {errors.name && <p id="lead-name-error" className="mt-1 text-xs text-destructive" role="alert">{errors.name.message}</p>}
+        {errors.name && <p id={`${nameId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.name.message}</p>}
       </div>
 
       <div>
-        <Label htmlFor="lead-phone">Телефон *</Label>
+        <Label htmlFor={phoneId}>Телефон *</Label>
         <Input
-          id="lead-phone"
+          id={phoneId}
           {...register("phone")}
           type="tel"
           inputMode="tel"
@@ -277,22 +306,22 @@ export function ContactForm({
           className="mt-1"
           autoComplete="tel"
           aria-invalid={Boolean(errors.phone)}
-          aria-describedby={errors.phone ? "lead-phone-error" : undefined}
+          aria-describedby={errors.phone ? `${phoneId}-error` : undefined}
           data-testid="form-phone"
         />
-        {errors.phone && <p id="lead-phone-error" className="mt-1 text-xs text-destructive" role="alert">{errors.phone.message}</p>}
+        {errors.phone && <p id={`${phoneId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.phone.message}</p>}
       </div>
 
       <div>
-        <Label htmlFor="lead-city">Город</Label>
-        <Input id="lead-city" {...register("city")} placeholder="Минск" className="mt-1" autoComplete="address-level2" data-testid="form-city" />
+        <Label htmlFor={cityId}>Город</Label>
+        <Input id={cityId} {...register("city")} placeholder="Минск" className="mt-1" autoComplete="address-level2" data-testid="form-city" />
       </div>
 
       {showKitchenType && (
         <div>
-          <Label htmlFor="lead-kitchen-type">Тип кухни</Label>
+          <Label htmlFor={kitchenTypeId}>Тип кухни</Label>
           <select
-            id="lead-kitchen-type"
+            id={kitchenTypeId}
             {...register("kitchenType")}
             className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             data-testid="form-kitchen-type"
@@ -305,27 +334,28 @@ export function ContactForm({
       )}
 
       <div>
-        <Label htmlFor="lead-comment">Комментарий / размеры</Label>
+        <Label htmlFor={commentId}>Комментарий / размеры</Label>
         <Textarea
-          id="lead-comment"
+          id={commentId}
           {...register("comment")}
           placeholder="Например: 3,2 м по одной стене, нужен высокий пенал и место под посудомойку"
           className="mt-1"
           aria-invalid={Boolean(errors.comment)}
-          aria-describedby={errors.comment ? "lead-comment-error" : undefined}
+          aria-describedby={errors.comment ? `${commentId}-error` : undefined}
           data-testid="form-comment"
         />
-        {errors.comment && <p id="lead-comment-error" className="mt-1 text-xs text-destructive" role="alert">{errors.comment.message}</p>}
+        {errors.comment && <p id={`${commentId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.comment.message}</p>}
       </div>
 
       <div>
         <label className="flex items-start gap-3 rounded-md border border-border bg-muted/20 p-3 text-xs leading-5 text-muted-foreground">
           <input
+            id={agreementId}
             type="checkbox"
             {...register("agreement")}
             className="mt-1 h-4 w-4 rounded border-border accent-primary"
             aria-invalid={Boolean(errors.agreement)}
-            aria-describedby={errors.agreement ? "lead-agreement-error" : undefined}
+            aria-describedby={errors.agreement ? `${agreementId}-error` : undefined}
             data-testid="form-agreement"
           />
           <span>
@@ -333,7 +363,7 @@ export function ContactForm({
             <a href="/privacy-policy" className="underline underline-offset-2">политикой обработки данных</a>.
           </span>
         </label>
-        {errors.agreement && <p id="lead-agreement-error" className="mt-1 text-xs text-destructive" role="alert">{errors.agreement.message}</p>}
+        {errors.agreement && <p id={`${agreementId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.agreement.message}</p>}
       </div>
 
       <Button type="submit" className="w-full" disabled={loading} data-testid="form-submit">

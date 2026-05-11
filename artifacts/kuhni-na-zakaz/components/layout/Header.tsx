@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, Phone, X } from "lucide-react";
@@ -121,20 +121,61 @@ export function Header({
   const phoneLink = phoneHref || `tel:${CONTACT_DEFAULTS.phone}`;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    let frame = 0;
+    let lastScrolled = window.scrollY > 12;
 
-    onScroll();
+    setScrolled(lastScrolled);
+
+    const onScroll = () => {
+      if (frame) return;
+
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const nextScrolled = window.scrollY > 12;
+
+        if (nextScrolled !== lastScrolled) {
+          lastScrolled = nextScrolled;
+          setScrolled(nextScrolled);
+        }
+      });
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   return (
     <header
@@ -209,6 +250,7 @@ export function Header({
               <Phone className="h-4 w-4" aria-hidden />
             </a>
             <button
+              ref={menuButtonRef}
               className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white transition-colors hover:bg-muted"
               onClick={() => setOpen((value) => !value)}
               aria-expanded={open}
