@@ -143,6 +143,7 @@ export function ContactForm({
   const resolvedSourceType = sourceType || detectSourceType(pathname);
   const fallbackSourcePage = sourcePage || pathname;
   const [trackingFields, setTrackingFields] = useState<TrackingFields>(() => readTrackingFields(fallbackSourcePage, sourcePage));
+  const [effectiveSourceType, setEffectiveSourceType] = useState(() => readSourceTypeOverride() || resolvedSourceType);
   const [ideaComment, setIdeaComment] = useState(() => readIdeaComment(defaultComment));
   const nameId = `${formId}-lead-name`;
   const phoneId = `${formId}-lead-phone`;
@@ -154,8 +155,9 @@ export function ContactForm({
 
   useEffect(() => {
     setTrackingFields(readTrackingFields(sourcePage || pathname, sourcePage));
+    setEffectiveSourceType(readSourceTypeOverride() || resolvedSourceType);
     setIdeaComment(readIdeaComment(defaultComment));
-  }, [defaultComment, pathname, sourcePage]);
+  }, [defaultComment, pathname, resolvedSourceType, sourcePage]);
 
   const defaultValues = useMemo<FormData>(() => ({
     name: "",
@@ -165,7 +167,7 @@ export function ContactForm({
     comment: ideaComment,
     agreement: true,
     sourcePage: trackingFields.sourcePage,
-    sourceType: resolvedSourceType,
+    sourceType: effectiveSourceType,
     projectSlug: projectSlug || "",
     cityKey: cityKey || "",
     utmSource: trackingFields.utmSource,
@@ -175,7 +177,7 @@ export function ContactForm({
     utmContent: trackingFields.utmContent,
     referrer: trackingFields.referrer,
     honeypot: "",
-  }), [city, cityKey, defaultKitchenType, ideaComment, projectSlug, resolvedSourceType, trackingFields]);
+  }), [city, cityKey, defaultKitchenType, effectiveSourceType, ideaComment, projectSlug, trackingFields]);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -287,7 +289,7 @@ export function ContactForm({
         autoComplete="off"
       />
       <input {...register("sourcePage")} type="hidden" value={trackingFields.sourcePage} readOnly />
-      <input {...register("sourceType")} type="hidden" value={resolvedSourceType} readOnly />
+      <input {...register("sourceType")} type="hidden" value={effectiveSourceType} readOnly />
       <input {...register("projectSlug")} type="hidden" value={projectSlug || ""} readOnly />
       <input {...register("cityKey")} type="hidden" value={cityKey || ""} readOnly />
       <input {...register("utmSource")} type="hidden" value={trackingFields.utmSource} readOnly />
