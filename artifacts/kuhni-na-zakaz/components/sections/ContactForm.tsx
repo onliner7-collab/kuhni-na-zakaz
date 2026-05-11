@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,16 +12,36 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
+const kitchenTypes = [
+  { value: "", label: "Пока не знаю" },
+  { value: "Прямая", label: "Прямая" },
+  { value: "Угловая", label: "Угловая" },
+  { value: "П-образная", label: "П-образная" },
+  { value: "С островом", label: "С островом" },
+  { value: "Кухня-студия", label: "Кухня-студия" },
+  { value: "До потолка", label: "До потолка" },
+];
+
 const schema = z.object({
-  name: z.string().min(2, "Введите имя"),
-  phone: z.string().min(7, "Введите корректный номер"),
-  city: z.string().optional(),
-  comment: z.string().optional(),
+  name: z.string().trim().min(2, "Введите имя").max(100, "Слишком длинное имя"),
+  phone: z.string().trim().min(7, "Введите корректный номер").max(30, "Слишком длинный номер"),
+  city: z.string().trim().max(100, "Слишком длинный город").optional(),
+  kitchenType: z.string().trim().max(80).optional(),
+  comment: z.string().trim().max(2000, "Комментарий слишком длинный").optional(),
+  agreement: z.literal(true, {
+    errorMap: () => ({ message: "Подтвердите согласие на обработку данных" }),
+  }),
   sourcePage: z.string().optional(),
   sourceType: z.string().optional(),
   projectSlug: z.string().optional(),
   cityKey: z.string().optional(),
-  honeypot: z.string().max(0, "Это поле должно быть пустым"),
+  utmSource: z.string().optional(),
+  utmMedium: z.string().optional(),
+  utmCampaign: z.string().optional(),
+  utmTerm: z.string().optional(),
+  utmContent: z.string().optional(),
+  referrer: z.string().optional(),
+  honeypot: z.string().max(0, "Это поле должно быть пустым").optional(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -33,7 +53,20 @@ interface ContactFormProps {
   sourceType?: string;
   projectSlug?: string;
   cityKey?: string;
+  formType?: string;
   submitLabel?: string;
+  showKitchenType?: boolean;
+  defaultKitchenType?: string;
+}
+
+interface TrackingFields {
+  sourcePage: string;
+  utmSource: string;
+  utmMedium: string;
+  utmCampaign: string;
+  utmTerm: string;
+  utmContent: string;
+  referrer: string;
 }
 
 function detectSourceType(pathname: string) {
@@ -43,7 +76,34 @@ function detectSourceType(pathname: string) {
   if (pathname.startsWith("/locations/")) return "location-region";
   if (pathname === "/prices") return "prices";
   if (pathname === "/calculator") return "calculator";
+  if (pathname === "/contacts") return "contacts";
   return "website";
+}
+
+function readTrackingFields(fallbackSourcePage: string): TrackingFields {
+  if (typeof window === "undefined") {
+    return {
+      sourcePage: fallbackSourcePage,
+      utmSource: "",
+      utmMedium: "",
+      utmCampaign: "",
+      utmTerm: "",
+      utmContent: "",
+      referrer: "",
+    };
+  }
+
+  const params = new URLSearchParams(window.location.search);
+
+  return {
+    sourcePage: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+    utmSource: params.get("utm_source") || "",
+    utmMedium: params.get("utm_medium") || "",
+    utmCampaign: params.get("utm_campaign") || "",
+    utmTerm: params.get("utm_term") || "",
+    utmContent: params.get("utm_content") || "",
+    referrer: document.referrer || "",
+  };
 }
 
 export function ContactForm({
@@ -53,66 +113,111 @@ export function ContactForm({
   sourceType,
   projectSlug,
   cityKey,
+  formType = "contact",
   submitLabel = "Отправить заявку",
+  showKitchenType = true,
+  defaultKitchenType = "",
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
   const pathname = usePathname() || "/";
-  const resolvedSourcePage = sourcePage || pathname;
   const resolvedSourceType = sourceType || detectSourceType(pathname);
+  const fallbackSourcePage = sourcePage || pathname;
+  const [trackingFields, setTrackingFields] = useState<TrackingFields>(() => readTrackingFields(fallbackSourcePage));
+
+  useEffect(() => {
+    setTrackingFields(readTrackingFields(sourcePage || pathname));
+  }, [pathname, sourcePage]);
+
+  const defaultValues = useMemo<FormData>(() => ({
+    name: "",
+    phone: "",
+    city: city || "",
+    kitchenType: defaultKitchenType,
+    comment: "",
+    agreement: true,
+    sourcePage: trackingFields.sourcePage,
+    sourceType: resolvedSourceType,
+    projectSlug: projectSlug || "",
+    cityKey: cityKey || "",
+    utmSource: trackingFields.utmSource,
+    utmMedium: trackingFields.utmMedium,
+    utmCampaign: trackingFields.utmCampaign,
+    utmTerm: trackingFields.utmTerm,
+    utmContent: trackingFields.utmContent,
+    referrer: trackingFields.referrer,
+    honeypot: "",
+  }), [city, cityKey, defaultKitchenType, projectSlug, resolvedSourceType, trackingFields]);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      city: city || "",
-      sourcePage: resolvedSourcePage,
-      sourceType: resolvedSourceType,
-      projectSlug: projectSlug || "",
-      cityKey: cityKey || "",
-    },
+    defaultValues,
   });
 
   const onSubmit = async (data: FormData) => {
     if (data.honeypot) return;
+
+    const currentTracking = readTrackingFields(fallbackSourcePage);
+    const payload = {
+      ...data,
+      source,
+      formType,
+      city: data.city || city || "",
+      sourcePage: currentTracking.sourcePage,
+      sourceType: data.sourceType || resolvedSourceType,
+      projectSlug: data.projectSlug || projectSlug || "",
+      cityKey: data.cityKey || cityKey || "",
+      utmSource: currentTracking.utmSource,
+      utmMedium: currentTracking.utmMedium,
+      utmCampaign: currentTracking.utmCampaign,
+      utmTerm: currentTracking.utmTerm,
+      utmContent: currentTracking.utmContent,
+      referrer: currentTracking.referrer,
+    };
+
     setLoading(true);
     trackAnalyticsEvent(ANALYTICS_EVENTS.FORM_SUBMIT, {
-      form_type: "contact",
+      form_type: formType,
       source,
-      source_page: resolvedSourcePage,
-      source_type: resolvedSourceType,
-      project_slug: projectSlug,
-      city_key: cityKey,
-      city: data.city || city,
+      source_page: payload.sourcePage,
+      source_type: payload.sourceType,
+      project_slug: payload.projectSlug,
+      city_key: payload.cityKey,
+      city: payload.city,
+      kitchen_type: payload.kitchenType,
     });
-    trackAnalyticsEvent(ANALYTICS_EVENTS.MEASURE_REQUEST, {
-      source,
-      city: data.city || city,
-    });
+
     try {
       const res = await fetch("/kapi/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          source,
-          formType: "contact",
-          sourcePage: data.sourcePage || resolvedSourcePage,
-          sourceType: data.sourceType || resolvedSourceType,
-          projectSlug: data.projectSlug || projectSlug || "",
-          cityKey: data.cityKey || cityKey || "",
-        }),
+        body: JSON.stringify(payload),
       });
+
       if (res.ok) {
         setSent(true);
-        reset();
-        trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUCCESS, {
-          form_type: "contact",
-          source,
-          city: data.city || city,
+        reset({
+          ...defaultValues,
+          name: "",
+          phone: "",
+          comment: "",
+          agreement: true,
         });
-        toast.success("Заявка отправлена! Свяжемся с вами в рабочее время.");
+        trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUCCESS, {
+          form_type: formType,
+          source,
+          city: payload.city,
+        });
+        if (formType === "calculator") {
+          trackAnalyticsEvent(ANALYTICS_EVENTS.CALCULATOR_SUBMIT, {
+            source,
+            city: payload.city,
+          });
+        }
+        toast.success("Заявка отправлена. Свяжемся с вами в рабочее время.");
       } else {
-        toast.error("Ошибка отправки. Попробуйте ещё раз или позвоните нам.");
+        const error = await res.json().catch(() => null);
+        toast.error(error?.error || "Ошибка отправки. Попробуйте ещё раз или позвоните нам.");
       }
     } catch {
       toast.error("Ошибка отправки. Проверьте интернет-соединение.");
@@ -123,54 +228,117 @@ export function ContactForm({
 
   if (sent) {
     return (
-      <div className="text-center py-12 card-base px-8">
-        <div className="text-4xl mb-4">✓</div>
-        <h3 className="font-serif text-2xl font-semibold mb-2">Заявка получена!</h3>
-        <p className="text-muted-foreground mb-6">Свяжемся с вами в рабочее время.</p>
-        <Button variant="outline" onClick={() => setSent(false)}>Отправить ещё</Button>
+      <div className="card-base px-8 py-12 text-center" role="status" aria-live="polite" data-testid="form-success">
+        <div className="mb-4 text-4xl" aria-hidden>✓</div>
+        <h3 className="mb-2 font-serif text-2xl font-semibold">Заявка получена</h3>
+        <p className="mb-6 text-muted-foreground">Мы свяжемся с вами в рабочее время и уточним детали кухни.</p>
+        <Button variant="outline" onClick={() => setSent(false)}>Отправить ещё одну заявку</Button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-testid="contact-form">
-      {/* Honeypot */}
-      <input {...register("honeypot")} type="text" className="hidden" tabIndex={-1} aria-hidden="true" />
-      <input {...register("sourcePage")} type="hidden" />
-      <input {...register("sourceType")} type="hidden" />
-      <input {...register("projectSlug")} type="hidden" />
-      <input {...register("cityKey")} type="hidden" />
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" data-testid="contact-form" noValidate>
+      <input {...register("honeypot")} type="text" className="hidden" tabIndex={-1} aria-hidden="true" autoComplete="off" />
+      <input {...register("sourcePage")} type="hidden" value={trackingFields.sourcePage} readOnly />
+      <input {...register("sourceType")} type="hidden" value={resolvedSourceType} readOnly />
+      <input {...register("projectSlug")} type="hidden" value={projectSlug || ""} readOnly />
+      <input {...register("cityKey")} type="hidden" value={cityKey || ""} readOnly />
+      <input {...register("utmSource")} type="hidden" value={trackingFields.utmSource} readOnly />
+      <input {...register("utmMedium")} type="hidden" value={trackingFields.utmMedium} readOnly />
+      <input {...register("utmCampaign")} type="hidden" value={trackingFields.utmCampaign} readOnly />
+      <input {...register("utmTerm")} type="hidden" value={trackingFields.utmTerm} readOnly />
+      <input {...register("utmContent")} type="hidden" value={trackingFields.utmContent} readOnly />
+      <input {...register("referrer")} type="hidden" value={trackingFields.referrer} readOnly />
 
       <div>
-        <Label htmlFor="name">Имя *</Label>
-        <Input id="name" {...register("name")} placeholder="Ваше имя" className="mt-1" data-testid="form-name" />
-        {errors.name && <p className="text-destructive text-xs mt-1">{errors.name.message}</p>}
+        <Label htmlFor="lead-name">Имя *</Label>
+        <Input
+          id="lead-name"
+          {...register("name")}
+          placeholder="Ваше имя"
+          className="mt-1"
+          autoComplete="name"
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? "lead-name-error" : undefined}
+          data-testid="form-name"
+        />
+        {errors.name && <p id="lead-name-error" className="mt-1 text-xs text-destructive" role="alert">{errors.name.message}</p>}
       </div>
 
       <div>
-        <Label htmlFor="phone">Телефон *</Label>
-        <Input id="phone" {...register("phone")} placeholder="+375 (__) ___-__-__" className="mt-1" data-testid="form-phone" />
-        {errors.phone && <p className="text-destructive text-xs mt-1">{errors.phone.message}</p>}
+        <Label htmlFor="lead-phone">Телефон *</Label>
+        <Input
+          id="lead-phone"
+          {...register("phone")}
+          type="tel"
+          inputMode="tel"
+          placeholder="+375 (__) ___-__-__"
+          className="mt-1"
+          autoComplete="tel"
+          aria-invalid={Boolean(errors.phone)}
+          aria-describedby={errors.phone ? "lead-phone-error" : undefined}
+          data-testid="form-phone"
+        />
+        {errors.phone && <p id="lead-phone-error" className="mt-1 text-xs text-destructive" role="alert">{errors.phone.message}</p>}
       </div>
 
       <div>
-        <Label htmlFor="city">Город</Label>
-        <Input id="city" {...register("city")} placeholder="Минск" className="mt-1" data-testid="form-city" />
+        <Label htmlFor="lead-city">Город</Label>
+        <Input id="lead-city" {...register("city")} placeholder="Минск" className="mt-1" autoComplete="address-level2" data-testid="form-city" />
+      </div>
+
+      {showKitchenType && (
+        <div>
+          <Label htmlFor="lead-kitchen-type">Тип кухни</Label>
+          <select
+            id="lead-kitchen-type"
+            {...register("kitchenType")}
+            className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            data-testid="form-kitchen-type"
+          >
+            {kitchenTypes.map((item) => (
+              <option key={item.label} value={item.value}>{item.label}</option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      <div>
+        <Label htmlFor="lead-comment">Комментарий / размеры</Label>
+        <Textarea
+          id="lead-comment"
+          {...register("comment")}
+          placeholder="Например: 3,2 м по одной стене, нужен высокий пенал и место под посудомойку"
+          className="mt-1"
+          aria-invalid={Boolean(errors.comment)}
+          aria-describedby={errors.comment ? "lead-comment-error" : undefined}
+          data-testid="form-comment"
+        />
+        {errors.comment && <p id="lead-comment-error" className="mt-1 text-xs text-destructive" role="alert">{errors.comment.message}</p>}
       </div>
 
       <div>
-        <Label htmlFor="comment">Комментарий / размеры</Label>
-        <Textarea id="comment" {...register("comment")} placeholder="Размеры кухни, стиль, техника, пожелания..." className="mt-1" data-testid="form-comment" />
+        <label className="flex items-start gap-3 rounded-md border border-border bg-muted/20 p-3 text-xs leading-5 text-muted-foreground">
+          <input
+            type="checkbox"
+            {...register("agreement")}
+            className="mt-1 h-4 w-4 rounded border-border accent-primary"
+            aria-invalid={Boolean(errors.agreement)}
+            aria-describedby={errors.agreement ? "lead-agreement-error" : undefined}
+            data-testid="form-agreement"
+          />
+          <span>
+            Согласен на обработку персональных данных и с{" "}
+            <a href="/privacy-policy" className="underline underline-offset-2">политикой обработки данных</a>.
+          </span>
+        </label>
+        {errors.agreement && <p id="lead-agreement-error" className="mt-1 text-xs text-destructive" role="alert">{errors.agreement.message}</p>}
       </div>
 
       <Button type="submit" className="w-full" disabled={loading} data-testid="form-submit">
         {loading ? "Отправляем..." : submitLabel}
       </Button>
-
-      <p className="text-xs text-muted-foreground text-center">
-        Нажимая кнопку, вы соглашаетесь с{" "}
-        <a href="/privacy-policy" className="underline">политикой конфиденциальности</a>
-      </p>
     </form>
   );
 }

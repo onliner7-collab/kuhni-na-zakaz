@@ -8,8 +8,13 @@ export interface LeadData {
   comment: string;
   source: string;
   formType: string;
-  answers: Record<string, unknown>;
+  answers: unknown;
   createdAt: Date;
+}
+
+interface TelegramRecipientConfig {
+  id: string;
+  chatId: string;
 }
 
 const FORM_TYPE_LABELS: Record<string, string> = {
@@ -26,34 +31,63 @@ const FORM_TYPE_LABELS: Record<string, string> = {
 };
 
 function buildMessage(lead: LeadData): string {
+  const answers = normalizeAnswers(lead.answers);
   const formLabel = FORM_TYPE_LABELS[lead.formType] ?? lead.formType;
   const date = new Date(lead.createdAt).toLocaleString("ru-RU", {
     timeZone: "Europe/Minsk",
-    day: "2-digit", month: "2-digit", year: "numeric",
-    hour: "2-digit", minute: "2-digit",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
+  const utm = normalizeAnswers(answers.utm);
 
-  let text = `🆕 <b>Новая заявка #${lead.id}</b>\n`;
-  text += `📋 Форма: ${formLabel}\n`;
-  text += `📅 Время: ${date}\n`;
-  text += `\n`;
-  text += `👤 <b>Имя:</b> ${escapeHtml(lead.name)}\n`;
-  text += `📞 <b>Телефон:</b> ${escapeHtml(lead.phone)}\n`;
-  if (lead.city) text += `📍 <b>Город:</b> ${escapeHtml(lead.city)}\n`;
-  if (lead.comment) text += `💬 <b>Комментарий:</b> ${escapeHtml(lead.comment)}\n`;
+  let text = `<b>Новая заявка #${lead.id}</b>\n`;
+  text += `Форма: ${escapeHtml(formLabel)}\n`;
+  text += `Дата/время: ${escapeHtml(date)}\n\n`;
+  text += `<b>Имя:</b> ${escapeHtml(lead.name)}\n`;
+  text += `<b>Телефон:</b> ${escapeHtml(lead.phone)}\n`;
+  text += `<b>Город:</b> ${escapeHtml(lead.city || "не указан")}\n`;
+  text += `<b>Страница:</b> ${escapeHtml(String(answers.sourcePage || "не указана"))}\n`;
+  if (answers.kitchenType) text += `<b>Тип кухни:</b> ${escapeHtml(String(answers.kitchenType))}\n`;
+  text += `<b>Комментарий:</b> ${escapeHtml(lead.comment || "не указан")}\n`;
+  text += `<b>Источник:</b> ${escapeHtml(lead.source)}\n`;
 
-  const answers = lead.answers as Record<string, unknown>;
-  const answerKeys = Object.keys(answers);
-  if (answerKeys.length > 0) {
-    text += `\n📝 <b>Ответы на вопросы:</b>\n`;
-    for (const key of answerKeys) {
-      const val = answers[key];
-      text += `  • ${escapeHtml(key)}: ${escapeHtml(String(val))}\n`;
-    }
+  const utmText = formatUtm(utm);
+  if (utmText) {
+    text += `\n<b>UTM:</b>\n${utmText}`;
   }
 
-  text += `\n🔗 Источник: ${escapeHtml(lead.source)}`;
+  if (answers.referrer) {
+    text += `\n<b>Referrer:</b> ${escapeHtml(String(answers.referrer))}`;
+  }
+
   return text;
+}
+
+function formatUtm(utm: Record<string, unknown>) {
+  const entries = [
+    ["source", utm.source],
+    ["medium", utm.medium],
+    ["campaign", utm.campaign],
+    ["term", utm.term],
+    ["content", utm.content],
+  ].filter(([, value]) => typeof value === "string" && value.length > 0);
+
+  if (entries.length === 0) {
+    return "";
+  }
+
+  return entries.map(([key, value]) => `${escapeHtml(String(key))}: ${escapeHtml(String(value))}`).join("\n");
+}
+
+function normalizeAnswers(value: unknown): Record<string, unknown> {
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    return value as Record<string, unknown>;
+  }
+
+  return {};
 }
 
 function escapeHtml(str: string): string {
@@ -64,13 +98,19 @@ function escapeHtml(str: string): string {
 }
 
 export async function sendLeadNotifications(lead: LeadData): Promise<void> {
-  const [settings, recipients] = await Promise.all([
+  const [settings, dbRecipients] = await Promise.all([
     prisma.siteSettings.findFirst().catch(() => null),
     prisma.telegramRecipient.findMany({ where: { active: true } }).catch(() => []),
   ]);
 
-  if (!settings?.telegramBotToken) {
-    console.warn("[TELEGRAM] Bot token not configured in Settings");
+  const token = (process.env.TELEGRAM_BOT_TOKEN || settings?.telegramBotToken || "").trim();
+  const recipients = [
+    ...dbRecipients.map((recipient) => ({ id: `db:${recipient.id}`, chatId: recipient.chatId })),
+    ...getEnvRecipients(),
+  ].filter((recipient) => recipient.chatId.trim().length > 0);
+
+  if (!token) {
+    console.warn("[TELEGRAM] Bot token is not configured");
     return;
   }
 
@@ -79,28 +119,24 @@ export async function sendLeadNotifications(lead: LeadData): Promise<void> {
     return;
   }
 
-  const token = settings.telegramBotToken;
   const text = buildMessage(lead);
-
   const results = await Promise.allSettled(
-    recipients.map((r) => sendMessage(token, r.chatId, text))
+    recipients.map((recipient) => sendMessage(token, recipient.chatId, text)),
   );
 
-  results.forEach((result, i) => {
+  results.forEach((result, index) => {
     if (result.status === "rejected") {
-      console.error(`[TELEGRAM] Failed to send to recipient #${recipients[i].id} (${recipients[i].chatId}):`, result.reason);
+      console.error(`[TELEGRAM] Failed to send lead notification to recipient ${recipients[index].id}:`, result.reason);
     }
   });
 }
 
 async function sendMessage(botToken: string, chatId: string, text: string): Promise<void> {
-  const token = botToken.trim();
-  const recipient = chatId.trim();
-  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  const url = `https://api.telegram.org/bot${botToken.trim()}/sendMessage`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ chat_id: recipient, text, parse_mode: "HTML" }),
+    body: JSON.stringify({ chat_id: chatId.trim(), text, parse_mode: "HTML" }),
   });
 
   if (!res.ok) {
@@ -111,37 +147,44 @@ async function sendMessage(botToken: string, chatId: string, text: string): Prom
 
 export async function testTelegramMessage(botToken: string, chatId: string): Promise<{ ok: boolean; error?: string }> {
   try {
-    await sendMessage(botToken, chatId, `✅ <b>КухниBY</b> — тест уведомлений\n\nЭтот получатель будет получать уведомления о новых заявках с сайта.`);
+    await sendMessage(botToken, chatId, `<b>КухниBY</b> — тест уведомлений\n\nЭтот получатель будет получать уведомления о новых заявках с сайта.`);
     return { ok: true };
   } catch (err) {
     return { ok: false, error: String(err) };
   }
 }
 
+function getEnvRecipients(): TelegramRecipientConfig[] {
+  return (process.env.TELEGRAM_CHAT_IDS || "")
+    .split(",")
+    .map((chatId, index) => ({ id: `env:${index + 1}`, chatId: chatId.trim() }))
+    .filter((recipient) => recipient.chatId.length > 0);
+}
+
 function formatTelegramError(status: number, body: string) {
   const description = getTelegramDescription(body).toLowerCase();
 
   if (status === 401 || description.includes("unauthorized")) {
-    return "Неверный токен Telegram-бота. Проверьте, что токен полностью скопирован из @BotFather и сохранен без пробелов.";
+    return "Неверный токен Telegram-бота. Проверьте токен из @BotFather.";
   }
 
   if (status === 400 && description.includes("chat not found")) {
-    return "Chat ID не найден. Сначала напишите этому боту любое сообщение в Telegram, затем проверьте правильный Chat ID.";
+    return "Chat ID не найден. Сначала напишите боту в Telegram, затем проверьте Chat ID.";
   }
 
   if (status === 400 && description.includes("can't parse")) {
-    return "Telegram не смог разобрать текст сообщения. Проверьте формат тестового сообщения или HTML-разметку.";
+    return "Telegram не смог разобрать HTML-разметку сообщения.";
   }
 
   if (status === 403 && description.includes("bot was blocked")) {
-    return "Пользователь заблокировал бота. Разблокируйте бота в Telegram и отправьте ему /start.";
+    return "Пользователь заблокировал Telegram-бота.";
   }
 
   if (status === 404) {
-    return "Telegram API не нашел такого бота. Обычно это значит, что токен введен неверно.";
+    return "Telegram API не нашёл такого бота. Обычно это означает неверный токен.";
   }
 
-  return `Telegram API error ${status}: ${body}`;
+  return `Telegram API error ${status}`;
 }
 
 function getTelegramDescription(body: string) {

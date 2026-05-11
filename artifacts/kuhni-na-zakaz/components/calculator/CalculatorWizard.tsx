@@ -106,25 +106,42 @@ const DEFAULTS: Record<string, string | number> = {
   countertop: "postforming", hardware: "standard", tech: "none", priority: "balance",
 };
 
+function getKitchenTypeLabel(layout: string) {
+  const labels: Record<string, string> = {
+    straight: "Прямая",
+    corner: "Угловая",
+    u_shape: "П-образная",
+    with_island: "С островом",
+  };
+
+  return labels[layout] || "";
+}
+
 export function CalculatorWizard() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | number>>({ ...DEFAULTS });
   const [result, setResult] = useState<PriceResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [hasTrackedStart, setHasTrackedStart] = useState(false);
 
   const currentStep = STEPS[step];
   const totalSteps = STEPS.length;
   const progress = ((step) / totalSteps) * 100;
 
   function selectOption(key: string) {
+    trackCalculatorStart();
     setAnswers(a => ({ ...a, [currentStep.id]: key }));
     if (step < totalSteps - 1) setTimeout(() => setStep(s => s + 1), 260);
   }
 
   async function calculate() {
     setLoading(true);
+    trackCalculatorStart();
     trackAnalyticsEvent(ANALYTICS_EVENTS.COST_CALCULATION, {
+      source: "calculator_wizard",
+    });
+    trackAnalyticsEvent(ANALYTICS_EVENTS.CALCULATOR_SUBMIT, {
       source: "calculator_wizard",
     });
     try {
@@ -137,6 +154,15 @@ export function CalculatorWizard() {
       if (res.ok) setResult(data);
     } catch {}
     setLoading(false);
+  }
+
+  function trackCalculatorStart() {
+    if (hasTrackedStart) return;
+
+    setHasTrackedStart(true);
+    trackAnalyticsEvent(ANALYTICS_EVENTS.CALCULATOR_START, {
+      source: "calculator_wizard",
+    });
   }
 
   const isLastStep = step === totalSteps - 1;
@@ -193,6 +219,7 @@ export function CalculatorWizard() {
               });
               setShowForm(true);
             }}
+              data-testid="calculator-show-form"
               className="flex items-center justify-center gap-2 py-3 px-5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-colors">
               <Phone className="w-4 h-4" /> Заказать бесплатный замер
             </button>
@@ -205,7 +232,12 @@ export function CalculatorWizard() {
           <div className="card-base p-5">
             <h3 className="font-serif text-xl font-semibold mb-1">Заказать бесплатный замер</h3>
             <p className="text-sm text-muted-foreground mb-4">Замерщик приедет, уточнит детали и назовёт точную цену</p>
-            <ContactForm source="calculator" sourceType="calculator" />
+            <ContactForm
+              source="calculator"
+              sourceType="calculator"
+              formType="calculator"
+              defaultKitchenType={typeof answers.layout === "string" ? getKitchenTypeLabel(answers.layout) : ""}
+            />
           </div>
         )}
 
@@ -266,7 +298,10 @@ export function CalculatorWizard() {
             <input type="range"
               min={currentStep.sliderMin} max={currentStep.sliderMax}
               value={answers[currentStep.id] as number ?? currentStep.sliderDefault}
-              onChange={e => setAnswers(a => ({ ...a, [currentStep.id]: Number(e.target.value) }))}
+              onChange={e => {
+                trackCalculatorStart();
+                setAnswers(a => ({ ...a, [currentStep.id]: Number(e.target.value) }));
+              }}
               className="w-full accent-primary h-2 rounded-full cursor-pointer" />
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>{currentStep.sliderMin} {currentStep.sliderUnit}</span>
@@ -275,7 +310,10 @@ export function CalculatorWizard() {
             <div className="grid grid-cols-3 gap-2">
               {[2, 3, 4, 5, 6, 7].map(n => (
                 <button key={n} type="button"
-                  onClick={() => setAnswers(a => ({ ...a, [currentStep.id]: n }))}
+                  onClick={() => {
+                    trackCalculatorStart();
+                    setAnswers(a => ({ ...a, [currentStep.id]: n }));
+                  }}
                   className={`py-2 rounded-lg text-sm font-medium border transition-colors ${answers[currentStep.id] === n ? "bg-primary text-white border-primary" : "border-gray-200 text-gray-600 hover:border-primary/50"}`}>
                   {n} п.м
                 </button>
@@ -287,18 +325,23 @@ export function CalculatorWizard() {
 
       {/* Navigation */}
       <div className="flex items-center justify-between mt-8 pt-5 border-t border-gray-100">
-        <button type="button" onClick={() => setStep(s => Math.max(0, s - 1))} disabled={step === 0}
+          <button type="button" onClick={() => setStep(s => Math.max(0, s - 1))} disabled={step === 0}
           className="flex items-center gap-2 px-4 py-2 text-sm text-gray-500 hover:text-gray-800 disabled:opacity-30 transition-colors">
           <ArrowLeft className="w-4 h-4" /> Назад
         </button>
 
         {isLastStep ? (
           <button type="button" onClick={calculate} disabled={loading}
+            data-testid="calculator-submit"
             className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 disabled:opacity-50 transition-colors">
             {loading ? "Считаем..." : "Рассчитать стоимость"} <Calculator className="w-4 h-4" />
           </button>
         ) : (
-          <button type="button" onClick={() => setStep(s => s + 1)}
+          <button type="button" onClick={() => {
+            trackCalculatorStart();
+            setStep(s => s + 1);
+          }}
+            data-testid="calculator-next"
             className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary/90 transition-colors">
             Далее <ArrowRight className="w-4 h-4" />
           </button>

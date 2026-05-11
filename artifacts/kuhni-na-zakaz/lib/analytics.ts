@@ -1,7 +1,7 @@
 "use client";
 
 export const ANALYTICS_EVENTS = {
-  FORM_SUBMIT: "lead_form_submit",
+  FORM_SUBMIT: "form_submit",
   PORTFOLIO_PROJECT_OPEN: "portfolio_project_open",
   PORTFOLIO_FILTER_CHANGE: "portfolio_filter_change",
   LIGHTBOX_OPEN: "lightbox_open",
@@ -10,7 +10,9 @@ export const ANALYTICS_EVENTS = {
   EMAIL_CLICK: "email_click",
   MEASURE_REQUEST: "measure_request",
   COST_CALCULATION: "price_calc_click",
-  CALCULATOR_OPEN: "calculator_open",
+  CALCULATOR_START: "calculator_start",
+  CALCULATOR_SUBMIT: "calculator_submit",
+  CALCULATOR_OPEN: "calculator_start",
   LEAD_SUCCESS: "lead_success",
 } as const;
 
@@ -50,7 +52,7 @@ export function trackAnalyticsEvent(
 
   const counterId = Number(YANDEX_METRIKA_ID);
   if (window.ym && Number.isFinite(counterId)) {
-    window.ym(counterId, "reachGoal", event);
+    window.ym(counterId, "reachGoal", event, payload);
   }
 }
 
