@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Package, Palette, Ruler } from "lucide-react";
 import type { PortfolioProject } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { getImageDisclosure } from "@/lib/image-disclosure";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 interface FilterOption {
@@ -258,11 +259,14 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {filteredProjects.map((project) => (
-            <article
-              key={project.slug}
-              className="card-base flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lg"
-            >
+          {filteredProjects.map((project) => {
+            const disclosure = getImageDisclosure(project.mainImage);
+
+            return (
+              <article
+                key={project.slug}
+                className="card-base flex h-full flex-col overflow-hidden transition-shadow hover:shadow-lg"
+              >
               <Link
                 href={`/portfolio/${project.slug}`}
                 aria-label={`Смотреть проект: ${project.title}`}
@@ -276,6 +280,9 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 380px"
                   className="object-contain object-center transition-transform duration-300 group-hover:scale-105"
                 />
+                <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                  {disclosure.label}
+                </span>
               </Link>
 
               <div className="flex flex-1 flex-col p-5">
@@ -297,8 +304,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                 <dl className="mt-4 space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 shrink-0 text-primary" />
-                    <dt className="sr-only">Город</dt>
-                    <dd>{project.city}</dd>
+                    <dt className="sr-only">{disclosure.kind === "generated" ? "Привязка" : "Город"}</dt>
+                    <dd>{disclosure.kind === "generated" ? "Пример без привязки к городу" : project.city}</dd>
                   </div>
                   <div className="flex items-center gap-2">
                     <Ruler className="h-4 w-4 shrink-0 text-primary" />
@@ -328,7 +335,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                 </Link>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
       )}
     </section>

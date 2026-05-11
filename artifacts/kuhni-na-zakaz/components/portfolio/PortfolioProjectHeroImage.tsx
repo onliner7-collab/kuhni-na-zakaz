@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import type { PortfolioProjectImage } from "@/data/portfolio-projects";
 import { ImageLightbox, type LightboxImage } from "@/components/ui/ImageLightbox";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { getImageDisclosure } from "@/lib/image-disclosure";
 
 interface PortfolioProjectHeroImageProps {
   title: string;
@@ -42,6 +43,7 @@ export function PortfolioProjectHeroImage({
   );
   const [activeIndex, setActiveIndex] = useState(mainImageIndex);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const disclosure = getImageDisclosure(mainImage);
 
   if (!mainImage) {
     return (
@@ -71,6 +73,9 @@ export function PortfolioProjectHeroImage({
           sizes="(max-width: 1024px) 100vw, 420px"
           className="object-contain object-center"
         />
+        <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+          {disclosure.label}
+        </span>
         <span className="absolute right-3 top-3 inline-flex min-h-10 items-center gap-2 rounded-md bg-white/90 px-3 py-2 text-sm font-semibold text-foreground shadow-sm opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
           <Maximize2 className="h-4 w-4" />
           Увеличить

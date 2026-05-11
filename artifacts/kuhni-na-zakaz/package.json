@@ -8,6 +8,7 @@
     "start": "node ./scripts/run-next.mjs start",
     "typecheck": "tsc --noEmit",
     "images:optimize": "node scripts/optimize-site-images.js",
+    "images:audit": "node scripts/audit-site-images.js",
     "smoke:post-import": "playwright test -c playwright.smoke.config.ts",
     "smoke:post-import:headed": "playwright test -c playwright.smoke.config.ts --headed",
     "bulk-import:audit-external-ids": "tsx scripts/audit-bulk-import-v1-external-ids.ts",

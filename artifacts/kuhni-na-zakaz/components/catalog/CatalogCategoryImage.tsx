@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import { useState } from "react";
+import { getImageDisclosure } from "@/lib/image-disclosure";
 
 type CatalogCategoryImageProps = {
   src?: string | null;
@@ -19,6 +20,7 @@ export function CatalogCategoryImage({
 }: CatalogCategoryImageProps) {
   const [failed, setFailed] = useState(false);
   const shouldShowImage = Boolean(src) && !failed;
+  const disclosure = getImageDisclosure(src);
 
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-stone-200 via-stone-100 to-amber-100">
@@ -41,6 +43,11 @@ export function CatalogCategoryImage({
             <ImageIcon className="h-7 w-7" aria-hidden="true" />
           </div>
         </div>
+      )}
+      {shouldShowImage && disclosure.kind === "generated" && (
+        <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+          {disclosure.label}
+        </span>
       )}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10" />
     </div>

@@ -9,6 +9,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { renderContent } from "@/lib/render-content";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
+import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import {
   JsonLd,
   breadcrumbJsonLd,
@@ -138,6 +139,7 @@ export default async function BlogPostPage({ params }: Props) {
     data.relatedStyleSlugs ?? [],
     data.relatedScenarioSlugs ?? [],
   );
+  const coverDisclosure = getImageDisclosure(data.coverImage);
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -187,11 +189,11 @@ export default async function BlogPostPage({ params }: Props) {
               <h1 className="font-serif text-4xl font-bold mb-6 leading-tight">
                 {data.title}
               </h1>
-              <div className="mb-8 h-64 overflow-hidden rounded-xl bg-gradient-to-br from-stone-200 to-amber-50">
+              <div className="relative mb-8 h-64 overflow-hidden rounded-xl bg-gradient-to-br from-stone-200 to-amber-50">
                 {data.coverImage ? (
                   <Image
                     src={optimizedImageSrc(data.coverImage) || data.coverImage}
-                    alt={`Иллюстрация к статье: ${data.title}`}
+                    alt={buildImageAlt(data.coverImage, `Иллюстрация к статье: ${data.title}`)}
                     width={960}
                     height={540}
                     unoptimized={isPreoptimizedRasterSrc(optimizedImageSrc(data.coverImage))}
@@ -203,6 +205,11 @@ export default async function BlogPostPage({ params }: Props) {
                   <div className="flex h-full items-center justify-center">
                     <span className="text-stone-400">Иллюстрация к статье</span>
                   </div>
+                )}
+                {data.coverImage && coverDisclosure.kind === "generated" && (
+                  <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                    {coverDisclosure.label}
+                  </span>
                 )}
               </div>
               <div className="space-y-4">{renderContent(data.content)}</div>
@@ -222,17 +229,20 @@ export default async function BlogPostPage({ params }: Props) {
                     </Link>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {cases.map((c) => (
+                    {cases.map((c) => {
+                      const disclosure = getImageDisclosure(c.mainImage);
+
+                      return (
                       <Link
                         key={c.slug}
                         href={`/portfolio/${c.slug}`}
                         className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-lg transition-all bg-white"
                       >
-                        <div className="h-36 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
+                        <div className="relative h-36 overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
                           {c.mainImage ? (
                             <Image
                               src={optimizedImageSrc(c.mainImage) || c.mainImage}
-                              alt={c.title}
+                              alt={buildImageAlt(c.mainImage, c.title)}
                               width={640}
                               height={360}
                               loading="lazy"
@@ -243,6 +253,11 @@ export default async function BlogPostPage({ params }: Props) {
                             <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-3xl">
                               🏠
                             </div>
+                          )}
+                          {c.mainImage && (
+                            <span className="absolute left-2 top-2 rounded-md bg-white/90 px-2 py-1 text-[11px] font-semibold text-foreground shadow-sm">
+                              {disclosure.label}
+                            </span>
                           )}
                         </div>
                         <div className="p-3">
@@ -260,7 +275,8 @@ export default async function BlogPostPage({ params }: Props) {
                           )}
                         </div>
                       </Link>
-                    ))}
+                      );
+                    })}
                   </div>
                 </section>
               )}

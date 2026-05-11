@@ -22,6 +22,7 @@ import {
   type RegionalLocationData,
 } from "@/data/locations";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 
@@ -520,25 +521,34 @@ export function RegionalLocationPage({
             }
           />
           <div className="grid gap-5 md:grid-cols-3">
-            {displayCases.slice(0, 3).map((item) => (
-              <Link
-                key={item.id}
-                href={`/portfolio/${item.slug}`}
-                className="group overflow-hidden rounded-2xl border border-border bg-white transition-all hover:border-primary/40 hover:shadow-lg"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-muted">
+            {displayCases.slice(0, 3).map((item) => {
+              const disclosure = getImageDisclosure(item.mainImage);
+
+              return (
+                <Link
+                  key={item.id}
+                  href={`/portfolio/${item.slug}`}
+                  className="group overflow-hidden rounded-2xl border border-border bg-white transition-all hover:border-primary/40 hover:shadow-lg"
+                >
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                   <Image
                     src={optimizedImageSrc(item.mainImage) || item.mainImage || "/images/hero.webp"}
-                    alt={item.title}
+                    alt={buildImageAlt(item.mainImage, item.title)}
                     width={640}
                     height={480}
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                    {disclosure.label}
+                  </span>
                 </div>
                 <div className="p-5">
                   <p className="mb-2 font-semibold text-foreground">{item.title}</p>
-                  <p className="mb-3 text-sm text-muted-foreground">{item.city}</p>
+                  <p className="mb-3 text-sm text-muted-foreground">
+                    {hasLocalCases ? item.city : "Без привязки к этому городу"}
+                  </p>
                   <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                     {item.area > 0 && <span>{item.area} п.м</span>}
                     {item.priceFrom > 0 && <span>от {item.priceFrom.toLocaleString("ru")} BYN</span>}
@@ -546,7 +556,8 @@ export function RegionalLocationPage({
                   </div>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

@@ -11,6 +11,7 @@ import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
 import { PortfolioProjectOpenTracker } from "@/components/analytics/PortfolioProjectOpenTracker";
 import { toPortfolioProject, type EditablePortfolioCase, type PortfolioProject } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { getImageDisclosure } from "@/lib/image-disclosure";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
@@ -138,16 +139,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const project = toPortfolioProject(portfolioCase as EditablePortfolioCase);
+  const isConceptProject = getImageDisclosure(project.mainImage).kind === "generated";
+  const conceptDescription = trimMetaDescription(
+    "3D-визуализация кухни на заказ: планировка, материалы и идеи для похожего проекта без привязки к выполненной работе.",
+    project.description,
+  );
 
   return {
     title: `${project.title} — портфолио кухонь на заказ`,
-    description: buildMetaDescription(project),
+    description: isConceptProject ? conceptDescription : buildMetaDescription(project),
     alternates: {
       canonical: `/portfolio/${project.slug}`,
     },
     openGraph: {
       title: `${project.title} — портфолио кухонь на заказ`,
-      description: buildMetaDescription(project),
+      description: isConceptProject ? conceptDescription : buildMetaDescription(project),
       images: project.mainImage ? [{ url: project.mainImage, alt: project.alt || project.title }] : undefined,
       url: `/portfolio/${project.slug}`,
       type: "article",
@@ -171,6 +177,8 @@ export default async function PortfolioProjectPage({ params }: Props) {
   const regionalLink = locationPage?.slug ? `/locations/${locationPage.slug}` : regionalLocationByCity ? `/locations/${regionalLocationByCity.slug}` : null;
   const regionalTitle = locationPage?.h1 || (project.city ? `Кухни в ${project.city}` : null);
   const cityKey = locationPage?.slug || regionalLocationByCity?.slug || "";
+  const mainImageDisclosure = getImageDisclosure(project.mainImage);
+  const isConceptProject = mainImageDisclosure.kind === "generated";
 
   const jsonLd = [
     breadcrumbJsonLd([
@@ -190,7 +198,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
         "@type": "Organization",
         name: "КухниBY",
       },
-      contentLocation: project.city
+      contentLocation: project.city && !isConceptProject
         ? compactJsonLd({
             "@type": "Place",
             name: project.city,
@@ -240,10 +248,15 @@ export default async function PortfolioProjectPage({ params }: Props) {
           <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
             <div>
               <div className="mb-4 flex flex-wrap gap-2">
-                {project.city && (
+                {project.city && !isConceptProject && (
                   <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
                     <MapPin className="h-4 w-4" />
                     {project.city}
+                  </span>
+                )}
+                {isConceptProject && (
+                  <span className="inline-flex items-center rounded-md bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-800">
+                    3D-визуализация, не реальный кейс
                   </span>
                 )}
                 {project.kitchenType && (
@@ -261,8 +274,15 @@ export default async function PortfolioProjectPage({ params }: Props) {
               </div>
 
               <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground">
-                {project.description || "Реализованный проект кухни на заказ с продуманной планировкой, материалами и хранением под задачи клиента."}
+                {project.description || (isConceptProject
+                  ? "Пример дизайна кухни на заказ с продуманной планировкой, материалами и хранением."
+                  : "Проект кухни на заказ с продуманной планировкой, материалами и хранением под задачи клиента.")}
               </p>
+              {isConceptProject && (
+                <p className="mt-3 max-w-3xl rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-900">
+                  Это иллюстративная 3D-визуализация. Не используем ее как подтверждение выполненной работы в конкретном городе.
+                </p>
+              )}
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -304,7 +324,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                   Характеристики
                 </h2>
                 <dl className="mt-4">
-                  <DetailRow label="Город" value={project.city} />
+                  {!isConceptProject && <DetailRow label="Город" value={project.city} />}
                   <DetailRow label="Район" value={project.district} />
                   <DetailRow label="Тип кухни" value={project.kitchenType} />
                   <DetailRow label="Стиль" value={project.style} />
@@ -394,7 +414,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                         <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                           <Image
                             src={optimizedImageSrc(portfolioCase.photosBefore[0]) || portfolioCase.photosBefore[0]}
-                            alt={`${project.title}: до`}
+                            alt={`${project.title}: изображение до`}
                             fill
                             loading="lazy"
                             sizes="(max-width: 768px) 100vw, 420px"
@@ -409,7 +429,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                         <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                           <Image
                             src={optimizedImageSrc(portfolioCase.photosAfter[0]) || portfolioCase.photosAfter[0]}
-                            alt={`${project.title}: после`}
+                            alt={`${project.title}: изображение после`}
                             fill
                             loading="lazy"
                             sizes="(max-width: 768px) 100vw, 420px"
@@ -541,7 +561,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                             {relatedProject.shortTitle || relatedProject.title}
                           </h3>
                           <p className="mt-2 text-sm text-muted-foreground">
-                            {relatedProject.city} · {relatedProject.kitchenType}
+                            {getImageDisclosure(relatedProject.mainImage).kind === "generated" ? "Пример без привязки к городу" : relatedProject.city} · {relatedProject.kitchenType}
                           </p>
                         </div>
                       </Link>
@@ -555,7 +575,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
               <div className="rounded-lg border border-border bg-white p-5 shadow-sm">
                 <h2 className="font-serif text-2xl font-bold">Кратко о проекте</h2>
                 <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-                  {project.city && (
+                  {project.city && !isConceptProject && (
                     <li className="flex items-center gap-2">
                       <MapPin className="h-4 w-4 text-primary" />
                       {project.city}
@@ -608,7 +628,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 </p>
               </div>
 
-              {regionalLink && (
+              {regionalLink && !isConceptProject && (
                 <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
                   <h2 className="flex items-center gap-2 font-serif text-2xl font-bold">
                     <MapPin className="h-5 w-5 text-primary" />

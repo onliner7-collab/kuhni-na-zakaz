@@ -1,3 +1,5 @@
+import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
+
 export interface PortfolioProjectImage {
   src: string;
   alt: string;
@@ -150,8 +152,14 @@ function buildImages(portfolioCase: EditablePortfolioCase, projectAlt: string) {
 
   return srcList.map((src, index) => ({
     src,
-    alt: portfolioCase.imageAlts[index] || projectAlt || portfolioCase.title,
-    caption: portfolioCase.imageCaptions[index] || (index === 0 ? "Общий вид кухни" : "Дополнительный ракурс"),
+    alt: buildImageAlt(src, portfolioCase.imageAlts[index] || projectAlt || portfolioCase.title),
+    caption:
+      portfolioCase.imageCaptions[index] ||
+      (getImageDisclosure(src).kind === "generated"
+        ? "3D-визуализация, пример дизайна"
+        : index === 0
+          ? "Фото из портфолио"
+          : "Дополнительный ракурс"),
   }));
 }
 
@@ -160,7 +168,7 @@ export function toPortfolioProject(portfolioCase: EditablePortfolioCase): Portfo
   const materials = normalizeMaterials(portfolioCase);
   const cityKey = portfolioCase.cityKey || normalizeCityKey(portfolioCase.city);
   const price = formatPrice(portfolioCase.priceFrom, portfolioCase.priceTo);
-  const alt = portfolioCase.alt || portfolioCase.title;
+  const alt = buildImageAlt(portfolioCase.mainImage, portfolioCase.alt || portfolioCase.title);
 
   return {
     id: portfolioCase.externalId || `project-${portfolioCase.id}`,

@@ -6,12 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { BLOG_POSTS } from "@/lib/blog-static";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
+import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 
 const COMMERCIAL_LINKS = [
   { href: "/catalog", title: "Подобрать тип кухни", text: "Сравните угловые, прямые, П-образные кухни и варианты с островом." },
   { href: "/prices", title: "Посмотреть цены", text: "Ориентиры по стоимости и быстрый переход к расчету проекта." },
   { href: "/materials", title: "Выбрать материалы", text: "Фасады, столешницы, корпуса и решения для ежедневной нагрузки." },
-  { href: "/portfolio", title: "Открыть портфолио", text: "Реальные проекты с городом, метражом, стилем и бюджетом." },
+  { href: "/portfolio", title: "Открыть портфолио", text: "Фото и визуализации с городом и параметрами, если они заполнены." },
 ];
 
 export const metadata: Metadata = {
@@ -84,17 +85,20 @@ export default async function BlogPage() {
             ))}
           </section>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {display.map((p) => (
+            {display.map((p) => {
+              const disclosure = getImageDisclosure(p.coverImage);
+
+              return (
               <Link
                 key={p.slug}
                 href={`/blog/${p.slug}`}
                 className="card-base hover:shadow-md transition-shadow group"
               >
-                <div className="h-48 overflow-hidden bg-gradient-to-br from-stone-200 to-amber-50">
+                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-stone-200 to-amber-50">
                   {p.coverImage ? (
                     <Image
                       src={optimizedImageSrc(p.coverImage) || p.coverImage}
-                      alt={`Иллюстрация к статье: ${p.title}`}
+                      alt={buildImageAlt(p.coverImage, `Иллюстрация к статье: ${p.title}`)}
                       width={720}
                       height={420}
                       unoptimized={isPreoptimizedRasterSrc(optimizedImageSrc(p.coverImage))}
@@ -107,6 +111,11 @@ export default async function BlogPage() {
                         Иллюстрация статьи
                       </span>
                     </div>
+                  )}
+                  {p.coverImage && disclosure.kind === "generated" && (
+                    <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                      {disclosure.label}
+                    </span>
                   )}
                 </div>
                 <div className="p-6">
@@ -133,7 +142,8 @@ export default async function BlogPage() {
                   )}
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

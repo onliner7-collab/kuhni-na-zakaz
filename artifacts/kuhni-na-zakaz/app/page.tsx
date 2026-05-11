@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
@@ -173,7 +174,7 @@ export default async function HomePage() {
   const FALLBACK_SCENARIOS = [
     { id: 1, icon: "🏠", title: "Подобрать кухню", subtitle: "по образу жизни", description: "Угловая, прямая, с островом — подберём под вашу планировку и привычки", href: "/catalog", badge: "" },
     { id: 2, icon: "💰", title: "Узнать стоимость", subtitle: "без обязательств", description: "Ответьте на несколько вопросов и получите примерный диапазон цены", href: "/prices", badge: "Быстро" },
-    { id: 3, icon: "📸", title: "Посмотреть работы", subtitle: "реальные проекты", description: "Фото и цифры по реализованным кухням в разных городах Беларуси", href: "/portfolio", badge: "" },
+    { id: 3, icon: "📸", title: "Посмотреть работы", subtitle: "портфолио", description: "Фото, 3D-визуализации и заполненные данные по проектам кухонь", href: "/portfolio", badge: "" },
     { id: 4, icon: "🎨", title: "Выбрать стиль", subtitle: "и материалы", description: "Современный, классика, минимализм, скандинавский — с примерами и ценами", href: "/styles", badge: "" },
     { id: 5, icon: "✏️", title: "Собрать кухню", subtitle: "под свои задачи", description: "Расскажите о планировке, мы предложим решение и бесплатный выезд на замер", href: "/contacts#form", badge: "Старт" },
   ];
@@ -293,7 +294,7 @@ export default async function HomePage() {
             <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl border border-white/15 shadow-2xl shadow-black/30 lg:mx-0 lg:max-w-none">
               <Image
                 src={optimizedImageSrc(LOCAL_BUSINESS_IMAGE) || LOCAL_BUSINESS_IMAGE}
-                alt={HERO_KITCHEN_ALT}
+                alt={buildImageAlt(LOCAL_BUSINESS_IMAGE, HERO_KITCHEN_ALT)}
                 fill
                 priority
                 fetchPriority="high"
@@ -301,6 +302,9 @@ export default async function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
+              <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                {getImageDisclosure(LOCAL_BUSINESS_IMAGE).label}
+              </span>
             </div>
           </div>
         </div>
@@ -395,21 +399,24 @@ export default async function HomePage() {
             <div className="flex items-center justify-between mb-10">
               <div>
                 <h2 className="font-serif text-3xl lg:text-4xl font-bold">Последние работы</h2>
-                <p className="text-muted-foreground mt-1 text-sm">Реализованные проекты по всей Беларуси</p>
+                <p className="text-muted-foreground mt-1 text-sm">Фото из портфолио и визуальные примеры с понятными подписями</p>
               </div>
               <Link href="/portfolio" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
                 Все проекты <ArrowRight className="w-4 h-4" aria-hidden />
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {cases.map((c) => (
+              {cases.map((c) => {
+                const disclosure = getImageDisclosure(c.mainImage);
+
+                return (
                 <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
                     {c.mainImage
                       ? (
                         <Image
                           src={optimizedImageSrc(c.mainImage) || c.mainImage}
-                          alt={`${c.title} — фото кухни на заказ, ${c.city}`}
+                          alt={buildImageAlt(c.mainImage, `${c.title}, ${c.city}`)}
                           fill
                           loading="lazy"
                           decoding="async"
@@ -426,6 +433,11 @@ export default async function HomePage() {
                         </div>
                       )
                     }
+                    {c.mainImage && (
+                      <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                        {disclosure.label}
+                      </span>
+                    )}
                   </div>
                   <div className="p-5">
                     <h3 className="font-bold group-hover:text-primary transition-colors">{c.title}</h3>
@@ -437,7 +449,8 @@ export default async function HomePage() {
                     )}
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -483,7 +496,7 @@ export default async function HomePage() {
             {[
               { href: "/catalog", title: "Категории кухонь", text: "Угловые, прямые, П-образные, с островом и до потолка." },
               { href: "/prices", title: "Цены и расчет", text: "Ориентиры по бюджету и быстрый переход к заявке на расчет." },
-              { href: "/portfolio", title: "Портфолио", text: "Реальные кухни с городом, стилем, размером и стоимостью." },
+              { href: "/portfolio", title: "Портфолио", text: "Фото и визуализации кухонь с заполненными характеристиками." },
               { href: "/materials", title: "Материалы", text: "Фасады, корпуса, столешницы и практичные варианты отделки." },
             ].map((item) => (
               <Link

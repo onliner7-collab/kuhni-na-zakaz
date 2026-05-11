@@ -17,6 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 
@@ -470,7 +471,7 @@ export default async function LocationPage({ params }: Props) {
       <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
         {loc.images[0] && (
           <div className="absolute inset-0 opacity-15">
-            <Image src={optimizedImageSrc(loc.images[0]) || loc.images[0]} alt={loc.city} fill priority fetchPriority="high" sizes="100vw" className="object-cover" />
+            <Image src={optimizedImageSrc(loc.images[0]) || loc.images[0]} alt={buildImageAlt(loc.images[0], loc.city)} fill priority fetchPriority="high" sizes="100vw" className="object-cover" />
           </div>
         )}
         <div className="relative container-site section-padding py-16 md:py-24">
@@ -586,22 +587,25 @@ export default async function LocationPage({ params }: Props) {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
-                  Наши работы в {cityGen}
+                  Работы, связанные с {cityGen}
                 </h2>
-                <p className="text-muted-foreground mt-1">Реализованные проекты для жителей региона</p>
+                <p className="text-muted-foreground mt-1">Показываем только проекты, где город совпадает с данными карточки</p>
               </div>
               <Link href="/portfolio" className="hidden md:inline-flex items-center gap-1.5 text-primary font-semibold text-sm hover:gap-2.5 transition-all">
                 Все работы <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {cases.map(c => (
+              {cases.map(c => {
+                const disclosure = getImageDisclosure(c.mainImage);
+
+                return (
                 <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden bg-white border border-border hover:shadow-lg transition-all">
-                  <div className="aspect-[4/3] overflow-hidden bg-muted">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                     {c.mainImage ? (
                       <Image
                         src={optimizedImageSrc(c.mainImage) || c.mainImage}
-                        alt={c.title}
+                        alt={buildImageAlt(c.mainImage, c.title)}
                         width={640}
                         height={480}
                         loading="lazy"
@@ -610,6 +614,11 @@ export default async function LocationPage({ params }: Props) {
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-4xl">🏠</div>
+                    )}
+                    {c.mainImage && (
+                      <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                        {disclosure.label}
+                      </span>
                     )}
                   </div>
                   <div className="p-4">
@@ -622,7 +631,8 @@ export default async function LocationPage({ params }: Props) {
                     {c.style && <span className="mt-2 inline-block text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full">{c.style}</span>}
                   </div>
                 </Link>
-              ))}
+                );
+              })}
             </div>
             <div className="mt-6 text-center md:hidden">
               <Link href="/portfolio" className="inline-flex items-center gap-1.5 text-primary font-semibold text-sm">
@@ -697,15 +707,15 @@ export default async function LocationPage({ params }: Props) {
         <section className="section-padding bg-white">
           <div className="container-site">
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
-              Фото работ в регионе
+              Изображения для этого региона
             </h2>
-            <p className="text-muted-foreground mb-8">Кухни, изготовленные и установленные для жителей {loc.region || loc.city}</p>
+            <p className="text-muted-foreground mb-8">Показываем только изображения, добавленные в данные страницы города</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {loc.images.map((img, i) => (
                 <div key={i} className={`rounded-xl overflow-hidden bg-muted ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
                   <Image
                     src={optimizedImageSrc(img) || img}
-                    alt={`Кухня в ${loc.city} — фото ${i + 1}`}
+                    alt={buildImageAlt(img, `Кухня в ${loc.city}, изображение ${i + 1}`)}
                     width={900}
                     height={900}
                     loading="lazy"

@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import type { PortfolioProjectImage } from "@/data/portfolio-projects";
 import { ImageLightbox, type LightboxImage } from "@/components/ui/ImageLightbox";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import { getImageDisclosure } from "@/lib/image-disclosure";
 import { cn } from "@/lib/utils";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
@@ -30,6 +31,7 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const activeImage = galleryImages[activeIndex];
+  const activeDisclosure = getImageDisclosure(activeImage?.src);
 
   function openLightbox(index: number) {
     trackAnalyticsEvent(ANALYTICS_EVENTS.LIGHTBOX_OPEN, {
@@ -70,10 +72,13 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
           src={optimizedImageSrc(activeImage.src) || activeImage.src}
           alt={activeImage.alt}
           fill
-          priority
+          loading="lazy"
           sizes="(max-width: 1024px) 100vw, 820px"
           className="object-contain object-center"
         />
+        <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+          {activeDisclosure.label}
+        </span>
         <span className="absolute right-3 top-3 inline-flex min-h-10 items-center gap-2 rounded-md bg-white/90 px-3 py-2 text-sm font-semibold text-foreground shadow-sm transition-colors group-hover:bg-white">
           <Maximize2 className="h-4 w-4" />
           Увеличить
