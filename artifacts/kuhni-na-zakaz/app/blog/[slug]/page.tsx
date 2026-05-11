@@ -376,7 +376,7 @@ export default async function BlogPostPage({ params }: Props) {
                     Нужна консультация?
                   </h2>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Замер и проект — бесплатно
+                    Замер и проект — по условиям заявки
                   </p>
                   <ContactForm source={`blog/${slug}`} />
                 </div>

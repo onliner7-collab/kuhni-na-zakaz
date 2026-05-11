@@ -73,8 +73,8 @@ const SEGMENTS = [
 // Статический fallback: доп. работы не хранятся в PriceRule — выделены
 // в отдельную концепцию (услуги), не входящую в формулу калькулятора.
 const EXTRA_WORKS = [
-  { item: "Замер и проект",           price: "Бесплатно" },
-  { item: "Доставка по городу",       price: "Бесплатно от 3 000 BYN" },
+  { item: "Замер и проект",           price: "по условиям заявки" },
+  { item: "Доставка по городу",       price: "уточняется при расчете" },
   { item: "Доставка по области",      price: "от 50 BYN" },
   { item: "Доставка в другой город",  price: "по договорённости" },
   { item: "Монтаж",                   price: "от 200 BYN" },
@@ -196,7 +196,7 @@ export default function PricesPage() {
 
         {/* CTA */}
         <div className="max-w-2xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-4">Точный расчёт — бесплатно</h2>
+          <h2 className="font-serif text-3xl font-bold text-center mb-4">Точный расчёт по вашей заявке</h2>
           <p className="text-center text-muted-foreground mb-8">Оставьте заявку — рассчитаем под ваши параметры</p>
           <ContactForm source="prices" sourceType="prices" />
         </div>

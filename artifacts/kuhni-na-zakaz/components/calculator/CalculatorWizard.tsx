@@ -192,7 +192,7 @@ export function CalculatorWizard() {
           <div className="mt-4 flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-left">
             <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <p className="text-xs text-amber-700">
-              <strong>Это ориентир, а не смета.</strong> Точная стоимость зависит от точных размеров, конфигурации мест под технику, высоты помещения и других деталей. Итоговую цену покажем после бесплатного замера.
+              <strong>Это ориентир, а не смета.</strong> Точная стоимость зависит от точных размеров, конфигурации мест под технику, высоты помещения и других деталей. Итоговую цену покажем после замера и согласования условий.
             </p>
           </div>
         </div>

@@ -920,7 +920,7 @@ export default async function LocationPage({ params }: Props) {
                 {[
                   { icon: <Clock className="w-5 h-5" />, text: "Свяжемся в рабочее время" },
                   { icon: <CalendarDays className="w-5 h-5" />, text: "Выезд замерщика согласуем по адресу и готовности объекта" },
-                  { icon: <MessageSquare className="w-5 h-5" />, text: "3D-проект бесплатно после замера" },
+                  { icon: <MessageSquare className="w-5 h-5" />, text: "3D-проект после замера по условиям заявки" },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 text-white/80">
                     <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">

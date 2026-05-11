@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
+import { getKitchenIdea3DById } from "@/data/kitchen-ideas-3d";
 
 const kitchenTypes = [
   { value: "", label: "Пока не знаю" },
@@ -57,6 +58,7 @@ interface ContactFormProps {
   submitLabel?: string;
   showKitchenType?: boolean;
   defaultKitchenType?: string;
+  defaultComment?: string;
 }
 
 interface TrackingFields {
@@ -106,6 +108,21 @@ function readTrackingFields(fallbackSourcePage: string, fixedSourcePage?: string
   };
 }
 
+function readIdeaComment(defaultComment = "") {
+  if (typeof window === "undefined") return defaultComment;
+
+  const params = new URLSearchParams(window.location.search);
+  const ideaTitle = params.get("ideaTitle") || getKitchenIdea3DById(params.get("idea3d"))?.title;
+
+  return ideaTitle ? `Интересует 3D-идея: ${ideaTitle}` : defaultComment;
+}
+
+function readSourceTypeOverride() {
+  if (typeof window === "undefined") return "";
+
+  return new URLSearchParams(window.location.search).get("sourceType") || "";
+}
+
 export function ContactForm({
   source = "website",
   city,
@@ -117,6 +134,7 @@ export function ContactForm({
   submitLabel = "Отправить заявку",
   showKitchenType = true,
   defaultKitchenType = "",
+  defaultComment = "",
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
@@ -125,6 +143,7 @@ export function ContactForm({
   const resolvedSourceType = sourceType || detectSourceType(pathname);
   const fallbackSourcePage = sourcePage || pathname;
   const [trackingFields, setTrackingFields] = useState<TrackingFields>(() => readTrackingFields(fallbackSourcePage, sourcePage));
+  const [ideaComment, setIdeaComment] = useState(() => readIdeaComment(defaultComment));
   const nameId = `${formId}-lead-name`;
   const phoneId = `${formId}-lead-phone`;
   const cityId = `${formId}-lead-city`;
@@ -135,14 +154,15 @@ export function ContactForm({
 
   useEffect(() => {
     setTrackingFields(readTrackingFields(sourcePage || pathname, sourcePage));
-  }, [pathname, sourcePage]);
+    setIdeaComment(readIdeaComment(defaultComment));
+  }, [defaultComment, pathname, sourcePage]);
 
   const defaultValues = useMemo<FormData>(() => ({
     name: "",
     phone: "",
     city: city || "",
     kitchenType: defaultKitchenType,
-    comment: "",
+    comment: ideaComment,
     agreement: true,
     sourcePage: trackingFields.sourcePage,
     sourceType: resolvedSourceType,
@@ -155,7 +175,7 @@ export function ContactForm({
     utmContent: trackingFields.utmContent,
     referrer: trackingFields.referrer,
     honeypot: "",
-  }), [city, cityKey, defaultKitchenType, projectSlug, resolvedSourceType, trackingFields]);
+  }), [city, cityKey, defaultKitchenType, ideaComment, projectSlug, resolvedSourceType, trackingFields]);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -169,13 +189,14 @@ export function ContactForm({
     if (data.honeypot) return;
 
     const currentTracking = readTrackingFields(fallbackSourcePage, sourcePage);
+    const currentSourceType = readSourceTypeOverride() || data.sourceType || resolvedSourceType;
     const payload = {
       ...data,
       source,
       formType,
       city: data.city || city || "",
       sourcePage: currentTracking.sourcePage,
-      sourceType: data.sourceType || resolvedSourceType,
+      sourceType: currentSourceType,
       projectSlug: data.projectSlug || projectSlug || "",
       cityKey: data.cityKey || cityKey || "",
       utmSource: currentTracking.utmSource,

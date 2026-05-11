@@ -35,7 +35,7 @@ const EMPTY: ScenarioData = {
   seoTitle: "", seoDescription: "", seoKeywords: "",
   needs: [""], solutions: [""], features: [{ icon: "✅", title: "", description: "" }],
   tips: [""], relatedStyles: [""], relatedMaterials: [""], relatedCaseSlugs: [""],
-  ctaText: "Заказать бесплатный замер", ctaHref: "/contacts#form", order: 0, published: true,
+  ctaText: "Заказать замер", ctaHref: "/contacts#form", order: 0, published: true,
 };
 
 const TABS = [
@@ -252,7 +252,7 @@ export function ScenarioForm({ initial }: { initial?: Partial<ScenarioData> }) {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className={labelCls}>Текст CTA-кнопки</label>
-              <input className={inputCls} value={data.ctaText} onChange={e => set("ctaText", e.target.value)} placeholder="Заказать бесплатный замер" />
+              <input className={inputCls} value={data.ctaText} onChange={e => set("ctaText", e.target.value)} placeholder="Заказать замер" />
             </div>
             <div>
               <label className={labelCls}>Ссылка CTA</label>

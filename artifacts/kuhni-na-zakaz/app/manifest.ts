@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "КухниBY",
     short_name: "КухниBY",
     description:
-      "Кухни на заказ по Беларуси с бесплатным замером и проектом.",
+      "Кухни на заказ по Беларуси с замером, проектом и расчетом по условиям заявки.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

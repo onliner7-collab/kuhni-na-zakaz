@@ -115,13 +115,13 @@ export default async function StylesPage() {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-2xl font-bold mb-3">Не можете определиться со стилем?</h2>
               <p className="text-muted-foreground mb-6">
-                Наш дизайнер поможет подобрать стиль под ваш интерьер и бюджет. Первая консультация — бесплатно.
+                Наш дизайнер поможет подобрать стиль под ваш интерьер и бюджет. Условия консультации уточняются при заявке.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-left">
                 {[
                   { step: "01", title: "Оставьте заявку", desc: "Укажите примерный бюджет и площадь кухни" },
                   { step: "02", title: "Консультация", desc: "Дизайнер позвонит в удобное время и задаст вопросы" },
-                  { step: "03", title: "3D-проект", desc: "Получите проект кухни с визуализацией бесплатно" },
+                  { step: "03", title: "3D-проект", desc: "Получите проект кухни с визуализацией после согласования условий" },
                 ].map((item) => (
                   <div key={item.step} className="flex gap-4">
                     <span className="text-3xl font-bold text-primary/30 leading-none">{item.step}</span>

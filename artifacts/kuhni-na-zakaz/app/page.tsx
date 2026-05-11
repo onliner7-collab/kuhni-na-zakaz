@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowRight, CheckCircle, Phone, Star, Shield, Clock, MapPin, FileCheck } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { HomeKitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
@@ -330,9 +331,9 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {displayScenarios.map((s) => (
+            {displayScenarios.map((s, index) => (
               <Link
-                key={s.id}
+                key={`${s.id}-${index}`}
                 href={s.href || "#"}
                 className="group relative flex flex-col p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/8 transition-all bg-white hover:-translate-y-1"
               >
@@ -367,9 +368,9 @@ export default async function HomePage() {
 
             {/* Mobile: вертикальный столбик */}
             <div className="flex flex-col gap-2 sm:hidden">
-              {displayTrust.map((t) => (
+              {displayTrust.map((t, index) => (
                 <div
-                  key={t.id}
+                  key={`${t.id}-${index}`}
                   className="flex items-center gap-3 bg-white border border-border rounded-2xl px-4 py-3 shadow-sm"
                 >
                   <span className="text-xl leading-none flex-shrink-0" role="img" aria-label={t.title}>
@@ -387,8 +388,8 @@ export default async function HomePage() {
 
             {/* Tablet+: сетка */}
             <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-              {displayTrust.map((t) => (
-                <div key={t.id} className="text-center">
+              {displayTrust.map((t, index) => (
+                <div key={`${t.id}-${index}`} className="text-center">
                   <div className="text-3xl mb-1.5" role="img" aria-label={t.title}>
                     {t.icon}
                   </div>
@@ -499,6 +500,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <HomeKitchenIdeas3DSection limit={4} />
+
       {/* ===== COMMERCIAL HUBS ===== */}
       <section className="section-padding bg-white border-y border-border/60">
         <div className="container-site">
@@ -556,7 +559,7 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {displaySteps.map((s, i) => (
-              <div key={s.id} className="flex gap-4 p-5 rounded-2xl border border-white/8 bg-white/4 hover:border-violet-500/30 hover:bg-white/8 transition-all">
+              <div key={`${s.id}-${i}`} className="flex gap-4 p-5 rounded-2xl border border-white/8 bg-white/4 hover:border-violet-500/30 hover:bg-white/8 transition-all">
                 <div
                   className="text-2xl font-black shrink-0 leading-none mt-0.5"
                   style={{ background: "linear-gradient(135deg, #a78bfa, #38bdf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
@@ -584,8 +587,8 @@ export default async function HomePage() {
             <p className="mt-3 text-muted-foreground text-base">Причины доверить кухню КухниBY</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {displayAdvantages.map((adv) => (
-              <div key={adv.id} className="group rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all bg-white">
+            {displayAdvantages.map((adv, index) => (
+              <div key={`${adv.id}-${index}`} className="group rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all bg-white">
                 <div className="flex items-start gap-4 mb-3">
                   <span
                     className="text-2xl flex-shrink-0"
@@ -649,9 +652,9 @@ export default async function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {displayLocations.map((loc) => (
+            {displayLocations.map((loc, index) => (
               <Link
-                key={loc.id}
+                key={`${loc.slug}-${loc.id}-${index}`}
                 href={`/locations/${loc.slug}`}
                 className="group rounded-2xl border border-border bg-muted/20 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
               >
@@ -749,8 +752,8 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {reviews.map((r) => (
-                <div key={r.id} className="card-base p-5">
+              {reviews.map((r, index) => (
+                <div key={`${r.id}-${index}`} className="card-base p-5">
                   <div className="flex items-center gap-1 mb-3">
                     {Array.from({ length: r.rating }).map((_, i) => (
                       <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" aria-hidden />

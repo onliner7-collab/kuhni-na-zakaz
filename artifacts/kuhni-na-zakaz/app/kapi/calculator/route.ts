@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
     if (countertopAddon > 300) factors.push({ label: "Столешница из натурального материала — значительная статья расходов", impact: "neutral" });
     if (hardwarePerLm >= 95) factors.push({ label: "Фурнитура Blum/Hettich — долговечность и надёжность", impact: "positive" });
     if (techAddon > 0) factors.push({ label: "Встроенная техника — дополнительные +"+techAddon.toLocaleString("ru")+" BYN", impact: "neutral" });
-    factors.push({ label: "Точная стоимость — после бесплатного замера и проекта", impact: "neutral" });
+    factors.push({ label: "Точная стоимость — после замера, проекта и согласования условий", impact: "neutral" });
 
     return NextResponse.json({
       priceFrom,

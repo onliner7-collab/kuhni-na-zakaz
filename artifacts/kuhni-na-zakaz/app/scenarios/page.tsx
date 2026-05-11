@@ -105,13 +105,13 @@ export default async function ScenariosPage() {
         <div className="container-site max-w-2xl text-center">
           <h2 className="text-2xl font-bold text-foreground mb-3">Не нашли свой сценарий?</h2>
           <p className="text-muted-foreground mb-6">
-            Расскажите нам о своей ситуации — подберём решение на консультации. Бесплатно, без давления.
+            Расскажите нам о своей ситуации — подберём решение на консультации без давления.
           </p>
           <Link
             href="/contacts#form"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/20"
           >
-            Получить консультацию бесплатно
+            Получить консультацию
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

@@ -167,7 +167,7 @@ export default async function StylePage({ params }: Props) {
                       <Wallet className="w-5 h-5 text-primary" />
                       <span className="font-semibold text-primary text-lg">от {s.priceFrom.toLocaleString("ru")} BYN</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">Точная цена — после бесплатного замера на дому</p>
+                    <p className="text-sm text-muted-foreground">Точная цена — после замера и согласования условий</p>
                   </div>
                   <Link href="/calculator" className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-semibold hover:bg-primary/90 transition-colors shrink-0">
                     Рассчитать стоимость <ArrowRight className="w-4 h-4" />
