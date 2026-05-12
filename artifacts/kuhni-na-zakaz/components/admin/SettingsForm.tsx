@@ -22,7 +22,7 @@ export function SettingsForm({ settings }: { settings: Settings | null }) {
     email: CONTACT_DEFAULTS.email, address: CONTACT_DEFAULTS.address,
     workingHours: CONTACT_DEFAULTS.workingHours, telegram: "", viber: "",
     whatsapp: "", telegramBotToken: "", telegramChatId: "",
-    metaTitle: "Кухни на заказ в Минске | КухниMinsk",
+    metaTitle: "Кухни на заказ в Минске | КухниBY",
     metaDescription: "Кухни на заказ в Минске и Минской области. Собственное производство.",
   };
 

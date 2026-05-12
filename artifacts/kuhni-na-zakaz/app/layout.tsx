@@ -13,6 +13,7 @@ import {
 } from "@/components/analytics/AnalyticsProvider";
 import { getSiteUrl } from "@/lib/site-url";
 import { resolveContactInfo } from "@/lib/contact-info";
+import { CANONICAL_SITE_URL, SITE_NAME } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -32,10 +33,10 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
-const preferredSiteUrl = "https://kuhni.minsk.by";
+const preferredSiteUrl = CANONICAL_SITE_URL;
 const siteUrl = getSiteUrl(preferredSiteUrl);
 const faviconVersion = "20260511";
-const siteName = "КухниBY";
+const siteName = SITE_NAME;
 const homeTitle =
   "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
 const homeDescription =

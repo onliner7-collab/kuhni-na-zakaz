@@ -1,4 +1,15 @@
 export const SITE_NAME = "КухниBY";
+export const SITE_ALTERNATE_NAMES = ["KuhniBY", "Кухни Бай"];
+export const CANONICAL_SITE_URL = "https://kuhni.minsk.by";
+
+export function canonicalSiteUrl(path = "") {
+  if (!path) return CANONICAL_SITE_URL;
+
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  if (normalizedPath === "/") return `${CANONICAL_SITE_URL}/`;
+
+  return `${CANONICAL_SITE_URL}${normalizedPath.replace(/\/+$/g, "")}`;
+}
 
 export function cleanSeoTitle(title: string | null | undefined, fallback: string) {
   const value = title?.trim() || fallback;

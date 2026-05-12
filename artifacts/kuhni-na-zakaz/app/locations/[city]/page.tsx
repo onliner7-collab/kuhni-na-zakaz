@@ -15,7 +15,7 @@ import {
   Star, Phone, CalendarDays, ArrowRight, MessageSquare
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { SITE_NAME, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
@@ -448,7 +448,8 @@ export default async function LocationPage({ params }: Props) {
     inLanguage: "ru-BY",
     isPartOf: {
       "@type": "WebSite",
-      name: "КухниBY",
+      "@id": `${siteUrl("/")}#website`,
+      name: SITE_NAME,
       url: siteUrl("/"),
     },
     primaryImageOfPage: {

@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { SITE_NAME } from "@/lib/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "КухниBY",
-    short_name: "КухниBY",
+    name: SITE_NAME,
+    short_name: SITE_NAME,
     description:
       "Кухни на заказ по Беларуси с замером, проектом и расчетом по условиям заявки.",
     start_url: "/",

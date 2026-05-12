@@ -14,6 +14,7 @@ import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { CANONICAL_SITE_URL, SITE_ALTERNATE_NAMES, SITE_NAME, canonicalSiteUrl } from "@/lib/seo";
 
 type HomeAdvantage = {
   id: number;
@@ -56,10 +57,8 @@ const CATALOG_CATEGORIES = [
 
 const LOCAL_BUSINESS_IMAGE =
   "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
-const SITE_NAME = "КухниBY";
-const SITE_ALTERNATE_NAME = "Кухни Бай";
-const HOME_ORIGIN = "https://kuhni.minsk.by";
-const HOME_URL = `${HOME_ORIGIN}/`;
+const HOME_ORIGIN = CANONICAL_SITE_URL;
+const HOME_URL = canonicalSiteUrl("/");
 
 /** Alt для витринного фото в первом экране (SEO / доступность). */
 const HERO_KITCHEN_ALT =
@@ -130,14 +129,21 @@ export default async function HomePage() {
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${HOME_URL}#website`,
     name: SITE_NAME,
-    alternateName: SITE_ALTERNATE_NAME,
+    alternateName: SITE_ALTERNATE_NAMES,
     url: HOME_URL,
+    inLanguage: "ru-BY",
+    publisher: {
+      "@id": `${HOME_URL}#organization`,
+    },
   };
   const localBusinessJsonLd = compactJsonLd({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${HOME_URL}#organization`,
     name: SITE_NAME,
+    alternateName: SITE_ALTERNATE_NAMES,
     description: "Кухни на заказ по всей Беларуси. Собственное производство.",
     url: HOME_URL,
     logo: `${HOME_ORIGIN}/logo.png`,

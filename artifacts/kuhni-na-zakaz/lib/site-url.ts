@@ -1,4 +1,6 @@
-export const DEFAULT_SITE_URL = "https://kuhni.minsk.by";
+import { CANONICAL_SITE_URL } from "@/lib/seo";
+
+export const DEFAULT_SITE_URL = CANONICAL_SITE_URL;
 
 export function getSiteUrl(value = DEFAULT_SITE_URL) {
   const rawUrl = value || DEFAULT_SITE_URL;

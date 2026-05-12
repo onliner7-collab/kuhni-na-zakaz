@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionFromRequest } from "@/lib/auth";
+import { CANONICAL_SITE_URL } from "@/lib/seo";
 
 const ADMIN_PATHS = ["/admin"];
 const PUBLIC_ADMIN_PATHS = ["/admin/login"];
@@ -128,12 +129,12 @@ function normalizePathname(pathname: string) {
 }
 
 function getCanonicalHost() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kuhni-by.by";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || CANONICAL_SITE_URL;
 
   try {
     return new URL(siteUrl).hostname.replace(/^www\./i, "").toLowerCase();
   } catch {
-    return "kuhni-by.by";
+    return new URL(CANONICAL_SITE_URL).hostname;
   }
 }
 
