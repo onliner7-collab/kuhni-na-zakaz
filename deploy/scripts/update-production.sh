@@ -25,6 +25,9 @@ sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run photos:import-portfoli
 echo "[deploy] writing static sitemap fallback"
 sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run sitemap:write-static"
 
+echo "[deploy] synchronizing public contact NAP"
+sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm exec tsx scripts/sync-contact-nap.ts"
+
 echo "[deploy] building app"
 sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run build"
 

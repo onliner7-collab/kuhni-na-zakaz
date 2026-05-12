@@ -1,7 +1,12 @@
 ﻿import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
-const LEGACY_PHONE_VALUES = new Set(["+375296261547", "375296261547"]);
 const LEGACY_PHONE_DISPLAY_VALUES = new Set([
+  "+375 (29) 626-15-47",
+  "+375 29 626 15 47",
+  "+375 (29) 123-45-67",
+]);
+const LEGACY_SECONDARY_PHONE_VALUES = new Set(["+375296261547", "375296261547", "+375291234567", "375291234567"]);
+const LEGACY_SECONDARY_PHONE_DISPLAY_VALUES = new Set([
   "+375 (29) 626-15-47",
   "+375 29 626 15 47",
   "+375 (29) 123-45-67",
@@ -78,13 +83,27 @@ function normalizeAddress(address?: string | null) {
   return value;
 }
 
+function normalizeSecondaryPhone(phone?: string | null) {
+  const value = (phone || "").trim();
+  if (!value || LEGACY_SECONDARY_PHONE_VALUES.has(value)) return CONTACT_DEFAULTS.phone2;
+
+  return value;
+}
+
+function normalizeSecondaryPhoneDisplay(phoneDisplay?: string | null) {
+  const value = (phoneDisplay || "").trim();
+  if (!value || LEGACY_SECONDARY_PHONE_DISPLAY_VALUES.has(value)) return CONTACT_DEFAULTS.phoneDisplay2;
+
+  return value;
+}
+
 export function resolveContactInfo(settings?: ContactSettingsInput | null): ContactInfo {
   return {
     siteName: normalizeSiteName(settings?.siteName),
     phone: normalizePrimaryPhone(settings?.phone),
     phoneDisplay: normalizePrimaryPhoneDisplay(settings?.phoneDisplay),
-    phone2: settings?.phone2?.trim() || CONTACT_DEFAULTS.phone2,
-    phoneDisplay2: settings?.phoneDisplay2?.trim() || CONTACT_DEFAULTS.phoneDisplay2,
+    phone2: normalizeSecondaryPhone(settings?.phone2),
+    phoneDisplay2: normalizeSecondaryPhoneDisplay(settings?.phoneDisplay2),
     email: normalizeEmail(settings?.email),
     address: normalizeAddress(settings?.address),
     addressMap: settings?.addressMap?.trim() || "",
