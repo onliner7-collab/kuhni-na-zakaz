@@ -35,7 +35,7 @@ const inter = Inter({
 
 const preferredSiteUrl = CANONICAL_SITE_URL;
 const siteUrl = getSiteUrl(preferredSiteUrl);
-const faviconVersion = "20260511";
+const faviconVersion = "20260512";
 const siteName = SITE_NAME;
 const homeTitle =
   "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
