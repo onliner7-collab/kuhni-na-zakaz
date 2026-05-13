@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { Inter, Manrope } from "next/font/google";
 
 import { prisma } from "@/lib/db";
+import { FloatingSocialButtons } from "@/components/layout/FloatingSocialButtons";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileCTA } from "@/components/layout/MobileCTA";
@@ -148,6 +149,12 @@ export default async function RootLayout({
         {!isAdmin && (
           <MobileCTA
             phoneHref={`tel:${contactInfo.phone}`}
+          />
+        )}
+        {!isAdmin && (
+          <FloatingSocialButtons
+            instagram={contactInfo.instagram}
+            telegram={contactInfo.telegram}
           />
         )}
         <Toaster />

@@ -373,9 +373,30 @@ model SiteSettings {
 model TelegramRecipient {
   id        Int      @id @default(autoincrement())
   label     String   @default("")
-  chatId    String
+  chatId    String   @unique
+  role      String   @default("moderator")
   active    Boolean  @default(true)
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TelegramNotificationLog {
+  id           Int      @id @default(autoincrement())
+  leadId       Int?
+  recipientId  Int?
+  chatId       String
+  status       String
+  errorMessage String   @default("")
+  createdAt    DateTime @default(now())
+}
+
+model TelegramMessage {
+  id             Int      @id @default(autoincrement())
+  userTelegramId String
+  username       String   @default("")
+  firstName      String   @default("")
+  messageText    String   @default("")
+  createdAt      DateTime @default(now())
 }
 
 model StaticPage {

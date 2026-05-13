@@ -42,6 +42,7 @@ pnpm run dev
 - `project-docs/GIT_AND_PROD_PREP.md`
 - `project-docs/RELEASE_CHECKLIST.md`
 - `project-docs/DEPLOYMENT.md`
+- `project-docs/TELEGRAM_NOTIFICATIONS.md` — настройка Telegram webhook и уведомлений
 
 ## Git
 

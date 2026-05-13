@@ -131,7 +131,11 @@ export async function sendLeadNotifications(lead: LeadData): Promise<void> {
   });
 }
 
-async function sendMessage(botToken: string, chatId: string, text: string): Promise<void> {
+// Низкоуровневая отправка сообщения. Экспортируется, чтобы webhook
+// (этап 7) мог пересылать входящие сообщения, переиспользуя тот же
+// форматтер ошибок и parse_mode. Поведение и сигнатура для существующих
+// вызовов (sendLeadNotifications, testTelegramMessage) не меняются.
+export async function sendMessage(botToken: string, chatId: string, text: string): Promise<void> {
   const url = `https://api.telegram.org/bot${botToken.trim()}/sendMessage`;
   const res = await fetch(url, {
     method: "POST",

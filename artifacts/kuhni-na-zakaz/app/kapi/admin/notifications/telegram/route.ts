@@ -1,50 +1,67 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Prisma } from "@prisma/client";
+import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { testTelegramMessage } from "@/lib/telegram";
-import { z } from "zod";
 
-const addSchema = z.object({
-  label: z.string().max(100).default(""),
-  chatId: z.string().min(1).max(100),
+const chatIdSchema = z
+  .string()
+  .trim()
+  .min(1, "Chat ID обязателен")
+  .max(100, "Chat ID слишком длинный")
+  .regex(
+    /^-?\d+$/,
+    "Chat ID должен содержать только цифры (можно с минусом для групповых чатов)",
+  );
+
+const recipientCreateSchema = z.object({
+  label: z.string().trim().max(100).optional().default(""),
+  role: z.string().trim().max(50).optional().default("moderator"),
+  chatId: chatIdSchema,
 });
 
-export async function GET() {
+async function requireSuperAdmin(): Promise<NextResponse | null> {
   const session = await getSession();
   if (!session || session.role !== "SUPER_ADMIN") {
     return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
   }
+  return null;
+}
+
+export async function GET() {
+  const denied = await requireSuperAdmin();
+  if (denied) return denied;
 
   const recipients = await prisma.telegramRecipient.findMany({
     orderBy: { createdAt: "asc" },
   });
 
+  // SECURITY TODO (отдельный этап): не отдавать полный токен в UI.
+  // Сейчас /admin/notifications читает botToken напрямую, чтобы показать в поле
+  // ввода, поэтому маскирование откладывается до рефакторинга страницы.
   const settings = await prisma.siteSettings.findFirst({
     select: { telegramBotToken: true },
   });
 
-  return NextResponse.json({ recipients, botToken: settings?.telegramBotToken ?? "" });
+  return NextResponse.json({
+    recipients,
+    botToken: settings?.telegramBotToken ?? "",
+  });
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getSession();
-  if (!session || session.role !== "SUPER_ADMIN") {
-    return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  const denied = await requireSuperAdmin();
+  if (denied) return denied;
+
+  const body = await req.json().catch(() => ({}));
+
+  if (body?._action === "test") {
+    return handleTestAction(body);
   }
 
-  const body = await req.json();
-
-  if (body._action === "test") {
-    const { botToken, chatId } = body;
-    if (!botToken || !chatId) {
-      return NextResponse.json({ error: "Укажите токен бота и Chat ID" }, { status: 400 });
-    }
-    const result = await testTelegramMessage(botToken, chatId);
-    return NextResponse.json(result);
-  }
-
-  if (body._action === "saveBotToken") {
-    const token = String(body.botToken ?? "").trim();
+  if (body?._action === "saveBotToken") {
+    const token = typeof body.botToken === "string" ? body.botToken.trim() : "";
     await prisma.siteSettings.upsert({
       where: { id: 1 },
       create: { id: 1, telegramBotToken: token },
@@ -53,18 +70,78 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  const parsed = addSchema.safeParse(body);
+  const parsed = recipientCreateSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ error: "Неверные данные", details: parsed.error.flatten() }, { status: 400 });
+    return NextResponse.json(
+      {
+        error: parsed.error.errors[0]?.message ?? "Неверные данные",
+        details: parsed.error.flatten(),
+      },
+      { status: 400 },
+    );
   }
 
-  const existing = await prisma.telegramRecipient.findFirst({
-    where: { chatId: parsed.data.chatId },
+  const data = parsed.data;
+
+  const existing = await prisma.telegramRecipient.findUnique({
+    where: { chatId: data.chatId },
+    select: { id: true },
   });
   if (existing) {
-    return NextResponse.json({ error: "Этот Chat ID уже добавлен" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Этот Chat ID уже добавлен" },
+      { status: 400 },
+    );
   }
 
-  const recipient = await prisma.telegramRecipient.create({ data: parsed.data });
-  return NextResponse.json(recipient, { status: 201 });
+  try {
+    const recipient = await prisma.telegramRecipient.create({ data });
+    return NextResponse.json(recipient, { status: 201 });
+  } catch (err) {
+    if (
+      err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === "P2002"
+    ) {
+      return NextResponse.json(
+        { error: "Этот Chat ID уже добавлен" },
+        { status: 400 },
+      );
+    }
+    console.error("[TELEGRAM RECIPIENTS POST]", err);
+    return NextResponse.json(
+      { error: "Не удалось добавить получателя" },
+      { status: 500 },
+    );
+  }
+}
+
+async function handleTestAction(body: Record<string, unknown>) {
+  const botToken =
+    typeof body.botToken === "string" ? body.botToken.trim() : "";
+  const chatIdRaw =
+    typeof body.chatId === "string" ? body.chatId.trim() : "";
+
+  if (!botToken) {
+    return NextResponse.json(
+      { ok: false, error: "Укажите токен бота" },
+      { status: 400 },
+    );
+  }
+
+  const chatIdCheck = chatIdSchema.safeParse(chatIdRaw);
+  if (!chatIdCheck.success) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: chatIdCheck.error.errors[0]?.message ?? "Некорректный Chat ID",
+      },
+      { status: 400 },
+    );
+  }
+
+  const result = await testTelegramMessage(botToken, chatIdCheck.data);
+  // testTelegramMessage уже возвращает { ok, error? } с понятными сообщениями
+  // (chat not found / unauthorized / bot was blocked / token invalid → 404),
+  // см. formatTelegramError в lib/telegram.ts.
+  return NextResponse.json(result);
 }

@@ -1,5 +1,30 @@
 import { expect, test } from "@playwright/test";
 
+async function gotoClientReady(page: import("@playwright/test").Page, url: string) {
+  const response = await page.goto(url, { waitUntil: "networkidle" });
+  expect(response?.ok()).toBeTruthy();
+}
+
+function collectBrowserProblems(page: import("@playwright/test").Page) {
+  const problems: string[] = [];
+
+  page.on("console", (message) => {
+    if (message.type() === "error") {
+      problems.push(`console: ${message.text()}`);
+    }
+  });
+  page.on("pageerror", (error) => {
+    problems.push(`pageerror: ${error.message}`);
+  });
+  page.on("response", (response) => {
+    if (response.status() >= 400 && !response.url().includes("/kapi/leads")) {
+      problems.push(`network: ${response.status()} ${response.url()}`);
+    }
+  });
+
+  return problems;
+}
+
 test.describe("lead collection forms", () => {
   test("homepage lead form submits valid data with tracking fields", async ({ page }) => {
     let requestBody: unknown = null;
@@ -9,7 +34,7 @@ test.describe("lead collection forms", () => {
       await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 101 }) });
     });
 
-    await page.goto("/?utm_source=playwright&utm_medium=test&utm_campaign=lead-form#form");
+    await gotoClientReady(page, "/?utm_source=playwright&utm_medium=test&utm_campaign=lead-form#form");
     await page.locator("#form").scrollIntoViewIfNeeded();
     const form = page.getByTestId("contact-form").last();
 
@@ -38,7 +63,7 @@ test.describe("lead collection forms", () => {
   });
 
   test("lead form shows client-side validation errors", async ({ page }) => {
-    await page.goto("/contacts#form");
+    await gotoClientReady(page, "/contacts#form");
     const form = page.getByTestId("contact-form").first();
 
     await form.getByTestId("form-name").fill("A");
@@ -59,7 +84,7 @@ test.describe("lead collection forms", () => {
       await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 102 }) });
     });
 
-    await page.goto("/locations/brest?utm_source=city-test#form");
+    await gotoClientReady(page, "/locations/brest?utm_source=city-test#form");
     await page.locator("#form").scrollIntoViewIfNeeded();
     const form = page.getByTestId("contact-form").last();
 
@@ -79,6 +104,68 @@ test.describe("lead collection forms", () => {
     });
     expect(String(submitted.sourcePage)).toContain("/locations/brest");
     expect(String(submitted.city)).toBeTruthy();
+  });
+
+  for (const city of ["minsk", "borisov", "gomel"] as const) {
+    test(`location form sends tracking fields for ${city}`, async ({ page }) => {
+      const problems = collectBrowserProblems(page);
+      let requestBody: unknown = null;
+
+      await page.route("**/kapi/leads", async (route) => {
+        requestBody = route.request().postDataJSON();
+        await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 120 }) });
+      });
+
+      await gotoClientReady(page, `/locations/${city}?utm_source=city-smoke#form`);
+      await page.locator("#form").scrollIntoViewIfNeeded();
+      const form = page.getByTestId("contact-form").last();
+
+      await form.getByTestId("form-name").fill("Городской smoke");
+      await form.getByTestId("form-phone").fill("+375291230000");
+      await form.getByTestId("form-comment").fill(`Проверка формы для ${city}.`);
+      await form.getByTestId("form-submit").click();
+
+      await expect(page.getByTestId("form-success")).toBeVisible();
+      const submitted = requestBody as Record<string, unknown>;
+      expect(submitted).toMatchObject({
+        cityKey: city,
+        formType: "contact",
+        sourceType: "location-region",
+        utmSource: "city-smoke",
+      });
+      expect(String(submitted.sourcePage)).toContain(`/locations/${city}`);
+      expect(problems).toEqual([]);
+    });
+  }
+
+  test("contacts form sends source page without browser errors", async ({ page }) => {
+    const problems = collectBrowserProblems(page);
+    let requestBody: unknown = null;
+
+    await page.route("**/kapi/leads", async (route) => {
+      requestBody = route.request().postDataJSON();
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 121 }) });
+    });
+
+    await gotoClientReady(page, "/contacts?utm_source=contacts-smoke#form");
+    const form = page.getByTestId("contact-form").first();
+
+    await form.getByTestId("form-name").fill("Контактный smoke");
+    await form.getByTestId("form-phone").fill("+375291230001");
+    await form.getByTestId("form-city").fill("Минск");
+    await form.getByTestId("form-comment").fill("Проверка формы контактов.");
+    await form.getByTestId("form-submit").click();
+
+    await expect(page.getByTestId("form-success")).toBeVisible();
+    const submitted = requestBody as Record<string, unknown>;
+    expect(submitted).toMatchObject({
+      source: "contacts",
+      sourceType: "contacts",
+      formType: "contact",
+      utmSource: "contacts-smoke",
+    });
+    expect(String(submitted.sourcePage)).toContain("/contacts");
+    expect(problems).toEqual([]);
   });
 
   test("calculator result form submits on mobile", async ({ page }) => {
@@ -102,7 +189,7 @@ test.describe("lead collection forms", () => {
       await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 103 }) });
     });
 
-    await page.goto("/calculator");
+    await gotoClientReady(page, "/calculator");
     for (let i = 0; i < 7; i += 1) {
       await page.getByTestId("calculator-next").click();
     }
