@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -55,12 +56,16 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    await requireAdmin();
     const leads = await prisma.lead.findMany({
       orderBy: { createdAt: "desc" },
       take: 100,
     });
     return NextResponse.json(leads);
-  } catch {
+  } catch (err) {
+    if (err instanceof Error && err.message === "Unauthorized") {
+      return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+    }
     return NextResponse.json({ error: "Ошибка БД" }, { status: 500 });
   }
 }
