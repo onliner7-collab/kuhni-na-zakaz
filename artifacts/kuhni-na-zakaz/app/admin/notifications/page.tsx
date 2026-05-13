@@ -399,12 +399,15 @@ export default function NotificationsPage() {
             <button
               type="button"
               onClick={() => setShowToken(!showToken)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
+              className="absolute right-1 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-8 h-8 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
               aria-label={showToken ? "Скрыть токен" : "Показать токен"}
               aria-pressed={showToken}
               title={showToken ? "Скрыть токен" : "Показать токен"}
             >
-              {showToken ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {showToken
+                ? <EyeOff className="w-4 h-4" aria-hidden="true" />
+                : <Eye className="w-4 h-4" aria-hidden="true" />
+              }
             </button>
           </div>
           <Button
@@ -552,42 +555,42 @@ export default function NotificationsPage() {
                           type="button"
                           onClick={() => sendTestToChatId(r.chatId, { recipientId: r.id, recipientLabel: displayName })}
                           disabled={testingId === r.id || !canTestGlobal}
-                          className="p-2 rounded-lg text-muted-foreground hover:text-violet-700 hover:bg-violet-100 disabled:opacity-40 disabled:hover:bg-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+                          className="inline-flex items-center justify-center min-h-10 min-w-10 p-2 rounded-lg text-muted-foreground hover:text-violet-700 hover:bg-violet-100 disabled:opacity-40 disabled:hover:bg-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
                           aria-label={`Отправить тестовое сообщение получателю ${displayName}`}
                           title={canTestGlobal ? "Отправить тест этому получателю" : "Сначала сохраните токен бота"}
                         >
-                          <Send className={`w-4 h-4 ${testingId === r.id ? "animate-pulse" : ""}`} />
+                          <Send className={`w-4 h-4 ${testingId === r.id ? "animate-pulse motion-reduce:animate-none" : ""}`} aria-hidden="true" />
                         </button>
                         <button
                           type="button"
                           onClick={() => startEdit(r)}
-                          className="p-2 rounded-lg text-muted-foreground hover:text-violet-700 hover:bg-violet-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+                          className="inline-flex items-center justify-center min-h-10 min-w-10 p-2 rounded-lg text-muted-foreground hover:text-violet-700 hover:bg-violet-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
                           aria-label={`Редактировать получателя ${displayName}`}
                           title="Редактировать"
                         >
-                          <Pencil className="w-4 h-4" />
+                          <Pencil className="w-4 h-4" aria-hidden="true" />
                         </button>
                         <button
                           type="button"
                           onClick={() => toggleRecipient(r.id, r.active)}
-                          className={`p-1 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 ${r.active ? "text-violet-600 hover:text-violet-800" : "text-muted-foreground hover:text-foreground"}`}
+                          className={`inline-flex items-center justify-center min-h-10 min-w-10 p-1 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 ${r.active ? "text-violet-600 hover:text-violet-800" : "text-muted-foreground hover:text-foreground"}`}
                           aria-label={r.active ? `Отключить уведомления для ${displayName}` : `Включить уведомления для ${displayName}`}
                           aria-pressed={r.active}
                           title={r.active ? "Отключить уведомления" : "Включить уведомления"}
                         >
                           {r.active
-                            ? <ToggleRight className="w-7 h-7" />
-                            : <ToggleLeft className="w-7 h-7" />
+                            ? <ToggleRight className="w-7 h-7" aria-hidden="true" />
+                            : <ToggleLeft className="w-7 h-7" aria-hidden="true" />
                           }
                         </button>
                         <button
                           type="button"
                           onClick={() => deleteRecipient(r.id)}
-                          className="p-2 rounded-lg text-muted-foreground hover:text-red-600 hover:bg-red-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+                          className="inline-flex items-center justify-center min-h-10 min-w-10 p-2 rounded-lg text-muted-foreground hover:text-red-600 hover:bg-red-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
                           aria-label={`Удалить получателя ${displayName}`}
                           title="Удалить получателя"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-4 h-4" aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -694,7 +697,7 @@ export default function NotificationsPage() {
           </Button>
         </div>
         {!canTestGlobal && (
-          <p className="text-xs text-amber-600">Сначала сохраните токен бота</p>
+          <p className="text-xs text-amber-700">Сначала сохраните токен бота</p>
         )}
       </section>
 

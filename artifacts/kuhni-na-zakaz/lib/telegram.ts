@@ -15,6 +15,7 @@ export interface LeadData {
 interface TelegramRecipientConfig {
   id: string;
   chatId: string;
+  recipientId: number;
 }
 
 const FORM_TYPE_LABELS: Record<string, string> = {
@@ -104,10 +105,13 @@ export async function sendLeadNotifications(lead: LeadData): Promise<void> {
   ]);
 
   const token = (process.env.TELEGRAM_BOT_TOKEN || settings?.telegramBotToken || "").trim();
-  const recipients = [
-    ...dbRecipients.map((recipient) => ({ id: `db:${recipient.id}`, chatId: recipient.chatId })),
-    ...getEnvRecipients(),
-  ].filter((recipient) => recipient.chatId.trim().length > 0);
+  const recipients: TelegramRecipientConfig[] = dbRecipients
+    .map((recipient) => ({
+      id: `db:${recipient.id}`,
+      chatId: recipient.chatId,
+      recipientId: recipient.id,
+    }))
+    .filter((recipient) => recipient.chatId.trim().length > 0);
 
   if (!token) {
     console.warn("[TELEGRAM] Bot token is not configured");
@@ -124,11 +128,46 @@ export async function sendLeadNotifications(lead: LeadData): Promise<void> {
     recipients.map((recipient) => sendMessage(token, recipient.chatId, text)),
   );
 
-  results.forEach((result, index) => {
-    if (result.status === "rejected") {
-      console.error(`[TELEGRAM] Failed to send lead notification to recipient ${recipients[index].id}:`, result.reason);
-    }
-  });
+  // Логируем каждую попытку в TelegramNotificationLog, чтобы
+  // /admin/notifications/logs показывал реальную картину отправок
+  // (вебхук уже делает то же самое). Запись через .catch — БД не должна
+  // валить пользовательский путь POST /kapi/leads.
+  await Promise.all(
+    results.map((result, index) => {
+      const recipient = recipients[index];
+      const status = result.status === "fulfilled" ? "sent" : "failed";
+      const errorMessage =
+        result.status === "rejected" ? formatLogError(result.reason) : "";
+
+      if (result.status === "rejected") {
+        console.error(
+          `[TELEGRAM] Failed to send lead notification to recipient ${recipient.id}:`,
+          result.reason,
+        );
+      }
+
+      return prisma.telegramNotificationLog
+        .create({
+          data: {
+            leadId: lead.id,
+            recipientId: recipient.recipientId,
+            chatId: recipient.chatId.trim(),
+            status,
+            errorMessage,
+          },
+        })
+        .catch((err) => {
+          console.error("[TELEGRAM] log lead notification failed", err);
+        });
+    }),
+  );
+}
+
+function formatLogError(reason: unknown): string {
+  if (reason instanceof Error) {
+    return reason.message;
+  }
+  return String(reason);
 }
 
 // Низкоуровневая отправка сообщения. Экспортируется, чтобы webhook
@@ -156,13 +195,6 @@ export async function testTelegramMessage(botToken: string, chatId: string): Pro
   } catch (err) {
     return { ok: false, error: String(err) };
   }
-}
-
-function getEnvRecipients(): TelegramRecipientConfig[] {
-  return (process.env.TELEGRAM_CHAT_IDS || "")
-    .split(",")
-    .map((chatId, index) => ({ id: `env:${index + 1}`, chatId: chatId.trim() }))
-    .filter((recipient) => recipient.chatId.length > 0);
 }
 
 function formatTelegramError(status: number, body: string) {

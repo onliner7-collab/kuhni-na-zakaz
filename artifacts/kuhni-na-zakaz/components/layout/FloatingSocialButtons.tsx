@@ -1,5 +1,7 @@
 import { Instagram } from "lucide-react";
 
+import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
+
 // Плавающие кнопки соцсетей, показываются на всех публичных страницах
 // (подключаются в app/layout.tsx только когда !isAdmin).
 //
@@ -8,7 +10,7 @@ import { Instagram } from "lucide-react";
 //   занимает место в DOM.
 // - Каждая ссылка нормализуется в полный https-URL независимо от того,
 //   как админ ввёл значение в /admin/contacts (полный URL, t.me/handle,
-//   @handle или просто username).
+//   @handle или просто username) — нормализация вынесена в lib/social-links.
 // - Если ввели что-то совсем странное (например, телефон) — кнопка для
 //   этой соцсети не показывается.
 //
@@ -26,32 +28,6 @@ interface FloatingSocialButtonsProps {
 const TELEGRAM_BLUE = "#229ED9";
 const INSTAGRAM_GRADIENT =
   "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)";
-
-function buildTelegramHref(raw?: string | null): string | null {
-  const value = (raw ?? "").trim();
-  if (!value) return null;
-  if (/^https?:\/\//i.test(value)) return value;
-  if (/^(?:t\.me|telegram\.me)\//i.test(value)) return `https://${value}`;
-  if (value.startsWith("@")) {
-    const handle = value.slice(1).trim();
-    return handle ? `https://t.me/${handle}` : null;
-  }
-  if (/^[A-Za-z0-9_]{3,}$/.test(value)) return `https://t.me/${value}`;
-  return null;
-}
-
-function buildInstagramHref(raw?: string | null): string | null {
-  const value = (raw ?? "").trim();
-  if (!value) return null;
-  if (/^https?:\/\//i.test(value)) return value;
-  if (/^instagram\.com\//i.test(value)) return `https://${value}`;
-  if (value.startsWith("@")) {
-    const handle = value.slice(1).trim();
-    return handle ? `https://instagram.com/${handle}` : null;
-  }
-  if (/^[A-Za-z0-9_.]{2,}$/.test(value)) return `https://instagram.com/${value}`;
-  return null;
-}
 
 function TelegramIcon({ className }: { className?: string }) {
   return (

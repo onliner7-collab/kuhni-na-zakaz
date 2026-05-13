@@ -1,10 +1,26 @@
 import Link from "next/link";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Instagram, Mail, MapPin, Phone } from "lucide-react";
 
 import { regionalLocations } from "@/data/locations";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { resolveContactInfo } from "@/lib/contact-info";
 import { prisma } from "@/lib/db";
+import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
+
+function FooterTelegramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      role="img"
+      aria-hidden="true"
+      focusable="false"
+      fill="currentColor"
+    >
+      <path d="M21.94 4.32a1.5 1.5 0 0 0-1.6-.24L3.4 10.86c-1.06.43-1.05 1.05-.19 1.33l4.36 1.36 1.69 5.31c.2.61.34.83.69.83.27 0 .42-.12.6-.26l2.2-2.06 4.43 3.27c.81.45 1.4.22 1.6-.75l2.92-13.78c.28-1.31-.44-1.85-1.16-1.79zm-3.79 4.46-8.42 5.34-.33 3.5-.5-3.18 8.79-5.55c.4-.26.78-.13.46.15z" />
+    </svg>
+  );
+}
 
 const FOOTER_LINKS = {
   catalog: [
@@ -35,6 +51,9 @@ export async function Footer() {
     ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
     : null;
   const c = resolveContactInfo(s);
+  const instagramHref = buildInstagramHref(c.instagram);
+  const telegramHref = buildTelegramHref(c.telegram);
+  const hasSocialLinks = Boolean(instagramHref || telegramHref);
 
   const priorityCities = regionalLocations.map((location) => ({
     href: `/locations/${location.slug}`,
@@ -83,6 +102,41 @@ export async function Footer() {
                 {c.workingHours}
               </div>
             </div>
+            {hasSocialLinks && (
+              <div className="mt-5">
+                <p className="mb-2 text-xs font-bold uppercase tracking-widest text-white/55">
+                  Мы в соцсетях
+                </p>
+                <ul className="flex items-center gap-2">
+                  {instagramHref && (
+                    <li>
+                      <a
+                        href={instagramHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Открыть наш профиль в Instagram (откроется в новой вкладке)"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/70 transition-colors hover:border-primary/40 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+                      >
+                        <Instagram className="h-4 w-4" aria-hidden />
+                      </a>
+                    </li>
+                  )}
+                  {telegramHref && (
+                    <li>
+                      <a
+                        href={telegramHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Написать нам в Telegram (откроется в новой вкладке)"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/70 transition-colors hover:border-primary/40 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-950"
+                      >
+                        <FooterTelegramIcon className="h-4 w-4" />
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
           </div>
 
           <div>

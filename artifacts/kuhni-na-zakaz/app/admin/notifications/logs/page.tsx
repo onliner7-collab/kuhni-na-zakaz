@@ -60,7 +60,7 @@ export default async function TelegramLogsPage() {
             </p>
             <Link
               href="/admin/dashboard"
-              className="inline-flex items-center gap-1 text-sm font-medium text-red-700 hover:text-red-900 underline underline-offset-2 mt-2"
+              className="inline-flex items-center gap-1 text-sm font-medium text-red-700 hover:text-red-900 underline underline-offset-2 mt-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2"
             >
               <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
               Вернуться в панель
@@ -133,7 +133,7 @@ export default async function TelegramLogsPage() {
         </div>
         <Link
           href="/admin/notifications"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
         >
           <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           К настройкам уведомлений
@@ -222,7 +222,7 @@ export default async function TelegramLogsPage() {
                         {log.leadId ? (
                           <Link
                             href={`/admin/leads?q=${log.leadId}`}
-                            className="font-mono text-xs text-violet-700 hover:text-violet-900 underline underline-offset-2"
+                            className="font-mono text-xs text-violet-700 hover:text-violet-900 underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2"
                             title={`Открыть заявку #${log.leadId}`}
                           >
                             #{log.leadId}
@@ -285,7 +285,7 @@ export default async function TelegramLogsPage() {
                         {log.errorMessage ? (
                           <details className="group">
                             <summary
-                              className="cursor-pointer list-none text-red-700 hover:text-red-900 marker:hidden"
+                              className="cursor-pointer list-none text-red-700 hover:text-red-900 marker:hidden rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2"
                               title={log.errorMessage}
                             >
                               <span className="block truncate group-open:hidden">
