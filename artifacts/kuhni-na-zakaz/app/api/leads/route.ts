@@ -10,7 +10,10 @@ const leadSchema = z.object({
   comment: z.string().max(2000).optional().default(""),
   source: z.string().max(100).optional().default("website"),
   formType: z.string().max(50).optional().default("contact"),
-  answers: z.record(z.unknown()).optional().default({}),
+  answers: z
+    .record(z.union([z.string(), z.number(), z.boolean(), z.array(z.string()), z.null()]))
+    .optional()
+    .default({}),
   honeypot: z.string().max(0).optional(),
 });
 
