@@ -5,8 +5,14 @@ import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { BLOG_POSTS } from "@/lib/blog-static";
+import { SEO_BLOG_POSTS_FALLBACK } from "@/lib/blog-seo-fallback";
+import { mergeBlogCover } from "@/lib/blog-cover-meta";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
+
+function publishedTime(p: { publishedAt?: Date | null }) {
+  return p.publishedAt ? new Date(p.publishedAt).getTime() : 0;
+}
 
 const COMMERCIAL_LINKS = [
   { href: "/catalog", title: "Подобрать тип кухни", text: "Сравните угловые, прямые, П-образные кухни и варианты с островом." },
@@ -35,7 +41,13 @@ async function getPosts() {
 
 export default async function BlogPage() {
   const posts = await getPosts();
-  const display = posts.length > 0 ? posts : BLOG_POSTS;
+  const raw =
+    posts.length > 0
+      ? posts
+      : [...SEO_BLOG_POSTS_FALLBACK, ...BLOG_POSTS].sort(
+          (a, b) => publishedTime(b) - publishedTime(a),
+        );
+  const display = raw.map((p) => mergeBlogCover(p));
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Блог", path: "/blog" },
@@ -98,9 +110,13 @@ export default async function BlogPage() {
                   {p.coverImage ? (
                     <Image
                       src={optimizedImageSrc(p.coverImage) || p.coverImage}
-                      alt={buildImageAlt(p.coverImage, `Иллюстрация к статье: ${p.title}`)}
-                      width={720}
-                      height={420}
+                      alt={
+                        p.coverImageAlt?.trim() ||
+                        buildImageAlt(p.coverImage, p.title)
+                      }
+                      width={p.coverImageWidth ?? 1200}
+                      height={p.coverImageHeight ?? 800}
+                      loading="lazy"
                       unoptimized={isPreoptimizedRasterSrc(optimizedImageSrc(p.coverImage))}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

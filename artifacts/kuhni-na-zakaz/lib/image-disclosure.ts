@@ -1,5 +1,6 @@
 const GENERATED_IMAGE_PREFIXES = [
   "/uploads/seo-showcase/",
+  "/images/blog/",
 ] as const;
 
 const GENERATED_IMAGE_ALIASES = new Set([

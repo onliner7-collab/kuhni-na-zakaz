@@ -1,8 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import type { StaticBlogPost } from "@/lib/blog-static";
 
-const prisma = new PrismaClient();
-
-const posts = [
+/**
+ * Три SEO-статьи для статического рендера и fallback без БД.
+ * Обложки подставляются из {@link BLOG_COVER_META} в mergeBlogCover.
+ */
+export const SEO_BLOG_POSTS_FALLBACK: StaticBlogPost[] = [
   {
     slug: "skolko-stoit-kuhnya-na-zakaz-minsk-2026",
     title: "Сколько стоит кухня на заказ в Минске в 2026 году",
@@ -11,9 +13,11 @@ const posts = [
     category: "Цены",
     readTime: 9,
     tags: ["цены", "Минск", "смета", "кухни на заказ"],
-    coverImage: "/images/blog/stoimost-kuhni-na-zakaz-minsk-2026.webp",
+    relatedCaseSlugs: [],
     relatedStyleSlugs: ["sovremennye", "minimalizm"],
     relatedScenarioSlugs: ["dlya-semi", "do-potolka"],
+    published: true,
+    publishedAt: new Date("2026-05-09"),
     seoTitle: "Сколько стоит кухня на заказ в Минске в 2026 году | КухниBY",
     seoDescription:
       "Цена кухни на заказ в Минске: корпус, фасады, столешница, фурнитура, замер, доставка и монтаж. Ориентиры по бюджету и советы, где экономить без потери удобства.",
@@ -58,9 +62,11 @@ const posts = [
     category: "Планировка",
     readTime: 8,
     tags: ["угловая кухня", "планировка", "размеры", "хранение"],
-    coverImage: "/images/blog/uglovaya-kuhnya-planirovka.webp",
+    relatedCaseSlugs: [],
     relatedStyleSlugs: ["sovremennye", "skandinavskie"],
     relatedScenarioSlugs: ["dlya-semi", "dlya-malenkoy-kuhni"],
+    published: true,
+    publishedAt: new Date("2026-05-09"),
     seoTitle: "Угловая кухня: размеры, планировка и ошибки при заказе",
     seoDescription:
       "Как спланировать угловую кухню: рабочий треугольник, доступ к углу, размеры проходов, хранение и частые ошибки при заказе кухни.",
@@ -99,9 +105,11 @@ const posts = [
     category: "Дизайн",
     readTime: 7,
     tags: ["кухня до потолка", "хранение", "дизайн", "цена"],
-    coverImage: "/images/blog/kuhnya-do-potolka.webp",
+    relatedCaseSlugs: [],
     relatedStyleSlugs: ["minimalizm", "sovremennye"],
     relatedScenarioSlugs: ["do-potolka", "dlya-semi"],
+    published: true,
+    publishedAt: new Date("2026-05-09"),
     seoTitle: "Кухня до потолка: плюсы, минусы и цена",
     seoDescription:
       "Стоит ли делать кухню до потолка: плюсы, минусы, хранение, уход, требования к потолку и ориентиры по стоимости.",
@@ -131,28 +139,6 @@ const posts = [
   },
 ];
 
-async function main() {
-  for (const post of posts) {
-    await prisma.blogPost.upsert({
-      where: { slug: post.slug },
-      create: {
-        ...post,
-        published: true,
-        publishedAt: new Date(),
-      },
-      update: {
-        ...post,
-        published: true,
-        publishedAt: new Date(),
-      },
-    });
-    console.log(`seeded ${post.slug}`);
-  }
-}
-
-main()
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  })
-  .finally(() => prisma.$disconnect());
+export const SEO_BLOG_POSTS_BY_SLUG = Object.fromEntries(
+  SEO_BLOG_POSTS_FALLBACK.map((post) => [post.slug, post]),
+);

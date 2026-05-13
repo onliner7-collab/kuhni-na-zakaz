@@ -7,7 +7,7 @@ import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { renderContent } from "@/lib/render-content";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { canonicalSiteUrl, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import {
@@ -16,10 +16,9 @@ import {
   compactJsonLd,
   siteUrl,
 } from "@/lib/schema-org";
-import { BLOG_POSTS, BLOG_POSTS_BY_SLUG } from "@/lib/blog-static";
+import { getOtherBlogPostLinks } from "@/lib/blog-nav-posts";
+import { getMergedPublishedBlogPost } from "@/lib/blog-resolve";
 import { isPublicContentSlug } from "@/lib/public-content";
-
-const STATIC_POSTS = BLOG_POSTS_BY_SLUG;
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -85,60 +84,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Статья", robots: { index: false, follow: false } };
   }
 
-  try {
-    const p = await prisma.blogPost.findUnique({ where: { slug } });
-    if (p?.published)
-      return {
-        title: cleanSeoTitle(p.seoTitle, p.title),
-        description: trimMetaDescription(p.seoDescription, p.excerpt),
-        alternates: { canonical: `/blog/${slug}` },
-      };
-  } catch {}
-  const s = STATIC_POSTS[slug];
-  if (s)
-    return {
-      title: cleanSeoTitle(s.title, s.title),
-      description: trimMetaDescription(s.excerpt, s.excerpt),
-      alternates: { canonical: `/blog/${slug}` },
-    };
-  return { title: "Статья" };
+  const merged = await getMergedPublishedBlogPost(slug);
+  if (!merged) return { title: "Статья" };
+
+  const title = cleanSeoTitle(merged.seoTitle, merged.title);
+  const description = trimMetaDescription(merged.seoDescription, merged.excerpt);
+  const ogImage = merged.coverImage ? canonicalSiteUrl(merged.coverImage) : undefined;
+  const imgW = merged.coverImageWidth ?? 1200;
+  const imgH = merged.coverImageHeight ?? 800;
+  const imgAlt = merged.coverImageAlt?.trim() || undefined;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      images: ogImage
+        ? [{ url: ogImage, width: imgW, height: imgH, alt: imgAlt }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   if (!isPublicContentSlug(slug)) notFound();
 
-  let data: {
-    title: string;
-    excerpt: string;
-    category: string;
-    readTime: number;
-    content: string;
-    coverImage?: string;
-    publishedAt?: Date | null;
-    updatedAt?: Date | null;
-    relatedCaseSlugs?: string[];
-    relatedStyleSlugs?: string[];
-    relatedScenarioSlugs?: string[];
-  } | null = null;
-  try {
-    const p = await prisma.blogPost.findUnique({ where: { slug } });
-    if (p && p.published)
-      data = {
-        title: p.title,
-        excerpt: p.excerpt,
-        category: p.category,
-        readTime: p.readTime,
-        content: p.content,
-        coverImage: p.coverImage,
-        publishedAt: p.publishedAt,
-        updatedAt: p.updatedAt,
-        relatedCaseSlugs: p.relatedCaseSlugs,
-        relatedStyleSlugs: p.relatedStyleSlugs,
-        relatedScenarioSlugs: p.relatedScenarioSlugs,
-      };
-  } catch {}
-  if (!data) data = STATIC_POSTS[slug] || null;
+  const data = await getMergedPublishedBlogPost(slug);
   if (!data) notFound();
 
   const { cases, styles, scenarios } = await getRelatedContent(
@@ -147,6 +128,11 @@ export default async function BlogPostPage({ params }: Props) {
     data.relatedScenarioSlugs ?? [],
   );
   const coverDisclosure = getImageDisclosure(data.coverImage);
+  const coverW = data.coverImageWidth ?? 1200;
+  const coverH = data.coverImageHeight ?? 800;
+  const coverAlt =
+    data.coverImageAlt?.trim() ||
+    buildImageAlt(data.coverImage, `Иллюстрация к статье: ${data.title}`);
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -156,11 +142,11 @@ export default async function BlogPostPage({ params }: Props) {
 
   const jsonLdArticle = compactJsonLd({
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: data.title,
     description: data.excerpt,
     articleSection: data.category,
-    image: data.coverImage ? siteUrl(data.coverImage) : undefined,
+    image: data.coverImage ? [siteUrl(data.coverImage)] : undefined,
     mainEntityOfPage: siteUrl(`/blog/${slug}`),
     url: siteUrl(`/blog/${slug}`),
     datePublished: data.publishedAt?.toISOString(),
@@ -196,29 +182,38 @@ export default async function BlogPostPage({ params }: Props) {
               <h1 className="font-serif text-4xl font-bold mb-6 leading-tight">
                 {data.title}
               </h1>
-              <div className="relative mb-8 h-64 overflow-hidden rounded-xl bg-gradient-to-br from-stone-200 to-amber-50">
-                {data.coverImage ? (
-                  <Image
-                    src={optimizedImageSrc(data.coverImage) || data.coverImage}
-                    alt={buildImageAlt(data.coverImage, `Иллюстрация к статье: ${data.title}`)}
-                    width={960}
-                    height={540}
-                    unoptimized={isPreoptimizedRasterSrc(optimizedImageSrc(data.coverImage))}
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 760px"
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center">
-                    <span className="text-stone-400">Иллюстрация к статье</span>
-                  </div>
-                )}
-                {data.coverImage && coverDisclosure.kind === "generated" && (
-                  <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                    {coverDisclosure.label}
-                  </span>
-                )}
-              </div>
+              <figure className="mb-8 space-y-2">
+                <div className="relative h-64 overflow-hidden rounded-xl bg-gradient-to-br from-stone-200 to-amber-50">
+                  {data.coverImage ? (
+                    <Image
+                      src={optimizedImageSrc(data.coverImage) || data.coverImage}
+                      alt={coverAlt}
+                      width={coverW}
+                      height={coverH}
+                      unoptimized={isPreoptimizedRasterSrc(
+                        optimizedImageSrc(data.coverImage),
+                      )}
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 760px"
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      <span className="text-stone-400">Иллюстрация к статье</span>
+                    </div>
+                  )}
+                  {data.coverImage && coverDisclosure.kind === "generated" && (
+                    <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                      {coverDisclosure.label}
+                    </span>
+                  )}
+                </div>
+                {data.coverImageCaption ? (
+                  <figcaption className="text-xs text-muted-foreground px-0.5">
+                    {data.coverImageCaption}
+                  </figcaption>
+                ) : null}
+              </figure>
               <div className="space-y-4">{renderContent(data.content)}</div>
 
               {/* Похожие проекты */}
@@ -408,18 +403,16 @@ export default async function BlogPostPage({ params }: Props) {
                     Другие статьи
                   </h3>
                   <div className="space-y-1">
-                    {BLOG_POSTS.filter((p) => p.slug !== slug)
-                      .slice(0, 3)
-                      .map((p) => (
-                        <Link
-                          key={p.slug}
-                          href={`/blog/${p.slug}`}
-                          className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          <span className="line-clamp-1">{p.title}</span>
-                          <ArrowRight className="w-3.5 h-3.5 shrink-0 ml-2" />
-                        </Link>
-                      ))}
+                    {getOtherBlogPostLinks(slug, 3).map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/blog/${p.slug}`}
+                        className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <span className="line-clamp-1">{p.title}</span>
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0 ml-2" />
+                      </Link>
+                    ))}
                     <Link
                       href="/blog"
                       className="block text-center mt-2 text-xs text-primary hover:underline"
