@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { getSession } from "@/lib/auth";
+import { getSession, requireAdmin } from "@/lib/auth";
 
 export async function GET() {
-  const settings = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
-  return NextResponse.json(settings || {});
+  try {
+    await requireAdmin();
+    const settings = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
+    return NextResponse.json(settings || {});
+  } catch {
+    return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  }
 }
 
 export async function PUT(req: NextRequest) {

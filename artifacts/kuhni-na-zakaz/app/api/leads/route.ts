@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -9,7 +10,10 @@ const leadSchema = z.object({
   comment: z.string().max(2000).optional().default(""),
   source: z.string().max(100).optional().default("website"),
   formType: z.string().max(50).optional().default("contact"),
-  answers: z.record(z.unknown()).optional().default({}),
+  answers: z
+    .record(z.union([z.string(), z.number(), z.boolean(), z.array(z.string()), z.null()]))
+    .optional()
+    .default({}),
   honeypot: z.string().max(0).optional(),
 });
 
@@ -55,12 +59,16 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    await requireAdmin();
     const leads = await prisma.lead.findMany({
       orderBy: { createdAt: "desc" },
       take: 100,
     });
     return NextResponse.json(leads);
-  } catch {
+  } catch (err) {
+    if (err instanceof Error && err.message === "Unauthorized") {
+      return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+    }
     return NextResponse.json({ error: "Ошибка БД" }, { status: 500 });
   }
 }

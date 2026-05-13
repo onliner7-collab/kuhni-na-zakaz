@@ -17,6 +17,18 @@ const STATIC_CASES = [
   { slug: "kuhnya-do-potolka-minsk-vostok", title: "Кухня до потолка — максимум хранения", city: "Минск, Восток", area: 12, style: "Современный", priceFrom: 3100, priceTo: 3600, days: 24 },
 ];
 
+type PortfolioCard = {
+  slug: string;
+  title: string;
+  city: string;
+  area: number;
+  style: string;
+  priceFrom: number;
+  priceTo: number;
+  days: number;
+  mainImage?: string | null;
+};
+
 async function getCases() {
   try {
     return await prisma.portfolioCase.findMany({ where: { published: true }, orderBy: { createdAt: "desc" } });
@@ -27,6 +39,7 @@ async function getCases() {
 
 export default async function PortfolioPage() {
   const cases = await getCases();
+  const displayCases: PortfolioCard[] = cases.length > 0 ? cases : STATIC_CASES;
 
   return (
     <div className="section-padding">
@@ -39,10 +52,10 @@ export default async function PortfolioPage() {
         <h1 className="font-serif text-4xl font-bold mb-4">Наши работы</h1>
         <p className="text-muted-foreground mb-10">Реализованные проекты кухонь в Минске и Минской области</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {(cases.length > 0 ? cases : STATIC_CASES).map((c) => (
+          {displayCases.map((c) => (
             <Link key={c.slug} href={`/portfolio/${c.slug}`} className="card-base hover:shadow-md transition-shadow group">
               <div className="h-56 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center overflow-hidden">
-                {"mainImage" in c && c.mainImage ? (
+                {c.mainImage ? (
                   <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover" />
                 ) : (
                   <span className="text-stone-400 text-sm">Фото проекта</span>

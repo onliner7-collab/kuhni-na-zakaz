@@ -26,7 +26,7 @@ const NAV = [
 ];
 
 export function AdminSidebar({ session }: { session: SessionPayload }) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "";
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
 
