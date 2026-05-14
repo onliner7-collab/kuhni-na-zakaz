@@ -7,6 +7,7 @@
 - Восстановлены недостающие серверные helper/export для админских страниц и API Next.js.
 - Исключены legacy Vite pages из Next production build и восстановлена поддержка `asChild` в кнопках.
 - Добавлена генерация Prisma Client из каталога Next-приложения при установке зависимостей.
+- Исправлен тип JSON-поля `answers` при сохранении заявки через Prisma.
 
 ### Затронуты файлы
 - `artifacts/kuhni-na-zakaz/lib/auth.ts`
