@@ -10,6 +10,7 @@
 - Добавлена генерация Prisma Client из каталога Next-приложения при установке зависимостей.
 - Исправлен тип JSON-поля `answers` при сохранении заявки через Prisma.
 - Исправлены оставшиеся typecheck-блокеры Next-приложения после миграции.
+- Убран runtime build output `.next/types` из standalone TypeScript-проверки.
 
 ### Затронуты файлы
 - `artifacts/kuhni-na-zakaz/lib/auth.ts`
