@@ -1,5 +1,20 @@
 # Журнал изменений
 
+## [0.3.1] — 2026-05-14
+
+### Исправлено
+- Закрыто неавторизованное чтение заявок и приватных настроек Telegram через API.
+- Восстановлены недостающие серверные helper/export для админских страниц и API Next.js.
+
+### Затронуты файлы
+- `artifacts/kuhni-na-zakaz/lib/auth.ts`
+- `artifacts/kuhni-na-zakaz/lib/prisma.ts`
+- `artifacts/kuhni-na-zakaz/app/api/leads/route.ts`
+- `artifacts/kuhni-na-zakaz/app/api/admin/settings/route.ts`
+- `artifacts/kuhni-na-zakaz/app/api/admin/blog/[id]/route.ts`
+
+---
+
 ## [0.3.0] — 2025-04-05
 
 ### Добавлено

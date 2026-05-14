@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import { getSession } from "@/lib/auth";
 import { z } from "zod";
 
 const leadSchema = z.object({
@@ -55,6 +56,11 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    const session = await getSession();
+    if (!session || (session.role !== "SUPER_ADMIN" && session.role !== "MANAGER")) {
+      return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+    }
+
     const leads = await prisma.lead.findMany({
       orderBy: { createdAt: "desc" },
       take: 100,
