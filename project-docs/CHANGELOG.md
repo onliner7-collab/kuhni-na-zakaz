@@ -8,6 +8,7 @@
 - Исключены legacy Vite pages из Next production build и восстановлена поддержка `asChild` в кнопках.
 - Добавлена генерация Prisma Client из каталога Next-приложения при установке зависимостей.
 - Исправлен тип JSON-поля `answers` при сохранении заявки через Prisma.
+- Исправлены оставшиеся typecheck-блокеры Next-приложения после миграции.
 
 ### Затронуты файлы
 - `artifacts/kuhni-na-zakaz/lib/auth.ts`
@@ -19,6 +20,8 @@
 - `artifacts/kuhni-na-zakaz/components/ui/button.tsx`
 - `artifacts/kuhni-na-zakaz/components/admin/AdminSidebar.tsx`
 - `artifacts/kuhni-na-zakaz/package.json`
+- `artifacts/kuhni-na-zakaz/app/portfolio/page.tsx`
+- `artifacts/kuhni-na-zakaz/tsconfig.json`
 - `pnpm-workspace.yaml`
 
 ---
