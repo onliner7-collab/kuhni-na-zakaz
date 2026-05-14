@@ -3,6 +3,11 @@ import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 
 export async function GET() {
+  const session = await getSession();
+  if (!session || session.role !== "SUPER_ADMIN") {
+    return NextResponse.json({ error: "Нет доступа" }, { status: 403 });
+  }
+
   const settings = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
   return NextResponse.json(settings || {});
 }

@@ -63,6 +63,14 @@ export async function getSessionFromRequest(
   return verifySession(token);
 }
 
+export async function requireAdmin(): Promise<SessionPayload> {
+  const session = await getSession();
+  if (!session || (session.role !== "SUPER_ADMIN" && session.role !== "MANAGER")) {
+    throw new Error("Unauthorized");
+  }
+  return session;
+}
+
 export function getSessionFromRequestSync(
   req: NextRequest
 ): Promise<SessionPayload | null> {

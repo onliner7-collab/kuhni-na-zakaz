@@ -1,5 +1,35 @@
 # Журнал изменений
 
+## [0.3.1] — 2026-05-14
+
+### Исправлено
+- Закрыто неавторизованное чтение заявок и приватных настроек Telegram через API.
+- Восстановлены недостающие серверные helper/export для админских страниц и API Next.js.
+- Переименованы legacy Vite pages, чтобы Next production build не подхватывал их как Pages Router.
+- Восстановлена поддержка `asChild` в кнопках.
+- Добавлена генерация Prisma Client из каталога Next-приложения при установке зависимостей.
+- Исправлен тип JSON-поля `answers` при сохранении заявки через Prisma.
+- Исправлены оставшиеся typecheck-блокеры Next-приложения после миграции.
+- Убран runtime build output `.next/types` из standalone TypeScript-проверки.
+
+### Затронуты файлы
+- `artifacts/kuhni-na-zakaz/lib/auth.ts`
+- `artifacts/kuhni-na-zakaz/lib/prisma.ts`
+- `artifacts/kuhni-na-zakaz/app/api/leads/route.ts`
+- `artifacts/kuhni-na-zakaz/app/api/admin/settings/route.ts`
+- `artifacts/kuhni-na-zakaz/app/api/admin/blog/[id]/route.ts`
+- `artifacts/kuhni-na-zakaz/next.config.ts`
+- `artifacts/kuhni-na-zakaz/components/ui/button.tsx`
+- `artifacts/kuhni-na-zakaz/components/admin/AdminSidebar.tsx`
+- `artifacts/kuhni-na-zakaz/src/App.tsx`
+- `artifacts/kuhni-na-zakaz/src/legacy-pages/*`
+- `artifacts/kuhni-na-zakaz/package.json`
+- `artifacts/kuhni-na-zakaz/app/portfolio/page.tsx`
+- `artifacts/kuhni-na-zakaz/tsconfig.json`
+- `pnpm-workspace.yaml`
+
+---
+
 ## [0.3.0] — 2025-04-05
 
 ### Добавлено

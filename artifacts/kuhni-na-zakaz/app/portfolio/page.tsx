@@ -42,7 +42,7 @@ export default async function PortfolioPage() {
           {(cases.length > 0 ? cases : STATIC_CASES).map((c) => (
             <Link key={c.slug} href={`/portfolio/${c.slug}`} className="card-base hover:shadow-md transition-shadow group">
               <div className="h-56 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center overflow-hidden">
-                {"mainImage" in c && c.mainImage ? (
+                {"mainImage" in c && typeof c.mainImage === "string" && c.mainImage ? (
                   <img src={c.mainImage} alt={c.title} className="w-full h-full object-cover" />
                 ) : (
                   <span className="text-stone-400 text-sm">Фото проекта</span>

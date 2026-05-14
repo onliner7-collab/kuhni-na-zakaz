@@ -14,6 +14,7 @@ const BlogSchema = z.object({
   seoTitle: z.string().nullable().optional(),
   seoDescription: z.string().nullable().optional(),
   published: z.boolean().optional(),
+  publishedAt: z.date().optional(),
 });
 
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
