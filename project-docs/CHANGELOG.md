@@ -6,6 +6,7 @@
 - Закрыто неавторизованное чтение заявок и приватных настроек Telegram через API.
 - Восстановлены недостающие серверные helper/export для админских страниц и API Next.js.
 - Исключены legacy Vite pages из Next production build и восстановлена поддержка `asChild` в кнопках.
+- Добавлена генерация Prisma Client из каталога Next-приложения при установке зависимостей.
 
 ### Затронуты файлы
 - `artifacts/kuhni-na-zakaz/lib/auth.ts`
@@ -16,6 +17,7 @@
 - `artifacts/kuhni-na-zakaz/next.config.ts`
 - `artifacts/kuhni-na-zakaz/components/ui/button.tsx`
 - `artifacts/kuhni-na-zakaz/components/admin/AdminSidebar.tsx`
+- `artifacts/kuhni-na-zakaz/package.json`
 - `pnpm-workspace.yaml`
 
 ---
