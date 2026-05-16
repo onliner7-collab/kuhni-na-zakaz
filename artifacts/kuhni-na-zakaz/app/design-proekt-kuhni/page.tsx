@@ -14,7 +14,9 @@ import {
   Sparkles,
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl, type JsonLdObject } from "@/lib/schema-org";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { SITE_NAME } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl, type JsonLdObject } from "@/lib/schema-org";
 
 const pagePath = "/design-proekt-kuhni";
 const imageBase = "/images/design-proekt-kuhni";
@@ -208,31 +210,45 @@ const faqItems = [
 ];
 
 export default function DesignProektKuhniPage() {
+  const localBusinessId = `${siteUrl("/")}#organization`;
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "3D-проект кухни", path: pagePath },
   ]);
-  const jsonLdService = {
+  const jsonLdLocalBusiness = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": localBusinessId,
+    name: SITE_NAME,
+    url: siteUrl("/"),
+    logo: siteUrl("/logo.png"),
+    telephone: CONTACT_DEFAULTS.phone,
+    email: CONTACT_DEFAULTS.email,
+    address: CONTACT_DEFAULTS.address,
+    areaServed: {
+      "@type": "Country",
+      name: "Беларусь",
+    },
+  });
+  const jsonLdService = compactJsonLd({
     "@context": "https://schema.org",
     "@type": "Service",
     name: "3D-проект кухни на заказ",
     description: metadata.description,
     url: siteUrl(pagePath),
     provider: {
-      "@type": "Organization",
-      name: "КухниBY",
-      url: siteUrl(),
+      "@id": localBusinessId,
     },
     areaServed: {
       "@type": "City",
       name: "Минск",
     },
     serviceType: "Дизайн-проект кухни на заказ",
-  };
+  });
   const jsonLdFaq = faqJsonLd(faqItems);
   const jsonLdItems: JsonLdObject[] = jsonLdFaq
-    ? [jsonLdBreadcrumb, jsonLdService, jsonLdFaq]
-    : [jsonLdBreadcrumb, jsonLdService];
+    ? [jsonLdBreadcrumb, jsonLdService, jsonLdLocalBusiness, jsonLdFaq]
+    : [jsonLdBreadcrumb, jsonLdService, jsonLdLocalBusiness];
 
   return (
     <>
