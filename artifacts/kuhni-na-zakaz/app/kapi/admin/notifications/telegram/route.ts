@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { testTelegramMessage } from "@/lib/telegram";
+import { getEmailNotificationStatus, testEmailNotification } from "@/lib/email";
 
 const chatIdSchema = z
   .string()
@@ -47,6 +48,7 @@ export async function GET() {
   return NextResponse.json({
     recipients,
     botToken: settings?.telegramBotToken ?? "",
+    email: getEmailNotificationStatus(),
   });
 }
 
@@ -58,6 +60,10 @@ export async function POST(req: NextRequest) {
 
   if (body?._action === "test") {
     return handleTestAction(body);
+  }
+
+  if (body?._action === "testEmail") {
+    return NextResponse.json(await testEmailNotification());
   }
 
   if (body?._action === "saveBotToken") {

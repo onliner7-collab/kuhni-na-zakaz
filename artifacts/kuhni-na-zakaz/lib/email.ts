@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-const LEAD_NOTIFICATION_RECIPIENT = "onliner7@gmail.com";
+const DEFAULT_LEAD_NOTIFICATION_RECIPIENT = "onliner7@gmail.com";
 
 export interface EmailLeadData {
   id: number;
@@ -15,79 +15,82 @@ export interface EmailLeadData {
 }
 
 const FORM_TYPE_LABELS: Record<string, string> = {
-  contact:     "Обратная связь",
+  contact: "Обратная связь",
   measurement: "Замер",
-  calculator:  "Калькулятор",
-  catalog:     "Каталог",
-  portfolio:   "Портфолио",
-  price:       "Цены",
-  quiz:        "Квиз",
-  popup:       "Поп-ап форма",
-  header:      "Шапка сайта",
-  footer:      "Подвал сайта",
+  calculator: "Калькулятор",
+  catalog: "Каталог",
+  portfolio: "Портфолио",
+  price: "Цены",
+  quiz: "Квиз",
+  popup: "Поп-ап форма",
+  header: "Шапка сайта",
+  footer: "Подвал сайта",
 };
 
 function buildHtmlBody(lead: EmailLeadData): string {
   const formLabel = FORM_TYPE_LABELS[lead.formType] ?? lead.formType;
   const date = new Date(lead.createdAt).toLocaleString("ru-RU", {
     timeZone: "Europe/Minsk",
-    day: "2-digit", month: "2-digit", year: "numeric",
-    hour: "2-digit", minute: "2-digit",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 
-  const esc = (s: string) => s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-
-  const answersHtml = (() => {
-    const answersObj = (lead.answers && typeof lead.answers === "object" && !Array.isArray(lead.answers))
+  const answersObj =
+    lead.answers && typeof lead.answers === "object" && !Array.isArray(lead.answers)
       ? (lead.answers as Record<string, unknown>)
       : {};
-    const keys = Object.keys(answersObj);
-    if (keys.length === 0) return "";
-    const rows = keys.map((k) => `
+
+  const answerRows = Object.entries(answersObj)
+    .map(
+      ([key, value]) => `
       <tr>
-        <td style="padding:4px 8px;color:#6b7280;white-space:nowrap">${esc(k)}</td>
-        <td style="padding:4px 8px">${esc(String(answersObj[k]))}</td>
-      </tr>`).join("");
-    return `
+        <td style="padding:4px 8px;color:#6b7280;white-space:nowrap">${escapeHtml(key)}</td>
+        <td style="padding:4px 8px">${escapeHtml(formatAnswerValue(value))}</td>
+      </tr>`,
+    )
+    .join("");
+
+  const answersHtml = answerRows
+    ? `
       <tr><td colspan="2" style="padding:12px 8px 4px;font-weight:600;color:#374151">Ответы на вопросы</td></tr>
-      ${rows}`;
-  })();
+      ${answerRows}`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="ru">
 <head><meta charset="UTF-8"><title>Новая заявка</title></head>
 <body style="font-family:Arial,sans-serif;background:#f9fafb;margin:0;padding:20px">
-  <div style="max-width:520px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.1)">
+  <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.1)">
     <div style="background:#7c3aed;padding:20px 24px">
-      <h1 style="margin:0;color:#fff;font-size:18px">🆕 Новая заявка #${lead.id}</h1>
+      <h1 style="margin:0;color:#fff;font-size:18px">Новая заявка #${lead.id}</h1>
       <p style="margin:4px 0 0;color:#e9d5ff;font-size:13px">КухниBY</p>
     </div>
     <div style="padding:24px">
       <table style="width:100%;border-collapse:collapse;font-size:14px;color:#374151">
         <tr>
           <td style="padding:6px 8px;color:#6b7280;white-space:nowrap;width:140px">Форма</td>
-          <td style="padding:6px 8px"><b>${esc(formLabel)}</b></td>
+          <td style="padding:6px 8px"><b>${escapeHtml(formLabel)}</b></td>
         </tr>
         <tr>
           <td style="padding:6px 8px;color:#6b7280">Дата / время</td>
-          <td style="padding:6px 8px">${date}</td>
+          <td style="padding:6px 8px">${escapeHtml(date)}</td>
         </tr>
         <tr style="background:#f3f4f6">
           <td style="padding:6px 8px;color:#6b7280">Имя</td>
-          <td style="padding:6px 8px"><b>${esc(lead.name)}</b></td>
+          <td style="padding:6px 8px"><b>${escapeHtml(lead.name)}</b></td>
         </tr>
         <tr>
           <td style="padding:6px 8px;color:#6b7280">Телефон</td>
-          <td style="padding:6px 8px"><b>${esc(lead.phone)}</b></td>
+          <td style="padding:6px 8px"><b>${escapeHtml(lead.phone)}</b></td>
         </tr>
-        ${lead.city ? `<tr style="background:#f3f4f6"><td style="padding:6px 8px;color:#6b7280">Город</td><td style="padding:6px 8px">${esc(lead.city)}</td></tr>` : ""}
-        ${lead.comment ? `<tr><td style="padding:6px 8px;color:#6b7280">Комментарий</td><td style="padding:6px 8px">${esc(lead.comment)}</td></tr>` : ""}
+        ${lead.city ? `<tr style="background:#f3f4f6"><td style="padding:6px 8px;color:#6b7280">Город</td><td style="padding:6px 8px">${escapeHtml(lead.city)}</td></tr>` : ""}
+        ${lead.comment ? `<tr><td style="padding:6px 8px;color:#6b7280">Комментарий</td><td style="padding:6px 8px">${escapeHtml(lead.comment)}</td></tr>` : ""}
         <tr>
           <td style="padding:6px 8px;color:#6b7280">Источник</td>
-          <td style="padding:6px 8px">${esc(lead.source)}</td>
+          <td style="padding:6px 8px">${escapeHtml(lead.source)}</td>
         </tr>
         ${answersHtml}
       </table>
@@ -101,7 +104,7 @@ function buildHtmlBody(lead: EmailLeadData): string {
 }
 
 function getSmtpConfig() {
-  const host = process.env.EMAIL_SMTP_HOST;
+  const host = process.env.EMAIL_SMTP_HOST?.trim();
   if (!host) return null;
 
   return {
@@ -115,10 +118,40 @@ function getSmtpConfig() {
   };
 }
 
+function getLeadNotificationRecipients() {
+  const raw =
+    process.env.EMAIL_NOTIFICATION_TO ||
+    process.env.LEAD_NOTIFICATION_EMAIL ||
+    DEFAULT_LEAD_NOTIFICATION_RECIPIENT;
+
+  return raw
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+export function getEmailNotificationStatus() {
+  const smtp = getSmtpConfig();
+  const recipients = getLeadNotificationRecipients();
+
+  return {
+    configured: Boolean(smtp && recipients.length > 0),
+    smtpHost: smtp?.host ?? "",
+    smtpUserConfigured: Boolean(smtp?.auth.user),
+    recipients,
+  };
+}
+
 export async function sendEmailNotification(lead: EmailLeadData): Promise<void> {
   const smtp = getSmtpConfig();
   if (!smtp) {
-    console.warn("[EMAIL] EMAIL_SMTP_HOST not set — skipping email notification");
+    console.warn("[EMAIL] EMAIL_SMTP_HOST not set - skipping email notification");
+    return;
+  }
+
+  const recipients = getLeadNotificationRecipients();
+  if (recipients.length === 0) {
+    console.warn("[EMAIL] no lead notification recipients configured");
     return;
   }
 
@@ -127,15 +160,60 @@ export async function sendEmailNotification(lead: EmailLeadData): Promise<void> 
     : `"КухниBY" <noreply@kuhni.minsk.by>`;
 
   const formLabel = FORM_TYPE_LABELS[lead.formType] ?? lead.formType;
-  const subject = `Новая заявка #${lead.id} — ${formLabel} | КухниBY`;
+  const subject = `Новая заявка #${lead.id} - ${formLabel} | КухниBY`;
 
   const transporter = nodemailer.createTransport(smtp);
   await transporter.sendMail({
     from,
-    to: LEAD_NOTIFICATION_RECIPIENT,
+    to: recipients,
     subject,
     html: buildHtmlBody(lead),
   });
 
-  console.info(`[EMAIL] Notification sent for lead #${lead.id} to ${LEAD_NOTIFICATION_RECIPIENT}`);
+  console.info(`[EMAIL] Notification sent for lead #${lead.id} to ${recipients.join(", ")}`);
+}
+
+export async function testEmailNotification(): Promise<{ ok: boolean; error?: string }> {
+  const smtp = getSmtpConfig();
+  const recipients = getLeadNotificationRecipients();
+
+  if (!smtp) {
+    return { ok: false, error: "EMAIL_SMTP_HOST не настроен" };
+  }
+
+  if (recipients.length === 0) {
+    return { ok: false, error: "EMAIL_NOTIFICATION_TO не настроен" };
+  }
+
+  try {
+    await sendEmailNotification({
+      id: 0,
+      name: "Тестовая заявка",
+      phone: "+375 00 000-00-00",
+      city: "Минск",
+      comment: "Проверка email-уведомлений из админ-панели.",
+      source: "admin-test",
+      formType: "contact",
+      answers: { sourcePage: "/admin/notifications" },
+      createdAt: new Date(),
+    });
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
+}
+
+function formatAnswerValue(value: unknown) {
+  if (value && typeof value === "object") {
+    return JSON.stringify(value);
+  }
+
+  return String(value ?? "");
+}
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }

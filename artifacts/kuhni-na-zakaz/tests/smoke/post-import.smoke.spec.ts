@@ -56,7 +56,7 @@ test.describe("bulk import v1 post-import smoke", () => {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: "КухниBY",
-      alternateName: "Кухни Бай",
+      alternateName: ["KuhniBY", "Кухни Бай"],
       url: "https://kuhni.minsk.by/",
     });
     expect(localBusiness).toMatchObject({

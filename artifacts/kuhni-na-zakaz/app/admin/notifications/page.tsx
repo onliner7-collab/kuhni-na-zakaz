@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import {
   Bell, Plus, Trash2, ToggleLeft, ToggleRight,
   Send, Bot, Info, Eye, EyeOff, CheckCircle2, XCircle,
-  Pencil, X, Save, History,
+  Pencil, X, Save, History, Mail,
 } from "lucide-react";
 
 interface Recipient {
@@ -27,6 +27,13 @@ interface EditDraft {
   chatId: string;
   role: string;
   active: boolean;
+}
+
+interface EmailStatus {
+  configured: boolean;
+  smtpHost: string;
+  smtpUserConfigured: boolean;
+  recipients: string[];
 }
 
 // Подсказки ролей — задаются в требовании этапа.
@@ -103,6 +110,8 @@ export default function NotificationsPage() {
   const [savingEdit, setSavingEdit] = useState(false);
 
   const [testingId, setTestingId] = useState<number | null>(null);
+  const [emailStatus, setEmailStatus] = useState<EmailStatus | null>(null);
+  const [testingEmail, setTestingEmail] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -111,6 +120,7 @@ export default function NotificationsPage() {
       const data = await res.json();
       setRecipients(data.recipients ?? []);
       setBotToken(data.botToken ?? "");
+      setEmailStatus(data.email ?? null);
     } finally {
       setLoading(false);
     }
@@ -304,6 +314,27 @@ export default function NotificationsPage() {
     }
   }
 
+  async function sendTestEmail() {
+    setTestingEmail(true);
+    try {
+      const res = await fetch("/kapi/admin/notifications/telegram", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ _action: "testEmail" }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        toast.success("Тестовое email-уведомление отправлено");
+      } else {
+        toast.error(data.error || "Не удалось отправить тестовое email-уведомление");
+      }
+    } catch {
+      toast.error("Сеть недоступна. Попробуйте ещё раз.");
+    } finally {
+      setTestingEmail(false);
+    }
+  }
+
   const activeCount = recipients.filter(r => r.active).length;
   const canTestGlobal = botToken.trim().length > 0;
   const newChatIdInvalid = newChatId.trim().length > 0 && !isValidChatId(newChatId);
@@ -422,6 +453,41 @@ export default function NotificationsPage() {
       </section>
 
       {/* Получатели */}
+      <section className="rounded-2xl border border-border bg-white p-6 space-y-4" aria-labelledby="email-notifications-heading">
+        <div className="flex items-center gap-2 pb-3 border-b border-border">
+          <Mail className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+          <h2 id="email-notifications-heading" className="font-bold text-base">Email-уведомления</h2>
+        </div>
+        <div
+          className={`rounded-xl border p-3 flex items-start gap-3 ${emailStatus?.configured ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"}`}
+          role="status"
+          aria-live="polite"
+        >
+          {emailStatus?.configured
+            ? <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" aria-hidden="true" />
+            : <XCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" aria-hidden="true" />
+          }
+          <div className="min-w-0">
+            <p className={`text-sm font-medium ${emailStatus?.configured ? "text-green-800" : "text-amber-800"}`}>
+              {emailStatus?.configured ? "Email-уведомления настроены" : "Email-уведомления не настроены"}
+            </p>
+            <p className="text-xs text-muted-foreground mt-1 break-words">
+              SMTP: {emailStatus?.smtpHost || "не задан"} · Получатели: {emailStatus?.recipients?.join(", ") || "не заданы"}
+            </p>
+          </div>
+        </div>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={sendTestEmail}
+          disabled={testingEmail || !emailStatus?.configured}
+          className="gap-2"
+        >
+          <Send className="w-4 h-4" aria-hidden="true" />
+          {testingEmail ? "Отправляем..." : "Отправить тест на email"}
+        </Button>
+      </section>
+
       <section className="rounded-2xl border border-border bg-white p-6 space-y-5" aria-labelledby="tg-recipients-heading">
         <div className="flex items-center justify-between pb-3 border-b border-border">
           <h2 id="tg-recipients-heading" className="font-bold text-base">Получатели уведомлений</h2>

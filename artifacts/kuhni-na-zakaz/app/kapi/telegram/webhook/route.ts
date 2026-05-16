@@ -28,6 +28,10 @@ interface TelegramMessagePayload {
     first_name?: string;
   };
   text?: string;
+  reply_to_message?: {
+    text?: string;
+    caption?: string;
+  };
 }
 
 interface TelegramUpdate {
@@ -83,10 +87,36 @@ export async function POST(req: NextRequest) {
     return OK_RESPONSE;
   }
 
+  const currentChatId = stringifyId(message.chat?.id);
+  const replyTargetTelegramId = extractReplyTargetTelegramId(
+    message.reply_to_message,
+  );
+
+  if (currentChatId && replyTargetTelegramId) {
+    await forwardReplyToClient({
+      recipientChatId: currentChatId,
+      clientTelegramId: replyTargetTelegramId,
+      username:
+        typeof message.from?.username === "string"
+          ? message.from.username.trim()
+          : "",
+      firstName:
+        typeof message.from?.first_name === "string"
+          ? message.from.first_name.trim()
+          : "",
+      text,
+    });
+    return OK_RESPONSE;
+  }
+
+  if (currentChatId && (await isActiveRecipientChat(currentChatId))) {
+    return OK_RESPONSE;
+  }
+
   // ТЗ: userTelegramId берём из message.chat.id. В личном чате с ботом
   // это совпадает с message.from.id; в группе chat.id отрицательный,
   // что для нашего хранилища ОК (поле строковое).
-  const userTelegramId = stringifyId(message.chat?.id);
+  const userTelegramId = currentChatId;
   const username =
     typeof message.from?.username === "string"
       ? message.from.username.trim()
@@ -111,6 +141,84 @@ export async function POST(req: NextRequest) {
   });
 
   return OK_RESPONSE;
+}
+
+async function isActiveRecipientChat(chatId: string) {
+  if (!chatId) return false;
+
+  const recipient = await prisma.telegramRecipient
+    .findFirst({
+      where: { chatId, active: true },
+      select: { id: true },
+    })
+    .catch((err) => {
+      console.error("[TELEGRAM WEBHOOK] recipient lookup failed", err);
+      return null;
+    });
+
+  return Boolean(recipient);
+}
+
+async function forwardReplyToClient(input: {
+  recipientChatId: string;
+  clientTelegramId: string;
+  username: string;
+  firstName: string;
+  text: string;
+}) {
+  const [recipient, settings] = await Promise.all([
+    prisma.telegramRecipient
+      .findFirst({
+        where: { chatId: input.recipientChatId, active: true },
+        select: { id: true, label: true },
+      })
+      .catch((err) => {
+        console.error("[TELEGRAM WEBHOOK] recipient lookup failed", err);
+        return null;
+      }),
+    prisma.siteSettings
+      .findFirst({ select: { telegramBotToken: true } })
+      .catch(() => null),
+  ]);
+
+  if (!recipient) {
+    return;
+  }
+
+  const token = (
+    process.env.TELEGRAM_BOT_TOKEN ||
+    settings?.telegramBotToken ||
+    ""
+  ).trim();
+
+  if (!token) {
+    console.warn("[TELEGRAM WEBHOOK] Bot token is not configured");
+    return;
+  }
+
+  const formatted = formatManagerReply({
+    username: input.username,
+    firstName: input.firstName,
+    text: input.text,
+  });
+
+  try {
+    await sendMessage(token, input.clientTelegramId, formatted);
+    await logAttempt({
+      recipientId: recipient.id,
+      chatId: input.clientTelegramId,
+      status: "sent",
+      errorMessage: "",
+    });
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    await logAttempt({
+      recipientId: recipient.id,
+      chatId: input.clientTelegramId,
+      status: "failed",
+      errorMessage,
+    });
+  }
 }
 
 async function saveIncomingMessage(input: {
@@ -248,6 +356,32 @@ function formatIncomingMessage(input: {
     `Telegram ID: <code>${escapeHtml(input.userTelegramId || "—")}</code>`,
     `Текст: ${escapeHtml(input.text)}`,
   ].join("\n");
+}
+
+function formatManagerReply(input: {
+  username: string;
+  firstName: string;
+  text: string;
+}): string {
+  const managerParts: string[] = [];
+  if (input.firstName) managerParts.push(escapeHtml(input.firstName));
+  if (input.username) managerParts.push(`@${escapeHtml(input.username)}`);
+  const managerLine = managerParts.length > 0 ? managerParts.join(" / ") : "менеджер";
+
+  return [
+    "<b>Ответ менеджера КухниBY</b>",
+    `От: ${managerLine}`,
+    "",
+    escapeHtml(input.text),
+  ].join("\n");
+}
+
+function extractReplyTargetTelegramId(
+  replyToMessage: TelegramMessagePayload["reply_to_message"],
+): string {
+  const source = `${replyToMessage?.text ?? ""}\n${replyToMessage?.caption ?? ""}`;
+  const match = source.match(/Telegram ID:\s*(?:<code>)?(-?\d+)(?:<\/code>)?/i);
+  return match?.[1] ?? "";
 }
 
 function stringifyId(value: unknown): string {
