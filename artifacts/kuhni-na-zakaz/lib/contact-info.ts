@@ -108,7 +108,7 @@ export function resolveContactInfo(settings?: ContactSettingsInput | null): Cont
     address: normalizeAddress(settings?.address),
     addressMap: settings?.addressMap?.trim() || "",
     workingHours: settings?.workingHours?.trim() || CONTACT_DEFAULTS.workingHours,
-    telegram: settings?.telegram?.trim() || "",
+    telegram: settings?.telegram?.trim() || CONTACT_DEFAULTS.telegram,
     viber: settings?.viber?.trim() || "",
     whatsapp: settings?.whatsapp?.trim() || "",
     instagram: settings?.instagram?.trim() || CONTACT_DEFAULTS.instagram,
