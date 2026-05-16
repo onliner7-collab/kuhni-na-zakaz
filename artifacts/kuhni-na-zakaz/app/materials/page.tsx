@@ -56,6 +56,12 @@ export default async function MaterialsPage() {
             <p className="text-muted-foreground text-lg">
               Сравните материалы по цене, прочности и уходу. Поможем выбрать оптимальный вариант под ваш бюджет и образ жизни.
             </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <Link href="/design-proekt-kuhni" className="font-semibold text-primary hover:underline">
+                Посмотрите, как выбранные фасады и столешница будут выглядеть в 3D-проекте
+              </Link>
+              : так проще оценить сочетание цвета, фактуры и планировки до запуска кухни в производство.
+            </p>
           </div>
 
           {/* Quick comparison table */}

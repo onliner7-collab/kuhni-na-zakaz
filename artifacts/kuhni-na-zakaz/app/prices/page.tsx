@@ -173,6 +173,13 @@ export default function PricesPage() {
           <h2 className="font-serif text-3xl font-bold text-center mb-4">Рассчитайте стоимость онлайн</h2>
           <p className="text-center text-muted-foreground mb-8">Ответьте на 5 вопросов — получите ориентировочный бюджет</p>
           <PriceQuiz />
+          <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
+            Перед расчётом можем подготовить{" "}
+            <Link href="/design-proekt-kuhni" className="font-semibold text-primary hover:underline">
+              дизайн-проект кухни
+            </Link>
+            , чтобы точнее согласовать планировку, материалы и встроенную технику.
+          </p>
         </div>
 
         <section className="card-base p-6 mb-16">

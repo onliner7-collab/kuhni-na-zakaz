@@ -193,7 +193,8 @@ export default async function HomePage() {
     { id: 2, icon: "💰", title: "Узнать стоимость", subtitle: "без обязательств", description: "Ответьте на несколько вопросов и получите примерный диапазон цены", href: "/prices", badge: "Быстро" },
     { id: 3, icon: "📸", title: "Посмотреть работы", subtitle: "портфолио", description: "Фото, 3D-визуализации и заполненные данные по проектам кухонь", href: "/portfolio", badge: "" },
     { id: 4, icon: "🎨", title: "Выбрать стиль", subtitle: "и материалы", description: "Современный, классика, минимализм, скандинавский — с примерами и ценами", href: "/styles", badge: "" },
-    { id: 5, icon: "✏️", title: "Собрать кухню", subtitle: "под свои задачи", description: "Расскажите о планировке, мы предложим решение и согласуем условия замера", href: "/contacts#form", badge: "Старт" },
+    { id: 5, icon: "📐", title: "3D-проект кухни", subtitle: "по вашим размерам", description: "Специалист подготовит планировку, материалы и визуализацию перед расчетом", href: "/design-proekt-kuhni", badge: "" },
+    { id: 6, icon: "✏️", title: "Собрать кухню", subtitle: "под свои задачи", description: "Расскажите о планировке, мы предложим решение и согласуем условия замера", href: "/contacts#form", badge: "Старт" },
   ];
 
   const FALLBACK_ADVANTAGES: HomeAdvantage[] = [
@@ -336,7 +337,7 @@ export default async function HomePage() {
               Выберите удобный путь — мы проведём вас от идеи до готовой кухни
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             {displayScenarios.map((s, index) => (
               <Link
                 key={`${s.id}-${index}`}

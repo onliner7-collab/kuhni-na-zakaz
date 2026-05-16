@@ -336,6 +336,13 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
 };
 
 const PRIMARY_CATEGORY_SLUGS = new Set(Object.keys(STATIC_CATEGORIES));
+const DESIGN_PROJECT_LINKS: Record<string, string> = {
+  "uglovye-kuhni": "проверить угловую планировку в 3D-проекте кухни",
+  "pryamye-kuhni": "сделать проект кухни по размерам",
+  "malenkie-kuhni": "посмотреть компактную кухню в 3D-визуализации",
+  "p-obraznye-kuhni": "согласовать П-образный дизайн-проект кухни",
+  "kuhni-s-ostrovom": "рассчитать кухню с проектом острова",
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -417,6 +424,7 @@ export default async function CatalogItemPage({ params }: Props) {
   if (!data) notFound();
 
   const seo = STATIC_CATEGORIES[slug]?.seo;
+  const designProjectAnchor = DESIGN_PROJECT_LINKS[slug];
   const heroImage = resolveCatalogCategoryImage({
     slug,
     title: data.title,
@@ -503,6 +511,14 @@ export default async function CatalogItemPage({ params }: Props) {
             <div className="bg-primary/10 border border-primary/20 rounded-xl p-6">
               <p className="font-semibold text-primary text-lg">Стоимость: от {data.priceFrom.toLocaleString("ru")} BYN</p>
               <p className="text-sm text-muted-foreground mt-1">Точная цена — после замера и согласования проекта</p>
+              {designProjectAnchor && (
+                <Link
+                  href="/design-proekt-kuhni"
+                  className="mt-3 inline-flex text-sm font-semibold text-primary hover:underline"
+                >
+                  {designProjectAnchor}
+                </Link>
+              )}
             </div>
             {seo && (
               <div className="mt-10 space-y-8">

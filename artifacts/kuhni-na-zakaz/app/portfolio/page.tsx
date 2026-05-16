@@ -79,15 +79,15 @@ export default async function PortfolioPage() {
             </div>
 
             <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
-              <h2 className="font-serif text-2xl font-bold">Подберём похожее решение</h2>
+              <h2 className="font-serif text-2xl font-bold">Хотите увидеть похожий проект для своей кухни?</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Покажем варианты под ваш размер, бюджет и стиль, а после замера подготовим точную смету.
+                Покажем варианты под ваш размер, бюджет и стиль, а затем подготовим визуализацию кухни с учетом вашей планировки.
               </p>
               <Link
-                href="#portfolio-request"
+                href="/design-proekt-kuhni"
                 className="mt-4 inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
               >
-                Обсудить проект
+                Проект кухни по размерам
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
