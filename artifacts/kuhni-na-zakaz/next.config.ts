@@ -64,8 +64,13 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/configurator",
-        destination: "/kitchen-configurator",
-        permanent: true,
+        destination: "/design-proekt-kuhni",
+        statusCode: 301,
+      },
+      {
+        source: "/kitchen-configurator",
+        destination: "/design-proekt-kuhni",
+        statusCode: 301,
       },
     ];
   },

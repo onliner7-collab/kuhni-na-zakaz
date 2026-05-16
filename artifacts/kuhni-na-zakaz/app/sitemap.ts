@@ -14,7 +14,7 @@ const STATIC_PATHS = [
   "/about",
   "/catalog",
   "/calculator",
-  "/kitchen-configurator",
+  "/design-proekt-kuhni",
   "/prices",
   "/contacts",
   "/portfolio",
