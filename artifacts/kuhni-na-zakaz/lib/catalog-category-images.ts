@@ -47,11 +47,11 @@ const CATEGORY_IMAGES: Record<string, CatalogImageAsset> = {
     alt: "П-образная кухня на заказ с большой рабочей зоной",
   },
   "pryamye-kuhni": {
-    src: "/uploads/kitchens/catalog/pryamaya-kuhnya-lineynaya-svetlaya-generated-20260517.webp",
-    alt: "Прямая светлая кухня на заказ вдоль одной стены",
+    src: "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
+    alt: "Прямая светлая кухня с встроенной техникой и аккуратной зоной мойки",
   },
   "pryamaya-kuhnya-minsk": {
-    src: "/uploads/kitchens/catalog/pryamaya-kuhnya-lineynaya-svetlaya-generated-20260517.webp",
+    src: "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
     alt: "Прямая светлая кухня на заказ в Минске",
   },
   "uglovye-kuhni": {
@@ -107,16 +107,28 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   ],
   "pryamye-kuhni": [
     {
+      src: "/uploads/kitchens/catalog/pryamaya-kuhnya-3d-proekt-rakurs-1-generated-20260517.webp",
+      alt: "Прямая светлая кухня из 3D-проекта, вид слева",
+    },
+    {
+      src: "/uploads/kitchens/catalog/pryamaya-kuhnya-3d-proekt-rakurs-2-generated-20260517.webp",
+      alt: "Прямая светлая кухня из 3D-проекта, дополнительный ракурс",
+    },
+    {
+      src: "/uploads/kitchens/catalog/pryamaya-kuhnya-lineynaya-svetlaya-generated-20260517.webp",
+      alt: "Дополнительный пример прямой светлой кухни вдоль одной стены",
+    },
+    {
       src: "/uploads/kitchens/catalog/pryamaya-kuhnya-studiya-belaya-generated-20260517.webp",
-      alt: "Белая прямая кухня для студии вдоль одной стены",
+      alt: "Дополнительный пример белой прямой кухни для студии",
     },
     {
       src: "/uploads/kitchens/catalog/pryamaya-kuhnya-uzkaya-bezhevaya-generated-20260517.webp",
-      alt: "Бежевая прямая кухня для узкого помещения",
+      alt: "Дополнительный пример бежевой прямой кухни для узкого помещения",
     },
     {
       src: "/uploads/kitchens/catalog/pryamaya-kuhnya-grafit-derevo-generated-20260517.webp",
-      alt: "Прямая кухня графит и дерево в современном стиле",
+      alt: "Дополнительный пример прямой кухни графит и дерево",
     },
   ],
 };

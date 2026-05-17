@@ -11,7 +11,6 @@ import {
   Layers3,
   Ruler,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
@@ -274,9 +273,6 @@ export default function DesignProektKuhniPage() {
                 Подготовим проект кухни по вашим размерам: продумаем планировку, хранение, материалы,
                 встроенную технику, визуализацию и предварительный расчёт стоимости.
               </p>
-              <p className="mt-4 max-w-2xl rounded-lg border border-primary/20 bg-white px-4 py-3 text-sm font-medium text-foreground shadow-sm">
-                Это не автоматический онлайн-конфигуратор: проект готовит специалист.
-              </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="#request"
@@ -507,14 +503,6 @@ export default function DesignProektKuhniPage() {
               <p className="mt-4 max-w-2xl text-white/75">
                 Оставьте контакты и коротко опишите задачу. Мы уточним размеры, тип кухни, материалы и подготовим следующий шаг для проекта.
               </p>
-              <ul className="mt-6 space-y-3 text-sm text-white/85">
-                {["Не автоматический конфигуратор", "Проект готовит специалист", "Расчёт зависит от реальных размеров и материалов"].map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <Sparkles className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
             <div className="rounded-lg bg-white p-5 text-foreground">
               <ContactForm
