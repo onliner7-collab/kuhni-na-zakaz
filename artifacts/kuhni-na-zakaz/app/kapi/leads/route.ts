@@ -23,6 +23,7 @@ const leadSchema = z.object({
   city: z.string().trim().max(100).optional().default(""),
   kitchenType: z.string().trim().max(80).optional().default(""),
   comment: z.string().trim().max(2000).optional().default(""),
+  hasMeasurements: z.boolean().optional().default(false),
   agreement: z.boolean().refine(Boolean, "Нужно согласие на обработку данных"),
   source: z.string().trim().max(100).optional().default("website"),
   formType: z.string().trim().max(50).optional().default("contact"),
@@ -70,6 +71,7 @@ export async function POST(req: NextRequest) {
     const answers = {
       ...(data.answers || {}),
       kitchenType: data.kitchenType || undefined,
+      hasMeasurements: data.hasMeasurements || undefined,
       sourcePage: data.sourcePage || undefined,
       sourceType: data.sourceType || undefined,
       projectSlug: data.projectSlug || undefined,

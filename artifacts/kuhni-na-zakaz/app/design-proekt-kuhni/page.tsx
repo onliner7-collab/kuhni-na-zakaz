@@ -522,6 +522,10 @@ export default function DesignProektKuhniPage() {
                 sourceType="design-project"
                 sourcePage={pagePath}
                 submitLabel="Отправить заявку на проект"
+                successMessage="Спасибо, заявка отправлена. Мы свяжемся с вами для уточнения размеров и пожеланий."
+                errorMessage="Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам."
+                showCity={false}
+                showHasMeasurements
                 defaultComment="Интересует 3D-проект кухни на заказ."
               />
             </div>

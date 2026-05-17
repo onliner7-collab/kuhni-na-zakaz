@@ -168,6 +168,41 @@ test.describe("lead collection forms", () => {
     expect(problems).toEqual([]);
   });
 
+  test("design project CTA submits through lead flow with source and measurements", async ({ page }) => {
+    const problems = collectBrowserProblems(page);
+    let requestBody: unknown = null;
+
+    await page.route("**/kapi/leads", async (route) => {
+      requestBody = route.request().postDataJSON();
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 122 }) });
+    });
+
+    await gotoClientReady(page, "/design-proekt-kuhni?utm_source=design-smoke#request");
+    await page.locator("#request").scrollIntoViewIfNeeded();
+    const form = page.getByTestId("contact-form").last();
+
+    await form.getByTestId("form-name").fill("Тест дизайн-проекта");
+    await form.getByTestId("form-phone").fill("+375291230002");
+    await form.getByTestId("form-kitchen-type").selectOption("Угловая");
+    await form.getByTestId("form-has-measurements").check();
+    await form.getByTestId("form-comment").fill("Нужен 3D-проект кухни, размеры помещения уже есть.");
+    await form.getByTestId("form-submit").click();
+
+    await expect(page.getByTestId("form-success")).toContainText(
+      "Спасибо, заявка отправлена. Мы свяжемся с вами для уточнения размеров и пожеланий.",
+    );
+    const submitted = requestBody as Record<string, unknown>;
+    expect(submitted).toMatchObject({
+      source: "design-proekt-kuhni",
+      sourceType: "design-project",
+      sourcePage: "/design-proekt-kuhni",
+      kitchenType: "Угловая",
+      hasMeasurements: true,
+      utmSource: "design-smoke",
+    });
+    expect(problems).toEqual([]);
+  });
+
   test("calculator result form submits on mobile", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
 

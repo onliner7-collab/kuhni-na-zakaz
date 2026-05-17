@@ -28,6 +28,7 @@ const schema = z.object({
   phone: z.string().trim().min(7, "Введите корректный номер").max(30, "Слишком длинный номер"),
   city: z.string().trim().max(100, "Слишком длинный город").optional(),
   kitchenType: z.string().trim().max(80).optional(),
+  hasMeasurements: z.boolean().optional(),
   comment: z.string().trim().max(2000, "Комментарий слишком длинный").optional(),
   agreement: z.literal(true, {
     errorMap: () => ({ message: "Подтвердите согласие на обработку данных" }),
@@ -56,7 +57,11 @@ interface ContactFormProps {
   cityKey?: string;
   formType?: string;
   submitLabel?: string;
+  successMessage?: string;
+  errorMessage?: string;
+  showCity?: boolean;
   showKitchenType?: boolean;
+  showHasMeasurements?: boolean;
   defaultKitchenType?: string;
   defaultComment?: string;
 }
@@ -132,7 +137,11 @@ export function ContactForm({
   cityKey,
   formType = "contact",
   submitLabel = "Отправить заявку",
+  successMessage = "Мы свяжемся с вами в рабочее время и уточним детали кухни.",
+  errorMessage,
+  showCity = true,
   showKitchenType = true,
+  showHasMeasurements = false,
   defaultKitchenType = "",
   defaultComment = "",
 }: ContactFormProps) {
@@ -149,6 +158,7 @@ export function ContactForm({
   const phoneId = `${formId}-lead-phone`;
   const cityId = `${formId}-lead-city`;
   const kitchenTypeId = `${formId}-lead-kitchen-type`;
+  const hasMeasurementsId = `${formId}-lead-has-measurements`;
   const commentId = `${formId}-lead-comment`;
   const agreementId = `${formId}-lead-agreement`;
   const formErrorSummaryId = `${formId}-lead-errors`;
@@ -165,6 +175,7 @@ export function ContactForm({
     city: city || "",
     kitchenType: defaultKitchenType,
     comment: ideaComment,
+    hasMeasurements: false,
     agreement: true,
     sourcePage: trackingFields.sourcePage,
     sourceType: effectiveSourceType,
@@ -186,6 +197,7 @@ export function ContactForm({
   const errorMessages = Object.values(errors)
     .map((error) => error?.message)
     .filter(Boolean);
+  const fallbackErrorMessage = "Ошибка отправки. Попробуйте ещё раз или позвоните нам.";
 
   const onSubmit = async (data: FormData) => {
     if (data.honeypot) return;
@@ -235,6 +247,7 @@ export function ContactForm({
           name: "",
           phone: "",
           comment: "",
+          hasMeasurements: false,
           agreement: true,
         });
         trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUCCESS, {
@@ -251,10 +264,10 @@ export function ContactForm({
         toast.success("Заявка отправлена. Свяжемся с вами в рабочее время.");
       } else {
         const error = await res.json().catch(() => null);
-        toast.error(error?.error || "Ошибка отправки. Попробуйте ещё раз или позвоните нам.");
+        toast.error(errorMessage || error?.error || fallbackErrorMessage);
       }
     } catch {
-      toast.error("Ошибка отправки. Проверьте интернет-соединение.");
+      toast.error(errorMessage || fallbackErrorMessage);
     } finally {
       setLoading(false);
     }
@@ -265,7 +278,7 @@ export function ContactForm({
       <div className="card-base px-8 py-12 text-center" role="status" aria-live="polite" data-testid="form-success">
         <div className="mb-4 text-4xl" aria-hidden>✓</div>
         <h3 className="mb-2 font-serif text-2xl font-semibold">Заявка получена</h3>
-        <p className="mb-6 text-muted-foreground">Мы свяжемся с вами в рабочее время и уточним детали кухни.</p>
+        <p className="mb-6 text-muted-foreground">{successMessage}</p>
         <Button variant="outline" onClick={() => setSent(false)}>Отправить ещё одну заявку</Button>
       </div>
     );
@@ -335,10 +348,12 @@ export function ContactForm({
         {errors.phone && <p id={`${phoneId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.phone.message}</p>}
       </div>
 
-      <div>
-        <Label htmlFor={cityId}>Город</Label>
-        <Input id={cityId} {...register("city")} placeholder="Минск" className="mt-1" autoComplete="address-level2" data-testid="form-city" />
-      </div>
+      {showCity && (
+        <div>
+          <Label htmlFor={cityId}>Город</Label>
+          <Input id={cityId} {...register("city")} placeholder="Минск" className="mt-1" autoComplete="address-level2" data-testid="form-city" />
+        </div>
+      )}
 
       {showKitchenType && (
         <div>
@@ -353,6 +368,21 @@ export function ContactForm({
               <option key={item.label} value={item.value}>{item.label}</option>
             ))}
           </select>
+        </div>
+      )}
+
+      {showHasMeasurements && (
+        <div>
+          <label className="flex items-start gap-3 rounded-md border border-border bg-muted/20 p-3 text-sm leading-5 text-muted-foreground">
+            <input
+              id={hasMeasurementsId}
+              type="checkbox"
+              {...register("hasMeasurements")}
+              className="mt-1 h-4 w-4 rounded border-border accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              data-testid="form-has-measurements"
+            />
+            <span>У меня уже есть размеры помещения</span>
+          </label>
         </div>
       )}
 
