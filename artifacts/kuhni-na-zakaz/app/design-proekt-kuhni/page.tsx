@@ -128,7 +128,7 @@ const galleryItems = [
     src: `${imageBase}/3d-proekt-neoklassicheskaya-kuhnya.webp`,
     alt: "Светлая неоклассическая кухня с рамочными фасадами и каменной столешницей",
     caption: "Неоклассика с лёгкими деталями и современной встроенной техникой.",
-    href: "/styles",
+    href: "/styles/neoklassika",
   },
 ];
 

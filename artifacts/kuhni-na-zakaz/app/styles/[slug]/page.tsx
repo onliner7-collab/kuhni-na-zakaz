@@ -74,6 +74,7 @@ export default async function StylePage({ params }: Props) {
   const { slug } = await params;
   const s = await getStyle(slug);
   if (!s) notFound();
+  const heroImage = slug === "neoklassika" ? "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp" : s.image;
   const [{ materials, scenarios, cases }, otherStyles] = await Promise.all([
     getRelatedData(s),
     getOtherStyles(slug),
@@ -131,9 +132,9 @@ export default async function StylePage({ params }: Props) {
                   {s.headline || s.title}
                 </h1>
                 <div className="h-72 bg-gradient-to-br from-stone-200 to-amber-100 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
-                  {s.image ? (
+                  {heroImage ? (
                     <Image
-                      src={s.image}
+                      src={heroImage}
                       alt={s.title}
                       width={1280}
                       height={720}
