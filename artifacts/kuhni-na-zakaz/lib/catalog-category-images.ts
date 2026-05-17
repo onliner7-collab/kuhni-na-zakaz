@@ -47,12 +47,12 @@ const CATEGORY_IMAGES: Record<string, CatalogImageAsset> = {
     alt: "П-образная кухня на заказ с большой рабочей зоной",
   },
   "pryamye-kuhni": {
-    src: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
-    alt: "Прямая кухня на заказ для небольшой квартиры",
+    src: "/uploads/kitchens/catalog/pryamaya-kuhnya-lineynaya-svetlaya-generated-20260517.webp",
+    alt: "Прямая светлая кухня на заказ вдоль одной стены",
   },
   "pryamaya-kuhnya-minsk": {
-    src: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
-    alt: "Прямая кухня на заказ для небольшой квартиры",
+    src: "/uploads/kitchens/catalog/pryamaya-kuhnya-lineynaya-svetlaya-generated-20260517.webp",
+    alt: "Прямая светлая кухня на заказ в Минске",
   },
   "uglovye-kuhni": {
     src: "/uploads/kitchens/catalog/uglovaya-kuhnya-neoklassika-belaya-002-main.webp",
@@ -103,6 +103,20 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
     {
       src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-minimalizm-seraya-025-main.webp",
       alt: "Серая кухня с островом без ручек",
+    },
+  ],
+  "pryamye-kuhni": [
+    {
+      src: "/uploads/kitchens/catalog/pryamaya-kuhnya-studiya-belaya-generated-20260517.webp",
+      alt: "Белая прямая кухня для студии вдоль одной стены",
+    },
+    {
+      src: "/uploads/kitchens/catalog/pryamaya-kuhnya-uzkaya-bezhevaya-generated-20260517.webp",
+      alt: "Бежевая прямая кухня для узкого помещения",
+    },
+    {
+      src: "/uploads/kitchens/catalog/pryamaya-kuhnya-grafit-derevo-generated-20260517.webp",
+      alt: "Прямая кухня графит и дерево в современном стиле",
     },
   ],
 };
