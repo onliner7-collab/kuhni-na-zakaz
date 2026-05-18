@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
-import { CheckCircle, XCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
@@ -18,6 +18,30 @@ const budgetColor: Record<string, string> = {
   "Выше среднего": "bg-orange-100 text-orange-700 border-orange-200",
   "Премиум": "bg-purple-100 text-purple-700 border-purple-200",
 };
+
+const featuredMaterialPages = [
+  {
+    href: "/materials/mdf-fasady",
+    title: "МДФ фасады",
+    description: "Фасады с пленкой, эмалью, пластиком и вариантами фрезеровки для разных стилей кухни.",
+    image: "/uploads/seo-showcase/kuhnya-mdf-emal-1.webp",
+    alt: "Кухня на заказ с фасадами МДФ в светлом современном интерьере",
+  },
+  {
+    href: "/materials/ldsp",
+    title: "ЛДСП",
+    description: "Корпуса, простые фасады и бюджетные кухни с честным разбором плюсов и ограничений.",
+    image: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
+    alt: "Светлая прямая кухня на заказ с простыми гладкими фасадами",
+  },
+  {
+    href: "/materials/plastik-hpl",
+    title: "Пластик HPL",
+    description: "Практичные гладкие фасады для ежедневного использования, матовых и декоративных решений.",
+    image: "/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
+    alt: "Кухня с пластиковыми фасадами HPL в современном стиле",
+  },
+];
 
 async function getMaterials() {
   try {
@@ -63,6 +87,40 @@ export default async function MaterialsPage() {
               : так проще оценить сочетание цвета, фактуры и планировки до запуска кухни в производство.
             </p>
           </div>
+
+          <section className="mb-12" aria-labelledby="featured-material-pages-heading">
+            <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 id="featured-material-pages-heading" className="font-serif text-2xl font-bold">Подробные гиды по материалам</h2>
+                <p className="mt-1 text-sm text-muted-foreground">Отдельные страницы для сравнения фасадов, корпусов, бюджета и ухода.</p>
+              </div>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {featuredMaterialPages.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group overflow-hidden rounded-2xl border border-border bg-white transition-all hover:border-primary/30 hover:shadow-lg"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    width={720}
+                    height={480}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="aspect-[3/2] h-auto w-full object-cover"
+                  />
+                  <div className="p-5">
+                    <h3 className="font-serif text-xl font-semibold transition-colors group-hover:text-primary">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                      Читать гид <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
 
           {/* Quick comparison table */}
           {materials.length > 0 && (

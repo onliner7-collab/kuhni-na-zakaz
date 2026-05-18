@@ -55,6 +55,24 @@ const CATALOG_CATEGORIES = [
   { slug: "kuhni-do-potolka", title: "Кухни до потолка", price: "от 2 200 BYN" },
 ];
 
+const MATERIAL_GUIDES = [
+  {
+    href: "/materials/mdf-fasady",
+    title: "МДФ фасады",
+    text: "Для кухонь с фрезеровкой, эмалью, пленкой и гибким подбором внешнего вида.",
+  },
+  {
+    href: "/materials/ldsp",
+    title: "ЛДСП",
+    text: "Для корпусов, простых фасадов и бюджетных кухонь с понятным уходом.",
+  },
+  {
+    href: "/materials/plastik-hpl",
+    title: "Пластик HPL",
+    text: "Для практичных гладких фасадов, активной кухни и современных декоров.",
+  },
+];
+
 const LOCAL_BUSINESS_IMAGE =
   "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
 const HOME_ORIGIN = CANONICAL_SITE_URL;
@@ -532,6 +550,37 @@ export default async function HomePage() {
                     className="h-4 w-4 transition-transform group-hover:translate-x-1"
                     aria-hidden
                   />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-muted/30 border-b border-border/60">
+        <div className="container-site">
+          <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Популярные материалы фасадов</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Сравните МДФ, ЛДСП и пластик HPL до расчета кухни: где каждый материал уместен, какие есть ограничения и на что смотреть в проекте.
+              </p>
+            </div>
+            <Link href="/materials" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+              Все материалы <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {MATERIAL_GUIDES.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+              >
+                <h3 className="font-bold text-foreground transition-colors group-hover:text-primary">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                  Подробнее <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
                 </span>
               </Link>
             ))}
