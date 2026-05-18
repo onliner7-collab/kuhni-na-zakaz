@@ -17,6 +17,7 @@ type NavLink = {
 const PRIMARY_NAV_LINKS: NavLink[] = [
   { href: "/catalog", label: "\u041a\u0430\u0442\u0430\u043b\u043e\u0433" },
   { href: "/styles", label: "\u0421\u0442\u0438\u043b\u0438" },
+  { href: "/materials", label: "\u041c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b" },
   { href: "/portfolio", label: "\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0438\u043e" },
   { href: "/design-proekt-kuhni", label: "3D-проект кухни" },
   { href: "/calculator", label: "\u041a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440" },
