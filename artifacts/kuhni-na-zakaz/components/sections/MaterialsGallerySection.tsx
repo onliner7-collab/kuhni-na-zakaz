@@ -38,22 +38,22 @@ const materialGalleryItems: MaterialGalleryItem[] = [
     ],
     images: [
       {
-        src: "/images/materials-gallery/mdf-emal/mdf-emal-1.webp",
+        src: "/images/materials-gallery-v2/mdf-emal/mdf-emal-a-front.webp",
         alt: "Крупный план гладкого фасада МДФ эмаль с сатиновым светлым покрытием",
         caption: "Фронтальный close-up: ровная окрашенная поверхность и мягкий сатиновый финиш.",
       },
       {
-        src: "/images/materials-gallery/mdf-emal/mdf-emal-2.webp",
+        src: "/images/materials-gallery-v2/mdf-emal/mdf-emal-b-angle.webp",
         alt: "Фасад МДФ эмаль под косым светом с аккуратной фрезеровкой",
         caption: "Косой свет показывает геометрию фасада и спокойное отражение эмали.",
       },
       {
-        src: "/images/materials-gallery/mdf-emal/mdf-emal-3.webp",
+        src: "/images/materials-gallery-v2/mdf-emal/mdf-emal-c-macro.webp",
         alt: "Макро кромки фасада МДФ эмаль с ровным окрашенным слоем",
         caption: "Макро-деталь: чистая кромка и равномерный окрашенный слой.",
       },
       {
-        src: "/images/materials-gallery/mdf-emal/mdf-emal-4.webp",
+        src: "/images/materials-gallery-v2/mdf-emal/mdf-emal-d-kitchen.webp",
         alt: "Кухонные фасады МДФ эмаль в интерьере крупным планом",
         caption: "Пример в кухне: окрашенные фасады читаются рядом со столешницей и ручками.",
       },
@@ -72,22 +72,22 @@ const materialGalleryItems: MaterialGalleryItem[] = [
     ],
     images: [
       {
-        src: "/images/materials-gallery/ldsp/ldsp-1.webp",
+        src: "/images/materials-gallery-v2/ldsp/ldsp-a-front.webp",
         alt: "Крупный план ламинированной поверхности ЛДСП с древесным декором",
         caption: "Фронтальный close-up: древесный декор и ровная ламинированная поверхность.",
       },
       {
-        src: "/images/materials-gallery/ldsp/ldsp-2.webp",
+        src: "/images/materials-gallery-v2/ldsp/ldsp-b-angle.webp",
         alt: "ЛДСП под косым светом с видимой толщиной плиты и кромкой",
         caption: "Косой ракурс показывает толщину плиты и спокойную матовую поверхность.",
       },
       {
-        src: "/images/materials-gallery/ldsp/ldsp-3.webp",
+        src: "/images/materials-gallery-v2/ldsp/ldsp-c-macro.webp",
         alt: "Макро среза ЛДСП с кромкой и древесным ламинированным декором",
         caption: "Макро-деталь: кромка, срез и структура плиты крупным планом.",
       },
       {
-        src: "/images/materials-gallery/ldsp/ldsp-4.webp",
+        src: "/images/materials-gallery-v2/ldsp/ldsp-d-kitchen.webp",
         alt: "Кухонные фасады из ЛДСП под дерево крупным планом",
         caption: "Пример в кухне: древесный декор на фасадах и выдвижных секциях.",
       },
@@ -106,22 +106,22 @@ const materialGalleryItems: MaterialGalleryItem[] = [
     ],
     images: [
       {
-        src: "/images/materials-gallery/plastik-hpl/plastik-hpl-1.webp",
+        src: "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-a-front.webp",
         alt: "Крупный план матовой поверхности пластика HPL в тёплом нейтральном оттенке",
         caption: "Фронтальный close-up: ровная матовая поверхность пластика HPL.",
       },
       {
-        src: "/images/materials-gallery/plastik-hpl/plastik-hpl-2.webp",
+        src: "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-b-angle.webp",
         alt: "Панель пластика HPL под косым светом с чистой геометрией кромки",
         caption: "Косой свет подчёркивает плоскость, край и современный матовый финиш.",
       },
       {
-        src: "/images/materials-gallery/plastik-hpl/plastik-hpl-3.webp",
+        src: "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-c-macro.webp",
         alt: "Макро кромки фасада из пластика HPL с тонким верхним слоем",
         caption: "Макро-деталь: край панели и фактура декоративного слоя.",
       },
       {
-        src: "/images/materials-gallery/plastik-hpl/plastik-hpl-4.webp",
+        src: "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-d-kitchen.webp",
         alt: "Кухонные фасады из пластика HPL в современном интерьере крупным планом",
         caption: "Пример в кухне: HPL на ровных фасадах рядом с рабочей поверхностью.",
       },
@@ -140,22 +140,22 @@ const materialGalleryItems: MaterialGalleryItem[] = [
     ],
     images: [
       {
-        src: "/images/materials-gallery/akril/akril-1.webp",
+        src: "/images/materials-gallery-v2/akril/akril-a-front.webp",
         alt: "Крупный план глянцевого акрилового фасада глубокого тёмно-зелёного цвета",
         caption: "Фронтальный close-up: глубокий цвет и гладкая отражающая поверхность.",
       },
       {
-        src: "/images/materials-gallery/akril/akril-2.webp",
+        src: "/images/materials-gallery-v2/akril/akril-b-angle.webp",
         alt: "Акриловый фасад под косым светом с глянцевым отражением",
         caption: "Косой ракурс показывает глянец, глубину цвета и полированную кромку.",
       },
       {
-        src: "/images/materials-gallery/akril/akril-3.webp",
+        src: "/images/materials-gallery-v2/akril/akril-c-macro.webp",
         alt: "Макро кромки акрилового фасада с полированным глянцевым краем",
         caption: "Макро-деталь: полированный край и ровный цветной слой.",
       },
       {
-        src: "/images/materials-gallery/akril/akril-4.webp",
+        src: "/images/materials-gallery-v2/akril/akril-d-kitchen.webp",
         alt: "Глянцевые акриловые фасады в современной кухне крупным планом",
         caption: "Пример в кухне: акрил даёт заметное отражение на плоскости фасадов.",
       },
@@ -174,22 +174,22 @@ const materialGalleryItems: MaterialGalleryItem[] = [
     ],
     images: [
       {
-        src: "/images/materials-gallery/shpon/shpon-1.webp",
+        src: "/images/materials-gallery-v2/shpon/shpon-a-front.webp",
         alt: "Крупный план натурального шпона ореха с выраженным древесным рисунком",
         caption: "Фронтальный close-up: натуральный рисунок дерева и тёплый тон шпона.",
       },
       {
-        src: "/images/materials-gallery/shpon/shpon-2.webp",
+        src: "/images/materials-gallery-v2/shpon/shpon-b-angle.webp",
         alt: "Панель шпона под косым светом с видимыми порами древесины",
         caption: "Косой свет проявляет поры, волокна и мягкий сатиновый финиш.",
       },
       {
-        src: "/images/materials-gallery/shpon/shpon-3.webp",
+        src: "/images/materials-gallery-v2/shpon/shpon-c-macro.webp",
         alt: "Макро кромки фасада со шпоном и натуральной древесной фактурой",
         caption: "Макро-деталь: кромка, слой шпона и выраженная древесная текстура.",
       },
       {
-        src: "/images/materials-gallery/shpon/shpon-4.webp",
+        src: "/images/materials-gallery-v2/shpon/shpon-d-kitchen.webp",
         alt: "Кухонные фасады со шпоном ореха крупным планом",
         caption: "Пример в кухне: вертикальный рисунок шпона на фасадах рядом со столешницей.",
       },

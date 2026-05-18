@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
-import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { MaterialsGallerySection } from "@/components/sections/MaterialsGallerySection";
+import { MaterialsCardsGrid } from "@/components/sections/MaterialsCardsGrid";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const metadata: Metadata = {
@@ -164,52 +165,7 @@ export default async function MaterialsPage() {
           )}
 
           {/* Cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {materials.map((m) => (
-              <Link key={m.slug} href={`/materials/${m.slug}`}
-                className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
-                <div className="h-44 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center relative overflow-hidden">
-                  {m.image ? (
-                    <Image
-                      src={m.image}
-                      alt={m.title}
-                      width={720}
-                      height={480}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="w-full h-full object-contain object-center"
-                    />
-                  ) : (
-                    <span className="text-stone-400 text-sm">Образец материала</span>
-                  )}
-                  {m.budgetLevel && (
-                    <span className={`absolute top-3 left-3 text-xs font-medium px-2.5 py-1 rounded-full border ${budgetColor[m.budgetLevel] || "bg-gray-100 text-gray-600 border-gray-200"}`}>
-                      {m.budgetLevel}
-                    </span>
-                  )}
-                </div>
-                <div className="p-5">
-                  <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors mb-1">{m.title}</h2>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{m.description}</p>
-                  {m.pros.length > 0 && m.cons.length > 0 && (
-                    <div className="space-y-1 mb-3">
-                      <div className="flex items-start gap-1.5 text-xs text-green-700">
-                        <CheckCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                        <span className="line-clamp-1">{m.pros[0]}</span>
-                      </div>
-                      <div className="flex items-start gap-1.5 text-xs text-red-600">
-                        <XCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
-                        <span className="line-clamp-1">{m.cons[0]}</span>
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-                    <span className="text-primary font-semibold text-sm">от {m.priceFrom.toLocaleString("ru")} BYN</span>
-                    <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors">Подробнее →</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <MaterialsCardsGrid materials={materials} budgetColor={budgetColor} />
 
           {/* CTA */}
           <div id="form" className="max-w-xl mx-auto scroll-mt-24">
