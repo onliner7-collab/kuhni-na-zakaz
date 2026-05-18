@@ -5,6 +5,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { CheckCircle, XCircle, Droplets, ArrowRight, Palette, Users, Wallet, Camera, HelpCircle, Lightbulb, Link2 } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { renderContent } from "@/lib/render-content";
 import { getMaterialEnrichment } from "@/lib/kitchen-page-enrichment";
@@ -18,6 +19,15 @@ const LEGACY_MATERIAL_SLUGS: Record<string, string> = {
   emal: "mdf-emal",
   mdf: "mdf-emal",
   plastik: "plastik-hpl",
+};
+
+const MATERIAL_HERO_IMAGES: Record<string, string> = {
+  "mdf-emal": "/images/materials-gallery-v2/mdf-emal/mdf-emal-d-kitchen.webp",
+  "mdf-fasady": "/images/materials-gallery-v2/mdf-emal/mdf-emal-d-kitchen.webp",
+  ldsp: "/images/materials-gallery-v2/ldsp/ldsp-d-kitchen.webp",
+  "plastik-hpl": "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-d-kitchen.webp",
+  akril: "/images/materials-gallery-v2/akril/akril-d-kitchen.webp",
+  shpon: "/images/materials-gallery-v2/shpon/shpon-d-kitchen.webp",
 };
 
 async function getMaterial(slug: string) {
@@ -89,6 +99,7 @@ export default async function MaterialPage({ params }: Props) {
     getOtherMaterials(slug),
   ]);
   const enrichment = getMaterialEnrichment(slug, m.title, m.priceFrom);
+  const heroImage = m.image || MATERIAL_HERO_IMAGES[slug] || "";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -141,9 +152,9 @@ export default async function MaterialPage({ params }: Props) {
                   {m.headline || m.title}
                 </h1>
                 <div className="h-64 bg-gradient-to-br from-stone-200 to-stone-300 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
-                  {m.image ? (
+                  {heroImage ? (
                     <Image
-                      src={m.image}
+                      src={heroImage}
                       alt={m.title}
                       width={1280}
                       height={720}
@@ -162,6 +173,8 @@ export default async function MaterialPage({ params }: Props) {
                   <p className="text-muted-foreground leading-relaxed">{m.content}</p>
                 )}
               </div>
+
+              <MaterialDetailGallery slug={slug} title={m.title} />
 
               {m.content && m.intro && (
                 <section className="prose prose-stone max-w-none rounded-2xl border border-border bg-white p-6">

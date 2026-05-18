@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 
 const pageTitle = "МДФ фасады для кухни на заказ";
@@ -217,6 +218,8 @@ export default function MdfFacadesPage() {
               />
             </div>
           </section>
+
+          <MaterialDetailGallery slug="mdf-fasady" title="МДФ фасады для кухни" />
 
           <section className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
