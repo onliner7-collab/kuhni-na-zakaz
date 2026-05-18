@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CheckCircle, XCircle, Droplets, ArrowRight, Layers, Users, Wallet, Camera, HelpCircle, Lightbulb, Link2 } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { renderContent } from "@/lib/render-content";
 import { getStyleEnrichment } from "@/lib/kitchen-page-enrichment";
@@ -75,6 +76,30 @@ export default async function StylePage({ params }: Props) {
   const s = await getStyle(slug);
   if (!s) notFound();
   const heroImage = slug === "neoklassika" ? "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp" : s.image;
+  const neoclassicProjectImages = [
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp",
+      alt: "Неоклассическая кухня из 3D-проекта, основной ракурс",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya-rakurs-1.webp",
+      alt: "Неоклассическая кухня из 3D-проекта, дополнительный ракурс слева",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya-rakurs-2.webp",
+      alt: "Неоклассическая кухня из 3D-проекта, дополнительный широкий ракурс",
+    },
+  ];
+  const neoclassicExampleImages = [
+    {
+      src: "/uploads/seo-showcase/kuhnya-neoklassika-1.webp",
+      alt: "Дополнительный пример кухни в стиле неоклассика",
+    },
+    {
+      src: "/uploads/seo-showcase/portfolio-vitebsk-neoklassika-1.webp",
+      alt: "Дополнительный пример светлой неоклассической кухни",
+    },
+  ];
   const [{ materials, scenarios, cases }, otherStyles] = await Promise.all([
     getRelatedData(s),
     getOtherStyles(slug),
@@ -131,21 +156,29 @@ export default async function StylePage({ params }: Props) {
                 <h1 className="font-serif text-4xl font-bold mb-4 leading-tight">
                   {s.headline || s.title}
                 </h1>
-                <div className="h-72 bg-gradient-to-br from-stone-200 to-amber-100 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
-                  {heroImage ? (
-                    <Image
-                      src={heroImage}
-                      alt={s.title}
-                      width={1280}
-                      height={720}
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 66vw"
-                      className="w-full h-full object-contain object-center"
-                    />
-                  ) : (
-                    <span className="text-stone-400">Фото стиля</span>
-                  )}
-                </div>
+                {slug === "neoklassika" ? (
+                  <CatalogImageGallery
+                    title={s.title}
+                    projectImages={neoclassicProjectImages}
+                    exampleImages={neoclassicExampleImages}
+                  />
+                ) : (
+                  <div className="h-72 bg-gradient-to-br from-stone-200 to-amber-100 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
+                    {heroImage ? (
+                      <Image
+                        src={heroImage}
+                        alt={s.title}
+                        width={1280}
+                        height={720}
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 66vw"
+                        className="w-full h-full object-contain object-center"
+                      />
+                    ) : (
+                      <span className="text-stone-400">Фото стиля</span>
+                    )}
+                  </div>
+                )}
                 {s.intro && (
                   <p className="text-muted-foreground leading-relaxed text-lg">{s.intro}</p>
                 )}

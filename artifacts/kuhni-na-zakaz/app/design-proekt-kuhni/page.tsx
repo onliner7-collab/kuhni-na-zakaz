@@ -354,14 +354,16 @@ export default function DesignProektKuhniPage() {
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {galleryItems.map((item) => (
                 <article key={item.title} className="overflow-hidden rounded-lg border border-border bg-white">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    width={1200}
-                    height={900}
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="aspect-[4/3] w-full object-cover"
-                  />
+                  <Link href={item.href} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={1200}
+                      height={900}
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                    />
+                  </Link>
                   <div className="p-4">
                     <h3 className="font-bold">{item.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.caption}</p>

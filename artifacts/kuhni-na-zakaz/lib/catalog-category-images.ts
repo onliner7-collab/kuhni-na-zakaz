@@ -83,6 +83,14 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
       alt: "Угловая кухня из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
     },
     {
+      src: "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya-rakurs-1.webp",
+      alt: "Угловая кухня из 3D-проекта, дополнительный ракурс слева",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya-rakurs-2.webp",
+      alt: "Угловая кухня из 3D-проекта, дополнительный широкий ракурс",
+    },
+    {
       src: "/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
       alt: "Угловая зелёная кухня в скандинавском стиле",
     },
@@ -99,6 +107,14 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp",
       alt: "Кухня без ручек из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek-rakurs-1.webp",
+      alt: "Кухня без ручек из 3D-проекта, дополнительный ракурс слева",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek-rakurs-2.webp",
+      alt: "Кухня без ручек из 3D-проекта, дополнительный ракурс справа",
     },
     {
       src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
@@ -119,6 +135,14 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
       alt: "Кухня до потолка из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
     },
     {
+      src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka-rakurs-1.webp",
+      alt: "Кухня до потолка из 3D-проекта, дополнительный ракурс слева",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka-rakurs-2.webp",
+      alt: "Кухня до потолка из 3D-проекта, дополнительный ракурс справа",
+    },
+    {
       src: "/uploads/seo-showcase/kuhnya-do-potolka-1.webp",
       alt: "Дополнительный пример кухни до потолка с большим хранением",
     },
@@ -131,6 +155,14 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp",
       alt: "Кухня с островом из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom-rakurs-1.webp",
+      alt: "Кухня с островом из 3D-проекта, дополнительный ракурс слева",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom-rakurs-2.webp",
+      alt: "Кухня с островом из 3D-проекта, дополнительный широкий ракурс",
     },
     {
       src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
@@ -147,6 +179,14 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
       alt: "Маленькая кухня из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
     },
     {
+      src: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya-rakurs-1.webp",
+      alt: "Маленькая кухня из 3D-проекта, дополнительный ракурс от входа",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya-rakurs-2.webp",
+      alt: "Маленькая кухня из 3D-проекта, дополнительный ракурс справа",
+    },
+    {
       src: "/uploads/seo-showcase/kuhnya-malenkaya-funkcionalnaya-1.webp",
       alt: "Дополнительный пример маленькой функциональной кухни",
     },
@@ -159,6 +199,14 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
     {
       src: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp",
       alt: "П-образная кухня из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya-rakurs-1.webp",
+      alt: "П-образная кухня из 3D-проекта, дополнительный ракурс слева",
+    },
+    {
+      src: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya-rakurs-2.webp",
+      alt: "П-образная кухня из 3D-проекта, дополнительный ракурс справа",
     },
     {
       src: "/uploads/seo-showcase/kuhnya-p-obraznaya-premium-1.webp",
