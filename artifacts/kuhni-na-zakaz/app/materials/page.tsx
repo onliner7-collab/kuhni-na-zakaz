@@ -4,6 +4,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { MaterialsGallerySection } from "@/components/sections/MaterialsGallerySection";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const metadata: Metadata = {
@@ -122,6 +123,8 @@ export default async function MaterialsPage() {
             </div>
           </section>
 
+          <MaterialsGallerySection />
+
           {/* Quick comparison table */}
           {materials.length > 0 && (
             <div className="overflow-x-auto mb-12">
@@ -209,7 +212,7 @@ export default async function MaterialsPage() {
           </div>
 
           {/* CTA */}
-          <div className="max-w-xl mx-auto">
+          <div id="form" className="max-w-xl mx-auto scroll-mt-24">
             <h2 className="font-serif text-2xl font-bold text-center mb-2">Не знаете какой материал выбрать?</h2>
             <p className="text-center text-muted-foreground mb-6">Расскажите о вашей кухне — порекомендуем оптимальный вариант</p>
             <div className="card-base p-6">
