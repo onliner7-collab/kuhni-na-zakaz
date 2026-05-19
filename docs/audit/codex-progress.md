@@ -86,3 +86,14 @@
   - Checked `/materials/mdf-fasady`, `/styles/neoklassika`, and `/locations/borisov`.
   - `/materials/akril` returned local 404 because that material page is not available in the current local data/routes.
   - After cache bypass, `/materials/mdf-fasady` showed the corrected heading "Как выглядят МДФ фасады для кухни в образцах и интерьере" without the earlier dev-cache hydration mismatch.
+- Git and production deploy:
+  - Committed and pushed `e91ad8e Clean public SEO copy` to `origin/work`.
+  - Ran `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work` on the Timeweb VPS.
+  - Deploy fast-forwarded production to `e91ad8e`, imported prepared photo/portfolio data, wrote static sitemap fallback with 126 URLs, synchronized NAP, built Next.js successfully, and restarted `kuhni-na-zakaz`.
+  - Production verification after restart:
+    - `https://kuhni.minsk.by/` returned `200 OK`.
+    - `https://kuhni.minsk.by/materials/mdf-fasady` returned `200 OK` and contained the corrected MДФ heading.
+    - `https://kuhni.minsk.by/styles/neoklassika` returned `200 OK` and contained `Другие стили`.
+    - `https://kuhni.minsk.by/locations/borisov` returned `200 OK`.
+    - `https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-minimalizm-005` returned `200 OK`.
+  - Server verification: production checkout was on `e91ad8e`; `systemctl is-active kuhni-na-zakaz` returned `active`.
