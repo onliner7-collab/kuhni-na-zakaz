@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { PortfolioFilters } from "@/components/portfolio/PortfolioFilters";
-import { toPortfolioProject } from "@/data/portfolio-projects";
+import { GENERATED_MINSK_PORTFOLIO_CASES, toPortfolioProject } from "@/data/portfolio-projects";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
@@ -26,7 +26,10 @@ export default async function PortfolioPage() {
     },
     orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
   }).catch(() => []);
-  const projects = portfolioCases.filter((item) => isPublicContentSlug(item.slug)).map(toPortfolioProject);
+  const projects = [
+    ...GENERATED_MINSK_PORTFOLIO_CASES,
+    ...portfolioCases.filter((item) => isPublicContentSlug(item.slug)),
+  ].map(toPortfolioProject);
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },

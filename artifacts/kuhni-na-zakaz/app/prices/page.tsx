@@ -186,7 +186,7 @@ export default function PricesPage() {
           <h2 className="font-serif text-2xl font-bold mb-3">Цены по городам</h2>
           <p className="text-sm leading-relaxed text-muted-foreground mb-5">
             Базовые принципы расчета одинаковые, но замер, доставка и монтаж зависят от адреса.
-            Выберите город, чтобы посмотреть региональные условия без дублей и неподтвержденных обещаний.
+            Выберите город, чтобы посмотреть региональные условия замера, доставки и монтажа.
           </p>
           <div className="flex flex-wrap gap-3">
             {regionalLocations.map((location) => (

@@ -59,42 +59,6 @@ const orderSteps = [
   "Доставка и монтаж",
 ];
 
-const fallbackCases: PortfolioCasePreview[] = [
-  {
-    id: "general-corner",
-    title: "Угловая кухня в современном стиле",
-    slug: "uglovaya-kuhnya-dlya-novostroyki-minsk",
-    mainImage: "/images/hero.webp",
-    style: "Современный",
-    priceFrom: 2800,
-    area: 3,
-    days: 21,
-    city: "Общий пример",
-  },
-  {
-    id: "general-straight",
-    title: "Прямая кухня для компактного помещения",
-    slug: "pryamaya-kuhnya-dlya-studii-brest",
-    mainImage: "/images/hero.webp",
-    style: "Минимализм",
-    priceFrom: 1800,
-    area: 2,
-    days: 18,
-    city: "Общий пример",
-  },
-  {
-    id: "general-tall",
-    title: "Кухня до потолка с продуманным хранением",
-    slug: "kuhnya-do-potolka-mogilev",
-    mainImage: "/images/hero.webp",
-    style: "Современный",
-    priceFrom: 3100,
-    area: 3,
-    days: 24,
-    city: "Общий пример",
-  },
-];
-
 function SectionTitle({
   eyebrow,
   title,
@@ -235,7 +199,6 @@ export function RegionalLocationPage({
   cases,
   hasLocalCases,
 }: RegionalLocationPageProps) {
-  const displayCases = cases.length > 0 ? cases : fallbackCases;
   const isMinskRegionHub = location.slug === "minskaya-oblast";
   const serviceItems = getServiceItems(location);
   const popularSolutions = getPopularSolutions(location);
@@ -522,15 +485,16 @@ export function RegionalLocationPage({
         <div className="container-site">
           <SectionTitle
             eyebrow="Портфолио"
-            title={hasLocalCases ? `Проекты с привязкой к ${location.cityPrepositional}` : "Примеры работ без привязки к городу"}
+            title={`Проекты в ${location.cityPrepositional}`}
             text={
               hasLocalCases
-                ? "Показываем проекты, которые связаны с этим городом или регионом в базе сайта."
-                : "По этому городу пока нет подтвержденной подборки. Чтобы не вводить посетителя в заблуждение, показываем общие примеры."
+                ? "Показываем только проекты, где город в данных портфолио совпадает с этой страницей."
+                : "Пока нет подтверждённых проектов из этого города. Ниже можно посмотреть примеры решений и 3D-визуализации."
             }
           />
-          <div className="grid gap-5 md:grid-cols-3">
-            {displayCases.slice(0, 3).map((item) => {
+          {hasLocalCases ? (
+            <div className="grid gap-5 md:grid-cols-3">
+            {cases.slice(0, 3).map((item) => {
               const disclosure = getImageDisclosure(item.mainImage);
 
               return (
@@ -556,7 +520,7 @@ export function RegionalLocationPage({
                 <div className="p-5">
                   <p className="mb-2 font-semibold text-foreground">{item.title}</p>
                   <p className="mb-3 text-sm text-muted-foreground">
-                    {hasLocalCases ? item.city : "Без привязки к этому городу"}
+                    {item.city}
                   </p>
                   <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
                     {item.area > 0 && <span>{item.area} п.м</span>}
@@ -567,7 +531,12 @@ export function RegionalLocationPage({
               </Link>
               );
             })}
-          </div>
+            </div>
+          ) : (
+            <div className="rounded-lg border border-border bg-muted/30 p-5 text-sm leading-6 text-muted-foreground">
+              Пока нет подтверждённых проектов из этого города. Ниже можно посмотреть примеры решений и 3D-визуализации.
+            </div>
+          )}
         </div>
       </section>
 

@@ -404,7 +404,7 @@ export default function MdfFacadesPage() {
               <h2 className="text-center font-serif text-3xl font-bold">Расчет кухни с фасадами МДФ</h2>
               <p className="mx-auto mt-3 max-w-xl text-center leading-relaxed text-muted-foreground">
                 Оставьте заявку: уточним размеры, планировку, покрытие фасадов и подготовим следующий шаг без
-                неподтвержденных обещаний по цене или срокам.
+                лишних обещаний по цене или срокам.
               </p>
               <div className="mt-8">
                 <ContactForm source="materials/mdf-fasady" sourceType="materials" />

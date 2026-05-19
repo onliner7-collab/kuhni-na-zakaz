@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SITE_NAME, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
@@ -35,6 +36,14 @@ type ReviewItem = { id: number; name: string; city: string; rating: number; text
 
 function isJsonLdObject<T>(value: T | null): value is T {
   return value !== null;
+}
+
+function normalizeCityName(value: string | null | undefined) {
+  return (value ?? "").trim().toLocaleLowerCase("ru").replace(/ё/g, "е");
+}
+
+function isSameCity(value: string | null | undefined, expected: string) {
+  return normalizeCityName(value) === normalizeCityName(expected);
 }
 
 const catalogLinks = [
@@ -177,12 +186,16 @@ async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocatio
   const [pinnedCases, autoCases, pinnedReviews, autoReviews] = await Promise.all([
     pinnedSlugs.length > 0
       ? prisma.portfolioCase.findMany({
-          where: { published: true, slug: { in: pinnedSlugs.filter(isPublicContentSlug) } },
+          where: {
+            published: true,
+            slug: { in: pinnedSlugs.filter(isPublicContentSlug) },
+            city: { equals: loc.city, mode: "insensitive" },
+          },
           select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
         }).catch(() => [])
       : [],
     prisma.portfolioCase.findMany({
-      where: { published: true, slug: publicSlugWhere(), city: { contains: loc.city, mode: "insensitive" } },
+      where: { published: true, slug: publicSlugWhere(), city: { equals: loc.city, mode: "insensitive" } },
       orderBy: { createdAt: "desc" },
       take: 6,
       select: { id: true, title: true, slug: true, mainImage: true, style: true, priceFrom: true, area: true, days: true, city: true },
@@ -204,7 +217,7 @@ async function getPageData(loc: NonNullable<Awaited<ReturnType<typeof getLocatio
   const seenCaseIds = new Set<number>();
   const cases: PortfolioCase[] = [];
   for (const c of [...pinnedCases, ...autoCases]) {
-    if (isPublicContentSlug(c.slug) && !seenCaseIds.has(c.id) && cases.length < 4) {
+    if (isPublicContentSlug(c.slug) && isSameCity(c.city, loc.city) && !seenCaseIds.has(c.id) && cases.length < 4) {
       seenCaseIds.add(c.id);
       cases.push(c as PortfolioCase);
     }
@@ -227,10 +240,7 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
     where: {
       published: true,
       slug: publicSlugWhere(),
-      OR: [
-        { city: { contains: location.portfolioCityKey, mode: "insensitive" } },
-        { region: { contains: location.regionName, mode: "insensitive" } },
-      ],
+      city: { equals: location.portfolioCityKey, mode: "insensitive" },
     },
     orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
     take: 3,
@@ -247,28 +257,28 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
     },
   }).catch(() => []);
 
-  if (localCases.length > 0) {
-    return { cases: localCases.filter((item) => isPublicContentSlug(item.slug)) as PortfolioCasePreview[], hasLocalCases: true };
-  }
+  const confirmedLocalCases = localCases.filter(
+    (item) => isPublicContentSlug(item.slug) && isSameCity(item.city, location.portfolioCityKey),
+  ) as PortfolioCasePreview[];
 
-  const generalCases = await prisma.portfolioCase.findMany({
-    where: { published: true, slug: publicSlugWhere(), title: { not: "" } },
-    orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
-    take: 3,
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-      mainImage: true,
-      style: true,
-      priceFrom: true,
-      area: true,
-      days: true,
-      city: true,
-    },
-  }).catch(() => []);
+  const generatedMinskCases: PortfolioCasePreview[] =
+    location.slug === "minsk"
+      ? GENERATED_MINSK_PORTFOLIO_CASES.slice(0, 3).map((item) => ({
+          id: item.externalId || item.slug,
+          title: item.title,
+          slug: item.slug,
+          mainImage: item.mainImage,
+          style: item.style,
+          priceFrom: item.priceFrom,
+          area: item.area,
+          days: item.days,
+          city: item.city,
+        }))
+      : [];
 
-  return { cases: generalCases.filter((item) => isPublicContentSlug(item.slug)) as PortfolioCasePreview[], hasLocalCases: false };
+  const cases = [...generatedMinskCases, ...confirmedLocalCases].slice(0, 4);
+
+  return { cases, hasLocalCases: cases.length > 0 };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

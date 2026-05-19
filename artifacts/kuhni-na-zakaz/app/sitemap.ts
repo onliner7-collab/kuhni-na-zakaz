@@ -3,6 +3,7 @@ import { regionalLocations } from "@/data/locations";
 import { prisma } from "@/lib/db";
 import { BLOG_POSTS } from "@/lib/blog-static";
 import { SEO_BLOG_POSTS_FALLBACK } from "@/lib/blog-seo-fallback";
+import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -19,9 +20,6 @@ const STATIC_PATHS = [
   "/design-proekt-kuhni",
   "/prices",
   "/contacts",
-  "/privacy-policy",
-  "/personal-data",
-  "/terms",
   "/portfolio",
   "/reviews",
   "/blog",
@@ -51,6 +49,19 @@ const STATIC_CATALOG_SLUGS = [
   "kuhni-do-potolka",
   "kuhni-bez-ruchek",
 ] as const;
+
+const NON_CANONICAL_DYNAMIC_PATHS = new Set([
+  "/catalog/kuhnya-bez-ruchek-minsk",
+  "/catalog/kuhnya-do-potolka-minsk",
+  "/catalog/malenkaya-kuhnya-minsk",
+  "/catalog/pryamaya-kuhnya-minsk",
+  "/catalog/uglovaya-kuhnya-minsk",
+  "/catalog/p-obraznaya-kuhnya-minsk",
+  "/catalog/kuhnya-s-ostrovom-minsk",
+  "/catalog/kuhnya-dlya-studii-minsk",
+  "/catalog/sovremennaya-kuhnya-minsk",
+  "/catalog/kuhnya-ekonom-minsk",
+]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = STATIC_PATHS.map((path) =>
@@ -102,6 +113,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         0.7,
       ),
     );
+  const staticPortfolioPages = GENERATED_MINSK_PORTFOLIO_CASES.map((project) =>
+    sitemapEntry(`/portfolio/${project.slug}`, project.updatedAt, 0.8),
+  );
 
   return uniqueIndexableEntries([
     ...staticPages,
@@ -110,6 +124,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...stylePages,
     ...materialPages,
     ...scenarioPages,
+    ...staticPortfolioPages,
     ...portfolioPages,
     ...staticBlogPages,
     ...blogPages,
@@ -195,6 +210,7 @@ function isIndexableUrl(url: string) {
     if (pathname.includes("/draft")) return false;
     if (pathname.includes("/preview")) return false;
     if (pathname.includes("//")) return false;
+    if (NON_CANONICAL_DYNAMIC_PATHS.has(pathname)) return false;
 
     return !blockedPathPrefixes.some(
       (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),

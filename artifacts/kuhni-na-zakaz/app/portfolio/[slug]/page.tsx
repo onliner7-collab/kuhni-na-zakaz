@@ -9,7 +9,12 @@ import { FavoriteButton } from "@/components/ui/FavoriteButton";
 import { PortfolioProjectHeroImage } from "@/components/portfolio/PortfolioProjectHeroImage";
 import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
 import { PortfolioProjectOpenTracker } from "@/components/analytics/PortfolioProjectOpenTracker";
-import { toPortfolioProject, type EditablePortfolioCase, type PortfolioProject } from "@/data/portfolio-projects";
+import {
+  GENERATED_MINSK_PORTFOLIO_CASES,
+  toPortfolioProject,
+  type EditablePortfolioCase,
+  type PortfolioProject,
+} from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
@@ -17,12 +22,100 @@ import { trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import type { PortfolioCase } from "@prisma/client";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export const dynamic = "force-dynamic";
+
+function createConceptPortfolioCase(
+  slug: string,
+  title: string,
+  mainImage: string,
+  kitchenType: string,
+  style: string,
+): PortfolioCase {
+  const now = new Date(0);
+
+  return {
+    id: 0,
+    externalId: `concept-${slug}`,
+    title,
+    shortTitle: title,
+    slug,
+    city: "",
+    cityKey: "",
+    region: "",
+    district: "",
+    kitchenType,
+    area: 0,
+    layout: kitchenType,
+    style,
+    styleSlug: "",
+    color: "",
+    material: "",
+    materials: [],
+    materialSlugs: [],
+    scenarioSlugs: [],
+    priceFrom: 0,
+    priceTo: 0,
+    priceNote: "Стоимость зависит от размеров, материалов и комплектации после замера.",
+    size: "",
+    facades: "",
+    countertop: "",
+    fittings: "",
+    workDuration: "",
+    days: 0,
+    completedAt: "",
+    description:
+      "3D-визуализация кухни на заказ: пример планировки, материалов и общего настроения для похожего проекта без привязки к выполненной работе.",
+    task: "Показать направление дизайна, которое можно адаптировать под размеры помещения и бюджет.",
+    constraints: "",
+    solution: "После заявки планировку, материалы и комплектацию нужно пересчитать по точным размерам.",
+    result: "",
+    features: ["3D-визуализация", "пример дизайна", "без привязки к выполненной работе"],
+    relatedLocationSlugs: [],
+    mainImage,
+    images: [mainImage],
+    imageAlts: [`3D-визуализация: ${title}`],
+    imageCaptions: ["3D-визуализация, пример дизайна"],
+    alt: `3D-визуализация: ${title}`,
+    photosBefore: [],
+    photosAfter: [],
+    reviewIds: [],
+    featured: false,
+    order: 0,
+    seoTitle: `${title}: 3D-визуализация кухни на заказ`,
+    seoDescription:
+      "3D-визуализация кухни на заказ без привязки к выполненной работе. Пример дизайна для расчёта похожего проекта.",
+    seoKeywords: "",
+    published: true,
+    createdAt: now,
+    updatedAt: now,
+  };
+}
+
+const conceptPortfolioCases: Record<string, PortfolioCase> = {
+  "kuhnya-s-ostrovom-minimalizm-005": createConceptPortfolioCase(
+    "kuhnya-s-ostrovom-minimalizm-005",
+    "Кухня с островом в стиле минимализм",
+    "/uploads/seo-showcase/kuhnya-s-ostrovom-1.webp",
+    "Кухня с островом",
+    "Минимализм",
+  ),
+  "uglovaya-kuhnya-sovremennaya-001": createConceptPortfolioCase(
+    "uglovaya-kuhnya-sovremennaya-001",
+    "Угловая кухня в современном стиле",
+    "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp",
+    "Угловая кухня",
+    "Современный",
+  ),
+};
+const generatedMinskPortfolioCases = Object.fromEntries(
+  GENERATED_MINSK_PORTFOLIO_CASES.map((item) => [item.slug, item]),
+) as Record<string, PortfolioCase>;
 
 async function getPortfolioCase(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
@@ -34,7 +127,9 @@ async function getPortfolioCase(slug: string) {
         published: true,
       },
     })
-    .catch(() => null);
+    .then((portfolioCase) => portfolioCase ?? conceptPortfolioCases[slug] ?? null)
+    .then((portfolioCase) => portfolioCase ?? generatedMinskPortfolioCases[slug] ?? null)
+    .catch(() => generatedMinskPortfolioCases[slug] ?? conceptPortfolioCases[slug] ?? null);
 }
 
 async function getPortfolioProjects() {
@@ -49,7 +144,10 @@ async function getPortfolioProjects() {
     })
     .catch(() => []);
 
-  return cases.filter((portfolioCase) => isPublicContentSlug(portfolioCase.slug)).map((portfolioCase) => ({
+  return [
+    ...GENERATED_MINSK_PORTFOLIO_CASES,
+    ...cases.filter((portfolioCase) => isPublicContentSlug(portfolioCase.slug)),
+  ].map((portfolioCase) => ({
     source: portfolioCase,
     project: toPortfolioProject(portfolioCase as EditablePortfolioCase),
   }));
@@ -85,12 +183,17 @@ function formatProjectPrice(project: PortfolioProject) {
 
 function buildMetaDescription(project: PortfolioProject) {
   const details = [
+    project.shortTitle || project.title,
     project.city,
+    project.district,
     project.kitchenType,
+    project.style,
+    project.color,
+    project.size,
     project.materials.length > 0 ? project.materials.join(", ") : project.facades,
     project.features[0],
   ].filter(Boolean);
-  const description = `Краткое описание проекта: ${details.join(", ")}. Рассчитаем похожую кухню под ваши размеры, материалы и бюджет.`;
+  const description = `✨ ${details.join(", ")}. Рассчитаем похожую кухню под ваши размеры, материалы и бюджет — без шаблонной сметы на коленке.`;
 
   return trimMetaDescription(description, description);
 }
@@ -145,20 +248,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const project = toPortfolioProject(portfolioCase as EditablePortfolioCase);
   const isConceptProject = getImageDisclosure(project.mainImage).kind === "generated";
+  const customDescription = portfolioCase.seoDescription
+    ? trimMetaDescription(portfolioCase.seoDescription, portfolioCase.seoDescription)
+    : "";
   const conceptDescription = trimMetaDescription(
     "3D-визуализация кухни на заказ: планировка, материалы и идеи для похожего проекта без привязки к выполненной работе.",
     project.description,
   );
+  const metaDescription = customDescription || (isConceptProject ? conceptDescription : buildMetaDescription(project));
 
   return {
     title: `${project.title} — портфолио кухонь на заказ`,
-    description: isConceptProject ? conceptDescription : buildMetaDescription(project),
+    description: metaDescription,
     alternates: {
       canonical: `/portfolio/${project.slug}`,
     },
     openGraph: {
       title: `${project.title} — портфолио кухонь на заказ`,
-      description: isConceptProject ? conceptDescription : buildMetaDescription(project),
+      description: metaDescription,
       images: project.mainImage ? [{ url: project.mainImage, alt: project.alt || project.title }] : undefined,
       url: `/portfolio/${project.slug}`,
       type: "article",

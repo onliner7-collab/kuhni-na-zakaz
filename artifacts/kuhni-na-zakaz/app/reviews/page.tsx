@@ -114,7 +114,7 @@ export default async function ReviewsPage() {
             </div>
           </div>
           <p className="text-muted-foreground mb-10 max-w-2xl">
-            Все отзывы проходят модерацию перед появлением на сайте — никаких накруток и анонимных фейков.
+            Все отзывы проходят модерацию перед появлением на сайте — без накруток и анонимных публикаций.
           </p>
 
           {featured.length > 0 && (

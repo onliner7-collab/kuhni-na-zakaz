@@ -17,9 +17,6 @@ const requiredPaths = [
   "/about",
   "/contacts",
   "/design-proekt-kuhni",
-  "/privacy-policy",
-  "/personal-data",
-  "/terms",
 ] as const;
 
 const forbiddenPathPrefixes = [
@@ -30,6 +27,22 @@ const forbiddenPathPrefixes = [
   "/thanks",
   "/configurator",
   "/kitchen-configurator",
+] as const;
+
+const forbiddenExactPaths = [
+  "/privacy-policy",
+  "/personal-data",
+  "/terms",
+  "/catalog/kuhnya-bez-ruchek-minsk",
+  "/catalog/kuhnya-do-potolka-minsk",
+  "/catalog/malenkaya-kuhnya-minsk",
+  "/catalog/pryamaya-kuhnya-minsk",
+  "/catalog/uglovaya-kuhnya-minsk",
+  "/catalog/p-obraznaya-kuhnya-minsk",
+  "/catalog/kuhnya-s-ostrovom-minsk",
+  "/catalog/kuhnya-dlya-studii-minsk",
+  "/catalog/sovremennaya-kuhnya-minsk",
+  "/catalog/kuhnya-ekonom-minsk",
 ] as const;
 
 async function main() {
@@ -57,6 +70,10 @@ async function main() {
     assert.ok(
       !forbiddenPathPrefixes.some((prefix) => parsed.pathname === prefix || parsed.pathname.startsWith(`${prefix}/`)),
       `sitemap must not include private or redirected URL: ${url}`,
+    );
+    assert.ok(
+      !forbiddenExactPaths.includes(parsed.pathname as (typeof forbiddenExactPaths)[number]),
+      `sitemap must not include non-canonical or low-value URL: ${url}`,
     );
   }
 

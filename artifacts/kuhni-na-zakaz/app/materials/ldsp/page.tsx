@@ -379,7 +379,7 @@ export default function LdspMaterialsPage() {
               <h2 className="text-center font-serif text-3xl font-bold">Расчет кухни из ЛДСП</h2>
               <p className="mx-auto mt-3 max-w-xl text-center leading-relaxed text-muted-foreground">
                 Оставьте заявку: уточним размеры, планировку, декор, кромку, фурнитуру и подготовим расчет
-                без неподтвержденных обещаний по точной цене.
+                без лишних обещаний по точной цене.
               </p>
               <div className="mt-8">
                 <ContactForm source="materials/ldsp" sourceType="materials" />
