@@ -15,6 +15,7 @@
     "bulk-import:audit-external-ids": "tsx scripts/audit-bulk-import-v1-external-ids.ts",
     "photos:import-prepared": "tsx scripts/import-prepared-kitchen-photos.ts",
     "photos:import-portfolio-folders": "tsx scripts/import-portfolio-project-folders.ts",
+    "sitemap:check": "tsx scripts/check-sitemap.ts",
     "sitemap:write-static": "tsx scripts/write-static-sitemap.ts",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",

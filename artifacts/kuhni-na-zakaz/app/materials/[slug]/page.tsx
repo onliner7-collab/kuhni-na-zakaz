@@ -159,6 +159,7 @@ export default async function MaterialPage({ params }: Props) {
                       width={1280}
                       height={720}
                       priority
+                      fetchPriority="high"
                       sizes="(max-width: 1024px) 100vw, 66vw"
                       className="w-full h-full object-contain object-center"
                     />
@@ -348,6 +349,7 @@ export default async function MaterialPage({ params }: Props) {
                               alt={c.title}
                               width={720}
                               height={480}
+                              loading="lazy"
                               sizes="(max-width: 1024px) 100vw, 50vw"
                               className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-500"
                             />
@@ -391,6 +393,7 @@ export default async function MaterialPage({ params }: Props) {
                               alt={st.title}
                               width={128}
                               height={128}
+                              loading="lazy"
                               sizes="64px"
                               className="w-full h-full object-contain object-center"
                             />

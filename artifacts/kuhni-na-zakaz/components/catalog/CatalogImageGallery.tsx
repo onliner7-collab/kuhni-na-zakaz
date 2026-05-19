@@ -109,6 +109,7 @@ export function CatalogImageGallery({ title, projectImages, exampleImages = [] }
           alt={activeImage.alt}
           fill
           priority
+          fetchPriority="high"
           sizes="(max-width: 1024px) 100vw, 820px"
           className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
         />

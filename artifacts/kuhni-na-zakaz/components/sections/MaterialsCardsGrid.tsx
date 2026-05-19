@@ -206,6 +206,7 @@ export function MaterialsCardsGrid({ materials, budgetColor }: MaterialsCardsGri
                     alt={material.title}
                     width={720}
                     height={480}
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />

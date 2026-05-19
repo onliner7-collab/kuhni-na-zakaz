@@ -97,7 +97,7 @@ export default async function BlogPage() {
             ))}
           </section>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {display.map((p) => {
+            {display.map((p, index) => {
               const disclosure = getImageDisclosure(p.coverImage);
 
               return (
@@ -116,7 +116,8 @@ export default async function BlogPage() {
                       }
                       width={p.coverImageWidth ?? 1200}
                       height={p.coverImageHeight ?? 800}
-                      loading="lazy"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
                       unoptimized={isPreoptimizedRasterSrc(optimizedImageSrc(p.coverImage))}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

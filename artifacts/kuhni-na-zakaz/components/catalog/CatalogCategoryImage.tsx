@@ -32,7 +32,7 @@ export function CatalogCategoryImage({
           height={900}
           quality={85}
           decoding="async"
-          {...(priority ? { priority: true } : { loading: "lazy" as const })}
+          {...(priority ? { priority: true, fetchPriority: "high" as const } : { loading: "lazy" as const })}
           sizes={sizes}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           onError={() => setFailed(true)}

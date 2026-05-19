@@ -194,6 +194,7 @@ export default async function BlogPostPage({ params }: Props) {
                         optimizedImageSrc(data.coverImage),
                       )}
                       priority
+                      fetchPriority="high"
                       sizes="(max-width: 1024px) 100vw, 760px"
                       className="h-full w-full object-cover"
                     />
@@ -303,6 +304,7 @@ export default async function BlogPostPage({ params }: Props) {
                               alt={s.title}
                               width={112}
                               height={112}
+                              loading="lazy"
                               sizes="56px"
                               className="w-full h-full object-cover"
                             />

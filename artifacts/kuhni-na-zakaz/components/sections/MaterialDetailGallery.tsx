@@ -107,6 +107,7 @@ export function MaterialDetailGallery({ slug, title }: MaterialDetailGalleryProp
           src={optimizedImageSrc(activeImage.src) || activeImage.src}
           alt={activeImage.alt}
           fill
+          loading="lazy"
           sizes="(max-width: 1024px) 100vw, 900px"
           className="object-cover"
         />
@@ -139,6 +140,7 @@ export function MaterialDetailGallery({ slug, title }: MaterialDetailGalleryProp
               src={optimizedImageSrc(image.src) || image.src}
               alt={image.alt}
               fill
+              loading="lazy"
               sizes="(max-width: 768px) 50vw, 140px"
               className="object-cover"
             />

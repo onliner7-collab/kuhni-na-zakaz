@@ -56,6 +56,7 @@ interface ContactFormProps {
   projectSlug?: string;
   cityKey?: string;
   formType?: string;
+  formLocation?: string;
   submitLabel?: string;
   successMessage?: string;
   errorMessage?: string;
@@ -128,6 +129,12 @@ function readSourceTypeOverride() {
   return new URLSearchParams(window.location.search).get("sourceType") || "";
 }
 
+function readPagePath(fallbackPathname: string) {
+  if (typeof window === "undefined") return fallbackPathname;
+
+  return window.location.pathname || fallbackPathname;
+}
+
 export function ContactForm({
   source = "website",
   city,
@@ -136,6 +143,7 @@ export function ContactForm({
   projectSlug,
   cityKey,
   formType = "contact",
+  formLocation = formType,
   submitLabel = "Отправить заявку",
   successMessage = "Мы свяжемся с вами в рабочее время и уточним детали кухни.",
   errorMessage,
@@ -249,6 +257,13 @@ export function ContactForm({
           comment: "",
           hasMeasurements: false,
           agreement: true,
+        });
+        trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUBMIT, {
+          source,
+          sourceType: payload.sourceType,
+          formLocation,
+          hasMeasurements: Boolean(payload.hasMeasurements),
+          pagePath: readPagePath(pathname),
         });
         trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUCCESS, {
           form_type: formType,

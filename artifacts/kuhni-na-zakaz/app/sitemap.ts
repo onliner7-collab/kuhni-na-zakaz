@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { regionalLocations } from "@/data/locations";
 import { prisma } from "@/lib/db";
+import { BLOG_POSTS } from "@/lib/blog-static";
+import { SEO_BLOG_POSTS_FALLBACK } from "@/lib/blog-seo-fallback";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -17,6 +19,9 @@ const STATIC_PATHS = [
   "/design-proekt-kuhni",
   "/prices",
   "/contacts",
+  "/privacy-policy",
+  "/personal-data",
+  "/terms",
   "/portfolio",
   "/reviews",
   "/blog",
@@ -52,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     sitemapEntry(path, STATIC_LAST_MODIFIED, path === "/" ? 1 : 0.8, "weekly"),
   );
 
+  let catalogPages: MetadataRoute.Sitemap = [];
   let portfolioPages: MetadataRoute.Sitemap = [];
   let blogPages: MetadataRoute.Sitemap = [];
   let locationPages: MetadataRoute.Sitemap = [];
@@ -60,7 +66,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let scenarioPages: MetadataRoute.Sitemap = [];
 
   try {
-    const [cases, posts, locations, styles, materials, scenarios] = await Promise.all([
+    const [kitchens, cases, posts, locations, styles, materials, scenarios] = await Promise.all([
+      prisma.kitchen.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
       prisma.portfolioCase.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
       prisma.blogPost.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
       prisma.locationPage.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
@@ -69,13 +76,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       prisma.scenarioPage.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
     ]);
 
+    catalogPages = kitchens.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/catalog/${item.slug}`, item.updatedAt, 0.7));
     portfolioPages = cases.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/portfolio/${item.slug}`, item.updatedAt, 0.7));
     blogPages = posts.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/blog/${item.slug}`, item.updatedAt, 0.7));
     locationPages = locations.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/locations/${item.slug}`, item.updatedAt, 0.8));
     stylePages = styles.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/styles/${item.slug}`, item.updatedAt, 0.7));
     materialPages = materials.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/materials/${item.slug}`, item.updatedAt, 0.7));
     scenarioPages = scenarios.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/scenarios/${item.slug}`, item.updatedAt, 0.7));
-  } catch {}
+  } catch (error) {
+    console.error("Failed to load dynamic sitemap URLs from database", error);
+  }
 
   const staticCatalogPages = STATIC_CATALOG_SLUGS.map((slug) =>
     sitemapEntry(`/catalog/${slug}`, STATIC_LAST_MODIFIED, 0.8),
@@ -83,14 +93,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticLocationPages = STATIC_LOCATION_SLUGS.map((slug) =>
     sitemapEntry(`/locations/${slug}`, STATIC_LAST_MODIFIED, 0.8),
   );
+  const staticBlogPages = [...SEO_BLOG_POSTS_FALLBACK, ...BLOG_POSTS]
+    .filter((post) => post.published !== false && isPublicContentSlug(post.slug))
+    .map((post) =>
+      sitemapEntry(
+        `/blog/${post.slug}`,
+        post.publishedAt ? new Date(post.publishedAt) : STATIC_LAST_MODIFIED,
+        0.7,
+      ),
+    );
 
   return uniqueIndexableEntries([
     ...staticPages,
     ...staticCatalogPages,
+    ...catalogPages,
     ...stylePages,
     ...materialPages,
     ...scenarioPages,
     ...portfolioPages,
+    ...staticBlogPages,
     ...blogPages,
     ...locationPages,
     ...staticLocationPages,

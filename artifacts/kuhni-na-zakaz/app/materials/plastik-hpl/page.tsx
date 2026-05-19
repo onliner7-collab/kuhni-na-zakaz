@@ -219,6 +219,7 @@ export default function PlastikHplPage() {
                 width={1280}
                 height={720}
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 1024px) 100vw, 520px"
                 className="aspect-[16/9] h-auto w-full object-cover"
               />
@@ -338,6 +339,7 @@ export default function PlastikHplPage() {
                     alt={image.alt}
                     width={720}
                     height={480}
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="aspect-[3/2] h-auto w-full object-cover"
                   />

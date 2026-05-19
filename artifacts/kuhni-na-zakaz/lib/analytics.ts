@@ -14,6 +14,7 @@ export const ANALYTICS_EVENTS = {
   CALCULATOR_SUBMIT: "calculator_submit",
   CALCULATOR_OPEN: "calculator_start",
   LEAD_SUCCESS: "lead_success",
+  LEAD_SUBMIT: "lead_submit",
 } as const;
 
 export type AnalyticsEvent =

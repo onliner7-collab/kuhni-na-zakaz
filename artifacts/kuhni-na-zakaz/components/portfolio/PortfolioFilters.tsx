@@ -259,7 +259,7 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {filteredProjects.map((project) => {
+          {filteredProjects.map((project, index) => {
             const disclosure = getImageDisclosure(project.mainImage);
 
             return (
@@ -276,7 +276,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                   src={optimizedImageSrc(project.mainImage) || project.mainImage}
                   alt={project.alt}
                   fill
-                  loading="lazy"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 380px"
                   className="object-contain object-center transition-transform duration-300 group-hover:scale-105"
                 />

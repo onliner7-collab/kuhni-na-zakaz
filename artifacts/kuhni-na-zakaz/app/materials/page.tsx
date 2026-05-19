@@ -98,7 +98,7 @@ export default async function MaterialsPage() {
               </div>
             </div>
             <div className="grid gap-5 md:grid-cols-3">
-              {featuredMaterialPages.map((item) => (
+              {featuredMaterialPages.map((item, index) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -109,6 +109,8 @@ export default async function MaterialsPage() {
                     alt={item.alt}
                     width={720}
                     height={480}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="aspect-[3/2] h-auto w-full object-cover"
                   />

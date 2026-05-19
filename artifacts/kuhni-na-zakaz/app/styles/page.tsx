@@ -65,7 +65,7 @@ export default async function StylesPage() {
 
           {styles.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              {styles.map((s) => (
+              {styles.map((s, index) => (
                 <Link key={s.slug} href={`/styles/${s.slug}`}
                   className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
                   <div className="h-52 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center relative overflow-hidden">
@@ -74,6 +74,8 @@ export default async function StylesPage() {
                         src={s.image}
                         alt={s.title}
                         fill
+                        loading={index === 0 ? "eager" : "lazy"}
+                        fetchPriority={index === 0 ? "high" : "auto"}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-contain object-center"
                       />

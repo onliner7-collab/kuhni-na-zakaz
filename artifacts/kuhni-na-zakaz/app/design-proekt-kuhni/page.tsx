@@ -510,6 +510,7 @@ export default function DesignProektKuhniPage() {
               <ContactForm
                 source="design-proekt-kuhni"
                 sourceType="design-project"
+                formLocation="design-project-final-cta"
                 sourcePage={pagePath}
                 submitLabel="Отправить заявку на проект"
                 successMessage="Спасибо, заявка отправлена. Мы свяжемся с вами для уточнения размеров и пожеланий."
