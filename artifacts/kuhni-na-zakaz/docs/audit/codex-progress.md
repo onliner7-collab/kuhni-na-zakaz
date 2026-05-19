@@ -35,3 +35,28 @@ Touched files for this task:
 - `package.json`
 - `scripts/check-sitemap.ts`
 - `docs/audit/codex-progress.md`
+
+## 2026-05-19 - Image loading, push, and production deploy
+
+Completed:
+- Added explicit eager/high-priority handling for hero and first viewport images on key public templates.
+- Added explicit lazy loading to below-the-fold cards, galleries, thumbnails, related content, and material/style/project image blocks where sizes were already defined.
+- Kept existing image assets unchanged for the image-loading task; separately included the pending tracked style loft public assets that already existed locally/server-side.
+- Included earlier pending changes from the worktree: sitemap coverage, lead submit analytics/form location, sitemap check script, design project smoke spec, and audit reports.
+
+Validation:
+- `pnpm --filter @workspace/kuhni-na-zakaz sitemap:check` passed with 61 URLs before deployment.
+- `pnpm --filter @workspace/kuhni-na-zakaz typecheck` passed when run by itself.
+- `pnpm --filter @workspace/kuhni-na-zakaz build` passed locally.
+
+Push and deploy:
+- Pushed `origin/work` at `d951ba0 Improve image loading and sitemap coverage`.
+- Deployed on Timeweb VPS with `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work`.
+- Production deploy fast-forwarded to `d951ba0`, installed dependencies, ran Prisma generate/db push, imported prepared photos and portfolio folders, wrote static sitemap fallback with 126 URLs, synchronized NAP, built Next.js successfully, and restarted `kuhni-na-zakaz`.
+- Production `curl -I` checks returned `200 OK` for `/`, `/catalog/uglovye-kuhni`, `/materials/mdf-fasady`, `/locations/minsk`, and `/portfolio/kuhnya-s-ostrovom-minimalizm-005`.
+
+Deploy notes:
+- The first deploy attempt found matching untracked style loft assets already present on the server; hashes matched local files, then only those exact conflicting files were removed so Git could track them.
+- The root server `docs` directory was owned by `root:root`; ownership was corrected to `kuhni:kuhni`.
+- A server-side stash backup `pre-deploy-conflict-backup-d951ba0` was created before retrying the deploy.
+- Deploy import scripts generated untracked portfolio upload files and `project-docs/stage-4-2-photo-import/import-report.json` on the production checkout; these were left in place as runtime/import artifacts.
