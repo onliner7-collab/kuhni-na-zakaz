@@ -165,7 +165,7 @@ function safePortfolioCopy(manifest: PortfolioProjectManifest, layoutLabel: stri
 
   const constraints =
     (manifest.constraints && manifest.constraints.trim()) ||
-    "Точные размеры, материалы, комплектация, город, сроки и стоимость не подтверждены и требуют ручной проверки перед публикацией.";
+    "Стоимость и комплектация рассчитываются индивидуально после замера, выбора материалов и согласования проекта.";
 
   const solution =
     (manifest.solution && manifest.solution.trim()) ||

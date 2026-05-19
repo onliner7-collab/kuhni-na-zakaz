@@ -46,3 +46,43 @@
   - `https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-minimalizm-005` returned `200 OK`.
 - Server note:
   - The deploy import scripts generated untracked portfolio upload files and `project-docs/stage-4-2-photo-import/import-report.json` on the production checkout; these were left in place because they are generated runtime/import artifacts.
+
+## 2026-05-19 - Public text cleanup and SEO/UX copy audit
+
+- Reviewed this progress file and the current git diff before editing. The tracked worktree was clean at start; many unrelated untracked local files were present later and were not staged.
+- Removed or replaced public-facing service/template wording from site sources:
+  - portfolio import defaults now use: "Стоимость и комплектация рассчитываются индивидуально после замера, выбора материалов и согласования проекта."
+  - regional city copy now uses: "Расчёт, проектирование и согласование доступны удалённо; условия замера, доставки и монтажа уточняются индивидуально."
+  - 3D kitchen idea disclosure now states that it is a 3D visualization, not a realized-object photo.
+- Translated visible English sidebar headings:
+  - `Other styles` -> `Другие стили`
+  - `Other materials` -> `Другие материалы`
+- Fixed material gallery grammar:
+  - акрил: "Как выглядят акриловые фасады для кухни в образцах и интерьере"
+  - МДФ фасады: "Как выглядят МДФ фасады для кухни в образцах и интерьере"
+  - шпон: "Шпон для кухни: образцы, фактура и примеры в интерьере"
+- Improved image alt text:
+  - catalog/design-project 3D gallery alts no longer say "из 3D-проекта" or "тот же ракурс";
+  - portfolio project manifests now have per-image alt text by view/angle instead of repeated identical alt strings.
+- Unique portfolio titles in prepared project manifests:
+  - repeated titles now include the existing project number from the slug, for example `Кухня с островом белая в стиле минимализм, проект №005`.
+  - no cities, prices, sizes, deadlines, reviews, or real-case details were invented.
+- Blog text review:
+  - removed exact unverified BYN price tables for kitchen комплектации and islands;
+  - softened Blum/Hettich/GTV claims to require checking the specific series and load in the estimate/specification;
+  - left general ergonomic dimensions/passages where they are presented as planning ориентиры, not as brand specifications or confirmed project facts.
+- Additional public copy cleanup:
+  - reviews page now says moderation happens before appearing on the site, avoiding the audit phrase "перед публикацией";
+  - hidden contact form honeypot aria-label no longer uses "Служебное поле".
+- Verification:
+  - `rg` scan across public app/data/lib/scripts and prepared portfolio manifests found no remaining target service phrases, English "Other ..." headings, or technical 3D alt fragments.
+  - Portfolio manifest check found `duplicateTitles: []` and `duplicateAltCount: 0`.
+  - `pnpm --filter @workspace/kuhni-na-zakaz typecheck` passed.
+  - `pnpm --filter @workspace/kuhni-na-zakaz build` passed after clearing the local `.next` cache.
+  - `pnpm --filter @workspace/kuhni-na-zakaz run lint` could not run because the package has no `lint` script.
+  - `pnpm --filter @workspace/kuhni-na-zakaz test` produced no project test run because the package has no `test` script.
+- Browser QA:
+  - Local dev server used `http://127.0.0.1:3014`.
+  - Checked `/materials/mdf-fasady`, `/styles/neoklassika`, and `/locations/borisov`.
+  - `/materials/akril` returned local 404 because that material page is not available in the current local data/routes.
+  - After cache bypass, `/materials/mdf-fasady` showed the corrected heading "Как выглядят МДФ фасады для кухни в образцах и интерьере" without the earlier dev-cache hydration mismatch.

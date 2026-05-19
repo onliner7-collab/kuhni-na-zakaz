@@ -8,7 +8,7 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-o
 
 export const metadata: Metadata = {
   title: "Отзывы клиентов о кухнях",
-  description: "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Все отзывы проходят модерацию перед публикацией.",
+  description: "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Все отзывы проходят модерацию перед появлением на сайте.",
   alternates: { canonical: "/reviews" },
 };
 
@@ -114,7 +114,7 @@ export default async function ReviewsPage() {
             </div>
           </div>
           <p className="text-muted-foreground mb-10 max-w-2xl">
-            Все отзывы проходят модерацию перед публикацией — никаких накруток и анонимных фейков.
+            Все отзывы проходят модерацию перед появлением на сайте — никаких накруток и анонимных фейков.
           </p>
 
           {featured.length > 0 && (

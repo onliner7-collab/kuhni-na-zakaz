@@ -75,6 +75,22 @@ function resolveGallery(slug: string) {
   return galleries[slug as MaterialGallerySlug] ?? galleries["mdf-emal"];
 }
 
+function getGalleryTitle(slug: string, title: string) {
+  if (slug === "akril") {
+    return "Как выглядят акриловые фасады для кухни в образцах и интерьере";
+  }
+
+  if (slug === "mdf-fasady") {
+    return "Как выглядят МДФ фасады для кухни в образцах и интерьере";
+  }
+
+  if (slug === "shpon") {
+    return "Шпон для кухни: образцы, фактура и примеры в интерьере";
+  }
+
+  return `Как выглядит ${title} в образцах и интерьере`;
+}
+
 export function getMaterialDetailHeroImage(slug: string) {
   return resolveGallery(slug)[3]?.src ?? resolveGallery(slug)[0]?.src ?? "";
 }
@@ -90,7 +106,7 @@ export function MaterialDetailGallery({ slug, title }: MaterialDetailGalleryProp
       <div className="mb-5 max-w-3xl">
         <p className="mb-2 text-sm font-semibold uppercase text-primary">Фото материала и кухонь</p>
         <h2 id={`material-detail-gallery-${slug}`} className="font-serif text-3xl font-bold">
-          Как выглядит {title} в образцах и в кухне
+          {getGalleryTitle(slug, title)}
         </h2>
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
           Сначала показаны четыре ракурса материала: фронтально, под углом, макро и в кухне. Затем идут дополнительные кухни из этого материала в разных ракурсах, включая приближенные кадры фасадов.

@@ -477,7 +477,7 @@ export function RegionalLocationPage({
               <div className="mt-5 grid gap-3 text-sm leading-6 text-muted-foreground md:grid-cols-3">
                 <p>Расчет стоимости по размерам</p>
                 <p>Доставка и монтаж обсуждаются при расчете</p>
-                <p>Офис в городе не указываем без подтвержденных данных</p>
+                <p>Условия замера, доставки и монтажа уточняются индивидуально</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3 lg:justify-end">

@@ -80,15 +80,15 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   "uglovye-kuhni": [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp",
-      alt: "Угловая кухня из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+      alt: "3D-визуализация угловой кухни со светлыми и древесными фасадами",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya-rakurs-1.webp",
-      alt: "Угловая кухня из 3D-проекта, дополнительный ракурс слева",
+      alt: "3D-визуализация угловой кухни, вид на рабочую зону слева",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya-rakurs-2.webp",
-      alt: "Угловая кухня из 3D-проекта, дополнительный широкий ракурс",
+      alt: "3D-визуализация угловой кухни с верхними шкафами до потолка",
     },
     {
       src: "/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
@@ -106,15 +106,15 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   "kuhni-bez-ruchek": [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp",
-      alt: "Кухня без ручек из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+      alt: "3D-визуализация кухни без ручек с матовыми фасадами",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek-rakurs-1.webp",
-      alt: "Кухня без ручек из 3D-проекта, дополнительный ракурс слева",
+      alt: "3D-визуализация кухни без ручек, вид на рабочую поверхность слева",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek-rakurs-2.webp",
-      alt: "Кухня без ручек из 3D-проекта, дополнительный ракурс справа",
+      alt: "3D-визуализация кухни без ручек, вид на шкафы и технику справа",
     },
     {
       src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
@@ -132,15 +132,15 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   "kuhni-do-potolka": [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp",
-      alt: "Кухня до потолка из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+      alt: "3D-визуализация кухни с фасадами до потолка",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka-rakurs-1.webp",
-      alt: "Кухня до потолка из 3D-проекта, дополнительный ракурс слева",
+      alt: "3D-визуализация кухни до потолка, вид на высокие шкафы слева",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka-rakurs-2.webp",
-      alt: "Кухня до потолка из 3D-проекта, дополнительный ракурс справа",
+      alt: "3D-визуализация кухни до потолка, вид на рабочую зону справа",
     },
     {
       src: "/uploads/seo-showcase/kuhnya-do-potolka-1.webp",
@@ -154,15 +154,15 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   "kuhni-s-ostrovom": [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp",
-      alt: "Кухня с островом из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+      alt: "3D-визуализация кухни с островом и встроенной техникой",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom-rakurs-1.webp",
-      alt: "Кухня с островом из 3D-проекта, дополнительный ракурс слева",
+      alt: "3D-визуализация кухни с островом, вид на рабочую зону слева",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom-rakurs-2.webp",
-      alt: "Кухня с островом из 3D-проекта, дополнительный широкий ракурс",
+      alt: "3D-визуализация кухни с островом в просторном помещении",
     },
     {
       src: "/uploads/kitchens/catalog/kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
@@ -176,15 +176,15 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   "malenkie-kuhni": [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp",
-      alt: "Маленькая кухня из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+      alt: "3D-визуализация маленькой светлой кухни",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya-rakurs-1.webp",
-      alt: "Маленькая кухня из 3D-проекта, дополнительный ракурс от входа",
+      alt: "3D-визуализация маленькой кухни, вид от входа",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya-rakurs-2.webp",
-      alt: "Маленькая кухня из 3D-проекта, дополнительный ракурс справа",
+      alt: "3D-визуализация маленькой кухни, вид на шкафы справа",
     },
     {
       src: "/uploads/seo-showcase/kuhnya-malenkaya-funkcionalnaya-1.webp",
@@ -198,15 +198,15 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   "p-obraznye-kuhni": [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp",
-      alt: "П-образная кухня из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+      alt: "3D-визуализация П-образной кухни со светлыми фасадами",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya-rakurs-1.webp",
-      alt: "П-образная кухня из 3D-проекта, дополнительный ракурс слева",
+      alt: "3D-визуализация П-образной кухни, вид на левую рабочую зону",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya-rakurs-2.webp",
-      alt: "П-образная кухня из 3D-проекта, дополнительный ракурс справа",
+      alt: "3D-визуализация П-образной кухни, вид на правую рабочую зону",
     },
     {
       src: "/uploads/seo-showcase/kuhnya-p-obraznaya-premium-1.webp",
@@ -216,15 +216,15 @@ const CATEGORY_GALLERIES: Record<string, CatalogImageAsset[]> = {
   "pryamye-kuhni": [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
-      alt: "Прямая кухня из 3D-проекта, тот же ракурс что в галерее дизайн-проекта",
+      alt: "3D-визуализация прямой светлой кухни",
     },
     {
       src: "/uploads/kitchens/catalog/pryamaya-kuhnya-3d-proekt-rakurs-1-generated-20260517.webp",
-      alt: "Прямая светлая кухня из 3D-проекта, вид слева",
+      alt: "3D-визуализация прямой светлой кухни, вид слева",
     },
     {
       src: "/uploads/kitchens/catalog/pryamaya-kuhnya-3d-proekt-rakurs-2-generated-20260517.webp",
-      alt: "Прямая светлая кухня из 3D-проекта, дополнительный ракурс",
+      alt: "3D-визуализация прямой светлой кухни, вид на рабочую зону",
     },
     {
       src: "/uploads/kitchens/catalog/pryamaya-kuhnya-lineynaya-svetlaya-generated-20260517.webp",

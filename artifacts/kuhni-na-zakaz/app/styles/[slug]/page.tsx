@@ -79,15 +79,15 @@ export default async function StylePage({ params }: Props) {
   const neoclassicProjectImages = [
     {
       src: "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp",
-      alt: "Неоклассическая кухня из 3D-проекта, основной ракурс",
+      alt: "3D-визуализация неоклассической кухни со светлыми фасадами",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya-rakurs-1.webp",
-      alt: "Неоклассическая кухня из 3D-проекта, дополнительный ракурс слева",
+      alt: "3D-визуализация неоклассической кухни, вид на рабочую зону слева",
     },
     {
       src: "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya-rakurs-2.webp",
-      alt: "Неоклассическая кухня из 3D-проекта, дополнительный широкий ракурс",
+      alt: "3D-визуализация неоклассической кухни с обеденной зоной",
     },
   ];
   const neoclassicExampleImages = [
@@ -506,7 +506,7 @@ export default async function StylePage({ params }: Props) {
                 </div>
                 {otherStyles.length > 0 && (
                   <div className="card-base p-5">
-                    <h3 className="font-semibold text-sm mb-3">Other styles</h3>
+                    <h3 className="font-semibold text-sm mb-3">Другие стили</h3>
                     <div className="space-y-1">
                       {otherStyles.map((item) => (
                         <Link key={item.slug} href={`/styles/${item.slug}`}

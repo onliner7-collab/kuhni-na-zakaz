@@ -313,7 +313,7 @@ export function ContactForm({
         className="hidden"
         tabIndex={-1}
         aria-hidden="true"
-        aria-label="Служебное поле"
+        aria-label="Дополнительное поле"
         autoComplete="off"
       />
       <input {...register("sourcePage")} type="hidden" value={trackingFields.sourcePage} readOnly />

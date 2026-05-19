@@ -503,7 +503,7 @@ export default async function MaterialPage({ params }: Props) {
                 </div>
                 {otherMaterials.length > 0 && (
                   <div className="card-base p-5">
-                    <h3 className="font-semibold text-sm mb-3">Other materials</h3>
+                    <h3 className="font-semibold text-sm mb-3">Другие материалы</h3>
                     <div className="space-y-1">
                       {otherMaterials.map((item) => (
                         <Link key={item.slug} href={`/materials/${item.slug}`}

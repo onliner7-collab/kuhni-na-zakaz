@@ -87,7 +87,7 @@ export const kitchenIdeas3D: KitchenIdea3D[] = [
     image: "/uploads/kitchen-ideas-3d/idea-3d-semeynaya-dom.webp",
     alt: "3D-визуализация просторной семейной кухни для дома или большой квартиры",
     badge: "3D-визуализация",
-    disclosure: "Идея для кухни на заказ, не подтвержденный городской кейс.",
+    disclosure: "Это 3D-визуализация, а не фото реализованного объекта.",
     suitableFor: ["частный дом", "большая квартира", "семейное хранение"],
     ideaType: "family",
   },
