@@ -192,10 +192,10 @@ export async function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 md:flex-row">
-          <p className="text-sm text-white/35">
+          <p className="text-sm text-white/60">
             © {new Date().getFullYear()} КухниBY. Все права защищены.
           </p>
-          <p className="text-sm text-white/35">
+          <p className="text-sm text-white/60">
             УНП {CONTACT_DEFAULTS.unp} | {c.address}
           </p>
         </div>

@@ -168,7 +168,13 @@ export default async function HomePage() {
     telephone: CONTACT_DEFAULTS.phone,
     email: CONTACT_DEFAULTS.email,
     image: `${HOME_ORIGIN}${LOCAL_BUSINESS_IMAGE}`,
-    address: CONTACT_DEFAULTS.address,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "ул. Дзержинского, д. 90, каб. 1а",
+      postalCode: "222520",
+      addressLocality: "Борисов",
+      addressCountry: "BY",
+    },
     areaServed: [
       { "@type": "Country", name: "Беларусь" },
       { "@type": "City", name: "Минск" },
@@ -179,7 +185,7 @@ export default async function HomePage() {
       { "@type": "City", name: "Витебск" },
       { "@type": "City", name: "Могилёв" },
     ],
-    priceRange: "от 900 BYN",
+    priceRange: "от 1200 BYN",
   });
   const jsonLdBreadcrumb = breadcrumbJsonLd([{ name: "Главная", path: "/" }]);
   const jsonLdFaq = faqJsonLd(faqs);

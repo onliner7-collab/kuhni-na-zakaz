@@ -275,11 +275,13 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                 <Image
                   src={optimizedImageSrc(project.mainImage) || project.mainImage}
                   alt={project.alt}
-                  fill
+                  width={760}
+                  height={570}
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 380px"
-                  className="object-contain object-center transition-transform duration-300 group-hover:scale-105"
+                  quality={75}
+                  className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
                 />
                 <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
                   {disclosure.label}

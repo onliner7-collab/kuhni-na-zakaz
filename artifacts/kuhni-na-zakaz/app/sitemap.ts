@@ -51,6 +51,8 @@ const STATIC_CATALOG_SLUGS = [
 ] as const;
 
 const NON_CANONICAL_DYNAMIC_PATHS = new Set([
+  "/locations/zhodzina",
+  "/scenarios/kuhnya-dlya-studii",
   "/catalog/kuhnya-bez-ruchek-minsk",
   "/catalog/kuhnya-do-potolka-minsk",
   "/catalog/malenkaya-kuhnya-minsk",

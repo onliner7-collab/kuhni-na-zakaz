@@ -18,7 +18,7 @@ import {
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
-import { trimMetaDescription } from "@/lib/seo";
+import { SITE_NAME, trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
@@ -198,6 +198,29 @@ function buildMetaDescription(project: PortfolioProject) {
   return trimMetaDescription(description, description);
 }
 
+function buildPortfolioMetaTitle(project: PortfolioProject) {
+  const parts = [
+    project.shortTitle || project.title,
+    project.city,
+    project.kitchenType,
+  ].filter(Boolean);
+  const title = `${parts.join(" — ")} | Портфолио ${SITE_NAME}`;
+
+  if (title.length <= 65) return title;
+
+  return `${project.shortTitle || project.title} | ${SITE_NAME}`;
+}
+
+function isGenericPortfolioDescription(description: string | null | undefined) {
+  const value = description?.trim().toLowerCase() || "";
+
+  return (
+    value ===
+      "визуальный пример кухни по индивидуальным размерам. точные размеры, материалы, комплектация и бюджет уточняются после замера и согласования проекта." ||
+    value.startsWith("визуальный пример кухни по индивидуальным размерам")
+  );
+}
+
 function getRelatedProjects(currentProject: PortfolioProject, projects: PortfolioProject[]) {
   return projects
     .filter((project) => project.slug !== currentProject.slug)
@@ -249,6 +272,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = toPortfolioProject(portfolioCase as EditablePortfolioCase);
   const isConceptProject = getImageDisclosure(project.mainImage).kind === "generated";
   const customDescription = portfolioCase.seoDescription
+    && !isGenericPortfolioDescription(portfolioCase.seoDescription)
     ? trimMetaDescription(portfolioCase.seoDescription, portfolioCase.seoDescription)
     : "";
   const conceptDescription = trimMetaDescription(
@@ -256,19 +280,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     project.description,
   );
   const metaDescription = customDescription || (isConceptProject ? conceptDescription : buildMetaDescription(project));
+  const metaTitle = buildPortfolioMetaTitle(project);
 
   return {
-    title: `${project.title} — портфолио кухонь на заказ`,
+    title: metaTitle,
     description: metaDescription,
     alternates: {
       canonical: `/portfolio/${project.slug}`,
     },
     openGraph: {
-      title: `${project.title} — портфолио кухонь на заказ`,
+      title: metaTitle,
       description: metaDescription,
       images: project.mainImage ? [{ url: project.mainImage, alt: project.alt || project.title }] : undefined,
       url: `/portfolio/${project.slug}`,
       type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: project.mainImage ? [project.mainImage] : undefined,
     },
   };
 }
@@ -661,10 +692,12 @@ export default async function PortfolioProjectPage({ params }: Props) {
                             <Image
                               src={optimizedImageSrc(relatedProject.mainImage) || relatedProject.mainImage}
                               alt={relatedProject.alt || relatedProject.title}
-                              fill
+                              width={720}
+                              height={540}
                               loading="lazy"
                               sizes="(max-width: 768px) 100vw, 360px"
-                              className="object-cover transition-transform duration-300 group-hover:scale-105"
+                              quality={75}
+                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                           )}
                         </div>

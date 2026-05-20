@@ -127,9 +127,9 @@ export function AnalyticsProvider() {
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           />
-          <Script id="ga-init" strategy="afterInteractive">
+          <Script id="ga-init" strategy="lazyOnload">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -144,7 +144,7 @@ export function AnalyticsProvider() {
 
       {isYandexMetrikaEnabled && (
         <>
-          <Script id="yandex-metrika-init" strategy="afterInteractive">
+          <Script id="yandex-metrika-init" strategy="lazyOnload">
             {`
               (function(m,e,t,r,i,k,a){
                 m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

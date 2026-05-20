@@ -38,6 +38,12 @@ const preferredSiteUrl = CANONICAL_SITE_URL;
 const siteUrl = getSiteUrl(preferredSiteUrl);
 const faviconVersion = "20260512";
 const siteName = SITE_NAME;
+const defaultSocialImage = {
+  url: "/opengraph.jpg",
+  width: 1200,
+  height: 630,
+  alt: "КухниBY — кухни на заказ в Минске и Беларуси",
+};
 const homeTitle =
   "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
 const homeDescription =
@@ -93,11 +99,13 @@ export const metadata: Metadata = {
     siteName,
     title: homeTitle,
     description: homeDescription,
+    images: [defaultSocialImage],
   },
   twitter: {
     card: "summary_large_image",
     title: homeTitle,
     description: homeDescription,
+    images: [defaultSocialImage.url],
   },
   robots: {
     index: true,

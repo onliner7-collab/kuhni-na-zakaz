@@ -63,6 +63,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/locations/zhodzina",
+        destination: "/locations/zhodino",
+        statusCode: 301,
+      },
+      {
+        source: "/scenarios/kuhnya-dlya-studii",
+        destination: "/scenarios/dlya-studii",
+        statusCode: 301,
+      },
+      {
         source: "/configurator",
         destination: "/design-proekt-kuhni",
         statusCode: 301,
