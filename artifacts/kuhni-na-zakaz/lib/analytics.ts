@@ -31,7 +31,7 @@ declare global {
 }
 
 export const YANDEX_METRIKA_ID =
-  process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "108969876";
+  process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "109329747";
 
 export function trackAnalyticsEvent(
   event: AnalyticsEvent,
