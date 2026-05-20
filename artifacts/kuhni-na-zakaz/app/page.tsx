@@ -97,11 +97,20 @@ export const metadata: Metadata = {
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
     url: HOME_URL,
+    images: [
+      {
+        url: `${HOME_ORIGIN}${LOCAL_BUSINESS_IMAGE}`,
+        width: 1200,
+        height: 900,
+        alt: "Современная кухня на заказ от КухниBY",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
+    images: [`${HOME_ORIGIN}${LOCAL_BUSINESS_IMAGE}`],
   },
 };
 
