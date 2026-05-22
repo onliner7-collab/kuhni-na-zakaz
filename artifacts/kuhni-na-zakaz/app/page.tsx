@@ -296,7 +296,7 @@ export default async function HomePage() {
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-              Мебель для кухни под размеры —{" "}
+              Индивидуальные кухни на заказ:{" "}
               <span
                 style={{
                   background: "linear-gradient(90deg, #a78bfa, #38bdf8)",
@@ -305,8 +305,9 @@ export default async function HomePage() {
                   backgroundClip: "text",
                 }}
               >
-                проектирование, производство и монтаж под ключ
+                проектирование, изготовление, сборка и установка
               </span>
+              , работаем по всей стране
             </h1>
 
             <p className="mt-5 text-lg text-white/65 leading-relaxed max-w-xl">
