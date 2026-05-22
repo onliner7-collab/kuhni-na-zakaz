@@ -13,6 +13,12 @@ type Props = { params: Promise<{ slug: string }> };
 
 export const dynamic = "force-dynamic";
 
+const SECONDARY_SCENARIO_CANONICALS: Record<string, string> = {
+  "kuhnya-do-potolka": "/catalog/kuhni-do-potolka",
+  "kuhnya-s-ostrovom": "/catalog/kuhni-s-ostrovom",
+  "kuhnya-bez-ruchek": "/catalog/kuhni-bez-ruchek",
+};
+
 async function getScenario(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
 
@@ -62,11 +68,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const s = await getScenario(slug);
   if (!s) return { title: "Сценарий не найден" };
+  const canonical = SECONDARY_SCENARIO_CANONICALS[s.slug] ?? `/scenarios/${s.slug}`;
+
   return {
     title: cleanSeoTitle(s.seoTitle, `${s.title} — кухня на заказ`),
     description: trimMetaDescription(s.seoDescription, s.intro),
     keywords: s.seoKeywords || undefined,
-    alternates: { canonical: `/scenarios/${s.slug}` },
+    alternates: { canonical },
+    robots: SECONDARY_SCENARIO_CANONICALS[s.slug]
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
   };
 }
 

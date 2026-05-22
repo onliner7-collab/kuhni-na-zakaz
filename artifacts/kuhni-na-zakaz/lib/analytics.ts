@@ -2,6 +2,7 @@
 
 export const ANALYTICS_EVENTS = {
   FORM_SUBMIT: "form_submit",
+  LEAD_FORM_SUBMIT: "lead_form_submit",
   PORTFOLIO_PROJECT_OPEN: "portfolio_project_open",
   PORTFOLIO_FILTER_CHANGE: "portfolio_filter_change",
   LIGHTBOX_OPEN: "lightbox_open",
@@ -55,6 +56,21 @@ export function trackAnalyticsEvent(
   if (window.ym && Number.isFinite(counterId)) {
     window.ym(counterId, "reachGoal", event, payload);
   }
+}
+
+export function trackPageView(path: string) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const counterId = Number(YANDEX_METRIKA_ID);
+  if (window.ym && Number.isFinite(counterId)) {
+    window.ym(counterId, "hit", path);
+  }
+
+  window.gtag?.("event", "page_view", {
+    page_path: path,
+  });
 }
 
 function pruneEmptyParams(params: AnalyticsParams) {

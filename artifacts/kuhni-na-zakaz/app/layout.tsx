@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { Inter, Manrope } from "next/font/google";
+import { Manrope } from "next/font/google";
 
 import { prisma } from "@/lib/db";
 import { FloatingSocialButtons } from "@/components/layout/FloatingSocialButtons";
@@ -26,14 +26,6 @@ const manrope = Manrope({
   adjustFontFallback: true,
 });
 
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-inter",
-  display: "swap",
-  weight: ["400", "500", "600"],
-  adjustFontFallback: true,
-});
-
 const preferredSiteUrl = CANONICAL_SITE_URL;
 const siteUrl = getSiteUrl(preferredSiteUrl);
 const faviconVersion = "20260512";
@@ -45,9 +37,9 @@ const defaultSocialImage = {
   alt: "КухниBY — кухни на заказ в Минске и Беларуси",
 };
 const homeTitle =
-  "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
+  "КухниBY — мебель для кухни под размеры в Минске и Беларуси";
 const homeDescription =
-  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D-проект по согласованным условиям. Гарантия фиксируется в договоре, от 1200 BYN.";
+  "Проектируем, производим и устанавливаем кухонные гарнитуры под размеры: Минск, областные центры и районы Беларуси. Смета, 3D-проект и гарантия фиксируются в договоре.";
 
 export const metadata: Metadata = {
   applicationName: siteName,
@@ -57,14 +49,11 @@ export const metadata: Metadata = {
   },
   description: homeDescription,
   keywords: [
-    "кухни на заказ",
-    "кухни на заказ Минск",
-    "кухни на заказ Беларусь",
+    "мебель для кухни под размеры",
+    "кухонные гарнитуры Минск",
+    "кухонная мебель Беларусь",
     "кухни от производителя",
     "замер кухни по заявке",
-    "кухни под заказ",
-    "кухни Минск",
-    "кухни Минская область",
   ],
   metadataBase: new URL(siteUrl),
   manifest: `/manifest.webmanifest?v=${faviconVersion}`,
@@ -142,7 +131,7 @@ export default async function RootLayout({
   const contactInfo = resolveContactInfo(siteSettings);
 
   return (
-    <html lang="ru" className={`${manrope.variable} ${inter.variable}`}>
+    <html lang="ru" className={manrope.variable}>
       <body>
         {!isAdmin && <GoogleTagManagerNoScript />}
         {!isAdmin && <AnalyticsProvider />}

@@ -8,6 +8,7 @@ import {
   ANALYTICS_EVENTS,
   YANDEX_METRIKA_ID,
   trackAnalyticsEvent,
+  trackPageView,
 } from "@/lib/analytics";
 
 const gaId =
@@ -28,8 +29,17 @@ const MESSENGER_PATTERNS = [
 export function AnalyticsProvider() {
   const pathname = usePathname();
   const lastTrackedCalculatorPath = useRef<string | null>(null);
+  const lastTrackedPagePath = useRef<string | null>(null);
 
   useEffect(() => {
+    const path = window.location.pathname;
+    if (lastTrackedPagePath.current === null) {
+      lastTrackedPagePath.current = path;
+    } else if (lastTrackedPagePath.current !== path) {
+      lastTrackedPagePath.current = path;
+      trackPageView(path);
+    }
+
     if (pathname === "/calculator" && lastTrackedCalculatorPath.current !== pathname) {
       lastTrackedCalculatorPath.current = pathname;
       trackAnalyticsEvent(ANALYTICS_EVENTS.CALCULATOR_OPEN, {
@@ -65,7 +75,7 @@ export function AnalyticsProvider() {
 
       if (href.startsWith("tel:")) {
         trackAnalyticsEvent(ANALYTICS_EVENTS.PHONE_CLICK, {
-          href,
+          link_type: "phone",
           path: window.location.pathname,
         });
         return;
@@ -73,7 +83,7 @@ export function AnalyticsProvider() {
 
       if (href.startsWith("mailto:")) {
         trackAnalyticsEvent(ANALYTICS_EVENTS.EMAIL_CLICK, {
-          href,
+          link_type: "email",
           path: window.location.pathname,
         });
         return;
@@ -81,7 +91,6 @@ export function AnalyticsProvider() {
 
       if (isMessengerHref(href)) {
         trackAnalyticsEvent(ANALYTICS_EVENTS.MESSENGER_CLICK, {
-          href,
           messenger: detectMessenger(href),
           path: window.location.pathname,
         });
@@ -90,7 +99,7 @@ export function AnalyticsProvider() {
 
       if (isMeasureRequestHref(href)) {
         trackAnalyticsEvent(ANALYTICS_EVENTS.MEASURE_REQUEST, {
-          href,
+          link_type: "measure_request",
           path: window.location.pathname,
         });
         return;
@@ -98,7 +107,7 @@ export function AnalyticsProvider() {
 
       if (isPriceCalculatorHref(href)) {
         trackAnalyticsEvent(ANALYTICS_EVENTS.COST_CALCULATION, {
-          href,
+          link_type: "price_calculator",
           path: window.location.pathname,
         });
       }
@@ -159,7 +168,7 @@ export function AnalyticsProvider() {
                 clickmap: true,
                 ecommerce: 'dataLayer',
                 referrer: document.referrer,
-                url: location.href,
+                url: location.pathname,
                 accurateTrackBounce: true,
                 trackLinks: true
               });

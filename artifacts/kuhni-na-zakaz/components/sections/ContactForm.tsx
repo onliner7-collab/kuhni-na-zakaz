@@ -265,6 +265,14 @@ export function ContactForm({
           hasMeasurements: Boolean(payload.hasMeasurements),
           pagePath: readPagePath(pathname),
         });
+        trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_FORM_SUBMIT, {
+          form_type: formType,
+          source,
+          source_type: payload.sourceType,
+          form_location: formLocation,
+          city_key: payload.cityKey,
+          page_path: readPagePath(pathname),
+        });
         trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUCCESS, {
           form_type: formType,
           source,

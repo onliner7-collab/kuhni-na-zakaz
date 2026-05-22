@@ -65,6 +65,12 @@ const NON_CANONICAL_DYNAMIC_PATHS = new Set([
   "/catalog/kuhnya-ekonom-minsk",
 ]);
 
+const SECONDARY_SCENARIO_SLUGS = new Set([
+  "kuhnya-do-potolka",
+  "kuhnya-s-ostrovom",
+  "kuhnya-bez-ruchek",
+]);
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = STATIC_PATHS.map((path) =>
     sitemapEntry(path, STATIC_LAST_MODIFIED, path === "/" ? 1 : 0.8, "weekly"),
@@ -89,13 +95,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       prisma.scenarioPage.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
     ]);
 
-    catalogPages = kitchens.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/catalog/${item.slug}`, item.updatedAt, 0.7));
-    portfolioPages = cases.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/portfolio/${item.slug}`, item.updatedAt, 0.7));
-    blogPages = posts.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/blog/${item.slug}`, item.updatedAt, 0.7));
+    catalogPages = kitchens.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/catalog/${item.slug}`, item.updatedAt, 0.65));
+    portfolioPages = cases.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/portfolio/${item.slug}`, item.updatedAt, 0.65));
+    blogPages = posts.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/blog/${item.slug}`, item.updatedAt, 0.65));
     locationPages = locations.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/locations/${item.slug}`, item.updatedAt, 0.8));
-    stylePages = styles.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/styles/${item.slug}`, item.updatedAt, 0.7));
-    materialPages = materials.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/materials/${item.slug}`, item.updatedAt, 0.7));
-    scenarioPages = scenarios.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/scenarios/${item.slug}`, item.updatedAt, 0.7));
+    stylePages = styles.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/styles/${item.slug}`, item.updatedAt, 0.55));
+    materialPages = materials.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/materials/${item.slug}`, item.updatedAt, 0.55));
+    scenarioPages = scenarios
+      .filter((item) => isPublicContentSlug(item.slug) && !SECONDARY_SCENARIO_SLUGS.has(item.slug))
+      .map((item) => sitemapEntry(`/scenarios/${item.slug}`, item.updatedAt, 0.55));
   } catch (error) {
     console.error("Failed to load dynamic sitemap URLs from database", error);
   }
@@ -112,11 +120,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       sitemapEntry(
         `/blog/${post.slug}`,
         post.publishedAt ? new Date(post.publishedAt) : STATIC_LAST_MODIFIED,
-        0.7,
+        0.65,
       ),
     );
   const staticPortfolioPages = GENERATED_MINSK_PORTFOLIO_CASES.map((project) =>
-    sitemapEntry(`/portfolio/${project.slug}`, project.updatedAt, 0.8),
+    sitemapEntry(`/portfolio/${project.slug}`, project.updatedAt, 0.65),
   );
 
   return uniqueIndexableEntries([

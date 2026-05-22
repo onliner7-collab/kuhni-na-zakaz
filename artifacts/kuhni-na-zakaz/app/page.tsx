@@ -83,9 +83,9 @@ const HERO_KITCHEN_ALT =
   "Современная кухня на заказ с фасадами МДФ в Минске";
 
 const HOME_TITLE =
-  "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY";
+  "КухниBY — мебель для кухни под размеры в Минске и Беларуси";
 const HOME_DESCRIPTION =
-  "Кухни на заказ от производителя: Минск, Брест, Гродно, Гомель, Витебск, Могилёв. Завод, замер и 3D-проект по согласованным условиям. Гарантия фиксируется в договоре, от 1200 BYN.";
+  "Проектируем, производим и устанавливаем кухонные гарнитуры под размеры: Минск, областные центры и районы Беларуси. Смета, 3D-проект и гарантия фиксируются в договоре.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -102,7 +102,7 @@ export const metadata: Metadata = {
         url: `${HOME_ORIGIN}${LOCAL_BUSINESS_IMAGE}`,
         width: 1200,
         height: 900,
-        alt: "Современная кухня на заказ от КухниBY",
+        alt: "Современный кухонный гарнитур от КухниBY",
       },
     ],
   },
@@ -171,7 +171,7 @@ export default async function HomePage() {
     "@id": `${HOME_URL}#organization`,
     name: SITE_NAME,
     alternateName: SITE_ALTERNATE_NAMES,
-    description: "Кухни на заказ по всей Беларуси. Собственное производство.",
+    description: "Кухонные гарнитуры под размеры по всей Беларуси. Собственное производство.",
     url: HOME_URL,
     logo: `${HOME_ORIGIN}/logo.png`,
     telephone: CONTACT_DEFAULTS.phone,
@@ -203,7 +203,7 @@ export default async function HomePage() {
       ? {
           "@context": "https://schema.org",
           "@type": "Product",
-          name: "Кухни на заказ",
+          name: "Кухонные гарнитуры под размеры",
           aggregateRating: {
             "@type": "AggregateRating",
             ratingValue: Number(avgRating),
@@ -222,12 +222,12 @@ export default async function HomePage() {
   ];
 
   const FALLBACK_SCENARIOS = [
-    { id: 1, icon: "🏠", title: "Подобрать кухню", subtitle: "по образу жизни", description: "Угловая, прямая, с островом — подберём под вашу планировку и привычки", href: "/catalog", badge: "" },
+    { id: 1, icon: "🏠", title: "Подобрать формат", subtitle: "по образу жизни", description: "Угловой, прямой или островной гарнитур — подберём под планировку и привычки семьи", href: "/catalog", badge: "" },
     { id: 2, icon: "💰", title: "Узнать стоимость", subtitle: "без обязательств", description: "Ответьте на несколько вопросов и получите примерный диапазон цены", href: "/prices", badge: "Быстро" },
-    { id: 3, icon: "📸", title: "Посмотреть работы", subtitle: "портфолио", description: "Фото, 3D-визуализации и заполненные данные по проектам кухонь", href: "/portfolio", badge: "" },
+    { id: 3, icon: "📸", title: "Посмотреть работы", subtitle: "портфолио", description: "Фото, визуализации и характеристики готовых проектов: размер, материалы, город", href: "/portfolio", badge: "" },
     { id: 4, icon: "🎨", title: "Выбрать стиль", subtitle: "и материалы", description: "Современный, классика, минимализм, скандинавский — с примерами и ценами", href: "/styles", badge: "" },
-    { id: 5, icon: "📐", title: "3D-проект кухни", subtitle: "по вашим размерам", description: "Специалист подготовит планировку, материалы и визуализацию перед расчетом", href: "/design-proekt-kuhni", badge: "" },
-    { id: 6, icon: "✏️", title: "Собрать кухню", subtitle: "под свои задачи", description: "Расскажите о планировке, мы предложим решение и согласуем условия замера", href: "/contacts#form", badge: "Старт" },
+    { id: 5, icon: "📐", title: "Получить 3D-проект", subtitle: "по вашим размерам", description: "Специалист подготовит планировку, материалы и визуализацию перед расчетом", href: "/design-proekt-kuhni", badge: "" },
+    { id: 6, icon: "✏️", title: "Описать задачу", subtitle: "для расчёта", description: "Расскажите о помещении, мы предложим решение и согласуем условия замера", href: "/contacts#form", badge: "Старт" },
   ];
 
   const FALLBACK_ADVANTAGES: HomeAdvantage[] = [
@@ -267,6 +267,7 @@ export default async function HomePage() {
       id: dbLocation?.id ?? index + 1,
       slug: location.slug,
       city: location.cityName,
+      cityPrepositional: location.cityPrepositional,
       region: location.regionName,
       priceFrom: dbLocation?.priceFrom && dbLocation.priceFrom > 0 ? dbLocation.priceFrom : location.priceFrom,
     };
@@ -295,7 +296,7 @@ export default async function HomePage() {
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-              Кухни на заказ в Беларуси —{" "}
+              Мебель для кухни под размеры —{" "}
               <span
                 style={{
                   background: "linear-gradient(90deg, #a78bfa, #38bdf8)",
@@ -304,13 +305,13 @@ export default async function HomePage() {
                   backgroundClip: "text",
                 }}
               >
-                проектирование, производство и установка под ключ
+                проектирование, производство и монтаж под ключ
               </span>
             </h1>
 
             <p className="mt-5 text-lg text-white/65 leading-relaxed max-w-xl">
-              Проектируем, производим и устанавливаем кухни в Минске, Бресте, Гродно, Витебске, Гомеле и Могилёве.
-              Условия замера и 3D-проекта согласуем при заявке. Цена фиксируется в договоре.
+              Делаем кухонные гарнитуры для квартир, студий и частных домов в Минске, областных центрах и районах.
+              Условия замера, 3D-проекта и монтажа согласуем при заявке, а итоговую смету фиксируем в договоре.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -350,7 +351,7 @@ export default async function HomePage() {
                 priority
                 fetchPriority="high"
                 quality={85}
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 88vw, 620px"
                 className="object-cover"
               />
               <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
@@ -691,8 +692,8 @@ export default async function HomePage() {
               Работаем по Минску, Минской области и крупным городам Беларуси
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Изготавливаем кухни на заказ по индивидуальным размерам. Условия замера,
-              доставки и монтажа уточняются при расчёте проекта.
+              Проектируем гарнитуры под индивидуальные размеры. Условия замера,
+              доставки и монтажа уточняются при расчёте конкретного проекта.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm">
               {regionalLocations.map((region) => (
@@ -713,9 +714,9 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
             <div>
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Кухни на заказ в городах Беларуси</h2>
+              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Условия работы по городам Беларуси</h2>
               <p className="text-muted-foreground mt-1 text-sm">
-                Перейдите на страницу города, чтобы посмотреть условия, сроки, релевантные кейсы и популярные категории.
+                Перейдите на страницу региона, чтобы посмотреть условия выезда, сроки, локальные примеры и популярные решения.
               </p>
             </div>
             <Link href="/contacts" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
@@ -731,7 +732,7 @@ export default async function HomePage() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Кухни в {loc.city}</h3>
+                    <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Проекты в {loc.cityPrepositional}</h3>
                     {loc.region && <p className="mt-1 text-xs text-muted-foreground">{loc.region}</p>}
                   </div>
                   <MapPin className="h-5 w-5 text-primary/70 shrink-0" aria-hidden />
