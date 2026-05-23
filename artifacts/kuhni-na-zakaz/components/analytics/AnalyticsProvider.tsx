@@ -32,7 +32,7 @@ export function AnalyticsProvider() {
   const lastTrackedPagePath = useRef<string | null>(null);
 
   useEffect(() => {
-    const path = window.location.pathname;
+    const path = `${window.location.pathname}${window.location.search}`;
     if (lastTrackedPagePath.current === null) {
       lastTrackedPagePath.current = path;
     } else if (lastTrackedPagePath.current !== path) {
@@ -44,7 +44,7 @@ export function AnalyticsProvider() {
       lastTrackedCalculatorPath.current = pathname;
       trackAnalyticsEvent(ANALYTICS_EVENTS.CALCULATOR_OPEN, {
         source: "page_view",
-        path: pathname,
+        path,
       });
     }
 
@@ -168,7 +168,7 @@ export function AnalyticsProvider() {
                 clickmap: true,
                 ecommerce: 'dataLayer',
                 referrer: document.referrer,
-                url: location.pathname,
+                url: location.href,
                 accurateTrackBounce: true,
                 trackLinks: true
               });

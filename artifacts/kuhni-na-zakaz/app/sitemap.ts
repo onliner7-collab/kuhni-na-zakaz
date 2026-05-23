@@ -96,7 +96,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]);
 
     catalogPages = kitchens.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/catalog/${item.slug}`, item.updatedAt, 0.65));
-    portfolioPages = cases.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/portfolio/${item.slug}`, item.updatedAt, 0.65));
+    portfolioPages = cases
+      .filter((item) => isPublicContentSlug(item.slug) && isStrongPortfolioSlug(item.slug))
+      .map((item) => sitemapEntry(`/portfolio/${item.slug}`, item.updatedAt, 0.65));
     blogPages = posts.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/blog/${item.slug}`, item.updatedAt, 0.65));
     locationPages = locations.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/locations/${item.slug}`, item.updatedAt, 0.8));
     stylePages = styles.filter((item) => isPublicContentSlug(item.slug)).map((item) => sitemapEntry(`/styles/${item.slug}`, item.updatedAt, 0.55));
@@ -123,9 +125,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         0.65,
       ),
     );
-  const staticPortfolioPages = GENERATED_MINSK_PORTFOLIO_CASES.map((project) =>
-    sitemapEntry(`/portfolio/${project.slug}`, project.updatedAt, 0.65),
-  );
+  const staticPortfolioPages = GENERATED_MINSK_PORTFOLIO_CASES
+    .filter((project) => isStrongPortfolioSlug(project.slug))
+    .map((project) =>
+      sitemapEntry(`/portfolio/${project.slug}`, project.updatedAt, 0.65),
+    );
 
   return uniqueIndexableEntries([
     ...staticPages,
@@ -209,6 +213,10 @@ function normalizePath(path: string) {
   if (pathname === "/") return "/";
 
   return pathname.replace(/\/+$/g, "");
+}
+
+function isStrongPortfolioSlug(slug: string) {
+  return !/-\d{3}$/i.test(slug);
 }
 
 function isIndexableUrl(url: string) {

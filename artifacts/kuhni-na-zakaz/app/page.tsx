@@ -80,12 +80,11 @@ const HOME_URL = canonicalSiteUrl("/");
 
 /** Alt для витринного фото в первом экране (SEO / доступность). */
 const HERO_KITCHEN_ALT =
-  "Современная кухня на заказ с фасадами МДФ в Минске";
+  "Современный гарнитур с фасадами МДФ в Минске";
 
-const HOME_TITLE =
-  "Индивидуальные кухни на заказ: проектирование, изготовление, сборка и установка, работаем по всей стране";
+const HOME_TITLE = "Кухни на заказ в Минске и Беларуси";
 const HOME_DESCRIPTION =
-  "Проектируем, производим и устанавливаем кухонные гарнитуры под размеры: Минск, областные центры и районы Беларуси. Смета, 3D-проект и гарантия фиксируются в договоре.";
+  "Проектируем мебель под размеры помещения: замер, 3D-проект, производство, монтаж и смета в договоре. Работаем с квартирами, студиями и частными домами.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -102,7 +101,7 @@ export const metadata: Metadata = {
         url: `${HOME_ORIGIN}${LOCAL_BUSINESS_IMAGE}`,
         width: 1200,
         height: 900,
-        alt: "Современный кухонный гарнитур от КухниBY",
+        alt: "Современный гарнитур от КухниBY",
       },
     ],
   },
@@ -272,6 +271,7 @@ export default async function HomePage() {
       priceFrom: dbLocation?.priceFrom && dbLocation.priceFrom > 0 ? dbLocation.priceFrom : location.priceFrom,
     };
   });
+  const primaryLocationLinks = displayLocations.slice(0, 8);
 
   return (
     <>
@@ -296,7 +296,7 @@ export default async function HomePage() {
             </div>
 
             <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-              Индивидуальные кухни на заказ:{" "}
+              Кухни на заказ{" "}
               <span
                 style={{
                   background: "linear-gradient(90deg, #a78bfa, #38bdf8)",
@@ -305,14 +305,14 @@ export default async function HomePage() {
                   backgroundClip: "text",
                 }}
               >
-                проектирование, изготовление, сборка и установка
+                под размеры помещения
               </span>
-              , работаем по всей стране
+              {" "}в Минске и Беларуси
             </h1>
 
             <p className="mt-5 text-lg text-white/65 leading-relaxed max-w-xl">
-              Делаем кухонные гарнитуры для квартир, студий и частных домов в Минске, областных центрах и районах.
-              Условия замера, 3D-проекта и монтажа согласуем при заявке, а итоговую смету фиксируем в договоре.
+              Подбираем планировку, материалы и фурнитуру для квартир, студий и частных домов.
+              Условия замера, визуализации и монтажа согласуем при заявке, а итоговую смету фиксируем в договоре.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
@@ -351,8 +351,8 @@ export default async function HomePage() {
                 fill
                 priority
                 fetchPriority="high"
-                quality={85}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 88vw, 620px"
+                quality={75}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 88vw, 560px"
                 className="object-cover"
               />
               <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
@@ -473,8 +473,8 @@ export default async function HomePage() {
                           fill
                           loading="lazy"
                           decoding="async"
-                          quality={85}
-                          sizes="(max-width: 768px) 100vw, 360px"
+                          quality={75}
+                          sizes="(max-width: 768px) 92vw, (max-width: 1024px) 30vw, 360px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )
@@ -697,15 +697,21 @@ export default async function HomePage() {
               доставки и монтажа уточняются при расчёте конкретного проекта.
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm">
-              {regionalLocations.map((region) => (
+              {primaryLocationLinks.map((region) => (
                 <Link
                   key={region.slug}
                   href={`/locations/${region.slug}`}
                   className="rounded-full border border-border bg-white px-4 py-2 font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
                 >
-                  {region.cityName}
+                  {region.city}
                 </Link>
               ))}
+              <Link
+                href="/locations"
+                className="rounded-full border border-border bg-white px-4 py-2 font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+              >
+                Все города
+              </Link>
             </div>
           </div>
         </div>
@@ -725,7 +731,7 @@ export default async function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {displayLocations.map((loc, index) => (
+            {primaryLocationLinks.map((loc, index) => (
               <Link
                 key={`${loc.slug}-${loc.id}-${index}`}
                 href={`/locations/${loc.slug}`}
