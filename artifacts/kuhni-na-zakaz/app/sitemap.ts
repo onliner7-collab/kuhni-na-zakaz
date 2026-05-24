@@ -5,9 +5,9 @@ import { BLOG_POSTS } from "@/lib/blog-static";
 import { SEO_BLOG_POSTS_FALLBACK } from "@/lib/blog-seo-fallback";
 import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
-import { getSiteUrl } from "@/lib/site-url";
+import { CANONICAL_SITE_URL } from "@/lib/seo";
 
-const BASE_URL = getSiteUrl();
+const BASE_URL = CANONICAL_SITE_URL;
 const STATIC_LAST_MODIFIED = new Date("2026-05-11T00:00:00.000Z");
 
 export const dynamic = "force-dynamic";

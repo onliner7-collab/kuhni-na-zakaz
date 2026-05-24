@@ -87,7 +87,7 @@ const HOME_DESCRIPTION =
   "Проектируем мебель под размеры помещения: замер, 3D-проект, производство, монтаж и смета в договоре. Работаем с квартирами, студиями и частными домами.";
 
 export const metadata: Metadata = {
-  title: HOME_TITLE,
+  title: `${HOME_TITLE} | ${SITE_NAME}`,
   description: HOME_DESCRIPTION,
   alternates: { canonical: HOME_URL },
   openGraph: {
@@ -160,9 +160,6 @@ export default async function HomePage() {
     alternateName: SITE_ALTERNATE_NAMES,
     url: HOME_URL,
     inLanguage: "ru-BY",
-    publisher: {
-      "@id": `${HOME_URL}#organization`,
-    },
   };
   const localBusinessJsonLd = compactJsonLd({
     "@context": "https://schema.org",

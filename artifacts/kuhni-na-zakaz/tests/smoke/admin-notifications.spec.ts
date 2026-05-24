@@ -16,7 +16,7 @@ import { expect, test, type Page } from "@playwright/test";
 // (см. prisma/seed.ts; e-mail исторически обновлялся). Их можно переопределить
 // через переменные окружения TEST_ADMIN_EMAIL / TEST_ADMIN_PASSWORD, если в БД
 // другой SUPER_ADMIN. Если логин не получится — beforeEach пропустит тесты.
-const ADMIN_EMAIL = process.env.TEST_ADMIN_EMAIL ?? "admin@kuhniminsk.by";
+const ADMIN_EMAIL = process.env.TEST_ADMIN_EMAIL ?? "admin@kuhni.minsk.by";
 const ADMIN_PASSWORD = process.env.TEST_ADMIN_PASSWORD ?? "Admin123!";
 
 interface MockRecipient {

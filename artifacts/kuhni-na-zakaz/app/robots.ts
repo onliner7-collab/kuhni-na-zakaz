@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-import { getSiteUrl } from "@/lib/site-url";
+import { CANONICAL_SITE_URL } from "@/lib/seo";
 
-const BASE_URL = getSiteUrl();
+const BASE_URL = CANONICAL_SITE_URL;
 
 export const dynamic = "force-static";
 

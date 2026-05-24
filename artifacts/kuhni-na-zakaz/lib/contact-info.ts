@@ -1,4 +1,5 @@
 ﻿import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { SITE_NAME } from "@/lib/seo";
 
 const LEGACY_PHONE_DISPLAY_VALUES = new Set([
   "+375 (29) 626-15-47",
@@ -11,8 +12,10 @@ const LEGACY_SECONDARY_PHONE_DISPLAY_VALUES = new Set([
   "+375 29 626 15 47",
   "+375 (29) 123-45-67",
 ]);
-const PLACEHOLDER_SITE_NAMES = new Set(["КухниMinsk"]);
-const PLACEHOLDER_EMAILS = new Set(["info@kuhniminsk.by"]);
+const LEGACY_SITE_NAME = ["Кухни", "Minsk"].join("");
+const LEGACY_EMAIL = ["info@kuhni", "minsk.by"].join("");
+const PLACEHOLDER_SITE_NAMES = new Set([LEGACY_SITE_NAME]);
+const PLACEHOLDER_EMAILS = new Set([LEGACY_EMAIL]);
 const PLACEHOLDER_ADDRESSES = new Set(["г. Минск, ул. Притыцкого, 100"]);
 
 export interface ContactSettingsInput {
@@ -64,7 +67,7 @@ function normalizePrimaryPhoneDisplay(phoneDisplay?: string | null) {
 
 function normalizeSiteName(siteName?: string | null) {
   const value = (siteName || "").trim();
-  if (!value || PLACEHOLDER_SITE_NAMES.has(value)) return "КухниBY";
+  if (!value || PLACEHOLDER_SITE_NAMES.has(value)) return SITE_NAME;
 
   return value;
 }

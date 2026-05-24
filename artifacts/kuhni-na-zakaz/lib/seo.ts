@@ -1,5 +1,10 @@
 export const SITE_NAME = "КухниBY";
-export const SITE_ALTERNATE_NAMES = ["KuhniBY", "Кухни Бай"];
+export const SITE_ALTERNATE_NAMES = [
+  "KuhniBY",
+  "Кухни Бай",
+  "Кухни Минск BY",
+  "kuhni.minsk.by",
+];
 export const CANONICAL_SITE_URL = "https://kuhni.minsk.by";
 
 export function canonicalSiteUrl(path = "") {

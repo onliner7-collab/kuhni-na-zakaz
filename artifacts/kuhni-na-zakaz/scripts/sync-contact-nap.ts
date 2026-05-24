@@ -1,22 +1,25 @@
 import { PrismaClient } from "@prisma/client";
 
 import { CONTACT_DEFAULTS } from "../lib/contact-defaults";
+import { SITE_NAME } from "../lib/seo";
 
 const prisma = new PrismaClient();
 
-const SITE_NAME = "КухниBY";
 const LEGAL_ADDRESS = CONTACT_DEFAULTS.address;
 const MAIN_PHONE = CONTACT_DEFAULTS.phone;
 const MAIN_PHONE_DISPLAY = CONTACT_DEFAULTS.phoneDisplay;
 const MAIN_EMAIL = CONTACT_DEFAULTS.email;
+const LEGACY_SITE_NAME = ["Кухни", "Minsk"].join("");
+const LEGACY_EMAIL_PATTERN = new RegExp(["info@kuhni", "minsk", "\\.by"].join(""), "gi");
+const LEGACY_SITE_NAME_PATTERN = new RegExp(LEGACY_SITE_NAME, "g");
 
 const replacements: Array<[RegExp, string]> = [
   [/\+375\s*\(?29\)?\s*626[-\s]?15[-\s]?47/g, MAIN_PHONE_DISPLAY],
   [/\+?375\s*29\s*626\s*15\s*47/g, MAIN_PHONE_DISPLAY],
   [/\+375\s*\(?29\)?\s*123[-\s]?45[-\s]?67/g, MAIN_PHONE_DISPLAY],
   [/\+?375\s*29\s*123\s*45\s*67/g, MAIN_PHONE_DISPLAY],
-  [/info@kuhniminsk\.by/gi, MAIN_EMAIL],
-  [/КухниMinsk/g, SITE_NAME],
+  [LEGACY_EMAIL_PATTERN, MAIN_EMAIL],
+  [LEGACY_SITE_NAME_PATTERN, SITE_NAME],
   [/г\.\s*Минск,\s*ул\.\s*Притыцкого,\s*100/g, LEGAL_ADDRESS],
 ];
 

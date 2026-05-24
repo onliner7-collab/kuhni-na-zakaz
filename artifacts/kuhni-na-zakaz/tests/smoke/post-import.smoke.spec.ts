@@ -16,7 +16,7 @@ test.describe("bulk import v1 post-import smoke", () => {
     await expectNoHardFailure(page);
 
     await expect(page).toHaveTitle(
-      "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY",
+      "Кухни на заказ в Минске и Беларуси | КухниBY",
     );
 
     const description =
@@ -30,7 +30,7 @@ test.describe("bulk import v1 post-import smoke", () => {
     await expect(page.locator('head meta[property="og:site_name"]')).toHaveAttribute("content", "КухниBY");
     await expect(page.locator('head meta[property="og:title"]')).toHaveAttribute(
       "content",
-      "Кухни на заказ в Минске и по Беларуси — завод, замер и 3D | КухниBY",
+      "Кухни на заказ в Минске и Беларуси | КухниBY",
     );
     await expect(page.locator('head meta[property="og:description"]')).toHaveAttribute("content", description);
     await expect(page.locator('head meta[property="og:url"]')).toHaveAttribute(
@@ -56,7 +56,7 @@ test.describe("bulk import v1 post-import smoke", () => {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: "КухниBY",
-      alternateName: ["KuhniBY", "Кухни Бай"],
+      alternateName: ["KuhniBY", "Кухни Бай", "Кухни Минск BY", "kuhni.minsk.by"],
       url: "https://kuhni.minsk.by/",
     });
     expect(localBusiness).toMatchObject({
