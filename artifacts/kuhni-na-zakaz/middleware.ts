@@ -122,11 +122,21 @@ function withNoindexHeader(response: NextResponse) {
 }
 
 function normalizePathname(pathname: string) {
-  if (pathname.length > 1 && pathname.endsWith("/")) {
-    return pathname.slice(0, -1).toLowerCase();
+  const decodedPathname = safeDecodePathname(pathname);
+
+  if (decodedPathname.length > 1 && decodedPathname.endsWith("/")) {
+    return decodedPathname.slice(0, -1).toLowerCase();
   }
 
-  return pathname.toLowerCase();
+  return decodedPathname.toLowerCase();
+}
+
+function safeDecodePathname(pathname: string) {
+  try {
+    return decodeURIComponent(pathname);
+  } catch {
+    return pathname;
+  }
 }
 
 function getCanonicalHost() {
