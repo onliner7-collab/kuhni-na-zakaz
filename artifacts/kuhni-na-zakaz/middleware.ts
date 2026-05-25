@@ -26,6 +26,7 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   "/ceny": "/prices",
   "/price": "/prices",
   "/prices.html": "/prices",
+  "/calculator-калькулятор": "/calculator",
   "/kontakty": "/contacts",
   "/contacts.html": "/contacts",
   "/blog.html": "/blog",
