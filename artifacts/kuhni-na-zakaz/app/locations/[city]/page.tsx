@@ -7,6 +7,7 @@ import {
   RegionalLocationPage,
   type PortfolioCasePreview,
 } from "@/components/locations/RegionalLocationPage";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { prisma } from "@/lib/db";
 import { ReviewStatus, type LocationPage } from "@prisma/client";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -631,9 +632,12 @@ export default async function LocationPage({ params }: Props) {
                       <div className="w-full h-full flex items-center justify-center text-muted-foreground/30 text-4xl">🏠</div>
                     )}
                     {c.mainImage && (
-                      <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                        {disclosure.label}
-                      </span>
+                      <>
+                        <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
+                        <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                          {disclosure.label}
+                        </span>
+                      </>
                     )}
                   </div>
                   <div className="p-4">
@@ -727,7 +731,7 @@ export default async function LocationPage({ params }: Props) {
             <p className="text-muted-foreground mb-8">Показываем только изображения, добавленные в данные страницы города</p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {loc.images.map((img, i) => (
-                <div key={i} className={`rounded-xl overflow-hidden bg-muted ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
+                <div key={i} className={`relative rounded-xl overflow-hidden bg-muted ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
                   <Image
                     src={optimizedImageSrc(img) || img}
                     alt={buildImageAlt(img, `Кухня в ${loc.city}, изображение ${i + 1}`)}
@@ -737,6 +741,7 @@ export default async function LocationPage({ params }: Props) {
                     sizes={i === 0 ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
                     className="w-full h-full object-cover aspect-square"
                   />
+                  <BrandedImageWatermark show={getImageDisclosure(img).kind === "generated"} compact={i !== 0} />
                 </div>
               ))}
             </div>

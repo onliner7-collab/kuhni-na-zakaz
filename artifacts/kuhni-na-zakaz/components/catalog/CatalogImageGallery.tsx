@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Maximize2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { ImageLightbox, type LightboxImage } from "@/components/ui/ImageLightbox";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { cn } from "@/lib/utils";
@@ -39,6 +40,7 @@ export function CatalogImageGallery({ title, projectImages, exampleImages = [] }
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
           {items.map((image, index) => {
             const imageIndex = offset + index;
+            const disclosure = getImageDisclosure(image.src);
 
             return (
               <div
@@ -65,6 +67,7 @@ export function CatalogImageGallery({ title, projectImages, exampleImages = [] }
                   sizes="140px"
                   className="object-cover"
                 />
+                <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
                 <button
                   type="button"
                   onClick={() => openLightbox(imageIndex)}
@@ -113,7 +116,8 @@ export function CatalogImageGallery({ title, projectImages, exampleImages = [] }
           sizes="(max-width: 1024px) 100vw, 820px"
           className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
         />
-        <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+        <BrandedImageWatermark show={activeDisclosure.kind === "generated"} />
+        <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
           {activeDisclosure.label}
         </span>
         <span className="absolute right-3 top-3 inline-flex min-h-10 items-center gap-2 rounded-md bg-white/90 px-3 py-2 text-sm font-semibold text-foreground shadow-sm transition-colors group-hover:bg-white">

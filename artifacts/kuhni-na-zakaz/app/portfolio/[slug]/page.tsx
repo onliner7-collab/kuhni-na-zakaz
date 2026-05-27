@@ -6,6 +6,7 @@ import { AlertTriangle, ArrowRight, CheckCircle2, Clock, Lightbulb, MapPin, Pale
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { PortfolioProjectHeroImage } from "@/components/portfolio/PortfolioProjectHeroImage";
 import { ProjectGallery } from "@/components/portfolio/ProjectGallery";
 import { PortfolioProjectOpenTracker } from "@/components/analytics/PortfolioProjectOpenTracker";
@@ -689,16 +690,19 @@ export default async function PortfolioProjectPage({ params }: Props) {
                       >
                         <div className="relative aspect-[4/3] bg-gray-100">
                           {relatedProject.mainImage && (
-                            <Image
-                              src={optimizedImageSrc(relatedProject.mainImage) || relatedProject.mainImage}
-                              alt={relatedProject.alt || relatedProject.title}
-                              width={720}
-                              height={540}
-                              loading="lazy"
-                              sizes="(max-width: 768px) 100vw, 360px"
-                              quality={75}
-                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            />
+                            <>
+                              <Image
+                                src={optimizedImageSrc(relatedProject.mainImage) || relatedProject.mainImage}
+                                alt={relatedProject.alt || relatedProject.title}
+                                width={720}
+                                height={540}
+                                loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 360px"
+                                quality={75}
+                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                              />
+                              <BrandedImageWatermark show={getImageDisclosure(relatedProject.mainImage).kind === "generated"} compact />
+                            </>
                           )}
                         </div>
                         <div className="p-4">

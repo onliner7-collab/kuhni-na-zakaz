@@ -5,6 +5,7 @@ import { Maximize2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { PortfolioProjectImage } from "@/data/portfolio-projects";
 import { ImageLightbox, type LightboxImage } from "@/components/ui/ImageLightbox";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 
@@ -73,7 +74,8 @@ export function PortfolioProjectHeroImage({
           sizes="(max-width: 1024px) 100vw, 420px"
           className="object-contain object-center"
         />
-        <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+        <BrandedImageWatermark show={disclosure.kind === "generated"} />
+        <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
           {disclosure.label}
         </span>
         <span className="absolute right-3 top-3 inline-flex min-h-10 items-center gap-2 rounded-md bg-white/90 px-3 py-2 text-sm font-semibold text-foreground shadow-sm opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, Package, Palette, Ruler } from "lucide-react";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import type { PortfolioProject } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { getImageDisclosure } from "@/lib/image-disclosure";
@@ -283,7 +284,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                   quality={75}
                   className="h-full w-full object-contain object-center transition-transform duration-300 group-hover:scale-105"
                 />
-                <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
+                <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
                   {disclosure.label}
                 </span>
               </Link>

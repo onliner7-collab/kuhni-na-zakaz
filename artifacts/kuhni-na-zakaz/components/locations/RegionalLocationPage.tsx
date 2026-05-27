@@ -15,6 +15,7 @@ import {
 
 import { ContactForm } from "@/components/sections/ContactForm";
 import { KitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import {
   minskRegionLocations,
   regionalLocations,
@@ -513,7 +514,8 @@ export function RegionalLocationPage({
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                  <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
+                  <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
                     {disclosure.label}
                   </span>
                 </div>

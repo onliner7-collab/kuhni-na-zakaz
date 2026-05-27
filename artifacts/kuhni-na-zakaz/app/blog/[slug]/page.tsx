@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { renderContent } from "@/lib/render-content";
 import { canonicalSiteUrl, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
@@ -204,9 +205,12 @@ export default async function BlogPostPage({ params }: Props) {
                     </div>
                   )}
                   {data.coverImage && coverDisclosure.kind === "generated" && (
-                    <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                      {coverDisclosure.label}
-                    </span>
+                    <>
+                      <BrandedImageWatermark />
+                      <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                        {coverDisclosure.label}
+                      </span>
+                    </>
                   )}
                 </div>
                 {data.coverImageCaption ? (
@@ -258,9 +262,12 @@ export default async function BlogPostPage({ params }: Props) {
                             </div>
                           )}
                           {c.mainImage && (
-                            <span className="absolute left-2 top-2 rounded-md bg-white/90 px-2 py-1 text-[11px] font-semibold text-foreground shadow-sm">
-                              {disclosure.label}
-                            </span>
+                            <>
+                              <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
+                              <span className="absolute left-2 top-2 z-[3] rounded-md bg-white/90 px-2 py-1 text-[11px] font-semibold text-foreground shadow-sm">
+                                {disclosure.label}
+                              </span>
+                            </>
                           )}
                         </div>
                         <div className="p-3">

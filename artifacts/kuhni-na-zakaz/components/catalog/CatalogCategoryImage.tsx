@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import { useState } from "react";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 
 type CatalogCategoryImageProps = {
@@ -45,9 +46,12 @@ export function CatalogCategoryImage({
         </div>
       )}
       {shouldShowImage && disclosure.kind === "generated" && (
-        <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-          {disclosure.label}
-        </span>
+        <>
+          <BrandedImageWatermark compact />
+          <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+            {disclosure.label}
+          </span>
+        </>
       )}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10" />
     </div>

@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { HomeKitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
@@ -352,7 +353,8 @@ export default async function HomePage() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 88vw, 560px"
                 className="object-cover"
               />
-              <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+              <BrandedImageWatermark show={getImageDisclosure(LOCAL_BUSINESS_IMAGE).kind === "generated"} />
+              <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
                 {getImageDisclosure(LOCAL_BUSINESS_IMAGE).label}
               </span>
             </div>
@@ -484,9 +486,12 @@ export default async function HomePage() {
                       )
                     }
                     {c.mainImage && (
-                      <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                        {disclosure.label}
-                      </span>
+                      <>
+                        <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
+                        <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                          {disclosure.label}
+                        </span>
+                      </>
                     )}
                   </div>
                   <div className="p-5">

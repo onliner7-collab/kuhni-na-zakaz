@@ -1,6 +1,9 @@
 const GENERATED_IMAGE_PREFIXES = [
   "/uploads/seo-showcase/",
   "/images/blog/",
+  "/uploads/kitchens/catalog/",
+  "/uploads/portfolio/generated-",
+  "/uploads/portfolio/generated-minsk/",
 ] as const;
 
 const GENERATED_IMAGE_ALIASES = new Set([
@@ -34,6 +37,8 @@ export function getImageDisclosure(src: string | null | undefined): ImageDisclos
   const cleanSrc = src.split("?")[0] ?? src;
   const isGenerated =
     GENERATED_IMAGE_PREFIXES.some((prefix) => cleanSrc.startsWith(prefix)) ||
+    cleanSrc.includes("-generated-") ||
+    cleanSrc.includes("/generated/") ||
     GENERATED_IMAGE_ALIASES.has(cleanSrc);
 
   if (isGenerated) {
@@ -73,4 +78,3 @@ export function buildImageAlt(src: string | null | undefined, fallback: string) 
     ? `${disclosure.altPrefix}${text}`
     : text;
 }
-

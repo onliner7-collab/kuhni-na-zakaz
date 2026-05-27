@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Calculator } from "lucide-react";
 
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { kitchenIdeas3D, type KitchenIdea3D } from "@/data/kitchen-ideas-3d";
 
 interface KitchenIdeas3DSectionProps {
@@ -65,7 +66,8 @@ export function KitchenIdeas3DSection({
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="h-full w-full object-cover"
                 />
-                <span className="absolute left-3 top-3 rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                <BrandedImageWatermark compact />
+                <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
                   {idea.badge}
                 </span>
               </div>
@@ -157,7 +159,8 @@ export function HomeKitchenIdeas3DSection({ limit = 4 }: HomeKitchenIdeas3DSecti
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="h-full w-full object-cover"
                 />
-                <span className="absolute left-3 top-3 rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                <BrandedImageWatermark compact />
+                <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
                   {idea.badge}
                 </span>
               </div>

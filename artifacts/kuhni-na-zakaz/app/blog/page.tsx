@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { BLOG_POSTS } from "@/lib/blog-static";
 import { SEO_BLOG_POSTS_FALLBACK } from "@/lib/blog-seo-fallback";
@@ -130,9 +131,12 @@ export default async function BlogPage() {
                     </div>
                   )}
                   {p.coverImage && disclosure.kind === "generated" && (
-                    <span className="absolute left-3 top-3 rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                      {disclosure.label}
-                    </span>
+                    <>
+                      <BrandedImageWatermark compact />
+                      <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                        {disclosure.label}
+                      </span>
+                    </>
                   )}
                 </div>
                 <div className="p-6">

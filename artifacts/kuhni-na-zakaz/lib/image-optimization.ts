@@ -1,4 +1,5 @@
-/** Локальные пути, для которых `scripts/optimize-site-images.js` создаёт одноимённые `.webp`. */
+import { getImageDisclosure } from "@/lib/image-disclosure";
+
 const WEBP_REWRITE_PREFIXES = [
   "/uploads/seo-showcase/",
   "/uploads/kitchens/",
@@ -15,9 +16,13 @@ export function optimizedImageSrc(src: string | null | undefined) {
     src.startsWith(prefix),
   );
 
-  return hasRasterExt && inOptimizedTree
+  const optimizedSrc = hasRasterExt && inOptimizedTree
     ? src.replace(/\.(png|jpe?g)$/i, ".webp")
     : src;
+
+  return getImageDisclosure(optimizedSrc).kind === "generated" && optimizedSrc.startsWith("/")
+    ? `/kapi/watermarked-image?src=${encodeURIComponent(optimizedSrc)}`
+    : optimizedSrc;
 }
 
 export function isPreoptimizedRasterSrc(src: string | null | undefined) {
