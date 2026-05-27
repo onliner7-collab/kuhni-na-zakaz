@@ -6,8 +6,8 @@ export const SITE_CONFIG = {
   address: "г. Минск, ул. Притыцкого, 100",
   workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
   telegram: "https://t.me/kuhniby",
-  viber: "viber://chat?number=%2B375296261547",
-  whatsapp: "https://wa.me/375296261547",
+  viber: "viber://chat?number=%2B375293720674",
+  whatsapp: "https://wa.me/375293720674",
 };
 
 export const PORTFOLIO_ITEMS = [
