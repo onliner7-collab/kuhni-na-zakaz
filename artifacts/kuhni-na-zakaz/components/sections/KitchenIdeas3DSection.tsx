@@ -3,7 +3,11 @@ import Link from "next/link";
 import { ArrowRight, Calculator } from "lucide-react";
 
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
-import { kitchenIdeas3D, type KitchenIdea3D } from "@/data/kitchen-ideas-3d";
+import {
+  getKitchenIdeas3DForCity,
+  kitchenIdeas3D,
+  type KitchenIdea3D,
+} from "@/data/kitchen-ideas-3d";
 
 interface KitchenIdeas3DSectionProps {
   cityName: string;
@@ -26,6 +30,19 @@ function ideaFormHref(basePath: string, idea: KitchenIdea3D, sourceType: string)
   return `${basePath}?${params.toString()}#form`;
 }
 
+function ideaAltForCity(idea: KitchenIdea3D, cityName: string, cityPrepositional: string) {
+  const normalizedAlt = idea.alt.toLocaleLowerCase("ru");
+
+  if (
+    normalizedAlt.includes(cityName.toLocaleLowerCase("ru")) ||
+    normalizedAlt.includes(cityPrepositional.toLocaleLowerCase("ru"))
+  ) {
+    return idea.alt;
+  }
+
+  return `${idea.alt} в ${cityPrepositional}`;
+}
+
 export function KitchenIdeas3DSection({
   cityName,
   citySlug,
@@ -34,6 +51,7 @@ export function KitchenIdeas3DSection({
 }: KitchenIdeas3DSectionProps) {
   const locationPath = `/locations/${citySlug}`;
   const adaptationText = `Такую кухню можно адаптировать под размеры квартиры или дома в ${cityPrepositional}.`;
+  const ideas = getKitchenIdeas3DForCity(citySlug);
 
   return (
     <section className="bg-white section-padding" id="ideas-3d">
@@ -47,18 +65,18 @@ export function KitchenIdeas3DSection({
           </h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
             Если вы ещё не знаете, какую кухню хотите, посмотрите примеры решений. Это не фото
-            выполненных работ, а 3D-визуализации — такие идеи можно адаптировать под размеры вашей
+            выполненных работ, а 3D-визуализации КухниBY — такие идеи можно адаптировать под размеры вашей
             квартиры или дома в {cityPrepositional}.
           </p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {kitchenIdeas3D.map((idea) => (
+          {ideas.map((idea) => (
             <article key={idea.id} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
               <div className="relative aspect-[4/3] bg-muted">
                 <Image
                   src={idea.image}
-                  alt={`${idea.alt} в ${cityPrepositional}`}
+                  alt={ideaAltForCity(idea, cityName, cityPrepositional)}
                   title={`${idea.badge}: ${idea.title}`}
                   width={720}
                   height={540}

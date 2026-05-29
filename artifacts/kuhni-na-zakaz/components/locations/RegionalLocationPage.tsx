@@ -23,6 +23,7 @@ import {
   type RegionalInternalLink,
   type RegionalLocationData,
 } from "@/data/locations";
+import { getKitchenIdeas3DForCity } from "@/data/kitchen-ideas-3d";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
@@ -204,6 +205,9 @@ export function RegionalLocationPage({
   const serviceItems = getServiceItems(location);
   const popularSolutions = getPopularSolutions(location);
   const faqItems = getFaqItems(location);
+  const cityIdeas = getKitchenIdeas3DForCity(location.slug);
+  const heroIdea = cityIdeas[0];
+  const heroImage = heroIdea?.image ?? "/images/hero.webp";
   const phoneHref = `tel:${CONTACT_DEFAULTS.phone}`;
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -221,14 +225,15 @@ export function RegionalLocationPage({
       <section className="relative overflow-hidden bg-stone-950 text-white">
         <div className="absolute inset-0 opacity-28">
           <Image
-            src="/images/hero.webp"
-            alt={`Кухня на заказ в ${location.cityPrepositional}`}
+            src={heroImage}
+            alt={heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`}
             fill
             priority
             fetchPriority="high"
             sizes="100vw"
             className="object-cover"
           />
+          {heroIdea && <BrandedImageWatermark compact />}
         </div>
         <div className="relative container-site py-10 md:py-16 lg:py-20">
           <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-white/72">
