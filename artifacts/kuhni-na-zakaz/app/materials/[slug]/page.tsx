@@ -15,6 +15,7 @@ import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 interface Props { params: Promise<{ slug: string }> }
 
 export const revalidate = 3600;
+export const dynamic = "force-static";
 
 const LEGACY_MATERIAL_SLUGS: Record<string, string> = {
   egger: "ldsp",
@@ -116,20 +117,9 @@ export default async function MaterialPage({ params }: Props) {
       { name: m.title, path: `/materials/${slug}` },
     ]),
   };
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: enrichment.faq.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
-  };
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <div className="section-padding">
         <div className="container-site">

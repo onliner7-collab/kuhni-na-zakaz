@@ -216,8 +216,6 @@ export default async function HomePage() {
     websiteJsonLd,
     localBusinessJsonLd,
     jsonLdBreadcrumb,
-    ...(jsonLdFaq ? [jsonLdFaq] : []),
-    ...(jsonLdProduct ? [jsonLdProduct] : []),
   ];
 
   const FALLBACK_SCENARIOS = [

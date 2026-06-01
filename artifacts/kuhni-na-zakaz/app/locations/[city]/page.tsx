@@ -21,10 +21,11 @@ import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
-import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const revalidate = 3600;
+export const dynamic = "force-static";
 
 interface Props { params: Promise<{ city: string }> }
 
@@ -468,10 +469,6 @@ export default async function LocationPage({ params }: Props) {
     },
   };
 
-  const jsonLdFaq = faqJsonLd(
-    faqItems.map((item) => ({ question: item.q, answer: item.a })),
-  );
-
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Города", path: "/locations" },
@@ -480,7 +477,7 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={[jsonLdWebPage, jsonLdFaq, jsonLdBreadcrumb].filter(isJsonLdObject)} />
+      <JsonLd data={[jsonLdWebPage, jsonLdBreadcrumb].filter(isJsonLdObject)} />
 
       {/* HERO */}
       <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">

@@ -17,6 +17,7 @@ type SeoLink = {
 };
 
 export const revalidate = 3600;
+export const dynamic = "force-static";
 
 type SeoBlock = {
   suitableFor: string[];

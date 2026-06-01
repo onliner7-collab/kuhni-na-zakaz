@@ -25,15 +25,6 @@ export default function LocationsPage() {
     "@type": "CollectionPage",
     name: "Кухни на заказ по городам Беларуси",
     url: siteUrl("/locations"),
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: regionalLocations.map((location, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: location.h1,
-        url: siteUrl(`/locations/${location.slug}`),
-      })),
-    },
   };
 
   return (
