@@ -1,19 +1,9 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { Manrope } from "next/font/google";
 
-import { prisma } from "@/lib/db";
-import { FloatingSocialButtons } from "@/components/layout/FloatingSocialButtons";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { MobileCTA } from "@/components/layout/MobileCTA";
+import { PublicChrome } from "@/components/layout/PublicChrome";
 import { Toaster } from "@/components/ui/toaster";
-import {
-  AnalyticsProvider,
-  GoogleTagManagerNoScript,
-} from "@/components/analytics/AnalyticsProvider";
 import { getSiteUrl } from "@/lib/site-url";
-import { resolveContactInfo } from "@/lib/contact-info";
 import { CANONICAL_SITE_URL, SITE_NAME } from "@/lib/seo";
 
 import "./globals.css";
@@ -110,45 +100,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") || "";
-  const isAdmin = pathname.startsWith("/admin");
-
-  const siteSettings =
-    !isAdmin && process.env.DATABASE_URL
-      ? await prisma.siteSettings
-          .findFirst({ where: { id: 1 } })
-          .catch(() => null)
-      : null;
-  const contactInfo = resolveContactInfo(siteSettings);
-
   return (
     <html lang="ru" className={manrope.variable}>
       <head>
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
       </head>
       <body>
-        {!isAdmin && <GoogleTagManagerNoScript />}
-        {!isAdmin && <AnalyticsProvider />}
-        {!isAdmin && (
-          <Header
-            phone={contactInfo.phoneDisplay}
-            phoneHref={`tel:${contactInfo.phone}`}
-          />
-        )}
-        {isAdmin ? children : <main>{children}</main>}
-        {!isAdmin && <Footer />}
-        {!isAdmin && (
-          <MobileCTA
-            phoneHref={`tel:${contactInfo.phone}`}
-          />
-        )}
-        {!isAdmin && (
-          <FloatingSocialButtons
-            instagram={contactInfo.instagram}
-            telegram={contactInfo.telegram}
-          />
-        )}
+        <PublicChrome>{children}</PublicChrome>
         <Toaster />
       </body>
     </html>

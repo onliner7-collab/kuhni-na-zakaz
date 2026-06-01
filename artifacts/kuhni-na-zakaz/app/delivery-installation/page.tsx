@@ -5,6 +5,8 @@ import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
 import { getStaticPage } from "@/lib/static-page";
 
+export const revalidate = 3600;
+
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("delivery-installation");
   return {

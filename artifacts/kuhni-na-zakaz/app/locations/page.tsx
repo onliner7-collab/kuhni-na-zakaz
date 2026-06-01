@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/locations" },
 };
 
+export const revalidate = 3600;
+
 export default function LocationsPage() {
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },

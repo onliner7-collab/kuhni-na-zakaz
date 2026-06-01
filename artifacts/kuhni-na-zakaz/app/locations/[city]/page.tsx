@@ -25,7 +25,6 @@ import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const revalidate = 3600;
-export const dynamic = "force-dynamic";
 
 interface Props { params: Promise<{ city: string }> }
 

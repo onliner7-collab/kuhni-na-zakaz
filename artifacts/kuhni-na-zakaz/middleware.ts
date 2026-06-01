@@ -77,10 +77,10 @@ export async function middleware(req: NextRequest) {
   );
 
   if (!isAdminPath) {
-    return addPathnameHeader(req, pathname);
+    return withPublicNoindexHeader(pathname, NextResponse.next());
   }
   if (isPublicAdminPath) {
-    return addPathnameHeader(req, pathname);
+    return withNoindexHeader(NextResponse.next());
   }
 
   const session = await getSessionFromRequest(req);
@@ -101,14 +101,10 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  return addPathnameHeader(req, pathname);
+  return withNoindexHeader(NextResponse.next());
 }
 
-function addPathnameHeader(req: NextRequest, pathname: string) {
-  const requestHeaders = new Headers(req.headers);
-  requestHeaders.set("x-pathname", pathname);
-  const response = NextResponse.next({ request: { headers: requestHeaders } });
-
+function withPublicNoindexHeader(pathname: string, response: NextResponse) {
   if (CLOSED_ROBOTS_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
     return withNoindexHeader(response);
   }

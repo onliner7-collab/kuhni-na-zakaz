@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/catalog" },
 };
 
+export const revalidate = 3600;
+
 const DEFAULT_CATEGORIES = [
   { slug: "kuhni-bez-ruchek", title: "Кухни без ручек", description: "Лаконичный современный дизайн. Нажимные механизмы или J-профиль.", priceFrom: 2000, features: ["Чистый дизайн", "Удобный уход", "Современность"] },
   { slug: "kuhni-do-potolka", title: "Кухни до потолка", description: "С фасадами до самого потолка — максимум хранения и строгий вид.", priceFrom: 2200, features: ["Максимум высоты", "Нет пыли", "Монолитный вид"] },

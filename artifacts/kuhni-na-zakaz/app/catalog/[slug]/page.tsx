@@ -16,6 +16,8 @@ type SeoLink = {
   label: string;
 };
 
+export const revalidate = 3600;
+
 type SeoBlock = {
   suitableFor: string[];
   planning: string[];

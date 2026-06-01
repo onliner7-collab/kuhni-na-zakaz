@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contacts" },
 };
 
+export const revalidate = 3600;
+
 const serviceArea = [
   "Минск",
   "Минская область",

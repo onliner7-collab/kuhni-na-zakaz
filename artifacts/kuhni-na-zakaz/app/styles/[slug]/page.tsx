@@ -14,6 +14,8 @@ import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 interface Props { params: Promise<{ slug: string }> }
 
+export const revalidate = 3600;
+
 async function getStyle(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
 

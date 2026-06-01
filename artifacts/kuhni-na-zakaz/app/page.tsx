@@ -114,6 +114,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600;
+
 async function getHomeData() {
   try {
     const [cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([

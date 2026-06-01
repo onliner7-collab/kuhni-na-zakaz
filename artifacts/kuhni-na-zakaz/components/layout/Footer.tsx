@@ -1,10 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import { Clock, Instagram, Mail, MapPin, Phone } from "lucide-react";
 
 import { regionalLocations } from "@/data/locations";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { resolveContactInfo } from "@/lib/contact-info";
-import { prisma } from "@/lib/db";
 import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
 
 function FooterTelegramIcon({ className }: { className?: string }) {
@@ -46,11 +47,8 @@ const FOOTER_LINKS = {
   ],
 };
 
-export async function Footer() {
-  const s = process.env.DATABASE_URL
-    ? await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null)
-    : null;
-  const c = resolveContactInfo(s);
+export function Footer() {
+  const c = resolveContactInfo(null);
   const instagramHref = buildInstagramHref(c.instagram);
   const telegramHref = buildTelegramHref(c.telegram);
   const hasSocialLinks = Boolean(instagramHref || telegramHref);

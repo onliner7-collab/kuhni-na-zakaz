@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/reviews" },
 };
 
+export const revalidate = 3600;
+
 const SOURCE_LABELS: Record<string, string> = {
   google: "Google",
   yandex: "Яндекс",

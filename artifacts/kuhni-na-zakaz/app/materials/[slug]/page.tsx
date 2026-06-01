@@ -14,6 +14,8 @@ import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 interface Props { params: Promise<{ slug: string }> }
 
+export const revalidate = 3600;
+
 const LEGACY_MATERIAL_SLUGS: Record<string, string> = {
   egger: "ldsp",
   emal: "mdf-emal",

@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/styles" },
 };
 
+export const revalidate = 3600;
+
 const budgetColor: Record<string, string> = {
   Экономный: "bg-green-100 text-green-700 border-green-200",
   Средний: "bg-blue-100 text-blue-700 border-blue-200",
