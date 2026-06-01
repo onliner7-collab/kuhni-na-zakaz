@@ -14,6 +14,7 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamic = "force-dynamic";
 
 const SECONDARY_SCENARIO_CANONICALS: Record<string, string> = {
+  "kuhnya-dlya-studii": "/scenarios/dlya-studii",
   "kuhnya-do-potolka": "/catalog/kuhni-do-potolka",
   "kuhnya-s-ostrovom": "/catalog/kuhni-s-ostrovom",
   "kuhnya-bez-ruchek": "/catalog/kuhni-bez-ruchek",
