@@ -17,6 +17,13 @@ const CLOSED_ROBOTS_PATHS = [
 ];
 const NOINDEX_HEADER_VALUE = "noindex, nofollow, noarchive";
 const CANONICAL_HOST = getCanonicalHost();
+const BLOCKED_INDEXING_TERMS = [
+  "комфи",
+  "харьков",
+  "comfy",
+  "kharkiv",
+  "kharkov",
+];
 
 const LEGACY_REDIRECTS: Record<string, string> = {
   "/kuhni": "/catalog",
@@ -48,6 +55,7 @@ const LEGACY_REDIRECTS: Record<string, string> = {
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const blockedQuery = getBlockedIndexingQuery(req.nextUrl);
   const hostname = (req.headers.get("host") || req.nextUrl.host)
     .split(":")[0]
     .toLowerCase();
@@ -56,6 +64,10 @@ export async function middleware(req: NextRequest) {
   const shouldForceHttps =
     !isLocalhost && (req.nextUrl.protocol === "http:" || forwardedProto === "http");
   const legacyTarget = LEGACY_REDIRECTS[normalizePathname(pathname)];
+
+  if (blockedQuery) {
+    return withNoindexHeader(new NextResponse(null, { status: 410 }));
+  }
 
   if (shouldForceHttps || hostname === `www.${CANONICAL_HOST}` || legacyTarget) {
     const url = req.nextUrl.clone();
@@ -115,6 +127,12 @@ function withPublicNoindexHeader(pathname: string, response: NextResponse) {
 function withNoindexHeader(response: NextResponse) {
   response.headers.set("X-Robots-Tag", NOINDEX_HEADER_VALUE);
   return response;
+}
+
+function getBlockedIndexingQuery(url: NextRequest["nextUrl"]) {
+  const decodedTarget = safeDecodePathname(`${url.pathname} ${url.search}`).toLowerCase();
+
+  return BLOCKED_INDEXING_TERMS.some((term) => decodedTarget.includes(term));
 }
 
 function normalizePathname(pathname: string) {
