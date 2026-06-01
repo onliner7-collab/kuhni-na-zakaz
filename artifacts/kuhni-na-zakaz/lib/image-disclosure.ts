@@ -2,6 +2,7 @@ const GENERATED_IMAGE_PREFIXES = [
   "/uploads/seo-showcase/",
   "/images/blog/",
   "/uploads/kitchens/catalog/",
+  "/uploads/locations/",
   "/uploads/portfolio/generated-",
   "/uploads/portfolio/generated-minsk/",
 ] as const;

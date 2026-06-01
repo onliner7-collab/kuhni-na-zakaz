@@ -27,7 +27,7 @@ import { getKitchenIdeas3DForCity } from "@/data/kitchen-ideas-3d";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
-import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 
 export interface PortfolioCasePreview {
   id: number | string;
@@ -217,10 +217,50 @@ export function RegionalLocationPage({
   const jsonLdFaq = faqJsonLd(
     faqItems.map((item) => ({ question: item.question, answer: item.answer })),
   );
+  const jsonLdService = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl(`/locations/${location.slug}`)}#service`,
+    name: location.h1,
+    description: location.description,
+    url: siteUrl(`/locations/${location.slug}`),
+    serviceType: "Кухни на заказ",
+    areaServed: [
+      {
+        "@type": location.isMinskRegionCity ? "City" : "AdministrativeArea",
+        name: location.cityName,
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: location.regionName,
+      },
+    ],
+    provider: {
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl("/")}#organization`,
+      name: "КухниBY",
+      url: siteUrl("/"),
+      telephone: CONTACT_DEFAULTS.phone,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "ул. Дзержинского, д. 90, каб. 1а",
+        postalCode: "222520",
+        addressLocality: "Борисов",
+        addressCountry: "BY",
+      },
+    },
+    offers: {
+      "@type": "Offer",
+      url: siteUrl(`/locations/${location.slug}`),
+      priceCurrency: "BYN",
+      price: location.priceFrom,
+      availability: "https://schema.org/InStock",
+    },
+  });
 
   return (
     <>
-      <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq].filter(isJsonLdObject)} />
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq, jsonLdService].filter(isJsonLdObject)} />
 
       <section className="relative overflow-hidden bg-stone-950 text-white">
         <div className="absolute inset-0 opacity-28">
