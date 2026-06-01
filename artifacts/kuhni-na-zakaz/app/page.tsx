@@ -366,7 +366,7 @@ export default async function HomePage() {
       <section className="section-padding bg-white">
         <div className="container-site">
           <div className="text-center mb-10">
-            <h2 className="text-3xl lg:text-4xl font-black text-foreground">С чего хотите начать?</h2>
+            <p className="text-3xl lg:text-4xl font-black text-foreground">С чего хотите начать?</p>
             <p className="mt-3 text-muted-foreground text-base max-w-xl mx-auto">
               Выберите удобный путь — мы проведём вас от идеи до готовой кухни
             </p>
@@ -450,7 +450,7 @@ export default async function HomePage() {
           <div className="container-site">
             <div className="flex items-center justify-between mb-10">
               <div>
-                <h2 className="font-serif text-3xl lg:text-4xl font-bold">Последние работы</h2>
+                <p className="font-serif text-3xl lg:text-4xl font-bold">Последние работы</p>
                 <p className="text-muted-foreground mt-1 text-sm">Фото из портфолио и визуальные примеры с понятными подписями</p>
               </div>
               <Link href="/portfolio" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
@@ -580,7 +580,7 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Популярные материалы фасадов</h2>
+              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Популярные фасады</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                 Сравните МДФ, ЛДСП и пластик HPL до расчета кухни: где каждый материал уместен, какие есть ограничения и на что смотреть в проекте.
               </p>
@@ -617,7 +617,7 @@ export default async function HomePage() {
             id="home-manufacturing-heading"
             className="text-3xl lg:text-4xl font-black text-foreground text-center max-w-4xl mx-auto leading-tight"
           >
-            Изготовление кухонь на заказ от производителя: цены, сроки, гарантии
+            Кухни от производителя
           </h2>
         </div>
       </section>
@@ -691,9 +691,9 @@ export default async function HomePage() {
       <section className="section-padding bg-muted/30 border-y border-border/60">
         <div className="container-site">
           <div className="max-w-4xl">
-            <h2 className="font-serif text-3xl lg:text-4xl font-bold">
+            <p className="font-serif text-3xl lg:text-4xl font-bold">
               Работаем по Минску, Минской области и крупным городам Беларуси
-            </h2>
+            </p>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
               Проектируем гарнитуры под индивидуальные размеры. Условия замера,
               доставки и монтажа уточняются при расчёте конкретного проекта.
@@ -723,7 +723,7 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
             <div>
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Условия работы по городам Беларуси</h2>
+              <p className="font-serif text-3xl lg:text-4xl font-bold">Условия работы по городам Беларуси</p>
               <p className="text-muted-foreground mt-1 text-sm">
                 Перейдите на страницу региона, чтобы посмотреть условия выезда, сроки, локальные примеры и популярные решения.
               </p>
@@ -764,7 +764,7 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-black text-foreground mb-4">Гарантии и сроки</h2>
+              <p className="text-3xl lg:text-4xl font-black text-foreground mb-4">Гарантии и сроки</p>
               <p className="text-muted-foreground mb-8 leading-relaxed">
                 Мы не даём пустых обещаний. Все условия прописаны в договоре до начала работ.
               </p>
@@ -825,7 +825,7 @@ export default async function HomePage() {
           <div className="container-site">
             <div className="flex items-center justify-between mb-10">
               <div>
-                <h2 className="font-serif text-3xl lg:text-4xl font-bold">Отзывы и примеры обратной связи</h2>
+                <p className="font-serif text-3xl lg:text-4xl font-bold">Отзывы и примеры обратной связи</p>
                 <p className="text-muted-foreground mt-1 text-sm">Публикуем только подтверждённые отзывы. Новые отзывы добавляются после проверки.</p>
               </div>
               <Link href="/reviews" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
@@ -864,7 +864,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 opacity-20 pointer-events-none"
           style={{ backgroundImage: "radial-gradient(circle at 20% 50%, #fff 0%, transparent 50%), radial-gradient(circle at 80% 20%, #38bdf8 0%, transparent 40%)" }} />
         <div className="container-site text-center relative z-10">
-          <h2 className="text-3xl lg:text-4xl font-black text-white mb-3">Хотите точный расчёт?</h2>
+          <p className="text-3xl lg:text-4xl font-black text-white mb-3">Хотите точный расчёт?</p>
           <p className="text-white/75 mb-8 text-lg">Оставьте заявку — перезвоним в течение 30 минут</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -888,7 +888,7 @@ export default async function HomePage() {
       {/* ===== CONTACT FORM ===== */}
       <section id="form" className="section-padding bg-background">
         <div className="container-site max-w-2xl">
-          <h2 className="font-serif text-3xl font-bold text-center mb-2">Оставить заявку</h2>
+          <p className="font-serif text-3xl font-bold text-center mb-2">Оставить заявку</p>
           <p className="text-center text-muted-foreground mb-8">Условия замера и консультации уточняются при заявке</p>
           <ContactForm source="home" sourceType="home" />
         </div>

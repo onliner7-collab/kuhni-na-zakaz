@@ -153,9 +153,9 @@ export function HomeKitchenIdeas3DSection({ limit = 4 }: HomeKitchenIdeas3DSecti
           <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary">
             Идеи перед расчетом
           </p>
-          <h2 className="font-serif text-3xl font-bold text-foreground lg:text-4xl">
+          <p className="font-serif text-3xl font-bold text-foreground lg:text-4xl">
             Не знаете, какую кухню выбрать? Покажем идеи в 3D
-          </h2>
+          </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
             Посмотрите примеры дизайна: прямые, угловые, маленькие кухни, кухни до потолка и решения
             со встроенной техникой. Это 3D-визуализации, которые можно адаптировать под размеры

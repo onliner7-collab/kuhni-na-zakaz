@@ -40,7 +40,7 @@ export function FAQSection({ items, generateSchema = true }: FAQSectionProps) {
       )}
       <div className="container-site max-w-3xl">
         <h2 className="font-serif text-3xl lg:text-4xl font-bold text-center mb-10">
-          Часто задаваемые вопросы
+          Частые вопросы
         </h2>
         <div className="space-y-2">
           {items.map((item, i) => (
