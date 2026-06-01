@@ -180,6 +180,23 @@ export default async function StylePage({ params }: Props) {
                 )}
               </div>
 
+              {slug === "provans" && (
+                <section className="rounded-2xl border border-border bg-white p-6">
+                  <h2 className="font-serif text-2xl font-bold mb-4">Кухня прованс: покупка и расчет</h2>
+                  <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                    <p>
+                      Если нужен запрос кухня прованс купить Минск, сначала сравните фасады, фурнитуру,
+                      столешницу и декор: стиль должен быть уютным, но не перегруженным. В Минске такую кухню
+                      можно купить после замера и согласования материалов.
+                    </p>
+                    <p>
+                      Мы помогаем купить кухню в стиле прованс под квартиру, дом или дачу: показываем примеры,
+                      считаем цену и объясняем, какие элементы лучше заказать сразу, а какие можно упростить.
+                    </p>
+                  </div>
+                </section>
+              )}
+
               {s.content && s.intro && (
                 <section className="prose prose-stone max-w-none rounded-2xl border border-border bg-white p-6">
                   {renderContent(s.content)}
