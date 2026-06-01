@@ -124,6 +124,9 @@ export default async function RootLayout({
 
   return (
     <html lang="ru" className={manrope.variable}>
+      <head>
+        <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+      </head>
       <body>
         {!isAdmin && <GoogleTagManagerNoScript />}
         {!isAdmin && <AnalyticsProvider />}
