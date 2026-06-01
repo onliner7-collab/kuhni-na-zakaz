@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import {
   AnalyticsProvider,
@@ -14,9 +15,14 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 export function PublicChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const isAdmin = pathname.startsWith("/admin");
 
-  if (isAdmin) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || isAdmin) {
     return <>{children}</>;
   }
 
