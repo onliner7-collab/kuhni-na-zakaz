@@ -3,7 +3,7 @@
 Дата локальной проверки: 2026-06-01  
 Проект: `C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz`  
 Сайт: `https://kuhni.minsk.by`  
-Статус: локально реализовано и проверено. По запросу пользователя после локальной приемки выполняется общий деплой волн 2 и 3.
+Статус: реализовано, проверено локально, задеплоено вместе с волной 2 и проверено на production.
 
 ## Созданные страницы
 
@@ -22,7 +22,7 @@
 - В `data/kitchen-ideas-3d.ts` добавлены 18 новых 3D-визуализаций, по 3 на город.
 - Изображения сохранены в `public/uploads/locations/*-3d/*generated-*-20260601.webp`.
 - Все новые визуалы маркируются как `3D-визуализация КухниBY`; alt-тексты на русском, без утверждения о выполненных объектах.
-- `public/llms.txt` дополнен URL волны 3.
+- `public/llms.txt` дополнен URL волн 2 и 3.
 - Smoke-тест `tests/smoke/key-pages.spec.ts` расширен шестью URL волны 3.
 
 ## Созданные изображения
@@ -65,7 +65,22 @@
 
 ## Production и индексация
 
-На момент локальной приемки деплой еще не выполнен. После деплоя нужно проверить production URL волн 2 и 3, `sitemap.xml`, canonical и отправить страницы на индексацию в Google Search Console и Яндекс Вебмастер, если доступна авторизованная сессия.
+- Деплой выполнен на production 2026-06-01 через `deploy/scripts/update-production.sh work`.
+- Production commit: `65eb4b0`; сервис `kuhni-na-zakaz` активен.
+- Production build прошел успешно; Prisma `db push` сообщил, что production БД уже синхронизирована со схемой.
+- Проверены production URL волн 2 и 3:
+  - `/locations/berezino`
+  - `/locations/volozhin`
+  - `/locations/maryina-gorka`
+  - `/locations/kletsk`
+  - `/locations/starye-dorogi`
+- Для проверенных production страниц: HTTP 200, один H1, корректный title/description/canonical, 0 изображений без alt, есть маркировка `3D-визуализация КухниBY`, форма доступна, горизонтального overflow нет.
+- `https://kuhni.minsk.by/sitemap.xml` — HTTP 200, содержит все URL волн 2 и 3.
+- `https://kuhni.minsk.by/llms.txt` — HTTP 200, содержит все URL волн 2 и 3.
+- Google Search Console:
+  - URL Inspection для `https://kuhni.minsk.by/locations/kletsk`: страница пока не была в индексе Google, запрос на индексирование отправлен и принят.
+  - `https://kuhni.minsk.by/sitemap.xml` переотправлен; GSC показал сообщение `Файл Sitemap отправлен`.
+- Яндекс Вебмастер: открыта страница авторизации. Отправка sitemap/URL ожидает ручного входа в аккаунт в браузере.
 
 ## Остаточные риски
 
