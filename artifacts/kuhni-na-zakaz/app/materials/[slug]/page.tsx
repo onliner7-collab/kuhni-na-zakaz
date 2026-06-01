@@ -33,6 +33,10 @@ const MATERIAL_HERO_IMAGES: Record<string, string> = {
   shpon: "/images/materials-gallery-v2/shpon/shpon-d-kitchen.webp",
 };
 
+const MATERIAL_SEO_TITLE_OVERRIDES: Record<string, string> = {
+  shpon: "Распашной шкаф из шпона в Минске",
+};
+
 async function getMaterial(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
 
@@ -82,8 +86,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const m = await getMaterial(slug);
   if (!m) return { title: "Материал для кухни" };
+  const title = MATERIAL_SEO_TITLE_OVERRIDES[slug] ?? cleanSeoTitle(m.seoTitle, m.title);
+
   return {
-    title: cleanSeoTitle(m.seoTitle, m.title),
+    title,
     description: trimMetaDescription(m.seoDescription, m.description),
     keywords: m.seoKeywords || undefined,
     alternates: { canonical: `/materials/${slug}` },

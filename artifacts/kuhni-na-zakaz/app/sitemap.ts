@@ -29,6 +29,7 @@ const STATIC_PATHS = [
   "/materials/ldsp",
   "/materials/mdf-fasady",
   "/materials/plastik-hpl",
+  "/materials/shpon",
   "/scenarios",
   "/locations",
   "/warranty",
