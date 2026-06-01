@@ -386,7 +386,7 @@ export default async function HomePage() {
                 <span className="text-3xl mb-3" role="img" aria-label={s.title}>
                   {s.icon}
                 </span>
-                <h3 className="font-bold text-foreground text-sm group-hover:text-primary transition-colors">{s.title}</h3>
+                <p className="font-bold text-foreground text-sm group-hover:text-primary transition-colors">{s.title}</p>
                 {s.subtitle && <p className="text-xs text-muted-foreground mb-2">{s.subtitle}</p>}
                 {s.description && <p className="text-xs text-muted-foreground leading-relaxed mt-1 flex-1">{s.description}</p>}
                 <div className="mt-3 flex items-center gap-1 text-xs text-primary font-semibold">
@@ -495,7 +495,7 @@ export default async function HomePage() {
                     )}
                   </div>
                   <div className="p-5">
-                    <h3 className="font-bold group-hover:text-primary transition-colors">{c.title}</h3>
+                    <p className="font-bold group-hover:text-primary transition-colors">{c.title}</p>
                     <p className="text-sm text-muted-foreground mt-1">{c.city} · {c.area} п.м</p>
                     {c.priceFrom > 0 && (
                       <p className="text-primary font-bold text-sm mt-1">
@@ -534,7 +534,7 @@ export default async function HomePage() {
                 <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
                   <CatalogCategoryImage src={image.src} alt={image.alt} />
                   <div className="p-5">
-                    <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{cat.title}</h3>
+                    <p className="font-bold text-lg group-hover:text-primary transition-colors">{cat.title}</p>
                     <p className="text-primary font-bold mt-1 text-sm">{cat.price}</p>
                   </div>
                 </Link>
@@ -561,7 +561,7 @@ export default async function HomePage() {
                 href={item.href}
                 className="group rounded-2xl border border-border bg-muted/20 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
               >
-                <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
                   Перейти{" "}
@@ -596,7 +596,7 @@ export default async function HomePage() {
                 href={item.href}
                 className="group rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
               >
-                <h3 className="font-bold text-foreground transition-colors group-hover:text-primary">{item.title}</h3>
+                <p className="font-bold text-foreground transition-colors group-hover:text-primary">{item.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
                   Подробнее <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
@@ -644,7 +644,7 @@ export default async function HomePage() {
                   {s.icon || String(i + 1).padStart(2, "0")}
                 </div>
                 <div>
-                  <h3 className="font-bold text-white">{s.title}</h3>
+                  <p className="font-bold text-white">{s.title}</p>
                   <p className="text-sm text-white/50 mt-1 leading-relaxed">{s.description}</p>
                   {s.badge && <span className="mt-2 inline-block text-xs bg-violet-500/20 text-violet-300 px-2 py-0.5 rounded-full">{s.badge}</span>}
                 </div>
@@ -674,7 +674,7 @@ export default async function HomePage() {
                   </span>
                   {adv.badge && <span className="ml-auto text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold">{adv.badge}</span>}
                 </div>
-                <h3 className="font-bold text-base mb-1.5 group-hover:text-primary transition-colors">{adv.title}</h3>
+                <p className="font-bold text-base mb-1.5 group-hover:text-primary transition-colors">{adv.title}</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">{adv.description}</p>
                 {adv.href && (
                   <Link href={adv.href} className="mt-3 flex items-center gap-1 text-xs text-primary font-semibold hover:gap-2 transition-all">
@@ -741,7 +741,7 @@ export default async function HomePage() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="font-bold text-foreground group-hover:text-primary transition-colors">Проекты в {loc.cityPrepositional}</h3>
+                    <p className="font-bold text-foreground group-hover:text-primary transition-colors">Проекты в {loc.cityPrepositional}</p>
                     {loc.region && <p className="mt-1 text-xs text-muted-foreground">{loc.region}</p>}
                   </div>
                   <MapPin className="h-5 w-5 text-primary/70 shrink-0" aria-hidden />
@@ -803,15 +803,15 @@ export default async function HomePage() {
             </div>
             <div className="space-y-4">
               <Link href="/warranty" className="block rounded-2xl overflow-hidden border border-border bg-white p-6 hover:border-primary/30 hover:shadow-lg transition-all group">
-                <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Гарантийные обязательства →</h3>
+                <p className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Гарантийные обязательства →</p>
                 <p className="text-sm text-muted-foreground">Подробно о том, что входит в гарантию и как её получить</p>
               </Link>
               <Link href="/delivery-installation" className="block rounded-2xl overflow-hidden border border-border bg-white p-6 hover:border-primary/30 hover:shadow-lg transition-all group">
-                <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Доставка и монтаж →</h3>
+                <p className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Доставка и монтаж →</p>
                 <p className="text-sm text-muted-foreground">Как организована доставка в ваш город и что входит в монтаж</p>
               </Link>
               <Link href="/prices" className="block rounded-2xl overflow-hidden border border-border bg-white p-6 hover:border-primary/30 hover:shadow-lg transition-all group">
-                <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Примерные цены →</h3>
+                <p className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Примерные цены →</p>
                 <p className="text-sm text-muted-foreground">Диапазоны стоимости по конфигурациям и материалам</p>
               </Link>
             </div>

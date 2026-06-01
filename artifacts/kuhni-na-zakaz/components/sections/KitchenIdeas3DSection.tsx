@@ -90,7 +90,7 @@ export function KitchenIdeas3DSection({
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="text-base font-semibold text-foreground">{idea.title}</h3>
+                <p className="text-base font-semibold text-foreground">{idea.title}</p>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">{idea.shortDescription}</p>
                 <p className="mt-3 text-sm leading-6 text-foreground">{adaptationText}</p>
                 <p className="mt-3 text-xs leading-5 text-muted-foreground">{idea.disclosure}</p>
@@ -183,7 +183,7 @@ export function HomeKitchenIdeas3DSection({ limit = 4 }: HomeKitchenIdeas3DSecti
                 </span>
               </div>
               <div className="p-5">
-                <h3 className="text-base font-semibold text-foreground">{idea.title}</h3>
+                <p className="text-base font-semibold text-foreground">{idea.title}</p>
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">
                   Пример дизайна, не фото выполненной работы.
                 </p>

@@ -45,7 +45,7 @@ export function FAQSection({ items, generateSchema = true }: FAQSectionProps) {
         <div className="space-y-2">
           {items.map((item, i) => (
             <div key={item.id} className="card-base">
-              <h3 className="m-0 text-base font-semibold leading-snug">
+              <div className="m-0 text-base font-semibold leading-snug">
                 <button
                   type="button"
                   className="w-full flex items-center justify-between gap-3 p-5 text-left font-semibold"
@@ -61,7 +61,7 @@ export function FAQSection({ items, generateSchema = true }: FAQSectionProps) {
                     )}
                   />
                 </button>
-              </h3>
+              </div>
               {openIndex === i && (
                 <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed">
                   {item.answer}

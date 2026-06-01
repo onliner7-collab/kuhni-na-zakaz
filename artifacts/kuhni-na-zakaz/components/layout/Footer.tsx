@@ -140,7 +140,7 @@ export async function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Каталог</h3>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Каталог</p>
             <ul className="space-y-2.5">
               {FOOTER_LINKS.catalog.map((link) => (
                 <li key={link.href}>
@@ -153,7 +153,7 @@ export async function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Компания</h3>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Компания</p>
             <ul className="space-y-2.5">
               {FOOTER_LINKS.info.map((link) => (
                 <li key={link.href}>
@@ -166,7 +166,7 @@ export async function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Кухни по городам</h3>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Кухни по городам</p>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {priorityCities.map((city) => (
                 <li key={city.href}>
@@ -177,7 +177,7 @@ export async function Footer() {
               ))}
             </ul>
             <div className="mt-6">
-              <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Правовое</h3>
+              <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Правовое</p>
               <ul className="space-y-2.5">
                 {FOOTER_LINKS.legal.map((link) => (
                   <li key={link.href}>
