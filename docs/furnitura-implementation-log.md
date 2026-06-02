@@ -93,3 +93,41 @@
 - Полная галерея и lightbox для фурнитуры не добавлялись: это этапы 3-4.
 - Изображения фурнитуры не генерировались: это этап 3 и следующие.
 - Production deploy и отправка на индексацию фиксируются отдельно после успешных проверок и доступного push/deploy.
+
+---
+
+## Статус этапов 3-4
+
+Дата обновления: 2026-06-02
+
+Этапы 3 и 4 реализованы локально.
+
+### Этап 3: изображения
+
+- Добавлена базовая партия: 1 hero + 50 изображений галереи.
+- Итоговая папка: `artifacts/kuhni-na-zakaz/public/images/materials-gallery-v2/furnitura`.
+- Формат: `.webp`.
+- Размеры: hero 1600x900, галерея 1200x675.
+- Создан технический JSON-реестр: `public/images/materials-gallery-v2/furnitura/registry.json`.
+- Создан обязательный отчет: `docs/furnitura-images-registry.md`.
+- Создан файл промтов: `docs/furnitura-image-generation-prompts.md`.
+- Live-догенерация через image provider не выполнена: `openai` вернул `Billing hard limit has been reached`. Использованы локальные демонстрационные исходники из `новые фото`, конвертированные и кадрированные в 16:9.
+
+### Этап 4: галерея и lightbox
+
+- Добавлен компонент `components/sections/FurnituraHardwareGallery.tsx`.
+- Компонент переиспользует существующий `components/ui/ImageLightbox.tsx`.
+- Реализованы hover, click-to-open, закрытие по Esc, клик вне изображения, стрелки, keyboard navigation и mobile swipe.
+- Использованы кнопки с русскими `aria-label`, уникальные alt и стабильный `aspect-video` без layout shift.
+- Папка `/images/materials-gallery-v2/furnitura/` добавлена в disclosure-логику как демонстрационная/generated зона.
+- На странице добавлен дисклеймер: демонстрационные изображения не являются фотографиями выполненных проектов.
+
+### Измененные файлы этапов 3-4
+
+- `artifacts/kuhni-na-zakaz/app/materials/furnitura/page.tsx`
+- `artifacts/kuhni-na-zakaz/components/sections/FurnituraHardwareGallery.tsx`
+- `artifacts/kuhni-na-zakaz/lib/image-disclosure.ts`
+- `artifacts/kuhni-na-zakaz/public/images/materials-gallery-v2/furnitura/*`
+- `docs/furnitura-images-registry.md`
+- `docs/furnitura-image-generation-prompts.md`
+- `docs/furnitura-responsive-a11y-report.md`

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -20,11 +21,13 @@ import {
   Wrench,
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { FurnituraHardwareGallery } from "@/components/sections/FurnituraHardwareGallery";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 
 const pageTitle = "Фурнитура для кухни на заказ";
 const pageDescription =
   "Разбираем фурнитуру для кухни на заказ: петли, направляющие, доводчики, подъемные механизмы, ручки и системы хранения. Поможем подобрать решение под проект кухни в Минске и Беларуси.";
+const heroImage = "/images/materials-gallery-v2/furnitura/furniture-furnitura-hero-01.webp";
 
 export const metadata: Metadata = {
   title: "Фурнитура для кухни на заказ в Минске | Петли, направляющие, доводчики",
@@ -277,6 +280,16 @@ export default function FurnituraMaterialsPage() {
               </div>
             </div>
             <aside className="rounded-2xl border border-border bg-white p-6 shadow-sm" aria-labelledby="hardware-summary">
+              <div className="relative -mx-2 -mt-2 mb-5 aspect-video overflow-hidden rounded-xl bg-muted">
+                <Image
+                  src={heroImage}
+                  alt="Фурнитура для кухни на заказ — выдвижной ящик с направляющими в современной кухне"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                  className="object-cover"
+                />
+              </div>
               <Sparkles className="mb-4 h-8 w-8 text-primary" aria-hidden="true" />
               <h2 id="hardware-summary" className="font-serif text-2xl font-bold">Что обсуждаем на замере</h2>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -285,6 +298,9 @@ export default function FurnituraMaterialsPage() {
                 <li>Подходит ли кухня без ручек под планировку и привычки семьи.</li>
                 <li>Какие системы хранения действительно окупятся в вашем проекте.</li>
               </ul>
+              <p className="mt-4 text-xs leading-5 text-muted-foreground">
+                Демонстрационные изображения не являются фотографиями выполненных проектов.
+              </p>
             </aside>
           </section>
 
@@ -350,6 +366,8 @@ export default function FurnituraMaterialsPage() {
               </table>
             </div>
           </section>
+
+          <FurnituraHardwareGallery />
 
           <section className="mt-16" aria-labelledby="budget-heading">
             <div className="mb-6 flex items-center gap-3">

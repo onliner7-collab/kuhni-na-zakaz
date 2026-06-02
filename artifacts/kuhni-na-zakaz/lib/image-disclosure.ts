@@ -1,5 +1,6 @@
 const GENERATED_IMAGE_PREFIXES = [
   "/uploads/seo-showcase/",
+  "/images/materials-gallery-v2/furnitura/",
   "/images/blog/",
   "/uploads/kitchens/catalog/",
   "/uploads/locations/",
