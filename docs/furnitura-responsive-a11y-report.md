@@ -24,3 +24,10 @@
 - Lightbox: открытие по клику, закрытие Esc, навигация ArrowRight, возврат фокуса и aria-label проверены через Browser/Playwright.
 - Mobile 390px: проверены один H1, отсутствие горизонтального overflow, 50 кнопок галереи, открытие lightbox и закрытие Esc.
 - Консоль: ошибок нет; предупреждения только про third-party cookies браузера.
+
+## Production QA 2026-06-02
+
+- Desktop production с cache-bust URL: 50 кнопок галереи, 10 категорий, один H1, canonical корректный, `noindex` нет, горизонтального overflow нет, console errors 0.
+- Lightbox на production: открытие по клику, фокус на `Закрыть галерею`, ArrowRight листает, Esc закрывает, фокус возвращается на исходную миниатюру.
+- Mobile production 390px: 50 кнопок галереи, один H1, горизонтального overflow нет, console errors 0.
+- Mobile swipe реализован в существующем `ImageLightbox` через touchstart/touchend; ручной синтетический TouchEvent в Browser не пролистнул кадр, keyboard/arrow navigation проверены.
