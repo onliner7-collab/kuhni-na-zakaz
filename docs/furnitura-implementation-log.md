@@ -79,6 +79,14 @@
 - `/materials` локально содержит ссылку `/materials/furnitura`.
 - `/sitemap.xml` локально содержит `https://kuhni.minsk.by/materials/furnitura`.
 - `/robots.txt` локально доступен и содержит `Sitemap: https://kuhni.minsk.by/sitemap.xml`.
+- Commit `c23faf4 Add kitchen hardware materials page` создан и отправлен в `origin/work`.
+- Production deploy выполнен через Timeweb update script.
+- Production `/materials/furnitura` отвечает 200 OK.
+- Production `/materials` содержит ссылку на `/materials/furnitura`.
+- Production sitemap содержит `https://kuhni.minsk.by/materials/furnitura`.
+- Production robots.txt доступен и не блокирует страницу.
+- Google Search Console: URL отправлен на индексирование через встроенный браузер.
+- Yandex Webmaster: URL отправлен в очередь переобхода через API, sitemap уже добавлен.
 
 ## Что не входит в этап 2
 
