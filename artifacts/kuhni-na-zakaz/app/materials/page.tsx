@@ -43,6 +43,13 @@ const featuredMaterialPages = [
     image: "/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
     alt: "Кухня с пластиковыми фасадами HPL в современном стиле",
   },
+  {
+    href: "/materials/furnitura",
+    title: "Фурнитура для кухни",
+    description: "Петли, направляющие, доводчики, подъемные механизмы, ручки и системы хранения для удобной кухни на заказ.",
+    image: "/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
+    alt: "Современная кухня на заказ с фурнитурой для фасадов без ручек",
+  },
 ];
 
 async function getMaterials() {
