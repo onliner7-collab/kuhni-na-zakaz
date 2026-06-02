@@ -5,8 +5,6 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
-import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
-import { getImageDisclosure } from "@/lib/image-disclosure";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 
 export interface LightboxImage {
@@ -53,7 +51,6 @@ export function ImageLightbox({
   const imageCount = safeImages.length;
   const activeIndex = imageCount > 0 ? ((currentIndex % imageCount) + imageCount) % imageCount : 0;
   const activeImage = safeImages[activeIndex];
-  const activeDisclosure = getImageDisclosure(activeImage?.src);
 
   const showPrevious = useCallback(() => {
     if (imageCount < 2) return;
@@ -234,7 +231,6 @@ export function ImageLightbox({
           className="object-contain"
           priority
         />
-        <BrandedImageWatermark show={activeDisclosure.kind === "generated"} />
       </div>
 
       <div
