@@ -170,6 +170,31 @@ const budgetLevels = [
   },
 ];
 
+const advancedHardwareSections = [
+  {
+    eyebrow: "Продвинутая фурнитура",
+    title: "Что добавляют в проект, когда нужна максимальная эргономика",
+    text: "На этом уровне фурнитура решает не только задачу открывания, но и сложные сценарии: глубокие ящики, фасады без ручек, узкие модули, тяжелую посуду и верхние шкафы, к которым нужно быстро добраться во время готовки.",
+    items: [
+      "Петля 165 градусов помогает широко открыть фасад в угловом или хозяйственном модуле.",
+      "Push-to-open петли и направляющие подходят для лаконичных фасадов без ручек, если важны точная регулировка и аккуратное закрывание.",
+      "Высокий ящик для кастрюль, внутренний ящик и ящик под мойку повышают полезный объем без изменения планировки кухни.",
+      "Бутылочница, складной подъемник, параллельный подъемник и интегрированная ручка подбираются под привычки семьи, высоту шкафов и стиль фасадов.",
+    ],
+  },
+  {
+    eyebrow: "Угловые и специальные системы",
+    title: "Как сделать доступными углы, цоколь и встроенную технику",
+    text: "В угловых кухнях и кухнях с техникой важно заранее заложить механизмы доступа, вентиляцию, крепления фасадов и монтажные детали. Эти элементы редко бросаются в глаза, но сильно влияют на обслуживание и срок службы мебели.",
+    items: [
+      "Карусель, magic corner и складной угловой фасад уменьшают мертвые зоны в Г-образных и П-образных кухнях.",
+      "Выдвижные корзины, регулируемые ножки, цокольная планка и вентиляционная решетка помогают использовать нижний ряд аккуратно и безопасно.",
+      "Крепление фасада посудомоечной машины и направляющие фасада встроенного холодильника подбирают под модель техники, вес фасада и схему открывания.",
+      "Вентиляционные элементы для техники защищают встроенный холодильник, духовку и другие приборы от перегрева в закрытых мебельных нишах.",
+    ],
+  },
+];
+
 const faqItems = [
   {
     question: "Какая фурнитура лучше для кухни на заказ?",
@@ -365,6 +390,33 @@ export default function FurnituraMaterialsPage() {
                 </tbody>
               </table>
             </div>
+          </section>
+
+          <section className="mt-16 grid gap-6 lg:grid-cols-2" aria-labelledby="advanced-hardware-heading">
+            <div className="lg:col-span-2">
+              <h2 id="advanced-hardware-heading" className="font-serif text-3xl font-bold">
+                Продвинутая фурнитура, угловые системы и решения для техники
+              </h2>
+              <p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">
+                Эти позиции не обязательно нужны в каждой кухне, но именно они часто решают сложные задачи хранения,
+                открывания фасадов и встройки техники без компромиссов по удобству.
+              </p>
+            </div>
+            {advancedHardwareSections.map((section) => (
+              <article key={section.title} className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+                <p className="text-sm font-semibold uppercase text-primary">{section.eyebrow}</p>
+                <h3 className="mt-2 font-serif text-2xl font-semibold">{section.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{section.text}</p>
+                <ul className="mt-5 space-y-3 text-sm leading-relaxed text-muted-foreground">
+                  {section.items.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </section>
 
           <FurnituraHardwareGallery />

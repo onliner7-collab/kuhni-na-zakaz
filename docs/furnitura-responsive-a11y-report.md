@@ -31,3 +31,41 @@
 - Lightbox на production: открытие по клику, фокус на `Закрыть галерею`, ArrowRight листает, Esc закрывает, фокус возвращается на исходную миниатюру.
 - Mobile production 390px: 50 кнопок галереи, один H1, горизонтального overflow нет, console errors 0.
 - Mobile swipe реализован в существующем `ImageLightbox` через touchstart/touchend; ручной синтетический TouchEvent в Browser не пролистнул кадр, keyboard/arrow navigation проверены.
+
+---
+
+## Локальная QA этапов 5-6
+
+Дата обновления: 2026-06-02
+
+После расширения галереи до 150 изображений выполнены проверки на `http://127.0.0.1:3022/materials/furnitura`.
+
+### Desktop
+
+- H1: 1.
+- Canonical: `https://kuhni.minsk.by/materials/furnitura`.
+- `noindex`: нет.
+- Горизонтального overflow нет.
+- Изображений на странице: 151.
+- Кнопок галереи: 150.
+- Групп галереи: 3.
+- Категорий галереи: 30.
+- Пустых или битых alt нет.
+- Lightbox:
+  - Enter по миниатюре открывает галерею;
+  - фокус переходит на `Закрыть галерею`;
+  - Esc закрывает;
+  - фокус возвращается на исходную миниатюру.
+
+### Mobile 390px
+
+- H1: 1.
+- Кнопок галереи: 150.
+- Пустых или битых alt нет.
+- Горизонтального overflow нет.
+
+### Проверки команд
+
+- `pnpm --filter @workspace/kuhni-na-zakaz typecheck` — успешно.
+- `pnpm --filter @workspace/kuhni-na-zakaz sitemap:check` — успешно, 75 URL; есть ожидаемые Prisma-предупреждения из-за недоступной локальной БД `127.0.0.1:5434`.
+- `pnpm --filter @workspace/kuhni-na-zakaz build` — успешно; во время build также были ожидаемые Prisma-предупреждения, сборка завершилась без ошибки.
