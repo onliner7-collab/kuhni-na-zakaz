@@ -6,7 +6,15 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { CheckCircle } from "lucide-react";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { getCatalogCategoryGallery, resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
-import { JsonLd, breadcrumbJsonLd, compactJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
+import {
+  JsonLd,
+  aggregateRatingJsonLd,
+  breadcrumbJsonLd,
+  compactJsonLd,
+  offerJsonLd,
+  productReviewsJsonLd,
+  siteUrl,
+} from "@/lib/schema-org";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
 import { isPublicContentSlug } from "@/lib/public-content";
@@ -427,6 +435,10 @@ export default async function CatalogItemPage({ params }: Props) {
 
   if (!data) notFound();
 
+  const reviews = await prisma.review
+    .findMany({ where: { status: "PUBLISHED" }, take: 5, orderBy: { createdAt: "desc" } })
+    .catch(() => []);
+
   const seo = STATIC_CATEGORIES[slug]?.seo;
   const designProjectAnchor = DESIGN_PROJECT_LINKS[slug];
   const heroImage = resolveCatalogCategoryImage({
@@ -455,6 +467,8 @@ export default async function CatalogItemPage({ params }: Props) {
     category: "Кухни на заказ",
     brand: { "@type": "Brand", name: "КухниBY" },
     offers: offerJsonLd(data.priceFrom, `/catalog/${slug}`),
+    aggregateRating: aggregateRatingJsonLd(reviews),
+    review: productReviewsJsonLd(reviews),
   });
 
   const jsonLdFaq = seo

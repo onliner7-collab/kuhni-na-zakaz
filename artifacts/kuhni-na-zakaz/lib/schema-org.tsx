@@ -115,6 +115,52 @@ export function faqJsonLd(items: Array<{ question: string; answer: string }>): J
   };
 }
 
+type ProductReviewInput = {
+  name: string;
+  rating: number;
+  text: string;
+  createdAt?: Date;
+  date?: string;
+};
+
+export function aggregateRatingJsonLd(reviews: ProductReviewInput[]): JsonLdObject | undefined {
+  if (reviews.length === 0) return undefined;
+
+  const ratingValue = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length;
+
+  return {
+    "@type": "AggregateRating",
+    ratingValue: Number(ratingValue.toFixed(1)),
+    reviewCount: reviews.length,
+    bestRating: 5,
+    worstRating: 1,
+  };
+}
+
+export function productReviewsJsonLd(reviews: ProductReviewInput[]): JsonLdObject[] | undefined {
+  const items = reviews
+    .filter((review) => review.name.trim() && review.text.trim() && review.rating > 0)
+    .slice(0, 5)
+    .map((review) =>
+      compactJsonLd({
+        "@type": "Review",
+        author: { "@type": "Person", name: review.name },
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: review.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        reviewBody: review.text,
+        datePublished: review.createdAt
+          ? review.createdAt.toISOString().split("T")[0]
+          : review.date || undefined,
+      }),
+    );
+
+  return items.length > 0 ? items : undefined;
+}
+
 export function offerJsonLd(priceFrom: number | null | undefined, url: string): JsonLdObject | undefined {
   if (!priceFrom || priceFrom <= 0) return undefined;
 
@@ -124,5 +170,37 @@ export function offerJsonLd(priceFrom: number | null | undefined, url: string): 
     priceCurrency: "BYN",
     price: priceFrom,
     availability: "https://schema.org/InStock",
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingDestination: {
+        "@type": "DefinedRegion",
+        addressCountry: "BY",
+      },
+      shippingRate: {
+        "@type": "MonetaryAmount",
+        value: 50,
+        currency: "BYN",
+      },
+      deliveryTime: {
+        "@type": "ShippingDeliveryTime",
+        handlingTime: {
+          "@type": "QuantitativeValue",
+          minValue: 14,
+          maxValue: 45,
+          unitCode: "DAY",
+        },
+        transitTime: {
+          "@type": "QuantitativeValue",
+          minValue: 1,
+          maxValue: 7,
+          unitCode: "DAY",
+        },
+      },
+    },
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy",
+      applicableCountry: "BY",
+      returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+    },
   };
 }

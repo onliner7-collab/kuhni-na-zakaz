@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { HomeKitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
-import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd } from "@/lib/schema-org";
+import { JsonLd, aggregateRatingJsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, productReviewsJsonLd } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
@@ -203,19 +203,15 @@ export default async function HomePage() {
           "@context": "https://schema.org",
           "@type": "Product",
           name: "Кухонные гарнитуры под размеры",
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: Number(avgRating),
-            reviewCount: reviews.length,
-            bestRating: 5,
-            worstRating: 1,
-          },
+          aggregateRating: aggregateRatingJsonLd(reviews),
+          review: productReviewsJsonLd(reviews),
         }
       : null;
   const jsonLdItems = [
     websiteJsonLd,
     localBusinessJsonLd,
     jsonLdBreadcrumb,
+    ...(jsonLdProduct ? [jsonLdProduct] : []),
   ];
 
   const FALLBACK_SCENARIOS = [
