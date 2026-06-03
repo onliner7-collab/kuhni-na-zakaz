@@ -14,301 +14,301 @@ export const furnituraGalleryRegistry: FurnituraGalleryItem[] = [
     "type": "hero"
   },
   {
-    "file": "furniture-hinges-overlay-hinge-product-01.webp",
+    "file": "furniture-hinges-overlay-hinge-product-01-base-refresh.webp",
     "title": "Накладная петля",
     "alt": "Накладная петля для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-hinges-overlay-hinge-closeup-02.webp",
+    "file": "furniture-hinges-overlay-hinge-closeup-02-base-refresh.webp",
     "title": "Накладная петля",
     "alt": "Накладная петля для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-hinges-overlay-hinge-installed-03.webp",
+    "file": "furniture-hinges-overlay-hinge-installed-03-base-refresh.webp",
     "title": "Накладная петля",
     "alt": "Накладная петля для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-hinges-overlay-hinge-in-use-04.webp",
+    "file": "furniture-hinges-overlay-hinge-in-use-04-base-refresh.webp",
     "title": "Накладная петля",
     "alt": "Накладная петля для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-hinges-overlay-hinge-kitchen-context-05.webp",
+    "file": "furniture-hinges-overlay-hinge-kitchen-context-05-base-refresh.webp",
     "title": "Накладная петля",
     "alt": "Накладная петля для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-hinges-soft-close-hinge-product-01.webp",
+    "file": "furniture-hinges-soft-close-hinge-product-01-base-refresh.webp",
     "title": "Петля с доводчиком",
     "alt": "Петля с доводчиком для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-hinges-soft-close-hinge-closeup-02.webp",
+    "file": "furniture-hinges-soft-close-hinge-closeup-02-base-refresh.webp",
     "title": "Петля с доводчиком",
     "alt": "Петля с доводчиком для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-hinges-soft-close-hinge-installed-03.webp",
+    "file": "furniture-hinges-soft-close-hinge-installed-03-base-refresh.webp",
     "title": "Петля с доводчиком",
     "alt": "Петля с доводчиком для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-hinges-soft-close-hinge-in-use-04.webp",
+    "file": "furniture-hinges-soft-close-hinge-in-use-04-base-refresh.webp",
     "title": "Петля с доводчиком",
     "alt": "Петля с доводчиком для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-hinges-soft-close-hinge-kitchen-context-05.webp",
+    "file": "furniture-hinges-soft-close-hinge-kitchen-context-05-base-refresh.webp",
     "title": "Петля с доводчиком",
     "alt": "Петля с доводчиком для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-drawer-runners-concealed-runner-product-01.webp",
+    "file": "furniture-drawer-runners-concealed-runner-product-01-base-refresh.webp",
     "title": "Скрытые направляющие",
     "alt": "Скрытые направляющие для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-drawer-runners-concealed-runner-closeup-02.webp",
+    "file": "furniture-drawer-runners-concealed-runner-closeup-02-base-refresh.webp",
     "title": "Скрытые направляющие",
     "alt": "Скрытые направляющие для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-drawer-runners-concealed-runner-installed-03.webp",
+    "file": "furniture-drawer-runners-concealed-runner-installed-03-base-refresh.webp",
     "title": "Скрытые направляющие",
     "alt": "Скрытые направляющие для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-drawer-runners-concealed-runner-in-use-04.webp",
+    "file": "furniture-drawer-runners-concealed-runner-in-use-04-base-refresh.webp",
     "title": "Скрытые направляющие",
     "alt": "Скрытые направляющие для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-drawer-runners-concealed-runner-kitchen-context-05.webp",
+    "file": "furniture-drawer-runners-concealed-runner-kitchen-context-05-base-refresh.webp",
     "title": "Скрытые направляющие",
     "alt": "Скрытые направляющие для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-drawer-runners-soft-close-runner-product-01.webp",
+    "file": "furniture-drawer-runners-soft-close-runner-product-01-base-refresh.webp",
     "title": "Направляющие с доводчиком",
     "alt": "Направляющие с доводчиком для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-drawer-runners-soft-close-runner-closeup-02.webp",
+    "file": "furniture-drawer-runners-soft-close-runner-closeup-02-base-refresh.webp",
     "title": "Направляющие с доводчиком",
     "alt": "Направляющие с доводчиком для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-drawer-runners-soft-close-runner-installed-03.webp",
+    "file": "furniture-drawer-runners-soft-close-runner-installed-03-base-refresh.webp",
     "title": "Направляющие с доводчиком",
     "alt": "Направляющие с доводчиком для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-drawer-runners-soft-close-runner-in-use-04.webp",
+    "file": "furniture-drawer-runners-soft-close-runner-in-use-04-base-refresh.webp",
     "title": "Направляющие с доводчиком",
     "alt": "Направляющие с доводчиком для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-drawer-runners-soft-close-runner-kitchen-context-05.webp",
+    "file": "furniture-drawer-runners-soft-close-runner-kitchen-context-05-base-refresh.webp",
     "title": "Направляющие с доводчиком",
     "alt": "Направляющие с доводчиком для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-drawer-sides-metal-drawer-side-product-01.webp",
+    "file": "furniture-drawer-sides-metal-drawer-side-product-01-base-refresh.webp",
     "title": "Металлические боковины ящиков",
     "alt": "Металлические боковины ящиков для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-drawer-sides-metal-drawer-side-closeup-02.webp",
+    "file": "furniture-drawer-sides-metal-drawer-side-closeup-02-base-refresh.webp",
     "title": "Металлические боковины ящиков",
     "alt": "Металлические боковины ящиков для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-drawer-sides-metal-drawer-side-installed-03.webp",
+    "file": "furniture-drawer-sides-metal-drawer-side-installed-03-base-refresh.webp",
     "title": "Металлические боковины ящиков",
     "alt": "Металлические боковины ящиков для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-drawer-sides-metal-drawer-side-in-use-04.webp",
+    "file": "furniture-drawer-sides-metal-drawer-side-in-use-04-base-refresh.webp",
     "title": "Металлические боковины ящиков",
     "alt": "Металлические боковины ящиков для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-drawer-sides-metal-drawer-side-kitchen-context-05.webp",
+    "file": "furniture-drawer-sides-metal-drawer-side-kitchen-context-05-base-refresh.webp",
     "title": "Металлические боковины ящиков",
     "alt": "Металлические боковины ящиков для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-lift-systems-upper-cabinet-lift-product-01.webp",
+    "file": "furniture-lift-systems-upper-cabinet-lift-product-01-base-refresh.webp",
     "title": "Подъемный механизм для верхнего шкафа",
     "alt": "Подъемный механизм для верхнего шкафа для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-lift-systems-upper-cabinet-lift-closeup-02.webp",
+    "file": "furniture-lift-systems-upper-cabinet-lift-closeup-02-base-refresh.webp",
     "title": "Подъемный механизм для верхнего шкафа",
     "alt": "Подъемный механизм для верхнего шкафа для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-lift-systems-upper-cabinet-lift-installed-03.webp",
+    "file": "furniture-lift-systems-upper-cabinet-lift-installed-03-base-refresh.webp",
     "title": "Подъемный механизм для верхнего шкафа",
     "alt": "Подъемный механизм для верхнего шкафа для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-lift-systems-upper-cabinet-lift-in-use-04.webp",
+    "file": "furniture-lift-systems-upper-cabinet-lift-in-use-04-base-refresh.webp",
     "title": "Подъемный механизм для верхнего шкафа",
     "alt": "Подъемный механизм для верхнего шкафа для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-lift-systems-upper-cabinet-lift-kitchen-context-05.webp",
+    "file": "furniture-lift-systems-upper-cabinet-lift-kitchen-context-05-base-refresh.webp",
     "title": "Подъемный механизм для верхнего шкафа",
     "alt": "Подъемный механизм для верхнего шкафа для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-profiles-gola-profile-product-01.webp",
+    "file": "furniture-profiles-gola-profile-product-01-base-refresh.webp",
     "title": "Gola-профиль",
     "alt": "Gola-профиль для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-profiles-gola-profile-closeup-02.webp",
+    "file": "furniture-profiles-gola-profile-closeup-02-base-refresh.webp",
     "title": "Gola-профиль",
     "alt": "Gola-профиль для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-profiles-gola-profile-installed-03.webp",
+    "file": "furniture-profiles-gola-profile-installed-03-base-refresh.webp",
     "title": "Gola-профиль",
     "alt": "Gola-профиль для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-profiles-gola-profile-in-use-04.webp",
+    "file": "furniture-profiles-gola-profile-in-use-04-base-refresh.webp",
     "title": "Gola-профиль",
     "alt": "Gola-профиль для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-profiles-gola-profile-kitchen-context-05.webp",
+    "file": "furniture-profiles-gola-profile-kitchen-context-05-base-refresh.webp",
     "title": "Gola-профиль",
     "alt": "Gola-профиль для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-handles-bar-handle-product-01.webp",
+    "file": "furniture-handles-bar-handle-product-01-base-refresh.webp",
     "title": "Ручка-скоба",
     "alt": "Ручка-скоба для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-handles-bar-handle-closeup-02.webp",
+    "file": "furniture-handles-bar-handle-closeup-02-base-refresh.webp",
     "title": "Ручка-скоба",
     "alt": "Ручка-скоба для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-handles-bar-handle-installed-03.webp",
+    "file": "furniture-handles-bar-handle-installed-03-base-refresh.webp",
     "title": "Ручка-скоба",
     "alt": "Ручка-скоба для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-handles-bar-handle-in-use-04.webp",
+    "file": "furniture-handles-bar-handle-in-use-04-base-refresh.webp",
     "title": "Ручка-скоба",
     "alt": "Ручка-скоба для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-handles-bar-handle-kitchen-context-05.webp",
+    "file": "furniture-handles-bar-handle-kitchen-context-05-base-refresh.webp",
     "title": "Ручка-скоба",
     "alt": "Ручка-скоба для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-storage-dish-drying-rack-product-01.webp",
+    "file": "furniture-storage-dish-drying-rack-product-01-base-refresh.webp",
     "title": "Сушка для посуды",
     "alt": "Сушка для посуды для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-storage-dish-drying-rack-closeup-02.webp",
+    "file": "furniture-storage-dish-drying-rack-closeup-02-base-refresh.webp",
     "title": "Сушка для посуды",
     "alt": "Сушка для посуды для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-storage-dish-drying-rack-installed-03.webp",
+    "file": "furniture-storage-dish-drying-rack-installed-03-base-refresh.webp",
     "title": "Сушка для посуды",
     "alt": "Сушка для посуды для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-storage-dish-drying-rack-in-use-04.webp",
+    "file": "furniture-storage-dish-drying-rack-in-use-04-base-refresh.webp",
     "title": "Сушка для посуды",
     "alt": "Сушка для посуды для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-storage-dish-drying-rack-kitchen-context-05.webp",
+    "file": "furniture-storage-dish-drying-rack-kitchen-context-05-base-refresh.webp",
     "title": "Сушка для посуды",
     "alt": "Сушка для посуды для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
   },
   {
-    "file": "furniture-organizers-cutlery-tray-product-01.webp",
+    "file": "furniture-organizers-cutlery-tray-product-01-base-refresh.webp",
     "title": "Лоток для столовых приборов",
     "alt": "Лоток для столовых приборов для кухни на заказ — общий вид фурнитуры отдельно",
     "type": "product"
   },
   {
-    "file": "furniture-organizers-cutlery-tray-closeup-02.webp",
+    "file": "furniture-organizers-cutlery-tray-closeup-02-base-refresh.webp",
     "title": "Лоток для столовых приборов",
     "alt": "Лоток для столовых приборов для кухни на заказ — крупный план механизма и креплений",
     "type": "closeup"
   },
   {
-    "file": "furniture-organizers-cutlery-tray-installed-03.webp",
+    "file": "furniture-organizers-cutlery-tray-installed-03-base-refresh.webp",
     "title": "Лоток для столовых приборов",
     "alt": "Лоток для столовых приборов для кухни на заказ — установка в кухонном модуле",
     "type": "installed"
   },
   {
-    "file": "furniture-organizers-cutlery-tray-in-use-04.webp",
+    "file": "furniture-organizers-cutlery-tray-in-use-04-base-refresh.webp",
     "title": "Лоток для столовых приборов",
     "alt": "Лоток для столовых приборов для кухни на заказ — механизм в открытом положении",
     "type": "in-use"
   },
   {
-    "file": "furniture-organizers-cutlery-tray-kitchen-context-05.webp",
+    "file": "furniture-organizers-cutlery-tray-kitchen-context-05-base-refresh.webp",
     "title": "Лоток для столовых приборов",
     "alt": "Лоток для столовых приборов для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context"
