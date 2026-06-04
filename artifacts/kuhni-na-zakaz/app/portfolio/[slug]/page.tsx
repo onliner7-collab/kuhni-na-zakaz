@@ -182,9 +182,16 @@ function formatProjectPrice(project: PortfolioProject) {
   return project.price || project.priceNote;
 }
 
+function projectNumberFromSlug(slug: string) {
+  const match = slug.match(/-(\d{2,})$/);
+  return match?.[1] ? `проект №${match[1]}` : slug;
+}
+
 function buildMetaDescription(project: PortfolioProject) {
+  const projectMarker = projectNumberFromSlug(project.slug);
   const details = [
     project.shortTitle || project.title,
+    projectMarker,
     project.city,
     project.district,
     project.kitchenType,
@@ -200,8 +207,10 @@ function buildMetaDescription(project: PortfolioProject) {
 }
 
 function buildPortfolioMetaTitle(project: PortfolioProject) {
+  const projectMarker = projectNumberFromSlug(project.slug);
   const parts = [
     project.shortTitle || project.title,
+    projectMarker,
     project.city,
     project.kitchenType,
   ].filter(Boolean);
@@ -209,7 +218,10 @@ function buildPortfolioMetaTitle(project: PortfolioProject) {
 
   if (title.length <= 65) return title;
 
-  return `${project.shortTitle || project.title} | ${SITE_NAME}`;
+  const compactTitle = `${project.shortTitle || project.title} — ${projectMarker} | ${SITE_NAME}`;
+  if (compactTitle.length <= 65) return compactTitle;
+
+  return `${projectMarker}: ${project.shortTitle || project.title} | ${SITE_NAME}`;
 }
 
 function isGenericPortfolioDescription(description: string | null | undefined) {
