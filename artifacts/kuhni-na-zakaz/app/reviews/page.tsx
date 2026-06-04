@@ -8,7 +8,7 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-o
 
 export const metadata: Metadata = {
   title: "Отзывы клиентов о кухнях",
-  description: "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Все отзывы проходят модерацию перед появлением на сайте.",
+  description: "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Новые отзывы публикуются автоматически и управляются через админ-панель.",
   alternates: { canonical: "/reviews" },
 };
 
@@ -116,7 +116,7 @@ export default async function ReviewsPage() {
             </div>
           </div>
           <p className="text-muted-foreground mb-10 max-w-2xl">
-            Все отзывы проходят модерацию перед появлением на сайте — без накруток и анонимных публикаций.
+            Отзывы клиентов публикуются автоматически. Администратор может снять отзыв с публикации или удалить его из выдачи сайта.
           </p>
 
           {featured.length > 0 && (
@@ -213,7 +213,7 @@ export default async function ReviewsPage() {
           <div className="max-w-2xl mx-auto">
             <h2 className="font-serif text-3xl font-bold text-center mb-2">Оставить отзыв</h2>
             <p className="text-center text-muted-foreground mb-8">
-              Ваш отзыв будет опубликован после проверки модератором — обычно в течение 24 часов.
+              Ваш отзыв появится на сайте автоматически. Телефон не публикуется и нужен только для связи при уточнениях.
             </p>
             <ReviewForm />
           </div>

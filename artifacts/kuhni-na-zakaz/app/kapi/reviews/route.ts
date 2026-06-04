@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
 
@@ -38,9 +39,18 @@ export async function POST(req: NextRequest) {
         text: data.text,
         caseSlug: data.caseSlug || "",
         source: data.source || "website",
-        status: "NEW",
+        status: "PUBLISHED",
+        moderatedAt: new Date(),
       },
     });
+
+    revalidatePath("/");
+    revalidatePath("/reviews");
+    revalidatePath("/catalog/[slug]", "page");
+    revalidatePath("/locations/[city]", "page");
+    if (review.caseSlug) {
+      revalidatePath(`/portfolio/${review.caseSlug}`);
+    }
 
     return NextResponse.json({ ok: true, id: review.id });
   } catch (err) {

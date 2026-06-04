@@ -100,7 +100,7 @@ function ReviewCard({
         const msgs: Record<string, string> = {
           publish: "Отзыв опубликован",
           reject: "Отзыв отклонён",
-          delete: "Отзыв удалён",
+          delete: "Отзыв удалён с сайта",
           pending: "Отзыв отправлен на проверку",
         };
         toast.success(msgs[action] || "Готово");
@@ -332,7 +332,7 @@ function ReviewCard({
                 disabled={loading}
                 className="gap-1.5 text-red-600 border-red-300 hover:bg-red-50"
               >
-                <Trash2 className="w-3.5 h-3.5" /> Снять с публикации
+                <Trash2 className="w-3.5 h-3.5" /> Удалить с сайта
               </Button>
             )}
             {(review.status === "REJECTED" || review.status === "DELETED") && (

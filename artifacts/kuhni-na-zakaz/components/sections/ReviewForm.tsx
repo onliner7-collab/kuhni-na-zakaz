@@ -46,7 +46,7 @@ export function ReviewForm() {
       });
       if (res.ok) {
         setSent(true);
-        toast.success("Отзыв отправлен на проверку!");
+        toast.success("Отзыв опубликован!");
       } else {
         toast.error("Ошибка отправки. Попробуйте ещё раз.");
       }
@@ -62,7 +62,7 @@ export function ReviewForm() {
       <div className="text-center py-12 card-base px-8">
         <div className="text-4xl mb-4">✓</div>
         <h3 className="font-serif text-2xl font-semibold mb-2">Спасибо за отзыв!</h3>
-        <p className="text-muted-foreground">Отзыв будет опубликован после проверки модератором.</p>
+        <p className="text-muted-foreground">Отзыв опубликован и скоро появится на странице.</p>
       </div>
     );
   }

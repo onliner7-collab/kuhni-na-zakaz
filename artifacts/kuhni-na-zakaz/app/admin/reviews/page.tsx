@@ -67,17 +67,17 @@ export default async function AdminReviewsPage() {
           <span className="text-2xl">⚠️</span>
           <div>
             <p className="text-yellow-900 font-semibold">{totalPending} {totalPending === 1 ? "отзыв ждёт" : totalPending < 5 ? "отзыва ждут" : "отзывов ждут"} проверки</p>
-            <p className="text-yellow-700 text-sm">Новые отзывы не публикуются автоматически. Пройдите модерацию.</p>
+            <p className="text-yellow-700 text-sm">Эти отзывы были переведены в ручную проверку. Новые отзывы с сайта публикуются автоматически.</p>
           </div>
         </div>
       )}
 
       <div className="mb-6 p-4 bg-muted/30 rounded-xl text-sm text-muted-foreground">
         <strong className="text-foreground">Статусы:</strong>{" "}
-        <span className="text-yellow-600 font-medium">Новые</span> — только что поступили, ещё не рассмотрены.{" "}
+        <span className="text-yellow-600 font-medium">Новые</span> — отзывы, вручную отправленные на разбор.{" "}
         <span className="text-blue-600 font-medium">На проверке</span> — взяты в работу, но решение не принято.{" "}
         <span className="text-green-600 font-medium">Опубликовано</span> — видны посетителям сайта.{" "}
-        <span className="text-red-600 font-medium">Отклонено</span> — не прошли модерацию.
+        <span className="text-red-600 font-medium">Отклонено</span> — скрыты с публичных страниц.
       </div>
 
       <ReviewModerationList

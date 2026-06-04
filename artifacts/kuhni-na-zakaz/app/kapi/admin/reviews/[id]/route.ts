@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { z } from "zod";
@@ -19,6 +20,16 @@ const editSchema = z.object({
 });
 
 interface Params { params: Promise<{ id: string }> }
+
+function revalidateReviewPages(caseSlug?: string) {
+  revalidatePath("/");
+  revalidatePath("/reviews");
+  revalidatePath("/catalog/[slug]", "page");
+  revalidatePath("/locations/[city]", "page");
+  if (caseSlug) {
+    revalidatePath(`/portfolio/${caseSlug}`);
+  }
+}
 
 export async function GET(_req: NextRequest, { params }: Params) {
   const session = await getSession();
@@ -62,6 +73,8 @@ export async function PATCH(req: NextRequest, { params }: Params) {
 
     if (!review) return NextResponse.json({ error: "Отзыв не найден" }, { status: 404 });
 
+    revalidateReviewPages(review.caseSlug);
+
     await prisma.activityLog.create({
       data: {
         userId: session.userId || undefined,
@@ -85,5 +98,6 @@ export async function PATCH(req: NextRequest, { params }: Params) {
   }).catch(() => null);
 
   if (!review) return NextResponse.json({ error: "Отзыв не найден" }, { status: 404 });
+  revalidateReviewPages(review.caseSlug);
   return NextResponse.json({ ok: true, review });
 }
