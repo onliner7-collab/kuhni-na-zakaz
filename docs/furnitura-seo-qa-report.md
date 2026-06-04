@@ -115,3 +115,58 @@ Production QA после deploy:
 - Yandex Webmaster API: sitemap `https://kuhni.minsk.by/sitemap.xml` уже есть в списке sitemap, sitemap_id `39bff829-022b-3e39-884a-527f04d4eb5c`, last_access_date `2026-06-01T21:06:55.000+03:00`, errors_count `0`.
 
 Нельзя писать, что страница гарантированно проиндексирована или будет переиндексирована: зафиксированы только доступность страницы, наличие URL в Google по данным GSC, отправка URL в очередь переобхода Яндекса и доступность sitemap.
+
+---
+
+## Этап 11: полный SEO QA
+
+Дата обновления: 2026-06-04
+
+Локальная проверка выполнена на `http://127.0.0.1:3042/materials/furnitura` после production build.
+
+### SEO и indexability
+
+- Title: `Фурнитура для кухни на заказ в Минске | Петли, направляющие, доводчики | КухниBY`.
+- Description: есть, 182 символа.
+- H1: 1, `Фурнитура для кухни на заказ`.
+- H2/H3: 36 заголовков, структура логичная для гайда и галереи.
+- Canonical: `https://kuhni.minsk.by/materials/furnitura`.
+- Robots meta: `index, follow`.
+- Open Graph title: `Фурнитура для кухни на заказ`.
+- `noindex`: не найден.
+- JSON-LD: `BreadcrumbList`, `WebPage`, `Article`, 12 `ImageObject`, `FAQPage`.
+- `Product`, fake reviews и rating не добавлялись.
+- Изображения: 201, пустые alt — 0, дублирующиеся alt — 0.
+- Внутренние ссылки: проверено 58, 404/500 не найдено.
+
+### Responsive SEO QA
+
+На ширинах 360, 390, 430, 768, 1024 и 1440 px подтверждены:
+
+- один H1;
+- canonical без изменений;
+- `index, follow`;
+- отсутствие горизонтального overflow;
+- наличие 200 кнопок галереи;
+- отсутствие пустых и повторяющихся alt.
+
+### Production SEO QA
+
+Проверка `https://kuhni.minsk.by/materials/furnitura?codex_stage12=20260604`:
+
+- HTTP 200.
+- Canonical: `https://kuhni.minsk.by/materials/furnitura`.
+- Robots meta: `index, follow`.
+- H1: 1.
+- JSON-LD: `BreadcrumbList`, `WebPage`, `Article`, 12 `ImageObject`, `FAQPage`.
+- Изображения: 201; пустые alt — 0; дублирующиеся alt — 0.
+- `https://kuhni.minsk.by/materials` — HTTP 200.
+- `https://kuhni.minsk.by/sitemap.xml` — HTTP 200, содержит `https://kuhni.minsk.by/materials/furnitura`.
+- `https://kuhni.minsk.by/robots.txt` — HTTP 200, содержит `Sitemap: https://kuhni.minsk.by/sitemap.xml`, блокировки `/materials/furnitura` не найдено.
+
+### Команды
+
+- `pnpm --filter @workspace/kuhni-na-zakaz typecheck` — успешно.
+- `pnpm --filter @workspace/kuhni-na-zakaz sitemap:check` — успешно, 75 URL; есть ожидаемые Prisma-предупреждения из-за недоступной локальной БД `127.0.0.1:5434`.
+- `pnpm --filter @workspace/kuhni-na-zakaz build` — успешно; во время build есть ожидаемые Prisma-предупреждения из-за недоступной локальной БД, сборка завершилась без ошибки.
+- Отдельной команды `lint` в `artifacts/kuhni-na-zakaz/package.json` нет; lint-стадия Next была выполнена внутри `next build`.

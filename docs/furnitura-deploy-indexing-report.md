@@ -230,3 +230,48 @@
   - errors_count: `0`.
 
 Нельзя писать, что страница гарантированно будет переиндексирована: URL поставлен в очередь Яндекса, Google UI показал текущую индексацию страницы, sitemap доступен и присутствует в панелях.
+
+---
+
+## Этап 12: финальная production-проверка и индексация
+
+Дата обновления: 2026-06-04
+
+### Git / deploy
+
+- Текущая ветка: `work`.
+- Последний production-коммит на ветке: `a791a8b Allow Next ISR cache writes under systemd hardening`.
+- Новых проблем после этапа 11 не найдено, поэтому новый code commit и deploy для `/materials/furnitura` не требовались.
+- Ранее выполненный deploy этапов 8-10 остается актуальным: production-страница отдает свежую версию с `Article`, `FAQPage` и `ImageObject`.
+
+### Production endpoints
+
+- `https://kuhni.minsk.by/materials/furnitura` — HTTP 200.
+- `https://kuhni.minsk.by/materials` — HTTP 200.
+- `https://kuhni.minsk.by/sitemap.xml` — HTTP 200.
+- `https://kuhni.minsk.by/robots.txt` — HTTP 200.
+
+### Production Browser QA
+
+Проверка `https://kuhni.minsk.by/materials/furnitura?codex_stage12=20260604`:
+
+- Desktop 1440 px: H1 — 1, canonical `https://kuhni.minsk.by/materials/furnitura`, robots `index, follow`, 201 изображение, 200 кнопок галереи, пустые alt — 0, дублирующиеся alt — 0, горизонтального overflow нет.
+- Mobile 390 px: H1 — 1, canonical корректный, robots `index, follow`, 201 изображение, 200 кнопок галереи, пустые alt — 0, дублирующиеся alt — 0, горизонтального overflow нет.
+- Lightbox: открывается, фокус попадает на `Закрыть галерею`, ArrowRight листает, Esc закрывает.
+- Console errors: 0.
+
+### Sitemap и robots
+
+- Production sitemap содержит `https://kuhni.minsk.by/materials/furnitura`.
+- Production robots.txt содержит `Sitemap: https://kuhni.minsk.by/sitemap.xml`.
+- Блокировки `/materials/furnitura` в robots.txt не найдено.
+
+### Индексация / переобход
+
+- Google Search Console UI: в предыдущем этапе 8-10 уже была выполнена проверка URL `https://kuhni.minsk.by/materials/furnitura`; UI показывал наличие URL в индексе Google, была нажата кнопка повторного запроса индексирования.
+- Google OAuth API: повторная попытка обновить сохраненный OAuth-токен 2026-06-04 вернула HTTP 400, поэтому повторная API-отправка sitemap через этот токен не выполнена.
+- Google service account `seo-agent@kuhni-minsk-seo-monitoring.iam.gserviceaccount.com`: access token получен, но Search Console API вернул пустой список sites; у service account нет доступа к property, поэтому отправка sitemap через него не выполнена.
+- Yandex Webmaster API: URL `https://kuhni.minsk.by/materials/furnitura` повторно отправлен в очередь переобхода, task_id `8c2a1a00-6022-11f1-82f9-89e3d690e82d`, состояние в очереди `IN_PROGRESS`, added_time `2026-06-04T17:34:52.192+03:00`, quota_remainder `127`.
+- Yandex Webmaster API: sitemap `https://kuhni.minsk.by/sitemap.xml` уже добавлен, sitemap_id `39bff829-022b-3e39-884a-527f04d4eb5c`.
+
+Нельзя писать, что Google или Yandex гарантированно переиндексировали страницу: зафиксированы только факты доступности production, наличие sitemap, предыдущая отправка в GSC UI и свежая постановка URL в очередь Яндекс.Вебмастера.
