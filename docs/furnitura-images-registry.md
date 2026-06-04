@@ -2,11 +2,11 @@
 
 Дата обновления: 2026-06-03
 
-## Статус этапов 3-6
+## Статус этапов 3-7
 
-Добавлены базовая партия, партия продвинутой фурнитуры и партия угловых, специальных систем и фурнитуры для техники. Всего в проекте сохранено 151 изображение: 1 hero и 150 изображений галереи. Итоговая папка: `artifacts/kuhni-na-zakaz/public/images/materials-gallery-v2/furnitura`.
+Добавлены базовая партия, партия продвинутой фурнитуры, партия угловых/специальных систем и финальная партия деталей, электрики, подсветки и защиты. Всего в проекте сохранено 201 изображение: 1 hero и 200 изображений галереи. Итоговая папка: `artifacts/kuhni-na-zakaz/public/images/materials-gallery-v2/furnitura`.
 
-Важно: изображения используются как демонстрационные, не выдаются за реальные выполненные проекты и сопровождаются дисклеймером на странице. Для этапов 5-6 создано 100 новых AI-generated изображений через встроенный `image_gen`: по 5 отдельных кадров для каждой из 20 позиций. Provider `imgx/openai` был недоступен из-за ошибки `Billing hard limit has been reached`, поэтому генерация выполнена встроенным инструментом; PNG-исходники сохранены в рабочем окружении в `.tmp/generated-furnitura-stage56`, итоговые файлы сконвертированы в WebP и сохранены в проектной папке.
+Важно: изображения используются как демонстрационные, не выдаются за реальные выполненные проекты и сопровождаются дисклеймером на странице. Для этапа 7 внешний provider `imgx/openai` был недоступен из-за ошибки `Billing hard limit has been reached`; 50 отдельных кадров созданы встроенным `image_gen`, 1 неудачный split-screen кадр отбракован и не подключен. Исходники остались в `C:/Users/User/.codex/generated_images/019e8ece-1343-7721-9269-e361c6cdba5c`, проектные PNG-копии сохранены в `.tmp/generated-furnitura-stage7/final-sources`, итоговые 50 WebP-файлов сохранены в проектной папке.
 
 ## Проверка формата
 
@@ -17,61 +17,69 @@
 - Видимого текста, логотипов, водяных знаков, людей и документов в итоговых кадрах не добавлялось намеренно.
 - Все alt-тексты на русском языке и уникальны.
 
+## Количество по партиям
+
+- Hero: 1
+- Базовая фурнитура: 50
+- Продвинутая фурнитура: 50
+- Угловые, специальные системы и фурнитура для техники: 50
+- Детали, электрика, подсветка и защита: 50
+
 ## Реестр
 
 | # | Файл | Позиция | Партия | Тип | Alt |
 |---:|---|---|---|---|---|
-| 1 | `furniture-furnitura-hero-01.webp` | Фурнитура для кухни на заказ | Базовая фурнитура | hero | Фурнитура для кухни на заказ в открытом ящике с направляющими и органайзером |
-| 2 | `furniture-hinges-overlay-hinge-product-01.webp` | Накладная петля | Базовая фурнитура | product | Накладная петля для кухни на заказ — общий вид фурнитуры отдельно |
-| 3 | `furniture-hinges-overlay-hinge-closeup-02.webp` | Накладная петля | Базовая фурнитура | closeup | Накладная петля для кухни на заказ — крупный план механизма и креплений |
-| 4 | `furniture-hinges-overlay-hinge-installed-03.webp` | Накладная петля | Базовая фурнитура | installed | Накладная петля для кухни на заказ — установка в кухонном модуле |
-| 5 | `furniture-hinges-overlay-hinge-in-use-04.webp` | Накладная петля | Базовая фурнитура | in-use | Накладная петля для кухни на заказ — механизм в открытом положении |
-| 6 | `furniture-hinges-overlay-hinge-kitchen-context-05.webp` | Накладная петля | Базовая фурнитура | kitchen-context | Накладная петля для кухни на заказ — применение в готовой кухне |
-| 7 | `furniture-hinges-soft-close-hinge-product-01.webp` | Петля с доводчиком | Базовая фурнитура | product | Петля с доводчиком для кухни на заказ — общий вид фурнитуры отдельно |
-| 8 | `furniture-hinges-soft-close-hinge-closeup-02.webp` | Петля с доводчиком | Базовая фурнитура | closeup | Петля с доводчиком для кухни на заказ — крупный план механизма и креплений |
-| 9 | `furniture-hinges-soft-close-hinge-installed-03.webp` | Петля с доводчиком | Базовая фурнитура | installed | Петля с доводчиком для кухни на заказ — установка в кухонном модуле |
-| 10 | `furniture-hinges-soft-close-hinge-in-use-04.webp` | Петля с доводчиком | Базовая фурнитура | in-use | Петля с доводчиком для кухни на заказ — механизм в открытом положении |
-| 11 | `furniture-hinges-soft-close-hinge-kitchen-context-05.webp` | Петля с доводчиком | Базовая фурнитура | kitchen-context | Петля с доводчиком для кухни на заказ — применение в готовой кухне |
-| 12 | `furniture-drawer-runners-concealed-runner-product-01.webp` | Скрытые направляющие | Базовая фурнитура | product | Скрытые направляющие для кухни на заказ — общий вид фурнитуры отдельно |
-| 13 | `furniture-drawer-runners-concealed-runner-closeup-02.webp` | Скрытые направляющие | Базовая фурнитура | closeup | Скрытые направляющие для кухни на заказ — крупный план механизма и креплений |
-| 14 | `furniture-drawer-runners-concealed-runner-installed-03.webp` | Скрытые направляющие | Базовая фурнитура | installed | Скрытые направляющие для кухни на заказ — установка в кухонном модуле |
-| 15 | `furniture-drawer-runners-concealed-runner-in-use-04.webp` | Скрытые направляющие | Базовая фурнитура | in-use | Скрытые направляющие для кухни на заказ — механизм в открытом положении |
-| 16 | `furniture-drawer-runners-concealed-runner-kitchen-context-05.webp` | Скрытые направляющие | Базовая фурнитура | kitchen-context | Скрытые направляющие для кухни на заказ — применение в готовой кухне |
-| 17 | `furniture-drawer-runners-soft-close-runner-product-01.webp` | Направляющие с доводчиком | Базовая фурнитура | product | Направляющие с доводчиком для кухни на заказ — общий вид фурнитуры отдельно |
-| 18 | `furniture-drawer-runners-soft-close-runner-closeup-02.webp` | Направляющие с доводчиком | Базовая фурнитура | closeup | Направляющие с доводчиком для кухни на заказ — крупный план механизма и креплений |
-| 19 | `furniture-drawer-runners-soft-close-runner-installed-03.webp` | Направляющие с доводчиком | Базовая фурнитура | installed | Направляющие с доводчиком для кухни на заказ — установка в кухонном модуле |
-| 20 | `furniture-drawer-runners-soft-close-runner-in-use-04.webp` | Направляющие с доводчиком | Базовая фурнитура | in-use | Направляющие с доводчиком для кухни на заказ — механизм в открытом положении |
-| 21 | `furniture-drawer-runners-soft-close-runner-kitchen-context-05.webp` | Направляющие с доводчиком | Базовая фурнитура | kitchen-context | Направляющие с доводчиком для кухни на заказ — применение в готовой кухне |
-| 22 | `furniture-drawer-sides-metal-drawer-side-product-01.webp` | Металлические боковины ящиков | Базовая фурнитура | product | Металлические боковины ящиков для кухни на заказ — общий вид фурнитуры отдельно |
-| 23 | `furniture-drawer-sides-metal-drawer-side-closeup-02.webp` | Металлические боковины ящиков | Базовая фурнитура | closeup | Металлические боковины ящиков для кухни на заказ — крупный план механизма и креплений |
-| 24 | `furniture-drawer-sides-metal-drawer-side-installed-03.webp` | Металлические боковины ящиков | Базовая фурнитура | installed | Металлические боковины ящиков для кухни на заказ — установка в кухонном модуле |
-| 25 | `furniture-drawer-sides-metal-drawer-side-in-use-04.webp` | Металлические боковины ящиков | Базовая фурнитура | in-use | Металлические боковины ящиков для кухни на заказ — механизм в открытом положении |
-| 26 | `furniture-drawer-sides-metal-drawer-side-kitchen-context-05.webp` | Металлические боковины ящиков | Базовая фурнитура | kitchen-context | Металлические боковины ящиков для кухни на заказ — применение в готовой кухне |
-| 27 | `furniture-lift-systems-upper-cabinet-lift-product-01.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | product | Подъемный механизм для верхнего шкафа для кухни на заказ — общий вид фурнитуры отдельно |
-| 28 | `furniture-lift-systems-upper-cabinet-lift-closeup-02.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | closeup | Подъемный механизм для верхнего шкафа для кухни на заказ — крупный план механизма и креплений |
-| 29 | `furniture-lift-systems-upper-cabinet-lift-installed-03.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | installed | Подъемный механизм для верхнего шкафа для кухни на заказ — установка в кухонном модуле |
-| 30 | `furniture-lift-systems-upper-cabinet-lift-in-use-04.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | in-use | Подъемный механизм для верхнего шкафа для кухни на заказ — механизм в открытом положении |
-| 31 | `furniture-lift-systems-upper-cabinet-lift-kitchen-context-05.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | kitchen-context | Подъемный механизм для верхнего шкафа для кухни на заказ — применение в готовой кухне |
-| 32 | `furniture-profiles-gola-profile-product-01.webp` | Gola-профиль | Базовая фурнитура | product | Gola-профиль для кухни на заказ — общий вид фурнитуры отдельно |
-| 33 | `furniture-profiles-gola-profile-closeup-02.webp` | Gola-профиль | Базовая фурнитура | closeup | Gola-профиль для кухни на заказ — крупный план механизма и креплений |
-| 34 | `furniture-profiles-gola-profile-installed-03.webp` | Gola-профиль | Базовая фурнитура | installed | Gola-профиль для кухни на заказ — установка в кухонном модуле |
-| 35 | `furniture-profiles-gola-profile-in-use-04.webp` | Gola-профиль | Базовая фурнитура | in-use | Gola-профиль для кухни на заказ — механизм в открытом положении |
-| 36 | `furniture-profiles-gola-profile-kitchen-context-05.webp` | Gola-профиль | Базовая фурнитура | kitchen-context | Gola-профиль для кухни на заказ — применение в готовой кухне |
-| 37 | `furniture-handles-bar-handle-product-01.webp` | Ручка-скоба | Базовая фурнитура | product | Ручка-скоба для кухни на заказ — общий вид фурнитуры отдельно |
-| 38 | `furniture-handles-bar-handle-closeup-02.webp` | Ручка-скоба | Базовая фурнитура | closeup | Ручка-скоба для кухни на заказ — крупный план механизма и креплений |
-| 39 | `furniture-handles-bar-handle-installed-03.webp` | Ручка-скоба | Базовая фурнитура | installed | Ручка-скоба для кухни на заказ — установка в кухонном модуле |
-| 40 | `furniture-handles-bar-handle-in-use-04.webp` | Ручка-скоба | Базовая фурнитура | in-use | Ручка-скоба для кухни на заказ — механизм в открытом положении |
-| 41 | `furniture-handles-bar-handle-kitchen-context-05.webp` | Ручка-скоба | Базовая фурнитура | kitchen-context | Ручка-скоба для кухни на заказ — применение в готовой кухне |
-| 42 | `furniture-storage-dish-drying-rack-product-01.webp` | Сушка для посуды | Базовая фурнитура | product | Сушка для посуды для кухни на заказ — общий вид фурнитуры отдельно |
-| 43 | `furniture-storage-dish-drying-rack-closeup-02.webp` | Сушка для посуды | Базовая фурнитура | closeup | Сушка для посуды для кухни на заказ — крупный план механизма и креплений |
-| 44 | `furniture-storage-dish-drying-rack-installed-03.webp` | Сушка для посуды | Базовая фурнитура | installed | Сушка для посуды для кухни на заказ — установка в кухонном модуле |
-| 45 | `furniture-storage-dish-drying-rack-in-use-04.webp` | Сушка для посуды | Базовая фурнитура | in-use | Сушка для посуды для кухни на заказ — механизм в открытом положении |
-| 46 | `furniture-storage-dish-drying-rack-kitchen-context-05.webp` | Сушка для посуды | Базовая фурнитура | kitchen-context | Сушка для посуды для кухни на заказ — применение в готовой кухне |
-| 47 | `furniture-organizers-cutlery-tray-product-01.webp` | Лоток для столовых приборов | Базовая фурнитура | product | Лоток для столовых приборов для кухни на заказ — общий вид фурнитуры отдельно |
-| 48 | `furniture-organizers-cutlery-tray-closeup-02.webp` | Лоток для столовых приборов | Базовая фурнитура | closeup | Лоток для столовых приборов для кухни на заказ — крупный план механизма и креплений |
-| 49 | `furniture-organizers-cutlery-tray-installed-03.webp` | Лоток для столовых приборов | Базовая фурнитура | installed | Лоток для столовых приборов для кухни на заказ — установка в кухонном модуле |
-| 50 | `furniture-organizers-cutlery-tray-in-use-04.webp` | Лоток для столовых приборов | Базовая фурнитура | in-use | Лоток для столовых приборов для кухни на заказ — механизм в открытом положении |
-| 51 | `furniture-organizers-cutlery-tray-kitchen-context-05.webp` | Лоток для столовых приборов | Базовая фурнитура | kitchen-context | Лоток для столовых приборов для кухни на заказ — применение в готовой кухне |
+| 1 | `furniture-furnitura-hero-01.webp` | Фурнитура для кухни на заказ | Hero | hero | Фурнитура для кухни на заказ в открытом ящике с направляющими и органайзером |
+| 2 | `furniture-hinges-overlay-hinge-product-01-base-refresh.webp` | Накладная петля | Базовая фурнитура | product | Накладная петля для кухни на заказ — общий вид фурнитуры отдельно |
+| 3 | `furniture-hinges-overlay-hinge-closeup-02-base-refresh.webp` | Накладная петля | Базовая фурнитура | closeup | Накладная петля для кухни на заказ — крупный план механизма и креплений |
+| 4 | `furniture-hinges-overlay-hinge-installed-03-base-refresh.webp` | Накладная петля | Базовая фурнитура | installed | Накладная петля для кухни на заказ — установка в кухонном модуле |
+| 5 | `furniture-hinges-overlay-hinge-in-use-04-base-refresh.webp` | Накладная петля | Базовая фурнитура | in-use | Накладная петля для кухни на заказ — механизм в открытом положении |
+| 6 | `furniture-hinges-overlay-hinge-kitchen-context-05-base-refresh.webp` | Накладная петля | Базовая фурнитура | kitchen-context | Накладная петля для кухни на заказ — применение в готовой кухне |
+| 7 | `furniture-hinges-soft-close-hinge-product-01-base-refresh.webp` | Петля с доводчиком | Базовая фурнитура | product | Петля с доводчиком для кухни на заказ — общий вид фурнитуры отдельно |
+| 8 | `furniture-hinges-soft-close-hinge-closeup-02-base-refresh.webp` | Петля с доводчиком | Базовая фурнитура | closeup | Петля с доводчиком для кухни на заказ — крупный план механизма и креплений |
+| 9 | `furniture-hinges-soft-close-hinge-installed-03-base-refresh.webp` | Петля с доводчиком | Базовая фурнитура | installed | Петля с доводчиком для кухни на заказ — установка в кухонном модуле |
+| 10 | `furniture-hinges-soft-close-hinge-in-use-04-base-refresh.webp` | Петля с доводчиком | Базовая фурнитура | in-use | Петля с доводчиком для кухни на заказ — механизм в открытом положении |
+| 11 | `furniture-hinges-soft-close-hinge-kitchen-context-05-base-refresh.webp` | Петля с доводчиком | Базовая фурнитура | kitchen-context | Петля с доводчиком для кухни на заказ — применение в готовой кухне |
+| 12 | `furniture-drawer-runners-concealed-runner-product-01-base-refresh.webp` | Скрытые направляющие | Базовая фурнитура | product | Скрытые направляющие для кухни на заказ — общий вид фурнитуры отдельно |
+| 13 | `furniture-drawer-runners-concealed-runner-closeup-02-base-refresh.webp` | Скрытые направляющие | Базовая фурнитура | closeup | Скрытые направляющие для кухни на заказ — крупный план механизма и креплений |
+| 14 | `furniture-drawer-runners-concealed-runner-installed-03-base-refresh.webp` | Скрытые направляющие | Базовая фурнитура | installed | Скрытые направляющие для кухни на заказ — установка в кухонном модуле |
+| 15 | `furniture-drawer-runners-concealed-runner-in-use-04-base-refresh.webp` | Скрытые направляющие | Базовая фурнитура | in-use | Скрытые направляющие для кухни на заказ — механизм в открытом положении |
+| 16 | `furniture-drawer-runners-concealed-runner-kitchen-context-05-base-refresh.webp` | Скрытые направляющие | Базовая фурнитура | kitchen-context | Скрытые направляющие для кухни на заказ — применение в готовой кухне |
+| 17 | `furniture-drawer-runners-soft-close-runner-product-01-base-refresh.webp` | Направляющие с доводчиком | Базовая фурнитура | product | Направляющие с доводчиком для кухни на заказ — общий вид фурнитуры отдельно |
+| 18 | `furniture-drawer-runners-soft-close-runner-closeup-02-base-refresh.webp` | Направляющие с доводчиком | Базовая фурнитура | closeup | Направляющие с доводчиком для кухни на заказ — крупный план механизма и креплений |
+| 19 | `furniture-drawer-runners-soft-close-runner-installed-03-base-refresh.webp` | Направляющие с доводчиком | Базовая фурнитура | installed | Направляющие с доводчиком для кухни на заказ — установка в кухонном модуле |
+| 20 | `furniture-drawer-runners-soft-close-runner-in-use-04-base-refresh.webp` | Направляющие с доводчиком | Базовая фурнитура | in-use | Направляющие с доводчиком для кухни на заказ — механизм в открытом положении |
+| 21 | `furniture-drawer-runners-soft-close-runner-kitchen-context-05-base-refresh.webp` | Направляющие с доводчиком | Базовая фурнитура | kitchen-context | Направляющие с доводчиком для кухни на заказ — применение в готовой кухне |
+| 22 | `furniture-drawer-sides-metal-drawer-side-product-01-base-refresh.webp` | Металлические боковины ящиков | Базовая фурнитура | product | Металлические боковины ящиков для кухни на заказ — общий вид фурнитуры отдельно |
+| 23 | `furniture-drawer-sides-metal-drawer-side-closeup-02-base-refresh.webp` | Металлические боковины ящиков | Базовая фурнитура | closeup | Металлические боковины ящиков для кухни на заказ — крупный план механизма и креплений |
+| 24 | `furniture-drawer-sides-metal-drawer-side-installed-03-base-refresh.webp` | Металлические боковины ящиков | Базовая фурнитура | installed | Металлические боковины ящиков для кухни на заказ — установка в кухонном модуле |
+| 25 | `furniture-drawer-sides-metal-drawer-side-in-use-04-base-refresh.webp` | Металлические боковины ящиков | Базовая фурнитура | in-use | Металлические боковины ящиков для кухни на заказ — механизм в открытом положении |
+| 26 | `furniture-drawer-sides-metal-drawer-side-kitchen-context-05-base-refresh.webp` | Металлические боковины ящиков | Базовая фурнитура | kitchen-context | Металлические боковины ящиков для кухни на заказ — применение в готовой кухне |
+| 27 | `furniture-lift-systems-upper-cabinet-lift-product-01-base-refresh.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | product | Подъемный механизм для верхнего шкафа для кухни на заказ — общий вид фурнитуры отдельно |
+| 28 | `furniture-lift-systems-upper-cabinet-lift-closeup-02-base-refresh.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | closeup | Подъемный механизм для верхнего шкафа для кухни на заказ — крупный план механизма и креплений |
+| 29 | `furniture-lift-systems-upper-cabinet-lift-installed-03-base-refresh.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | installed | Подъемный механизм для верхнего шкафа для кухни на заказ — установка в кухонном модуле |
+| 30 | `furniture-lift-systems-upper-cabinet-lift-in-use-04-base-refresh.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | in-use | Подъемный механизм для верхнего шкафа для кухни на заказ — механизм в открытом положении |
+| 31 | `furniture-lift-systems-upper-cabinet-lift-kitchen-context-05-base-refresh.webp` | Подъемный механизм для верхнего шкафа | Базовая фурнитура | kitchen-context | Подъемный механизм для верхнего шкафа для кухни на заказ — применение в готовой кухне |
+| 32 | `furniture-profiles-gola-profile-product-01-base-refresh.webp` | Gola-профиль | Базовая фурнитура | product | Gola-профиль для кухни на заказ — общий вид фурнитуры отдельно |
+| 33 | `furniture-profiles-gola-profile-closeup-02-base-refresh.webp` | Gola-профиль | Базовая фурнитура | closeup | Gola-профиль для кухни на заказ — крупный план механизма и креплений |
+| 34 | `furniture-profiles-gola-profile-installed-03-base-refresh.webp` | Gola-профиль | Базовая фурнитура | installed | Gola-профиль для кухни на заказ — установка в кухонном модуле |
+| 35 | `furniture-profiles-gola-profile-in-use-04-base-refresh.webp` | Gola-профиль | Базовая фурнитура | in-use | Gola-профиль для кухни на заказ — механизм в открытом положении |
+| 36 | `furniture-profiles-gola-profile-kitchen-context-05-base-refresh.webp` | Gola-профиль | Базовая фурнитура | kitchen-context | Gola-профиль для кухни на заказ — применение в готовой кухне |
+| 37 | `furniture-handles-bar-handle-product-01-base-refresh.webp` | Ручка-скоба | Базовая фурнитура | product | Ручка-скоба для кухни на заказ — общий вид фурнитуры отдельно |
+| 38 | `furniture-handles-bar-handle-closeup-02-base-refresh.webp` | Ручка-скоба | Базовая фурнитура | closeup | Ручка-скоба для кухни на заказ — крупный план механизма и креплений |
+| 39 | `furniture-handles-bar-handle-installed-03-base-refresh.webp` | Ручка-скоба | Базовая фурнитура | installed | Ручка-скоба для кухни на заказ — установка в кухонном модуле |
+| 40 | `furniture-handles-bar-handle-in-use-04-base-refresh.webp` | Ручка-скоба | Базовая фурнитура | in-use | Ручка-скоба для кухни на заказ — механизм в открытом положении |
+| 41 | `furniture-handles-bar-handle-kitchen-context-05-base-refresh.webp` | Ручка-скоба | Базовая фурнитура | kitchen-context | Ручка-скоба для кухни на заказ — применение в готовой кухне |
+| 42 | `furniture-storage-dish-drying-rack-product-01-base-refresh.webp` | Сушка для посуды | Базовая фурнитура | product | Сушка для посуды для кухни на заказ — общий вид фурнитуры отдельно |
+| 43 | `furniture-storage-dish-drying-rack-closeup-02-base-refresh.webp` | Сушка для посуды | Базовая фурнитура | closeup | Сушка для посуды для кухни на заказ — крупный план механизма и креплений |
+| 44 | `furniture-storage-dish-drying-rack-installed-03-base-refresh.webp` | Сушка для посуды | Базовая фурнитура | installed | Сушка для посуды для кухни на заказ — установка в кухонном модуле |
+| 45 | `furniture-storage-dish-drying-rack-in-use-04-base-refresh.webp` | Сушка для посуды | Базовая фурнитура | in-use | Сушка для посуды для кухни на заказ — механизм в открытом положении |
+| 46 | `furniture-storage-dish-drying-rack-kitchen-context-05-base-refresh.webp` | Сушка для посуды | Базовая фурнитура | kitchen-context | Сушка для посуды для кухни на заказ — применение в готовой кухне |
+| 47 | `furniture-organizers-cutlery-tray-product-01-base-refresh.webp` | Лоток для столовых приборов | Базовая фурнитура | product | Лоток для столовых приборов для кухни на заказ — общий вид фурнитуры отдельно |
+| 48 | `furniture-organizers-cutlery-tray-closeup-02-base-refresh.webp` | Лоток для столовых приборов | Базовая фурнитура | closeup | Лоток для столовых приборов для кухни на заказ — крупный план механизма и креплений |
+| 49 | `furniture-organizers-cutlery-tray-installed-03-base-refresh.webp` | Лоток для столовых приборов | Базовая фурнитура | installed | Лоток для столовых приборов для кухни на заказ — установка в кухонном модуле |
+| 50 | `furniture-organizers-cutlery-tray-in-use-04-base-refresh.webp` | Лоток для столовых приборов | Базовая фурнитура | in-use | Лоток для столовых приборов для кухни на заказ — механизм в открытом положении |
+| 51 | `furniture-organizers-cutlery-tray-kitchen-context-05-base-refresh.webp` | Лоток для столовых приборов | Базовая фурнитура | kitchen-context | Лоток для столовых приборов для кухни на заказ — применение в готовой кухне |
 | 52 | `furniture-hinges-165-degree-hinge-product-01.webp` | Петля 165° | Продвинутая фурнитура | product | Петля 165° для кухни на заказ — общий вид фурнитуры отдельно |
 | 53 | `furniture-hinges-165-degree-hinge-closeup-02.webp` | Петля 165° | Продвинутая фурнитура | closeup | Петля 165° для кухни на заказ — крупный план механизма и креплений |
 | 54 | `furniture-hinges-165-degree-hinge-installed-03.webp` | Петля 165° | Продвинутая фурнитура | installed | Петля 165° для кухни на заказ — установка в кухонном модуле |
@@ -172,3 +180,53 @@
 | 149 | `furniture-appliances-ventilation-elements-installed-03.webp` | Вентиляционные элементы для техники | Угловые, специальные системы и фурнитура для техники | installed | Вентиляционные элементы для техники для кухни на заказ — установка в кухонном модуле |
 | 150 | `furniture-appliances-ventilation-elements-in-use-04.webp` | Вентиляционные элементы для техники | Угловые, специальные системы и фурнитура для техники | in-use | Вентиляционные элементы для техники для кухни на заказ — механизм в открытом положении |
 | 151 | `furniture-appliances-ventilation-elements-kitchen-context-05.webp` | Вентиляционные элементы для техники | Угловые, специальные системы и фурнитура для техники | kitchen-context | Вентиляционные элементы для техники для кухни на заказ — применение в готовой кухне |
+| 152 | `furniture-lighting-led-profile-product-01.webp` | LED-профиль | Детали, электрика, подсветка и защита | product | LED-профиль для кухни на заказ — общий вид фурнитуры отдельно |
+| 153 | `furniture-lighting-led-profile-closeup-02.webp` | LED-профиль | Детали, электрика, подсветка и защита | closeup | LED-профиль для кухни на заказ — крупный план детали и материала |
+| 154 | `furniture-lighting-led-profile-installed-03.webp` | LED-профиль | Детали, электрика, подсветка и защита | installed | LED-профиль для кухни на заказ — установка в кухонном модуле |
+| 155 | `furniture-lighting-led-profile-in-use-04.webp` | LED-профиль | Детали, электрика, подсветка и защита | in-use | LED-профиль для кухни на заказ — применение в рабочей зоне кухни |
+| 156 | `furniture-lighting-led-profile-kitchen-context-05.webp` | LED-профиль | Детали, электрика, подсветка и защита | kitchen-context | LED-профиль для кухни на заказ — контекст в готовой кухне на заказ |
+| 157 | `furniture-lighting-led-strip-product-01.webp` | LED-лента | Детали, электрика, подсветка и защита | product | LED-лента для кухни на заказ — общий вид фурнитуры отдельно |
+| 158 | `furniture-lighting-led-strip-closeup-02.webp` | LED-лента | Детали, электрика, подсветка и защита | closeup | LED-лента для кухни на заказ — крупный план детали и материала |
+| 159 | `furniture-lighting-led-strip-installed-03.webp` | LED-лента | Детали, электрика, подсветка и защита | installed | LED-лента для кухни на заказ — установка в кухонном модуле |
+| 160 | `furniture-lighting-led-strip-in-use-04.webp` | LED-лента | Детали, электрика, подсветка и защита | in-use | LED-лента для кухни на заказ — применение в рабочей зоне кухни |
+| 161 | `furniture-lighting-led-strip-kitchen-context-05.webp` | LED-лента | Детали, электрика, подсветка и защита | kitchen-context | LED-лента для кухни на заказ — контекст в готовой кухне на заказ |
+| 162 | `furniture-lighting-touch-sensor-switch-product-01.webp` | Сенсорный выключатель | Детали, электрика, подсветка и защита | product | Сенсорный выключатель для кухни на заказ — общий вид фурнитуры отдельно |
+| 163 | `furniture-lighting-touch-sensor-switch-closeup-02.webp` | Сенсорный выключатель | Детали, электрика, подсветка и защита | closeup | Сенсорный выключатель для кухни на заказ — крупный план детали и материала |
+| 164 | `furniture-lighting-touch-sensor-switch-installed-03.webp` | Сенсорный выключатель | Детали, электрика, подсветка и защита | installed | Сенсорный выключатель для кухни на заказ — установка в кухонном модуле |
+| 165 | `furniture-lighting-touch-sensor-switch-in-use-04.webp` | Сенсорный выключатель | Детали, электрика, подсветка и защита | in-use | Сенсорный выключатель для кухни на заказ — применение в рабочей зоне кухни |
+| 166 | `furniture-lighting-touch-sensor-switch-kitchen-context-05.webp` | Сенсорный выключатель | Детали, электрика, подсветка и защита | kitchen-context | Сенсорный выключатель для кухни на заказ — контекст в готовой кухне на заказ |
+| 167 | `furniture-electrical-built-in-socket-block-product-01.webp` | Встроенный розеточный блок | Детали, электрика, подсветка и защита | product | Встроенный розеточный блок для кухни на заказ — общий вид фурнитуры отдельно |
+| 168 | `furniture-electrical-built-in-socket-block-closeup-02.webp` | Встроенный розеточный блок | Детали, электрика, подсветка и защита | closeup | Встроенный розеточный блок для кухни на заказ — крупный план детали и материала |
+| 169 | `furniture-electrical-built-in-socket-block-installed-03.webp` | Встроенный розеточный блок | Детали, электрика, подсветка и защита | installed | Встроенный розеточный блок для кухни на заказ — установка в кухонном модуле |
+| 170 | `furniture-electrical-built-in-socket-block-in-use-04.webp` | Встроенный розеточный блок | Детали, электрика, подсветка и защита | in-use | Встроенный розеточный блок для кухни на заказ — применение в рабочей зоне кухни |
+| 171 | `furniture-electrical-built-in-socket-block-kitchen-context-05.webp` | Встроенный розеточный блок | Детали, электрика, подсветка и защита | kitchen-context | Встроенный розеточный блок для кухни на заказ — контекст в готовой кухне на заказ |
+| 172 | `furniture-countertops-joint-strip-product-01.webp` | Стыковочная планка для столешницы | Детали, электрика, подсветка и защита | product | Стыковочная планка для столешницы для кухни на заказ — общий вид фурнитуры отдельно |
+| 173 | `furniture-countertops-joint-strip-closeup-02.webp` | Стыковочная планка для столешницы | Детали, электрика, подсветка и защита | closeup | Стыковочная планка для столешницы для кухни на заказ — крупный план детали и материала |
+| 174 | `furniture-countertops-joint-strip-installed-03.webp` | Стыковочная планка для столешницы | Детали, электрика, подсветка и защита | installed | Стыковочная планка для столешницы для кухни на заказ — установка в кухонном модуле |
+| 175 | `furniture-countertops-joint-strip-in-use-04.webp` | Стыковочная планка для столешницы | Детали, электрика, подсветка и защита | in-use | Стыковочная планка для столешницы для кухни на заказ — применение в рабочей зоне кухни |
+| 176 | `furniture-countertops-joint-strip-kitchen-context-05.webp` | Стыковочная планка для столешницы | Детали, электрика, подсветка и защита | kitchen-context | Стыковочная планка для столешницы для кухни на заказ — контекст в готовой кухне на заказ |
+| 177 | `furniture-countertops-end-strip-product-01.webp` | Торцевая планка | Детали, электрика, подсветка и защита | product | Торцевая планка для кухни на заказ — общий вид фурнитуры отдельно |
+| 178 | `furniture-countertops-end-strip-closeup-02.webp` | Торцевая планка | Детали, электрика, подсветка и защита | closeup | Торцевая планка для кухни на заказ — крупный план детали и материала |
+| 179 | `furniture-countertops-end-strip-installed-03.webp` | Торцевая планка | Детали, электрика, подсветка и защита | installed | Торцевая планка для кухни на заказ — установка в кухонном модуле |
+| 180 | `furniture-countertops-end-strip-in-use-04.webp` | Торцевая планка | Детали, электрика, подсветка и защита | in-use | Торцевая планка для кухни на заказ — применение в рабочей зоне кухни |
+| 181 | `furniture-countertops-end-strip-kitchen-context-05.webp` | Торцевая планка | Детали, электрика, подсветка и защита | kitchen-context | Торцевая планка для кухни на заказ — контекст в готовой кухне на заказ |
+| 182 | `furniture-countertops-wall-upstand-product-01.webp` | Пристеночный бортик | Детали, электрика, подсветка и защита | product | Пристеночный бортик для кухни на заказ — общий вид фурнитуры отдельно |
+| 183 | `furniture-countertops-wall-upstand-closeup-02.webp` | Пристеночный бортик | Детали, электрика, подсветка и защита | closeup | Пристеночный бортик для кухни на заказ — крупный план детали и материала |
+| 184 | `furniture-countertops-wall-upstand-installed-03.webp` | Пристеночный бортик | Детали, электрика, подсветка и защита | installed | Пристеночный бортик для кухни на заказ — установка в кухонном модуле |
+| 185 | `furniture-countertops-wall-upstand-in-use-04.webp` | Пристеночный бортик | Детали, электрика, подсветка и защита | in-use | Пристеночный бортик для кухни на заказ — применение в рабочей зоне кухни |
+| 186 | `furniture-countertops-wall-upstand-kitchen-context-05.webp` | Пристеночный бортик | Детали, электрика, подсветка и защита | kitchen-context | Пристеночный бортик для кухни на заказ — контекст в готовой кухне на заказ |
+| 187 | `furniture-protection-silicone-dampers-product-01.webp` | Силиконовые демпферы | Детали, электрика, подсветка и защита | product | Силиконовые демпферы для кухни на заказ — общий вид фурнитуры отдельно |
+| 188 | `furniture-protection-silicone-dampers-closeup-02.webp` | Силиконовые демпферы | Детали, электрика, подсветка и защита | closeup | Силиконовые демпферы для кухни на заказ — крупный план детали и материала |
+| 189 | `furniture-protection-silicone-dampers-installed-03.webp` | Силиконовые демпферы | Детали, электрика, подсветка и защита | installed | Силиконовые демпферы для кухни на заказ — установка в кухонном модуле |
+| 190 | `furniture-protection-silicone-dampers-in-use-04.webp` | Силиконовые демпферы | Детали, электрика, подсветка и защита | in-use | Силиконовые демпферы для кухни на заказ — применение в рабочей зоне кухни |
+| 191 | `furniture-protection-silicone-dampers-kitchen-context-05.webp` | Силиконовые демпферы | Детали, электрика, подсветка и защита | kitchen-context | Силиконовые демпферы для кухни на заказ — контекст в готовой кухне на заказ |
+| 192 | `furniture-protection-cover-caps-product-01.webp` | Заглушки для крепежа | Детали, электрика, подсветка и защита | product | Заглушки для крепежа для кухни на заказ — общий вид фурнитуры отдельно |
+| 193 | `furniture-protection-cover-caps-closeup-02.webp` | Заглушки для крепежа | Детали, электрика, подсветка и защита | closeup | Заглушки для крепежа для кухни на заказ — крупный план детали и материала |
+| 194 | `furniture-protection-cover-caps-installed-03.webp` | Заглушки для крепежа | Детали, электрика, подсветка и защита | installed | Заглушки для крепежа для кухни на заказ — установка в кухонном модуле |
+| 195 | `furniture-protection-cover-caps-in-use-04.webp` | Заглушки для крепежа | Детали, электрика, подсветка и защита | in-use | Заглушки для крепежа для кухни на заказ — применение в рабочей зоне кухни |
+| 196 | `furniture-protection-cover-caps-kitchen-context-05.webp` | Заглушки для крепежа | Детали, электрика, подсветка и защита | kitchen-context | Заглушки для крепежа для кухни на заказ — контекст в готовой кухне на заказ |
+| 197 | `furniture-protection-sealing-strips-product-01.webp` | Уплотнители | Детали, электрика, подсветка и защита | product | Уплотнители для кухни на заказ — общий вид фурнитуры отдельно |
+| 198 | `furniture-protection-sealing-strips-closeup-02.webp` | Уплотнители | Детали, электрика, подсветка и защита | closeup | Уплотнители для кухни на заказ — крупный план детали и материала |
+| 199 | `furniture-protection-sealing-strips-installed-03.webp` | Уплотнители | Детали, электрика, подсветка и защита | installed | Уплотнители для кухни на заказ — установка в кухонном модуле |
+| 200 | `furniture-protection-sealing-strips-in-use-04.webp` | Уплотнители | Детали, электрика, подсветка и защита | in-use | Уплотнители для кухни на заказ — применение в рабочей зоне кухни |
+| 201 | `furniture-protection-sealing-strips-kitchen-context-05.webp` | Уплотнители | Детали, электрика, подсветка и защита | kitchen-context | Уплотнители для кухни на заказ — контекст в готовой кухне на заказ |

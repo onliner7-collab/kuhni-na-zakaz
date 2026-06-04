@@ -395,3 +395,27 @@ Scene/backdrop: premium modern kitchen showroom, neutral colors, realistic cabin
 Lighting/mood: soft daylight with gentle studio fill, realistic depth of field
 Constraints: no text, no logos, no brands, no watermark, no people, no hands, no documents, no impossible geometry, no collage
 ```
+
+
+---
+
+## Этап 7: детали, электрика, подсветка и защита
+
+Для этапа 7 внешний provider `imgx/openai` вернул `Billing hard limit has been reached`. Генерация выполнена встроенным `image_gen`: 50 отдельных кадров для 10 позиций этапа, по 5 на каждую позицию. Один split-screen кадр был отбракован и не подключен; итоговые проектные файлы сохранены как WebP 1200x675 для галереи.
+
+Общий промт для каждой позиции:
+
+```text
+Use case: product-mockup
+Asset type: website gallery image for /materials/furnitura
+Primary request: photorealistic commercial product/interior photo of [POSITION] for a custom kitchen, no brands
+Scene/backdrop: premium modern kitchen detail, neutral cabinets, countertop or cabinet module depending on the item
+Subject: [POSITION], accurate kitchen hardware scale
+Style/medium: photorealistic commercial product photography
+Composition/framing: horizontal 16:9, single image, no collage
+Lighting/mood: soft daylight plus subtle studio highlights; LED items may include a gentle warm glow
+Color palette: neutral premium kitchen colors, matte white, warm wood, brushed metal, stone countertop where relevant
+Constraints: no text, no logos, no watermarks, no people, no documents, no visible brand marks
+```
+
+Позиции: LED-профиль; LED-лента; Сенсорный выключатель; Встроенный розеточный блок; Стыковочная планка для столешницы; Торцевая планка; Пристеночный бортик; Силиконовые демпферы; Заглушки для крепежа; Уплотнители.

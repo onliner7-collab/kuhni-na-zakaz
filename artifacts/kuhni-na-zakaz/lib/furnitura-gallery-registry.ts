@@ -1012,5 +1012,355 @@ export const furnituraGalleryRegistry: FurnituraGalleryItem[] = [
     "alt": "Вентиляционные элементы для техники для кухни на заказ — применение в готовой кухне",
     "type": "kitchen-context",
     "stage": "Угловые, специальные системы и фурнитура для техники"
+  },
+  {
+    "file": "furniture-lighting-led-profile-product-01.webp",
+    "title": "LED-профиль",
+    "alt": "LED-профиль для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-profile-closeup-02.webp",
+    "title": "LED-профиль",
+    "alt": "LED-профиль для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-profile-installed-03.webp",
+    "title": "LED-профиль",
+    "alt": "LED-профиль для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-profile-in-use-04.webp",
+    "title": "LED-профиль",
+    "alt": "LED-профиль для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-profile-kitchen-context-05.webp",
+    "title": "LED-профиль",
+    "alt": "LED-профиль для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-strip-product-01.webp",
+    "title": "LED-лента",
+    "alt": "LED-лента для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-strip-closeup-02.webp",
+    "title": "LED-лента",
+    "alt": "LED-лента для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-strip-installed-03.webp",
+    "title": "LED-лента",
+    "alt": "LED-лента для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-strip-in-use-04.webp",
+    "title": "LED-лента",
+    "alt": "LED-лента для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-led-strip-kitchen-context-05.webp",
+    "title": "LED-лента",
+    "alt": "LED-лента для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-touch-sensor-switch-product-01.webp",
+    "title": "Сенсорный выключатель",
+    "alt": "Сенсорный выключатель для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-touch-sensor-switch-closeup-02.webp",
+    "title": "Сенсорный выключатель",
+    "alt": "Сенсорный выключатель для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-touch-sensor-switch-installed-03.webp",
+    "title": "Сенсорный выключатель",
+    "alt": "Сенсорный выключатель для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-touch-sensor-switch-in-use-04.webp",
+    "title": "Сенсорный выключатель",
+    "alt": "Сенсорный выключатель для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-lighting-touch-sensor-switch-kitchen-context-05.webp",
+    "title": "Сенсорный выключатель",
+    "alt": "Сенсорный выключатель для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-electrical-built-in-socket-block-product-01.webp",
+    "title": "Встроенный розеточный блок",
+    "alt": "Встроенный розеточный блок для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-electrical-built-in-socket-block-closeup-02.webp",
+    "title": "Встроенный розеточный блок",
+    "alt": "Встроенный розеточный блок для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-electrical-built-in-socket-block-installed-03.webp",
+    "title": "Встроенный розеточный блок",
+    "alt": "Встроенный розеточный блок для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-electrical-built-in-socket-block-in-use-04.webp",
+    "title": "Встроенный розеточный блок",
+    "alt": "Встроенный розеточный блок для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-electrical-built-in-socket-block-kitchen-context-05.webp",
+    "title": "Встроенный розеточный блок",
+    "alt": "Встроенный розеточный блок для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-joint-strip-product-01.webp",
+    "title": "Стыковочная планка для столешницы",
+    "alt": "Стыковочная планка для столешницы для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-joint-strip-closeup-02.webp",
+    "title": "Стыковочная планка для столешницы",
+    "alt": "Стыковочная планка для столешницы для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-joint-strip-installed-03.webp",
+    "title": "Стыковочная планка для столешницы",
+    "alt": "Стыковочная планка для столешницы для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-joint-strip-in-use-04.webp",
+    "title": "Стыковочная планка для столешницы",
+    "alt": "Стыковочная планка для столешницы для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-joint-strip-kitchen-context-05.webp",
+    "title": "Стыковочная планка для столешницы",
+    "alt": "Стыковочная планка для столешницы для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-end-strip-product-01.webp",
+    "title": "Торцевая планка",
+    "alt": "Торцевая планка для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-end-strip-closeup-02.webp",
+    "title": "Торцевая планка",
+    "alt": "Торцевая планка для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-end-strip-installed-03.webp",
+    "title": "Торцевая планка",
+    "alt": "Торцевая планка для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-end-strip-in-use-04.webp",
+    "title": "Торцевая планка",
+    "alt": "Торцевая планка для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-end-strip-kitchen-context-05.webp",
+    "title": "Торцевая планка",
+    "alt": "Торцевая планка для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-wall-upstand-product-01.webp",
+    "title": "Пристеночный бортик",
+    "alt": "Пристеночный бортик для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-wall-upstand-closeup-02.webp",
+    "title": "Пристеночный бортик",
+    "alt": "Пристеночный бортик для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-wall-upstand-installed-03.webp",
+    "title": "Пристеночный бортик",
+    "alt": "Пристеночный бортик для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-wall-upstand-in-use-04.webp",
+    "title": "Пристеночный бортик",
+    "alt": "Пристеночный бортик для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-countertops-wall-upstand-kitchen-context-05.webp",
+    "title": "Пристеночный бортик",
+    "alt": "Пристеночный бортик для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-silicone-dampers-product-01.webp",
+    "title": "Силиконовые демпферы",
+    "alt": "Силиконовые демпферы для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-silicone-dampers-closeup-02.webp",
+    "title": "Силиконовые демпферы",
+    "alt": "Силиконовые демпферы для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-silicone-dampers-installed-03.webp",
+    "title": "Силиконовые демпферы",
+    "alt": "Силиконовые демпферы для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-silicone-dampers-in-use-04.webp",
+    "title": "Силиконовые демпферы",
+    "alt": "Силиконовые демпферы для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-silicone-dampers-kitchen-context-05.webp",
+    "title": "Силиконовые демпферы",
+    "alt": "Силиконовые демпферы для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-cover-caps-product-01.webp",
+    "title": "Заглушки для крепежа",
+    "alt": "Заглушки для крепежа для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-cover-caps-closeup-02.webp",
+    "title": "Заглушки для крепежа",
+    "alt": "Заглушки для крепежа для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-cover-caps-installed-03.webp",
+    "title": "Заглушки для крепежа",
+    "alt": "Заглушки для крепежа для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-cover-caps-in-use-04.webp",
+    "title": "Заглушки для крепежа",
+    "alt": "Заглушки для крепежа для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-cover-caps-kitchen-context-05.webp",
+    "title": "Заглушки для крепежа",
+    "alt": "Заглушки для крепежа для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-sealing-strips-product-01.webp",
+    "title": "Уплотнители",
+    "alt": "Уплотнители для кухни на заказ — общий вид фурнитуры отдельно",
+    "type": "product",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-sealing-strips-closeup-02.webp",
+    "title": "Уплотнители",
+    "alt": "Уплотнители для кухни на заказ — крупный план детали и материала",
+    "type": "closeup",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-sealing-strips-installed-03.webp",
+    "title": "Уплотнители",
+    "alt": "Уплотнители для кухни на заказ — установка в кухонном модуле",
+    "type": "installed",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-sealing-strips-in-use-04.webp",
+    "title": "Уплотнители",
+    "alt": "Уплотнители для кухни на заказ — применение в рабочей зоне кухни",
+    "type": "in-use",
+    "stage": "Детали, электрика, подсветка и защита"
+  },
+  {
+    "file": "furniture-protection-sealing-strips-kitchen-context-05.webp",
+    "title": "Уплотнители",
+    "alt": "Уплотнители для кухни на заказ — контекст в готовой кухне на заказ",
+    "type": "kitchen-context",
+    "stage": "Детали, электрика, подсветка и защита"
   }
 ];
