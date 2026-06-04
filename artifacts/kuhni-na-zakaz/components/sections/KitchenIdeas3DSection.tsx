@@ -20,16 +20,6 @@ interface HomeKitchenIdeas3DSectionProps {
   limit?: 4 | 6;
 }
 
-function ideaFormHref(basePath: string, idea: KitchenIdea3D, sourceType: string) {
-  const params = new URLSearchParams({
-    idea3d: idea.id,
-    ideaTitle: idea.title,
-    sourceType,
-  });
-
-  return `${basePath}?${params.toString()}#form`;
-}
-
 function ideaAltForCity(idea: KitchenIdea3D, cityName: string, cityPrepositional: string) {
   const normalizedAlt = idea.alt.toLocaleLowerCase("ru");
 
@@ -102,7 +92,7 @@ export function KitchenIdeas3DSection({
                   ))}
                 </div>
                 <Link
-                  href={ideaFormHref(locationPath, idea, "location_3d_ideas")}
+                  href={`${locationPath}#form`}
                   className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
                 >
                   Хочу похожую кухню
@@ -123,14 +113,14 @@ export function KitchenIdeas3DSection({
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
-              href={`${locationPath}?sourceType=location_3d_ideas#form`}
+              href={`${locationPath}#form`}
               className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
             >
               Хочу похожую кухню
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
-              href={`${locationPath}?sourceType=location_3d_ideas#form`}
+              href={`${locationPath}#form`}
               className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border bg-white px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
             >
               <Calculator className="h-4 w-4" aria-hidden />
@@ -205,7 +195,7 @@ export function HomeKitchenIdeas3DSection({ limit = 4 }: HomeKitchenIdeas3DSecti
               Посмотреть идеи
             </Link>
             <Link
-              href="/?sourceType=home_3d_ideas#form"
+              href="/#form"
               className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
             >
               Рассчитать похожую кухню

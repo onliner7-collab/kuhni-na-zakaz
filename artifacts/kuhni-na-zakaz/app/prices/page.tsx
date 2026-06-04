@@ -7,8 +7,8 @@ import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { regionalLocations } from "@/data/locations";
 
 export const metadata: Metadata = {
-  title: "Цены на кухни на заказ в Беларуси",
-  description: "Цены на кухни на заказ по Беларуси от 900 BYN. Прямые, угловые, П-образные и кухни с островом. Эконом, стандарт, премиум, расчёт онлайн.",
+  title: "Цены на кухни на заказ в Минске от 900 BYN",
+  description: "Цены на кухни на заказ в Минске и Беларуси от 900 BYN: прямые, угловые, П-образные и с островом. Рассчитайте ориентир онлайн.",
   alternates: { canonical: "/prices" },
 };
 

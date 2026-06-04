@@ -16,6 +16,7 @@ const CLOSED_ROBOTS_PATHS = [
   "/user",
 ];
 const NOINDEX_HEADER_VALUE = "noindex, nofollow, noarchive";
+const PUBLIC_QUERY_NOINDEX_HEADER_VALUE = "noindex, follow, noarchive";
 const CANONICAL_HOST = getCanonicalHost();
 const BLOCKED_INDEXING_TERMS = [
   "комфи",
@@ -89,7 +90,7 @@ export async function middleware(req: NextRequest) {
   );
 
   if (!isAdminPath) {
-    return withPublicNoindexHeader(pathname, NextResponse.next());
+    return withPublicNoindexHeader(req.nextUrl, NextResponse.next());
   }
   if (isPublicAdminPath) {
     return withNoindexHeader(NextResponse.next());
@@ -116,16 +117,22 @@ export async function middleware(req: NextRequest) {
   return withNoindexHeader(NextResponse.next());
 }
 
-function withPublicNoindexHeader(pathname: string, response: NextResponse) {
+function withPublicNoindexHeader(url: NextRequest["nextUrl"], response: NextResponse) {
+  const { pathname, searchParams } = url;
+
   if (CLOSED_ROBOTS_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
     return withNoindexHeader(response);
+  }
+
+  if (Array.from(searchParams.keys()).length > 0) {
+    return withNoindexHeader(response, PUBLIC_QUERY_NOINDEX_HEADER_VALUE);
   }
 
   return response;
 }
 
-function withNoindexHeader(response: NextResponse) {
-  response.headers.set("X-Robots-Tag", NOINDEX_HEADER_VALUE);
+function withNoindexHeader(response: NextResponse, value = NOINDEX_HEADER_VALUE) {
+  response.headers.set("X-Robots-Tag", value);
   return response;
 }
 

@@ -5,8 +5,8 @@ import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage"
 import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
-  title: "Купить кухни в Минске: модульные, Стиль Хаус",
-  description: "Каталог кухонь на заказ: угловые, прямые, П-образные, с островом, маленькие. Цены от 900 BYN. Доставка и монтаж по всей Беларуси.",
+  title: "Каталог кухонь на заказ в Минске: фото и цены",
+  description: "Каталог кухонь на заказ в Минске: угловые, прямые, П-образные, с островом и маленькие кухни. Фото, цены от 900 BYN, доставка и монтаж.",
   alternates: { canonical: "/catalog" },
 };
 
