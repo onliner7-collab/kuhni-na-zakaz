@@ -98,3 +98,47 @@
   - sitemap `https://kuhni.minsk.by/sitemap.xml` уже добавлен, API вернул `SITEMAP_ALREADY_ADDED`, sitemap_id `39bff829-022b-3e39-884a-527f04d4eb5c`.
 
 Не писать, что страница гарантированно проиндексирована: URL отправлен на переобход/индексацию, sitemap доступен и уже добавлен.
+
+---
+
+## Этап 7: детали, электрика, подсветка и защита
+
+Дата обновления: 2026-06-04
+
+### Commit / push / deploy
+
+- Commit: `11655c6 Add furnitura stage 7 detail images`.
+- Push: `origin/work` успешно обновлен.
+- Deploy: выполнен через `deploy/scripts/update-production.sh work` на Timeweb VPS.
+- Production build на сервере: успешно.
+- Service `kuhni-na-zakaz`: active после restart.
+
+### Production QA
+
+- `https://kuhni.minsk.by/materials/furnitura` — HTTP 200.
+- `https://kuhni.minsk.by/sitemap.xml` — HTTP 200, URL `/materials/furnitura` присутствует.
+- `https://kuhni.minsk.by/robots.txt` — HTTP 200, содержит `Sitemap: https://kuhni.minsk.by/sitemap.xml`, `/materials/furnitura` не заблокирован.
+- Stage 7 asset `/images/materials-gallery-v2/furnitura/furniture-lighting-led-profile-product-01.webp` — HTTP 200, `image/webp`.
+- Browser production desktop: 1 H1, canonical `https://kuhni.minsk.by/materials/furnitura`, noindex нет, 201 изображение контента, 200 кнопок галереи, 50 кнопок этапа 7, отсутствующие alt — 0, горизонтального overflow нет, AI-дисклеймер есть.
+- Browser production mobile 390px: 1 H1, 201 изображение, 200 кнопок галереи, отсутствующие alt — 0, горизонтального overflow нет.
+- Production lightbox: изображение этапа 7 открывается, фокус попадает на `Закрыть галерею`, Esc закрывает модальное окно и возвращает фокус на исходную миниатюру.
+- Console errors: 0; остались только браузерные предупреждения о third-party cookies.
+
+### Индексация / переобход через браузер
+
+- Google Search Console:
+  - property: `sc-domain:kuhni.minsk.by`;
+  - URL inspection для `https://kuhni.minsk.by/materials/furnitura` выполнен через браузер;
+  - GSC показал: `URL есть в индексе Google` и `Эта страница проиндексирована`;
+  - нажато `Запросить индексирование`;
+  - GSC подтвердил: `Отправлен запрос на индексирование`, URL добавлен в приоритетную очередь сканирования.
+- Yandex Webmaster:
+  - site: `https://kuhni.minsk.by`;
+  - раздел `Индексирование` -> `Переобход страниц` открыт через браузер;
+  - URL `https://kuhni.minsk.by/materials/furnitura` отправлен через форму в браузере;
+  - новая строка в таблице: статус `В очереди`, отправлена `04.06.2026 9:03`;
+  - дневной лимит после отправки: можно отправить еще `148` адресов;
+  - раздел `Индексирование` -> `Файлы Sitemap` проверен через браузер;
+  - sitemap `https://kuhni.minsk.by/sitemap.xml` есть в блоке добавленных вручную и найденных в `robots.txt`, статус `ок`, последняя загрузка `01.06.2026, 21:06`, число ссылок `96`.
+
+Не писать, что страница гарантированно переиндексирована: URL поставлен в очередь переобхода, Google-запрос отправлен, sitemap доступен и принят в обеих панелях.
