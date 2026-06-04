@@ -262,26 +262,16 @@ export default async function HomePage() {
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden bg-[#17130f] pt-32 text-white lg:pt-40">
-        <Image
-          src={optimizedImageSrc(LOCAL_BUSINESS_IMAGE) || LOCAL_BUSINESS_IMAGE}
-          alt={buildImageAlt(LOCAL_BUSINESS_IMAGE, HERO_KITCHEN_ALT)}
-          fill
-          priority
-          fetchPriority="high"
-          quality={75}
-          sizes="(min-width: 1024px) 100vw, 0px"
-          className="hidden object-contain object-right opacity-72 lg:block"
-        />
-        <Image
-          src={optimizedImageSrc(MOBILE_HERO_IMAGE) || MOBILE_HERO_IMAGE}
-          alt={buildImageAlt(MOBILE_HERO_IMAGE, HERO_KITCHEN_ALT)}
-          fill
-          priority
-          fetchPriority="high"
-          quality={75}
-          sizes="(max-width: 1023px) 100vw, 0px"
-          className="object-cover object-center opacity-76 lg:hidden"
-        />
+        <picture className="absolute inset-0 block">
+          <source media="(min-width: 1024px)" srcSet={LOCAL_BUSINESS_IMAGE} />
+          <img
+            src={MOBILE_HERO_IMAGE}
+            alt={HERO_KITCHEN_ALT}
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full object-cover object-center opacity-76 lg:object-contain lg:object-right lg:opacity-72"
+          />
+        </picture>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,14,10,0.94)_0%,rgba(18,14,10,0.76)_34%,rgba(18,14,10,0.30)_66%,rgba(18,14,10,0.18)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/55 to-transparent" />
         <BrandedImageWatermark show={getImageDisclosure(LOCAL_BUSINESS_IMAGE).kind === "generated"} />
