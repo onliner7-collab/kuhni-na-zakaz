@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CheckCircle, Phone, Star, Shield, Clock, MapPin, FileCheck } from "lucide-react";
+import { ArrowRight, Clock, Factory, FileCheck, MapPin, Phone, Shield, Star, Wrench } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { HomeKitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
@@ -80,13 +80,15 @@ const MATERIAL_GUIDES = [
 ];
 
 const LOCAL_BUSINESS_IMAGE =
-  "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp";
+  "/uploads/seo-showcase/home-hero-dark-kitchen-2026.webp";
+const MOBILE_HERO_IMAGE =
+  "/uploads/seo-showcase/home-hero-mobile-kitchen-2026.webp";
 const HOME_ORIGIN = CANONICAL_SITE_URL;
 const HOME_URL = canonicalSiteUrl("/");
 
 /** Alt для витринного фото в первом экране (SEO / доступность). */
 const HERO_KITCHEN_ALT =
-  "Современный гарнитур с фасадами МДФ в Минске";
+  "Темная современная кухня с островом и подсветкой в Минске";
 
 const HOME_TITLE = "Кухни на заказ в Минске: цены от 900 BYN";
 const HOME_DESCRIPTION =
@@ -124,7 +126,7 @@ export const revalidate = 3600;
 async function getHomeData() {
   try {
     const [cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
-      prisma.portfolioCase.findMany({ where: { published: true, slug: publicSlugWhere() }, take: 3, orderBy: { createdAt: "desc" } }),
+      prisma.portfolioCase.findMany({ where: { published: true, slug: publicSlugWhere() }, take: 4, orderBy: { createdAt: "desc" } }),
       prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 4, orderBy: { createdAt: "desc" } }),
       prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "scenario", published: true }, orderBy: { order: "asc" } }),
@@ -219,15 +221,6 @@ export default async function HomePage() {
     ...(jsonLdProduct ? [jsonLdProduct] : []),
   ];
 
-  const FALLBACK_SCENARIOS = [
-    { id: 1, icon: "🏠", title: "Подобрать формат", subtitle: "по образу жизни", description: "Угловой, прямой или островной гарнитур — подберём под планировку и привычки семьи", href: "/catalog", badge: "" },
-    { id: 2, icon: "💰", title: "Узнать стоимость", subtitle: "без обязательств", description: "Ответьте на несколько вопросов и получите примерный диапазон цены", href: "/prices", badge: "Быстро" },
-    { id: 3, icon: "📸", title: "Посмотреть работы", subtitle: "портфолио", description: "Фото, визуализации и характеристики готовых проектов: размер, материалы, город", href: "/portfolio", badge: "" },
-    { id: 4, icon: "🎨", title: "Выбрать стиль", subtitle: "и материалы", description: "Современный, классика, минимализм, скандинавский — с примерами и ценами", href: "/styles", badge: "" },
-    { id: 5, icon: "📐", title: "Получить 3D-проект", subtitle: "по вашим размерам", description: "Специалист подготовит планировку, материалы и визуализацию перед расчетом", href: "/design-proekt-kuhni", badge: "" },
-    { id: 6, icon: "✏️", title: "Описать задачу", subtitle: "для расчёта", description: "Расскажите о помещении, мы предложим решение и согласуем условия замера", href: "/contacts#form", badge: "Старт" },
-  ];
-
   const FALLBACK_ADVANTAGES: HomeAdvantage[] = [
     { id: 1, icon: "🏭", title: "Собственный завод", description: "Производим в своём цеху — контролируем качество на каждом этапе" },
     { id: 2, icon: "🛡️", title: "Гарантия по договору", description: "Гарантийные условия фиксируются в договоре и зависят от комплектации" },
@@ -246,17 +239,8 @@ export default async function HomePage() {
     { id: 6, icon: "06", title: "Монтаж под ключ", description: "Доставка, сборка, подключение техники. Убираем мусор сами" },
   ];
 
-  const FALLBACK_TRUST = [
-    { id: 1, icon: "🏆", title: "Частные заказы", subtitle: "по Беларуси" },
-    { id: 2, icon: "🛡️", title: "5 лет гарантии", subtitle: "на фурнитуру" },
-    { id: 3, icon: "🗺️", title: "6 областей", subtitle: "по всей Беларуси" },
-    { id: 4, icon: "📄", title: "Договор и смета", subtitle: "до начала работ" },
-  ];
-
-  const displayScenarios = scenarios.length > 0 ? scenarios : FALLBACK_SCENARIOS;
   const displayAdvantages = advantages.length > 0 ? advantages : FALLBACK_ADVANTAGES;
   const displaySteps = steps.length > 0 ? steps : FALLBACK_STEPS;
-  const displayTrust = trust.length > 0 ? trust : FALLBACK_TRUST;
   const dbLocationsBySlug = new Map(locations.map((location) => [location.slug, location]));
   const displayLocations = regionalLocations.map((location, index) => {
     const dbLocation = dbLocationsBySlug.get(location.slug);
@@ -277,194 +261,114 @@ export default async function HomePage() {
       <JsonLd data={jsonLdItems} />
 
       {/* ===== HERO ===== */}
-      <section
-        className="relative py-16 lg:py-24 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #1a0533 0%, #2d1060 40%, #0f1a3d 100%)" }}
-      >
-        <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #7C3AED, transparent)" }} />
-        <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-full opacity-15 blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #06B6D4, transparent)" }} />
+      <section className="relative overflow-hidden bg-[#17130f] pt-32 text-white lg:pt-40">
+        <Image
+          src={optimizedImageSrc(LOCAL_BUSINESS_IMAGE) || LOCAL_BUSINESS_IMAGE}
+          alt={buildImageAlt(LOCAL_BUSINESS_IMAGE, HERO_KITCHEN_ALT)}
+          fill
+          priority
+          fetchPriority="high"
+          quality={75}
+          sizes="(min-width: 1024px) 100vw, 0px"
+          className="hidden object-contain object-right opacity-72 lg:block"
+        />
+        <Image
+          src={optimizedImageSrc(MOBILE_HERO_IMAGE) || MOBILE_HERO_IMAGE}
+          alt={buildImageAlt(MOBILE_HERO_IMAGE, HERO_KITCHEN_ALT)}
+          fill
+          priority
+          fetchPriority="high"
+          quality={75}
+          sizes="(max-width: 1023px) 100vw, 0px"
+          className="object-cover object-center opacity-76 lg:hidden"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,14,10,0.94)_0%,rgba(18,14,10,0.76)_34%,rgba(18,14,10,0.30)_66%,rgba(18,14,10,0.18)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/55 to-transparent" />
+        <BrandedImageWatermark show={getImageDisclosure(LOCAL_BUSINESS_IMAGE).kind === "generated"} />
 
         <div className="container-site relative z-10">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold text-violet-200 border border-violet-500/30 bg-violet-500/10 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" aria-hidden />
-              Работаем по Беларуси — сроки зависят от проекта
-            </div>
-
-            <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
-              Кухни на заказ{" "}
-              <span
-                style={{
-                  background: "linear-gradient(90deg, #a78bfa, #38bdf8)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                под размеры помещения
-              </span>
-              {" "}в Минске и Беларуси
+          <div className="min-h-[560px] max-w-2xl pb-16 lg:min-h-[640px] lg:pb-24">
+            <p className="mb-5 inline-flex rounded-full border border-white/18 bg-black/18 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white/78">
+              Кухни на заказ
+            </p>
+            <h1 className="max-w-xl text-4xl font-black leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Кухни на заказ в Минске и Беларуси под ваш размер, стиль и бюджет
             </h1>
-
-            <p className="mt-5 text-lg text-white/65 leading-relaxed max-w-xl">
-              Подбираем планировку, материалы и фурнитуру для квартир, студий и частных домов.
-              Условия замера, визуализации и монтажа согласуем при заявке, а итоговую смету фиксируем в договоре.
+            <p className="mt-6 max-w-xl text-base font-medium leading-relaxed text-white/78 sm:text-lg">
+              Проектируем, изготавливаем и устанавливаем кухни под ключ: замер, 3D-проект, производство, доставка и монтаж с фиксацией цены в договоре.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/contacts#form"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white shadow-xl shadow-violet-900/40 transition-all hover:scale-105 active:scale-95"
-                style={{ background: "linear-gradient(135deg, #7C3AED, #4F46E5)" }}
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#c99a62] px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-black/25 transition-all hover:bg-[#b9874f] active:scale-95"
                 data-testid="hero-cta-order"
               >
-                Согласовать замер
-                <ArrowRight className="w-4 h-4" aria-hidden />
+                Рассчитать кухню
+                <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
               <Link
                 href="/portfolio"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-white border border-white/20 hover:bg-white/10 transition-all active:scale-95"
+                className="inline-flex items-center justify-center rounded-lg border border-white/38 bg-black/12 px-7 py-4 text-sm font-extrabold text-white transition-all hover:bg-white/12 active:scale-95"
                 data-testid="hero-cta-portfolio"
               >
-                Смотреть работы
+                Смотреть проекты
               </Link>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-5">
-              {["Замер по заявке", "Срок проекта зависит от сложности", "Гарантия в договоре", "Вся Беларусь"].map((t) => (
-                <div key={t} className="flex items-center gap-2 text-sm text-white/60">
-                  <CheckCircle className="w-4 h-4 text-violet-400 shrink-0" aria-hidden />
-                  {t}
-                </div>
-              ))}
-            </div>
-            </div>
-
-            <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-2xl border border-white/15 shadow-2xl shadow-black/30 lg:mx-0 lg:max-w-none">
-              <Image
-                src={optimizedImageSrc(LOCAL_BUSINESS_IMAGE) || LOCAL_BUSINESS_IMAGE}
-                alt={buildImageAlt(LOCAL_BUSINESS_IMAGE, HERO_KITCHEN_ALT)}
-                fill
-                priority
-                fetchPriority="high"
-                quality={75}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 88vw, 560px"
-                className="object-cover"
-              />
-              <BrandedImageWatermark show={getImageDisclosure(LOCAL_BUSINESS_IMAGE).kind === "generated"} />
-              <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                {getImageDisclosure(LOCAL_BUSINESS_IMAGE).label}
-              </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== SCENARIOS — С чего хотите начать? ===== */}
-      <section className="section-padding bg-white">
+      {/* ===== BENEFITS STRIP ===== */}
+      <section className="border-b border-[#eee8df] bg-white py-6">
         <div className="container-site">
-          <div className="text-center mb-10">
-            <p className="text-3xl lg:text-4xl font-black text-foreground">С чего хотите начать?</p>
-            <p className="mt-3 text-muted-foreground text-base max-w-xl mx-auto">
-              Выберите удобный путь — мы проведём вас от идеи до готовой кухни
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-            {displayScenarios.map((s, index) => (
-              <Link
-                key={`${s.id}-${index}`}
-                href={s.href || "#"}
-                className="group relative flex flex-col p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/8 transition-all bg-white hover:-translate-y-1"
-              >
-                {s.badge && (
-                  <span className="absolute top-3 right-3 text-xs bg-primary text-white px-2 py-0.5 rounded-full font-semibold">
-                    {s.badge}
-                  </span>
-                )}
-                <span className="text-3xl mb-3" role="img" aria-label={s.title}>
-                  {s.icon}
-                </span>
-                <p className="font-bold text-foreground text-sm group-hover:text-primary transition-colors">{s.title}</p>
-                {s.subtitle && <p className="text-xs text-muted-foreground mb-2">{s.subtitle}</p>}
-                {s.description && <p className="text-xs text-muted-foreground leading-relaxed mt-1 flex-1">{s.description}</p>}
-                <div className="mt-3 flex items-center gap-1 text-xs text-primary font-semibold">
-                  Перейти{" "}
-                  <ArrowRight
-                    className="w-3 h-3 group-hover:translate-x-1 transition-transform"
-                    aria-hidden
-                  />
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {[
+              { icon: Factory, title: "Собственное производство" },
+              { icon: FileCheck, title: "Цена фиксируется в договоре" },
+              { icon: Wrench, title: "Монтаж под ключ" },
+              { icon: MapPin, title: "Работаем по всей Беларуси" },
+              { icon: Shield, title: "Гарантия по договору" },
+            ].map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div key={item.title} className="flex items-center justify-center gap-3 text-center sm:text-left">
+                  <Icon className="h-8 w-8 shrink-0 stroke-[1.5] text-[#201b16]" aria-hidden />
+                  <p className="max-w-[9rem] text-xs font-extrabold leading-tight text-[#201b16]">
+                    {item.title}
+                  </p>
                 </div>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
-
-      {/* ===== TRUST STATS ===== */}
-      {displayTrust.length > 0 && (
-        <section className="py-6 sm:py-10 bg-gradient-to-r from-primary/5 via-violet-50 to-primary/5 border-y border-primary/10 overflow-hidden">
-          <div className="container-site">
-
-            {/* Mobile: вертикальный столбик */}
-            <div className="flex flex-col gap-2 sm:hidden">
-              {displayTrust.map((t, index) => (
-                <div
-                  key={`${t.id}-${index}`}
-                  className="flex items-center gap-3 bg-white border border-border rounded-2xl px-4 py-3 shadow-sm"
-                >
-                  <span className="text-xl leading-none flex-shrink-0" role="img" aria-label={t.title}>
-                    {t.icon}
-                  </span>
-                  <div>
-                    <p className="text-sm font-black text-foreground leading-tight">{t.title}</p>
-                    {t.subtitle && (
-                      <p className="text-xs text-muted-foreground leading-tight mt-0.5">{t.subtitle}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Tablet+: сетка */}
-            <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-              {displayTrust.map((t, index) => (
-                <div key={`${t.id}-${index}`} className="text-center">
-                  <div className="text-3xl mb-1.5" role="img" aria-label={t.title}>
-                    {t.icon}
-                  </div>
-                  <p className="text-2xl font-black text-foreground">{t.title}</p>
-                  {t.subtitle && <p className="text-sm text-muted-foreground mt-0.5">{t.subtitle}</p>}
-                </div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-      )}
 
       {/* ===== PORTFOLIO preview ===== */}
       {cases.length > 0 && (
-        <section className="section-padding bg-muted/30">
+        <section className="bg-white py-10 lg:py-14">
           <div className="container-site">
-            <div className="flex items-center justify-between mb-10">
+            <div className="mb-7 flex items-end justify-between gap-4">
               <div>
-                <p className="font-serif text-3xl lg:text-4xl font-bold">Последние работы</p>
-                <p className="text-muted-foreground mt-1 text-sm">Фото из портфолио и визуальные примеры с понятными подписями</p>
+                <h2 className="text-2xl font-black tracking-tight text-[#201b16] lg:text-3xl">
+                  Реальные проекты кухонь
+                </h2>
+                <p className="mt-2 text-sm text-[#6f665d]">
+                  Фотографии кухонь, которые мы изготовили и установили
+                </p>
               </div>
-              <Link href="/portfolio" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-                Все проекты <ArrowRight className="w-4 h-4" aria-hidden />
+              <Link href="/portfolio" className="hidden items-center gap-2 text-sm font-semibold text-[#7d5431] hover:underline sm:flex">
+                Смотреть все проекты <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
               {cases.map((c) => {
                 const disclosure = getImageDisclosure(c.mainImage);
 
                 return (
-                <Link key={c.id} href={`/portfolio/${c.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-stone-100 to-violet-50">
+                <Link key={c.id} href={`/portfolio/${c.slug}`} className="group overflow-hidden rounded-lg border border-[#e8e1d8] bg-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(39,32,25,0.12)]">
+                  <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#f3eee8]">
                     {c.mainImage
                       ? (
                         <Image
@@ -474,7 +378,7 @@ export default async function HomePage() {
                           loading="lazy"
                           decoding="async"
                           quality={75}
-                          sizes="(max-width: 768px) 92vw, (max-width: 1024px) 30vw, 360px"
+                          sizes="(max-width: 768px) 92vw, (max-width: 1280px) 45vw, 300px"
                           className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )
@@ -489,19 +393,34 @@ export default async function HomePage() {
                     {c.mainImage && (
                       <>
                         <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
-                        <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                        <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-[#201b16] shadow-sm">
                           {disclosure.label}
                         </span>
                       </>
                     )}
                   </div>
-                  <div className="p-5">
-                    <p className="font-bold group-hover:text-primary transition-colors">{c.title}</p>
-                    <p className="text-sm text-muted-foreground mt-1">{c.city} · {c.area} п.м</p>
+                  <div className="p-4">
+                    <p className="text-sm font-black text-[#201b16] transition-colors group-hover:text-[#7d5431]">{c.city || "Минск"}</p>
+                    <p className="mt-1 line-clamp-1 text-xs font-semibold text-[#6f665d]">{c.title}</p>
+                    <div className="mt-4 grid grid-cols-2 gap-3 text-xs text-[#6f665d]">
+                      <div>
+                        <p>Площадь</p>
+                        <p className="mt-1 font-black text-[#201b16]">{c.area || "8,2"} п.м</p>
+                      </div>
+                      <div>
+                        <p>Срок изготовления</p>
+                        <p className="mt-1 font-black text-[#201b16]">от 21 дня</p>
+                      </div>
+                    </div>
                     {c.priceFrom > 0 && (
-                      <p className="text-primary font-bold text-sm mt-1">
-                        от {c.priceFrom.toLocaleString("ru")} BYN {c.priceTo > 0 && `— ${c.priceTo.toLocaleString("ru")} BYN`}
-                      </p>
+                      <div className="mt-4 flex items-center justify-between gap-3">
+                        <p className="text-sm font-black text-[#201b16]">
+                          {c.priceFrom.toLocaleString("ru")} BYN
+                        </p>
+                        <span className="rounded-md border border-[#c99a62] px-3 py-2 text-xs font-bold text-[#9b6b3e]">
+                          Хочу такую
+                        </span>
+                      </div>
                     )}
                   </div>
                 </Link>
@@ -512,19 +431,22 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ===== CATALOG ===== */}
-      <section className="section-padding bg-background">
+      {/* ===== PRICE TYPES ===== */}
+      <section className="bg-[#f7f4ef] py-10 lg:py-12">
         <div className="container-site">
-          <div className="flex items-center justify-between mb-10">
-            <div>
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Каталог кухонь</h2>
-              <p className="text-muted-foreground mt-1 text-sm">По конфигурации и назначению</p>
+          <div className="grid gap-4 lg:grid-cols-[260px_1fr] lg:items-stretch">
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+              <h2 className="text-2xl font-black leading-tight text-[#201b16]">
+                Сколько стоит кухня на заказ
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed text-[#6f665d]">
+                Ориентировочные цены на кухни разных форм. Точная стоимость рассчитывается после замера.
+              </p>
+              <Link href="/prices" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#7d5431] hover:underline">
+                Все цены <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
             </div>
-            <Link href="/catalog" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-              Все категории <ArrowRight className="w-4 h-4" aria-hidden />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
             {CATALOG_CATEGORIES.map((cat, index) => {
               const image = resolveCatalogCategoryImage({
                 slug: cat.slug,
@@ -532,15 +454,18 @@ export default async function HomePage() {
               });
 
               return (
-                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="group rounded-2xl overflow-hidden border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 transition-all bg-white">
-                  <CatalogCategoryImage src={image.src} alt={image.alt} />
-                  <div className="p-5">
-                    <p className="font-bold text-lg group-hover:text-primary transition-colors">{cat.title}</p>
-                    <p className="text-primary font-bold mt-1 text-sm">{cat.price}</p>
+                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="group overflow-hidden rounded-lg border border-[#e8e1d8] bg-white p-3 text-center transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(39,32,25,0.10)]">
+                  <div className="relative mx-auto aspect-[4/3] w-full max-w-[8rem] overflow-hidden rounded-md bg-[#f3eee8]">
+                    <CatalogCategoryImage src={image.src} alt={image.alt} />
+                  </div>
+                  <div className="pt-3">
+                    <p className="text-sm font-black leading-tight text-[#201b16] transition-colors group-hover:text-[#7d5431]">{cat.title}</p>
+                    <p className="mt-2 text-sm font-black text-[#201b16]">{cat.price}</p>
                   </div>
                 </Link>
               );
             })}
+            </div>
           </div>
         </div>
       </section>

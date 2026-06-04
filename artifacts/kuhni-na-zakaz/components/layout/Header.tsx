@@ -18,6 +18,7 @@ const PRIMARY_NAV_LINKS: NavLink[] = [
   { href: "/catalog", label: "\u041a\u0430\u0442\u0430\u043b\u043e\u0433" },
   { href: "/styles", label: "\u0421\u0442\u0438\u043b\u0438" },
   { href: "/materials", label: "\u041c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044b" },
+  { href: "/materials/furnitura", label: "\u0424\u0443\u0440\u043d\u0438\u0442\u0443\u0440\u0430" },
   { href: "/portfolio", label: "\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0438\u043e" },
   { href: "/design-proekt-kuhni", label: "3D-проект кухни" },
   { href: "/calculator", label: "\u041a\u0430\u043b\u044c\u043a\u0443\u043b\u044f\u0442\u043e\u0440" },
@@ -64,7 +65,8 @@ function DesktopNavLink({
   label,
   pathname,
   exact,
-}: NavLink & { pathname: string }) {
+  isOverlay = false,
+}: NavLink & { pathname: string; isOverlay?: boolean }) {
   const isActive = isActivePath(pathname, href, exact);
 
   return (
@@ -73,14 +75,18 @@ function DesktopNavLink({
       aria-current={isActive ? "page" : undefined}
       className={cn(
         "relative inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200",
-        isActive
+        isOverlay && isActive
+          ? "bg-white/15 text-white"
+          : isOverlay
+            ? "text-white/86 hover:bg-white/12 hover:text-white"
+            : isActive
           ? "bg-primary/10 text-primary"
           : "text-foreground/72 hover:bg-muted hover:text-foreground",
       )}
     >
       {label}
       {isActive && (
-        <span className="absolute inset-x-4 -bottom-[9px] h-0.5 rounded-full bg-primary" />
+        <span className={cn("absolute inset-x-4 -bottom-[9px] h-0.5 rounded-full", isOverlay ? "bg-white" : "bg-primary")} />
       )}
     </Link>
   );
@@ -124,6 +130,8 @@ export function Header({
   const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
+  const isHome = pathname === "/";
+  const isOverlay = isHome && !scrolled && !open;
 
   useEffect(() => {
     let frame = 0;
@@ -181,7 +189,10 @@ export function Header({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b border-border/70 bg-white/96 transition-all duration-300",
+        "top-0 z-50 border-b transition-all duration-300",
+        isOverlay
+          ? "absolute inset-x-0 border-white/12 bg-transparent text-white"
+          : "sticky border-border/70 bg-white/96 text-foreground",
         scrolled && "shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl",
       )}
     >
@@ -193,20 +204,12 @@ export function Header({
             aria-label={HOME_ARIA}
           >
             <span className="flex min-w-0 items-center gap-3" aria-hidden="true">
-              <div
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white shadow-lg shadow-primary/20 transition-transform duration-200 group-hover:scale-[1.03]"
-                style={{
-                  background: "linear-gradient(135deg, #7C3AED, #4F46E5)",
-                }}
-              >
-                <span className="text-base font-black">{BRAND_LETTER}</span>
-              </div>
               <div className="min-w-0">
-                <div className="text-xl font-black tracking-tight text-foreground sm:text-2xl">
+                <div className={cn("text-xl font-black tracking-tight sm:text-2xl", isOverlay ? "text-white" : "text-foreground")}>
                   {BRAND_NAME}
-                  <span className="text-gradient">BY</span>
+                  <span className={isOverlay ? "text-[#d8aa72]" : "text-gradient"}>BY</span>
                 </div>
-                <p className="hidden text-xs text-muted-foreground lg:block">
+                <p className={cn("hidden text-xs lg:block", isOverlay ? "text-white/70" : "text-muted-foreground")}>
                   {BRAND_SUBTITLE}
                 </p>
               </div>
@@ -216,17 +219,22 @@ export function Header({
           <div className="hidden min-w-0 flex-1 items-center justify-end gap-3 lg:flex">
             <a
               href={phoneLink}
-              className="flex min-w-0 items-center gap-3 rounded-2xl border border-border bg-white px-4 py-2.5 transition-colors hover:border-primary/30 hover:bg-primary/5"
+              className={cn(
+                "flex min-w-0 items-center gap-3 rounded-xl border px-4 py-2.5 transition-colors",
+                isOverlay
+                  ? "border-white/14 bg-black/18 text-white hover:bg-white/10"
+                  : "border-border bg-white hover:border-primary/30 hover:bg-primary/5",
+              )}
               data-testid="header-phone"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl", isOverlay ? "bg-white/12 text-white" : "bg-primary/10 text-primary")}>
                 <Phone className="h-4 w-4" aria-hidden />
               </span>
               <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                <span className={cn("block text-[11px] font-semibold uppercase tracking-[0.14em]", isOverlay ? "text-white/62" : "text-muted-foreground")}>
                   {CONSULTATION_LABEL}
                 </span>
-                <span className="block whitespace-nowrap text-sm font-bold text-foreground xl:text-base">
+                <span className={cn("block whitespace-nowrap text-sm font-bold xl:text-base", isOverlay ? "text-white" : "text-foreground")}>
                   {phoneDisplay}
                 </span>
               </span>
@@ -234,7 +242,12 @@ export function Header({
 
             <Link
               href="/contacts#form"
-              className="btn-primary rounded-2xl px-5 py-3 text-sm shadow-xl shadow-primary/20"
+              className={cn(
+                "inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition-all active:scale-95",
+                isOverlay
+                  ? "bg-[#c99a62] text-white shadow-xl shadow-black/20 hover:bg-[#b9874f]"
+                  : "btn-primary shadow-xl shadow-primary/20",
+              )}
               data-testid="header-cta"
             >
               {CTA_LABEL}
@@ -244,7 +257,12 @@ export function Header({
           <div className="flex items-center gap-2 lg:hidden">
             <a
               href={phoneLink}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white text-primary transition-colors hover:bg-primary/5"
+              className={cn(
+                "inline-flex h-11 w-11 items-center justify-center rounded-2xl border transition-colors",
+                isOverlay
+                  ? "border-white/18 bg-black/18 text-white hover:bg-white/10"
+                  : "border-border bg-white text-primary hover:bg-primary/5",
+              )}
               aria-label={phoneDisplay}
               data-testid="header-phone-mobile"
             >
@@ -252,7 +270,12 @@ export function Header({
             </a>
             <button
               ref={menuButtonRef}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-white transition-colors hover:bg-muted"
+              className={cn(
+                "inline-flex h-11 w-11 items-center justify-center rounded-2xl border transition-colors",
+                isOverlay
+                  ? "border-white/18 bg-black/18 text-white hover:bg-white/10"
+                  : "border-border bg-white hover:bg-muted",
+              )}
               onClick={() => setOpen((value) => !value)}
               aria-expanded={open}
               aria-controls="mobile-navigation"
@@ -264,14 +287,14 @@ export function Header({
           </div>
         </div>
 
-        <div className="hidden border-t border-border/70 lg:block">
+        <div className={cn("hidden border-t lg:block", isOverlay ? "border-white/12" : "border-border/70")}>
           <div className="flex min-h-14 items-center justify-between gap-6">
             <nav
               aria-label={MAIN_NAV_ARIA}
               className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto py-2"
             >
               {PRIMARY_NAV_LINKS.map((link) => (
-                <DesktopNavLink key={link.href} {...link} pathname={pathname} />
+                <DesktopNavLink key={link.href} {...link} pathname={pathname} isOverlay={isOverlay} />
               ))}
             </nav>
 
@@ -280,7 +303,7 @@ export function Header({
               className="flex items-center gap-1 py-2"
             >
               {SECONDARY_NAV_LINKS.map((link) => (
-                <DesktopNavLink key={link.href} {...link} pathname={pathname} />
+                <DesktopNavLink key={link.href} {...link} pathname={pathname} isOverlay={isOverlay} />
               ))}
             </nav>
           </div>
