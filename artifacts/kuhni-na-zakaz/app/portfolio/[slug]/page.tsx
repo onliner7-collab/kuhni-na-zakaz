@@ -19,7 +19,7 @@ import {
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
-import { SITE_NAME, trimMetaDescription } from "@/lib/seo";
+import { trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
@@ -187,10 +187,18 @@ function projectNumberFromSlug(slug: string) {
   return match?.[1] ? `проект №${match[1]}` : slug;
 }
 
+function portfolioBaseTitle(project: PortfolioProject) {
+  return (project.shortTitle || project.title)
+    .replace(/,\s*проект №\d{2,}\s*$/i, "")
+    .replace(/\s+проект №\d{2,}\s*$/i, "")
+    .trim();
+}
+
 function buildMetaDescription(project: PortfolioProject) {
   const projectMarker = projectNumberFromSlug(project.slug);
+  const baseTitle = portfolioBaseTitle(project);
   const details = [
-    project.shortTitle || project.title,
+    baseTitle,
     projectMarker,
     project.city,
     project.district,
@@ -208,20 +216,21 @@ function buildMetaDescription(project: PortfolioProject) {
 
 function buildPortfolioMetaTitle(project: PortfolioProject) {
   const projectMarker = projectNumberFromSlug(project.slug);
+  const baseTitle = portfolioBaseTitle(project);
   const parts = [
-    project.shortTitle || project.title,
+    baseTitle,
     projectMarker,
     project.city,
     project.kitchenType,
   ].filter(Boolean);
-  const title = `${parts.join(" — ")} | Портфолио ${SITE_NAME}`;
+  const title = parts.join(" — ");
 
   if (title.length <= 65) return title;
 
-  const compactTitle = `${project.shortTitle || project.title} — ${projectMarker} | ${SITE_NAME}`;
+  const compactTitle = `${baseTitle} — ${projectMarker}`;
   if (compactTitle.length <= 65) return compactTitle;
 
-  return `${projectMarker}: ${project.shortTitle || project.title} | ${SITE_NAME}`;
+  return `${projectMarker}: ${baseTitle}`;
 }
 
 function isGenericPortfolioDescription(description: string | null | undefined) {
