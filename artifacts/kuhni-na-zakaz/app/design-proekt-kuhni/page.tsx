@@ -177,6 +177,7 @@ const internalLinks = [
   { label: "Цены на кухни", href: "/prices" },
   { label: "Портфолио", href: "/portfolio" },
   { label: "Материалы", href: "/materials" },
+  { label: "Фурнитура для кухни", href: "/materials/furnitura" },
   { label: "Каталог кухонь", href: "/catalog" },
 ];
 

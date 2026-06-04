@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { PriceQuiz } from "@/components/sections/PriceQuiz";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
@@ -199,6 +199,19 @@ export default function PricesPage() {
               </Link>
             ))}
           </div>
+        </section>
+
+        <section className="card-base p-6 mb-16">
+          <h2 className="font-serif text-2xl font-bold mb-3">Как комплектация влияет на цену</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+            На итоговую смету влияет не только длина гарнитура, но и фурнитура для кухни:
+            петли с доводчиками, направляющие полного выдвижения, подъемные механизмы,
+            системы хранения, профильные ручки и подсветка.
+          </p>
+          <Link href="/materials/furnitura" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+            Подобрать фурнитуру для кухни
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
         </section>
 
         {/* CTA */}

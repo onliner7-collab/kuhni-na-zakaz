@@ -142,3 +142,42 @@
   - sitemap `https://kuhni.minsk.by/sitemap.xml` есть в блоке добавленных вручную и найденных в `robots.txt`, статус `ок`, последняя загрузка `01.06.2026, 21:06`, число ссылок `96`.
 
 Не писать, что страница гарантированно переиндексирована: URL поставлен в очередь переобхода, Google-запрос отправлен, sitemap доступен и принят в обеих панелях.
+
+---
+
+## Этапы 8-10: schema.org, перелинковка и indexability
+
+Дата обновления: 2026-06-04
+
+### Локальные изменения
+
+- На `/materials/furnitura` добавлены `Article` и 12 `ImageObject`; существующие `BreadcrumbList`, `WebPage`, `FAQPage` сохранены.
+- `Product`, fake reviews и rating не добавлялись.
+- Усилены входящие ссылки на `/materials/furnitura` со страниц `/`, `/materials`, `/materials/mdf-fasady`, `/materials/ldsp`, `/materials/plastik-hpl`, `/prices`, `/portfolio`, `/design-proekt-kuhni`.
+- Sitemap и robots.ts без изменений в коде: `/materials/furnitura` уже есть в `STATIC_PATHS`, robots.txt содержит canonical sitemap и не блокирует страницу.
+
+### Локальная QA
+
+- `http://127.0.0.1:3036/materials/furnitura` — HTTP 200.
+- Canonical: `https://kuhni.minsk.by/materials/furnitura`.
+- `noindex` не найден.
+- Browser desktop: 1 H1, `Article` — 1, `ImageObject` — 12, `FAQPage` — 1, пустых alt — 0, горизонтального overflow нет.
+- Browser mobile 390px: 1 H1, 200 кнопок галереи, пустых alt — 0, горизонтального overflow нет.
+- `/sitemap.xml` локально — HTTP 200, содержит `https://kuhni.minsk.by/materials/furnitura`.
+- `/robots.txt` локально — HTTP 200, содержит `Sitemap: https://kuhni.minsk.by/sitemap.xml`.
+
+### Production QA до нового деплоя
+
+- `https://kuhni.minsk.by/materials/furnitura` — HTTP 200.
+- Canonical: `https://kuhni.minsk.by/materials/furnitura`.
+- `noindex` не найден.
+- `https://kuhni.minsk.by/sitemap.xml` — HTTP 200, содержит URL страницы.
+- `https://kuhni.minsk.by/robots.txt` — HTTP 200, содержит canonical sitemap.
+
+### Проверки команд
+
+- `pnpm --filter @workspace/kuhni-na-zakaz typecheck` — успешно.
+- `pnpm --filter @workspace/kuhni-na-zakaz sitemap:check` — успешно, 75 URL; есть ожидаемые Prisma-предупреждения из-за недоступной локальной БД `127.0.0.1:5434`.
+- `pnpm --filter @workspace/kuhni-na-zakaz build` — успешно; есть ожидаемые Prisma-предупреждения из-за недоступной локальной БД, сборка завершилась без ошибки.
+
+Нельзя писать, что страница гарантированно проиндексирована: можно фиксировать только факты проверки, отправки URL/sitemap и доступности production.

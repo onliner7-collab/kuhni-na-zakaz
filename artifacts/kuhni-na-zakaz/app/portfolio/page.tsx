@@ -141,6 +141,10 @@ export default async function PortfolioPage() {
                   </li>
                 ))}
               </ul>
+              <Link href="/materials/furnitura" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+                Петли, направляющие и комплектация кухни
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
             <div className="card-base p-5">
               <ContactForm source="portfolio-index" sourceType="portfolio-index" />

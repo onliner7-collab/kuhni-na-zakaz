@@ -22,12 +22,15 @@ import {
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { FurnituraHardwareGallery } from "@/components/sections/FurnituraHardwareGallery";
-import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
+import { furnituraGalleryRegistry } from "@/lib/furnitura-gallery-registry";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl, type JsonLdObject } from "@/lib/schema-org";
 
 const pageTitle = "Фурнитура для кухни на заказ";
 const pageDescription =
   "Разбираем фурнитуру для кухни на заказ: петли, направляющие, доводчики, подъемные механизмы, ручки и системы хранения. Поможем подобрать решение под проект кухни в Минске и Беларуси.";
 const heroImage = "/images/materials-gallery-v2/furnitura/furniture-furnitura-hero-01.webp";
+const pagePath = "/materials/furnitura";
+const imageBasePath = "/images/materials-gallery-v2/furnitura";
 
 export const metadata: Metadata = {
   title: "Фурнитура для кухни на заказ в Минске | Петли, направляющие, доводчики",
@@ -41,6 +44,20 @@ export const metadata: Metadata = {
     type: "article",
   },
 };
+
+const jsonLdImages = furnituraGalleryRegistry.slice(0, 12).map((image) =>
+  compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    contentUrl: siteUrl(`${imageBasePath}/${image.file}`),
+    url: siteUrl(`${imageBasePath}/${image.file}`),
+    name: image.title,
+    description: image.alt,
+    caption: image.alt,
+    representativeOfPage: image.type === "hero",
+    encodingFormat: "image/webp",
+  }),
+);
 
 const importanceItems = [
   {
@@ -263,7 +280,7 @@ export default function FurnituraMaterialsPage() {
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Материалы", path: "/materials" },
-    { name: "Фурнитура", path: "/materials/furnitura" },
+    { name: "Фурнитура", path: pagePath },
   ]);
   const jsonLdFaq = faqJsonLd(faqItems);
   const jsonLdWebPage = compactJsonLd({
@@ -271,14 +288,40 @@ export default function FurnituraMaterialsPage() {
     "@type": "WebPage",
     name: pageTitle,
     description: pageDescription,
-    url: siteUrl("/materials/furnitura"),
+    url: siteUrl(pagePath),
     isPartOf: { "@type": "WebSite", name: "КухниBY", url: siteUrl() },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      contentUrl: siteUrl(heroImage),
+      caption: "Фурнитура для кухни на заказ в открытом ящике с направляющими и органайзером",
+    },
     about: "Кухонная фурнитура для кухонь на заказ",
   });
+  const jsonLdArticle = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: pageTitle,
+    description: pageDescription,
+    mainEntityOfPage: siteUrl(pagePath),
+    image: jsonLdImages.map((image) => image.contentUrl).filter(Boolean),
+    datePublished: "2026-06-02",
+    dateModified: "2026-06-04",
+    author: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
+    publisher: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
+    inLanguage: "ru-BY",
+    articleSection: "Материалы для кухни",
+  });
+  const jsonLdItems: JsonLdObject[] = [
+    jsonLdBreadcrumb,
+    jsonLdWebPage,
+    jsonLdArticle,
+    ...jsonLdImages,
+    ...(jsonLdFaq ? [jsonLdFaq] : []),
+  ];
 
   return (
     <>
-      <JsonLd data={jsonLdFaq ? [jsonLdBreadcrumb, jsonLdWebPage, jsonLdFaq] : [jsonLdBreadcrumb, jsonLdWebPage]} />
+      <JsonLd data={jsonLdItems} />
       <div className="section-padding">
         <main className="container-site">
           <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground" aria-label="Хлебные крошки">

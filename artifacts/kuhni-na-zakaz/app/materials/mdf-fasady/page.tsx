@@ -142,6 +142,7 @@ const faqItems = [
 
 const internalLinks = [
   { href: "/materials", label: "Все материалы" },
+  { href: "/materials/furnitura", label: "Фурнитура для кухни" },
   { href: "/materials/ldsp", label: "ЛДСП" },
   { href: "/materials/plastik-hpl", label: "Пластик HPL" },
   { href: "/prices", label: "Цены на кухни" },

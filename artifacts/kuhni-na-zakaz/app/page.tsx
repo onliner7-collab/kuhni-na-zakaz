@@ -58,6 +58,11 @@ const CATALOG_CATEGORIES = [
 
 const MATERIAL_GUIDES = [
   {
+    href: "/materials/furnitura",
+    title: "Фурнитура для кухни",
+    text: "Петли, направляющие, доводчики, подъемники и системы хранения для удобной кухни.",
+  },
+  {
     href: "/materials/mdf-fasady",
     title: "МДФ фасады",
     text: "Для кухонь с фрезеровкой, эмалью, пленкой и гибким подбором внешнего вида.",
@@ -585,7 +590,7 @@ export default async function HomePage() {
               Все материалы <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {MATERIAL_GUIDES.map((item) => (
               <Link
                 key={item.href}
