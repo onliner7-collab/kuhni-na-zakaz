@@ -84,3 +84,34 @@ Production-проверка до нового деплоя:
 - повторно проверить production HTML на наличие `Article` и `ImageObject`;
 - при необходимости повторно отправить URL `/materials/furnitura` и sitemap в Google Search Console и Yandex Webmaster.
 
+---
+
+## Production update после этапов 8-10
+
+Дата обновления: 2026-06-04
+
+- Commit: `2237507 Complete furnitura SEO schema and internal links`.
+- Push: `origin/work` выполнен успешно.
+- Deploy: выполнен на Timeweb VPS; первая попытка уперлась в права на `.next/diagnostics/build-diagnostics.json`, после исправления владельца `.next` production build прошел успешно.
+- Service `kuhni-na-zakaz`: active после restart.
+
+Production QA после deploy:
+
+- `https://kuhni.minsk.by/materials/furnitura` — HTTP 200.
+- Canonical: `https://kuhni.minsk.by/materials/furnitura`.
+- `noindex` не найден.
+- JSON-LD на странице: `BreadcrumbList`, `WebPage`, `Article`, `FAQPage`, `ImageObject`.
+- Browser desktop: 1 H1, `Article` — 1, `FAQPage` — 1, top-level `ImageObject` — 12, пустых alt — 0, горизонтального overflow нет.
+- Browser mobile 390px: 1 H1, пустых alt — 0, горизонтального overflow нет.
+- `https://kuhni.minsk.by/sitemap.xml` — HTTP 200, содержит `https://kuhni.minsk.by/materials/furnitura`.
+- `https://kuhni.minsk.by/robots.txt` — HTTP 200, содержит `Sitemap: https://kuhni.minsk.by/sitemap.xml`.
+- Проверенные входящие страницы `/`, `/materials`, `/materials/mdf-fasady`, `/materials/ldsp`, `/materials/plastik-hpl`, `/prices`, `/portfolio`, `/design-proekt-kuhni` открываются с HTTP 200 и содержат ссылку на `/materials/furnitura`.
+
+Индексация / переобход:
+
+- Google Search Console UI: URL inspection для `https://kuhni.minsk.by/materials/furnitura` показал `URL есть в индексе Google` и `Эта страница проиндексирована`; нажата кнопка повторного запроса индексирования. Финальный диалог подтверждения повторного запроса не удалось перечитать после блокировки browser-профиля Playwright.
+- Google Search Console API: refresh token вернул `invalid_grant`, поэтому API-проверка/отправка через сохраненный OAuth-токен не выполнена.
+- Yandex Webmaster API: URL `https://kuhni.minsk.by/materials/furnitura` отправлен в очередь переобхода, API status `202`, task_id `aa38b740-5fe1-11f1-8910-737450a8b321`, quota_remainder `128`.
+- Yandex Webmaster API: sitemap `https://kuhni.minsk.by/sitemap.xml` уже есть в списке sitemap, sitemap_id `39bff829-022b-3e39-884a-527f04d4eb5c`, last_access_date `2026-06-01T21:06:55.000+03:00`, errors_count `0`.
+
+Нельзя писать, что страница гарантированно проиндексирована или будет переиндексирована: зафиксированы только доступность страницы, наличие URL в Google по данным GSC, отправка URL в очередь переобхода Яндекса и доступность sitemap.

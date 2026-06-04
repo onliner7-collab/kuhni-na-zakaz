@@ -181,3 +181,52 @@
 - `pnpm --filter @workspace/kuhni-na-zakaz build` — успешно; есть ожидаемые Prisma-предупреждения из-за недоступной локальной БД, сборка завершилась без ошибки.
 
 Нельзя писать, что страница гарантированно проиндексирована: можно фиксировать только факты проверки, отправки URL/sitemap и доступности production.
+
+---
+
+## Этапы 8-10: production deploy, QA и переобход
+
+Дата обновления: 2026-06-04
+
+### Commit / push / deploy
+
+- Commit: `2237507 Complete furnitura SEO schema and internal links`.
+- Push: `origin/work` успешно обновлен.
+- Deploy: выполнен через `deploy/scripts/update-production.sh work` на Timeweb VPS.
+- Первая попытка deploy завершилась ошибкой прав на `.next/diagnostics/build-diagnostics.json`; владелец `.next` исправлен на `kuhni:kuhni`, после этого production build прошел успешно.
+- Service `kuhni-na-zakaz`: active после restart.
+
+### Production QA
+
+- `https://kuhni.minsk.by/materials/furnitura` — HTTP 200.
+- Canonical: `https://kuhni.minsk.by/materials/furnitura`.
+- `noindex` не найден.
+- Production HTML содержит `Article`, `FAQPage` и `ImageObject`; в браузерной проверке top-level `ImageObject` — 12.
+- Browser production desktop: 1 H1, `Article` — 1, `FAQPage` — 1, пустых alt — 0, горизонтального overflow нет.
+- Browser production mobile 390px: 1 H1, пустых alt — 0, горизонтального overflow нет.
+- `https://kuhni.minsk.by/sitemap.xml` — HTTP 200, содержит `https://kuhni.minsk.by/materials/furnitura`.
+- `https://kuhni.minsk.by/robots.txt` — HTTP 200, содержит `Sitemap: https://kuhni.minsk.by/sitemap.xml`, блокировки `/materials/furnitura` не найдено.
+- Входящие страницы `/`, `/materials`, `/materials/mdf-fasady`, `/materials/ldsp`, `/materials/plastik-hpl`, `/prices`, `/portfolio`, `/design-proekt-kuhni` — HTTP 200, canonical корректный, `noindex` не найден, ссылка на `/materials/furnitura` есть.
+
+### Индексация / переобход
+
+- Google Search Console UI:
+  - property: `sc-domain:kuhni.minsk.by`;
+  - URL inspection для `https://kuhni.minsk.by/materials/furnitura` показал `URL есть в индексе Google` и `Эта страница проиндексирована`;
+  - нажата кнопка повторного запроса индексирования;
+  - финальный диалог подтверждения повторного запроса не удалось перечитать после блокировки browser-профиля Playwright.
+- Google Search Console API:
+  - сохраненный OAuth refresh token вернул `invalid_grant`;
+  - API-проверка/отправка через сохраненный OAuth-токен не выполнена.
+- Yandex Webmaster API:
+  - host-id: `https:kuhni.minsk.by:443`;
+  - URL `https://kuhni.minsk.by/materials/furnitura` отправлен в очередь переобхода;
+  - API status: `202`;
+  - task_id: `aa38b740-5fe1-11f1-8910-737450a8b321`;
+  - quota_remainder: `128`;
+  - sitemap `https://kuhni.minsk.by/sitemap.xml` уже есть в списке sitemap;
+  - sitemap_id: `39bff829-022b-3e39-884a-527f04d4eb5c`;
+  - last_access_date: `2026-06-01T21:06:55.000+03:00`;
+  - errors_count: `0`.
+
+Нельзя писать, что страница гарантированно будет переиндексирована: URL поставлен в очередь Яндекса, Google UI показал текущую индексацию страницы, sitemap доступен и присутствует в панелях.
