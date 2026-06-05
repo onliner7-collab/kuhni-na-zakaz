@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
-import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
-  title: "Каталог кухонь на заказ в Минске: фото и цены",
-  description: "Каталог кухонь на заказ в Минске: угловые, прямые, П-образные, с островом и маленькие кухни. Фото, цены от 900 BYN, доставка и монтаж.",
+  title: "Купить кухню в Минске: каталог кухонь на заказ",
+  description: "Каталог кухонь на заказ в Минске: угловые, прямые, маленькие, до потолка и с островом. Расчет под размеры, доставка и монтаж.",
   alternates: { canonical: "/catalog" },
 };
 
@@ -22,15 +22,40 @@ const DEFAULT_CATEGORIES = [
   { slug: "uglovye-kuhni", title: "Угловые кухни", description: "Оптимальное использование угловых зон. Подходят для кухонь от 2 п.м.", priceFrom: 1800, features: ["Эффективный угол", "Вместительность", "Зонирование"] },
 ];
 
+const BUYING_GUIDE_ROWS = [
+  { type: "Угловая кухня", fit: "типовая квартира, кухня 6-12 м², нужна рабочая зона в углу", href: "/catalog/uglovye-kuhni" },
+  { type: "Прямая кухня", fit: "узкое помещение, студия, ограниченный бюджет или одна свободная стена", href: "/catalog/pryamye-kuhni" },
+  { type: "П-образная кухня", fit: "просторная кухня или дом, где нужно много столешницы и хранения", href: "/catalog/p-obraznye-kuhni" },
+  { type: "Маленькая кухня", fit: "хрущевка, гостинка, студия или помещение со сложными нишами", href: "/catalog/malenkie-kuhni" },
+  { type: "Кухня до потолка", fit: "нужно больше хранения и аккуратный встроенный вид без зазора сверху", href: "/catalog/kuhni-do-potolka" },
+  { type: "Кухня с островом", fit: "кухня-гостиная, частный дом или большая новостройка с проходами от 100 см", href: "/catalog/kuhni-s-ostrovom" },
+];
+
+const CATALOG_FAQ = [
+  {
+    question: "Можно ли купить кухню в Минске с установкой?",
+    answer: "Да. После замера и согласования проекта рассчитываем изготовление, доставку по Минску и монтаж. Установка входит в смету отдельной строкой, чтобы было понятно, за что вы платите.",
+  },
+  {
+    question: "Можно ли купить кухню недорого, но под размер?",
+    answer: "Можно, если выбрать простую планировку, практичные фасады и фурнитуру без дорогих механизмов. Даже бюджетную кухню лучше считать по реальным размерам, а не подгонять готовые модули на месте.",
+  },
+  {
+    question: "Какая кухня дешевле: прямая или угловая?",
+    answer: "Обычно прямая дешевле: в ней нет углового узла, проще столешница и монтаж. Угловая дороже, но часто дает больше хранения и рабочей поверхности в типовой квартире.",
+  },
+];
+
 export default async function CatalogPage() {
   const jsonLd = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Каталог", path: "/catalog" },
   ]);
+  const faqJsonLdData = faqJsonLd(CATALOG_FAQ);
 
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd data={faqJsonLdData ? [jsonLd, faqJsonLdData] : jsonLd} />
       <div className="section-padding">
         <div className="container-site">
           <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
@@ -42,6 +67,24 @@ export default async function CatalogPage() {
           <p className="text-muted-foreground mb-10 max-w-2xl">
             Изготавливаем кухни по индивидуальным размерам. Каждый проект — отдельный дизайн и расчёт.
           </p>
+          <section className="mb-12 border-y border-border py-8">
+            <div className="max-w-4xl space-y-4 text-sm leading-relaxed text-muted-foreground">
+              <h2 className="font-serif text-2xl font-bold text-foreground">Купить кухню в Минске под размер квартиры или дома</h2>
+              <p>
+                В каталоге удобно выбрать тип будущей кухни до расчета: угловую, прямую, П-образную, маленькую,
+                до потолка или с островом. Готовый гарнитур со склада быстрее купить, но он редко точно попадает
+                в размеры ниши, вентиляционный короб, технику и привычки семьи. Кухня на заказ проектируется под
+                помещение: замеряем стены, проверяем коммуникации, расставляем мойку, плиту, холодильник и хранение,
+                а затем подбираем фасады, столешницу и фурнитуру под бюджет.
+              </p>
+              <p>
+                Если нужно купить кухню в Минске с доставкой и установкой, сначала выбираем планировку и комплектацию,
+                после этого фиксируем смету. Цена зависит не только от длины гарнитура: важны материал фасадов,
+                количество ящиков, подъемники, угловые механизмы, высота шкафов, столешница и сложность монтажа.
+                Поэтому каталог помогает сузить выбор, а точный расчет делаем после размеров и состава проекта.
+              </p>
+            </div>
+          </section>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {DEFAULT_CATEGORIES.map((cat, index) => {
               const image = resolveCatalogCategoryImage(cat);
@@ -62,45 +105,59 @@ export default async function CatalogPage() {
             })}
           </div>
           <section className="mt-12 border-t border-border pt-8">
-            <div className="max-w-4xl space-y-4 text-sm leading-relaxed text-muted-foreground">
-              <h2 className="font-serif text-2xl font-bold text-foreground">Как выбрать кухню по каталогу</h2>
-              <p>
-                В каталоге можно купить кухню под размеры квартиры или дома: прямую, угловую, до потолка,
-                с островом или компактную для студии. Минск остается основным направлением, но работаем и по
-                регионам: доставка по Беларуси согласуется заранее, а цена зависит от материалов, фурнитуры,
-                столешницы и монтажа.
-              </p>
-              <p>
-                Если вы ищете кухни модульные купить Минск, важно понимать разницу: модульный формат удобен
-                для быстрой комплектации, но модульный набор не всегда закрывает нестандартные размеры. Мы
-                можем рассчитать модульный вариант, показать фото похожих решений и предложить индивидуальный
-                проект, где стиль, хранение и цена согласованы до запуска.
-              </p>
-              <p>
-                Для запросов вроде стиль хаус кухни официальный сайт, официальный сайт кухонь Стиль Хаус или
-                официальный сайт производителя мы не выдаем себя за другой бренд. Этот сайт КухниBY помогает
-                сравнить стиль, фото, цену и комплектацию, а также купить кухню в рассрочку с доставкой по
-                Беларуси, если рассрочка подходит под условия заказа и сравнение со Стиль Хаус нужно только
-                как ориентир по формату.
-              </p>
-              <p>
-                Можно купить кухню в рассрочку с доставкой по Беларуси для Минска и других городов: Минск,
-                Борисов, Гомель и ближайшие районы обсуждаются по адресу. Рассрочка рассчитывается после
-                комплектации, доставка зависит от маршрута, а цена фиксируется в смете после замера.
-                Рассрочка возможна только после согласования состава заказа.
-              </p>
-              <p>
-                Если нужен запрос купить кухню в Борисове фото и цены, смотрите карточки каталога и городскую
-                страницу Борисов: там проще сопоставить фото, цена по категории и условия выезда. Для Гомель
-                также можно рассчитать проект удаленно: Гомель, Гомельская область и направление на Гомель
-                обсуждаем по составу кухни и срокам доставки.
-              </p>
-              <p>
-                Запрос купить кухню Мила в Гомеле часто связан с поиском готовых решений. Мы не являемся
-                брендом Мила, но можем сравнить стиль Мила, формат Мила и ожидания по цене с индивидуальной
-                кухней на заказ: покажем фото, предложим материалы и объясним, где выгоднее купить готовый
-                вариант, а где лучше заказывать проект под помещение.
-              </p>
+            <h2 className="font-serif text-2xl font-bold text-foreground">Какой тип кухни выбрать</h2>
+            <div className="mt-5 overflow-x-auto rounded-xl border">
+              <table className="w-full min-w-[720px] text-left text-sm">
+                <thead className="bg-muted/70 text-foreground">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">Тип кухни</th>
+                    <th className="px-4 py-3 font-semibold">Кому подходит</th>
+                    <th className="px-4 py-3 font-semibold">Посадочная</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {BUYING_GUIDE_ROWS.map((row) => (
+                    <tr key={row.href}>
+                      <td className="px-4 py-3 font-medium text-foreground">{row.type}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{row.fit}</td>
+                      <td className="px-4 py-3">
+                        <Link href={row.href} className="font-medium text-primary hover:underline">
+                          Смотреть раздел
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_0.8fr]">
+            <div>
+              <h2 className="font-serif text-2xl font-bold text-foreground">Частые вопросы о покупке кухни</h2>
+              <div className="mt-4 divide-y rounded-xl border">
+                {CATALOG_FAQ.map((item) => (
+                  <div key={item.question} className="p-5">
+                    <h3 className="font-semibold">{item.question}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="font-serif text-2xl font-bold text-foreground">Полезные разделы</h2>
+              <div className="mt-4 flex flex-col gap-3 text-sm">
+                {[
+                  { href: "/prices", label: "Цены и что влияет на смету" },
+                  { href: "/locations/minsk", label: "Кухни на заказ в Минске" },
+                  { href: "/locations/minskaya-oblast", label: "Доставка и монтаж по Минской области" },
+                  { href: "/portfolio", label: "Портфолио готовых решений" },
+                  { href: "/blog/kakuyu-planirovku-kuhni-vybrat", label: "Как выбрать планировку кухни" },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href} className="rounded-lg border px-4 py-3 font-medium text-primary hover:bg-muted">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
         </div>

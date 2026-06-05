@@ -103,12 +103,41 @@ function renderTable(block: string, key: number): React.ReactNode {
   );
 }
 
+function parseImageBlock(block: string) {
+  const image = block.trim().match(/^!\[([^\]]*)\]\((\S+?)(?:\s+"([^"]+)")?\)$/);
+  if (!image) return null;
+
+  const [, alt, src, caption] = image;
+  if (!src.startsWith("/") && !src.startsWith("https://")) return null;
+
+  return { alt: alt.trim(), src, caption: caption?.trim() };
+}
+
 export function renderContent(content: string): React.ReactNode {
   if (!content.trim()) return null;
   const blocks = content.trim().split(/\n{2,}/);
   return (
     <>
       {blocks.map((block, i) => {
+        const image = parseImageBlock(block);
+        if (image) {
+          return (
+            <figure key={i} className="my-7 overflow-hidden rounded-xl border border-border bg-muted/20">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                className="aspect-[3/2] w-full object-cover"
+              />
+              {image.caption ? (
+                <figcaption className="px-4 py-3 text-xs text-muted-foreground">
+                  {renderInline(image.caption)}
+                </figcaption>
+              ) : null}
+            </figure>
+          );
+        }
         if (isTableBlock(block)) {
           return renderTable(block, i);
         }

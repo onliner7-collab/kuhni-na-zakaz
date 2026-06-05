@@ -21,7 +21,7 @@ import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
-import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const revalidate = 3600;
@@ -449,13 +449,14 @@ export default async function LocationPage({ params }: Props) {
   const timelineSteps = loc.timelineText ? loc.timelineText.split("→").map(s => s.trim()).filter(Boolean) : [];
   const cityGen = cityGenitive(loc.city);
   const cityFrom = citySourceForm(loc.city);
+  const locationUrl = `/locations/${loc.slug}`;
   const jsonLdWebPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": siteUrl(`/locations/${loc.slug}`),
+    "@id": siteUrl(locationUrl),
     name: loc.h1 || loc.title || `Кухни на заказ в ${loc.city}`,
     description: loc.description || loc.intro,
-    url: siteUrl(`/locations/${loc.slug}`),
+    url: siteUrl(locationUrl),
     inLanguage: "ru-BY",
     isPartOf: {
       "@type": "WebSite",
@@ -468,6 +469,36 @@ export default async function LocationPage({ params }: Props) {
       contentUrl: siteUrl(loc.images[0] || LOCATION_PAGE_FALLBACK_IMAGE),
     },
   };
+  const jsonLdFaq = faqJsonLd(faqItems.map((item) => ({ question: item.q, answer: item.a })));
+  const jsonLdService = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${siteUrl(locationUrl)}#service`,
+    name: loc.h1 || `Кухни на заказ в ${loc.city}`,
+    description: loc.description || loc.intro,
+    serviceType: "Кухни на заказ",
+    areaServed: compactJsonLd({
+      "@type": "AdministrativeArea",
+      name: loc.region || loc.city,
+    }),
+    provider: compactJsonLd({
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl("/")}#localbusiness`,
+      name: SITE_NAME,
+      url: siteUrl("/"),
+      telephone: CONTACT_DEFAULTS.phone,
+      address: compactJsonLd({
+        "@type": "PostalAddress",
+        addressLocality: "Минск",
+        addressCountry: "BY",
+      }),
+      areaServed: compactJsonLd({
+        "@type": "AdministrativeArea",
+        name: loc.region || loc.city,
+      }),
+    }),
+    offers: offerJsonLd(loc.priceFrom, locationUrl),
+  });
 
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -477,7 +508,7 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={[jsonLdWebPage, jsonLdBreadcrumb].filter(isJsonLdObject)} />
+      <JsonLd data={[jsonLdWebPage, jsonLdBreadcrumb, jsonLdService, jsonLdFaq].filter(isJsonLdObject)} />
 
       {/* HERO */}
       <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">

@@ -111,6 +111,50 @@ export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
       "Реалистичная 3D-визуализация просторной современной кухни с островом, большой кухонный остров с деревянной или каменной столешницей, барные стулья, встроенная техника без логотипов, достаточно широкие проходы вокруг острова, светлые матовые фасады, дневной свет, премиальный интерьер, без людей, без текста, иллюстрация для статьи о кухне с островом, 1200x800, realistic interior render",
     imageCaption: "3D-визуализация кухни с островом и барной зоной",
   },
+  "kuhnya-na-zakaz-ili-gotovaya-chto-vygodnee": {
+    image: "/images/blog/kak-vybrat-kuhnyu-na-zakaz.webp",
+    imageTitle: "Кухня на заказ или готовый гарнитур: выбор решения",
+    imageAlt:
+      "Выбор между готовой кухней и кухней на заказ с образцами материалов",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt:
+      "Реалистичная 3D-визуализация выбора между готовой кухней и кухней на заказ, современная светлая кухня на фоне, на столешнице образцы фасадов, план помещения и фурнитура, без людей, без текста, без логотипов, коммерческая иллюстрация для статьи о сравнении кухни на заказ и готовой кухни, 1200x800",
+    imageCaption: "3D-визуализация выбора материалов и планировки перед заказом кухни",
+  },
+  "kuhnya-dlya-novostroyki-v-minske-do-zamera": {
+    image: "/images/blog/stoimost-kuhni-na-zakaz-minsk-2026.webp",
+    imageTitle: "Кухня для новостройки в Минске",
+    imageAlt:
+      "Современная кухня для новостройки в Минске с образцами материалов",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt:
+      "Реалистичная 3D-визуализация кухни для новостройки в Минске, светлая городская квартира, современный гарнитур, образцы материалов и техника без логотипов, ощущение подготовки к замеру, без людей, без текста, 1200x800",
+    imageCaption: "3D-визуализация кухни для городской новостройки",
+  },
+  "kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh": {
+    image: "/images/blog/skolko-stoit-kuhnya-na-zakaz-v-belarusi.webp",
+    imageTitle: "Расчет бюджета кухни: материалы и комплектация",
+    imageAlt:
+      "Кухня на заказ с образцами фасадов и столешниц для расчета бюджета",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt:
+      "Реалистичная 3D-визуализация современной кухни на заказ с образцами фасадов, столешниц и фурнитуры для расчета бюджета, встроенная техника без логотипов, чистый интерьер, без людей, без текста, 1200x800",
+    imageCaption: "3D-визуализация кухни с материалами для расчета сметы",
+  },
+  "oshibki-pri-zakaze-kuhni-15-punktov-pered-dogovorom": {
+    image: "/images/blog/furnitura-dlya-kuhni-yashchiki-petli.webp",
+    imageTitle: "Проверка кухни перед договором",
+    imageAlt:
+      "Кухонные ящики и фурнитура для проверки комплектации перед договором",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt:
+      "Реалистичная 3D-визуализация проверки кухни перед договором, открытые ящики, фурнитура, образцы фасадов, аккуратная современная кухня, без людей, без текста, без логотипов, 1200x800",
+    imageCaption: "3D-визуализация деталей кухни перед согласованием сметы",
+  },
 };
 
 export type BlogPostWithCover = {

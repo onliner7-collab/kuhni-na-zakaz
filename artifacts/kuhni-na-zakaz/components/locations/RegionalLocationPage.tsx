@@ -165,6 +165,26 @@ function getPopularSolutions(location: RegionalLocationData) {
 }
 
 function getFaqItems(location: RegionalLocationData) {
+  const cityCommercialFaq: RegionalLocationData["faq"] =
+    location.isMinskRegionCity && location.slug !== "minskaya-oblast"
+      ? [
+          {
+            question: `Можно ли купить кухню в ${location.cityPrepositional} с доставкой и монтажом?`,
+            answer:
+              "Да, можно заказать кухню под размер с доставкой и монтажом. Логистику, дату выезда и условия установки согласуем после предварительного расчета и проверки адреса.",
+          },
+          {
+            question: `Сколько стоит кухня в ${location.cityPrepositional}?`,
+            answer:
+              "Точная стоимость зависит от размеров, фасадов, столешницы, фурнитуры, техники, доставки и монтажных условий. Ориентир можно подготовить по размерам и фото.",
+          },
+          {
+            question: "Можно ли начать с расчета по фото и размерам?",
+            answer:
+              "Да, для первого расчета достаточно фото помещения, примерных размеров, списка техники и пожеланий по планировке. Финальная смета фиксируется после замера.",
+          },
+        ]
+      : [];
   const extra: RegionalLocationData["faq"] = [
     {
       question: `Можно ли рассчитать кухню в ${location.cityPrepositional} до замера?`,
@@ -189,11 +209,91 @@ function getFaqItems(location: RegionalLocationData) {
   ];
   const byQuestion = new Map<string, RegionalLocationData["faq"][number]>();
 
-  for (const item of [...location.faq, ...extra]) {
+  for (const item of [...cityCommercialFaq, ...location.faq, ...extra]) {
     if (!byQuestion.has(item.question)) byQuestion.set(item.question, item);
   }
 
   return Array.from(byQuestion.values()).slice(0, 7);
+}
+
+function getHubCityOrderText(city: RegionalLocationData) {
+  const objectHint = city.popularSolutions[0]?.title.toLocaleLowerCase("ru") ?? "кухню под размер";
+
+  return `Кухню под размер: ${objectHint}, замер, проект, доставку и монтаж.`;
+}
+
+function getHubDeliveryText(city: RegionalLocationData) {
+  const area = city.areas[1] ?? city.regionName;
+
+  return `${area}; маршрут и стоимость уточняются по адресу, объему кухни и условиям разгрузки.`;
+}
+
+const hubDirections = [
+  {
+    title: "Север",
+    text: "Логойск, Вилейка и Мядель: чаще встречаются частные дома, дачи, кухни с большим хранением и отдельной логистикой выезда.",
+    links: ["logoisk", "vileyka", "myadel"],
+  },
+  {
+    title: "Запад",
+    text: "Молодечно, Воложин, Заславль и Дзержинск: удобно начинать с удаленного расчета, затем подтверждать размеры на объекте.",
+    links: ["molodechno", "volozhin", "zaslavl", "dzerzhinsk"],
+  },
+  {
+    title: "Юг",
+    text: "Слуцк, Солигорск, Несвиж, Клецк, Копыль, Любань, Узда и Старые Дороги: заранее планируем рейс, занос столешницы и монтажный день.",
+    links: ["slutsk", "soligorsk", "nesvizh", "kletsk", "kopyl", "lyuban", "uzda", "starye-dorogi"],
+  },
+  {
+    title: "Восток",
+    text: "Борисов, Жодино, Смолевичи, Березино, Червень и Крупки: проект удобно согласовать дистанционно, а замер привязать к маршруту.",
+    links: ["borisov", "zhodino", "smolevichi", "berezino", "cherven", "krupki"],
+  },
+  {
+    title: "Ближние города к Минску",
+    text: "Фаниполь, Заславль, Смолевичи и Дзержинск: часто заказывают кухни для новостроек, таунхаусов и квартир после ремонта.",
+    links: ["fanipol", "zaslavl", "smolevichi", "dzerzhinsk"],
+  },
+];
+
+const hubKitchenTypes = [
+  {
+    title: "Для квартиры",
+    text: "Считаем хранение, рабочую поверхность, встроенную технику, проходы и удобный занос деталей.",
+    href: "/catalog/malenkie-kuhni",
+  },
+  {
+    title: "Для частного дома",
+    text: "Учитываем котел, вентиляцию, крупную технику, большие шкафы и место сборки на объекте.",
+    href: "/catalog/kuhni-s-ostrovom",
+  },
+  {
+    title: "Для дачи",
+    text: "Подбираем практичные материалы и согласуем монтаж с учетом сезонности, доступа и готовности помещения.",
+    href: "/materials",
+  },
+  {
+    title: "До потолка",
+    text: "Добавляет хранение, но требует точного замера высоты, вентиляции, верхних доборов и открывания фасадов.",
+    href: "/catalog/kuhni-do-potolka",
+  },
+  {
+    title: "Угловая",
+    text: "Подходит для большинства квартир и домов, помогает собрать удобный рабочий треугольник.",
+    href: "/catalog/uglovye-kuhni",
+  },
+  {
+    title: "Прямая",
+    text: "Хороший вариант для узких помещений, студий, дачных кухонь и проектов с понятной сметой.",
+    href: "/catalog/pryamye-kuhni",
+  },
+];
+
+function getHubDirectionLinks(slugs: string[]) {
+  return slugs
+    .map((slug) => minskRegionLocations.find((city) => city.slug === slug))
+    .filter((city): city is RegionalLocationData => Boolean(city))
+    .map((city) => ({ href: `/locations/${city.slug}`, label: city.cityName }));
 }
 
 export function RegionalLocationPage({
@@ -209,6 +309,18 @@ export function RegionalLocationPage({
   const heroIdea = cityIdeas[0];
   const heroImage = heroIdea?.image ?? "/images/hero.webp";
   const phoneHref = `tel:${CONTACT_DEFAULTS.phone}`;
+  const workSectionTitle =
+    location.slug === "minsk"
+      ? "Купить кухню в Минске с замером, проектом и монтажом"
+      : location.isMinskRegionCity && !isMinskRegionHub
+        ? `Купить кухню в ${location.cityPrepositional} под размер квартиры или дома`
+        : `Как работаем в ${location.cityPrepositional}`;
+  const popularSectionTitle =
+    location.slug === "minsk"
+      ? "Популярные решения в Минске"
+      : location.isMinskRegionCity && !isMinskRegionHub
+        ? `Популярные решения в ${location.cityPrepositional}`
+        : `Популярные решения для ${location.cityGenitive}`;
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Города", path: "/locations" },
@@ -334,7 +446,7 @@ export function RegionalLocationPage({
           <div>
             <SectionTitle
               eyebrow="Региональная страница"
-              title={`Как работаем в ${location.cityPrepositional}`}
+              title={workSectionTitle}
               text={location.seoText}
             />
             <p className="text-base leading-7 text-muted-foreground">{location.serviceAreaText}</p>
@@ -355,23 +467,68 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Хаб области"
-              title="Города Минской области"
+              title="Купить кухню в Минской области: города, доставка и монтаж"
               text={location.hubText}
             />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {minskRegionLocations.map((city) => (
-                <Link
-                  key={city.slug}
-                  href={`/locations/${city.slug}`}
-                  className="group rounded-2xl border border-border bg-white p-5 transition-all hover:border-primary/40 hover:shadow-md"
-                >
-                  <p className="font-serif text-xl font-bold text-foreground">{city.cityName}</p>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{city.intro}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                    Открыть страницу <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              ))}
+
+            <div className="overflow-hidden rounded-lg border border-border bg-white">
+              <div className="hidden grid-cols-[0.8fr_1.2fr_1.4fr] border-b border-border bg-muted/50 px-4 py-3 text-sm font-semibold text-foreground md:grid">
+                <span>Город</span>
+                <span>Что можно заказать</span>
+                <span>Особенности доставки и замера</span>
+              </div>
+              <div className="divide-y divide-border">
+                {minskRegionLocations.map((city) => (
+                  <div key={city.slug} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[0.8fr_1.2fr_1.4fr] md:items-start">
+                    <Link
+                      href={`/locations/${city.slug}`}
+                      className="inline-flex items-center gap-2 font-semibold text-primary hover:underline"
+                    >
+                      {city.cityName}
+                      <ArrowRight className="h-4 w-4" aria-hidden />
+                    </Link>
+                    <p className="leading-6 text-foreground">{getHubCityOrderText(city)}</p>
+                    <p className="leading-6 text-muted-foreground">{getHubDeliveryText(city)}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <SectionTitle
+                eyebrow="Направления"
+                title="Направления по Минской области"
+                text="Группируем города не для создания дублей, а чтобы быстрее выбрать маршрут замера и понять логистику доставки."
+              />
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+                {hubDirections.map((direction) => (
+                  <div key={direction.title} className="rounded-lg border border-border bg-white p-5">
+                    <h3 className="mb-3 text-lg font-semibold text-foreground">{direction.title}</h3>
+                    <p className="mb-4 text-sm leading-6 text-muted-foreground">{direction.text}</p>
+                    <LinkPills links={getHubDirectionLinks(direction.links)} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <SectionTitle
+                eyebrow="Типы кухонь"
+                title="Типы кухонь для Минской области"
+                text="Выбор зависит от объекта: квартира, дом, дача, кухня-гостиная или компактное помещение после ремонта."
+              />
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {hubKitchenTypes.map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="rounded-lg border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+                  >
+                    <h3 className="mb-3 text-lg font-semibold text-foreground">{item.title}</h3>
+                    <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -513,7 +670,7 @@ export function RegionalLocationPage({
         <div className="container-site">
           <SectionTitle
             eyebrow="Решения"
-            title={`Популярные решения для ${location.cityGenitive}`}
+            title={popularSectionTitle}
             text="Это не фиктивные кейсы, а типы кухонь, которые можно рассмотреть для похожих помещений."
           />
           <div className="grid gap-4 md:grid-cols-3">

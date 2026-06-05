@@ -79,6 +79,80 @@ const MATERIAL_GUIDES = [
   },
 ];
 
+const CUSTOM_KITCHEN_TABLE = [
+  {
+    included: "Замер и планировка",
+    needed: "Когда помещение уже готово или есть точные размеры от застройщика",
+    price: "Сложность стен, коммуникации, высота потолка и нестандартные углы",
+  },
+  {
+    included: "3D-проект и комплектация",
+    needed: "Когда нужно заранее увидеть фасады, хранение, технику и проходы",
+    price: "Количество модулей, фурнитура, фасады, столешница и встроенная техника",
+  },
+  {
+    included: "Производство, доставка и монтаж",
+    needed: "Когда кухня нужна под ключ, без самостоятельной подгонки модулей",
+    price: "Габариты гарнитура, адрес доставки, этаж, сборка и подключение",
+  },
+];
+
+const HOME_TRUST_STEPS = [
+  "Замер",
+  "3D-проект",
+  "Производство",
+  "Договор",
+  "Доставка",
+  "Монтаж",
+  "Гарантия",
+];
+
+const HOME_INTERNAL_LINKS = [
+  { href: "/catalog", title: "Каталог кухонь", text: "Выбрать угловую, прямую, маленькую кухню или гарнитур до потолка." },
+  { href: "/prices", title: "Цены", text: "Посмотреть ориентиры бюджета и факторы, которые меняют смету." },
+  { href: "/locations/minsk", title: "Кухни в Минске", text: "Условия замера, проекта, доставки и монтажа по Минску." },
+  { href: "/locations/minskaya-oblast", title: "Минская область", text: "Города области, выезд на замер и доставка за пределы Минска." },
+  { href: "/portfolio", title: "Портфолио", text: "Реальные проекты, фото и визуализации кухонь под разные помещения." },
+  { href: "/blog/kakuyu-planirovku-kuhni-vybrat", title: "Как выбрать планировку", text: "Разобраться, когда подходит прямая, угловая или П-образная кухня." },
+];
+
+const HOME_TOP_CITY_LINKS = [
+  { href: "/locations/borisov", label: "Борисов" },
+  { href: "/locations/zhodino", label: "Жодино" },
+  { href: "/locations/molodechno", label: "Молодечно" },
+  { href: "/locations/soligorsk", label: "Солигорск" },
+  { href: "/locations/slutsk", label: "Слуцк" },
+  { href: "/locations/fanipol", label: "Фаниполь" },
+  { href: "/locations/smolevichi", label: "Смолевичи" },
+];
+
+const HOME_SEO_FAQ_ITEMS = [
+  {
+    id: 10_001,
+    question: "Можно ли купить кухню на заказ в Минске?",
+    answer:
+      "Да. Мы проектируем кухни под размеры квартир и домов в Минске, согласуем материалы, технику, смету, доставку и монтаж. Перед производством фиксируем комплектацию и условия в договоре.",
+  },
+  {
+    id: 10_002,
+    question: "Чем кухня на заказ отличается от готовой кухни?",
+    answer:
+      "Готовая кухня собирается из типовых модулей и часто требует компромиссов по размерам. Кухня на заказ проектируется под конкретное помещение, расположение коммуникаций, технику, хранение и выбранные материалы.",
+  },
+  {
+    id: 10_003,
+    question: "Сколько стоит кухня на заказ?",
+    answer:
+      "Стоимость зависит от размера, фасадов, столешницы, фурнитуры, встроенной техники, сложности монтажа и доставки. Точный расчет делаем после размеров и выбора комплектации.",
+  },
+  {
+    id: 10_004,
+    question: "Можно ли заказать кухню с доставкой и монтажом?",
+    answer:
+      "Да. В проект можно включить доставку, сборку, монтаж, установку фурнитуры и согласованные работы по подключению техники. Условия зависят от адреса и комплектации кухни.",
+  },
+];
+
 const LOCAL_BUSINESS_IMAGE =
   "/uploads/seo-showcase/home-hero-dark-kitchen-2026.webp";
 const MOBILE_HERO_IMAGE =
@@ -161,6 +235,13 @@ export default async function HomePage() {
   const avgRating = reviews.length > 0
     ? (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)
     : null;
+  const seoFaqQuestions = new Set(
+    HOME_SEO_FAQ_ITEMS.map((item) => item.question.trim().toLowerCase()).filter(Boolean),
+  );
+  const displayFaqs = [
+    ...HOME_SEO_FAQ_ITEMS,
+    ...faqs.filter((item) => !seoFaqQuestions.has(item.question.trim().toLowerCase())),
+  ];
 
   const websiteJsonLd = {
     "@context": "https://schema.org",
@@ -203,7 +284,7 @@ export default async function HomePage() {
     priceRange: "от 1200 BYN",
   });
   const jsonLdBreadcrumb = breadcrumbJsonLd([{ name: "Главная", path: "/" }]);
-  const jsonLdFaq = faqJsonLd(faqs);
+  const jsonLdFaq = faqJsonLd(displayFaqs);
   const jsonLdProduct =
     reviews.length > 0 && avgRating
       ? {
@@ -219,6 +300,7 @@ export default async function HomePage() {
     localBusinessJsonLd,
     jsonLdBreadcrumb,
     ...(jsonLdProduct ? [jsonLdProduct] : []),
+    ...(jsonLdFaq ? [jsonLdFaq] : []),
   ];
 
   const FALLBACK_ADVANTAGES: HomeAdvantage[] = [
@@ -331,6 +413,103 @@ export default async function HomePage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CUSTOM ORDER INTENT ===== */}
+      <section className="section-padding bg-white" aria-labelledby="home-custom-kitchen-heading">
+        <div className="container-site">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:items-start">
+            <div>
+              <h2
+                id="home-custom-kitchen-heading"
+                className="max-w-3xl text-3xl font-black leading-tight text-[#201b16] lg:text-4xl"
+              >
+                Купить кухню на заказ под размеры помещения
+              </h2>
+              <div className="mt-5 space-y-4 text-base leading-relaxed text-[#5f554c]">
+                <p>
+                  Кухня под заказ - это не готовый модуль со склада, который приходится подгонять под стены и технику. Мы начинаем с размеров помещения, расположения воды, розеток, вентиляции, окон и проходов, а затем собираем проект под ваш сценарий: готовка каждый день, хранение посуды, встроенная техника, барная зона или обеденное место.
+                </p>
+                <p>
+                  На этапе расчета подбираем фасады, корпус, столешницу, фурнитуру и наполнение шкафов. После согласования проекта фиксируем комплектацию, сроки, доставку и монтаж в договоре. Такой подход помогает заранее понять бюджет, не терять полезные сантиметры и получить гарнитур, который подходит именно вашей квартире или дому.
+                </p>
+              </div>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link
+                  href="/contacts#form"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#201b16] px-6 py-3 text-sm font-extrabold text-white transition-colors hover:bg-[#3a3028]"
+                >
+                  Получить расчет
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+                <Link
+                  href="/prices"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#d7ccbf] px-6 py-3 text-sm font-extrabold text-[#201b16] transition-colors hover:border-[#b9874f] hover:text-[#7d5431]"
+                >
+                  Смотреть цены
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-lg border border-[#e8e1d8] bg-[#fbf8f4]">
+              <div className="grid grid-cols-1 divide-y divide-[#e8e1d8] text-sm md:grid-cols-3 md:divide-x md:divide-y-0">
+                <div className="bg-[#201b16] px-4 py-3 font-black text-white">Что входит</div>
+                <div className="bg-[#201b16] px-4 py-3 font-black text-white">Когда нужно</div>
+                <div className="bg-[#201b16] px-4 py-3 font-black text-white">Что влияет на цену</div>
+              </div>
+              {CUSTOM_KITCHEN_TABLE.map((row) => (
+                <div key={row.included} className="grid grid-cols-1 divide-y divide-[#e8e1d8] border-t border-[#e8e1d8] text-sm md:grid-cols-3 md:divide-x md:divide-y-0">
+                  <div className="px-4 py-4 font-bold text-[#201b16]">{row.included}</div>
+                  <div className="px-4 py-4 leading-relaxed text-[#62584f]">{row.needed}</div>
+                  <div className="px-4 py-4 leading-relaxed text-[#62584f]">{row.price}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 border-t border-[#eee8df] pt-8">
+            <h3 className="text-xl font-black text-[#201b16]">Что фиксируем перед запуском кухни в работу</h3>
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
+              {HOME_TRUST_STEPS.map((item, index) => (
+                <div key={item} className="rounded-lg border border-[#e8e1d8] bg-[#fbf8f4] px-4 py-4">
+                  <div className="text-xs font-black text-[#9b6b3e]">{String(index + 1).padStart(2, "0")}</div>
+                  <div className="mt-2 text-sm font-extrabold text-[#201b16]">{item}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {HOME_INTERNAL_LINKS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group rounded-lg border border-[#e8e1d8] bg-white p-5 transition-colors hover:border-[#c99a62] hover:bg-[#fbf8f4]"
+              >
+                <span className="flex items-center justify-between gap-3 text-sm font-black text-[#201b16] transition-colors group-hover:text-[#7d5431]">
+                  {item.title}
+                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
+                </span>
+                <span className="mt-2 block text-sm leading-relaxed text-[#6f665d]">{item.text}</span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-6 rounded-lg border border-[#e8e1d8] bg-white p-5">
+            <p className="text-sm font-black text-[#201b16]">Популярные города Минской области</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {HOME_TOP_CITY_LINKS.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-md border border-[#e8e1d8] px-3 py-2 text-sm font-bold text-[#7d5431] transition-colors hover:border-[#c99a62] hover:bg-[#fbf8f4]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -770,7 +949,7 @@ export default async function HomePage() {
       )}
 
       {/* ===== FAQ ===== */}
-      {faqs.length > 0 && <FAQSection items={faqs} generateSchema={false} />}
+      {displayFaqs.length > 0 && <FAQSection items={displayFaqs} generateSchema={false} />}
 
       {/* ===== CTA BANNER ===== */}
       <section

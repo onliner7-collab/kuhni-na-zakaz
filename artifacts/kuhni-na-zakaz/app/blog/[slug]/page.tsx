@@ -383,7 +383,12 @@ export default async function BlogPostPage({ params }: Props) {
                   <div className="space-y-1">
                     {[
                       { href: "/catalog", label: "Каталог кухонь" },
+                      { href: "/catalog/uglovye-kuhni", label: "Угловые кухни" },
+                      { href: "/catalog/pryamye-kuhni", label: "Прямые кухни" },
+                      { href: "/catalog/kuhni-do-potolka", label: "Кухни до потолка" },
                       { href: "/prices", label: "Цены и расчет" },
+                      { href: "/locations/minsk", label: "Кухни в Минске" },
+                      { href: "/locations/minskaya-oblast", label: "Минская область" },
                       { href: "/materials", label: "Материалы" },
                       { href: "/portfolio", label: "Портфолио работ" },
                     ].map((item) => (

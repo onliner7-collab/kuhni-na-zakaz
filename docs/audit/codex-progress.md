@@ -97,3 +97,27 @@
     - `https://kuhni.minsk.by/locations/borisov` returned `200 OK`.
     - `https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-minimalizm-005` returned `200 OK`.
   - Server verification: production checkout was on `e91ad8e`; `systemctl is-active kuhni-na-zakaz` returned `active`.
+
+## 2026-05-19 - Key public page smoke coverage and location case cleanup
+
+- Continued from an interrupted local diff. Existing unrelated untracked files were left untouched.
+- Added `smoke:key-pages` Playwright coverage for key public routes on desktop and mobile:
+  - home, catalog category pages, materials pages, city pages, one blog page, two portfolio detail URLs, `sitemap.xml`, and `robots.txt`;
+  - checks title, visible `h1`, non-empty alt text for rendered images, no obvious browser errors, and no selected service/audit phrases.
+- Added `lighthouserc.js` and LHCI scripts for repeatable local performance/SEO sampling of key URLs.
+- Tightened regional location portfolio logic:
+  - pinned and automatic cases must match the page city exactly after normalization;
+  - regional pages no longer render generic cross-city portfolio cards when no confirmed local cases exist;
+  - empty local portfolio state now points visitors to solution examples and 3D visualizations instead of unrelated cases.
+- Added conservative concept fallbacks for two public portfolio URLs used by smoke/SEO checks:
+  - `/portfolio/kuhnya-s-ostrovom-minimalizm-005`
+  - `/portfolio/uglovaya-kuhnya-sovremennaya-001`
+  These are explicitly labeled as 3D visualizations, not completed works.
+- Cleaned remaining public wording around "неподтвержденные обещания" and "фейков"; reviews page now says reviews are moderated before appearing on the site without using harsher audit wording.
+- Verification:
+  - `pnpm --filter @workspace/kuhni-na-zakaz typecheck` passed.
+  - `pnpm --filter @workspace/kuhni-na-zakaz sitemap:check` passed with 61 URLs.
+  - `pnpm --filter @workspace/kuhni-na-zakaz smoke:key-pages` passed: 30 tests on desktop/mobile.
+  - `pnpm --filter @workspace/kuhni-na-zakaz build` passed after clearing local `.next` dev/build cache.
+- Local QA note:
+  - One repeated smoke run timed out waiting for an old `3001` dev server, and another run on `3015` saw stale `.next` CSS/500 responses. Removing `artifacts/kuhni-na-zakaz/.next` and rerunning on `3016` resolved it.

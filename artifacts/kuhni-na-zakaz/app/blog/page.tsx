@@ -17,6 +17,8 @@ function publishedTime(p: { publishedAt?: Date | null }) {
 const COMMERCIAL_LINKS = [
   { href: "/catalog", title: "Подобрать тип кухни", text: "Сравните угловые, прямые, П-образные кухни и варианты с островом." },
   { href: "/prices", title: "Посмотреть цены", text: "Ориентиры по стоимости и быстрый переход к расчету проекта." },
+  { href: "/locations/minsk", title: "Кухни в Минске", text: "Замер, проект, доставка и монтаж для квартир, новостроек и домов." },
+  { href: "/locations/minskaya-oblast", title: "Минская область", text: "Городские страницы, доставка, монтаж и расчет кухни по адресу." },
   { href: "/materials", title: "Выбрать материалы", text: "Фасады, столешницы, корпуса и решения для ежедневной нагрузки." },
   { href: "/portfolio", title: "Открыть портфолио", text: "Фото и визуализации с городом и параметрами, если они заполнены." },
 ];
@@ -84,7 +86,7 @@ export default async function BlogPage() {
           <p className="text-muted-foreground mb-10">
             Советы по выбору кухни, материалов и дизайна
           </p>
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
             {COMMERCIAL_LINKS.map((item) => (
               <Link
                 key={item.href}

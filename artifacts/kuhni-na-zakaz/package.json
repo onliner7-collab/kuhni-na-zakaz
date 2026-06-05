@@ -10,7 +10,11 @@
     "blog:convert-images": "node scripts/convert-blog-source-pngs.mjs",
     "images:optimize": "node scripts/optimize-site-images.js",
     "images:audit": "node scripts/audit-site-images.js",
+    "lhci": "lhci autorun",
+    "lhci:collect": "lhci collect",
+    "lhci:assert": "lhci assert",
     "smoke:post-import": "playwright test -c playwright.smoke.config.ts",
+    "smoke:key-pages": "playwright test -c playwright.smoke.config.ts tests/smoke/key-pages.spec.ts",
     "smoke:post-import:headed": "playwright test -c playwright.smoke.config.ts --headed",
     "seo:check": "tsx scripts/check-seo-brand.ts",
     "bulk-import:audit-external-ids": "tsx scripts/audit-bulk-import-v1-external-ids.ts",
@@ -51,6 +55,7 @@
     "zod": "^3.24.3"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.55.0",
     "@tailwindcss/postcss": "^4.1.14",
     "@tailwindcss/typography": "^0.5.15",
