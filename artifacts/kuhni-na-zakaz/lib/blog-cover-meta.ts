@@ -39,14 +39,16 @@ export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
     imageCaption: "3D-визуализация угловой кухни с удобной рабочей зоной",
   },
   "skolko-stoit-kuhnya-na-zakaz-minsk-2026": {
-    image: "/images/blog/stoimost-kuhni-na-zakaz-minsk-2026.webp",
+    image: "/images/blog/generated-guides/minsk-price-2026-cover.webp",
     imageTitle: "Кухня на заказ в Минске: материалы и комплектация",
-    imageAlt: "Современная кухня на заказ в Минске с материалами и фурнитурой",
+    imageAlt:
+      "Сгенерированная визуализация кухни на заказ в Минске с материалами и фурнитурой",
     imageWidth: BLOG_COVER_DEFAULT_WIDTH,
     imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
     imagePrompt:
       "Реалистичная 3D-визуализация современной кухни на заказ в городской квартире Минска, открытые образцы фасадов и столешниц на рабочей поверхности, аккуратные ящики с качественной фурнитурой, светлые матовые фасады, встроенная техника без логотипов, чистый интерьер, ощущение расчёта стоимости и выбора материалов, без людей, без текста, без ценников, 1200x800, realistic interior render",
-    imageCaption: "3D-визуализация кухни с акцентом на материалы и комплектацию",
+    imageCaption:
+      "Сгенерированная визуализация кухни с акцентом на материалы и комплектацию",
   },
   "kak-vybrat-kuhnyu": {
     image: "/images/blog/kak-vybrat-kuhnyu-na-zakaz.webp",
@@ -112,7 +114,7 @@ export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
     imageCaption: "3D-визуализация кухни с островом и барной зоной",
   },
   "kuhnya-na-zakaz-ili-gotovaya-chto-vygodnee": {
-    image: "/images/blog/generated-guides/custom-vs-ready-cover.png",
+    image: "/images/blog/generated-guides/custom-vs-ready-cover.webp",
     imageTitle: "Кухня на заказ или готовый гарнитур: выбор решения",
     imageAlt:
       "Сгенерированная визуализация выбора между готовой кухней и кухней на заказ",
@@ -123,7 +125,7 @@ export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
     imageCaption: "Сгенерированная визуализация сравнения готовой кухни и проекта на заказ",
   },
   "kuhnya-dlya-novostroyki-v-minske-do-zamera": {
-    image: "/images/blog/generated-guides/newbuild-minsk-cover.png",
+    image: "/images/blog/generated-guides/newbuild-minsk-cover.webp",
     imageTitle: "Кухня для новостройки в Минске",
     imageAlt:
       "Сгенерированная визуализация кухни для новостройки в Минске",
@@ -134,7 +136,7 @@ export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
     imageCaption: "Сгенерированная визуализация кухни для городской новостройки",
   },
   "kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh": {
-    image: "/images/blog/generated-guides/budget-kitchen-cover.png",
+    image: "/images/blog/generated-guides/budget-kitchen-cover.webp",
     imageTitle: "Расчет бюджета кухни: материалы и комплектация",
     imageAlt:
       "Сгенерированная визуализация расчета бюджета кухни с образцами материалов",
@@ -145,7 +147,7 @@ export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
     imageCaption: "Сгенерированная визуализация материалов и комплектации для сметы",
   },
   "oshibki-pri-zakaze-kuhni-15-punktov-pered-dogovorom": {
-    image: "/images/blog/generated-guides/mistakes-contract-cover.png",
+    image: "/images/blog/generated-guides/mistakes-contract-cover.webp",
     imageTitle: "Проверка кухни перед договором",
     imageAlt:
       "Сгенерированная визуализация проверки кухни перед подписанием договора",
