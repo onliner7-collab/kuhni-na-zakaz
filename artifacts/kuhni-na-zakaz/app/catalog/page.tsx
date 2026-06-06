@@ -63,7 +63,7 @@ export default async function CatalogPage() {
             <span>/</span>
             <span className="text-foreground">Каталог</span>
           </nav>
-          <h1 className="font-serif text-4xl font-bold mb-4">Каталог кухонь на заказ</h1>
+          <h1 className="font-serif text-4xl font-bold mb-4">Купить кухню в Минске: каталог кухонь на заказ</h1>
           <p className="text-muted-foreground mb-10 max-w-2xl">
             Изготавливаем кухни по индивидуальным размерам. Каждый проект — отдельный дизайн и расчёт.
           </p>
@@ -83,6 +83,30 @@ export default async function CatalogPage() {
                 количество ящиков, подъемники, угловые механизмы, высота шкафов, столешница и сложность монтажа.
                 Поэтому каталог помогает сузить выбор, а точный расчет делаем после размеров и состава проекта.
               </p>
+            </div>
+          </section>
+          <section className="mb-12 rounded-xl border bg-muted/20 p-6">
+            <h2 className="font-serif text-2xl font-bold text-foreground">Готовый гарнитур, модульная кухня или кухня на заказ</h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {[
+                {
+                  title: "Готовый гарнитур",
+                  text: "Подходит, если размеры стандартные и нужно быстро закрыть базовую задачу. Минус — зазоры, компромиссы по технике и слабая привязка к коммуникациям.",
+                },
+                {
+                  title: "Модульная кухня",
+                  text: "Можно собрать из типовых секций и удержать бюджет, но шаг модулей редко совпадает с нишами, коробами, подоконником и встроенной техникой.",
+                },
+                {
+                  title: "Кухня на заказ",
+                  text: "Проектируется под реальные размеры, хранение, технику и стиль. Это дольше готового варианта, зато меньше подгонки и понятнее итоговая эргономика.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="rounded-lg border bg-white p-5">
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </div>
+              ))}
             </div>
           </section>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

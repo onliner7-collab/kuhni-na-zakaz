@@ -164,9 +164,9 @@ const HOME_URL = canonicalSiteUrl("/");
 const HERO_KITCHEN_ALT =
   "Темная современная кухня с островом и подсветкой в Минске";
 
-const HOME_TITLE = "Кухни на заказ в Минске: цены от 900 BYN";
+const HOME_TITLE = "Купить кухню на заказ в Минске от производителя";
 const HOME_DESCRIPTION =
-  "Кухни под заказ в Минске и Беларуси: замер по заявке, 3D-проект, производство, монтаж и смета в договоре. Рассчитаем цену под ваши размеры.";
+  "Кухни на заказ от производителя: замер, проект, изготовление, доставка и монтаж. Рассчитаем цену под размеры помещения.";
 
 export const metadata: Metadata = {
   title: `${HOME_TITLE} | ${SITE_NAME}`,
@@ -364,10 +364,10 @@ export default async function HomePage() {
               Кухни на заказ
             </p>
             <h1 className="max-w-xl text-4xl font-black leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Кухни на заказ в Минске и Беларуси под ваш размер, стиль и бюджет
+              Кухни на заказ от производителя в Минске под ваш размер, стиль и бюджет
             </h1>
             <p className="mt-6 max-w-xl text-base font-medium leading-relaxed text-white/78 sm:text-lg">
-              Проектируем, изготавливаем и устанавливаем кухни под ключ: замер, 3D-проект, производство, доставка и монтаж с фиксацией цены в договоре.
+              Купить кухню на заказ удобнее после замера и проекта: проверяем помещение, изготавливаем гарнитур на производстве, доставляем и монтируем с фиксацией цены в договоре.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -712,8 +712,11 @@ export default async function HomePage() {
             id="home-manufacturing-heading"
             className="text-3xl lg:text-4xl font-black text-foreground text-center max-w-4xl mx-auto leading-tight"
           >
-            Кухни от производителя
+            Кухни на заказ от производителя: изготовление, доставка и монтаж
           </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-center text-base leading-7 text-muted-foreground">
+            Изготовление кухонь на заказ начинается с размеров помещения, техники и сценариев хранения. Затем согласуем материалы, фурнитуру, сроки производства, доставку и монтаж, чтобы готовая кухня не требовала подгонки на объекте.
+          </p>
         </div>
       </section>
 

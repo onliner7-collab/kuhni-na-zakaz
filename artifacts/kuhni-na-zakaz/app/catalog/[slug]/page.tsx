@@ -651,6 +651,42 @@ export default async function CatalogItemPage({ params }: Props) {
                   </div>
                 </section>
 
+                <section className="grid gap-6 md:grid-cols-3">
+                  <div className="rounded-xl border bg-card p-6">
+                    <h2 className="font-serif text-xl font-semibold mb-3">Плюсы</h2>
+                    <ul className="space-y-3">
+                      {getCategoryPros(slug).map((item) => (
+                        <li key={item} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                          <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="rounded-xl border bg-card p-6">
+                    <h2 className="font-serif text-xl font-semibold mb-3">Минусы</h2>
+                    <ul className="space-y-3">
+                      {getCategoryCons(slug).map((item) => (
+                        <li key={item} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                          <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="rounded-xl border bg-card p-6">
+                    <h2 className="font-serif text-xl font-semibold mb-3">Требования к помещению</h2>
+                    <ul className="space-y-3">
+                      {getCategoryRoomRequirements(slug).map((item) => (
+                        <li key={item} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                          <CheckCircle className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </section>
+
                 <section className="grid gap-6 md:grid-cols-2">
                   <div className="rounded-xl border bg-card p-6">
                     <h2 className="font-serif text-2xl font-semibold mb-3">Ориентиры цены</h2>
@@ -692,8 +728,8 @@ export default async function CatalogItemPage({ params }: Props) {
                     <RelatedLinks
                       title="Расчет"
                       links={[
+                        { href: "/catalog", label: "Каталог кухонь" },
                         { href: "/prices", label: "Цены на кухни" },
-                        { href: "/portfolio", label: "Портфолио работ" },
                       ]}
                     />
                     <RelatedLinks title="Портфолио" links={seo.links.portfolio} />
@@ -759,6 +795,129 @@ function RelatedLinks({ title, links }: { title: string; links: SeoLink[] }) {
       </div>
     </div>
   );
+}
+
+function getCategoryPros(slug: string) {
+  const items: Record<string, string[]> = {
+    "uglovye-kuhni": [
+      "хорошо использует две стены и угол",
+      "дает больше рабочей поверхности, чем короткая прямая линия",
+      "помогает собрать удобный треугольник мойка - плита - холодильник",
+    ],
+    "pryamye-kuhni": [
+      "обычно дешевле сложных планировок",
+      "легко вписывается в студию или узкое помещение",
+      "быстро проектируется и проще монтируется",
+    ],
+    "p-obraznye-kuhni": [
+      "много хранения и столешницы по трем сторонам",
+      "удобно разделить готовку, мойку и подготовку продуктов",
+      "подходит для семей, которые часто готовят дома",
+    ],
+    "malenkie-kuhni": [
+      "помогает использовать каждый сантиметр",
+      "можно встроить нужную технику без лишних зазоров",
+      "вертикальное хранение компенсирует небольшую площадь",
+    ],
+    "kuhni-do-potolka": [
+      "добавляет верхнее хранение",
+      "закрывает пыльный зазор над шкафами",
+      "создает аккуратный встроенный вид гарнитура",
+    ],
+    "kuhni-s-ostrovom": [
+      "добавляет рабочую поверхность и хранение",
+      "разделяет кухню и гостиную без глухой стены",
+      "создает удобное место для завтраков и сервировки",
+    ],
+  };
+
+  return items[slug] ?? [
+    "проектируется под реальные размеры помещения",
+    "позволяет подобрать фасады, фурнитуру и хранение под бюджет",
+    "лучше учитывает технику и коммуникации, чем готовый гарнитур",
+  ];
+}
+
+function getCategoryCons(slug: string) {
+  const items: Record<string, string[]> = {
+    "uglovye-kuhni": [
+      "угловой модуль требует продуманного доступа",
+      "столешница и монтаж сложнее, чем у прямой кухни",
+      "при тесной обеденной зоне важно не перегрузить вторую стену",
+    ],
+    "pryamye-kuhni": [
+      "меньше рабочей поверхности на короткой стене",
+      "сложнее разместить много техники без пеналов",
+      "длинная линия может быть неудобной без грамотного порядка зон",
+    ],
+    "p-obraznye-kuhni": [
+      "нужна достаточная ширина прохода",
+      "две угловые зоны повышают стоимость",
+      "в маленьком помещении может выглядеть слишком массивно",
+    ],
+    "malenkie-kuhni": [
+      "приходится выбирать приоритеты между хранением и техникой",
+      "нестандартные решения могут стоить дороже простых модулей",
+      "ошибки в размерах особенно заметны на маленькой площади",
+    ],
+    "kuhni-do-potolka": [
+      "требует точной проверки высоты в нескольких точках",
+      "верхние зоны не всегда удобны для ежедневного доступа",
+      "доборы и антресоли увеличивают смету",
+    ],
+    "kuhni-s-ostrovom": [
+      "нужны широкие проходы вокруг острова",
+      "коммуникации на острове усложняют проект",
+      "не подходит для маленькой закрытой кухни",
+    ],
+  };
+
+  return items[slug] ?? [
+    "срок изготовления больше, чем у готового гарнитура",
+    "точная цена появляется только после замера и комплектации",
+    "ошибки в подготовке помещения могут сдвинуть монтаж",
+  ];
+}
+
+function getCategoryRoomRequirements(slug: string) {
+  const items: Record<string, string[]> = {
+    "uglovye-kuhni": [
+      "проверить угол, вентиляционный короб и подоконник",
+      "оставить проход у стола и бытовой техники",
+      "заранее определить место мойки и варочной поверхности",
+    ],
+    "pryamye-kuhni": [
+      "измерить длину свободной стены и выводы коммуникаций",
+      "проверить место под холодильник, мойку, плиту и посудомойку",
+      "оставить рабочую поверхность между мойкой и варочной",
+    ],
+    "p-obraznye-kuhni": [
+      "заложить проход от 110 см между рядами",
+      "проверить открывание духовки, посудомойки и угловых фасадов",
+      "учесть окно, батарею и вентиляцию на трех сторонах",
+    ],
+    "malenkie-kuhni": [
+      "снять точные размеры ниш, труб, подоконника и дверного проема",
+      "согласовать компактную технику до финального проекта",
+      "использовать высоту помещения для верхнего хранения",
+    ],
+    "kuhni-do-potolka": [
+      "измерить высоту потолка в нескольких точках",
+      "проверить вентиляцию, натяжной потолок и верхние коммуникации",
+      "предусмотреть доборы и доступ к верхним шкафам",
+    ],
+    "kuhni-s-ostrovom": [
+      "оставить проходы 100-120 см вокруг острова",
+      "заранее вывести розетки и согласовать свет",
+      "проверить, нужна ли вода или варочная поверхность на острове",
+    ],
+  };
+
+  return items[slug] ?? [
+    "подготовить размеры помещения, фото и список техники",
+    "проверить воду, электрику, вентиляцию и высоту потолка",
+    "согласовать готовность ремонта до даты монтажа",
+  ];
 }
 
 function resolvePrimaryCategorySlug({

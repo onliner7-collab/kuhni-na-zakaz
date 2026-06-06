@@ -17,6 +17,42 @@ export const BLOG_COVER_DEFAULT_WIDTH = 1200;
 export const BLOG_COVER_DEFAULT_HEIGHT = 800;
 
 export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
+  "materialy-dlya-kuhni-ldsp-mdf-emal-hpl-shpon": {
+    image: "/images/blog/fasady-mdf-plastik-emal-shpon.webp",
+    imageTitle: "Материалы для кухни: фасады и столешницы",
+    imageAlt: "Образцы материалов для кухни: МДФ, пластик HPL, эмаль и шпон",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt: "Реалистичная 3D-визуализация кухни на заказ для SEO-статьи, без людей, без текста, 1200x800",
+    imageCaption: "3D-визуализация сравнения материалов для кухни",
+  },
+  "uglovaya-kuhnya-ili-pryamaya-chto-vybrat": {
+    image: "/images/blog/uglovaya-kuhnya-planirovka.webp",
+    imageTitle: "Угловая или прямая кухня: сравнение планировок",
+    imageAlt: "Угловая кухня и прямая кухня как варианты планировки",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt: "Реалистичная 3D-визуализация кухни на заказ для SEO-статьи, без людей, без текста, 1200x800",
+    imageCaption: "3D-визуализация планировки угловой кухни",
+  },
+  "kak-podgotovitsya-k-zameru-kuhni": {
+    image: "/images/blog/generated-guides/minsk-price-2026-measurement.webp",
+    imageTitle: "Подготовка к замеру кухни",
+    imageAlt: "Замер кухни с проверкой стен, розеток и коммуникаций",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt: "Реалистичная 3D-визуализация кухни на заказ для SEO-статьи, без людей, без текста, 1200x800",
+    imageCaption: "Сгенерированная визуализация подготовки к замеру кухни",
+  },
+  "kuhnya-dlya-chastnogo-doma-planirovka-hranenie-tehnika": {
+    image: "/images/blog/generated-guides/newbuild-minsk-open-plan.webp",
+    imageTitle: "Кухня для частного дома: планировка и хранение",
+    imageAlt: "Просторная кухня-гостиная для частного дома с большим хранением",
+    imageWidth: BLOG_COVER_DEFAULT_WIDTH,
+    imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
+    imagePrompt: "Реалистичная 3D-визуализация кухни на заказ для SEO-статьи, без людей, без текста, 1200x800",
+    imageCaption: "Сгенерированная визуализация просторной кухни-гостиной",
+  },
   "kuhnya-do-potolka-plyusy-minusy-cena": {
     image: "/images/blog/kuhnya-do-potolka.webp",
     imageTitle: "Кухня до потолка: современная 3D-визуализация",
