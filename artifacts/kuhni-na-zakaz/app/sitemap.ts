@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import net from "node:net";
 import { regionalLocations } from "@/data/locations";
 import { prisma } from "@/lib/db";
 import { BLOG_POSTS } from "@/lib/blog-static";
@@ -52,6 +53,43 @@ const STATIC_CATALOG_SLUGS = [
   "kuhni-bez-ruchek",
 ] as const;
 
+const STATIC_STYLE_SLUGS = [
+  "neoklassika",
+  "hay-tek",
+  "provans",
+  "loft",
+  "sovremennye",
+  "skandinavskie",
+  "klassicheskie",
+  "minimalizm",
+] as const;
+
+const STATIC_MATERIAL_SLUGS = ["akril", "mdf-emal"] as const;
+
+const STATIC_SCENARIO_SLUGS = [
+  "s-ostrovom",
+  "do-potolka",
+  "dlya-semi",
+  "dlya-studii",
+  "dlya-malenkoy-kuhni",
+  "byudzhetnaya-kuhnya",
+] as const;
+
+const STATIC_PORTFOLIO_SLUGS = [
+  "pryamaya-kuhnya-dlya-studii-brest",
+  "kuhnya-s-ostrovom-grodno",
+  "neoklassicheskaya-kuhnya-vitebsk",
+  "malenkaya-kuhnya-gomel",
+  "kuhnya-do-potolka-mogilev",
+  "uglovaya-kuhnya-dlya-novostroyki-minsk",
+] as const;
+
+const STATIC_BLOG_SLUGS = [
+  "kakuyu-planirovku-kuhni-vybrat",
+  "kak-vybrat-materialy-dlya-kuhni",
+  "kuhnya-pod-scenarij-semi-studii-doma",
+] as const;
+
 const NON_CANONICAL_DYNAMIC_PATHS = new Set([
   "/locations/zhodzina",
   "/scenarios/kuhnya-dlya-studii",
@@ -87,6 +125,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let scenarioPages: MetadataRoute.Sitemap = [];
 
   try {
+    if (!(await canReachDatabase())) {
+      throw new Error("Database is not reachable");
+    }
+
     const [kitchens, cases, posts, locations, styles, materials, scenarios] = await Promise.all([
       prisma.kitchen.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
       prisma.portfolioCase.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true, updatedAt: true } }),
@@ -108,12 +150,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     scenarioPages = scenarios
       .filter((item) => isPublicContentSlug(item.slug) && !SECONDARY_SCENARIO_SLUGS.has(item.slug))
       .map((item) => sitemapEntry(`/scenarios/${item.slug}`, item.updatedAt, 0.55));
-  } catch (error) {
-    console.error("Failed to load dynamic sitemap URLs from database", error);
+  } catch {
+    console.warn("Dynamic sitemap URLs unavailable; using static sitemap fallback.");
   }
 
   const staticCatalogPages = STATIC_CATALOG_SLUGS.map((slug) =>
     sitemapEntry(`/catalog/${slug}`, STATIC_LAST_MODIFIED, 0.8),
+  );
+  const staticStylePages = STATIC_STYLE_SLUGS.map((slug) =>
+    sitemapEntry(`/styles/${slug}`, STATIC_LAST_MODIFIED, 0.55),
+  );
+  const staticMaterialPages = STATIC_MATERIAL_SLUGS.map((slug) =>
+    sitemapEntry(`/materials/${slug}`, STATIC_LAST_MODIFIED, 0.55),
+  );
+  const staticScenarioPages = STATIC_SCENARIO_SLUGS.map((slug) =>
+    sitemapEntry(`/scenarios/${slug}`, STATIC_LAST_MODIFIED, 0.55),
   );
   const staticLocationPages = STATIC_LOCATION_SLUGS.map((slug) =>
     sitemapEntry(`/locations/${slug}`, STATIC_LAST_MODIFIED, 0.8),
@@ -127,26 +178,66 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         0.65,
       ),
     );
+  const extraStaticBlogPages = STATIC_BLOG_SLUGS.map((slug) =>
+    sitemapEntry(`/blog/${slug}`, STATIC_LAST_MODIFIED, 0.65),
+  );
   const staticPortfolioPages = GENERATED_MINSK_PORTFOLIO_CASES
     .filter((project) => isStrongPortfolioSlug(project.slug))
     .map((project) =>
       sitemapEntry(`/portfolio/${project.slug}`, project.updatedAt, 0.65),
     );
+  const extraStaticPortfolioPages = STATIC_PORTFOLIO_SLUGS.map((slug) =>
+    sitemapEntry(`/portfolio/${slug}`, STATIC_LAST_MODIFIED, 0.65),
+  );
 
   return uniqueIndexableEntries([
     ...staticPages,
     ...staticCatalogPages,
+    ...staticStylePages,
+    ...staticMaterialPages,
+    ...staticScenarioPages,
     ...catalogPages,
     ...stylePages,
     ...materialPages,
     ...scenarioPages,
     ...staticPortfolioPages,
+    ...extraStaticPortfolioPages,
     ...portfolioPages,
     ...staticBlogPages,
+    ...extraStaticBlogPages,
     ...blogPages,
     ...locationPages,
     ...staticLocationPages,
   ]);
+}
+
+async function canReachDatabase() {
+  const databaseUrl = process.env.DATABASE_URL;
+  if (!databaseUrl) return false;
+
+  try {
+    const parsed = new URL(databaseUrl);
+    const host = parsed.hostname;
+    const port = Number(parsed.port || (parsed.protocol.startsWith("postgres") ? 5432 : 0));
+    if (!host || !port) return false;
+
+    return await new Promise<boolean>((resolve) => {
+      const socket = net.createConnection({ host, port, timeout: 600 }, () => {
+        socket.destroy();
+        resolve(true);
+      });
+      socket.once("timeout", () => {
+        socket.destroy();
+        resolve(false);
+      });
+      socket.once("error", () => {
+        socket.destroy();
+        resolve(false);
+      });
+    });
+  } catch {
+    return false;
+  }
 }
 
 function sitemapEntry(

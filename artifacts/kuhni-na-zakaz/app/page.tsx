@@ -7,7 +7,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { HomeKitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
-import { JsonLd, aggregateRatingJsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, productReviewsJsonLd } from "@/lib/schema-org";
+import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, isTrustedReviewForSchema } from "@/lib/schema-org";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
@@ -201,7 +201,7 @@ async function getHomeData() {
   try {
     const [cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
       prisma.portfolioCase.findMany({ where: { published: true, slug: publicSlugWhere() }, take: 4, orderBy: { createdAt: "desc" } }),
-      prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 4, orderBy: { createdAt: "desc" } }),
+      prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 12, orderBy: { createdAt: "desc" } }),
       prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "scenario", published: true }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "step", published: true }, orderBy: { order: "asc" } }),
@@ -231,10 +231,8 @@ async function getHomeData() {
 
 export default async function HomePage() {
   const { cases, reviews, faqs, scenarios, steps, advantages, trust, locations } = await getHomeData();
+  const trustedReviews = reviews.filter(isTrustedReviewForSchema).slice(0, 4);
 
-  const avgRating = reviews.length > 0
-    ? (reviews.reduce((a, r) => a + r.rating, 0) / reviews.length).toFixed(1)
-    : null;
   const seoFaqQuestions = new Set(
     HOME_SEO_FAQ_ITEMS.map((item) => item.question.trim().toLowerCase()).filter(Boolean),
   );
@@ -255,7 +253,7 @@ export default async function HomePage() {
   const localBusinessJsonLd = compactJsonLd({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": `${HOME_URL}#organization`,
+    "@id": `${HOME_URL}#localbusiness`,
     name: SITE_NAME,
     alternateName: SITE_ALTERNATE_NAMES,
     description: "Кухонные гарнитуры под размеры по всей Беларуси. Собственное производство.",
@@ -281,25 +279,29 @@ export default async function HomePage() {
       { "@type": "City", name: "Витебск" },
       { "@type": "City", name: "Могилёв" },
     ],
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "09:00",
+        closes: "19:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Sunday",
+        opens: "10:00",
+        closes: "17:00",
+      },
+    ],
+    sameAs: [CONTACT_DEFAULTS.telegram, CONTACT_DEFAULTS.instagram],
     priceRange: "от 1200 BYN",
   });
   const jsonLdBreadcrumb = breadcrumbJsonLd([{ name: "Главная", path: "/" }]);
   const jsonLdFaq = faqJsonLd(displayFaqs);
-  const jsonLdProduct =
-    reviews.length > 0 && avgRating
-      ? {
-          "@context": "https://schema.org",
-          "@type": "Product",
-          name: "Кухонные гарнитуры под размеры",
-          aggregateRating: aggregateRatingJsonLd(reviews),
-          review: productReviewsJsonLd(reviews),
-        }
-      : null;
   const jsonLdItems = [
     websiteJsonLd,
     localBusinessJsonLd,
     jsonLdBreadcrumb,
-    ...(jsonLdProduct ? [jsonLdProduct] : []),
     ...(jsonLdFaq ? [jsonLdFaq] : []),
   ];
 
@@ -918,7 +920,7 @@ export default async function HomePage() {
       </section>
 
       {/* ===== REVIEWS ===== */}
-      {reviews.length > 0 && (
+      {trustedReviews.length > 0 && (
         <section className="section-padding bg-muted/30">
           <div className="container-site">
             <div className="flex items-center justify-between mb-10">
@@ -931,7 +933,7 @@ export default async function HomePage() {
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {reviews.map((r, index) => (
+              {trustedReviews.map((r, index) => (
                 <div key={`${r.id}-${index}`} className="card-base p-5">
                   <div className="flex items-center gap-1 mb-3">
                     {Array.from({ length: r.rating }).map((_, i) => (

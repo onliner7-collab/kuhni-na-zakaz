@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import sitemap from "../app/sitemap";
 import robots from "../app/robots";
 
@@ -79,6 +81,22 @@ async function main() {
 
   const robotsConfig = robots();
   assert.equal(robotsConfig.sitemap, `${BASE_URL}/sitemap.xml`, "robots.txt must point to the canonical sitemap");
+
+  const staticSitemapPath = path.join(process.cwd(), "public", "sitemap-static.xml");
+  const staticSitemapXml = await readFile(staticSitemapPath, "utf8");
+  const staticUrls = [...staticSitemapXml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) =>
+    match[1]
+      .replace(/&amp;/g, "&")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&apos;/g, "'"),
+  );
+  assert.deepEqual(
+    staticUrls.sort(),
+    urls.slice().sort(),
+    "public/sitemap-static.xml must be regenerated from app/sitemap.ts",
+  );
 
   console.log(`Sitemap check passed: ${entries.length} URLs`);
 }

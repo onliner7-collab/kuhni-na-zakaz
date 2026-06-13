@@ -74,7 +74,7 @@ export function Footer() {
               <span className="text-xl font-black tracking-tight text-white">КухниBY</span>
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-white/55">
-              Кухни на заказ по Беларуси: проектирование, производство, доставка и монтаж.
+              Кухни на заказ по Минску и Беларуси: проектирование, производство, доставка и монтаж. Производственный и юридический адрес — Борисов.
             </p>
             <div className="mt-4 space-y-2.5">
               <a href={`tel:${c.phone}`} className="flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-white">
@@ -93,7 +93,7 @@ export function Footer() {
               </a>
               <div className="flex items-start gap-2 text-sm text-white/65">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                {c.address}
+                Производство и юридический адрес: {c.address}
               </div>
               <div className="flex items-center gap-2 text-sm text-white/65">
                 <Clock className="h-4 w-4 shrink-0 text-primary" aria-hidden />
@@ -194,7 +194,7 @@ export function Footer() {
             © {new Date().getFullYear()} КухниBY. Все права защищены.
           </p>
           <p className="text-sm text-white/60">
-            УНП {CONTACT_DEFAULTS.unp} | {c.address}
+            УНП {CONTACT_DEFAULTS.unp} | Производство и юридический адрес: {c.address}
           </p>
         </div>
       </div>

@@ -123,15 +123,33 @@ type ProductReviewInput = {
   date?: string;
 };
 
-export function aggregateRatingJsonLd(reviews: ProductReviewInput[]): JsonLdObject | undefined {
-  if (reviews.length === 0) return undefined;
+export function isTrustedReviewForSchema(review: ProductReviewInput) {
+  const text = review.text.trim();
+  const name = review.name.trim();
+  const repeatedPunctuation = /([!?.,])\1{3,}/.test(text);
+  const letters = text.match(/[A-Za-zА-Яа-яЁё]/g)?.length ?? 0;
 
-  const ratingValue = reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length;
+  return (
+    name.length >= 2 &&
+    review.rating >= 4 &&
+    review.rating <= 5 &&
+    text.length >= 45 &&
+    letters >= 35 &&
+    !repeatedPunctuation
+  );
+}
+
+export function aggregateRatingJsonLd(reviews: ProductReviewInput[]): JsonLdObject | undefined {
+  const trustedReviews = reviews.filter(isTrustedReviewForSchema);
+
+  if (trustedReviews.length === 0) return undefined;
+
+  const ratingValue = trustedReviews.reduce((sum, review) => sum + review.rating, 0) / trustedReviews.length;
 
   return {
     "@type": "AggregateRating",
     ratingValue: Number(ratingValue.toFixed(1)),
-    reviewCount: reviews.length,
+    reviewCount: trustedReviews.length,
     bestRating: 5,
     worstRating: 1,
   };
@@ -139,7 +157,7 @@ export function aggregateRatingJsonLd(reviews: ProductReviewInput[]): JsonLdObje
 
 export function productReviewsJsonLd(reviews: ProductReviewInput[]): JsonLdObject[] | undefined {
   const items = reviews
-    .filter((review) => review.name.trim() && review.text.trim() && review.rating > 0)
+    .filter(isTrustedReviewForSchema)
     .slice(0, 5)
     .map((review) =>
       compactJsonLd({

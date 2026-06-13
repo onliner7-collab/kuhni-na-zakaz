@@ -121,7 +121,7 @@ export function resolveContactInfo(settings?: ContactSettingsInput | null): Cont
 }
 
 export function getSameAsLinks(contact: ContactInfo) {
-  return [contact.instagram, contact.vk, contact.facebook].filter((url) =>
+  return [contact.telegram, contact.instagram, contact.vk, contact.facebook].filter((url) =>
     /^https?:\/\//i.test(url),
   );
 }

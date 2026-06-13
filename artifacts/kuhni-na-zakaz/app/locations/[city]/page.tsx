@@ -489,7 +489,9 @@ export default async function LocationPage({ params }: Props) {
       telephone: CONTACT_DEFAULTS.phone,
       address: compactJsonLd({
         "@type": "PostalAddress",
-        addressLocality: "Минск",
+        streetAddress: "ул. Дзержинского, д. 90, каб. 1а",
+        postalCode: "222520",
+        addressLocality: "Борисов",
         addressCountry: "BY",
       }),
       areaServed: compactJsonLd({

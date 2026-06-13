@@ -4,7 +4,7 @@ import { Star, ExternalLink, Globe, Send } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ReviewForm } from "@/components/sections/ReviewForm";
 import { cn } from "@/lib/utils";
-import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
+import { JsonLd, aggregateRatingJsonLd, breadcrumbJsonLd, compactJsonLd, isTrustedReviewForSchema, productReviewsJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
   title: "Отзывы клиентов о кухнях",
@@ -62,6 +62,7 @@ export default async function ReviewsPage() {
 
   const featured = reviews.filter((r) => r.featured);
   const regular = reviews.filter((r) => !r.featured);
+  const schemaReviews = reviews.filter(isTrustedReviewForSchema);
 
   const totalCount = reviews.length;
   const avgRating = totalCount > 0
@@ -78,20 +79,8 @@ export default async function ReviewsPage() {
     "@type": "LocalBusiness",
     name: "КухниBY",
     url: siteUrl(),
-    aggregateRating: totalCount > 0 ? {
-      "@type": "AggregateRating",
-      ratingValue: avgRating.toFixed(1),
-      reviewCount: totalCount,
-      bestRating: 5,
-      worstRating: 1,
-    } : undefined,
-    review: reviews.length > 0 ? reviews.slice(0, 5).map((r) => ({
-      "@type": "Review",
-      author: { "@type": "Person", name: r.name },
-      reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
-      reviewBody: r.text,
-      datePublished: r.createdAt.toISOString().split("T")[0],
-    })) : undefined,
+    aggregateRating: aggregateRatingJsonLd(schemaReviews),
+    review: productReviewsJsonLd(schemaReviews),
   });
 
   return (

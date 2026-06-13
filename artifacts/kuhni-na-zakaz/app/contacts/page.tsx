@@ -59,13 +59,39 @@ export default async function ContactsPage() {
   const jsonLdLocalBusiness = compactJsonLd({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${siteUrl("/")}#localbusiness`,
     name: c.siteName,
     url: siteUrl("/contacts"),
     telephone: c.phone,
     email: c.email,
-    address: c.address,
-    openingHours: c.workingHours ? ["Mo-Sa 09:00-19:00", "Su 10:00-17:00"] : undefined,
-    areaServed: { "@type": "Country", name: "Belarus" },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "ул. Дзержинского, д. 90, каб. 1а",
+      postalCode: "222520",
+      addressLocality: "Борисов",
+      addressCountry: "BY",
+    },
+    openingHoursSpecification: c.workingHours
+      ? [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            opens: "09:00",
+            closes: "19:00",
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Sunday",
+            opens: "10:00",
+            closes: "17:00",
+          },
+        ]
+      : undefined,
+    areaServed: [
+      { "@type": "City", name: "Минск" },
+      { "@type": "AdministrativeArea", name: "Минская область" },
+      { "@type": "Country", name: "Беларусь" },
+    ],
     sameAs: sameAs.length > 0 ? sameAs : undefined,
   });
 
@@ -80,7 +106,7 @@ export default async function ContactsPage() {
         </nav>
         <h1 className="font-serif text-4xl font-bold mb-4">Контакты для расчета кухни</h1>
         <p className="mb-10 max-w-3xl text-muted-foreground">
-          Принимаем заявки на кухни по размерам, замер, проектирование, производство, доставку и монтаж по Беларуси.
+          Принимаем заявки на кухни по размерам, замер, проектирование, производство, доставку и монтаж по Минску и Беларуси. Производственный и юридический адрес находится в Борисове; отдельный офис или шоурум в Минске на сайте не заявляем.
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
@@ -138,9 +164,12 @@ export default async function ContactsPage() {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <div className="font-medium">Адрес</div>
+                  <div className="font-medium">Производство и юридический адрес</div>
                   <p className="text-muted-foreground">{c.address}</p>
                   <p className="mt-1 text-sm text-muted-foreground">УНП {CONTACT_DEFAULTS.unp}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Замер, проектирование, доставка и монтаж выполняются по Минску, Минской области и другим городам Беларуси по согласованию заявки.
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
