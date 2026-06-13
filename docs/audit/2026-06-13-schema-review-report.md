@@ -35,6 +35,7 @@
 - Прогнать `/` и `/reviews` через Schema.org Validator.
 - Проверить Rich Results Test для `/reviews`; если Google не показывает review snippet для LocalBusiness, оставить schema как entity/trust-сигнал, не обещая расширенный сниппет.
 - В GSC после деплоя проверить разделы Breadcrumbs, FAQ и улучшения, связанные с отзывами.
+- Production DOM smoke после деплоя: главная содержит LocalBusiness, не содержит Product schema; `/reviews` содержит AggregateRating и Review schema.
 
 ## Открытые пункты
 

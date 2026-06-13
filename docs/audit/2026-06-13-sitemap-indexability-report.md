@@ -33,8 +33,10 @@
 - `pnpm run sitemap:write-static`: 108 URL.
 - `pnpm run sitemap:check`: passed, 108 URL.
 - Production `https://kuhni.minsk.by/sitemap.xml`: `X-Sitemap-Source: static`, 108 URL.
+- После деплоя production smoke: `/`, `/catalog`, `/catalog/uglovye-kuhni`, `/locations/minsk`, `/prices`, `/blog`, `/contacts`, `/reviews`, `/sitemap.xml`, `/robots.txt` отдают 200.
+- Redirect smoke: `http://kuhni.minsk.by/catalog/uglovye-kuhni` и `https://www.kuhni.minsk.by/catalog/uglovye-kuhni` отдают 301 на canonical HTTPS non-www.
 
 ## Открытые пункты
 
-- После деплоя повторно проверить production headers и живость всех URL.
-- Через встроенный браузер отправить sitemap в Google Search Console и Яндекс.Вебмастер.
+- Google Search Console: аккаунт `onliner7@gmail.com` не имеет доступа к URL-prefix ресурсу `https://kuhni.minsk.by/`, sitemap/URL отправить не удалось.
+- Яндекс.Вебмастер: sitemap уже добавлен и найден через robots.txt, статус `ok`, 108 ссылок, последняя загрузка 12.06.2026 23:58.
