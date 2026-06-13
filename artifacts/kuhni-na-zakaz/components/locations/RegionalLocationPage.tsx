@@ -296,6 +296,33 @@ function getHubDirectionLinks(slugs: string[]) {
     .map((city) => ({ href: `/locations/${city.slug}`, label: city.cityName }));
 }
 
+function getBuyKitchenAnchor(location: RegionalLocationData) {
+  if (location.slug === "minskaya-oblast") return "Купить кухню в Минской области";
+
+  return `Купить кухню в ${location.cityPrepositional}`;
+}
+
+function getPurchaseScenarioCards(location: RegionalLocationData) {
+  return [
+    {
+      title: "По размерам помещения",
+      text: `Начинаем с фото, примерных размеров и списка техники. После замера в ${location.cityPrepositional} уточняем стены, углы, выводы воды, электрику и вентиляцию.`,
+    },
+    {
+      title: "С доставкой и монтажом",
+      text: "Смета собирается вместе с логистикой: учитываем адрес, этажность, занос деталей, столешницу, готовность ремонта и монтажный день.",
+    },
+    {
+      title: "Для квартиры, дома или дачи",
+      text: "Подбираем прямую, угловую, П-образную кухню, вариант до потолка или решение с островом под реальный сценарий, а не под случайный набор модулей.",
+    },
+    {
+      title: "С понятной комплектацией",
+      text: "До запуска в производство фиксируем фасады, корпус, столешницу, фурнитуру, встроенную технику, подсветку и гарантийные условия.",
+    },
+  ];
+}
+
 export function RegionalLocationPage({
   location,
   cases,
@@ -309,6 +336,8 @@ export function RegionalLocationPage({
   const heroIdea = cityIdeas[0];
   const heroImage = heroIdea?.image ?? "/images/hero.webp";
   const phoneHref = `tel:${CONTACT_DEFAULTS.phone}`;
+  const buyKitchenAnchor = getBuyKitchenAnchor(location);
+  const purchaseScenarioCards = getPurchaseScenarioCards(location);
   const workSectionTitle =
     location.slug === "minsk"
       ? "Купить кухню в Минске с замером, проектом и монтажом"
@@ -570,6 +599,47 @@ export function RegionalLocationPage({
                 <p className="text-sm leading-6 text-foreground">{step}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white section-padding">
+        <div className="container-site">
+          <SectionTitle
+            eyebrow="Перед заказом"
+            title={`${buyKitchenAnchor}: что важно учесть до расчета`}
+            text="На одной странице собраны условия покупки, замера, доставки, монтажа и комплектации, чтобы до заявки было понятно, от чего зависит смета."
+          />
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {purchaseScenarioCards.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-border bg-muted/30 p-5">
+                <h3 className="mb-3 text-base font-semibold text-foreground">{item.title}</h3>
+                <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/catalog"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              Выбрать тип кухни
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <Link
+              href="/prices"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+            >
+              Посмотреть цены
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+            <Link
+              href="#form"
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+            >
+              Получить расчет
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
           </div>
         </div>
       </section>

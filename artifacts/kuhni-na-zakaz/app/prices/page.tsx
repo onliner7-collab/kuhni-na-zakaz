@@ -82,6 +82,18 @@ const EXTRA_WORKS = [
   { item: "Разборка старой кухни",    price: "от 100 BYN" },
 ];
 
+const PRICE_CITY_SLUGS = [
+  "minsk",
+  "borisov",
+  "zhodino",
+  "molodechno",
+  "soligorsk",
+  "slutsk",
+  "fanipol",
+  "smolevichi",
+  "minskaya-oblast",
+];
+
 export default function PricesPage() {
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -106,6 +118,9 @@ export default function PricesPage() {
       })),
     },
   };
+  const priceCities = PRICE_CITY_SLUGS
+    .map((slug) => regionalLocations.find((location) => location.slug === slug))
+    .filter((location): location is (typeof regionalLocations)[number] => Boolean(location));
 
   return (
     <>
@@ -185,20 +200,30 @@ export default function PricesPage() {
         <section className="card-base p-6 mb-16">
           <h2 className="font-serif text-2xl font-bold mb-3">Цены по городам</h2>
           <p className="text-sm leading-relaxed text-muted-foreground mb-5">
-            Базовые принципы расчета одинаковые, но замер, доставка и монтаж зависят от адреса.
-            Выберите город, чтобы посмотреть региональные условия замера, доставки и монтажа.
+            Базовые принципы расчета одинаковые, но адрес влияет на замер, доставку,
+            занос, монтажный день и итоговую логистику. Выберите город, чтобы
+            посмотреть региональные условия перед заявкой.
           </p>
-          <div className="flex flex-wrap gap-3">
-            {regionalLocations.map((location) => (
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {priceCities.map((location) => (
               <Link
                 key={location.slug}
                 href={`/locations/${location.slug}`}
-                className="rounded-full border border-border bg-white px-4 py-2 text-sm font-medium text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                className="rounded-lg border border-border bg-white p-4 text-sm transition-colors hover:border-primary/40 hover:bg-primary/5"
               >
-                {location.cityName}
+                <span className="font-semibold text-foreground">{location.cityName}</span>
+                <span className="mt-1 block leading-5 text-muted-foreground">
+                  Ориентир от {location.priceFrom.toLocaleString("ru")} BYN, точная смета после размеров и комплектации.
+                </span>
               </Link>
             ))}
           </div>
+          <Link
+            href="/locations"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            Смотреть все города <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </section>
 
         <section className="card-base p-6 mb-16">

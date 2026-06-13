@@ -3,6 +3,7 @@ import Link from "next/link";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
+import { regionalLocations } from "@/data/locations";
 
 export const metadata: Metadata = {
   title: "Купить кухню в Минске: каталог кухонь на заказ",
@@ -46,12 +47,30 @@ const CATALOG_FAQ = [
   },
 ];
 
+const PRIORITY_CITY_SLUGS = [
+  "borisov",
+  "zhodino",
+  "molodechno",
+  "soligorsk",
+  "slutsk",
+  "fanipol",
+  "smolevichi",
+  "dzerzhinsk",
+  "zaslavl",
+  "logoisk",
+  "vileyka",
+  "nesvizh",
+];
+
 export default async function CatalogPage() {
   const jsonLd = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
     { name: "Каталог", path: "/catalog" },
   ]);
   const faqJsonLdData = faqJsonLd(CATALOG_FAQ);
+  const priorityCities = PRIORITY_CITY_SLUGS
+    .map((slug) => regionalLocations.find((location) => location.slug === slug))
+    .filter((location): location is (typeof regionalLocations)[number] => Boolean(location));
 
   return (
     <>
@@ -154,6 +173,36 @@ export default async function CatalogPage() {
                 </tbody>
               </table>
             </div>
+          </section>
+          <section className="mt-12 rounded-xl border bg-muted/20 p-6">
+            <h2 className="font-serif text-2xl font-bold text-foreground">
+              Каталог для Минска и городов Минской области
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Тип кухни выбирают одинаково: по размерам, технике, хранению и бюджету.
+              А вот замер, доставка, занос и монтаж зависят от адреса, поэтому для
+              городов сделаны отдельные страницы с условиями работы.
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {priorityCities.map((city) => (
+                <Link
+                  key={city.slug}
+                  href={`/locations/${city.slug}`}
+                  className="rounded-lg border border-border bg-white p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  <h3 className="font-semibold text-foreground">{city.cityName}</h3>
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                    Расчет, замер, доставка и монтаж в {city.cityPrepositional}.
+                  </p>
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/locations"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+            >
+              Все города и регионы <span aria-hidden="true">→</span>
+            </Link>
           </section>
           <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_0.8fr]">
             <div>

@@ -22,6 +22,13 @@ type SeoLink = {
   label: string;
 };
 
+const CATEGORY_CITY_LINKS: SeoLink[] = [
+  { href: "/locations/minsk", label: "Минск" },
+  { href: "/locations/borisov", label: "Борисов" },
+  { href: "/locations/zhodino", label: "Жодино" },
+  { href: "/locations/minskaya-oblast", label: "Минская область" },
+];
+
 export const revalidate = 3600;
 export const dynamic = "force-static";
 
@@ -736,10 +743,7 @@ export default async function CatalogItemPage({ params }: Props) {
                     {buyingGuide && <RelatedLinks title="Блог" links={buyingGuide.blog} />}
                     <RelatedLinks
                       title="География"
-                      links={[
-                        { href: "/locations/minsk", label: "Кухни в Минске" },
-                        { href: "/locations/minskaya-oblast", label: "Минская область" },
-                      ]}
+                      links={CATEGORY_CITY_LINKS}
                     />
                   </div>
                 </section>

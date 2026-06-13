@@ -7,9 +7,9 @@ import { regionalLocations } from "@/data/locations";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 
 export const metadata: Metadata = {
-  title: "Кухни на заказ по городам Беларуси",
+  title: "Купить кухню по городам Беларуси | Кухни на заказ",
   description:
-    "Региональные страницы кухонь на заказ по Беларуси: Минск, Минская область, Борисов, Жодино, Молодечно, Солигорск, Слуцк, Фаниполь, Смолевичи, Гомель, Гродно, Брест, Витебск, Могилёв.",
+    "Купить кухню под размер в Минске, Борисове, Жодино, Молодечно, Солигорске, Слуцке и других городах: расчет, замер, доставка и монтаж.",
   alternates: { canonical: "/locations" },
 };
 
@@ -23,9 +23,14 @@ export default function LocationsPage() {
   const jsonLdCollection = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Кухни на заказ по городам Беларуси",
+    name: "Купить кухню по городам Беларуси",
     url: siteUrl("/locations"),
   };
+
+  const cityCardText = (location: (typeof regionalLocations)[number]) =>
+    location.slug === "minskaya-oblast"
+      ? "Хаб по городам области: направления, условия выезда, доставка, монтаж и переходы на отдельные городские страницы."
+      : `Условия расчета, замера, доставки и монтажа для ${location.cityGenitive}. Перед сметой уточняем размеры, технику, адрес и готовность помещения.`;
 
   return (
     <>
@@ -43,12 +48,12 @@ export default function LocationsPage() {
 
           <div className="mb-10 max-w-3xl">
             <h1 className="mb-4 font-serif text-4xl font-bold text-foreground">
-              Кухни на заказ по городам Беларуси
+              Купить кухню по городам Беларуси
             </h1>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Выберите город или регион. Для Минской области сделан отдельный хаб, а для крупных
-              городов и основных направлений подготовлены самостоятельные страницы с условиями
-              замера, доставки и монтажа.
+              Выберите город или регион, чтобы посмотреть условия расчета, замера, доставки и
+              монтажа. Для Минской области сделан отдельный хаб, а для основных направлений
+              подготовлены самостоятельные страницы с деталями по объектам, логистике и смете.
             </p>
           </div>
 
@@ -73,7 +78,7 @@ export default function LocationsPage() {
                 </div>
 
                 <p className="mb-5 line-clamp-3 text-sm leading-6 text-muted-foreground">
-                  {location.intro}
+                  {cityCardText(location)}
                 </p>
 
                 <div className="flex flex-wrap gap-2 text-xs">

@@ -19,10 +19,21 @@ import {
 import { getOtherBlogPostLinks } from "@/lib/blog-nav-posts";
 import { getMergedPublishedBlogPost } from "@/lib/blog-resolve";
 import { isPublicContentSlug } from "@/lib/public-content";
+import { regionalLocations } from "@/data/locations";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+const BLOG_CITY_LINK_SLUGS = [
+  "minsk",
+  "borisov",
+  "zhodino",
+  "molodechno",
+  "soligorsk",
+  "slutsk",
+  "minskaya-oblast",
+];
 
 async function getRelatedContent(
   relatedCaseSlugs: string[],
@@ -154,6 +165,9 @@ export default async function BlogPostPage({ params }: Props) {
     author: { "@type": "Organization", name: "КухниBY" },
     publisher: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
   });
+  const blogCityLinks = BLOG_CITY_LINK_SLUGS
+    .map((citySlug) => regionalLocations.find((location) => location.slug === citySlug))
+    .filter((location): location is (typeof regionalLocations)[number] => Boolean(location));
 
   return (
     <>
@@ -401,6 +415,28 @@ export default async function BlogPostPage({ params }: Props) {
                         <ArrowRight className="w-3.5 h-3.5 shrink-0 ml-2" />
                       </Link>
                     ))}
+                  </div>
+                </div>
+
+                <div className="card-base p-5">
+                  <h3 className="font-semibold text-sm mb-3">Расчет по городу</h3>
+                  <div className="space-y-1">
+                    {blogCityLinks.map((location) => (
+                      <Link
+                        key={location.slug}
+                        href={`/locations/${location.slug}`}
+                        className="flex items-center justify-between py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <span>{location.cityName}</span>
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0 ml-2" />
+                      </Link>
+                    ))}
+                    <Link
+                      href="/locations"
+                      className="block pt-2 text-xs font-semibold text-primary hover:underline"
+                    >
+                      Все города и регионы →
+                    </Link>
                   </div>
                 </div>
 
