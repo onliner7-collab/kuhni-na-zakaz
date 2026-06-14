@@ -127,9 +127,9 @@ GSC/Яндекс: в browser-сессии 14.06.2026 не было активн�
 Дата: 14.06.2026
 Этап: 6. Контент-кластеры и блог на 3 месяца
 Что изменено: создан docs/audit/2026-06-14-stage-6-content-clusters.md с календарем 30+ статей; в статический SEO-блог добавлены /blog/chto-vhodit-v-stoimost-kuhni-na-zakaz, /blog/kuhnya-6-kv-m-v-hruschevke, /blog/kuhnya-pod-vstroennuyu-tehniku, /blog/p-obraznaya-kuhnya-razmery-prohody-cena; добавлены cover meta и evergreen-ссылки в llms.txt.
-Проверки: pnpm run blog:convert-images; pnpm run images:optimize; pnpm run typecheck; pnpm run seo:check; pnpm run build; pnpm run sitemap:check после prebuild, итог 112 local sitemap URLs. Первый sitemap:check до перегенерации ожидаемо показал необходимость обновить public/sitemap-static.xml.
-Деплой: первый запуск deploy до push не включил локальные изменения, после push требуется повторный deploy командой ssh -i C:/Users/User/.ssh/timeweb_kuhni_ed25519 root@5.42.108.140 "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work".
+Проверки: pnpm run blog:convert-images; pnpm run images:optimize; pnpm run typecheck; pnpm run seo:check; pnpm run build; pnpm run sitemap:check после prebuild, итог 112 local sitemap URLs; production HTTP 200 для /, /blog, 4 новых статей, /sitemap.xml и /robots.txt; Browser QA: H1/canonical/BlogPosting есть, видимые обложки загружены, brokenLoaded=[].
+Деплой: выполнен после push коммита 6d5ad05 командой ssh -i C:/Users/User/.ssh/timeweb_kuhni_ed25519 root@5.42.108.140 "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work"; server sitemap-static.xml 112 URL, build ok, service restarted.
 Production URL: https://kuhni.minsk.by/blog, https://kuhni.minsk.by/blog/chto-vhodit-v-stoimost-kuhni-na-zakaz, https://kuhni.minsk.by/blog/kuhnya-6-kv-m-v-hruschevke, https://kuhni.minsk.by/blog/kuhnya-pod-vstroennuyu-tehniku, https://kuhni.minsk.by/blog/p-obraznaya-kuhnya-razmery-prohody-cena
 GSC/Яндекс: не отправлялись из-за отсутствия активной browser-авторизации; выполнить в этапе 11 после production-проверки.
-Осталось: после повторного deploy проверить production HTTP/Browser и отправить новые URL на переобход в GSC/Яндекс при наличии входа.
+Осталось: отправить новые URL на переобход в GSC/Яндекс при наличии browser-login; продолжить волну 2 по календарю.
 ```
