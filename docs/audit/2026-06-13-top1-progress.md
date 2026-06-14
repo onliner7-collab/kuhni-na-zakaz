@@ -7,9 +7,9 @@
 
 - Мастер-ТЗ создано.
 - PR-CY открыт на странице позиций: `https://a.pr-cy.ru/keywords/overview/kuhni.minsk.by/`.
-- В PR-CY позиции не настроены: `Запросы (0)`, видимость и средняя позиция отсутствуют.
+- В PR-CY уже есть weekly-baseline: `94` запроса, средняя позиция `81.55`, видимость `0.90`.
 - Production sitemap: 108 URL, все проверенные URL живые.
-- Локальный `public/sitemap-static.xml` отстаёт от production и содержит 74 URL.
+- Текущая browser-сессия 14.06.2026 не авторизована в GSC и Яндекс.Вебмастере, поэтому live-статусы индексации нужно добрать отдельным browser-проходом после входа.
 
 ## Этапы
 
@@ -19,15 +19,15 @@
 | 1. Sitemap, robots, canonical | Выполнен | 13.06.2026 | Static sitemap закреплён как fallback, local/production 108 URL, deploy выполнен |
 | 2. Local SEO, NAP, schema доверия | Выполнен | 13.06.2026 | Борисов/Минск разведены, LocalBusiness усилен, Яндекс переобход `/contacts` и `/locations/minsk` отправлен |
 | 3. Отзывы и review schema | Выполнен | 13.06.2026 | Product/AggregateRating убран с главной, review schema фильтрует качественные отзывы |
-| 4. Скорость и CWV | Не начат | — | Нужно дожать mobile LCP/скорость |
-| 5. Money-pages | Не начат | — | Нужно усилить главные коммерческие страницы |
+| 4. Скорость и CWV | Выполнен | 14.06.2026 | Local production-like LHCI mobile: performance 100, LCP 490-885 мс на 5 ключевых URL; битых изображений и горизонтального скролла нет |
+| 5. Money-pages | Выполнен | 14.06.2026 | Усилены `/catalog`, `/catalog/*` и `/prices`: смета, договор, техника, FAQ и FAQPage schema для цен |
 | 6. Контент-кластеры | Не начат | — | Нужно запланировать и публиковать волны статей |
 | 7. Портфолио и кейсы | Не начат | — | Нужно усилить реальные доказательства |
 | 8. Geo-страницы | Не начат | — | Нужно убрать риск шаблонности |
 | 9. Внутренняя перелинковка | Не начат | — | Нужно направить вес на money-pages |
 | 10. Внешние сигналы | Не начат | — | Нужно отзывы, карты, ссылки, бренд |
 | 11. GSC/Яндекс/PR-CY переобход | Не начат | — | Выполнять после крупных деплоев |
-| 12. Еженедельный SEO-контроль | Не начат | — | Запустить после baseline |
+| 12. Еженедельный SEO-контроль | Частично выполнен | 14.06.2026 | Production и PR-CY weekly-check выполнены; GSC/Яндекс не обновлены из-за отсутствия browser-login |
 
 ## Правило обновления
 
@@ -88,4 +88,37 @@ GSC/Яндекс: /contacts и /locations/minsk отправлены в Янде
 Production URL: https://kuhni.minsk.by/, https://kuhni.minsk.by/reviews
 GSC/Яндекс: GSC недоступен текущему аккаунту; Яндекс переобход для изменённых local pages отправлен.
 Осталось: валидировать /reviews через Schema.org Validator/Rich Results Test и продолжать сбор реальных отзывов.
+```
+
+```text
+Дата: 14.06.2026
+Этап: 4. Скорость, Core Web Vitals и mobile UX
+Что изменено: проверены hero/контентные изображения и ключевые money-pages; новых тяжёлых изображений не добавлялось; подтверждено, что видимые изображения оптимизированы и нет broken/oversized refs.
+Проверки: pnpm run images:audit; pnpm run typecheck; pnpm run seo:check; pnpm run sitemap:check; pnpm run build; Browser local production-like QA на /, /catalog, /catalog/uglovye-kuhni, /prices, /locations/minsk: brokenImages=0, horizontalOverflow=false; LHCI mobile по /, /catalog/uglovye-kuhni, /locations/minsk, /prices, /blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026: performance 100, LCP 490-885 мс, TBT 0, CLS низкий.
+Деплой: выполнен командой ssh -i C:/Users/User/.ssh/timeweb_kuhni_ed25519 root@5.42.108.140 "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work".
+Production URL: https://kuhni.minsk.by/, https://kuhni.minsk.by/catalog/uglovye-kuhni, https://kuhni.minsk.by/locations/minsk, https://kuhni.minsk.by/prices
+GSC/Яндекс: URL не отправлялись в этом этапе; требуется отдельный browser-login для этапа 11.
+Осталось: после деплоя повторить PageSpeed/PR-CY mobile speed на production и зафиксировать внешний показатель.
+```
+
+```text
+Дата: 14.06.2026
+Этап: 5. Money-pages
+Что изменено: на /catalog добавлен блок проверки перед заказом кухни; на /catalog/[slug] добавлен блок подтверждения сметы, договора, сроков и производства под размеры; на /prices добавлены факторы расчёта, FAQ и FAQPage schema.
+Проверки: pnpm run typecheck; pnpm run seo:check; pnpm run sitemap:check; pnpm run build; production-like HTTP 200 для /, /catalog, /catalog/uglovye-kuhni, /catalog/pryamye-kuhni, /catalog/p-obraznye-kuhni, /catalog/kuhni-s-ostrovom, /catalog/malenkie-kuhni, /catalog/kuhni-do-potolka, /prices, /locations/minsk, /blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026, /sitemap.xml, /robots.txt; Browser QA подтвердил видимость новых блоков.
+Деплой: выполнен командой ssh -i C:/Users/User/.ssh/timeweb_kuhni_ed25519 root@5.42.108.140 "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work".
+Production URL: https://kuhni.minsk.by/catalog, https://kuhni.minsk.by/catalog/uglovye-kuhni, https://kuhni.minsk.by/prices, https://kuhni.minsk.by/locations/minsk
+GSC/Яндекс: не отправлялись из-за отсутствия активной browser-авторизации; выполнить в этапе 11.
+Осталось: по данным GSC/PR-CY отдельно подготовить CTR-варианты title/description для страниц с низким CTR и продолжить усиление `/catalog/kuhni-do-potolka`, материалов и калькулятора.
+```
+
+```text
+Дата: 14.06.2026
+Этап: 12. Еженедельный SEO-контроль
+Что изменено: создан docs/audit/2026-06-14-stage-15-weekly-seo-control.md; подтверждены production robots/sitemap/canonical/H1 и свежий PR-CY baseline по 94 запросам.
+Проверки: production /robots.txt 200; /sitemap.xml 200, X-Sitemap-Source: static, 108 URL; ключевые URL 200 и indexable; PR-CY live по адресу https://a.pr-cy.ru/keywords/overview/kuhni.minsk.by.
+Деплой: не требовался.
+Production URL: https://kuhni.minsk.by/, https://kuhni.minsk.by/catalog, https://kuhni.minsk.by/locations/minskaya-oblast, https://kuhni.minsk.by/prices
+GSC/Яндекс: в browser-сессии 14.06.2026 не было активной авторизации; GSC открыл public about page, Яндекс Вебмастер редиректил на login, поэтому свежий live-status индексации и переобхода в этом проходе не обновлен.
+Осталось: повторить weekly-check после входа в GSC и Яндекс через браузер; дожать /catalog/kuhni-do-potolka, /materials/mdf-emal, /materials/plastik-hpl, /calculator и geo-страницы 11-22.
 ```

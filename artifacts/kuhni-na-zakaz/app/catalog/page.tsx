@@ -32,6 +32,21 @@ const BUYING_GUIDE_ROWS = [
   { type: "Кухня с островом", fit: "кухня-гостиная, частный дом или большая новостройка с проходами от 100 см", href: "/catalog/kuhni-s-ostrovom" },
 ];
 
+const COMMERCIAL_PROOF_ITEMS = [
+  {
+    title: "Смета до запуска",
+    text: "До производства фиксируем планировку, материалы, фурнитуру, доставку и монтаж. Так проще сравнить варианты и не потерять важные позиции.",
+  },
+  {
+    title: "Проект под технику",
+    text: "Проверяем мойку, плиту, холодильник, посудомоечную машину, вытяжку и розетки до утверждения модулей.",
+  },
+  {
+    title: "Договор и гарантия",
+    text: "Условия работ, сроки, комплектация и гарантийные обязательства прописываются письменно.",
+  },
+];
+
 const CATALOG_FAQ = [
   {
     question: "Можно ли купить кухню в Минске с установкой?",
@@ -126,6 +141,29 @@ export default async function CatalogPage() {
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
                 </div>
               ))}
+            </div>
+          </section>
+          <section className="mb-12 rounded-xl border bg-white p-6">
+            <h2 className="font-serif text-2xl font-bold text-foreground">Что проверяем перед заказом кухни</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Каталог помогает выбрать формат, но финальная кухня собирается по размерам конкретного помещения.
+              Перед запуском проекта важно увидеть не только красивое фото, но и понятную комплектацию, смету и следующий шаг заявки.
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {COMMERCIAL_PROOF_ITEMS.map((item) => (
+                <div key={item.title} className="rounded-lg border bg-muted/20 p-5">
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/prices" className="rounded-lg border px-4 py-2 text-sm font-semibold text-primary hover:bg-muted">
+                Сравнить цены
+              </Link>
+              <Link href="/contacts#form" className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
+                Отправить размеры
+              </Link>
             </div>
           </section>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

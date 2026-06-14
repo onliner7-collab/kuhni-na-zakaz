@@ -82,6 +82,43 @@ const EXTRA_WORKS = [
   { item: "Разборка старой кухни",    price: "от 100 BYN" },
 ];
 
+const PRICE_FACTORS = [
+  {
+    title: "Размер и планировка",
+    text: "Прямая кухня обычно дешевле угловой, П-образной или островной: меньше сложных узлов, проще столешница и монтаж.",
+  },
+  {
+    title: "Фасады и корпус",
+    text: "ЛДСП помогает удержать бюджет, МДФ, пластик HPL, эмаль и шпон меняют внешний вид, износостойкость и итоговую смету.",
+  },
+  {
+    title: "Фурнитура и хранение",
+    text: "Выдвижные ящики, подъемники, доводчики, угловые механизмы и системы хранения считаются отдельно, чтобы смета была прозрачной.",
+  },
+  {
+    title: "Доставка и монтаж",
+    text: "Адрес, этаж, занос столешницы, готовность ремонта и подключение техники влияют на финальную стоимость работ.",
+  },
+];
+
+const PRICE_FAQ = [
+  {
+    question: "Почему цена кухни на заказ указана как ориентир?",
+    answer:
+      "Без точных размеров, материалов, фурнитуры, техники, доставки и монтажных условий нельзя честно назвать финальную цену. После замера и комплектации смета фиксируется в договоре.",
+  },
+  {
+    question: "Что дешевле: прямая, угловая или П-образная кухня?",
+    answer:
+      "Чаще всего дешевле прямая кухня: в ней проще столешница и нет угловых узлов. Угловая и П-образная дают больше хранения, но обычно требуют больше модулей и фурнитуры.",
+  },
+  {
+    question: "Можно ли рассчитать кухню по фото и размерам?",
+    answer:
+      "Да, для предварительного ориентира достаточно фото, примерных размеров, списка техники и пожеланий по фасадам. Точная смета появляется после замера и согласования проекта.",
+  },
+];
+
 const PRICE_CITY_SLUGS = [
   "minsk",
   "borisov",
@@ -118,13 +155,25 @@ export default function PricesPage() {
       })),
     },
   };
+  const jsonLdFaq = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: PRICE_FAQ.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
   const priceCities = PRICE_CITY_SLUGS
     .map((slug) => regionalLocations.find((location) => location.slug === slug))
     .filter((location): location is (typeof regionalLocations)[number] => Boolean(location));
 
   return (
     <>
-      <JsonLd data={[jsonLdBreadcrumb, jsonLdService]} />
+      <JsonLd data={[jsonLdBreadcrumb, jsonLdService, jsonLdFaq]} />
       <div className="section-padding">
         <div className="container-site">
         <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
@@ -135,8 +184,21 @@ export default function PricesPage() {
 
         <h1 className="font-serif text-4xl font-bold mb-4">Цены на кухни на заказ</h1>
         <p className="text-muted-foreground mb-10 max-w-2xl">
-          Цена фиксируется в договоре. Никаких скрытых доплат. Ниже — ориентировочные диапазоны по сегментам.
+          Цена кухни на заказ в Минске зависит от размеров, материалов, фурнитуры, техники, доставки и монтажа.
+          После замера и согласования комплектации смета фиксируется в договоре.
         </p>
+
+        <section className="mb-12 rounded-xl border bg-muted/20 p-6">
+          <h2 className="font-serif text-2xl font-bold text-foreground">Что входит в расчет кухни</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {PRICE_FACTORS.map((item) => (
+              <div key={item.title} className="rounded-lg border bg-white p-5">
+                <h3 className="font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Сегменты — редакционные диапазоны */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -237,6 +299,18 @@ export default function PricesPage() {
             Подобрать фурнитуру для кухни
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
+        </section>
+
+        <section className="card-base p-6 mb-16">
+          <h2 className="font-serif text-2xl font-bold mb-3">Частые вопросы о цене кухни</h2>
+          <div className="divide-y">
+            {PRICE_FAQ.map((item) => (
+              <div key={item.question} className="py-4 first:pt-0 last:pb-0">
+                <h3 className="font-semibold text-foreground">{item.question}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* CTA */}

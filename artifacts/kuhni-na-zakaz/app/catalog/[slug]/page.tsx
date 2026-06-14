@@ -431,6 +431,21 @@ const CATEGORY_BUYING_GUIDES: Record<string, CategoryBuyingGuide> = {
   },
 };
 
+const CATEGORY_COMMERCIAL_PROOFS = [
+  {
+    title: "Смета до предоплаты",
+    text: "Сначала согласуем размеры, фасады, столешницу, фурнитуру, технику, доставку и монтаж. После этого фиксируем комплектацию.",
+  },
+  {
+    title: "Договор и сроки",
+    text: "В договоре прописываются цена, состав работ, срок изготовления, условия доставки, монтажа и гарантийные обязательства.",
+  },
+  {
+    title: "Производитель без случайных модулей",
+    text: "Кухня проектируется под помещение, а не под складской набор: учитываем ниши, трубы, подоконник, розетки и проходы.",
+  },
+];
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -606,6 +621,25 @@ export default async function CatalogItemPage({ params }: Props) {
                 </Link>
               )}
             </div>
+            <section className="mt-6 rounded-xl border bg-muted/20 p-6">
+              <h2 className="font-serif text-2xl font-semibold mb-4">Что подтверждаем перед запуском</h2>
+              <div className="grid gap-4 md:grid-cols-3">
+                {CATEGORY_COMMERCIAL_PROOFS.map((item) => (
+                  <div key={item.title} className="rounded-lg border bg-white p-4">
+                    <h3 className="font-semibold text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link href="/prices" className="rounded-lg border px-4 py-2 text-sm font-semibold text-primary hover:bg-white">
+                  Смотреть цены
+                </Link>
+                <Link href="#form" className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
+                  Рассчитать эту кухню
+                </Link>
+              </div>
+            </section>
             {seo && (
               <div className="mt-10 space-y-8">
                 {buyingGuide && (
@@ -752,7 +786,7 @@ export default async function CatalogItemPage({ params }: Props) {
           </div>
           <div>
             <div className="sticky top-20 space-y-5">
-              <div className="card-base p-6">
+              <div id="form" className="card-base p-6 scroll-mt-24">
               <h2 className="font-serif text-xl font-semibold mb-4">Заказать замер</h2>
               <p className="text-sm text-muted-foreground mb-4">Условия замера уточняются при заявке</p>
               <ContactForm source={`catalog/${slug}`} />
