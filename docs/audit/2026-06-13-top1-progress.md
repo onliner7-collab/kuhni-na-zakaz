@@ -21,7 +21,7 @@
 | 3. Отзывы и review schema | Выполнен | 13.06.2026 | Product/AggregateRating убран с главной, review schema фильтрует качественные отзывы |
 | 4. Скорость и CWV | Выполнен | 14.06.2026 | Local production-like LHCI mobile: performance 100, LCP 490-885 мс на 5 ключевых URL; битых изображений и горизонтального скролла нет |
 | 5. Money-pages | Выполнен | 14.06.2026 | Усилены `/catalog`, `/catalog/*` и `/prices`: смета, договор, техника, FAQ и FAQPage schema для цен |
-| 6. Контент-кластеры | Не начат | — | Нужно запланировать и публиковать волны статей |
+| 6. Контент-кластеры | Выполнен | 14.06.2026 | Создан календарь на 30+ статей; волна 1 расширена 4 quick-win статьями; новые evergreen URL добавлены в llms.txt |
 | 7. Портфолио и кейсы | Не начат | — | Нужно усилить реальные доказательства |
 | 8. Geo-страницы | Не начат | — | Нужно убрать риск шаблонности |
 | 9. Внутренняя перелинковка | Не начат | — | Нужно направить вес на money-pages |
@@ -121,4 +121,15 @@ GSC/Яндекс: не отправлялись из-за отсутствия �
 Production URL: https://kuhni.minsk.by/, https://kuhni.minsk.by/catalog, https://kuhni.minsk.by/locations/minskaya-oblast, https://kuhni.minsk.by/prices
 GSC/Яндекс: в browser-сессии 14.06.2026 не было активной авторизации; GSC открыл public about page, Яндекс Вебмастер редиректил на login, поэтому свежий live-status индексации и переобхода в этом проходе не обновлен.
 Осталось: повторить weekly-check после входа в GSC и Яндекс через браузер; дожать /catalog/kuhni-do-potolka, /materials/mdf-emal, /materials/plastik-hpl, /calculator и geo-страницы 11-22.
+```
+
+```text
+Дата: 14.06.2026
+Этап: 6. Контент-кластеры и блог на 3 месяца
+Что изменено: создан docs/audit/2026-06-14-stage-6-content-clusters.md с календарем 30+ статей; в статический SEO-блог добавлены /blog/chto-vhodit-v-stoimost-kuhni-na-zakaz, /blog/kuhnya-6-kv-m-v-hruschevke, /blog/kuhnya-pod-vstroennuyu-tehniku, /blog/p-obraznaya-kuhnya-razmery-prohody-cena; добавлены cover meta и evergreen-ссылки в llms.txt.
+Проверки: pnpm run blog:convert-images; pnpm run images:optimize; pnpm run typecheck; pnpm run seo:check; pnpm run build; pnpm run sitemap:check после prebuild, итог 112 local sitemap URLs. Первый sitemap:check до перегенерации ожидаемо показал необходимость обновить public/sitemap-static.xml.
+Деплой: первый запуск deploy до push не включил локальные изменения, после push требуется повторный deploy командой ssh -i C:/Users/User/.ssh/timeweb_kuhni_ed25519 root@5.42.108.140 "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work".
+Production URL: https://kuhni.minsk.by/blog, https://kuhni.minsk.by/blog/chto-vhodit-v-stoimost-kuhni-na-zakaz, https://kuhni.minsk.by/blog/kuhnya-6-kv-m-v-hruschevke, https://kuhni.minsk.by/blog/kuhnya-pod-vstroennuyu-tehniku, https://kuhni.minsk.by/blog/p-obraznaya-kuhnya-razmery-prohody-cena
+GSC/Яндекс: не отправлялись из-за отсутствия активной browser-авторизации; выполнить в этапе 11 после production-проверки.
+Осталось: после повторного deploy проверить production HTTP/Browser и отправить новые URL на переобход в GSC/Яндекс при наличии входа.
 ```
