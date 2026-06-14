@@ -63,13 +63,13 @@ export const BLOG_COVER_META: Record<string, BlogCoverMeta> = {
     imageCaption: "3D-визуализация компактной кухни для небольшой квартиры",
   },
   "chto-vhodit-v-stoimost-kuhni-na-zakaz": {
-    image: "/images/blog/generated-guides/budget-kitchen-cover.webp",
+    image: "/images/blog/generated-guides/quote-kitchen-overview-20260614.webp",
     imageTitle: "Что входит в стоимость кухни на заказ",
-    imageAlt: "Материалы, фурнитура и комплектация для расчета стоимости кухни",
+    imageAlt: "Современная кухня на заказ с корпусами, фасадами, столешницей и встроенной техникой",
     imageWidth: BLOG_COVER_DEFAULT_WIDTH,
     imageHeight: BLOG_COVER_DEFAULT_HEIGHT,
-    imagePrompt: "Реалистичная 3D-визуализация расчета стоимости кухни на заказ, образцы фасадов, столешницы и фурнитуры, без людей и текста, 1200x800",
-    imageCaption: "Сгенерированная визуализация комплектации для сметы кухни",
+    imagePrompt: "Реалистичное фото современной кухни на заказ для статьи о составе сметы: общий план, корпуса, фасады, столешница, техника, без людей и текста, 1200x800",
+    imageCaption: "Сгенерированная визуализация кухни: общий вид того, из чего складывается смета",
   },
   "kuhnya-pod-vstroennuyu-tehniku": {
     image: "/images/blog/generated-guides/mistakes-appliances.webp",
