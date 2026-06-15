@@ -23,6 +23,10 @@ export type AnalyticsEvent =
   (typeof ANALYTICS_EVENTS)[keyof typeof ANALYTICS_EVENTS];
 
 type AnalyticsParams = Record<string, string | number | boolean | undefined>;
+interface TrackAnalyticsOptions {
+  gtagCallback?: () => void;
+  eventTimeoutMs?: number;
+}
 
 declare global {
   interface Window {
@@ -38,6 +42,7 @@ export const YANDEX_METRIKA_ID =
 export function trackAnalyticsEvent(
   event: AnalyticsEvent,
   params: AnalyticsParams = {},
+  options: TrackAnalyticsOptions = {},
 ) {
   if (typeof window === "undefined") {
     return;
@@ -51,10 +56,14 @@ export function trackAnalyticsEvent(
     ...payload,
   });
 
-  const gtagPayload = {
+  const gtagPayload: Record<string, unknown> = {
     transport_type: "beacon",
     ...payload,
   };
+  if (options.gtagCallback) {
+    gtagPayload.event_callback = options.gtagCallback;
+    gtagPayload.event_timeout = options.eventTimeoutMs ?? 1000;
+  }
 
   if (window.gtag) {
     window.gtag("event", event, gtagPayload);

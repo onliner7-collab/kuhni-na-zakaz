@@ -74,15 +74,23 @@ export function AnalyticsProvider() {
       }
 
       if (href.startsWith("tel:")) {
+        let hasNavigated = false;
+        const navigateToPhone = () => {
+          if (hasNavigated) return;
+          hasNavigated = true;
+          window.location.href = href;
+        };
+
         trackAnalyticsEvent(ANALYTICS_EVENTS.PHONE_CLICK, {
           link_type: "phone",
           source: link.dataset.analyticsSource,
           path: window.location.pathname,
+        }, {
+          gtagCallback: navigateToPhone,
+          eventTimeoutMs: 800,
         });
         event.preventDefault();
-        window.setTimeout(() => {
-          window.location.href = href;
-        }, 120);
+        window.setTimeout(navigateToPhone, 900);
         return;
       }
 
