@@ -29,6 +29,8 @@ import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
+import { RegionalContactChooser } from "@/components/locations/RegionalContactChooser";
+import { RegionalVisualStoryGallery } from "@/components/locations/RegionalVisualStoryGallery";
 
 export interface PortfolioCasePreview {
   id: number | string;
@@ -290,6 +292,86 @@ const hubKitchenTypes = [
   },
 ];
 
+const minskOblastStoryImages = [
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-kuhnya-dalniy-vid.webp",
+    alt: "3D-визуализация кухни на заказ в Минской области, общий вид",
+    caption: "Готовая кухня: общий вид",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-stoleshnica-fasady-krupno.webp",
+    alt: "Крупный план столешницы и фасадов кухни на заказ",
+    caption: "Фасады, столешница и подсветка",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-materialy-fasadov.webp",
+    alt: "Образцы фасадов, ЛДСП, столешницы и кромки для кухни",
+    caption: "Материалы перед расчетом",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-zamer-kuhni.webp",
+    alt: "Замер кухни лазерной рулеткой перед изготовлением мебели",
+    caption: "Замер помещения",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-raspil-ldsp.webp",
+    alt: "Распил ЛДСП для корпуса кухни на заказ",
+    caption: "Распил ЛДСП",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-okleyka-kromki.webp",
+    alt: "Оклейка кромки на детали кухни из ЛДСП",
+    caption: "Оклейка кромки",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-sborka-korpusov.webp",
+    alt: "Сборка корпусов кухни и установка фурнитуры",
+    caption: "Сборка корпусов",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-kuhnya-do-potolka.webp",
+    alt: "Кухня до потолка для квартиры в Минской области",
+    caption: "Кухня до потолка",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-yashchik-furnitura.webp",
+    alt: "Кухонный ящик с направляющими и органайзером",
+    caption: "Ящики и направляющие",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-montazh-kuhni.webp",
+    alt: "Монтаж кухни на заказ с выравниванием нижних модулей",
+    caption: "Монтаж на объекте",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-kuhnya-s-ostrovom.webp",
+    alt: "Кухня с островом для частного дома в Минской области",
+    caption: "Кухня с островом",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-zona-moyki.webp",
+    alt: "Зона мойки в кухне на заказ с доступом к коммуникациям",
+    caption: "Мойка и коммуникации",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-p-obraznaya-kuhnya.webp",
+    alt: "П-образная кухня на заказ для частного дома",
+    caption: "П-образная планировка",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-petli-regulirovka.webp",
+    alt: "Регулировка петель и доводчиков на кухонном фасаде",
+    caption: "Петли и доводчики",
+  },
+  {
+    src: "/uploads/locations/minskaya-oblast/minskaya-oblast-soglasovanie-proekta.webp",
+    alt: "Согласование проекта кухни с материалами и размерами",
+    caption: "Согласование проекта",
+  },
+];
+
+const minskOblastProcessShots = minskOblastStoryImages.slice(3, 10);
+
 function getHubDirectionLinks(slugs: string[]) {
   return slugs
     .map((slug) => minskRegionLocations.find((city) => city.slug === slug))
@@ -405,18 +487,37 @@ export function RegionalLocationPage({
       <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq, jsonLdService].filter(isJsonLdObject)} />
 
       <section className="relative overflow-hidden bg-stone-950 text-white">
-        <div className="absolute inset-0 opacity-28">
-          <Image
-            src={heroImage}
-            alt={heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`}
-            fill
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className="object-cover"
-          />
-          {heroIdea && <BrandedImageWatermark compact />}
-        </div>
+        {isMinskRegionHub ? (
+          <div className="absolute inset-0">
+            <picture>
+              <source
+                media="(max-width: 767px)"
+                srcSet="/uploads/locations/minskaya-oblast/minskaya-oblast-hero-mobile.webp"
+              />
+              <img
+                src="/uploads/locations/minskaya-oblast/minskaya-oblast-hero-desktop.webp"
+                alt=""
+                aria-hidden="true"
+                fetchPriority="high"
+                className="h-full w-full object-cover"
+              />
+            </picture>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/42 via-black/34 to-black/78 md:bg-gradient-to-r md:from-black/42 md:via-black/18 md:to-black/24" />
+          </div>
+        ) : (
+          <div className="absolute inset-0 opacity-28">
+            <Image
+              src={heroImage}
+              alt={heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`}
+              fill
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              className="object-cover"
+            />
+            {heroIdea && <BrandedImageWatermark compact />}
+          </div>
+        )}
         <div className="relative container-site py-10 md:py-16 lg:py-20">
           <nav className="mb-8 flex flex-wrap items-center gap-2 text-sm text-white/72">
             <Link href="/" className="hover:text-white">
@@ -430,43 +531,46 @@ export function RegionalLocationPage({
             <span className="text-white">{location.cityName}</span>
           </nav>
 
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm text-white/85">
-              <MapPin className="h-4 w-4" />
-              {location.regionName}
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(340px,0.72fr)] lg:items-end">
+            <div className="max-w-3xl">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm text-white/85">
+                <MapPin className="h-4 w-4" />
+                {location.regionName}
+              </div>
+              <h1 className="mb-5 font-serif text-3xl font-bold leading-tight md:text-5xl">
+                {location.h1}
+              </h1>
+              <p className="mb-8 max-w-2xl text-lg leading-8 text-white/82">{location.intro}</p>
+              <div className="mb-8 flex flex-wrap gap-3">
+                <Link
+                  href="#form"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-white/90"
+                >
+                  Рассчитать стоимость
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href={phoneHref}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+                >
+                  <Phone className="h-4 w-4" />
+                  Получить консультацию
+                </Link>
+                <Link
+                  href="/calculator"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+                >
+                  <Calculator className="h-4 w-4" />
+                  Онлайн-калькулятор
+                </Link>
+              </div>
+              <p className="mb-5 max-w-2xl text-sm leading-6 text-white/72">{location.serviceAreaText}</p>
+              <div className="inline-flex flex-wrap items-end gap-3 rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
+                <span className="text-sm text-white/65">Ориентировочно, зависит от проекта</span>
+                <span className="text-3xl font-bold">от {location.priceFrom.toLocaleString("ru")} BYN</span>
+              </div>
             </div>
-            <h1 className="mb-5 font-serif text-3xl font-bold leading-tight md:text-5xl">
-              {location.h1}
-            </h1>
-            <p className="mb-8 max-w-2xl text-lg leading-8 text-white/82">{location.intro}</p>
-            <div className="mb-8 flex flex-wrap gap-3">
-              <Link
-                href="#form"
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-white/90"
-              >
-                Рассчитать стоимость
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href={phoneHref}
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
-              >
-                <Phone className="h-4 w-4" />
-                Получить консультацию
-              </Link>
-              <Link
-                href="/calculator"
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
-              >
-                <Calculator className="h-4 w-4" />
-                Онлайн-калькулятор
-              </Link>
-            </div>
-            <p className="mb-5 max-w-2xl text-sm leading-6 text-white/72">{location.serviceAreaText}</p>
-            <div className="inline-flex flex-wrap items-end gap-3 rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
-              <span className="text-sm text-white/65">Ориентировочно, зависит от проекта</span>
-              <span className="text-3xl font-bold">от {location.priceFrom.toLocaleString("ru")} BYN</span>
-            </div>
+            {isMinskRegionHub && <RegionalContactChooser source={`regional-${location.slug}-hero`} />}
           </div>
         </div>
       </section>
@@ -564,6 +668,29 @@ export function RegionalLocationPage({
         </section>
       )}
 
+      {isMinskRegionHub && (
+        <section className="bg-stone-950 text-white section-padding">
+          <div className="container-site">
+            <div className="mb-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div>
+                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-amber-200">
+                  Визуальный маршрут
+                </p>
+                <h2 className="font-serif text-2xl font-bold md:text-4xl">
+                  Больше смотреть, меньше гадать
+                </h2>
+              </div>
+              <p className="max-w-3xl text-base leading-7 text-white/70">
+                На этой странице собрали 15 сгенерированных визуализаций: кухни издалека, крупные планы
+                материалов, замер, распил ЛДСП, оклейку кромки, сборку корпусов, фурнитуру и монтаж.
+                Так проще понять процесс до заявки и выбрать, что ближе к вашему дому или квартире.
+              </p>
+            </div>
+            <RegionalVisualStoryGallery images={minskOblastStoryImages} />
+          </div>
+        </section>
+      )}
+
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
           <SectionTitle
@@ -603,6 +730,44 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+
+      {isMinskRegionHub && (
+        <section className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Производство"
+              title="От замера до монтажа: как рождается кухня"
+              text="Клиенту не обязательно читать длинное описание производства. Короткая визуальная цепочка показывает, где появляются точные размеры, корпус, кромка, фурнитура и готовый монтаж."
+            />
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+              {minskOblastProcessShots.map((image, index) => (
+                <div
+                  key={image.src}
+                  className="group overflow-hidden rounded-lg border border-border bg-white shadow-sm lg:col-span-1"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 16vw"
+                      loading="lazy"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <BrandedImageWatermark compact />
+                  </div>
+                  <div className="p-4">
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+                      Шаг {index + 1}
+                    </p>
+                    <h3 className="text-sm font-bold text-foreground">{image.caption}</h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="bg-white section-padding">
         <div className="container-site">
