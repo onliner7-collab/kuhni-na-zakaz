@@ -100,6 +100,31 @@ function normalizeSecondaryPhoneDisplay(phoneDisplay?: string | null) {
   return value;
 }
 
+function normalizePhoneDigits(value: string) {
+  const digits = value.replace(/\D/g, "");
+  if (!digits) return "";
+
+  return digits.startsWith("375") ? digits : "";
+}
+
+function normalizeWhatsAppHref(whatsapp?: string | null) {
+  const value = (whatsapp || "").trim();
+  if (!value) return "";
+  if (/^https?:\/\//i.test(value)) return value;
+
+  const digits = normalizePhoneDigits(value);
+  return digits ? `https://wa.me/${digits}` : "";
+}
+
+function normalizeViberHref(viber?: string | null) {
+  const value = (viber || "").trim();
+  if (!value) return "";
+  if (/^viber:\/\//i.test(value)) return value;
+
+  const digits = normalizePhoneDigits(value);
+  return digits ? `viber://chat?number=%2B${digits}` : "";
+}
+
 export function resolveContactInfo(settings?: ContactSettingsInput | null): ContactInfo {
   return {
     siteName: normalizeSiteName(settings?.siteName),
@@ -112,8 +137,8 @@ export function resolveContactInfo(settings?: ContactSettingsInput | null): Cont
     addressMap: settings?.addressMap?.trim() || "",
     workingHours: settings?.workingHours?.trim() || CONTACT_DEFAULTS.workingHours,
     telegram: settings?.telegram?.trim() || CONTACT_DEFAULTS.telegram,
-    viber: settings?.viber?.trim() || "",
-    whatsapp: settings?.whatsapp?.trim() || "",
+    viber: normalizeViberHref(settings?.viber),
+    whatsapp: normalizeWhatsAppHref(settings?.whatsapp),
     instagram: settings?.instagram?.trim() || CONTACT_DEFAULTS.instagram,
     vk: settings?.vk?.trim() || "",
     facebook: settings?.facebook?.trim() || "",
