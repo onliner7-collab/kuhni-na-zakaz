@@ -43,12 +43,13 @@ async function getPosts() {
 
 export default async function BlogPage() {
   const posts = await getPosts();
-  const raw =
-    posts.length > 0
-      ? posts
-      : [...SEO_BLOG_POSTS_FALLBACK, ...BLOG_POSTS].sort(
-          (a, b) => publishedTime(b) - publishedTime(a),
-        );
+  const databaseSlugs = new Set(posts.map((post) => post.slug));
+  const staticPosts = [...SEO_BLOG_POSTS_FALLBACK, ...BLOG_POSTS].filter(
+    (post) => post.published !== false && !databaseSlugs.has(post.slug),
+  );
+  const raw = [...posts, ...staticPosts].sort(
+    (a, b) => publishedTime(b) - publishedTime(a),
+  );
   const display = raw.map((p) => mergeBlogCover(p));
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
