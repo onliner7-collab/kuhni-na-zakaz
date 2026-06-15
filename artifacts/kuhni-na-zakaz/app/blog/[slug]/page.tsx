@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
-import { ContactForm } from "@/components/sections/ContactForm";
 import { renderContent } from "@/lib/render-content";
 import { canonicalSiteUrl, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
@@ -387,9 +386,22 @@ export default async function BlogPostPage({ params }: Props) {
                     Нужна консультация?
                   </h2>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Замер и проект — по условиям заявки
+                    Поможем разобрать смету, материалы и монтаж под вашу планировку.
                   </p>
-                  <ContactForm source={`blog/${slug}`} />
+                  <div className="flex flex-col gap-2">
+                    <Link
+                      href="/contacts"
+                      className="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                    >
+                      Оставить заявку
+                    </Link>
+                    <Link
+                      href="/calculator"
+                      className="inline-flex h-10 items-center justify-center rounded-lg border border-primary px-4 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                    >
+                      Рассчитать кухню
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="card-base p-5">
