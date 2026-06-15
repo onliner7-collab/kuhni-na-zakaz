@@ -26,7 +26,7 @@ type AnalyticsParams = Record<string, string | number | boolean | undefined>;
 
 declare global {
   interface Window {
-    dataLayer?: Record<string, unknown>[];
+    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     ym?: (counterId: number, method: string, target: string, params?: AnalyticsParams) => void;
   }
@@ -51,7 +51,11 @@ export function trackAnalyticsEvent(
     ...payload,
   });
 
-  window.gtag?.("event", event, payload);
+  if (window.gtag) {
+    window.gtag("event", event, payload);
+  } else {
+    window.dataLayer.push(["event", event, payload]);
+  }
 
   const counterId = Number(YANDEX_METRIKA_ID);
   if (window.ym && Number.isFinite(counterId)) {
