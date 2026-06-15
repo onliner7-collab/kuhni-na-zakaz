@@ -79,6 +79,10 @@ export function AnalyticsProvider() {
           source: link.dataset.analyticsSource,
           path: window.location.pathname,
         });
+        event.preventDefault();
+        window.setTimeout(() => {
+          window.location.href = href;
+        }, 120);
         return;
       }
 

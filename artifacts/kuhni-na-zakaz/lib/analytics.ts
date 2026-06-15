@@ -51,10 +51,15 @@ export function trackAnalyticsEvent(
     ...payload,
   });
 
+  const gtagPayload = {
+    transport_type: "beacon",
+    ...payload,
+  };
+
   if (window.gtag) {
-    window.gtag("event", event, payload);
+    window.gtag("event", event, gtagPayload);
   } else {
-    window.dataLayer.push(["event", event, payload]);
+    window.dataLayer.push(["event", event, gtagPayload]);
   }
 
   const counterId = Number(YANDEX_METRIKA_ID);
