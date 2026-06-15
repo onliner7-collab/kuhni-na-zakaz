@@ -50,7 +50,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
       { question: "Подходит ли современный стиль для маленькой кухни?", answer: "Да, это один из самых удобных вариантов: минимум визуального шума, фасады до потолка и встроенная техника помогают сохранить пространство аккуратным." },
     ],
     internalLinks: [
-      { href: "/materials/emal", label: "Эмаль для современной кухни", description: "Ровная поверхность и широкая палитра для матовых фасадов." },
+      { href: "/materials/mdf-emal", label: "Эмаль для современной кухни", description: "Ровная поверхность и широкая палитра для матовых фасадов." },
       { href: "/catalog/kuhni-bez-ruchek", label: "Кухни без ручек", description: "Решения с профилем, push-to-open и скрытым открыванием." },
       ...DEFAULT_STYLE_LINKS,
     ],
@@ -78,7 +78,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
     ],
     internalLinks: [
       { href: "/catalog/kuhni-do-potolka", label: "Кухни до потолка", description: "Больше хранения без визуального шума." },
-      { href: "/materials/plastik", label: "Пластик HPL", description: "Практичный материал для строгих гладких фасадов." },
+      { href: "/materials/plastik-hpl", label: "Пластик HPL", description: "Практичный материал для строгих гладких фасадов." },
       ...DEFAULT_STYLE_LINKS,
     ],
   },
@@ -104,7 +104,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
       { question: "Классическая кухня дороже современной?", answer: "При одинаковых размерах часто дороже из-за фрезеровки, декоративных элементов, витрин и более сложной сборки." },
     ],
     internalLinks: [
-      { href: "/materials/emal", label: "Крашеный МДФ", description: "Популярная основа для классических фасадов." },
+      { href: "/materials/mdf-emal", label: "Крашеный МДФ", description: "Популярная основа для классических фасадов." },
       { href: "/materials/shpon", label: "Шпон", description: "Натуральная фактура для теплых классических интерьеров." },
       ...DEFAULT_STYLE_LINKS,
     ],
@@ -131,7 +131,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
       { question: "Какая столешница подходит неоклассике?", answer: "Чаще всего выбирают камень, кварц, компакт-плиту или качественный декор под мрамор в спокойной гамме." },
     ],
     internalLinks: [
-      { href: "/materials/emal", label: "Эмалевые фасады", description: "Ровное покрытие для рамочных фасадов." },
+      { href: "/materials/mdf-emal", label: "Эмалевые фасады", description: "Ровное покрытие для рамочных фасадов." },
       { href: "/catalog/kuhni-s-ostrovom", label: "Кухни с островом", description: "Неоклассика хорошо раскрывается в просторных планировках." },
       ...DEFAULT_STYLE_LINKS,
     ],
@@ -158,7 +158,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
       { question: "Как не сделать интерьер слишком простым?", answer: "Добавьте качественную столешницу, теплое дерево, спокойный фартук и продуманную подсветку." },
     ],
     internalLinks: [
-      { href: "/materials/mdf", label: "МДФ фасады", description: "Практичная база для светлых скандинавских кухонь." },
+      { href: "/materials/mdf-fasady", label: "МДФ фасады", description: "Практичная база для светлых скандинавских кухонь." },
       { href: "/catalog/malenkie-kuhni", label: "Маленькие кухни", description: "Скандинавский стиль хорошо раскрывает компактные помещения." },
       ...DEFAULT_STYLE_LINKS,
     ],
@@ -185,7 +185,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
       { question: "Лофт сложен в уходе?", answer: "Темные матовые поверхности и фактурные фартуки требуют регулярного ухода, особенно рядом с варочной зоной." },
     ],
     internalLinks: [
-      { href: "/materials/plastik", label: "HPL-пластик", description: "Стойкие декоры под бетон, камень и темное дерево." },
+      { href: "/materials/plastik-hpl", label: "HPL-пластик", description: "Стойкие декоры под бетон, камень и темное дерево." },
       { href: "/materials/shpon", label: "Шпон", description: "Натуральное дерево для теплого лофт-акцента." },
       ...DEFAULT_STYLE_LINKS,
     ],
@@ -213,7 +213,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
     ],
     internalLinks: [
       { href: "/catalog/kuhni-s-ostrovom", label: "Кухни с островом", description: "Эффектная планировка для технологичного интерьера." },
-      { href: "/materials/emal", label: "Эмаль и акрил", description: "Гладкие фасады для строгой современной геометрии." },
+      { href: "/materials/mdf-emal", label: "Эмаль и акрил", description: "Гладкие фасады для строгой современной геометрии." },
       ...DEFAULT_STYLE_LINKS,
     ],
   },
@@ -239,7 +239,7 @@ const STYLE_ENRICHMENT: Record<string, PageEnrichment> = {
       { question: "Сложно ли ухаживать за такими фасадами?", answer: "Фрезеровка требует чуть больше внимания при уборке, но при качественном покрытии уход остается обычным: мягкая салфетка и неабразивные средства." },
     ],
     internalLinks: [
-      { href: "/materials/emal", label: "Эмаль для рамочных фасадов", description: "Теплые оттенки и аккуратное покрытие для прованса." },
+      { href: "/materials/mdf-emal", label: "Эмаль для рамочных фасадов", description: "Теплые оттенки и аккуратное покрытие для прованса." },
       { href: "/materials/shpon", label: "Шпон и дерево", description: "Натуральные акценты для уютной кухни." },
       ...DEFAULT_STYLE_LINKS,
     ],

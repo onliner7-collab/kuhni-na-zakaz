@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CheckCircle } from "lucide-react";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { getCatalogCategoryGallery, resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import {
   JsonLd,
@@ -458,10 +458,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const cat = STATIC_CATEGORIES[slug];
   if (cat) {
+    const title = cleanSeoTitle(cat.title, "Кухня на заказ");
+    const description = trimMetaDescription(cat.description, cat.description);
     return {
-      title: cleanSeoTitle(cat.title, "Кухня на заказ"),
-      description: trimMetaDescription(cat.description, cat.description),
+      title,
+      description,
       alternates: { canonical: `/catalog/${slug}` },
+      openGraph: buildOpenGraph(`/catalog/${slug}`, title, description),
+      twitter: buildTwitterMetadata(title, description),
       robots: { index: true, follow: true },
     };
   }
@@ -475,11 +479,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         category: kitchen.category,
       });
       const isPrimaryCategory = PRIMARY_CATEGORY_SLUGS.has(slug);
+      const canonicalPath = canonicalSlug === "catalog" ? "/catalog" : `/catalog/${canonicalSlug}`;
+      const title = cleanSeoTitle(kitchen.seoTitle, kitchen.title);
+      const description = trimMetaDescription(kitchen.seoDescription, kitchen.description);
 
       return {
-        title: cleanSeoTitle(kitchen.seoTitle, kitchen.title),
-        description: trimMetaDescription(kitchen.seoDescription, kitchen.description),
-        alternates: { canonical: canonicalSlug === "catalog" ? "/catalog" : `/catalog/${canonicalSlug}` },
+        title,
+        description,
+        alternates: { canonical: canonicalPath },
+        openGraph: buildOpenGraph(canonicalPath, title, description),
+        twitter: buildTwitterMetadata(title, description),
         robots: isPrimaryCategory
           ? { index: true, follow: true }
           : { index: false, follow: true },

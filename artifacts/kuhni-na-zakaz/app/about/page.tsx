@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { renderContent } from "@/lib/render-content";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { getStaticPage } from "@/lib/static-page";
 
@@ -15,13 +15,17 @@ const FACTS = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("about");
+  const title = cleanSeoTitle(page?.seoTitle, "О компании и производство кухонь");
+  const description = trimMetaDescription(
+    page?.seoDescription,
+    "Производитель кухонь на заказ по Беларуси: индивидуальные размеры, договор, гарантийные условия и замер по заявке.",
+  );
   return {
-    title: cleanSeoTitle(page?.seoTitle, "О компании и производство кухонь"),
-    description: trimMetaDescription(
-      page?.seoDescription,
-      "Производитель кухонь на заказ по Беларуси: индивидуальные размеры, договор, гарантийные условия и замер по заявке.",
-    ),
+    title,
+    description,
     alternates: { canonical: "/about" },
+    openGraph: buildOpenGraph("/about", title, description),
+    twitter: buildTwitterMetadata(title, description),
   };
 }
 

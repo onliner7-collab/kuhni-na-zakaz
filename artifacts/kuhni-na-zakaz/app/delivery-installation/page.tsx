@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { renderContent } from "@/lib/render-content";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
 import { getStaticPage } from "@/lib/static-page";
 
@@ -9,13 +9,17 @@ export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("delivery-installation");
+  const title = cleanSeoTitle(page?.seoTitle, "Доставка и монтаж кухни");
+  const description = trimMetaDescription(
+    page?.seoDescription,
+    "Доставка и монтаж кухни под ключ по Беларуси: привозим гарнитур, собираем, устанавливаем столешницу, регулируем фурнитуру и убираем упаковку.",
+  );
   return {
-    title: cleanSeoTitle(page?.seoTitle, "Доставка и монтаж кухни"),
-    description: trimMetaDescription(
-      page?.seoDescription,
-      "Доставка и монтаж кухни под ключ по Беларуси: привозим гарнитур, собираем, устанавливаем столешницу, регулируем фурнитуру и убираем упаковку.",
-    ),
+    title,
+    description,
     alternates: { canonical: "/delivery-installation" },
+    openGraph: buildOpenGraph("/delivery-installation", title, description),
+    twitter: buildTwitterMetadata(title, description),
   };
 }
 

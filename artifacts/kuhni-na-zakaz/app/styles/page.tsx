@@ -4,11 +4,18 @@ import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Стили кухонь на заказ";
+const description =
+  "Кухни на заказ в разных стилях по всей Беларуси: современный, классический, скандинавский, минимализм, лофт. Фото, цены, советы по выбору.";
 
 export const metadata: Metadata = {
-  title: "Стили кухонь на заказ",
-  description: "Кухни на заказ в разных стилях по всей Беларуси: современный, классический, скандинавский, минимализм, лофт. Фото, цены, советы по выбору.",
+  title,
+  description,
   alternates: { canonical: "/styles" },
+  openGraph: buildOpenGraph("/styles", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 export const revalidate = 3600;

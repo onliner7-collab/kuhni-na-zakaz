@@ -24,6 +24,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { FurnituraHardwareGallery } from "@/components/sections/FurnituraHardwareGallery";
 import { furnituraGalleryRegistry } from "@/lib/furnitura-gallery-registry";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl, type JsonLdObject } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
 const pageTitle = "Фурнитура для кухни на заказ";
 const pageDescription =
@@ -37,12 +38,11 @@ export const metadata: Metadata = {
   description: pageDescription,
   alternates: { canonical: "/materials/furnitura" },
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Фурнитура для кухни на заказ",
-    description: pageDescription,
-    url: "/materials/furnitura",
+  openGraph: buildOpenGraph(pagePath, pageTitle, pageDescription, {
     type: "article",
-  },
+    images: [{ url: heroImage, width: 1600, height: 900, alt: "Фурнитура для кухни на заказ" }],
+  }),
+  twitter: buildTwitterMetadata(pageTitle, pageDescription, heroImage),
 };
 
 const jsonLdImages = furnituraGalleryRegistry.slice(0, 12).map((image) =>

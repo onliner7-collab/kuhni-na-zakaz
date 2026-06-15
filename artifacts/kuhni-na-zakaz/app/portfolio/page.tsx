@@ -7,6 +7,7 @@ import { PortfolioFilters } from "@/components/portfolio/PortfolioFilters";
 import { GENERATED_MINSK_PORTFOLIO_CASES, toPortfolioProject } from "@/data/portfolio-projects";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +16,15 @@ export const metadata: Metadata = {
   description:
     "Каталог проектов кухонь на заказ: фото из портфолио, 3D-визуализации, города из данных, типы планировок, материалы и подробные страницы проектов.",
   alternates: { canonical: "/portfolio" },
+  openGraph: buildOpenGraph(
+    "/portfolio",
+    "Портфолио кухонь на заказ",
+    "Каталог проектов кухонь на заказ: фото из портфолио, 3D-визуализации, города из данных, типы планировок, материалы и подробные страницы проектов.",
+  ),
+  twitter: buildTwitterMetadata(
+    "Портфолио кухонь на заказ",
+    "Каталог проектов кухонь на заказ: фото из портфолио, 3D-визуализации, города из данных, типы планировок, материалы и подробные страницы проектов.",
+  ),
 };
 
 export default async function PortfolioPage() {

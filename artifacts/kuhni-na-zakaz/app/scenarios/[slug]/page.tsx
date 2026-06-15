@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle, Lightbulb, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
@@ -85,6 +85,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     keywords: s.seoKeywords || undefined,
     alternates: { canonical },
+    openGraph: buildOpenGraph(canonical, title, description, { type: "article" }),
+    twitter: buildTwitterMetadata(title, description),
     robots: isSecondaryScenario
       ? { index: false, follow: true }
       : { index: true, follow: true },

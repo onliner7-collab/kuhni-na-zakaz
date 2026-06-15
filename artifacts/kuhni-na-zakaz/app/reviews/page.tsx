@@ -5,11 +5,18 @@ import { prisma } from "@/lib/db";
 import { ReviewForm } from "@/components/sections/ReviewForm";
 import { cn } from "@/lib/utils";
 import { JsonLd, aggregateRatingJsonLd, breadcrumbJsonLd, compactJsonLd, isTrustedReviewForSchema, productReviewsJsonLd, siteUrl } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Отзывы клиентов о кухнях";
+const description =
+  "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Новые отзывы публикуются автоматически и управляются через админ-панель.";
 
 export const metadata: Metadata = {
-  title: "Отзывы клиентов о кухнях",
-  description: "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Новые отзывы публикуются автоматически и управляются через админ-панель.",
+  title,
+  description,
   alternates: { canonical: "/reviews" },
+  openGraph: buildOpenGraph("/reviews", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 export const revalidate = 3600;

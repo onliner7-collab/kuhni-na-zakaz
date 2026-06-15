@@ -14,40 +14,40 @@ import {
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
-import { SITE_NAME } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, SITE_NAME } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl, type JsonLdObject } from "@/lib/schema-org";
 
 const pagePath = "/design-proekt-kuhni";
 const imageBase = "/images/design-proekt-kuhni";
+const title = "3D-проект кухни на заказ в Минске | Дизайн кухни";
+const description =
+  "Подготовим 3D-проект кухни по вашим размерам: планировка, материалы, визуализация и предварительный расчёт стоимости.";
+const heroImage = `${imageBase}/3d-proekt-kuhni-hero.webp`;
 
 export const metadata: Metadata = {
   title: {
-    absolute: "3D-проект кухни на заказ в Минске | Дизайн кухни",
+    absolute: title,
   },
-  description:
-    "Подготовим 3D-проект кухни по вашим размерам: планировка, материалы, визуализация и предварительный расчёт стоимости.",
+  description,
   alternates: {
-    canonical: "https://kuhni.minsk.by/design-proekt-kuhni",
+    canonical: pagePath,
   },
   robots: {
     index: true,
     follow: true,
   },
-  openGraph: {
-    title: "3D-проект кухни на заказ в Минске | Дизайн кухни",
-    description:
-      "Подготовим 3D-проект кухни по вашим размерам: планировка, материалы, визуализация и предварительный расчёт стоимости.",
-    url: "https://kuhni.minsk.by/design-proekt-kuhni",
+  openGraph: buildOpenGraph(pagePath, title, description, {
     type: "website",
     images: [
       {
-        url: "/images/design-proekt-kuhni/3d-proekt-kuhni-hero.webp",
+        url: heroImage,
         width: 1600,
         height: 900,
         alt: "Современная светлая кухня на заказ с деревом, камнем и встроенной техникой",
       },
     ],
-  },
+  }),
+  twitter: buildTwitterMetadata(title, description, heroImage),
 };
 
 const benefits = [

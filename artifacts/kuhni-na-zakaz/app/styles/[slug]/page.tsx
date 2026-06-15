@@ -6,7 +6,7 @@ import { CheckCircle, XCircle, Droplets, ArrowRight, Layers, Users, Wallet, Came
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { renderContent } from "@/lib/render-content";
 import { getStyleEnrichment } from "@/lib/kitchen-page-enrichment";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
@@ -66,11 +66,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const s = await getStyle(slug);
   if (!s) return { title: "Стиль кухни" };
+  const title = cleanSeoTitle(s.seoTitle, s.title);
+  const description = trimMetaDescription(s.seoDescription, s.description);
+  const image = s.image ? [{ url: s.image, alt: s.title }] : undefined;
   return {
-    title: cleanSeoTitle(s.seoTitle, s.title),
-    description: trimMetaDescription(s.seoDescription, s.description),
+    title,
+    description,
     keywords: s.seoKeywords || undefined,
     alternates: { canonical: `/styles/${slug}` },
+    openGraph: buildOpenGraph(`/styles/${slug}`, title, description, { images: image }),
+    twitter: buildTwitterMetadata(title, description, s.image || undefined),
   };
 }
 

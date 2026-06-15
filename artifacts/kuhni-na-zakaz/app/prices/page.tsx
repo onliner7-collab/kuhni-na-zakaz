@@ -5,11 +5,18 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { PriceQuiz } from "@/components/sections/PriceQuiz";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { regionalLocations } from "@/data/locations";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Цены на кухни на заказ в Минске от 900 BYN";
+const description =
+  "Цены на кухни на заказ в Минске и Беларуси от 900 BYN: прямые, угловые, П-образные и с островом. Рассчитайте ориентир онлайн.";
 
 export const metadata: Metadata = {
-  title: "Цены на кухни на заказ в Минске от 900 BYN",
-  description: "Цены на кухни на заказ в Минске и Беларуси от 900 BYN: прямые, угловые, П-образные и с островом. Рассчитайте ориентир онлайн.",
+  title,
+  description,
   alternates: { canonical: "/prices" },
+  openGraph: buildOpenGraph("/prices", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 // SEGMENTS остаются статическим редакционным контентом:

@@ -7,11 +7,18 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { MaterialsGallerySection } from "@/components/sections/MaterialsGallerySection";
 import { MaterialsCardsGrid } from "@/components/sections/MaterialsCardsGrid";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Материалы для кухонных фасадов";
+const description =
+  "Материалы для кухонных фасадов по всей Беларуси: МДФ плёнка, пластик HPL, эмаль матовая, шпон, ЛДСП EGGER. Цены, плюсы и минусы каждого.";
 
 export const metadata: Metadata = {
-  title: "Материалы для кухонных фасадов",
-  description: "Материалы для кухонных фасадов по всей Беларуси: МДФ плёнка, пластик HPL, эмаль матовая, шпон, ЛДСП EGGER. Цены, плюсы и минусы каждого.",
+  title,
+  description,
   alternates: { canonical: "/materials" },
+  openGraph: buildOpenGraph("/materials", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 const budgetColor: Record<string, string> = {

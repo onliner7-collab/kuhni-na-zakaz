@@ -4,11 +4,18 @@ import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { regionalLocations } from "@/data/locations";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Купить кухню в Минске: каталог кухонь на заказ";
+const description =
+  "Каталог кухонь на заказ в Минске: угловые, прямые, маленькие, до потолка и с островом. Расчет под размеры, доставка и монтаж.";
 
 export const metadata: Metadata = {
-  title: "Купить кухню в Минске: каталог кухонь на заказ",
-  description: "Каталог кухонь на заказ в Минске: угловые, прямые, маленькие, до потолка и с островом. Расчет под размеры, доставка и монтаж.",
+  title,
+  description,
   alternates: { canonical: "/catalog" },
+  openGraph: buildOpenGraph("/catalog", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 export const revalidate = 3600;

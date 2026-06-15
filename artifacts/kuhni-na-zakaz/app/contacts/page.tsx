@@ -6,11 +6,18 @@ import { prisma } from "@/lib/db";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { getSameAsLinks, resolveContactInfo } from "@/lib/contact-info";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Контакты и заявка на замер";
+const description =
+  "Контакты производителя кухонь на заказ: телефоны, email, адрес и форма заявки. Условия замера и консультации уточняются при заявке.";
 
 export const metadata: Metadata = {
-  title: "Контакты и заявка на замер",
-  description: "Контакты производителя кухонь на заказ: телефоны, email, адрес и форма заявки. Условия замера и консультации уточняются при заявке.",
+  title,
+  description,
   alternates: { canonical: "/contacts" },
+  openGraph: buildOpenGraph("/contacts", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 export const revalidate = 3600;

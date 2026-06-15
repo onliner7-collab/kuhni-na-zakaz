@@ -6,7 +6,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { renderContent } from "@/lib/render-content";
-import { canonicalSiteUrl, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, canonicalSiteUrl, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import {
@@ -108,20 +108,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: { canonical: `/blog/${slug}` },
-    openGraph: {
-      title,
-      description,
+    openGraph: buildOpenGraph(`/blog/${slug}`, title, description, {
       type: "article",
       images: ogImage
         ? [{ url: ogImage, width: imgW, height: imgH, alt: imgAlt }]
         : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ogImage ? [ogImage] : undefined,
-    },
+    }),
+    twitter: buildTwitterMetadata(title, description, ogImage || undefined),
   };
 }
 

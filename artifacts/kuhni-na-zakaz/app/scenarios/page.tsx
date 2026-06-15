@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/scenarios" },
 };
 
+const SCENARIO_CANONICAL_PATHS: Record<string, string> = {
+  "kuhnya-dlya-studii": "/scenarios/dlya-studii",
+};
+
 async function getScenarios() {
   try {
     return await prisma.scenarioPage.findMany({
@@ -70,7 +74,7 @@ export default async function ScenariosPage() {
               {scenarios.map((s) => (
                 <Link
                   key={s.slug}
-                  href={`/scenarios/${s.slug}`}
+                  href={SCENARIO_CANONICAL_PATHS[s.slug] ?? `/scenarios/${s.slug}`}
                   className="group relative flex flex-col p-7 rounded-2xl border border-border hover:border-primary/30 hover:shadow-xl hover:shadow-primary/8 bg-white transition-all hover:-translate-y-1"
                 >
                   {s.badge && (

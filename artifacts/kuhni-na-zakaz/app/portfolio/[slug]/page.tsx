@@ -19,7 +19,7 @@ import {
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
-import { trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, trimMetaDescription } from "@/lib/seo";
 import { ReviewStatus } from "@prisma/client";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
@@ -310,19 +310,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `/portfolio/${project.slug}`,
     },
-    openGraph: {
-      title: metaTitle,
-      description: metaDescription,
-      images: project.mainImage ? [{ url: project.mainImage, alt: project.alt || project.title }] : undefined,
-      url: `/portfolio/${project.slug}`,
+    openGraph: buildOpenGraph(`/portfolio/${project.slug}`, metaTitle, metaDescription, {
       type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: metaTitle,
-      description: metaDescription,
-      images: project.mainImage ? [project.mainImage] : undefined,
-    },
+      images: project.mainImage ? [{ url: project.mainImage, alt: project.alt || project.title }] : undefined,
+    }),
+    twitter: buildTwitterMetadata(metaTitle, metaDescription, project.mainImage || undefined),
   };
 }
 

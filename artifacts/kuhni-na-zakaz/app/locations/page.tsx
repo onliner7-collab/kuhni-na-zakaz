@@ -5,12 +5,18 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { regionalLocations } from "@/data/locations";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Купить кухню по городам Беларуси | Кухни на заказ";
+const description =
+  "Купить кухню под размер в Минске, Борисове, Жодино, Молодечно, Солигорске, Слуцке и других городах: расчет, замер, доставка и монтаж.";
 
 export const metadata: Metadata = {
-  title: "Купить кухню по городам Беларуси | Кухни на заказ",
-  description:
-    "Купить кухню под размер в Минске, Борисове, Жодино, Молодечно, Солигорске, Слуцке и других городах: расчет, замер, доставка и монтаж.",
+  title,
+  description,
   alternates: { canonical: "/locations" },
+  openGraph: buildOpenGraph("/locations", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 export const revalidate = 3600;

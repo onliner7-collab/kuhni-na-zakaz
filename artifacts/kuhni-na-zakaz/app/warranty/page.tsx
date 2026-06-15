@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Shield } from "lucide-react";
 import { renderContent } from "@/lib/render-content";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { getStaticPage } from "@/lib/static-page";
 
@@ -14,13 +14,17 @@ const WARRANTY_CARDS = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("warranty");
+  const title = cleanSeoTitle(page?.seoTitle, "Гарантия на кухни");
+  const description = trimMetaDescription(
+    page?.seoDescription,
+    "Гарантия на кухни на заказ: 5 лет на фурнитуру Blum, 2 года на корпус и фасады, 1 год на монтажные работы.",
+  );
   return {
-    title: cleanSeoTitle(page?.seoTitle, "Гарантия на кухни"),
-    description: trimMetaDescription(
-      page?.seoDescription,
-      "Гарантия на кухни на заказ: 5 лет на фурнитуру Blum, 2 года на корпус и фасады, 1 год на монтажные работы.",
-    ),
+    title,
+    description,
     alternates: { canonical: "/warranty" },
+    openGraph: buildOpenGraph("/warranty", title, description),
+    twitter: buildTwitterMetadata(title, description),
   };
 }
 

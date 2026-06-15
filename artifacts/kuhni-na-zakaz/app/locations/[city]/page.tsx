@@ -16,7 +16,7 @@ import {
   Star, Phone, CalendarDays, ArrowRight, MessageSquare
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SITE_NAME, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { SITE_NAME, buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
@@ -286,14 +286,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
   const regionalLocation = getRegionalLocation(city);
   if (regionalLocation) {
+    const path = `/locations/${city}`;
     return {
       title: regionalLocation.title,
       description: regionalLocation.description,
-      alternates: { canonical: `/locations/${city}` },
-      openGraph: {
-        title: regionalLocation.title,
-        description: regionalLocation.description,
-      },
+      alternates: { canonical: path },
+      openGraph: buildOpenGraph(path, regionalLocation.title, regionalLocation.description),
+      twitter: buildTwitterMetadata(regionalLocation.title, regionalLocation.description),
     };
   }
 
@@ -301,15 +300,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!loc) return { title: "Не найдено" };
   const title = cleanSeoTitle(loc.seoTitle, loc.title);
   const description = trimMetaDescription(loc.seoDescription, loc.description);
+  const path = `/locations/${city}`;
+  const image = loc.images[0] ? [{ url: loc.images[0], alt: loc.title }] : undefined;
   return {
     title,
     description,
-    alternates: { canonical: `/locations/${city}` },
-    openGraph: {
-      title,
-      description,
-      images: loc.images[0] ? [{ url: loc.images[0] }] : [],
-    },
+    alternates: { canonical: path },
+    openGraph: buildOpenGraph(path, title, description, { images: image }),
+    twitter: buildTwitterMetadata(title, description, loc.images[0] || undefined),
   };
 }
 

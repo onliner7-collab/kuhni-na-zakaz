@@ -14,6 +14,7 @@ import {
 import { ContactForm } from "@/components/sections/ContactForm";
 import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
 const pageTitle = "Кухни с пластиковыми фасадами HPL";
 const pageDescription =
@@ -24,6 +25,8 @@ export const metadata: Metadata = {
   description: pageDescription,
   alternates: { canonical: "/materials/plastik-hpl" },
   robots: { index: true, follow: true },
+  openGraph: buildOpenGraph("/materials/plastik-hpl", pageTitle, pageDescription, { type: "article" }),
+  twitter: buildTwitterMetadata(pageTitle, pageDescription),
 };
 
 const useCases = [

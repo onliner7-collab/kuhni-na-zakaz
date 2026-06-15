@@ -13,6 +13,7 @@ import {
 import { ContactForm } from "@/components/sections/ContactForm";
 import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
 const pageTitle = "МДФ фасады для кухни на заказ";
 const pageDescription =
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
   description: pageDescription,
   alternates: { canonical: "/materials/mdf-fasady" },
   robots: { index: true, follow: true },
+  openGraph: buildOpenGraph("/materials/mdf-fasady", pageTitle, pageDescription, { type: "article" }),
+  twitter: buildTwitterMetadata(pageTitle, pageDescription),
 };
 
 const coatingOptions = [

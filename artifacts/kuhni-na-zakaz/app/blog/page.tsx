@@ -9,6 +9,7 @@ import { SEO_BLOG_POSTS_FALLBACK } from "@/lib/blog-seo-fallback";
 import { mergeBlogCover } from "@/lib/blog-cover-meta";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
 function publishedTime(p: { publishedAt?: Date | null }) {
   return p.publishedAt ? new Date(p.publishedAt).getTime() : 0;
@@ -23,11 +24,16 @@ const COMMERCIAL_LINKS = [
   { href: "/portfolio", title: "Открыть портфолио", text: "Фото и визуализации с городом и параметрами, если они заполнены." },
 ];
 
+const title = "Блог о кухнях на заказ";
+const description =
+  "Советы по выбору кухни, материалов и стилей. Полезные статьи для тех, кто планирует кухню на заказ.";
+
 export const metadata: Metadata = {
-  title: "Блог о кухнях на заказ",
-  description:
-    "Советы по выбору кухни, материалов и стилей. Полезные статьи для тех, кто планирует кухню на заказ.",
+  title,
+  description,
   alternates: { canonical: "/blog" },
+  openGraph: buildOpenGraph("/blog", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 async function getPosts() {

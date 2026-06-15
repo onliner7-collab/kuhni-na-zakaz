@@ -3,11 +3,18 @@ import Link from "next/link";
 import { Calculator, CheckCircle } from "lucide-react";
 import { CalculatorWizard } from "@/components/calculator/CalculatorWizard";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Калькулятор стоимости кухни";
+const description =
+  "Рассчитайте ориентировочную стоимость кухни на заказ в Беларуси. Выберите форму, материал, стиль и получите диапазон цены за 2 минуты.";
 
 export const metadata: Metadata = {
-  title: "Калькулятор стоимости кухни",
-  description: "Рассчитайте ориентировочную стоимость кухни на заказ в Беларуси. Выберите форму, материал, стиль и получите диапазон цены за 2 минуты.",
+  title,
+  description,
   alternates: { canonical: "/calculator" },
+  openGraph: buildOpenGraph("/calculator", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 const INCLUDED = [

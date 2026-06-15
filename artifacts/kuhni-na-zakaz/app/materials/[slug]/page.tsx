@@ -6,7 +6,7 @@ import { CheckCircle, XCircle, Droplets, ArrowRight, Palette, Users, Wallet, Cam
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
-import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
+import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { renderContent } from "@/lib/render-content";
 import { getMaterialEnrichment } from "@/lib/kitchen-page-enrichment";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
@@ -87,12 +87,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const m = await getMaterial(slug);
   if (!m) return { title: "Материал для кухни" };
   const title = MATERIAL_SEO_TITLE_OVERRIDES[slug] ?? cleanSeoTitle(m.seoTitle, m.title);
+  const description = trimMetaDescription(m.seoDescription, m.description);
+  const image = m.image ? [{ url: m.image, alt: m.title }] : undefined;
 
   return {
     title,
-    description: trimMetaDescription(m.seoDescription, m.description),
+    description,
     keywords: m.seoKeywords || undefined,
     alternates: { canonical: `/materials/${slug}` },
+    openGraph: buildOpenGraph(`/materials/${slug}`, title, description, { images: image }),
+    twitter: buildTwitterMetadata(title, description, m.image || undefined),
   };
 }
 

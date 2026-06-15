@@ -5,17 +5,18 @@ import { ArrowRight, Calculator, CheckCircle2, Clock3, Phone, Ruler } from "luci
 import { ContactForm } from "@/components/sections/ContactForm";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+
+const title = "Конфигуратор кухни скоро будет доступен";
+const description =
+  "Визуальный конфигуратор кухни временно обновляется. Оставьте заявку, и мы подготовим расчет кухни по вашим размерам, планировке и материалам.";
 
 export const metadata: Metadata = {
-  title: "Конфигуратор кухни скоро будет доступен",
-  description:
-    "Визуальный конфигуратор кухни временно обновляется. Оставьте заявку, и мы подготовим расчет кухни по вашим размерам, планировке и материалам.",
+  title,
+  description,
   alternates: { canonical: "/kitchen-configurator" },
-  openGraph: {
-    title: "Конфигуратор кухни скоро будет доступен",
-    description:
-      "Пока онлайн-конфигуратор в разработке, дизайнер поможет подобрать планировку, материалы и подготовить предварительный расчет кухни.",
-  },
+  openGraph: buildOpenGraph("/kitchen-configurator", title, description),
+  twitter: buildTwitterMetadata(title, description),
 };
 
 const STEPS = [
