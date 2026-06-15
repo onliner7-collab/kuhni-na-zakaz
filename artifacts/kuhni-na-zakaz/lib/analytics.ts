@@ -6,6 +6,7 @@ export const ANALYTICS_EVENTS = {
   PORTFOLIO_PROJECT_OPEN: "portfolio_project_open",
   PORTFOLIO_FILTER_CHANGE: "portfolio_filter_change",
   LIGHTBOX_OPEN: "lightbox_open",
+  PHONE_REVEAL: "phone_reveal",
   PHONE_CLICK: "phone_click",
   MESSENGER_CLICK: "messenger_click",
   EMAIL_CLICK: "email_click",

@@ -13,7 +13,7 @@ import { ReviewStatus, type LocationPage } from "@prisma/client";
 import { ContactForm } from "@/components/sections/ContactForm";
 import {
   CheckCircle, MapPin, Clock, Ruler, Wrench, ChevronRight,
-  Star, Phone, CalendarDays, ArrowRight, MessageSquare
+  Star, CalendarDays, ArrowRight, MessageSquare
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SITE_NAME, buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
@@ -23,6 +23,7 @@ import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 export const revalidate = 3600;
 export const dynamic = "force-static";
@@ -535,13 +536,13 @@ export default async function LocationPage({ params }: Props) {
             {loc.intro && <p className="text-lg text-white/80 mb-8 leading-relaxed">{loc.intro}</p>}
 
             <div className="flex flex-wrap gap-3 mb-10">
-              <a
-                href={`tel:${(loc.phone || CONTACT_DEFAULTS.phone).replace(/\D/g, "").replace(/^/, "+")}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-[#2d0a5e] font-bold hover:bg-white/90 transition-colors text-sm"
-              >
-                <Phone className="w-4 h-4" />
-                Согласовать замер
-              </a>
+              <PhoneReveal
+                phone={loc.phone || CONTACT_DEFAULTS.phoneDisplay}
+                phoneHref={`tel:${(loc.phone || CONTACT_DEFAULTS.phone).replace(/\D/g, "").replace(/^/, "+")}`}
+                source={`city-${loc.slug}-hero`}
+                compact
+                className="bg-white px-6 py-3 text-[#2d0a5e]"
+              />
               <a
                 href="#form"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors text-sm border border-white/20"
@@ -974,10 +975,14 @@ export default async function LocationPage({ params }: Props) {
                 ))}
               </div>
               {loc.phone && (
-                <a href={`tel:+${loc.phone.replace(/\D/g, "")}`} className="mt-8 inline-flex items-center gap-2 text-white/90 font-semibold hover:text-white transition-colors">
-                  <Phone className="w-4 h-4" />
-                  {loc.phone}
-                </a>
+                <PhoneReveal
+                  phone={loc.phone}
+                  phoneHref={`tel:+${loc.phone.replace(/\D/g, "")}`}
+                  source={`city-${loc.slug}-form`}
+                  compact
+                  dark
+                  className="mt-8"
+                />
               )}
             </div>
             <div className="bg-white/5 rounded-2xl border border-white/10 p-6 backdrop-blur-sm">

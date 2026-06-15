@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Clock, Factory, FileCheck, MapPin, Phone, Shield, Star, Wrench } from "lucide-react";
+import { ArrowRight, Clock, Factory, FileCheck, MapPin, Shield, Star, Wrench } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { HomeKitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
@@ -16,6 +16,7 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { CANONICAL_SITE_URL, SITE_ALTERNATE_NAMES, SITE_NAME, canonicalSiteUrl } from "@/lib/seo";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 type HomeAdvantage = {
   id: number;
@@ -974,13 +975,14 @@ export default async function HomePage() {
             >
               Согласовать замер
             </Link>
-            <a
-              href={`tel:${CONTACT_DEFAULTS.phone}`}
-              className="flex items-center justify-center gap-2 text-white border-2 border-white/30 hover:border-white hover:bg-white/10 px-8 py-3.5 rounded-xl font-bold transition-all"
-            >
-              <Phone className="w-4 h-4" aria-hidden />
-              {CONTACT_DEFAULTS.phoneDisplay}
-            </a>
+            <PhoneReveal
+              phone={CONTACT_DEFAULTS.phoneDisplay}
+              phoneHref={`tel:${CONTACT_DEFAULTS.phone}`}
+              source="home-banner"
+              compact
+              dark
+              className="justify-center border-2 border-white/30 px-8 py-3.5"
+            />
           </div>
         </div>
       </section>

@@ -28,6 +28,7 @@ import { optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 export interface PortfolioCasePreview {
   id: number | string;
@@ -717,13 +718,13 @@ export function RegionalLocationPage({
               </div>
             </div>
             <div className="flex flex-wrap gap-3 lg:justify-end">
-              <a
-                href={`tel:${CONTACT_DEFAULTS.phone}`}
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
-              >
-                <Phone className="h-4 w-4" aria-hidden />
-                {CONTACT_DEFAULTS.phoneDisplay}
-              </a>
+              <PhoneReveal
+                phone={CONTACT_DEFAULTS.phoneDisplay}
+                phoneHref={`tel:${CONTACT_DEFAULTS.phone}`}
+                source={`regional-${location.slug}-cta`}
+                compact
+                className="min-h-11 px-5 py-3"
+              />
               <Link
                 href="#form"
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
@@ -862,13 +863,13 @@ export function RegionalLocationPage({
               Точные сроки замера и доставки нужно подтверждать по конкретному адресу.
             </p>
             <div className="flex flex-wrap gap-3">
-              <a
-                href={phoneHref}
-                className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-stone-950 transition-colors hover:bg-white/90"
-              >
-                <Phone className="h-4 w-4" />
-                {CONTACT_DEFAULTS.phoneDisplay}
-              </a>
+              <PhoneReveal
+                phone={CONTACT_DEFAULTS.phoneDisplay}
+                phoneHref={phoneHref}
+                source={`regional-${location.slug}-form`}
+                compact
+                className="min-h-11 px-5 py-3"
+              />
               <a
                 href="#form"
                 className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"

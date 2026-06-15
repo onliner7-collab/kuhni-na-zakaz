@@ -7,6 +7,7 @@ import { ArrowRight, Menu, Phone, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 type NavLink = {
   href: string;
@@ -47,7 +48,6 @@ const MOBILE_NAV_ARIA = "\u041c\u043e\u0431\u0438\u043b\u044c\u043d\u0430\u044f 
 const OPEN_MENU = "\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e";
 const CLOSE_MENU = "\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e";
 const CTA_LABEL = "\u0421\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u0442\u044c \u0437\u0430\u043c\u0435\u0440";
-const CONSULTATION_LABEL = "\u041a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u0446\u0438\u044f";
 const USEFUL_SECTIONS_LABEL = "\u041f\u043e\u043b\u0435\u0437\u043d\u044b\u0435 \u0440\u0430\u0437\u0434\u0435\u043b\u044b";
 const HOME_ARIA =
   "\u041a\u0443\u0445\u043d\u0438BY \u2014 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043a\u0443\u0445\u043e\u043d\u044c \u043d\u0430 \u0437\u0430\u043a\u0430\u0437 \u0432 \u0411\u0435\u043b\u0430\u0440\u0443\u0441\u0438";
@@ -217,28 +217,12 @@ export function Header({
           </Link>
 
           <div className="hidden min-w-0 flex-1 items-center justify-end gap-3 lg:flex">
-            <a
-              href={phoneLink}
-              className={cn(
-                "flex min-w-0 items-center gap-3 rounded-xl border px-4 py-2.5 transition-colors",
-                isOverlay
-                  ? "border-white/14 bg-black/18 text-white hover:bg-white/10"
-                  : "border-border bg-white hover:border-primary/30 hover:bg-primary/5",
-              )}
-              data-testid="header-phone"
-            >
-              <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl", isOverlay ? "bg-white/12 text-white" : "bg-primary/10 text-primary")}>
-                <Phone className="h-4 w-4" aria-hidden />
-              </span>
-              <span className="min-w-0">
-                <span className={cn("block text-[11px] font-semibold uppercase tracking-[0.14em]", isOverlay ? "text-white/62" : "text-muted-foreground")}>
-                  {CONSULTATION_LABEL}
-                </span>
-                <span className={cn("block whitespace-nowrap text-sm font-bold xl:text-base", isOverlay ? "text-white" : "text-foreground")}>
-                  {phoneDisplay}
-                </span>
-              </span>
-            </a>
+            <PhoneReveal
+              phone={phoneDisplay}
+              phoneHref={phoneLink}
+              source="header"
+              isOverlay={isOverlay}
+            />
 
             <Link
               href="/contacts#form"
@@ -344,13 +328,13 @@ export function Header({
                 {CTA_LABEL}
               </Link>
 
-              <a
-                href={phoneLink}
-                className="flex items-center justify-center gap-2 rounded-2xl border border-border bg-white px-4 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
-              >
-                <Phone className="h-4 w-4 text-primary" aria-hidden />
-                {phoneDisplay}
-              </a>
+              <PhoneReveal
+                phone={phoneDisplay}
+                phoneHref={phoneLink}
+                source="mobile-menu"
+                compact
+                className="justify-center rounded-2xl py-3.5"
+              />
 
             </div>
           </div>

@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Clock, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Instagram, Mail, MapPin } from "lucide-react";
 
 import { regionalLocations } from "@/data/locations";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { resolveContactInfo } from "@/lib/contact-info";
 import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 function FooterTelegramIcon({ className }: { className?: string }) {
   return (
@@ -77,15 +78,23 @@ export function Footer() {
               Кухни на заказ по Минску и Беларуси: проектирование, производство, доставка и монтаж. Производственный и юридический адрес — Борисов.
             </p>
             <div className="mt-4 space-y-2.5">
-              <a href={`tel:${c.phone}`} className="flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-white">
-                <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-                {c.phoneDisplay}
-              </a>
+              <PhoneReveal
+                phone={c.phoneDisplay}
+                phoneHref={`tel:${c.phone}`}
+                source="footer"
+                compact
+                dark
+                className="w-full"
+              />
               {c.phone2 && c.phoneDisplay2 && (
-                <a href={`tel:${c.phone2}`} className="flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-white">
-                  <Phone className="h-4 w-4 shrink-0 text-primary" aria-hidden />
-                  {c.phoneDisplay2}
-                </a>
+                <PhoneReveal
+                  phone={c.phoneDisplay2}
+                  phoneHref={`tel:${c.phone2}`}
+                  source="footer-secondary"
+                  compact
+                  dark
+                  className="w-full"
+                />
               )}
               <a href={`mailto:${c.email}`} className="flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-white">
                 <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />

@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone } from "lucide-react";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 export function MobileCTA({ phoneHref }: { phoneHref?: string }) {
   const [visible, setVisible] = useState(false);
@@ -48,14 +48,13 @@ export function MobileCTA({ phoneHref }: { phoneHref?: string }) {
       data-testid="mobile-cta-bar"
     >
       <div className="flex items-center gap-2 p-3 pb-safe">
-        <a
-          href={phoneHref || `tel:${CONTACT_DEFAULTS.phone}`}
-          className="flex-1 flex items-center justify-center gap-2 bg-muted text-foreground py-3 rounded-xl font-semibold text-sm"
-          data-testid="mobile-cta-call"
-        >
-          <Phone className="w-4 h-4" />
-          Позвонить
-        </a>
+        <PhoneReveal
+          phone={CONTACT_DEFAULTS.phoneDisplay}
+          phoneHref={phoneHref || `tel:${CONTACT_DEFAULTS.phone}`}
+          source="mobile-sticky"
+          compact
+          className="flex-1 justify-center rounded-xl bg-muted py-3"
+        />
         <Link
           href="/contacts#form"
           className="flex-1 flex items-center justify-center gap-2 text-white py-3 rounded-xl font-semibold text-sm shadow-lg"

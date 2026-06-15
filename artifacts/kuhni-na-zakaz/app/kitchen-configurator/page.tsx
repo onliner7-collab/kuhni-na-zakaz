@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Calculator, CheckCircle2, Clock3, Phone, Ruler } from "lucide-react";
+import { ArrowRight, Calculator, CheckCircle2, Clock3, Ruler } from "lucide-react";
 
 import { ContactForm } from "@/components/sections/ContactForm";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 const title = "Конфигуратор кухни скоро будет доступен";
 const description =
@@ -85,13 +86,13 @@ export default function KitchenConfiguratorPlaceholderPage() {
                     Получить расчет
                     <ArrowRight className="h-4 w-4" />
                   </a>
-                  <a
-                    href={`tel:${CONTACT_DEFAULTS.phone}`}
-                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
-                  >
-                    <Phone className="h-4 w-4" />
-                    {CONTACT_DEFAULTS.phoneDisplay}
-                  </a>
+                  <PhoneReveal
+                    phone={CONTACT_DEFAULTS.phoneDisplay}
+                    phoneHref={`tel:${CONTACT_DEFAULTS.phone}`}
+                    source="kitchen-configurator"
+                    compact
+                    className="justify-center px-5 py-3"
+                  />
                 </div>
 
                 <div className="mt-10 grid gap-4 sm:grid-cols-3">

@@ -7,6 +7,7 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-o
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { getSameAsLinks, resolveContactInfo } from "@/lib/contact-info";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 const title = "Контакты и заявка на замер";
 const description =
@@ -124,19 +125,27 @@ export default async function ContactsPage() {
                 </div>
                 <div>
                   <div className="font-medium">Телефон</div>
-                  <a href={`tel:${c.phone}`} className="text-muted-foreground hover:text-primary">
-                    {c.phoneDisplay}
-                  </a>
+                  <div className="mt-2">
+                    <PhoneReveal
+                      phone={c.phoneDisplay}
+                      phoneHref={`tel:${c.phone}`}
+                      source="contacts-page"
+                      compact
+                      className="w-full max-w-sm"
+                    />
+                  </div>
                   {c.phone2 && c.phoneDisplay2 && (
-                    <a href={`tel:${c.phone2}`} className="block text-muted-foreground hover:text-primary">
-                      {c.phoneDisplay2}
-                    </a>
+                    <div className="mt-2">
+                      <PhoneReveal
+                        phone={c.phoneDisplay2}
+                        phoneHref={`tel:${c.phone2}`}
+                        source="contacts-page-secondary"
+                        compact
+                        className="w-full max-w-sm"
+                      />
+                    </div>
                   )}
                   <div className="mt-3 flex flex-wrap gap-2">
-                    <a href={`tel:${c.phone}`} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90">
-                      <Phone className="h-4 w-4" aria-hidden />
-                      Позвонить
-                    </a>
                     {c.whatsapp && (
                       <a href={c.whatsapp} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted">
                         WhatsApp
