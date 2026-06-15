@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import Script from "next/script";
 
 import { PublicChrome } from "@/components/layout/PublicChrome";
 import { Toaster } from "@/components/ui/toaster";
@@ -104,6 +105,9 @@ export default async function RootLayout({
     <html lang="ru" className={manrope.variable}>
       <head>
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
+        <Script id="recover-stale-next-chunks" strategy="beforeInteractive">
+          {`(function(){try{var key="kuhni-next-reload-at";var reload=function(reason){var now=Date.now();var prev=Number(sessionStorage.getItem(key)||0);if(now-prev<30000)return;sessionStorage.setItem(key,String(now));var url=new URL(location.href);url.searchParams.set("_r",String(now));location.replace(url.toString());};window.addEventListener("error",function(event){var message=String(event && (event.message || (event.error && event.error.message)) || "");var file=String(event && event.filename || "");if((file.indexOf("/_next/static/")!==-1 && (message.indexOf("is not a function")!==-1 || message.indexOf("ChunkLoadError")!==-1 || message.indexOf("Loading chunk")!==-1)) || message.indexOf("Application error")!==-1){reload(message);}});window.addEventListener("unhandledrejection",function(event){var reason=event && event.reason;var message=String((reason && (reason.message || reason.toString && reason.toString())) || reason || "");if(message.indexOf("is not a function")!==-1 || message.indexOf("ChunkLoadError")!==-1 || message.indexOf("Loading chunk")!==-1){reload(message);}});}catch(e){}})();`}
+        </Script>
       </head>
       <body>
         <PublicChrome>{children}</PublicChrome>

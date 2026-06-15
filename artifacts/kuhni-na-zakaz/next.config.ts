@@ -9,14 +9,14 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   async headers() {
-    const longImmutable = "public, max-age=31536000, immutable";
+    const revalidateStatic = "public, max-age=0, must-revalidate";
     const longStatic =
       "public, max-age=31536000, stale-while-revalidate=86400";
 
     return [
       {
         source: "/_next/static/:path*",
-        headers: [{ key: "Cache-Control", value: longImmutable }],
+        headers: [{ key: "Cache-Control", value: revalidateStatic }],
       },
       {
         source: "/_next/image",
