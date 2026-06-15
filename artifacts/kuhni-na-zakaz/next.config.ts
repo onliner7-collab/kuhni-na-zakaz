@@ -64,6 +64,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/\\+375293720674",
+        destination: "/contacts",
+        statusCode: 301,
+      },
+      {
         source: "/locations/zhodzina",
         destination: "/locations/zhodino",
         statusCode: 301,
