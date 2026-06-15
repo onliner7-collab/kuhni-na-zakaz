@@ -35,10 +35,6 @@ export function PhoneReveal({
     trackAnalyticsEvent(ANALYTICS_EVENTS.PHONE_REVEAL, { source });
   }
 
-  function handlePhoneClick() {
-    trackAnalyticsEvent(ANALYTICS_EVENTS.PHONE_CLICK, { source });
-  }
-
   const iconClassName = cn(
     "flex shrink-0 items-center justify-center rounded-xl",
     compact ? "h-9 w-9" : "h-10 w-10",
@@ -91,8 +87,8 @@ export function PhoneReveal({
   return (
     <a
       href={phoneHref}
-      onClick={handlePhoneClick}
       className={shellClassName}
+      data-analytics-source={source}
       data-testid={`phone-link-${source}`}
     >
       <span className={iconClassName}>

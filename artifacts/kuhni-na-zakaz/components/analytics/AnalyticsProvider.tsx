@@ -69,13 +69,14 @@ export function AnalyticsProvider() {
 
       const link = target.closest("a");
       const href = link?.getAttribute("href");
-      if (!href) {
+      if (!link || !href) {
         return;
       }
 
       if (href.startsWith("tel:")) {
         trackAnalyticsEvent(ANALYTICS_EVENTS.PHONE_CLICK, {
           link_type: "phone",
+          source: link.dataset.analyticsSource,
           path: window.location.pathname,
         });
         return;
