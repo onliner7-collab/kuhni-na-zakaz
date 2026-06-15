@@ -749,5 +749,9 @@ export const cityKitchenIdeas3D: Record<string, KitchenIdea3D[]> = {
 };
 
 export function getKitchenIdeas3DForCity(citySlug: string) {
+  if (citySlug === "minskaya-oblast") {
+    return kitchenIdeas3D.filter((idea) => idea.id !== "svetlaya-pryamaya-kuhnya");
+  }
+
   return cityKitchenIdeas3D[citySlug] ?? kitchenIdeas3D;
 }

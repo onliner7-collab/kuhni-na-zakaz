@@ -119,3 +119,20 @@
     background: rgba(255, 255, 255, 0.85);
   }
 }
+
+@keyframes regional-contact-icon {
+  0%, 100% {
+    opacity: 0.58;
+    transform: translateY(2px) scale(0.92);
+  }
+  18%, 72% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[regional-contact-icon_1\.8s_ease-in-out_infinite\] {
+    animation: none;
+  }
+}

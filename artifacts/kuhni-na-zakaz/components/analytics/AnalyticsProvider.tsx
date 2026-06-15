@@ -21,6 +21,7 @@ const isYandexMetrikaEnabled = /^\d+$/.test(YANDEX_METRIKA_ID);
 const MESSENGER_PATTERNS = [
   "t.me",
   "telegram.me",
+  "instagram.com",
   "wa.me",
   "api.whatsapp.com",
   "viber://",
@@ -230,6 +231,10 @@ function detectMessenger(href: string) {
 
   if (normalized.includes("t.me") || normalized.includes("telegram.me")) {
     return "telegram";
+  }
+
+  if (normalized.includes("instagram.com")) {
+    return "instagram";
   }
 
   if (normalized.includes("wa.me") || normalized.includes("whatsapp.com")) {

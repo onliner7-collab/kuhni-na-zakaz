@@ -1,13 +1,20 @@
-import { Instagram } from "lucide-react";
+"use client";
 
+import { type ComponentType, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ChevronDown, Instagram, MessageCircle, Phone } from "lucide-react";
+import { createLayout, type AutoLayout } from "animejs/layout";
+
+import { PhoneReveal } from "@/components/layout/PhoneReveal";
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
+import { cn } from "@/lib/utils";
 
 // Плавающие кнопки соцсетей, показываются на всех публичных страницах
 // (подключаются в app/layout.tsx только когда !isAdmin).
 //
 // Контракт:
-// - Если обе ссылки пустые/невалидные — компонент возвращает null и не
-//   занимает место в DOM.
+// - Если ссылки соцсетей пустые/невалидные и телефон не передан — компонент
+//   возвращает null и не занимает место в DOM.
 // - Каждая ссылка нормализуется в полный https-URL независимо от того,
 //   как админ ввёл значение в /admin/contacts (полный URL, t.me/handle,
 //   @handle или просто username) — нормализация вынесена в lib/social-links.
@@ -23,11 +30,21 @@ import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
 interface FloatingSocialButtonsProps {
   instagram?: string | null;
   telegram?: string | null;
+  phone?: string;
+  phoneHref?: string;
 }
 
 const TELEGRAM_BLUE = "#229ED9";
 const INSTAGRAM_GRADIENT =
   "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)";
+
+type FloatingContactIcon = ComponentType<{ className?: string }>;
+type FloatingContactOption = {
+  id: string;
+  label: string;
+  href: string;
+  icon: FloatingContactIcon;
+};
 
 function TelegramIcon({ className }: { className?: string }) {
   return (
@@ -47,47 +64,157 @@ function TelegramIcon({ className }: { className?: string }) {
 export function FloatingSocialButtons({
   instagram,
   telegram,
+  phone,
+  phoneHref,
 }: FloatingSocialButtonsProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [cycleIndex, setCycleIndex] = useState(0);
+  const layoutRef = useRef<AutoLayout | null>(null);
+  const rootRef = useRef<HTMLElement>(null);
+  const reducedMotionRef = useRef(false);
   const telegramHref = buildTelegramHref(telegram);
   const instagramHref = buildInstagramHref(instagram);
 
-  if (!telegramHref && !instagramHref) return null;
+  const visibleOptions = ([
+    telegramHref ? { id: "telegram", label: "Telegram", href: telegramHref, icon: TelegramIcon } : null,
+    instagramHref ? { id: "instagram", label: "Instagram", href: instagramHref, icon: Instagram } : null,
+    phoneHref ? { id: "phone", label: "Телефон", href: phoneHref, icon: Phone } : null,
+  ] as Array<FloatingContactOption | null>).filter((item): item is FloatingContactOption => Boolean(item));
 
-  const baseClasses =
-    "inline-flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg shadow-black/15 ring-1 ring-black/5 transition-transform duration-150 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white motion-reduce:transition-none motion-reduce:hover:scale-100";
+  useLayoutEffect(() => {
+    if (!rootRef.current) return;
+
+    const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    reducedMotionRef.current = isReducedMotion;
+    if (isReducedMotion) return;
+
+    layoutRef.current = createLayout(rootRef.current, {
+      children: ".floating-contact-item",
+      duration: 380,
+      ease: "out(3)",
+      enterFrom: { opacity: 0, y: 8, scale: 0.96 },
+      leaveTo: { opacity: 0, y: 8, scale: 0.96 },
+    });
+
+    return () => {
+      layoutRef.current?.revert();
+      layoutRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isOpen || reducedMotionRef.current || visibleOptions.length <= 1) return;
+
+    const intervalId = window.setInterval(() => {
+      setCycleIndex((current) => (current + 1) % visibleOptions.length);
+    }, 1800);
+
+    return () => window.clearInterval(intervalId);
+  }, [isOpen, visibleOptions.length]);
+
+  if (!telegramHref && !instagramHref && !phoneHref) return null;
+
+  function animateLayout(update: () => void) {
+    if (!layoutRef.current || reducedMotionRef.current) {
+      update();
+      return;
+    }
+
+    layoutRef.current.update(update, {
+      duration: 380,
+      ease: "out(3)",
+    });
+  }
+
+  function toggleOpen() {
+    const nextOpen = !isOpen;
+
+    animateLayout(() => setIsOpen(nextOpen));
+    trackAnalyticsEvent(nextOpen ? ANALYTICS_EVENTS.CONTACT_CHOOSER_OPEN : ANALYTICS_EVENTS.CONTACT_CHOOSER_CLOSE, {
+      source: "floating-contact-buttons",
+    });
+  }
+
+  const CycleIcon = visibleOptions[cycleIndex]?.icon ?? MessageCircle;
 
   return (
     <nav
-      aria-label="Связаться в мессенджерах"
-      className="fixed right-4 bottom-24 z-40 flex flex-col gap-3 lg:right-5 lg:bottom-6"
+      ref={rootRef}
+      aria-label="Быстрая связь"
+      className="fixed right-4 bottom-24 z-40 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-2 lg:right-5 lg:bottom-6"
+      data-state={isOpen ? "open" : "closed"}
       data-testid="floating-social-buttons"
     >
-      {telegramHref && (
-        <a
-          href={telegramHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Написать в Telegram"
-          data-testid="floating-social-telegram"
-          className={`${baseClasses} focus-visible:ring-sky-400`}
-          style={{ backgroundColor: TELEGRAM_BLUE }}
+      {isOpen && (
+        <div
+          id="floating-contact-panel"
+          className="floating-contact-item w-[min(19rem,calc(100vw-2rem))] rounded-lg border border-border/80 bg-white p-3 shadow-2xl shadow-black/20"
         >
-          <TelegramIcon className="h-6 w-6" />
-        </a>
+          <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            Скидка 5% с сайта
+          </p>
+          <div className="grid gap-2">
+            {telegramHref && (
+              <a
+                href={telegramHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Написать в Telegram"
+                data-analytics-source="floating-contact-buttons"
+                data-testid="floating-social-telegram"
+                className="inline-flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
+                style={{ backgroundColor: TELEGRAM_BLUE }}
+              >
+                <TelegramIcon className="h-5 w-5" />
+                Написать в Telegram
+              </a>
+            )}
+            {instagramHref && (
+              <a
+                href={instagramHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Открыть Instagram"
+                data-analytics-source="floating-contact-buttons"
+                data-testid="floating-social-instagram"
+                className="inline-flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
+                style={{ background: INSTAGRAM_GRADIENT }}
+              >
+                <Instagram className="h-5 w-5" aria-hidden="true" />
+                Открыть Instagram
+              </a>
+            )}
+            {phoneHref && (
+              <PhoneReveal
+                phone={phone}
+                phoneHref={phoneHref}
+                source="floating-contact-buttons"
+                compact
+                className="min-h-11 w-full justify-start rounded-md"
+              />
+            )}
+          </div>
+        </div>
       )}
-      {instagramHref && (
-        <a
-          href={instagramHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Открыть Instagram"
-          data-testid="floating-social-instagram"
-          className={`${baseClasses} focus-visible:ring-pink-500`}
-          style={{ background: INSTAGRAM_GRADIENT }}
-        >
-          <Instagram className="h-6 w-6" aria-hidden="true" />
-        </a>
-      )}
+      <button
+        type="button"
+        onClick={toggleOpen}
+        aria-expanded={isOpen}
+        aria-controls="floating-contact-panel"
+        data-testid="floating-contact-toggle"
+        className="floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+      >
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950">
+          <CycleIcon className="h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]" aria-hidden="true" />
+        </span>
+        <span className={cn("min-w-0 pr-1", isOpen ? "hidden sm:block" : "block")}>
+          <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100/78">
+            Скидка 5%
+          </span>
+          <span className="block whitespace-nowrap text-sm font-bold">Связаться</span>
+        </span>
+        <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} aria-hidden="true" />
+      </button>
     </nav>
   );
 }

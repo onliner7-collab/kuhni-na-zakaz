@@ -29,7 +29,6 @@ import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
-import { RegionalContactChooser } from "@/components/locations/RegionalContactChooser";
 import { RegionalVisualStoryGallery } from "@/components/locations/RegionalVisualStoryGallery";
 
 export interface PortfolioCasePreview {
@@ -370,7 +369,22 @@ const minskOblastStoryImages = [
   },
 ];
 
-const minskOblastProcessShots = minskOblastStoryImages.slice(3, 10);
+const minskOblastIntroShots = minskOblastStoryImages.slice(0, 3);
+const minskOblastKitchenTypeShots = [
+  minskOblastStoryImages[7],
+  minskOblastStoryImages[10],
+  minskOblastStoryImages[12],
+].filter(Boolean);
+const minskOblastProcessShots = [
+  minskOblastStoryImages[3],
+  minskOblastStoryImages[14],
+  minskOblastStoryImages[4],
+  minskOblastStoryImages[5],
+  minskOblastStoryImages[6],
+  minskOblastStoryImages[8],
+  minskOblastStoryImages[9],
+  minskOblastStoryImages[13],
+].filter(Boolean);
 
 function getHubDirectionLinks(slugs: string[]) {
   return slugs
@@ -570,10 +584,31 @@ export function RegionalLocationPage({
                 <span className="text-3xl font-bold">от {location.priceFrom.toLocaleString("ru")} BYN</span>
               </div>
             </div>
-            {isMinskRegionHub && <RegionalContactChooser source={`regional-${location.slug}-hero`} />}
           </div>
         </div>
       </section>
+
+      {isMinskRegionHub && (
+        <section className="bg-white py-10 md:py-14">
+          <div className="container-site">
+            <div className="mb-6 grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div>
+                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-primary">
+                  Визуальный маршрут
+                </p>
+                <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
+                  Сначала покажем, как выглядит результат
+                </h2>
+              </div>
+              <p className="max-w-3xl text-sm leading-6 text-muted-foreground md:text-base md:leading-7">
+                Общий вид кухни, крупные детали и материалы идут сразу в начале страницы, чтобы не искать
+                визуальные примеры среди логистики и списка городов.
+              </p>
+            </div>
+            <RegionalVisualStoryGallery images={minskOblastIntroShots} />
+          </div>
+        </section>
+      )}
 
       <section className="bg-white section-padding">
         <div className="container-site grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -664,29 +699,15 @@ export function RegionalLocationPage({
                 ))}
               </div>
             </div>
-          </div>
-        </section>
-      )}
 
-      {isMinskRegionHub && (
-        <section className="bg-stone-950 text-white section-padding">
-          <div className="container-site">
-            <div className="mb-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-              <div>
-                <p className="mb-2 text-sm font-semibold uppercase tracking-[0.14em] text-amber-200">
-                  Визуальный маршрут
-                </p>
-                <h2 className="font-serif text-2xl font-bold md:text-4xl">
-                  Больше смотреть, меньше гадать
-                </h2>
-              </div>
-              <p className="max-w-3xl text-base leading-7 text-white/70">
-                На этой странице собрали 15 сгенерированных визуализаций: кухни издалека, крупные планы
-                материалов, замер, распил ЛДСП, оклейку кромки, сборку корпусов, фурнитуру и монтаж.
-                Так проще понять процесс до заявки и выбрать, что ближе к вашему дому или квартире.
-              </p>
+            <div className="mt-10">
+              <SectionTitle
+                eyebrow="Планировки"
+                title="Варианты, которые чаще сравнивают до расчета"
+                text="Кадры с кухней до потолка, островом и П-образной планировкой оставили рядом с выбором типа кухни, а не отдельной длинной галереей."
+              />
+              <RegionalVisualStoryGallery images={minskOblastKitchenTypeShots} />
             </div>
-            <RegionalVisualStoryGallery images={minskOblastStoryImages} />
           </div>
         </section>
       )}
@@ -737,20 +758,20 @@ export function RegionalLocationPage({
             <SectionTitle
               eyebrow="Производство"
               title="От замера до монтажа: как рождается кухня"
-              text="Клиенту не обязательно читать длинное описание производства. Короткая визуальная цепочка показывает, где появляются точные размеры, корпус, кромка, фурнитура и готовый монтаж."
+              text="Эта часть маршрута показывает не все картинки подряд, а только этапы: замер, согласование, производство, фурнитура, монтаж и финальная регулировка."
             />
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {minskOblastProcessShots.map((image, index) => (
                 <div
                   key={image.src}
-                  className="group overflow-hidden rounded-lg border border-border bg-white shadow-sm lg:col-span-1"
+                  className="group overflow-hidden rounded-lg border border-border bg-white shadow-sm"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                     <Image
                       src={image.src}
                       alt={image.alt}
                       fill
-                      sizes="(max-width: 768px) 100vw, 16vw"
+                      sizes="(max-width: 768px) 100vw, 25vw"
                       loading="lazy"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />

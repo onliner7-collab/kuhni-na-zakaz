@@ -40,6 +40,8 @@ export function PublicChrome({ children }: { children: React.ReactNode }) {
       <FloatingSocialButtons
         instagram={CONTACT_DEFAULTS.instagram}
         telegram={CONTACT_DEFAULTS.telegram}
+        phone={CONTACT_DEFAULTS.phoneDisplay}
+        phoneHref={`tel:${CONTACT_DEFAULTS.phone}`}
       />
     </>
   );
