@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 //   этой соцсети не показывается.
 //
 // Расположение:
-// - Mobile: bottom-24, чтобы не перекрывать MobileCTA (bottom-0, ~64px
+// - Mobile: bottom-36, чтобы не перекрывать MobileCTA (bottom-0, ~64px
 //   высоты + safe-area).
 // - Desktop (>= lg): bottom-6, MobileCTA на этом размере скрыт.
 // - z-40 — ниже MobileCTA (z-50), но выше обычного контента/тостов.
@@ -141,7 +141,7 @@ export function FloatingSocialButtons({
     <nav
       ref={rootRef}
       aria-label="Быстрая связь"
-      className="fixed right-4 bottom-24 z-40 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-2 lg:right-5 lg:bottom-6"
+      className="fixed right-4 bottom-36 z-40 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-2 lg:right-5 lg:bottom-6"
       data-state={isOpen ? "open" : "closed"}
       data-testid="floating-social-buttons"
     >

@@ -369,22 +369,54 @@ const minskOblastStoryImages = [
   },
 ];
 
-const minskOblastIntroShots = minskOblastStoryImages.slice(0, 3);
-const minskOblastKitchenTypeShots = [
-  minskOblastStoryImages[7],
-  minskOblastStoryImages[10],
-  minskOblastStoryImages[12],
-].filter(Boolean);
-const minskOblastProcessShots = [
-  minskOblastStoryImages[3],
-  minskOblastStoryImages[14],
-  minskOblastStoryImages[4],
-  minskOblastStoryImages[5],
-  minskOblastStoryImages[6],
-  minskOblastStoryImages[8],
-  minskOblastStoryImages[9],
-  minskOblastStoryImages[13],
-].filter(Boolean);
+const minskOblastRouteSteps = [
+  {
+    eyebrow: "Шаг 1",
+    title: "Замер помещения",
+    text: "Сначала проверяем размеры, углы, высоту, выводы воды, электрику и условия монтажа.",
+    images: [minskOblastStoryImages[3]],
+  },
+  {
+    eyebrow: "Шаг 2",
+    title: "Выбор комплектующих",
+    text: "Показываем фасады, столешницы, кромку, ящики, направляющие, петли и рабочие детали до запуска в производство.",
+    images: [
+      minskOblastStoryImages[2],
+      minskOblastStoryImages[1],
+      minskOblastStoryImages[8],
+      minskOblastStoryImages[13],
+    ],
+  },
+  {
+    eyebrow: "Шаг 3",
+    title: "Варианты планировки",
+    text: "Сравниваем решения под квартиру, дом или дачу: до потолка, с островом, П-образную компоновку и рабочую зону.",
+    images: [
+      minskOblastStoryImages[7],
+      minskOblastStoryImages[10],
+      minskOblastStoryImages[12],
+      minskOblastStoryImages[11],
+    ],
+  },
+  {
+    eyebrow: "Шаг 4",
+    title: "Производство и монтаж",
+    text: "После согласования проекта идут распил, кромка, сборка корпусов и монтаж на объекте.",
+    images: [
+      minskOblastStoryImages[14],
+      minskOblastStoryImages[4],
+      minskOblastStoryImages[5],
+      minskOblastStoryImages[6],
+      minskOblastStoryImages[9],
+    ],
+  },
+  {
+    eyebrow: "Шаг 5",
+    title: "Готовый результат",
+    text: "В конце маршрута показываем общий вид кухни, чтобы было понятно, к чему ведут замер, материалы и производство.",
+    images: [minskOblastStoryImages[0]],
+  },
+].map((step) => ({ ...step, images: step.images.filter(Boolean) }));
 
 function getHubDirectionLinks(slugs: string[]) {
   return slugs
@@ -504,16 +536,12 @@ export function RegionalLocationPage({
         {isMinskRegionHub ? (
           <div className="absolute inset-0">
             <picture>
-              <source
-                media="(max-width: 767px)"
-                srcSet="/uploads/locations/minskaya-oblast/minskaya-oblast-hero-mobile.webp"
-              />
               <img
                 src="/uploads/locations/minskaya-oblast/minskaya-oblast-hero-desktop.webp"
                 alt=""
                 aria-hidden="true"
                 fetchPriority="high"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain object-top md:object-right"
               />
             </picture>
             <div className="absolute inset-0 bg-gradient-to-b from-black/42 via-black/34 to-black/78 md:bg-gradient-to-r md:from-black/42 md:via-black/18 md:to-black/24" />
@@ -597,19 +625,27 @@ export function RegionalLocationPage({
                   Визуальный маршрут
                 </p>
                 <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
-                  Сначала покажем, как выглядит результат
+                  От замера до готовой кухни
                 </h2>
               </div>
               <p className="max-w-3xl text-sm leading-6 text-muted-foreground md:text-base md:leading-7">
-                Общий вид кухни, крупные детали и материалы идут сразу в начале страницы, чтобы не искать
-                визуальные примеры среди логистики и списка городов.
+                Картинки идут в рабочем порядке: замер, выбор комплектующих, варианты планировки,
+                производство и готовый результат.
               </p>
             </div>
-            <RegionalVisualStoryGallery images={minskOblastIntroShots} />
+            <div className="space-y-12">
+              {minskOblastRouteSteps.map((step) => (
+                <div key={step.title}>
+                  <SectionTitle eyebrow={step.eyebrow} title={step.title} text={step.text} />
+                  <RegionalVisualStoryGallery images={step.images} />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
+      {!isMinskRegionHub && (
       <section className="bg-white section-padding">
         <div className="container-site grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
@@ -630,86 +666,6 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
-
-      {isMinskRegionHub && (
-        <section className="bg-muted/30 section-padding">
-          <div className="container-site">
-            <SectionTitle
-              eyebrow="Хаб области"
-              title="Купить кухню в Минской области: города, доставка и монтаж"
-              text={location.hubText}
-            />
-
-            <div className="overflow-hidden rounded-lg border border-border bg-white">
-              <div className="hidden grid-cols-[0.8fr_1.2fr_1.4fr] border-b border-border bg-muted/50 px-4 py-3 text-sm font-semibold text-foreground md:grid">
-                <span>Город</span>
-                <span>Что можно заказать</span>
-                <span>Особенности доставки и замера</span>
-              </div>
-              <div className="divide-y divide-border">
-                {minskRegionLocations.map((city) => (
-                  <div key={city.slug} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[0.8fr_1.2fr_1.4fr] md:items-start">
-                    <Link
-                      href={`/locations/${city.slug}`}
-                      className="inline-flex items-center gap-2 font-semibold text-primary hover:underline"
-                    >
-                      {city.cityName}
-                      <ArrowRight className="h-4 w-4" aria-hidden />
-                    </Link>
-                    <p className="leading-6 text-foreground">{getHubCityOrderText(city)}</p>
-                    <p className="leading-6 text-muted-foreground">{getHubDeliveryText(city)}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <SectionTitle
-                eyebrow="Направления"
-                title="Направления по Минской области"
-                text="Группируем города не для создания дублей, а чтобы быстрее выбрать маршрут замера и понять логистику доставки."
-              />
-              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-                {hubDirections.map((direction) => (
-                  <div key={direction.title} className="rounded-lg border border-border bg-white p-5">
-                    <h3 className="mb-3 text-lg font-semibold text-foreground">{direction.title}</h3>
-                    <p className="mb-4 text-sm leading-6 text-muted-foreground">{direction.text}</p>
-                    <LinkPills links={getHubDirectionLinks(direction.links)} />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <SectionTitle
-                eyebrow="Типы кухонь"
-                title="Типы кухонь для Минской области"
-                text="Выбор зависит от объекта: квартира, дом, дача, кухня-гостиная или компактное помещение после ремонта."
-              />
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {hubKitchenTypes.map((item) => (
-                  <Link
-                    key={item.title}
-                    href={item.href}
-                    className="rounded-lg border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
-                  >
-                    <h3 className="mb-3 text-lg font-semibold text-foreground">{item.title}</h3>
-                    <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <SectionTitle
-                eyebrow="Планировки"
-                title="Варианты, которые чаще сравнивают до расчета"
-                text="Кадры с кухней до потолка, островом и П-образной планировкой оставили рядом с выбором типа кухни, а не отдельной длинной галереей."
-              />
-              <RegionalVisualStoryGallery images={minskOblastKitchenTypeShots} />
-            </div>
-          </div>
-        </section>
       )}
 
       <section className="bg-muted/30 section-padding">
@@ -751,44 +707,6 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
-
-      {isMinskRegionHub && (
-        <section className="bg-white section-padding">
-          <div className="container-site">
-            <SectionTitle
-              eyebrow="Производство"
-              title="От замера до монтажа: как рождается кухня"
-              text="Эта часть маршрута показывает не все картинки подряд, а только этапы: замер, согласование, производство, фурнитура, монтаж и финальная регулировка."
-            />
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              {minskOblastProcessShots.map((image, index) => (
-                <div
-                  key={image.src}
-                  className="group overflow-hidden rounded-lg border border-border bg-white shadow-sm"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                      loading="lazy"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <BrandedImageWatermark compact />
-                  </div>
-                  <div className="p-4">
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-                      Шаг {index + 1}
-                    </p>
-                    <h3 className="text-sm font-bold text-foreground">{image.caption}</h3>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       <section className="bg-white section-padding">
         <div className="container-site">
@@ -1017,6 +935,97 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+
+      {isMinskRegionHub && (
+        <section className="bg-white section-padding">
+          <div className="container-site">
+            <div className="mb-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+              <div>
+                <SectionTitle
+                  eyebrow="Региональное направление"
+                  title="Купить кухню в Минской области: города, доставка и монтаж"
+                  text={location.seoText}
+                />
+                <p className="text-base leading-7 text-muted-foreground">{location.serviceAreaText}</p>
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/30 p-6">
+                <h2 className="mb-3 font-serif text-2xl font-bold">Быстрый старт</h2>
+                <p className="mb-5 text-sm leading-6 text-muted-foreground">
+                  Напишите город, размеры и список техники. Мы подскажем порядок замера, ориентир по бюджету
+                  и какие данные нужны для точной сметы.
+                </p>
+                <LinkPills links={location.internalLinks.slice(0, 4)} />
+              </div>
+            </div>
+
+            <SectionTitle
+              eyebrow="Города"
+              title="Города Минской области"
+              text={location.hubText}
+            />
+
+            <div className="overflow-hidden rounded-lg border border-border bg-white">
+              <div className="hidden grid-cols-[0.8fr_1.2fr_1.4fr] border-b border-border bg-muted/50 px-4 py-3 text-sm font-semibold text-foreground md:grid">
+                <span>Город</span>
+                <span>Что можно заказать</span>
+                <span>Особенности доставки и замера</span>
+              </div>
+              <div className="divide-y divide-border">
+                {minskRegionLocations.map((city) => (
+                  <div key={city.slug} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[0.8fr_1.2fr_1.4fr] md:items-start">
+                    <Link
+                      href={`/locations/${city.slug}`}
+                      className="inline-flex items-center gap-2 font-semibold text-primary hover:underline"
+                    >
+                      {city.cityName}
+                      <ArrowRight className="h-4 w-4" aria-hidden />
+                    </Link>
+                    <p className="leading-6 text-foreground">{getHubCityOrderText(city)}</p>
+                    <p className="leading-6 text-muted-foreground">{getHubDeliveryText(city)}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <SectionTitle
+                eyebrow="Направления"
+                title="Направления по Минской области"
+                text="Выберите направление, чтобы быстрее согласовать маршрут замера, доставку и монтаж."
+              />
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+                {hubDirections.map((direction) => (
+                  <div key={direction.title} className="rounded-lg border border-border bg-muted/30 p-5">
+                    <h3 className="mb-3 text-lg font-semibold text-foreground">{direction.title}</h3>
+                    <p className="mb-4 text-sm leading-6 text-muted-foreground">{direction.text}</p>
+                    <LinkPills links={getHubDirectionLinks(direction.links)} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <SectionTitle
+                eyebrow="Типы кухонь"
+                title="Типы кухонь для Минской области"
+                text="Выбор зависит от объекта: квартира, дом, дача, кухня-гостиная или компактное помещение после ремонта."
+              />
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {hubKitchenTypes.map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className="rounded-lg border border-border bg-muted/30 p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+                  >
+                    <h3 className="mb-3 text-lg font-semibold text-foreground">{item.title}</h3>
+                    <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="bg-white section-padding">
         <div className="container-site">
