@@ -210,9 +210,9 @@ export default function PricesPage() {
         {/* Сегменты — редакционные диапазоны */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {SEGMENTS.map((seg) => (
-            <div key={seg.name} className={`card-base p-6 border-t-4 ${seg.color} relative`}>
+            <div key={seg.name} className={`card-base p-6 border-t-4 ${seg.color} relative ${seg.popular ? "pt-9" : ""}`}>
               {seg.popular && (
-                <div className="absolute -top-3 right-4 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-medium">
+                <div className="absolute right-4 top-3 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-medium">
                   Популярный
                 </div>
               )}
