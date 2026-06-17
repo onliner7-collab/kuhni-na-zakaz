@@ -100,6 +100,80 @@ export function getKitchenIdea3DById(id: string | null | undefined) {
 }
 
 export const cityKitchenIdeas3D: Record<string, KitchenIdea3D[]> = {
+  borisov: [
+    {
+      id: "borisov-uglovaya-do-potolka",
+      title: "Угловая кухня до потолка",
+      shortDescription:
+        "Решение для квартиры в Борисове: больше хранения, рабочая зона по двум стенам и аккуратная линия верхних шкафов.",
+      image: "/uploads/locations/borisov-3d/borisov-3d-uglovaya-do-potolka.webp",
+      alt: "3D-визуализация КухниBY: угловая кухня до потолка для заказа в Борисове",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "3D-визуализация КухниBY, не фото выполненной работы.",
+      suitableFor: ["угловая кухня", "квартира", "хранение до потолка"],
+      ideaType: "corner",
+    },
+    {
+      id: "borisov-pryamaya-svetlaya",
+      title: "Светлая прямая кухня",
+      shortDescription:
+        "Компактный вариант для небольшого помещения, где важны понятная цена, проходы и место под встроенную технику.",
+      image: "/uploads/locations/borisov-3d/borisov-3d-pryamaya-svetlaya.webp",
+      alt: "3D-визуализация КухниBY: светлая прямая кухня для Борисова",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "3D-визуализация КухниBY, пример дизайна для расчета похожего проекта.",
+      suitableFor: ["прямая кухня", "небольшая кухня", "понятный бюджет"],
+      ideaType: "straight",
+    },
+    {
+      id: "borisov-malenkaya-hranenie",
+      title: "Маленькая кухня с хранением",
+      shortDescription:
+        "Идея для компактной квартиры: ящики, верхние шкафы и рабочая поверхность без перегруза пространства.",
+      image: "/uploads/locations/borisov-3d/borisov-3d-malenkaya-hranenie.webp",
+      alt: "3D-визуализация КухниBY: маленькая кухня с хранением для Борисова",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "3D-визуализация КухниBY, не подтвержденный локальный кейс.",
+      suitableFor: ["маленькая кухня", "ящики", "компактная квартира"],
+      ideaType: "small",
+    },
+    {
+      id: "borisov-derevo-svetlaya-stoleshnica",
+      title: "Дерево и светлая столешница",
+      shortDescription:
+        "Теплая современная кухня для квартиры или дома: древесные фасады, светлая рабочая зона и спокойная композиция.",
+      image: "/uploads/locations/borisov-3d/borisov-3d-derevo-svetlaya-stoleshnica.webp",
+      alt: "3D-визуализация КухниBY: кухня с древесными фасадами и светлой столешницей в Борисове",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "3D-визуализация КухниBY, пример идеи для заказа кухни.",
+      suitableFor: ["дерево", "светлая столешница", "семейная кухня"],
+      ideaType: "wood",
+    },
+    {
+      id: "borisov-vstroennaya-tehnika",
+      title: "Кухня со встроенной техникой",
+      shortDescription:
+        "Пеналы, скрытые ручки и заранее продуманные зазоры под технику, вентиляцию и ежедневное использование.",
+      image: "/uploads/locations/borisov-3d/borisov-3d-vstroennaya-tehnika-skrytye-ruchki.webp",
+      alt: "3D-визуализация КухниBY: кухня со встроенной техникой и скрытыми ручками для Борисова",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "3D-визуализация КухниBY, не фото выполненной работы.",
+      suitableFor: ["встроенная техника", "пеналы", "скрытые ручки"],
+      ideaType: "built-in",
+    },
+    {
+      id: "borisov-semeynaya-dom",
+      title: "Семейная кухня для дома",
+      shortDescription:
+        "Больше рабочей поверхности, хранения и места для техники в частном доме или просторной кухне-гостиной.",
+      image: "/uploads/locations/borisov-3d/borisov-3d-semeynaya-dom.webp",
+      alt: "3D-визуализация КухниBY: семейная кухня для частного дома в Борисове",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "3D-визуализация КухниBY, похожую идею можно адаптировать под ваш размер.",
+      suitableFor: ["частный дом", "семейное хранение", "кухня-гостиная"],
+      ideaType: "family",
+    },
+  ],
   dzerzhinsk: [
     {
       id: "dzerzhinsk-uglovaya-do-potolka",

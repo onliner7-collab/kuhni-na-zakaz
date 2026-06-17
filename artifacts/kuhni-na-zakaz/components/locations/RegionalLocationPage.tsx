@@ -463,7 +463,13 @@ export function RegionalLocationPage({
   const faqItems = getFaqItems(location);
   const cityIdeas = getKitchenIdeas3DForCity(location.slug);
   const heroIdea = cityIdeas[0];
-  const heroImage = heroIdea?.image ?? "/images/hero.webp";
+  const isBorisov = location.slug === "borisov";
+  const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-20260617.webp";
+  const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
+  const heroImage = isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
+  const heroAlt = isBorisov
+    ? "Сгенерированная фоновая визуализация кухни для страницы Борисова"
+    : heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`;
   const phoneHref = `tel:${CONTACT_DEFAULTS.phone}`;
   const buyKitchenAnchor = getBuyKitchenAnchor(location);
   const purchaseScenarioCards = getPurchaseScenarioCards(location);
@@ -548,16 +554,40 @@ export function RegionalLocationPage({
           </div>
         ) : (
           <div className="absolute inset-0 opacity-28">
-            <Image
-              src={heroImage}
-              alt={heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`}
-              fill
-              priority
-              fetchPriority="high"
-              sizes="100vw"
-              className="object-cover"
-            />
-            {heroIdea && <BrandedImageWatermark compact />}
+            {isBorisov ? (
+              <>
+                <Image
+                  src={borisovHeroMobileImage}
+                  alt={heroAlt}
+                  fill
+                  priority
+                  fetchPriority="high"
+                  sizes="100vw"
+                  className="object-cover md:hidden"
+                />
+                <Image
+                  src={heroImage}
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  priority
+                  fetchPriority="high"
+                  sizes="100vw"
+                  className="hidden object-contain md:block"
+                />
+              </>
+            ) : (
+              <Image
+                src={heroImage}
+                alt={heroAlt}
+                fill
+                priority
+                fetchPriority="high"
+                sizes="100vw"
+                className="object-cover"
+              />
+            )}
+            {(heroIdea || isBorisov) && <BrandedImageWatermark compact />}
           </div>
         )}
         <div className="relative container-site py-10 md:py-16 lg:py-20">
@@ -748,6 +778,53 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+
+      {location.isMinskRegionCity && !isMinskRegionHub && (
+        <section className="bg-muted/30 section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Каталог и цена"
+              title={`Купить кухню в ${location.cityPrepositional}: каталог, угловые варианты и расчет цены`}
+              text={`Для ${location.cityGenitive} удобнее начинать не с общей фразы, а с формата кухни: угловая, прямая, маленькая, до потолка или со встроенной техникой. Каталог помогает выбрать направление, а расчет показывает реальную цену под размеры помещения.`}
+            />
+            <div className="grid gap-4 md:grid-cols-3">
+              <Link
+                href="/catalog"
+                className="rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+              >
+                <h3 className="mb-3 text-base font-semibold text-foreground">
+                  Каталог кухонь
+                </h3>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Посмотрите основные типы кухонь и выберите основу для проекта в {location.cityPrepositional}.
+                </p>
+              </Link>
+              <Link
+                href="/catalog/uglovye-kuhni"
+                className="rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+              >
+                <h3 className="mb-3 text-base font-semibold text-foreground">
+                  Угловая кухня недорого
+                </h3>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Сравним цену угловой кухни по размерам, фасадам, столешнице, фурнитуре и монтажу.
+                </p>
+              </Link>
+              <Link
+                href="/prices"
+                className="rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+              >
+                <h3 className="mb-3 text-base font-semibold text-foreground">
+                  Цена кухни в {location.cityPrepositional}
+                </h3>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Ориентир начинается от {location.priceFrom.toLocaleString("ru")} BYN, точная смета зависит от комплектации.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
