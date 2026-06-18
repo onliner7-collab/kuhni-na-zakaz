@@ -4,12 +4,14 @@ interface BrandedImageWatermarkProps {
   show?: boolean;
   compact?: boolean;
   className?: string;
+  label?: string;
 }
 
 export function BrandedImageWatermark({
   show = true,
   compact = false,
   className,
+  label = "КухниBY",
 }: BrandedImageWatermarkProps) {
   if (!show) return null;
 
@@ -24,7 +26,7 @@ export function BrandedImageWatermark({
           compact && "bottom-2 right-2 px-2.5 py-1 text-[10px]",
         )}
       >
-        КухниBY
+        {label}
       </div>
     </div>
   );

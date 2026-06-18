@@ -33,6 +33,15 @@ function ideaAltForCity(idea: KitchenIdea3D, cityName: string, cityPrepositional
   return `${idea.alt} в ${cityPrepositional}`;
 }
 
+function borisovIdeaText(value: string) {
+  return value
+    .replace(/КухниBY/g, "KBY")
+    .replace(/кухню/g, "гарнитур")
+    .replace(/кухни/g, "гарнитура")
+    .replace(/кухня/g, "гарнитур")
+    .replace(/Кухня/g, "Гарнитур");
+}
+
 export function KitchenIdeas3DSection({
   cityName,
   citySlug,
@@ -40,7 +49,10 @@ export function KitchenIdeas3DSection({
   titleSubject = cityName,
 }: KitchenIdeas3DSectionProps) {
   const locationPath = `/locations/${citySlug}`;
-  const adaptationText = `Такую кухню можно адаптировать под размеры квартиры или дома в ${cityPrepositional}.`;
+  const isBorisovSeoPage = citySlug === "borisov";
+  const adaptationText = isBorisovSeoPage
+    ? `Такой вариант можно адаптировать под размеры квартиры или дома в ${cityPrepositional}.`
+    : `Такую кухню можно адаптировать под размеры квартиры или дома в ${cityPrepositional}.`;
   const ideas = getKitchenIdeas3DForCity(citySlug);
 
   return (
@@ -51,63 +63,75 @@ export function KitchenIdeas3DSection({
             Примеры дизайна
           </p>
           <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
-            Идеи кухонь для {titleSubject}: 3D-визуализации перед заказом
+            {isBorisovSeoPage
+              ? `Идеи дизайна для ${titleSubject}: 3D-визуализации перед заказом`
+              : `Идеи кухонь для ${titleSubject}: 3D-визуализации перед заказом`}
           </h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Если вы ещё не знаете, какую кухню хотите, посмотрите примеры решений. Это не фото
-            выполненных работ, а 3D-визуализации КухниBY — такие идеи можно адаптировать под размеры вашей
-            квартиры или дома в {cityPrepositional}.
+            {isBorisovSeoPage
+              ? `Если вы ещё не знаете, какой вариант хотите, посмотрите примеры решений. Это не фото выполненных работ, а 3D-визуализации — такие идеи можно адаптировать под размеры вашей квартиры или дома в ${cityPrepositional}.`
+              : `Если вы ещё не знаете, какую кухню хотите, посмотрите примеры решений. Это не фото выполненных работ, а 3D-визуализации КухниBY — такие идеи можно адаптировать под размеры вашей квартиры или дома в ${cityPrepositional}.`}
           </p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {ideas.map((idea) => (
-            <article key={idea.id} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
-              <div className="relative aspect-[4/3] bg-muted">
-                <Image
-                  src={idea.image}
-                  alt={ideaAltForCity(idea, cityName, cityPrepositional)}
-                  title={`${idea.badge}: ${idea.title}`}
-                  width={720}
-                  height={540}
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="h-full w-full object-cover"
-                />
-                <BrandedImageWatermark compact />
-                <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                  {idea.badge}
-                </span>
-              </div>
-              <div className="p-5">
-                <p className="text-base font-semibold text-foreground">{idea.title}</p>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">{idea.shortDescription}</p>
-                <p className="mt-3 text-sm leading-6 text-foreground">{adaptationText}</p>
-                <p className="mt-3 text-xs leading-5 text-muted-foreground">{idea.disclosure}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {idea.suitableFor.map((item) => (
-                    <span key={item} className="rounded-full bg-muted px-2.5 py-1 text-xs text-muted-foreground">
-                      {item}
-                    </span>
-                  ))}
+          {ideas.map((idea) => {
+            const alt = ideaAltForCity(idea, cityName, cityPrepositional);
+            const title = isBorisovSeoPage ? borisovIdeaText(idea.title) : idea.title;
+            const badge = isBorisovSeoPage ? "3D-визуализация" : idea.badge;
+            const disclosure = isBorisovSeoPage ? borisovIdeaText(idea.disclosure) : idea.disclosure;
+            const shortDescription = isBorisovSeoPage ? borisovIdeaText(idea.shortDescription) : idea.shortDescription;
+            const imageAlt = isBorisovSeoPage ? borisovIdeaText(alt) : alt;
+            const suitableFor = isBorisovSeoPage ? idea.suitableFor.map(borisovIdeaText) : idea.suitableFor;
+
+            return (
+              <article key={idea.id} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
+                <div className="relative aspect-[4/3] bg-muted">
+                  <Image
+                    src={idea.image}
+                    alt={imageAlt}
+                    title={`${badge}: ${title}`}
+                    width={720}
+                    height={540}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="h-full w-full object-cover"
+                  />
+                  <BrandedImageWatermark compact label={isBorisovSeoPage ? "KBY" : undefined} />
+                  <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/95 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
+                    {badge}
+                  </span>
                 </div>
-                <Link
-                  href={`${locationPath}#form`}
-                  className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
-                >
-                  Хочу похожую кухню
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
-              </div>
-            </article>
-          ))}
+                <div className="p-5">
+                  <p className="text-base font-semibold text-foreground">{title}</p>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{shortDescription}</p>
+                  <p className="mt-3 text-sm leading-6 text-foreground">{adaptationText}</p>
+                  <p className="mt-3 text-xs leading-5 text-muted-foreground">{disclosure}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {suitableFor.map((item) => (
+                      <span key={item} className="rounded-full bg-muted px-2.5 py-1 text-xs text-muted-foreground">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href={`${locationPath}#form`}
+                    className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+                  >
+                    {isBorisovSeoPage ? "Хочу похожий проект" : "Хочу похожую кухню"}
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
         <div className="mt-8 rounded-lg border border-primary/20 bg-primary/5 p-5">
           <p className="text-sm leading-6 text-muted-foreground">
             3D-визуализации помогают заранее понять стиль, расположение шкафов, цвет фасадов и
             удобство хранения. После заявки мы можем адаптировать идею под размеры помещения,
-            планировку, технику и бюджет. Для кухни в {cityPrepositional} можно взять одну из идей
+            планировку, технику и бюджет. Для {isBorisovSeoPage ? "проекта" : "кухни"} в {cityPrepositional} можно взять одну из идей
             за основу: изменить размеры, материалы, цвет фасадов, расположение техники и количество
             мест хранения.
           </p>
@@ -116,7 +140,7 @@ export function KitchenIdeas3DSection({
               href={`${locationPath}#form`}
               className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
             >
-              Хочу похожую кухню
+              {isBorisovSeoPage ? "Хочу похожий проект" : "Хочу похожую кухню"}
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
