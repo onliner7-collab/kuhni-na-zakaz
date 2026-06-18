@@ -60,23 +60,23 @@ const CATALOG_CATEGORIES = [
 const MATERIAL_GUIDES = [
   {
     href: "/materials/furnitura",
-    title: "Фурнитура для кухни",
-    text: "Петли, направляющие, доводчики, подъемники и системы хранения для удобной кухни.",
+    title: "Фурнитура",
+    text: "Петли, направляющие, доводчики, подъемники и системы хранения для удобного гарнитура.",
   },
   {
     href: "/materials/mdf-fasady",
     title: "МДФ фасады",
-    text: "Для кухонь с фрезеровкой, эмалью, пленкой и гибким подбором внешнего вида.",
+    text: "Для фасадов с фрезеровкой, эмалью, пленкой и гибким подбором внешнего вида.",
   },
   {
     href: "/materials/ldsp",
     title: "ЛДСП",
-    text: "Для корпусов, простых фасадов и бюджетных кухонь с понятным уходом.",
+    text: "Для корпусов, простых фасадов и бюджетной комплектации с понятным уходом.",
   },
   {
     href: "/materials/plastik-hpl",
     title: "Пластик HPL",
-    text: "Для практичных гладких фасадов, активной кухни и современных декоров.",
+    text: "Для практичных гладких фасадов, активной готовки и современных декоров.",
   },
 ];
 
@@ -109,12 +109,12 @@ const HOME_TRUST_STEPS = [
 ];
 
 const HOME_INTERNAL_LINKS = [
-  { href: "/catalog", title: "Каталог кухонь", text: "Выбрать угловую, прямую, маленькую кухню или гарнитур до потолка." },
+  { href: "/catalog", title: "Каталог", text: "Выбрать угловой, прямой, компактный гарнитур или вариант до потолка." },
   { href: "/prices", title: "Цены", text: "Посмотреть ориентиры бюджета и факторы, которые меняют смету." },
-  { href: "/locations/minsk", title: "Кухни в Минске", text: "Условия замера, проекта, доставки и монтажа по Минску." },
+  { href: "/locations/minsk", title: "Минск", text: "Условия замера, проекта, доставки и монтажа по Минску." },
   { href: "/locations/minskaya-oblast", title: "Минская область", text: "Города области, выезд на замер и доставка за пределы Минска." },
-  { href: "/portfolio", title: "Портфолио", text: "Реальные проекты, фото и визуализации кухонь под разные помещения." },
-  { href: "/blog/kakuyu-planirovku-kuhni-vybrat", title: "Как выбрать планировку", text: "Разобраться, когда подходит прямая, угловая или П-образная кухня." },
+  { href: "/portfolio", title: "Портфолио", text: "Реальные проекты, фото и визуализации под разные помещения." },
+  { href: "/blog/kakuyu-planirovku-kuhni-vybrat", title: "Как выбрать планировку", text: "Разобраться, когда подходит прямая, угловая или П-образная форма." },
 ];
 
 const HOME_TOP_CITY_LINKS = [
@@ -163,11 +163,11 @@ const HOME_URL = canonicalSiteUrl("/");
 
 /** Alt для витринного фото в первом экране (SEO / доступность). */
 const HERO_KITCHEN_ALT =
-  "Темная современная кухня с островом и подсветкой в Минске";
+  "Купить кухню, кухня на заказ в Минске, темный гарнитур с островом и подсветкой";
 
-const HOME_TITLE = "Купить кухню на заказ в Минске от производителя";
+const HOME_TITLE = "Купить кухню, кухня на заказ в Минске";
 const HOME_DESCRIPTION =
-  "Кухни на заказ от производителя: замер, проект, изготовление, доставка и монтаж. Рассчитаем цену под размеры помещения.";
+  "Купить кухню, кухня на заказ в Минске от производителя: замер, проект, изготовление, доставка, монтаж и расчет цены под размеры помещения.";
 
 export const metadata: Metadata = {
   title: `${HOME_TITLE} | ${SITE_NAME}`,
@@ -364,13 +364,13 @@ export default async function HomePage() {
         <div className="container-site relative z-10">
           <div className="min-h-[560px] max-w-2xl pb-16 lg:min-h-[640px] lg:pb-24">
             <p className="mb-5 inline-flex rounded-full border border-white/18 bg-black/18 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white/78">
-              Кухни на заказ
+              Гарнитуры под размер
             </p>
             <h1 className="max-w-xl text-4xl font-black leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Кухни на заказ от производителя в Минске под ваш размер, стиль и бюджет
+              Купить кухню, кухня на заказ в Минске под ваш размер, стиль и бюджет
             </h1>
             <p className="mt-6 max-w-xl text-base font-medium leading-relaxed text-white/78 sm:text-lg">
-              Купить кухню на заказ удобнее после замера и проекта: проверяем помещение, изготавливаем гарнитур на производстве, доставляем и монтируем с фиксацией цены в договоре.
+              Купить кухню, кухня на заказ удобнее после замера и проекта: проверяем помещение, изготавливаем гарнитур на производстве, доставляем и монтируем с фиксацией цены в договоре.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -379,7 +379,7 @@ export default async function HomePage() {
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#c99a62] px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-black/25 transition-all hover:bg-[#b9874f] active:scale-95"
                 data-testid="hero-cta-order"
               >
-                Рассчитать кухню
+                Рассчитать гарнитур
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
               <Link
@@ -474,7 +474,7 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-10 border-t border-[#eee8df] pt-8">
-            <h3 className="text-xl font-black text-[#201b16]">Что фиксируем перед запуском кухни в работу</h3>
+            <h3 className="text-xl font-black text-[#201b16]">Что фиксируем перед запуском гарнитура в работу</h3>
             <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
               {HOME_TRUST_STEPS.map((item, index) => (
                 <div key={item} className="rounded-lg border border-[#e8e1d8] bg-[#fbf8f4] px-4 py-4">
@@ -504,13 +504,12 @@ export default async function HomePage() {
             <p className="text-sm font-black text-[#201b16]">Популярные города Минской области</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {HOME_TOP_CITY_LINKS.map((item) => (
-                <Link
+                <span
                   key={item.href}
-                  href={item.href}
-                  className="rounded-md border border-[#e8e1d8] px-3 py-2 text-sm font-bold text-[#7d5431] transition-colors hover:border-[#c99a62] hover:bg-[#fbf8f4]"
+                  className="rounded-md border border-[#e8e1d8] px-3 py-2 text-sm font-bold text-[#7d5431]"
                 >
                   {item.label}
-                </Link>
+                </span>
               ))}
             </div>
           </div>
@@ -651,24 +650,16 @@ export default async function HomePage() {
             {[
               { href: "/catalog", title: "Категории кухонь", text: "Угловые, прямые, П-образные, с островом и до потолка." },
               { href: "/prices", title: "Цены и расчет", text: "Ориентиры по бюджету и быстрый переход к заявке на расчет." },
-              { href: "/portfolio", title: "Портфолио", text: "Фото и визуализации кухонь с заполненными характеристиками." },
+              { href: "/portfolio", title: "Портфолио", text: "Фото и визуализации проектов с заполненными характеристиками." },
               { href: "/materials", title: "Материалы", text: "Фасады, корпуса, столешницы и практичные варианты отделки." },
             ].map((item) => (
-              <Link
+              <div
                 key={item.href}
-                href={item.href}
-                className="group rounded-2xl border border-border bg-muted/20 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                className="rounded-2xl border border-border bg-muted/20 p-5"
               >
-                <p className="font-bold text-foreground group-hover:text-primary transition-colors">{item.title}</p>
+                <p className="font-bold text-foreground">{item.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                  Перейти{" "}
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                    aria-hidden
-                  />
-                </span>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -678,9 +669,9 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Популярные фасады</h2>
+              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Купить кухню, кухня на заказ: фасады и материалы</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                Сравните МДФ, ЛДСП и пластик HPL до расчета кухни: где каждый материал уместен, какие есть ограничения и на что смотреть в проекте.
+                Сравните МДФ, ЛДСП и пластик HPL до расчета: где каждый материал уместен, какие есть ограничения и на что смотреть в проекте.
               </p>
             </div>
             <Link href="/materials" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
@@ -689,17 +680,13 @@ export default async function HomePage() {
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {MATERIAL_GUIDES.map((item) => (
-              <Link
+              <div
                 key={item.href}
-                href={item.href}
-                className="group rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+                className="rounded-2xl border border-border bg-white p-5"
               >
-                <p className="font-bold text-foreground transition-colors group-hover:text-primary">{item.title}</p>
+                <p className="font-bold text-foreground">{item.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                  Подробнее <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
-                </span>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -829,20 +816,16 @@ export default async function HomePage() {
                 Перейдите на страницу региона, чтобы посмотреть условия выезда, сроки, локальные примеры и популярные решения.
               </p>
             </div>
-            <Link href="/contacts" className="text-primary text-sm font-semibold hover:underline flex items-center gap-1">
-              Уточнить выезд <ArrowRight className="w-4 h-4" aria-hidden />
-            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {primaryLocationLinks.map((loc, index) => (
-              <Link
+              <div
                 key={`${loc.slug}-${loc.id}-${index}`}
-                href={`/locations/${loc.slug}`}
-                className="group rounded-2xl border border-border bg-muted/20 p-5 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                className="rounded-2xl border border-border bg-muted/20 p-5"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="font-bold text-foreground group-hover:text-primary transition-colors">Проекты в {loc.cityPrepositional}</p>
+                    <p className="font-bold text-foreground">Проекты в {loc.cityPrepositional}</p>
                     {loc.region && <p className="mt-1 text-xs text-muted-foreground">{loc.region}</p>}
                   </div>
                   <MapPin className="h-5 w-5 text-primary/70 shrink-0" aria-hidden />
@@ -850,11 +833,11 @@ export default async function HomePage() {
                 <div className="mt-4 flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">от {loc.priceFrom.toLocaleString("ru")} BYN</span>
                   <ArrowRight
-                    className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1"
+                    className="h-4 w-4 text-primary"
                     aria-hidden
                   />
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -903,18 +886,18 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="space-y-4">
-              <Link href="/warranty" className="block rounded-2xl overflow-hidden border border-border bg-white p-6 hover:border-primary/30 hover:shadow-lg transition-all group">
-                <p className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Гарантийные обязательства →</p>
+              <div className="block rounded-2xl overflow-hidden border border-border bg-white p-6">
+                <p className="font-bold text-foreground mb-2">Гарантийные обязательства</p>
                 <p className="text-sm text-muted-foreground">Подробно о том, что входит в гарантию и как её получить</p>
-              </Link>
-              <Link href="/delivery-installation" className="block rounded-2xl overflow-hidden border border-border bg-white p-6 hover:border-primary/30 hover:shadow-lg transition-all group">
-                <p className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Доставка и монтаж →</p>
+              </div>
+              <div className="block rounded-2xl overflow-hidden border border-border bg-white p-6">
+                <p className="font-bold text-foreground mb-2">Доставка и монтаж</p>
                 <p className="text-sm text-muted-foreground">Как организована доставка в ваш город и что входит в монтаж</p>
-              </Link>
-              <Link href="/prices" className="block rounded-2xl overflow-hidden border border-border bg-white p-6 hover:border-primary/30 hover:shadow-lg transition-all group">
-                <p className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">Примерные цены →</p>
+              </div>
+              <div className="block rounded-2xl overflow-hidden border border-border bg-white p-6">
+                <p className="font-bold text-foreground mb-2">Примерные цены</p>
                 <p className="text-sm text-muted-foreground">Диапазоны стоимости по конфигурациям и материалам</p>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
