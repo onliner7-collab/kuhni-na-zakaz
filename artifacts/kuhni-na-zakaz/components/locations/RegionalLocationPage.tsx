@@ -463,11 +463,16 @@ export function RegionalLocationPage({
   const faqItems = getFaqItems(location);
   const cityIdeas = getKitchenIdeas3DForCity(location.slug);
   const heroIdea = cityIdeas[0];
+  const isMinsk = location.slug === "minsk";
   const isBorisov = location.slug === "borisov";
+  const minskHeroImage = "/uploads/locations/minsk-3d/minsk-hero-fit-desktop-20260618.webp";
+  const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-fit-mobile-20260618.webp";
   const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-20260617.webp";
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
-  const heroImage = isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
-  const heroAlt = isBorisov
+  const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
+  const heroAlt = isMinsk
+    ? "Кухня на заказ в Минске, фоновая визуализация гарнитура"
+    : isBorisov
     ? "Купить кухню на заказ в Борисове, фоновая визуализация гарнитура"
     : heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`;
   const phoneHref = `tel:${CONTACT_DEFAULTS.phone}`;
@@ -556,7 +561,28 @@ export function RegionalLocationPage({
           </div>
         ) : (
           <div className="absolute inset-0 opacity-28">
-            {isBorisov ? (
+            {isMinsk ? (
+              <>
+                <Image
+                  src={minskHeroMobileImage}
+                  alt={heroAlt}
+                  fill
+                  priority
+                  fetchPriority="high"
+                  sizes="100vw"
+                  className="object-contain object-center md:hidden"
+                />
+                <Image
+                  src={heroImage}
+                  alt={heroAlt}
+                  fill
+                  priority
+                  fetchPriority="high"
+                  sizes="100vw"
+                  className="hidden object-contain object-center md:block"
+                />
+              </>
+            ) : isBorisov ? (
               <>
                 <Image
                   src={borisovHeroMobileImage}
@@ -588,7 +614,7 @@ export function RegionalLocationPage({
                 className="object-cover"
               />
             )}
-            {(heroIdea || isBorisov) && <BrandedImageWatermark compact />}
+            {(heroIdea || isMinsk || isBorisov) && <BrandedImageWatermark compact />}
           </div>
         )}
         <div className="relative container-site py-10 md:py-16 lg:py-20">
