@@ -17,6 +17,7 @@ const LEGACY_EMAIL = ["info@kuhni", "minsk.by"].join("");
 const PLACEHOLDER_SITE_NAMES = new Set([LEGACY_SITE_NAME]);
 const PLACEHOLDER_EMAILS = new Set([LEGACY_EMAIL]);
 const PLACEHOLDER_ADDRESSES = new Set(["г. Минск, ул. Притыцкого, 100"]);
+const LEGACY_TELEGRAM_VALUES = new Set(["https://t.me/kuhniby", "http://t.me/kuhniby", "t.me/kuhniby", "@kuhniby", "kuhniby"]);
 
 export interface ContactSettingsInput {
   siteName?: string | null;
@@ -125,6 +126,13 @@ function normalizeViberHref(viber?: string | null) {
   return digits ? `viber://chat?number=%2B${digits}` : "";
 }
 
+function normalizeTelegram(telegram?: string | null) {
+  const value = (telegram || "").trim();
+  if (!value || LEGACY_TELEGRAM_VALUES.has(value.toLowerCase())) return CONTACT_DEFAULTS.telegram;
+
+  return value;
+}
+
 export function resolveContactInfo(settings?: ContactSettingsInput | null): ContactInfo {
   return {
     siteName: normalizeSiteName(settings?.siteName),
@@ -136,7 +144,7 @@ export function resolveContactInfo(settings?: ContactSettingsInput | null): Cont
     address: normalizeAddress(settings?.address),
     addressMap: settings?.addressMap?.trim() || "",
     workingHours: settings?.workingHours?.trim() || CONTACT_DEFAULTS.workingHours,
-    telegram: settings?.telegram?.trim() || CONTACT_DEFAULTS.telegram,
+    telegram: normalizeTelegram(settings?.telegram),
     viber: normalizeViberHref(settings?.viber),
     whatsapp: normalizeWhatsAppHref(settings?.whatsapp),
     instagram: settings?.instagram?.trim() || CONTACT_DEFAULTS.instagram,

@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   email: "onliner7@gmail.com",
   address: "г. Минск, ул. Притыцкого, 100",
   workingHours: "Пн–Сб 9:00–19:00, Вс 10:00–17:00",
-  telegram: "https://t.me/kuhniby",
+  telegram: "https://t.me/kuhniminsk_bot",
   viber: "viber://chat?number=%2B375293720674",
   whatsapp: "https://wa.me/375293720674",
 };

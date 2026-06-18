@@ -264,7 +264,7 @@ export default function ContactsPage() {
             name="telegram"
             value={form.telegram}
             onChange={set("telegram")}
-            placeholder="@kuhniby"
+            placeholder={CONTACT_DEFAULTS.telegramLabel}
             hint="Логин или https://t.me/..."
           />
           <Field

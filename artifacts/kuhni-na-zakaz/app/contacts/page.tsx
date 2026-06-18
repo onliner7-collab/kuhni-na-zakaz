@@ -8,6 +8,7 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { getSameAsLinks, resolveContactInfo } from "@/lib/contact-info";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
+import { buildTelegramHref } from "@/lib/social-links";
 
 const title = "Контакты и заявка на замер";
 const description =
@@ -59,6 +60,7 @@ const trustItems = [
 export default async function ContactsPage() {
   const s = await prisma.siteSettings.findFirst({ where: { id: 1 } }).catch(() => null);
   const c = resolveContactInfo(s);
+  const telegramHref = buildTelegramHref(c.telegram);
   const sameAs = getSameAsLinks(c);
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -156,8 +158,8 @@ export default async function ContactsPage() {
                         Viber
                       </a>
                     )}
-                    {c.telegram && (
-                      <a href={c.telegram} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted">
+                    {telegramHref && (
+                      <a href={telegramHref} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted">
                         Telegram
                       </a>
                     )}
