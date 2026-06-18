@@ -851,6 +851,44 @@ export function RegionalLocationPage({
         </div>
       </section>
 
+      {isBorisov && (
+        <section className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Смета"
+              title="Как сделать расчет точнее"
+              text="Перед предварительной оценкой важно собрать не только длину стен, но и данные по отделке, технике, фурнитуре и доступу к помещению."
+            />
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="rounded-2xl border border-border bg-muted/30 p-6">
+                <h3 className="mb-3 text-lg font-semibold text-foreground">Исходные данные</h3>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Для первого ориентира пригодятся фото помещения, длина стен, высота потолка, расположение воды,
+                  электрики, вентиляции и список техники. Если ремонт еще идет, лучше указать, какие работы уже
+                  завершены и что может измениться до монтажа.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/30 p-6">
+                <h3 className="mb-3 text-lg font-semibold text-foreground">Материалы и комплектация</h3>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  На смету влияют фасады, корпус, столешница, кромка, петли, направляющие, подъемники, ручки,
+                  подсветка, сушка, встроенные приборы и дополнительные доборы. Один и тот же проект можно собрать
+                  в более практичной или более премиальной комплектации.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/30 p-6">
+                <h3 className="mb-3 text-lg font-semibold text-foreground">Условия установки</h3>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Перед запуском проверяем готовность стен, пола, розеток, выводов воды, подъезд, этажность,
+                  возможность заноса длинной столешницы и место для сборки. Так проще согласовать срок,
+                  логистику и финальную стоимость без неприятных сюрпризов.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       <KitchenIdeas3DSection
         cityName={location.cityName}
         citySlug={location.slug}
