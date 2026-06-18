@@ -70,6 +70,17 @@ export async function middleware(req: NextRequest) {
     return withNoindexHeader(new NextResponse(null, { status: 410 }));
   }
 
+  if (!isAdminRoute(pathname) && req.nextUrl.searchParams.has("_r")) {
+    const url = req.nextUrl.clone();
+    url.searchParams.delete("_r");
+    if (!isLocalhost) {
+      url.protocol = "https:";
+      url.hostname = CANONICAL_HOST;
+      url.port = "";
+    }
+    return NextResponse.redirect(url, 301);
+  }
+
   if (shouldForceHttps || hostname === `www.${CANONICAL_HOST}` || legacyTarget) {
     const url = req.nextUrl.clone();
     if (!isLocalhost) {
@@ -84,7 +95,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
-  const isAdminPath = ADMIN_PATHS.some((p) => pathname.startsWith(p));
+  const isAdminPath = isAdminRoute(pathname);
   const isPublicAdminPath = PUBLIC_ADMIN_PATHS.some((p) =>
     pathname.startsWith(p)
   );
@@ -115,6 +126,10 @@ export async function middleware(req: NextRequest) {
   }
 
   return withNoindexHeader(NextResponse.next());
+}
+
+function isAdminRoute(pathname: string) {
+  return ADMIN_PATHS.some((p) => pathname.startsWith(p));
 }
 
 function withPublicNoindexHeader(url: NextRequest["nextUrl"], response: NextResponse) {

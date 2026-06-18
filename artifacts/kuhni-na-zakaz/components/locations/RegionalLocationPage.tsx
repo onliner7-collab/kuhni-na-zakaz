@@ -468,7 +468,7 @@ export function RegionalLocationPage({
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
   const heroImage = isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
   const heroAlt = isBorisov
-    ? "Сгенерированная фоновая визуализация кухни для страницы Борисова"
+    ? "Купить кухню на заказ в Борисове, фоновая визуализация гарнитура"
     : heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`;
   const phoneHref = `tel:${CONTACT_DEFAULTS.phone}`;
   const buyKitchenAnchor = getBuyKitchenAnchor(location);
@@ -476,6 +476,8 @@ export function RegionalLocationPage({
   const workSectionTitle =
     location.slug === "minsk"
       ? "Купить кухню в Минске с замером, проектом и монтажом"
+      : isBorisov
+        ? "Купить кухню на заказ в Борисове под размер квартиры или дома"
       : location.isMinskRegionCity && !isMinskRegionHub
         ? `Купить кухню в ${location.cityPrepositional} под размер квартиры или дома`
         : `Как работаем в ${location.cityPrepositional}`;
@@ -567,8 +569,7 @@ export function RegionalLocationPage({
                 />
                 <Image
                   src={heroImage}
-                  alt=""
-                  aria-hidden="true"
+                  alt={heroAlt}
                   fill
                   priority
                   fetchPriority="high"
