@@ -418,6 +418,33 @@ const minskOblastRouteSteps = [
   },
 ].map((step) => ({ ...step, images: step.images.filter(Boolean) }));
 
+const minskHeroStoryImages = [
+  {
+    src: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-mobile.webp",
+    alt: "Светлая кухня на заказ в Минске для первого экрана сайта",
+    caption: "Светлая кухня для первого экрана",
+  },
+  {
+    src: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-mobile.webp",
+    alt: "Темная кухня на заказ в Минске с древесной фактурой для первого экрана",
+    caption: "Темная кухня с древесной фактурой",
+  },
+  {
+    src: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-mobile.webp",
+    alt: "Кухня-гостиная с островом на заказ в Минске для первого экрана",
+    caption: "Кухня-гостиная с островом",
+  },
+  {
+    src: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-mobile.webp",
+    alt: "Кухня до потолка на заказ в Минске для первого экрана",
+    caption: "Кухня до потолка",
+  },
+];
+
 function getHubDirectionLinks(slugs: string[]) {
   return slugs
     .map((slug) => minskRegionLocations.find((city) => city.slug === slug))
@@ -465,13 +492,13 @@ export function RegionalLocationPage({
   const heroIdea = cityIdeas[0];
   const isMinsk = location.slug === "minsk";
   const isBorisov = location.slug === "borisov";
-  const minskHeroImage = "/uploads/locations/minsk-3d/minsk-hero-fit-desktop-20260618.webp";
-  const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-fit-mobile-20260618.webp";
+  const minskHeroImage = "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp";
+  const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-light-20260619-mobile.webp";
   const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-20260617.webp";
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
   const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
   const heroAlt = isMinsk
-    ? "Кухня на заказ в Минске, фоновая визуализация гарнитура"
+    ? "Светлая кухня на заказ в Минске, фоновая визуализация первого экрана"
     : isBorisov
     ? "Купить кухню на заказ в Борисове, фоновая визуализация гарнитура"
     : heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`;
@@ -562,26 +589,15 @@ export function RegionalLocationPage({
         ) : (
           <div className="absolute inset-0 opacity-28">
             {isMinsk ? (
-              <>
-                <Image
-                  src={minskHeroMobileImage}
-                  alt={heroAlt}
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="100vw"
-                  className="object-contain object-center md:hidden"
-                />
-                <Image
+              <picture>
+                <source media="(max-width: 767px)" srcSet={minskHeroMobileImage} />
+                <img
                   src={heroImage}
                   alt={heroAlt}
-                  fill
-                  priority
                   fetchPriority="high"
-                  sizes="100vw"
-                  className="hidden object-contain object-center md:block"
+                  className="h-full w-full object-cover object-center"
                 />
-              </>
+              </picture>
             ) : isBorisov ? (
               <>
                 <Image
@@ -723,6 +739,42 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
+
+      {isMinsk && (
+        <section className="bg-white pb-12 md:pb-16">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Визуальная концепция"
+              title="Изображения для первого экрана кухни на заказ в Минске"
+              text="Подобрали четыре направления для первого экрана: светлая кухня, темная кухня с древесной фактурой, кухня-гостиная с островом и кухня до потолка."
+            />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {minskHeroStoryImages.map((image) => (
+                <figure
+                  key={image.src}
+                  className="overflow-hidden rounded-lg border border-border bg-muted/20"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-stone-900 md:aspect-[16/10]">
+                    <picture>
+                      <source media="(max-width: 767px)" srcSet={image.mobileSrc} />
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                      />
+                    </picture>
+                    <BrandedImageWatermark compact />
+                  </div>
+                  <figcaption className="px-4 py-3 text-sm font-semibold text-foreground">
+                    {image.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       <section className="bg-muted/30 section-padding">

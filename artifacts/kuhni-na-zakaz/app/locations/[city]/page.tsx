@@ -288,12 +288,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const regionalLocation = getRegionalLocation(city);
   if (regionalLocation) {
     const path = `/locations/${city}`;
+    const regionalImage =
+      city === "minsk"
+        ? [
+            {
+              url: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp",
+              width: 1200,
+              height: 675,
+              alt: "Светлая кухня на заказ в Минске",
+            },
+          ]
+        : undefined;
+
     return {
       title: regionalLocation.title,
       description: regionalLocation.description,
       alternates: { canonical: path },
-      openGraph: buildOpenGraph(path, regionalLocation.title, regionalLocation.description),
-      twitter: buildTwitterMetadata(regionalLocation.title, regionalLocation.description),
+      openGraph: buildOpenGraph(path, regionalLocation.title, regionalLocation.description, {
+        images: regionalImage,
+      }),
+      twitter: buildTwitterMetadata(
+        regionalLocation.title,
+        regionalLocation.description,
+        regionalImage?.[0]?.url,
+      ),
     };
   }
 

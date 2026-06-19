@@ -100,6 +100,56 @@ export function getKitchenIdea3DById(id: string | null | undefined) {
 }
 
 export const cityKitchenIdeas3D: Record<string, KitchenIdea3D[]> = {
+  minsk: [
+    {
+      id: "minsk-svetlaya-pryamaya-premium",
+      title: "Светлая минималистичная кухня",
+      shortDescription:
+        "Спокойная прямая композиция для квартиры в Минске: матовые фасады, каменная столешница и теплый свет рабочей зоны.",
+      image: "/uploads/locations/minsk-3d/minsk-concept-light-straight-20260619-desktop.webp",
+      alt: "Светлая минималистичная кухня на заказ в Минске с матовыми фасадами и каменной столешницей",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "Визуальная концепция КухниBY для заказа похожей кухни в Минске.",
+      suitableFor: ["прямая кухня", "светлые фасады", "квартира в Минске"],
+      ideaType: "straight",
+    },
+    {
+      id: "minsk-temnaya-derevo",
+      title: "Темная кухня с древесной фактурой",
+      shortDescription:
+        "Графит, темное дерево и лаконичная рабочая зона для проекта, где нужен более выразительный современный интерьер.",
+      image: "/uploads/locations/minsk-3d/minsk-concept-dark-wood-20260619-desktop.webp",
+      alt: "Темная кухня на заказ в Минске с древесной фактурой, скрытыми ручками и каменной столешницей",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "Визуальная концепция КухниBY, не фото выполненной работы.",
+      suitableFor: ["темные фасады", "древесная фактура", "современный стиль"],
+      ideaType: "wood",
+    },
+    {
+      id: "minsk-kuhnya-do-potolka",
+      title: "Кухня до потолка",
+      shortDescription:
+        "Высокие шкафы, встроенная техника и закрытое хранение для новостройки или квартиры после ремонта.",
+      image: "/uploads/locations/minsk-3d/minsk-concept-floor-to-ceiling-20260619-desktop.webp",
+      alt: "Кухня до потолка на заказ в Минске со встроенной техникой и светлой столешницей",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "Визуальная концепция КухниBY для кухни до потолка.",
+      suitableFor: ["кухня до потолка", "новостройка", "встроенная техника"],
+      ideaType: "built-in",
+    },
+    {
+      id: "minsk-kuhnya-gostinaya-ostrov",
+      title: "Кухня-гостиная с островом",
+      shortDescription:
+        "Просторный сценарий для кухни-гостиной: остров, большая рабочая поверхность и цельная архитектурная линия.",
+      image: "/uploads/locations/minsk-3d/minsk-concept-kitchen-living-island-20260619-desktop.webp",
+      alt: "Кухня-гостиная с островом на заказ в Минске в современном премиальном интерьере",
+      badge: "3D-визуализация КухниBY",
+      disclosure: "Визуальная концепция КухниBY для просторной кухни-гостиной.",
+      suitableFor: ["кухня с островом", "кухня-гостиная", "частный дом"],
+      ideaType: "family",
+    },
+  ],
   borisov: [
     {
       id: "borisov-uglovaya-do-potolka",
