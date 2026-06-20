@@ -500,6 +500,24 @@ const minskSeoDemandClusters = [
       { href: "/catalog/kuhni-do-potolka", label: "Кухни до потолка" },
     ],
   },
+  {
+    title: "Фурнитура и механизмы",
+    text: "Показываем, как работают доводчики, выдвижные системы, угловое хранение, подъемные фасады, подсветка и встроенная техника.",
+    queries: ["кухня с доводчиками минск", "кухня с выдвижными ящиками на заказ минск", "фурнитура для кухни на заказ минск"],
+    links: [
+      { href: "/materials/furnitura", label: "Фурнитура" },
+      { href: "#minsk-mechanisms", label: "Механизмы кухни" },
+    ],
+  },
+  {
+    title: "Замер кухни в Минске",
+    text: "Перед расчетом проверяем размеры, углы, высоту, воду, розетки, вентиляцию и обсуждаем планировку с учетом техники.",
+    queries: ["замер кухни минск", "кухня на заказ с замером минск", "расчет кухни после замера минск"],
+    links: [
+      { href: "#minsk-measurement", label: "Как проходит замер" },
+      { href: "#form", label: "Заказать расчет" },
+    ],
+  },
 ];
 
 const minskRealProjectSeries = [
@@ -605,6 +623,112 @@ const minskCloseDetailImages = [
   alt,
   caption,
 }));
+
+const minskMechanismImages = [
+  {
+    title: "Ящики с плавным закрыванием",
+    text: "Направляющие и доводчики помогают закрывать тяжелые ящики мягко, без хлопка и перекоса фасада.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-01-plavnoe-zakryvanie-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-01-plavnoe-zakryvanie-square.webp",
+    alt: "Ящик с плавным закрыванием на кухне на заказ в Минске",
+  },
+  {
+    title: "Высокий выдвижной шкаф",
+    text: "Пенал-карго подходит для запасов, бутылок и круп, когда нужно использовать высоту кухни до потолка.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-02-vysokiy-vydvizhnoy-shkaf-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-02-vysokiy-vydvizhnoy-shkaf-square.webp",
+    alt: "Высокий выдвижной шкаф для кухни на заказ в Минске",
+  },
+  {
+    title: "Угловой механизм хранения",
+    text: "Выдвижные полки в углу дают доступ к глубокой зоне, где обычные полки быстро становятся неудобными.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-03-uglovoy-mehanizm-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-03-uglovoy-mehanizm-square.webp",
+    alt: "Угловой механизм хранения в кухне на заказ",
+  },
+  {
+    title: "Подъемный фасад",
+    text: "Верхний фасад поднимается вверх и не мешает у рабочей зоны, особенно в компактной кухне.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-04-podemnyy-fasad-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-04-podemnyy-fasad-square.webp",
+    alt: "Подъемный фасад верхнего шкафа кухни",
+  },
+  {
+    title: "Хранение под мойкой",
+    text: "Под раковиной заранее учитываем сифон, фильтр, мусорные контейнеры и бытовую химию.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-05-hranenie-pod-moykoy-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-05-hranenie-pod-moykoy-square.webp",
+    alt: "Система хранения под мойкой на кухне",
+  },
+  {
+    title: "Органайзер для приборов",
+    text: "Внутреннее наполнение подбирается под столовые приборы, ножи и ежедневные мелочи, а не случайный размер ящика.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-06-organayzer-dlya-priborov-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-06-organayzer-dlya-priborov-square.webp",
+    alt: "Органайзер для приборов в выдвижном ящике кухни",
+  },
+  {
+    title: "Встроенный холодильник",
+    text: "Фасад закрывает технику в одну линию с кухней, а проект учитывает вентиляционные зазоры и открывание.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-07-vstroennyy-holodilnik-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-07-vstroennyy-holodilnik-square.webp",
+    alt: "Встроенный холодильник за фасадом кухни",
+  },
+  {
+    title: "Встроенная посудомойка",
+    text: "Посудомоечную машину привязываем к воде, электрике, фасаду и соседним модулям еще на этапе проекта.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-08-vstroennaya-posudomoyka-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-08-vstroennaya-posudomoyka-square.webp",
+    alt: "Встроенная посудомоечная машина за фасадом кухни",
+  },
+  {
+    title: "Подсветка рабочей зоны",
+    text: "Подсветка под верхними шкафами помогает готовить без тени от человека и делает кухню спокойнее вечером.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-09-podsvetka-rabochey-zony-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-09-podsvetka-rabochey-zony-square.webp",
+    alt: "Подсветка рабочей зоны кухни на заказ",
+  },
+  {
+    title: "Выдвижная корзина",
+    text: "Узкие модули можно использовать под масла, соусы, бутылки и хозяйственные мелочи рядом с рабочей зоной.",
+    mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-10-vydvizhnaya-korzina-mobile.webp",
+    squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-10-vydvizhnaya-korzina-square.webp",
+    alt: "Выдвижная корзина в нижнем шкафу кухни",
+  },
+];
+
+const minskMeasurementImages = [
+  {
+    title: "Выезд на адрес",
+    text: "Замерщик приезжает в квартиру или дом, уточняет готовность стен и фиксирует исходные условия помещения.",
+    src: "/uploads/locations/minsk-stage56/minsk-measurement-01-vhod-v-kvartiru-mobile.webp",
+    alt: "Замерщик входит в квартиру для замера кухни в Минске",
+  },
+  {
+    title: "Лазерный замер стен",
+    text: "Проверяем длину стен, проемы, выступы и расстояния, чтобы проект не расходился с реальным помещением.",
+    src: "/uploads/locations/minsk-stage56/minsk-measurement-02-lazernaya-ruletka-mobile.webp",
+    alt: "Замер стен лазерной рулеткой перед проектом кухни",
+  },
+  {
+    title: "Углы и высота",
+    text: "Отдельно смотрим углы, высоту потолка, перепады и места, где кухня до потолка требует запаса.",
+    src: "/uploads/locations/minsk-stage56/minsk-measurement-03-ugly-i-vysota-mobile.webp",
+    alt: "Проверка углов и высоты потолка перед заказом кухни",
+  },
+  {
+    title: "Вода, розетки, вентиляция",
+    text: "Сверяем выводы воды, электрику и вентиляционный канал, чтобы техника, мойка и вытяжка встали без переделок.",
+    src: "/uploads/locations/minsk-stage56/minsk-measurement-04-kommunikatsii-mobile.webp",
+    alt: "Проверка воды, розеток и вентиляции перед проектом кухни",
+  },
+  {
+    title: "Обсуждение планировки",
+    text: "После замера согласуем логику хранения, расположение техники, высоту рабочей зоны и важные привычки семьи.",
+    src: "/uploads/locations/minsk-stage56/minsk-measurement-05-obsuzhdenie-planirovki-mobile.webp",
+    alt: "Обсуждение планировки кухни с клиентом после замера",
+  },
+];
 
 function getHubDirectionLinks(slugs: string[]) {
   return slugs
@@ -1023,6 +1147,85 @@ export function RegionalLocationPage({
                   </div>
                   <figcaption className="px-3 py-3 text-sm font-semibold text-foreground">
                     {image.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section id="minsk-mechanisms" className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Этап 5"
+              title="Механизмы и наполнение кухни на заказ"
+              text="Показываем не только фасады, но и то, как кухня работает каждый день: ящики, подъемные фасады, угловые механизмы, хранение под мойкой, встроенную технику, подсветку и выдвижные системы."
+            />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {minskMechanismImages.map((image) => (
+                <figure
+                  key={image.mobileSrc}
+                  className="overflow-hidden rounded-lg border border-border bg-white shadow-sm"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[#f7f4ec] sm:aspect-square">
+                    <picture>
+                      <source media="(min-width: 640px)" srcSet={image.squareSrc} />
+                      <img
+                        src={image.mobileSrc}
+                        alt={image.alt}
+                        width={1080}
+                        height={1350}
+                        loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 20vw"
+                        className="h-full w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+                      />
+                    </picture>
+                    <BrandedImageWatermark compact />
+                  </div>
+                  <figcaption className="px-3 py-3">
+                    <h3 className="text-sm font-semibold text-foreground">{image.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{image.text}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section id="minsk-measurement" className="bg-muted/30 section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Этап 6"
+              title="Как проходит замер кухни в Минске"
+              text="Замер нужен не только для ширины и высоты. На месте проверяем углы, коммуникации, розетки, вентиляцию, открывание фасадов и сценарий будущей кухни, чтобы смета и проект были ближе к реальному монтажу."
+            />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {minskMeasurementImages.map((image) => (
+                <figure
+                  key={image.src}
+                  className="overflow-hidden rounded-lg border border-border bg-white shadow-sm"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[#f7f4ec]">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      width={1080}
+                      height={1350}
+                      loading="lazy"
+                      decoding="async"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                      className="h-full w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+                    />
+                    <BrandedImageWatermark compact />
+                  </div>
+                  <figcaption className="px-3 py-3">
+                    <h3 className="text-sm font-semibold text-foreground">{image.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{image.text}</p>
                   </figcaption>
                 </figure>
               ))}
