@@ -445,6 +445,167 @@ const minskHeroStoryImages = [
   },
 ];
 
+const minskSeoDemandClusters = [
+  {
+    title: "Купить кухню в Минске",
+    text: "Базовый сценарий для тех, кто сравнивает магазины, цены и варианты мебели для кухни в Минске.",
+    queries: ["купить кухню в минске", "кухня купить минск цена", "где купить кухню минск"],
+    links: [
+      { href: "/catalog", label: "Каталог кухонь" },
+      { href: "/prices", label: "Цены" },
+    ],
+  },
+  {
+    title: "Кухни на заказ по размерам",
+    text: "Индивидуальный проект, замер, подбор фасадов, столешницы, фурнитуры и монтаж под помещение.",
+    queries: ["кухни на заказ в минске", "кухни на заказ в минске цены", "купить кухню модулями минск"],
+    links: [
+      { href: "/design-proekt-kuhni", label: "3D-проект" },
+      { href: "#form", label: "Расчет по размерам" },
+    ],
+  },
+  {
+    title: "Недорогие и готовые решения",
+    text: "Объясняем, чем отличается готовая кухня, модульный набор и проект на заказ в бюджетной комплектации.",
+    queries: ["купить кухню в минске недорого", "готовые кухни купить в минске", "кухня дешевая купить минск"],
+    links: [
+      { href: "/prices", label: "Бюджет и смета" },
+      { href: "/catalog/pryamye-kuhni", label: "Прямые кухни" },
+    ],
+  },
+  {
+    title: "Угловые кухни",
+    text: "Самый частый формат для квартир: угол, рабочий треугольник, хранение и встроенная техника.",
+    queries: ["кухня угловая купить в минске", "купить угловую кухню минске недорого", "угловая кухня купить в минске фото"],
+    links: [
+      { href: "/catalog/uglovye-kuhni", label: "Угловые кухни" },
+      { href: "/portfolio", label: "Фото работ" },
+    ],
+  },
+  {
+    title: "Материалы, фасады и дизайн",
+    text: "Показываем белые, деревянные, МДФ, каменные и минималистичные решения без верхних шкафов.",
+    queries: ["кухня мдф купить минск", "кухня деревянная купить минск", "купить белую кухню минск"],
+    links: [
+      { href: "/materials", label: "Материалы" },
+      { href: "/styles", label: "Стили" },
+    ],
+  },
+  {
+    title: "Маленькие кухни",
+    text: "Решения для студий, узких помещений, кухонь 2,1 метра, линейных гарнитуров и шкафов до потолка.",
+    queries: ["купить небольшую кухню в минске", "кухня линейная купить минск", "кухня под потолок маленькая купить минск"],
+    links: [
+      { href: "/catalog/malenkie-kuhni", label: "Маленькие кухни" },
+      { href: "/catalog/kuhni-do-potolka", label: "Кухни до потолка" },
+    ],
+  },
+];
+
+const minskRealProjectSeries = [
+  {
+    title: "Светлая прямая кухня для квартиры",
+    text: "Прямая кухня в минской квартире: общий вид, второй ракурс, фасады, столешница, открытые ящики и техника с подсветкой.",
+    images: [
+      ["minsk-project-01-light-straight-obshchiy-vid.webp", "Светлая прямая кухня на заказ в Минске, общий вид", "Общий вид кухни"],
+      ["minsk-project-01-light-straight-vtoroy-rakurs.webp", "Светлая прямая кухня в квартире Минска, второй ракурс", "Второй ракурс"],
+      ["minsk-project-01-light-straight-fasady-krupno.webp", "Матовые фасады светлой прямой кухни крупным планом", "Фасады крупно"],
+      ["minsk-project-01-light-straight-stoleshnitsa-krupno.webp", "Столешница и фартук светлой кухни крупным планом", "Столешница и фартук"],
+      ["minsk-project-01-light-straight-otkrytye-yashchiki.webp", "Открытые ящики светлой кухни на заказ", "Открытые ящики"],
+      ["minsk-project-01-light-straight-tehnika-podsvetka.webp", "Встроенная техника и подсветка светлой кухни", "Техника и подсветка"],
+    ],
+  },
+  {
+    title: "Угловая кухня до потолка",
+    text: "Формат для новостройки: угловая компоновка, высокие шкафы, рабочая зона и встроенная техника.",
+    images: [
+      ["minsk-project-02-corner-ceiling-obshchiy-vid.webp", "Угловая кухня до потолка в Минске, общий вид", "Общий вид кухни"],
+      ["minsk-project-02-corner-ceiling-vtoroy-rakurs.webp", "Угловая кухня до потолка в Минске, второй ракурс", "Второй ракурс"],
+      ["minsk-project-02-corner-ceiling-fasady-krupno.webp", "Фасады кухни до потолка крупным планом", "Фасады крупно"],
+      ["minsk-project-02-corner-ceiling-stoleshnitsa-krupno.webp", "Столешница и фартук угловой кухни крупным планом", "Столешница и фартук"],
+      ["minsk-project-02-corner-ceiling-hranenie-otkryto.webp", "Открытое хранение угловой кухни до потолка", "Открытое хранение"],
+      ["minsk-project-02-corner-ceiling-tehnika-podsvetka.webp", "Встроенная техника и подсветка кухни до потолка", "Техника и подсветка"],
+    ],
+  },
+  {
+    title: "Темная кухня с древесными фасадами",
+    text: "Темная кухня с древесной фактурой для тех, кто ищет выразительный, но практичный интерьер.",
+    images: [
+      ["minsk-project-03-dark-wood-obshchiy-vid.webp", "Темная кухня с древесными фасадами в Минске, общий вид", "Общий вид кухни"],
+      ["minsk-project-03-dark-wood-vtoroy-rakurs.webp", "Темная кухня с древесными фасадами, второй ракурс", "Второй ракурс"],
+      ["minsk-project-03-dark-wood-fasady-krupno.webp", "Древесные и темные матовые фасады кухни крупным планом", "Фасады крупно"],
+      ["minsk-project-03-dark-wood-stoleshnitsa-krupno.webp", "Темная столешница кухни крупным планом", "Столешница крупно"],
+      ["minsk-project-03-dark-wood-otkrytye-yashchiki.webp", "Открытые ящики темной кухни на заказ", "Открытые ящики"],
+      ["minsk-project-03-dark-wood-tehnika-podsvetka.webp", "Встроенная техника и теплая подсветка темной кухни", "Техника и подсветка"],
+    ],
+  },
+  {
+    title: "Маленькая функциональная кухня",
+    text: "Компактная кухня для студии или небольшой квартиры: хранение, рабочая зона и встроенная техника без перегруза.",
+    images: [
+      ["minsk-project-04-small-functional-obshchiy-vid.webp", "Маленькая функциональная кухня на заказ в Минске, общий вид", "Общий вид кухни"],
+      ["minsk-project-04-small-functional-vtoroy-rakurs.webp", "Маленькая функциональная кухня в Минске, второй ракурс", "Второй ракурс"],
+      ["minsk-project-04-small-functional-fasady-krupno.webp", "Фасады маленькой кухни крупным планом", "Фасады крупно"],
+      ["minsk-project-04-small-functional-stoleshnitsa-krupno.webp", "Столешница маленькой кухни крупным планом", "Столешница крупно"],
+      ["minsk-project-04-small-functional-hranenie-otkryto.webp", "Открытое хранение маленькой кухни", "Открытое хранение"],
+      ["minsk-project-04-small-functional-tehnika-podsvetka.webp", "Встроенная техника и подсветка маленькой кухни", "Техника и подсветка"],
+    ],
+  },
+  {
+    title: "Кухня-гостиная с островом",
+    text: "Островная кухня для просторной кухни-гостиной: общий вид, детали фасадов, столешница и хранение в острове.",
+    images: [
+      ["minsk-project-05-island-living-obshchiy-vid.webp", "Кухня-гостиная с островом в Минске, общий вид", "Общий вид кухни"],
+      ["minsk-project-05-island-living-vtoroy-rakurs.webp", "Кухня-гостиная с островом, второй ракурс", "Второй ракурс"],
+      ["minsk-project-05-island-living-fasady-krupno.webp", "Фасады кухни с островом крупным планом", "Фасады крупно"],
+      ["minsk-project-05-island-living-ostrov-stoleshnitsa.webp", "Столешница острова и рабочая зона крупным планом", "Остров и столешница"],
+      ["minsk-project-05-island-living-yashchiki-ostrova.webp", "Выдвижные ящики острова в кухне-гостиной", "Ящики острова"],
+      ["minsk-project-05-island-living-tehnika-podsvetka.webp", "Встроенная техника и подсветка кухни с островом", "Техника и подсветка"],
+    ],
+  },
+  {
+    title: "Современная кухня в частном доме",
+    text: "Просторная кухня для дома рядом с Минском: древесные фасады, каменная столешница и много закрытого хранения.",
+    images: [
+      ["minsk-project-06-private-house-obshchiy-vid.webp", "Современная кухня в частном доме рядом с Минском, общий вид", "Общий вид кухни"],
+      ["minsk-project-06-private-house-vtoroy-rakurs.webp", "Современная кухня в частном доме, второй ракурс", "Второй ракурс"],
+      ["minsk-project-06-private-house-fasady-derevo.webp", "Древесные фасады кухни в частном доме крупным планом", "Фасады дерево"],
+      ["minsk-project-06-private-house-stoleshnitsa-kamen.webp", "Каменная столешница кухни в частном доме крупным планом", "Каменная столешница"],
+      ["minsk-project-06-private-house-hranenie-otkryto.webp", "Открытое хранение кухни в частном доме", "Открытое хранение"],
+      ["minsk-project-06-private-house-tehnika-podsvetka.webp", "Встроенная техника и подсветка кухни в частном доме", "Техника и подсветка"],
+    ],
+  },
+].map((project) => ({
+  ...project,
+  images: project.images.map(([fileName, alt, caption]) => ({
+    src: `/uploads/locations/minsk-stage34/${fileName}`,
+    alt,
+    caption,
+  })),
+}));
+
+const minskCloseDetailImages = [
+  ["minsk-detail-01-matovyy-fasad.webp", "Матовый фасад кухни на заказ крупным планом", "Матовый фасад"],
+  ["minsk-detail-02-drevesnaya-tekstura.webp", "Древесная текстура фасада кухни крупным планом", "Древесная текстура"],
+  ["minsk-detail-03-kamennaya-stoleshnitsa.webp", "Каменная столешница кухни крупным планом", "Каменная столешница"],
+  ["minsk-detail-04-kromka-fasada.webp", "Кромка кухонного фасада крупным планом", "Кромка фасада"],
+  ["minsk-detail-05-profil-bez-ruchek.webp", "Профиль кухни без ручек крупным планом", "Профиль без ручек"],
+  ["minsk-detail-06-ruchka-krupno.webp", "Ручка кухонного фасада крупным планом", "Ручка крупным планом"],
+  ["minsk-detail-07-petlya-shkafa.webp", "Петля кухонного шкафа крупным планом", "Петля шкафа"],
+  ["minsk-detail-08-napravlyayushchie-yashchika.webp", "Направляющие кухонного ящика крупным планом", "Направляющие ящика"],
+  ["minsk-detail-09-vydvizhnoy-yashchik-vnutri.webp", "Выдвижной ящик кухни внутри", "Выдвижной ящик внутри"],
+  ["minsk-detail-10-hranenie-pod-moykoy.webp", "Система хранения под мойкой в кухне на заказ", "Хранение под мойкой"],
+  ["minsk-detail-11-yashchik-dlya-priborov.webp", "Внутренний ящик для приборов в кухне на заказ", "Ящик для приборов"],
+  ["minsk-detail-12-podsvetka-rabochey-zony.webp", "Подсветка рабочей зоны кухни крупным планом", "Подсветка рабочей зоны"],
+  ["minsk-detail-13-styk-stoleshnitsy.webp", "Стык столешницы кухни крупным планом", "Стык столешницы"],
+  ["minsk-detail-14-vstroennaya-rozetka.webp", "Встроенная розетка в столешнице кухни крупным планом", "Встроенная розетка"],
+  ["minsk-detail-15-fasad-i-svet-pod-uglom.webp", "Фасад кухни и теплый свет под углом", "Фасад и свет под углом"],
+].map(([fileName, alt, caption]) => ({
+  src: `/uploads/locations/minsk-stage34/${fileName}`,
+  alt,
+  caption,
+}));
+
 function getHubDirectionLinks(slugs: string[]) {
   return slugs
     .map((slug) => minskRegionLocations.find((city) => city.slug === slug))
@@ -768,6 +929,93 @@ export function RegionalLocationPage({
                     <BrandedImageWatermark compact />
                   </div>
                   <figcaption className="px-4 py-3 text-sm font-semibold text-foreground">
+                    {image.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section className="bg-muted/30 section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="SEO-структура"
+              title="Купить кухню в Минске: запросы, цены, готовые и индивидуальные решения"
+              text="Страница закрывает основные сценарии спроса: купить кухню в Минске, кухни на заказ, недорогие и готовые варианты, угловые кухни, материалы, маленькие кухни и расчет по размерам."
+            />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {minskSeoDemandClusters.map((cluster) => (
+                <div key={cluster.title} className="rounded-lg border border-border bg-white p-5">
+                  <h2 className="mb-3 text-lg font-semibold text-foreground">{cluster.title}</h2>
+                  <p className="mb-4 text-sm leading-6 text-muted-foreground">{cluster.text}</p>
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {cluster.queries.map((query) => (
+                      <span
+                        key={query}
+                        className="rounded-full border border-border bg-muted/40 px-3 py-1 text-xs text-muted-foreground"
+                      >
+                        {query}
+                      </span>
+                    ))}
+                  </div>
+                  <LinkPills links={cluster.links} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Реальные проекты"
+              title="Фото серий кухонь на заказ в Минске"
+              text="Шесть визуальных серий показывают разные сценарии покупки: прямая кухня, угловая до потолка, темная с древесными фасадами, маленькая кухня, кухня-гостиная с островом и современная кухня для дома."
+            />
+            <div className="space-y-12">
+              {minskRealProjectSeries.map((project) => (
+                <div key={project.title}>
+                  <SectionTitle title={project.title} text={project.text} />
+                  <RegionalVisualStoryGallery images={project.images} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section className="bg-muted/30 section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Рассмотрите кухню вблизи"
+              title="Материалы, фасады, столешницы и фурнитура крупным планом"
+              text="Крупные фото помогают оценить то, что влияет на цену и ощущение кухни: матовые фасады, древесную текстуру, каменную столешницу, кромку, профиль без ручек, петли, направляющие, хранение, подсветку и встроенные розетки."
+            />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {minskCloseDetailImages.map((image) => (
+                <figure
+                  key={image.src}
+                  className="overflow-hidden rounded-lg border border-border bg-white shadow-sm"
+                >
+                  <div className="relative aspect-square overflow-hidden bg-stone-100">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={1200}
+                      height={1200}
+                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                    <BrandedImageWatermark compact />
+                  </div>
+                  <figcaption className="px-3 py-3 text-sm font-semibold text-foreground">
                     {image.caption}
                   </figcaption>
                 </figure>
