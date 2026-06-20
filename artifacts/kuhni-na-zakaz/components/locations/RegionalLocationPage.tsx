@@ -654,7 +654,7 @@ export function RegionalLocationPage({
   const isMinsk = location.slug === "minsk";
   const isBorisov = location.slug === "borisov";
   const minskHeroImage = "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp";
-  const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-light-20260619-mobile.webp";
+  const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-mobile-background-20260620.webp";
   const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-20260617.webp";
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
   const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
@@ -748,7 +748,13 @@ export function RegionalLocationPage({
             <div className="absolute inset-0 bg-gradient-to-b from-black/42 via-black/34 to-black/78 md:bg-gradient-to-r md:from-black/42 md:via-black/18 md:to-black/24" />
           </div>
         ) : (
-          <div className="absolute inset-0 opacity-28">
+          <div
+            className={
+              isMinsk
+                ? "absolute inset-x-0 top-0 h-[100svh] opacity-40 md:inset-0 md:h-auto md:opacity-28"
+                : "absolute inset-0 opacity-28"
+            }
+          >
             {isMinsk ? (
               <picture>
                 <source media="(max-width: 767px)" srcSet={minskHeroMobileImage} />
@@ -756,7 +762,7 @@ export function RegionalLocationPage({
                   src={heroImage}
                   alt={heroAlt}
                   fetchPriority="high"
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-contain object-top md:object-cover md:object-center"
                 />
               </picture>
             ) : isBorisov ? (
