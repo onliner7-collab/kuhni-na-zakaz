@@ -851,7 +851,7 @@ export function RegionalLocationPage({
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
   const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
   const heroAlt = isMinsk
-    ? "Светлая кухня на заказ в Минске"
+    ? "Купить кухню на заказ в Минске, светлый гарнитур под размер"
     : isBorisov
     ? "Купить кухню на заказ в Борисове, фоновая визуализация гарнитура"
     : heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`;
@@ -860,7 +860,7 @@ export function RegionalLocationPage({
   const purchaseScenarioCards = getPurchaseScenarioCards(location);
   const workSectionTitle =
     location.slug === "minsk"
-      ? "Купить кухню в Минске с замером, проектом и монтажом"
+      ? "Купить кухню на заказ в Минске: замер, проект и монтаж"
       : isBorisov
         ? "Купить кухню на заказ в Борисове под размер квартиры или дома"
       : location.isMinskRegionCity && !isMinskRegionHub
