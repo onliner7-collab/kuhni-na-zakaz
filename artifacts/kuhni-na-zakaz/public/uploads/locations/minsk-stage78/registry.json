@@ -1,0 +1,62 @@
+{
+  "stage": "production-and-installation",
+  "city": "Минск",
+  "items": [
+    {
+      "id": "raskroy-detalei",
+      "title": "Раскрой мебельных деталей",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-01-raskroy-detalei-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-01-raskroy-detalei-mobile.webp",
+      "alt": "Раскрой мебельных деталей для кухни на заказ в чистой мастерской"
+    },
+    {
+      "id": "sborka-korpusa",
+      "title": "Сборка корпуса кухни",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-02-sborka-korpusa-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-02-sborka-korpusa-mobile.webp",
+      "alt": "Сборка корпуса кухни на заказ в мебельной мастерской"
+    },
+    {
+      "id": "ustanovka-fasadov",
+      "title": "Установка фасадов",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-03-ustanovka-fasadov-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-03-ustanovka-fasadov-mobile.webp",
+      "alt": "Установка фасадов кухни на заказ в квартире в Минске"
+    },
+    {
+      "id": "proverka-kromki",
+      "title": "Проверка кромки и деталей",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-04-proverka-kromki-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-04-proverka-kromki-mobile.webp",
+      "alt": "Проверка кромки и мебельных деталей перед сборкой кухни"
+    },
+    {
+      "id": "komplektatsiya-pered-dostavkoy",
+      "title": "Комплектация кухни перед доставкой",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-05-komplektatsiya-pered-dostavkoy-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-05-komplektatsiya-pered-dostavkoy-mobile.webp",
+      "alt": "Комплектация и упаковка кухонных модулей перед доставкой"
+    },
+    {
+      "id": "dostavka-moduley",
+      "title": "Доставка кухонных модулей",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-06-dostavka-moduley-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-06-dostavka-moduley-mobile.webp",
+      "alt": "Доставка упакованных кухонных модулей в квартиру в Минске"
+    },
+    {
+      "id": "montazh-shkafov",
+      "title": "Монтаж шкафов",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-07-montazh-shkafov-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-07-montazh-shkafov-mobile.webp",
+      "alt": "Монтаж верхних шкафов кухни на заказ в современной квартире"
+    },
+    {
+      "id": "regulirovka-fasadov",
+      "title": "Регулировка фасадов и проверка механизмов",
+      "desktopSrc": "/uploads/locations/minsk-stage78/minsk-production-08-regulirovka-fasadov-desktop.webp",
+      "mobileSrc": "/uploads/locations/minsk-stage78/minsk-production-08-regulirovka-fasadov-mobile.webp",
+      "alt": "Регулировка фасадов и проверка механизмов после монтажа кухни"
+    }
+  ]
+}

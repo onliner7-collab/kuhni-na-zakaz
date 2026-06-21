@@ -422,25 +422,25 @@ const minskHeroStoryImages = [
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-mobile.webp",
-    alt: "Светлая кухня на заказ в Минске для первого экрана сайта",
-    caption: "Светлая кухня для первого экрана",
+    alt: "Светлая кухня на заказ в Минске",
+    caption: "Светлая кухня",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-mobile.webp",
-    alt: "Темная кухня на заказ в Минске с древесной фактурой для первого экрана",
+    alt: "Темная кухня на заказ в Минске с древесной фактурой",
     caption: "Темная кухня с древесной фактурой",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-mobile.webp",
-    alt: "Кухня-гостиная с островом на заказ в Минске для первого экрана",
+    alt: "Кухня-гостиная с островом на заказ в Минске",
     caption: "Кухня-гостиная с островом",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-mobile.webp",
-    alt: "Кухня до потолка на заказ в Минске для первого экрана",
+    alt: "Кухня до потолка на заказ в Минске",
     caption: "Кухня до потолка",
   },
 ];
@@ -515,6 +515,15 @@ const minskSeoDemandClusters = [
     queries: ["замер кухни минск", "кухня на заказ с замером минск", "расчет кухни после замера минск"],
     links: [
       { href: "#minsk-measurement", label: "Как проходит замер" },
+      { href: "#form", label: "Заказать расчет" },
+    ],
+  },
+  {
+    title: "Производство и монтаж",
+    text: "Показываем раскрой, сборку, упаковку, доставку, монтаж шкафов и регулировку фасадов перед сдачей кухни.",
+    queries: ["производство кухонь на заказ минск", "монтаж кухни на заказ минск", "кухня с доставкой и установкой минск"],
+    links: [
+      { href: "#minsk-production", label: "Производство и монтаж" },
       { href: "#form", label: "Заказать расчет" },
     ],
   },
@@ -730,6 +739,65 @@ const minskMeasurementImages = [
   },
 ];
 
+const minskProductionImages = [
+  {
+    title: "Раскрой мебельных деталей",
+    text: "Детали режутся под проект кухни, чтобы размеры модулей совпадали с замером и будущей планировкой.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-01-raskroy-detalei-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-01-raskroy-detalei-mobile.webp",
+    alt: "Раскрой мебельных деталей для кухни на заказ в чистой мастерской",
+  },
+  {
+    title: "Сборка корпуса кухни",
+    text: "Корпуса собираются и проверяются до доставки, чтобы на объекте монтаж шел быстрее и аккуратнее.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-02-sborka-korpusa-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-02-sborka-korpusa-mobile.webp",
+    alt: "Сборка корпуса кухни на заказ в мебельной мастерской",
+  },
+  {
+    title: "Установка фасадов",
+    text: "Фасады примеряются по месту, после чего мастер проверяет зазоры, петли и линию открывания.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-03-ustanovka-fasadov-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-03-ustanovka-fasadov-mobile.webp",
+    alt: "Установка фасадов кухни на заказ в квартире в Минске",
+  },
+  {
+    title: "Проверка кромки и деталей",
+    text: "Кромка и торцы осматриваются отдельно: это влияет на внешний вид, долговечность и ощущение качества.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-04-proverka-kromki-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-04-proverka-kromki-mobile.webp",
+    alt: "Проверка кромки и мебельных деталей перед сборкой кухни",
+  },
+  {
+    title: "Комплектация перед доставкой",
+    text: "Модули, крепеж и фурнитура собираются в комплект, защищаются упаковкой и готовятся к выезду.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-05-komplektatsiya-pered-dostavkoy-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-05-komplektatsiya-pered-dostavkoy-mobile.webp",
+    alt: "Комплектация и упаковка кухонных модулей перед доставкой",
+  },
+  {
+    title: "Доставка кухонных модулей",
+    text: "Упакованные модули заносятся аккуратно, с учетом лифта, подъезда, этажа и защиты поверхностей.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-06-dostavka-moduley-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-06-dostavka-moduley-mobile.webp",
+    alt: "Доставка упакованных кухонных модулей в квартиру в Минске",
+  },
+  {
+    title: "Монтаж шкафов",
+    text: "Шкафы выставляются по уровню, крепятся к стенам и собираются в единую линию будущей кухни.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-07-montazh-shkafov-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-07-montazh-shkafov-mobile.webp",
+    alt: "Монтаж верхних шкафов кухни на заказ в современной квартире",
+  },
+  {
+    title: "Регулировка фасадов",
+    text: "После монтажа проверяются зазоры, доводчики, направляющие и плавность открывания ящиков и дверей.",
+    desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-08-regulirovka-fasadov-desktop.webp",
+    mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-08-regulirovka-fasadov-mobile.webp",
+    alt: "Регулировка фасадов и проверка механизмов после монтажа кухни",
+  },
+];
+
 function getHubDirectionLinks(slugs: string[]) {
   return slugs
     .map((slug) => minskRegionLocations.find((city) => city.slug === slug))
@@ -783,7 +851,7 @@ export function RegionalLocationPage({
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
   const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
   const heroAlt = isMinsk
-    ? "Светлая кухня на заказ в Минске, фоновая визуализация первого экрана"
+    ? "Светлая кухня на заказ в Минске"
     : isBorisov
     ? "Купить кухню на заказ в Борисове, фоновая визуализация гарнитура"
     : heroIdea?.alt ?? `Кухня на заказ в ${location.cityPrepositional}`;
@@ -1037,8 +1105,8 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Визуальная концепция"
-              title="Изображения для первого экрана кухни на заказ в Минске"
-              text="Подобрали четыре направления для первого экрана: светлая кухня, темная кухня с древесной фактурой, кухня-гостиная с островом и кухня до потолка."
+              title="Варианты кухни на заказ в Минске"
+              text="Подобрали четыре понятных направления: светлая кухня, темная кухня с древесной фактурой, кухня-гостиная с островом и кухня до потолка."
             />
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {minskHeroStoryImages.map((image) => (
@@ -1062,37 +1130,6 @@ export function RegionalLocationPage({
                     {image.caption}
                   </figcaption>
                 </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {isMinsk && (
-        <section className="bg-muted/30 section-padding">
-          <div className="container-site">
-            <SectionTitle
-              eyebrow="SEO-структура"
-              title="Купить кухню в Минске: запросы, цены, готовые и индивидуальные решения"
-              text="Страница закрывает основные сценарии спроса: купить кухню в Минске, кухни на заказ, недорогие и готовые варианты, угловые кухни, материалы, маленькие кухни и расчет по размерам."
-            />
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {minskSeoDemandClusters.map((cluster) => (
-                <div key={cluster.title} className="rounded-lg border border-border bg-white p-5">
-                  <h2 className="mb-3 text-lg font-semibold text-foreground">{cluster.title}</h2>
-                  <p className="mb-4 text-sm leading-6 text-muted-foreground">{cluster.text}</p>
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {cluster.queries.map((query) => (
-                      <span
-                        key={query}
-                        className="rounded-full border border-border bg-muted/40 px-3 py-1 text-xs text-muted-foreground"
-                      >
-                        {query}
-                      </span>
-                    ))}
-                  </div>
-                  <LinkPills links={cluster.links} />
-                </div>
               ))}
             </div>
           </div>
@@ -1221,6 +1258,47 @@ export function RegionalLocationPage({
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                       className="h-full w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
                     />
+                    <BrandedImageWatermark compact />
+                  </div>
+                  <figcaption className="px-3 py-3">
+                    <h3 className="text-sm font-semibold text-foreground">{image.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{image.text}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section id="minsk-production" className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Этап 7"
+              title="Производство, доставка и монтаж кухни"
+              text="Показываем путь кухни после проекта: раскрой деталей, сборку корпуса, проверку кромки, комплектацию, доставку, монтаж шкафов и регулировку фасадов перед сдачей."
+            />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {minskProductionImages.map((image) => (
+                <figure
+                  key={image.desktopSrc}
+                  className="overflow-hidden rounded-lg border border-border bg-white shadow-sm"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[#f7f4ec] sm:aspect-video">
+                    <picture>
+                      <source media="(min-width: 640px)" srcSet={image.desktopSrc} />
+                      <img
+                        src={image.mobileSrc}
+                        alt={image.alt}
+                        width={1080}
+                        height={1350}
+                        loading="lazy"
+                        decoding="async"
+                        sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw"
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                      />
+                    </picture>
                     <BrandedImageWatermark compact />
                   </div>
                   <figcaption className="px-3 py-3">
