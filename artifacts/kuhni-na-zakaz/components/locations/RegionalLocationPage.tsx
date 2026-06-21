@@ -807,6 +807,7 @@ function getHubDirectionLinks(slugs: string[]) {
 
 function getBuyKitchenAnchor(location: RegionalLocationData) {
   if (location.slug === "minskaya-oblast") return "Купить кухню в Минской области";
+  if (location.slug === "minsk") return "Заказ гарнитура в Минске";
 
   return `Купить кухню в ${location.cityPrepositional}`;
 }
@@ -823,7 +824,7 @@ function getPurchaseScenarioCards(location: RegionalLocationData) {
     },
     {
       title: "Для квартиры, дома или дачи",
-      text: "Подбираем прямую, угловую, П-образную кухню, вариант до потолка или решение с островом под реальный сценарий, а не под случайный набор модулей.",
+      text: "Подбираем прямую, угловую, П-образную компоновку, вариант до потолка или решение с островом под реальный сценарий, а не под случайный набор модулей.",
     },
     {
       title: "С понятной комплектацией",
@@ -1141,7 +1142,7 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Реальные проекты"
-              title="Фото серий кухонь на заказ в Минске"
+              title="Фото серий гарнитуров на заказ в Минске"
               text="Шесть визуальных серий показывают разные сценарии покупки: прямой гарнитур, угловая компоновка до потолка, темные древесные фасады, компактное решение, остров и современный проект для дома."
             />
             <div className="space-y-12">
@@ -1398,8 +1399,12 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Каталог и цена"
-              title={`Купить кухню в ${location.cityPrepositional}: каталог, угловые варианты и расчет цены`}
-              text={`Для ${location.cityGenitive} удобнее начинать не с общей фразы, а с формата кухни: угловая, прямая, маленькая, до потолка или со встроенной техникой. Каталог помогает выбрать направление, а расчет показывает реальную цену под размеры помещения.`}
+              title={
+                isMinsk
+                  ? "Каталог, угловые варианты и расчет цены в Минске"
+                  : `Купить кухню в ${location.cityPrepositional}: каталог, угловые варианты и расчет цены`
+              }
+              text={`Для ${location.cityGenitive} удобнее начинать не с общей фразы, а с формата проекта: угловой, прямой, компактный, до потолка или со встроенной техникой. Каталог помогает выбрать направление, а расчет показывает реальную цену под размеры помещения.`}
             />
             <div className="grid gap-4 md:grid-cols-3">
               <Link
@@ -1407,10 +1412,10 @@ export function RegionalLocationPage({
                 className="rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
               >
                 <h3 className="mb-3 text-base font-semibold text-foreground">
-                  Каталог кухонь
+                  Каталог решений
                 </h3>
                 <p className="text-sm leading-6 text-muted-foreground">
-                  Посмотрите основные типы кухонь и выберите основу для проекта в {location.cityPrepositional}.
+                  Посмотрите основные типы гарнитуров и выберите основу для проекта в {location.cityPrepositional}.
                 </p>
               </Link>
               <Link
@@ -1418,10 +1423,10 @@ export function RegionalLocationPage({
                 className="rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
               >
                 <h3 className="mb-3 text-base font-semibold text-foreground">
-                  Угловая кухня недорого
+                  Угловой вариант недорого
                 </h3>
                 <p className="text-sm leading-6 text-muted-foreground">
-                  Сравним цену угловой кухни по размерам, фасадам, столешнице, фурнитуре и монтажу.
+                  Сравним цену углового решения по размерам, фасадам, столешнице, фурнитуре и монтажу.
                 </p>
               </Link>
               <Link
@@ -1429,7 +1434,7 @@ export function RegionalLocationPage({
                 className="rounded-2xl border border-border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
               >
                 <h3 className="mb-3 text-base font-semibold text-foreground">
-                  Цена кухни в {location.cityPrepositional}
+                  Цена проекта в {location.cityPrepositional}
                 </h3>
                 <p className="text-sm leading-6 text-muted-foreground">
                   Ориентир начинается от {location.priceFrom.toLocaleString("ru")} BYN, точная смета зависит от комплектации.
@@ -1514,7 +1519,7 @@ export function RegionalLocationPage({
           <SectionTitle
             eyebrow="Логистика"
             title="Замер, доставка и монтаж"
-            text="Каждый региональный заказ считаем по фактическому адресу, готовности ремонта и составу кухни."
+            text="Каждый региональный заказ считаем по фактическому адресу, готовности ремонта и составу мебели."
           />
           <div className="grid gap-5 md:grid-cols-3">
             {[
@@ -1575,7 +1580,7 @@ export function RegionalLocationPage({
           <SectionTitle
             eyebrow="Решения"
             title={popularSectionTitle}
-            text="Это не фиктивные кейсы, а типы кухонь, которые можно рассмотреть для похожих помещений."
+            text="Это не фиктивные кейсы, а типы гарнитуров, которые можно рассмотреть для похожих помещений."
           />
           <div className="grid gap-4 md:grid-cols-3">
             {popularSolutions.map((item) => (
@@ -1650,7 +1655,10 @@ export function RegionalLocationPage({
 
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
-          <SectionTitle eyebrow="FAQ" title={`Частые вопросы о кухнях в ${location.cityPrepositional}`} />
+          <SectionTitle
+            eyebrow="FAQ"
+            title={isMinsk ? "Частые вопросы по заказу в Минске" : `Частые вопросы о кухнях в ${location.cityPrepositional}`}
+          />
           <div className="max-w-3xl space-y-4">
             {faqItems.map((item) => (
               <details key={item.question} className="group rounded-2xl border border-border bg-white">
@@ -1737,7 +1745,7 @@ export function RegionalLocationPage({
               <SectionTitle
                 eyebrow="Типы кухонь"
                 title="Типы кухонь для Минской области"
-                text="Выбор зависит от объекта: квартира, дом, дача, кухня-гостиная или компактное помещение после ремонта."
+                text="Выбор зависит от объекта: квартира, дом, дача, гостиная зона или компактное помещение после ремонта."
               />
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {hubKitchenTypes.map((item) => (
@@ -1780,7 +1788,7 @@ export function RegionalLocationPage({
         <div className="container-site grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <h2 className="mb-4 font-serif text-2xl font-bold md:text-3xl">
-              Рассчитать кухню в {location.cityPrepositional}
+              Рассчитать гарнитур в {location.cityPrepositional}
             </h2>
             <p className="mb-6 leading-7 text-white/72">
               Оставьте заявку: менеджер уточнит размеры, город, технику и подскажет следующий шаг.
@@ -1804,14 +1812,14 @@ export function RegionalLocationPage({
             </div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
-            <h3 className="mb-4 text-xl font-semibold text-white">Рассчитать кухню</h3>
+            <h3 className="mb-4 text-xl font-semibold text-white">Рассчитать гарнитур</h3>
             <ContactForm
               source={`location-${location.slug}`}
               sourcePage={`/locations/${location.slug}`}
               sourceType="location-region"
               city={location.cityName}
               cityKey={location.slug}
-              submitLabel="Рассчитать кухню"
+              submitLabel="Рассчитать гарнитур"
             />
           </div>
         </div>
