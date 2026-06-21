@@ -413,7 +413,7 @@ const minskOblastRouteSteps = [
   {
     eyebrow: "Шаг 5",
     title: "Готовый результат",
-    text: "В конце маршрута показываем общий вид кухни, чтобы было понятно, к чему ведут замер, материалы и производство.",
+    text: "В конце маршрута показываем общий вид гарнитура, чтобы было понятно, к чему ведут замер, материалы и производство.",
     images: [minskOblastStoryImages[0]],
   },
 ].map((step) => ({ ...step, images: step.images.filter(Boolean) }));
@@ -422,26 +422,26 @@ const minskHeroStoryImages = [
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-mobile.webp",
-    alt: "Светлая кухня на заказ в Минске",
-    caption: "Светлая кухня",
+    alt: "Светлый гарнитур на заказ в Минске",
+    caption: "Светлый гарнитур",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-mobile.webp",
-    alt: "Темная кухня на заказ в Минске с древесной фактурой",
-    caption: "Темная кухня с древесной фактурой",
+    alt: "Темный гарнитур на заказ в Минске с древесной фактурой",
+    caption: "Темный гарнитур с древесной фактурой",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-mobile.webp",
-    alt: "Кухня-гостиная с островом на заказ в Минске",
-    caption: "Кухня-гостиная с островом",
+    alt: "Гарнитур для кухни-гостиной с островом на заказ в Минске",
+    caption: "Гостиная с островом",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-mobile.webp",
-    alt: "Кухня до потолка на заказ в Минске",
-    caption: "Кухня до потолка",
+    alt: "Гарнитур до потолка на заказ в Минске",
+    caption: "Гарнитур до потолка",
   },
 ];
 
@@ -466,7 +466,7 @@ const minskSeoDemandClusters = [
   },
   {
     title: "Недорогие и готовые решения",
-    text: "Объясняем, чем отличается готовая кухня, модульный набор и проект на заказ в бюджетной комплектации.",
+    text: "Объясняем, чем отличается готовый гарнитур, модульный набор и проект на заказ в бюджетной комплектации.",
     queries: ["купить кухню в минске недорого", "готовые кухни купить в минске", "кухня дешевая купить минск"],
     links: [
       { href: "/prices", label: "Бюджет и смета" },
@@ -520,7 +520,7 @@ const minskSeoDemandClusters = [
   },
   {
     title: "Производство и монтаж",
-    text: "Показываем раскрой, сборку, упаковку, доставку, монтаж шкафов и регулировку фасадов перед сдачей кухни.",
+    text: "Показываем раскрой, сборку, упаковку, доставку, монтаж шкафов и регулировку фасадов перед сдачей.",
     queries: ["производство кухонь на заказ минск", "монтаж кухни на заказ минск", "кухня с доставкой и установкой минск"],
     links: [
       { href: "#minsk-production", label: "Производство и монтаж" },
@@ -531,75 +531,75 @@ const minskSeoDemandClusters = [
 
 const minskRealProjectSeries = [
   {
-    title: "Светлая прямая кухня для квартиры",
-    text: "Прямая кухня в минской квартире: общий вид, второй ракурс, фасады, столешница, открытые ящики и техника с подсветкой.",
+    title: "Светлый прямой гарнитур для квартиры",
+    text: "Прямой проект в минской квартире: общий вид, второй ракурс, фасады, столешница, открытые ящики и техника с подсветкой.",
     images: [
-      ["minsk-project-01-light-straight-obshchiy-vid.webp", "Светлая прямая кухня на заказ в Минске, общий вид", "Общий вид кухни"],
-      ["minsk-project-01-light-straight-vtoroy-rakurs.webp", "Светлая прямая кухня в квартире Минска, второй ракурс", "Второй ракурс"],
-      ["minsk-project-01-light-straight-fasady-krupno.webp", "Матовые фасады светлой прямой кухни крупным планом", "Фасады крупно"],
-      ["minsk-project-01-light-straight-stoleshnitsa-krupno.webp", "Столешница и фартук светлой кухни крупным планом", "Столешница и фартук"],
-      ["minsk-project-01-light-straight-otkrytye-yashchiki.webp", "Открытые ящики светлой кухни на заказ", "Открытые ящики"],
-      ["minsk-project-01-light-straight-tehnika-podsvetka.webp", "Встроенная техника и подсветка светлой кухни", "Техника и подсветка"],
+      ["minsk-project-01-light-straight-obshchiy-vid.webp", "Светлый прямой гарнитур на заказ в Минске, общий вид", "Общий вид"],
+      ["minsk-project-01-light-straight-vtoroy-rakurs.webp", "Светлый прямой гарнитур в квартире Минска, второй ракурс", "Второй ракурс"],
+      ["minsk-project-01-light-straight-fasady-krupno.webp", "Матовые фасады светлого прямого гарнитура крупным планом", "Фасады крупно"],
+      ["minsk-project-01-light-straight-stoleshnitsa-krupno.webp", "Столешница и фартук светлого проекта крупным планом", "Столешница и фартук"],
+      ["minsk-project-01-light-straight-otkrytye-yashchiki.webp", "Открытые ящики светлого гарнитура на заказ", "Открытые ящики"],
+      ["minsk-project-01-light-straight-tehnika-podsvetka.webp", "Встроенная техника и подсветка светлого гарнитура", "Техника и подсветка"],
     ],
   },
   {
-    title: "Угловая кухня до потолка",
+    title: "Угловой гарнитур до потолка",
     text: "Формат для новостройки: угловая компоновка, высокие шкафы, рабочая зона и встроенная техника.",
     images: [
-      ["minsk-project-02-corner-ceiling-obshchiy-vid.webp", "Угловая кухня до потолка в Минске, общий вид", "Общий вид кухни"],
-      ["minsk-project-02-corner-ceiling-vtoroy-rakurs.webp", "Угловая кухня до потолка в Минске, второй ракурс", "Второй ракурс"],
-      ["minsk-project-02-corner-ceiling-fasady-krupno.webp", "Фасады кухни до потолка крупным планом", "Фасады крупно"],
-      ["minsk-project-02-corner-ceiling-stoleshnitsa-krupno.webp", "Столешница и фартук угловой кухни крупным планом", "Столешница и фартук"],
-      ["minsk-project-02-corner-ceiling-hranenie-otkryto.webp", "Открытое хранение угловой кухни до потолка", "Открытое хранение"],
-      ["minsk-project-02-corner-ceiling-tehnika-podsvetka.webp", "Встроенная техника и подсветка кухни до потолка", "Техника и подсветка"],
+      ["minsk-project-02-corner-ceiling-obshchiy-vid.webp", "Угловой гарнитур до потолка в Минске, общий вид", "Общий вид"],
+      ["minsk-project-02-corner-ceiling-vtoroy-rakurs.webp", "Угловой гарнитур до потолка в Минске, второй ракурс", "Второй ракурс"],
+      ["minsk-project-02-corner-ceiling-fasady-krupno.webp", "Фасады гарнитура до потолка крупным планом", "Фасады крупно"],
+      ["minsk-project-02-corner-ceiling-stoleshnitsa-krupno.webp", "Столешница и фартук углового гарнитура крупным планом", "Столешница и фартук"],
+      ["minsk-project-02-corner-ceiling-hranenie-otkryto.webp", "Открытое хранение углового гарнитура до потолка", "Открытое хранение"],
+      ["minsk-project-02-corner-ceiling-tehnika-podsvetka.webp", "Встроенная техника и подсветка гарнитура до потолка", "Техника и подсветка"],
     ],
   },
   {
-    title: "Темная кухня с древесными фасадами",
-    text: "Темная кухня с древесной фактурой для тех, кто ищет выразительный, но практичный интерьер.",
+    title: "Темный гарнитур с древесными фасадами",
+    text: "Темный проект с древесной фактурой для тех, кто ищет выразительный, но практичный интерьер.",
     images: [
-      ["minsk-project-03-dark-wood-obshchiy-vid.webp", "Темная кухня с древесными фасадами в Минске, общий вид", "Общий вид кухни"],
-      ["minsk-project-03-dark-wood-vtoroy-rakurs.webp", "Темная кухня с древесными фасадами, второй ракурс", "Второй ракурс"],
-      ["minsk-project-03-dark-wood-fasady-krupno.webp", "Древесные и темные матовые фасады кухни крупным планом", "Фасады крупно"],
-      ["minsk-project-03-dark-wood-stoleshnitsa-krupno.webp", "Темная столешница кухни крупным планом", "Столешница крупно"],
-      ["minsk-project-03-dark-wood-otkrytye-yashchiki.webp", "Открытые ящики темной кухни на заказ", "Открытые ящики"],
-      ["minsk-project-03-dark-wood-tehnika-podsvetka.webp", "Встроенная техника и теплая подсветка темной кухни", "Техника и подсветка"],
+      ["minsk-project-03-dark-wood-obshchiy-vid.webp", "Темный гарнитур с древесными фасадами в Минске, общий вид", "Общий вид"],
+      ["minsk-project-03-dark-wood-vtoroy-rakurs.webp", "Темный гарнитур с древесными фасадами, второй ракурс", "Второй ракурс"],
+      ["minsk-project-03-dark-wood-fasady-krupno.webp", "Древесные и темные матовые фасады гарнитура крупным планом", "Фасады крупно"],
+      ["minsk-project-03-dark-wood-stoleshnitsa-krupno.webp", "Темная столешница гарнитура крупным планом", "Столешница крупно"],
+      ["minsk-project-03-dark-wood-otkrytye-yashchiki.webp", "Открытые ящики темного гарнитура на заказ", "Открытые ящики"],
+      ["minsk-project-03-dark-wood-tehnika-podsvetka.webp", "Встроенная техника и теплая подсветка темного гарнитура", "Техника и подсветка"],
     ],
   },
   {
-    title: "Маленькая функциональная кухня",
-    text: "Компактная кухня для студии или небольшой квартиры: хранение, рабочая зона и встроенная техника без перегруза.",
+    title: "Маленький функциональный гарнитур",
+    text: "Компактное решение для студии или небольшой квартиры: хранение, рабочая зона и встроенная техника без перегруза.",
     images: [
-      ["minsk-project-04-small-functional-obshchiy-vid.webp", "Маленькая функциональная кухня на заказ в Минске, общий вид", "Общий вид кухни"],
-      ["minsk-project-04-small-functional-vtoroy-rakurs.webp", "Маленькая функциональная кухня в Минске, второй ракурс", "Второй ракурс"],
-      ["minsk-project-04-small-functional-fasady-krupno.webp", "Фасады маленькой кухни крупным планом", "Фасады крупно"],
-      ["minsk-project-04-small-functional-stoleshnitsa-krupno.webp", "Столешница маленькой кухни крупным планом", "Столешница крупно"],
-      ["minsk-project-04-small-functional-hranenie-otkryto.webp", "Открытое хранение маленькой кухни", "Открытое хранение"],
-      ["minsk-project-04-small-functional-tehnika-podsvetka.webp", "Встроенная техника и подсветка маленькой кухни", "Техника и подсветка"],
+      ["minsk-project-04-small-functional-obshchiy-vid.webp", "Маленький функциональный гарнитур на заказ в Минске, общий вид", "Общий вид"],
+      ["minsk-project-04-small-functional-vtoroy-rakurs.webp", "Маленький функциональный гарнитур в Минске, второй ракурс", "Второй ракурс"],
+      ["minsk-project-04-small-functional-fasady-krupno.webp", "Фасады маленького гарнитура крупным планом", "Фасады крупно"],
+      ["minsk-project-04-small-functional-stoleshnitsa-krupno.webp", "Столешница маленького гарнитура крупным планом", "Столешница крупно"],
+      ["minsk-project-04-small-functional-hranenie-otkryto.webp", "Открытое хранение маленького гарнитура", "Открытое хранение"],
+      ["minsk-project-04-small-functional-tehnika-podsvetka.webp", "Встроенная техника и подсветка маленького гарнитура", "Техника и подсветка"],
     ],
   },
   {
-    title: "Кухня-гостиная с островом",
-    text: "Островная кухня для просторной кухни-гостиной: общий вид, детали фасадов, столешница и хранение в острове.",
+    title: "Гостиная с островом",
+    text: "Островной проект для просторной кухни-гостиной: общий вид, детали фасадов, столешница и хранение в острове.",
     images: [
-      ["minsk-project-05-island-living-obshchiy-vid.webp", "Кухня-гостиная с островом в Минске, общий вид", "Общий вид кухни"],
-      ["minsk-project-05-island-living-vtoroy-rakurs.webp", "Кухня-гостиная с островом, второй ракурс", "Второй ракурс"],
-      ["minsk-project-05-island-living-fasady-krupno.webp", "Фасады кухни с островом крупным планом", "Фасады крупно"],
+      ["minsk-project-05-island-living-obshchiy-vid.webp", "Гостиная с островом в Минске, общий вид", "Общий вид"],
+      ["minsk-project-05-island-living-vtoroy-rakurs.webp", "Гостиная с островом, второй ракурс", "Второй ракурс"],
+      ["minsk-project-05-island-living-fasady-krupno.webp", "Фасады островного гарнитура крупным планом", "Фасады крупно"],
       ["minsk-project-05-island-living-ostrov-stoleshnitsa.webp", "Столешница острова и рабочая зона крупным планом", "Остров и столешница"],
-      ["minsk-project-05-island-living-yashchiki-ostrova.webp", "Выдвижные ящики острова в кухне-гостиной", "Ящики острова"],
-      ["minsk-project-05-island-living-tehnika-podsvetka.webp", "Встроенная техника и подсветка кухни с островом", "Техника и подсветка"],
+      ["minsk-project-05-island-living-yashchiki-ostrova.webp", "Выдвижные ящики острова в гостиной зоне", "Ящики острова"],
+      ["minsk-project-05-island-living-tehnika-podsvetka.webp", "Встроенная техника и подсветка островного проекта", "Техника и подсветка"],
     ],
   },
   {
-    title: "Современная кухня в частном доме",
-    text: "Просторная кухня для дома рядом с Минском: древесные фасады, каменная столешница и много закрытого хранения.",
+    title: "Современный гарнитур в частном доме",
+    text: "Просторное решение для дома рядом с Минском: древесные фасады, каменная столешница и много закрытого хранения.",
     images: [
-      ["minsk-project-06-private-house-obshchiy-vid.webp", "Современная кухня в частном доме рядом с Минском, общий вид", "Общий вид кухни"],
-      ["minsk-project-06-private-house-vtoroy-rakurs.webp", "Современная кухня в частном доме, второй ракурс", "Второй ракурс"],
-      ["minsk-project-06-private-house-fasady-derevo.webp", "Древесные фасады кухни в частном доме крупным планом", "Фасады дерево"],
-      ["minsk-project-06-private-house-stoleshnitsa-kamen.webp", "Каменная столешница кухни в частном доме крупным планом", "Каменная столешница"],
-      ["minsk-project-06-private-house-hranenie-otkryto.webp", "Открытое хранение кухни в частном доме", "Открытое хранение"],
-      ["minsk-project-06-private-house-tehnika-podsvetka.webp", "Встроенная техника и подсветка кухни в частном доме", "Техника и подсветка"],
+      ["minsk-project-06-private-house-obshchiy-vid.webp", "Современный гарнитур в частном доме рядом с Минском, общий вид", "Общий вид"],
+      ["minsk-project-06-private-house-vtoroy-rakurs.webp", "Современный гарнитур в частном доме, второй ракурс", "Второй ракурс"],
+      ["minsk-project-06-private-house-fasady-derevo.webp", "Древесные фасады гарнитура в частном доме крупным планом", "Фасады дерево"],
+      ["minsk-project-06-private-house-stoleshnitsa-kamen.webp", "Каменная столешница гарнитура в частном доме крупным планом", "Каменная столешница"],
+      ["minsk-project-06-private-house-hranenie-otkryto.webp", "Открытое хранение гарнитура в частном доме", "Открытое хранение"],
+      ["minsk-project-06-private-house-tehnika-podsvetka.webp", "Встроенная техника и подсветка гарнитура в частном доме", "Техника и подсветка"],
     ],
   },
 ].map((project) => ({
@@ -612,21 +612,21 @@ const minskRealProjectSeries = [
 }));
 
 const minskCloseDetailImages = [
-  ["minsk-detail-01-matovyy-fasad.webp", "Матовый фасад кухни на заказ крупным планом", "Матовый фасад"],
-  ["minsk-detail-02-drevesnaya-tekstura.webp", "Древесная текстура фасада кухни крупным планом", "Древесная текстура"],
-  ["minsk-detail-03-kamennaya-stoleshnitsa.webp", "Каменная столешница кухни крупным планом", "Каменная столешница"],
+  ["minsk-detail-01-matovyy-fasad.webp", "Матовый фасад гарнитура на заказ крупным планом", "Матовый фасад"],
+  ["minsk-detail-02-drevesnaya-tekstura.webp", "Древесная текстура фасада крупным планом", "Древесная текстура"],
+  ["minsk-detail-03-kamennaya-stoleshnitsa.webp", "Каменная столешница гарнитура крупным планом", "Каменная столешница"],
   ["minsk-detail-04-kromka-fasada.webp", "Кромка кухонного фасада крупным планом", "Кромка фасада"],
-  ["minsk-detail-05-profil-bez-ruchek.webp", "Профиль кухни без ручек крупным планом", "Профиль без ручек"],
+  ["minsk-detail-05-profil-bez-ruchek.webp", "Профиль фасада без ручек крупным планом", "Профиль без ручек"],
   ["minsk-detail-06-ruchka-krupno.webp", "Ручка кухонного фасада крупным планом", "Ручка крупным планом"],
   ["minsk-detail-07-petlya-shkafa.webp", "Петля кухонного шкафа крупным планом", "Петля шкафа"],
   ["minsk-detail-08-napravlyayushchie-yashchika.webp", "Направляющие кухонного ящика крупным планом", "Направляющие ящика"],
-  ["minsk-detail-09-vydvizhnoy-yashchik-vnutri.webp", "Выдвижной ящик кухни внутри", "Выдвижной ящик внутри"],
-  ["minsk-detail-10-hranenie-pod-moykoy.webp", "Система хранения под мойкой в кухне на заказ", "Хранение под мойкой"],
-  ["minsk-detail-11-yashchik-dlya-priborov.webp", "Внутренний ящик для приборов в кухне на заказ", "Ящик для приборов"],
-  ["minsk-detail-12-podsvetka-rabochey-zony.webp", "Подсветка рабочей зоны кухни крупным планом", "Подсветка рабочей зоны"],
-  ["minsk-detail-13-styk-stoleshnitsy.webp", "Стык столешницы кухни крупным планом", "Стык столешницы"],
-  ["minsk-detail-14-vstroennaya-rozetka.webp", "Встроенная розетка в столешнице кухни крупным планом", "Встроенная розетка"],
-  ["minsk-detail-15-fasad-i-svet-pod-uglom.webp", "Фасад кухни и теплый свет под углом", "Фасад и свет под углом"],
+  ["minsk-detail-09-vydvizhnoy-yashchik-vnutri.webp", "Выдвижной ящик гарнитура внутри", "Выдвижной ящик внутри"],
+  ["minsk-detail-10-hranenie-pod-moykoy.webp", "Система хранения под мойкой в гарнитуре на заказ", "Хранение под мойкой"],
+  ["minsk-detail-11-yashchik-dlya-priborov.webp", "Внутренний ящик для приборов в гарнитуре на заказ", "Ящик для приборов"],
+  ["minsk-detail-12-podsvetka-rabochey-zony.webp", "Подсветка рабочей зоны крупным планом", "Подсветка рабочей зоны"],
+  ["minsk-detail-13-styk-stoleshnitsy.webp", "Стык столешницы гарнитура крупным планом", "Стык столешницы"],
+  ["minsk-detail-14-vstroennaya-rozetka.webp", "Встроенная розетка в столешнице крупным планом", "Встроенная розетка"],
+  ["minsk-detail-15-fasad-i-svet-pod-uglom.webp", "Фасад и теплый свет под углом", "Фасад и свет под углом"],
 ].map(([fileName, alt, caption]) => ({
   src: `/uploads/locations/minsk-stage34/${fileName}`,
   alt,
@@ -639,70 +639,70 @@ const minskMechanismImages = [
     text: "Направляющие и доводчики помогают закрывать тяжелые ящики мягко, без хлопка и перекоса фасада.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-01-plavnoe-zakryvanie-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-01-plavnoe-zakryvanie-square.webp",
-    alt: "Ящик с плавным закрыванием на кухне на заказ в Минске",
+    alt: "Ящик с плавным закрыванием в гарнитуре на заказ в Минске",
   },
   {
     title: "Высокий выдвижной шкаф",
-    text: "Пенал-карго подходит для запасов, бутылок и круп, когда нужно использовать высоту кухни до потолка.",
+    text: "Пенал-карго подходит для запасов, бутылок и круп, когда нужно использовать высоту мебели до потолка.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-02-vysokiy-vydvizhnoy-shkaf-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-02-vysokiy-vydvizhnoy-shkaf-square.webp",
-    alt: "Высокий выдвижной шкаф для кухни на заказ в Минске",
+    alt: "Высокий выдвижной шкаф для гарнитура на заказ в Минске",
   },
   {
     title: "Угловой механизм хранения",
     text: "Выдвижные полки в углу дают доступ к глубокой зоне, где обычные полки быстро становятся неудобными.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-03-uglovoy-mehanizm-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-03-uglovoy-mehanizm-square.webp",
-    alt: "Угловой механизм хранения в кухне на заказ",
+    alt: "Угловой механизм хранения в гарнитуре на заказ",
   },
   {
     title: "Подъемный фасад",
-    text: "Верхний фасад поднимается вверх и не мешает у рабочей зоны, особенно в компактной кухне.",
+    text: "Верхний фасад поднимается вверх и не мешает у рабочей зоны, особенно в компактном помещении.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-04-podemnyy-fasad-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-04-podemnyy-fasad-square.webp",
-    alt: "Подъемный фасад верхнего шкафа кухни",
+    alt: "Подъемный фасад верхнего шкафа гарнитура",
   },
   {
     title: "Хранение под мойкой",
     text: "Под раковиной заранее учитываем сифон, фильтр, мусорные контейнеры и бытовую химию.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-05-hranenie-pod-moykoy-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-05-hranenie-pod-moykoy-square.webp",
-    alt: "Система хранения под мойкой на кухне",
+    alt: "Система хранения под мойкой в нижнем модуле",
   },
   {
     title: "Органайзер для приборов",
     text: "Внутреннее наполнение подбирается под столовые приборы, ножи и ежедневные мелочи, а не случайный размер ящика.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-06-organayzer-dlya-priborov-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-06-organayzer-dlya-priborov-square.webp",
-    alt: "Органайзер для приборов в выдвижном ящике кухни",
+    alt: "Органайзер для приборов в выдвижном ящике гарнитура",
   },
   {
     title: "Встроенный холодильник",
-    text: "Фасад закрывает технику в одну линию с кухней, а проект учитывает вентиляционные зазоры и открывание.",
+    text: "Фасад закрывает технику в одну линию с мебелью, а проект учитывает вентиляционные зазоры и открывание.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-07-vstroennyy-holodilnik-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-07-vstroennyy-holodilnik-square.webp",
-    alt: "Встроенный холодильник за фасадом кухни",
+    alt: "Встроенный холодильник за фасадом гарнитура",
   },
   {
     title: "Встроенная посудомойка",
     text: "Посудомоечную машину привязываем к воде, электрике, фасаду и соседним модулям еще на этапе проекта.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-08-vstroennaya-posudomoyka-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-08-vstroennaya-posudomoyka-square.webp",
-    alt: "Встроенная посудомоечная машина за фасадом кухни",
+    alt: "Встроенная посудомоечная машина за фасадом гарнитура",
   },
   {
     title: "Подсветка рабочей зоны",
-    text: "Подсветка под верхними шкафами помогает готовить без тени от человека и делает кухню спокойнее вечером.",
+    text: "Подсветка под верхними шкафами помогает готовить без тени от человека и делает рабочую зону спокойнее вечером.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-09-podsvetka-rabochey-zony-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-09-podsvetka-rabochey-zony-square.webp",
-    alt: "Подсветка рабочей зоны кухни на заказ",
+    alt: "Подсветка рабочей зоны гарнитура на заказ",
   },
   {
     title: "Выдвижная корзина",
     text: "Узкие модули можно использовать под масла, соусы, бутылки и хозяйственные мелочи рядом с рабочей зоной.",
     mobileSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-10-vydvizhnaya-korzina-mobile.webp",
     squareSrc: "/uploads/locations/minsk-stage56/minsk-mechanism-10-vydvizhnaya-korzina-square.webp",
-    alt: "Выдвижная корзина в нижнем шкафу кухни",
+    alt: "Выдвижная корзина в нижнем шкафу гарнитура",
   },
 ];
 
@@ -711,62 +711,62 @@ const minskMeasurementImages = [
     title: "Выезд на адрес",
     text: "Замерщик приезжает в квартиру или дом, уточняет готовность стен и фиксирует исходные условия помещения.",
     src: "/uploads/locations/minsk-stage56/minsk-measurement-01-vhod-v-kvartiru-mobile.webp",
-    alt: "Замерщик входит в квартиру для замера кухни в Минске",
+    alt: "Замерщик входит в квартиру для замера мебели в Минске",
   },
   {
     title: "Лазерный замер стен",
     text: "Проверяем длину стен, проемы, выступы и расстояния, чтобы проект не расходился с реальным помещением.",
     src: "/uploads/locations/minsk-stage56/minsk-measurement-02-lazernaya-ruletka-mobile.webp",
-    alt: "Замер стен лазерной рулеткой перед проектом кухни",
+    alt: "Замер стен лазерной рулеткой перед проектом гарнитура",
   },
   {
     title: "Углы и высота",
-    text: "Отдельно смотрим углы, высоту потолка, перепады и места, где кухня до потолка требует запаса.",
+    text: "Отдельно смотрим углы, высоту потолка, перепады и места, где шкафы до потолка требуют запаса.",
     src: "/uploads/locations/minsk-stage56/minsk-measurement-03-ugly-i-vysota-mobile.webp",
-    alt: "Проверка углов и высоты потолка перед заказом кухни",
+    alt: "Проверка углов и высоты потолка перед заказом гарнитура",
   },
   {
     title: "Вода, розетки, вентиляция",
     text: "Сверяем выводы воды, электрику и вентиляционный канал, чтобы техника, мойка и вытяжка встали без переделок.",
     src: "/uploads/locations/minsk-stage56/minsk-measurement-04-kommunikatsii-mobile.webp",
-    alt: "Проверка воды, розеток и вентиляции перед проектом кухни",
+    alt: "Проверка воды, розеток и вентиляции перед проектом гарнитура",
   },
   {
     title: "Обсуждение планировки",
     text: "После замера согласуем логику хранения, расположение техники, высоту рабочей зоны и важные привычки семьи.",
     src: "/uploads/locations/minsk-stage56/minsk-measurement-05-obsuzhdenie-planirovki-mobile.webp",
-    alt: "Обсуждение планировки кухни с клиентом после замера",
+    alt: "Обсуждение планировки гарнитура с клиентом после замера",
   },
 ];
 
 const minskProductionImages = [
   {
     title: "Раскрой мебельных деталей",
-    text: "Детали режутся под проект кухни, чтобы размеры модулей совпадали с замером и будущей планировкой.",
+    text: "Детали режутся под проект, чтобы размеры модулей совпадали с замером и будущей планировкой.",
     desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-01-raskroy-detalei-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-01-raskroy-detalei-mobile.webp",
-    alt: "Раскрой мебельных деталей для кухни на заказ в чистой мастерской",
+    alt: "Раскрой мебельных деталей для гарнитура на заказ в чистой мастерской",
   },
   {
-    title: "Сборка корпуса кухни",
+    title: "Сборка корпуса гарнитура",
     text: "Корпуса собираются и проверяются до доставки, чтобы на объекте монтаж шел быстрее и аккуратнее.",
     desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-02-sborka-korpusa-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-02-sborka-korpusa-mobile.webp",
-    alt: "Сборка корпуса кухни на заказ в мебельной мастерской",
+    alt: "Сборка корпуса гарнитура на заказ в мебельной мастерской",
   },
   {
     title: "Установка фасадов",
     text: "Фасады примеряются по месту, после чего мастер проверяет зазоры, петли и линию открывания.",
     desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-03-ustanovka-fasadov-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-03-ustanovka-fasadov-mobile.webp",
-    alt: "Установка фасадов кухни на заказ в квартире в Минске",
+    alt: "Установка фасадов гарнитура на заказ в квартире в Минске",
   },
   {
     title: "Проверка кромки и деталей",
     text: "Кромка и торцы осматриваются отдельно: это влияет на внешний вид, долговечность и ощущение качества.",
     desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-04-proverka-kromki-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-04-proverka-kromki-mobile.webp",
-    alt: "Проверка кромки и мебельных деталей перед сборкой кухни",
+    alt: "Проверка кромки и мебельных деталей перед сборкой гарнитура",
   },
   {
     title: "Комплектация перед доставкой",
@@ -776,25 +776,25 @@ const minskProductionImages = [
     alt: "Комплектация и упаковка кухонных модулей перед доставкой",
   },
   {
-    title: "Доставка кухонных модулей",
+    title: "Доставка мебельных модулей",
     text: "Упакованные модули заносятся аккуратно, с учетом лифта, подъезда, этажа и защиты поверхностей.",
     desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-06-dostavka-moduley-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-06-dostavka-moduley-mobile.webp",
-    alt: "Доставка упакованных кухонных модулей в квартиру в Минске",
+    alt: "Доставка упакованных мебельных модулей в квартиру в Минске",
   },
   {
     title: "Монтаж шкафов",
-    text: "Шкафы выставляются по уровню, крепятся к стенам и собираются в единую линию будущей кухни.",
+    text: "Шкафы выставляются по уровню, крепятся к стенам и собираются в единую линию будущего гарнитура.",
     desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-07-montazh-shkafov-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-07-montazh-shkafov-mobile.webp",
-    alt: "Монтаж верхних шкафов кухни на заказ в современной квартире",
+    alt: "Монтаж верхних шкафов гарнитура на заказ в современной квартире",
   },
   {
     title: "Регулировка фасадов",
     text: "После монтажа проверяются зазоры, доводчики, направляющие и плавность открывания ящиков и дверей.",
     desktopSrc: "/uploads/locations/minsk-stage78/minsk-production-08-regulirovka-fasadov-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-stage78/minsk-production-08-regulirovka-fasadov-mobile.webp",
-    alt: "Регулировка фасадов и проверка механизмов после монтажа кухни",
+    alt: "Регулировка фасадов и проверка механизмов после монтажа гарнитура",
   },
 ];
 
@@ -1105,8 +1105,8 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Визуальная концепция"
-              title="Варианты кухни на заказ в Минске"
-              text="Подобрали четыре понятных направления: светлая кухня, темная кухня с древесной фактурой, кухня-гостиная с островом и кухня до потолка."
+              title="Варианты гарнитура на заказ в Минске"
+              text="Подобрали четыре понятных направления: светлый проект, темная древесная фактура, гостиная с островом и шкафы до потолка."
             />
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {minskHeroStoryImages.map((image) => (
@@ -1142,7 +1142,7 @@ export function RegionalLocationPage({
             <SectionTitle
               eyebrow="Реальные проекты"
               title="Фото серий кухонь на заказ в Минске"
-              text="Шесть визуальных серий показывают разные сценарии покупки: прямая кухня, угловая до потолка, темная с древесными фасадами, маленькая кухня, кухня-гостиная с островом и современная кухня для дома."
+              text="Шесть визуальных серий показывают разные сценарии покупки: прямой гарнитур, угловая компоновка до потолка, темные древесные фасады, компактное решение, остров и современный проект для дома."
             />
             <div className="space-y-12">
               {minskRealProjectSeries.map((project) => (
@@ -1160,9 +1160,9 @@ export function RegionalLocationPage({
         <section className="bg-muted/30 section-padding">
           <div className="container-site">
             <SectionTitle
-              eyebrow="Рассмотрите кухню вблизи"
+              eyebrow="Рассмотрите детали вблизи"
               title="Материалы, фасады, столешницы и фурнитура крупным планом"
-              text="Крупные фото помогают оценить то, что влияет на цену и ощущение кухни: матовые фасады, древесную текстуру, каменную столешницу, кромку, профиль без ручек, петли, направляющие, хранение, подсветку и встроенные розетки."
+              text="Крупные фото помогают оценить то, что влияет на цену и ощущение мебели: матовые фасады, древесную текстуру, каменную столешницу, кромку, профиль без ручек, петли, направляющие, хранение, подсветку и встроенные розетки."
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {minskCloseDetailImages.map((image) => (
@@ -1197,8 +1197,8 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Этап 5"
-              title="Механизмы и наполнение кухни на заказ"
-              text="Показываем не только фасады, но и то, как кухня работает каждый день: ящики, подъемные фасады, угловые механизмы, хранение под мойкой, встроенную технику, подсветку и выдвижные системы."
+              title="Механизмы и наполнение гарнитура на заказ"
+              text="Показываем не только фасады, но и то, как мебель работает каждый день: ящики, подъемные фасады, угловые механизмы, хранение под мойкой, встроенную технику, подсветку и выдвижные системы."
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {minskMechanismImages.map((image) => (
@@ -1238,8 +1238,8 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Этап 6"
-              title="Как проходит замер кухни в Минске"
-              text="Замер нужен не только для ширины и высоты. На месте проверяем углы, коммуникации, розетки, вентиляцию, открывание фасадов и сценарий будущей кухни, чтобы смета и проект были ближе к реальному монтажу."
+              title="Как проходит замер мебели в Минске"
+              text="Замер нужен не только для ширины и высоты. На месте проверяем углы, коммуникации, розетки, вентиляцию, открывание фасадов и сценарий будущего гарнитура, чтобы смета и проект были ближе к реальному монтажу."
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {minskMeasurementImages.map((image) => (
@@ -1276,8 +1276,8 @@ export function RegionalLocationPage({
           <div className="container-site">
             <SectionTitle
               eyebrow="Этап 7"
-              title="Производство, доставка и монтаж кухни"
-              text="Показываем путь кухни после проекта: раскрой деталей, сборку корпуса, проверку кромки, комплектацию, доставку, монтаж шкафов и регулировку фасадов перед сдачей."
+              title="Производство, доставка и монтаж"
+              text="Показываем путь заказа после проекта: раскрой деталей, сборку корпуса, проверку кромки, комплектацию, доставку, монтаж шкафов и регулировку фасадов перед сдачей."
             />
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {minskProductionImages.map((image) => (
@@ -1372,7 +1372,7 @@ export function RegionalLocationPage({
               href="/catalog"
               className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
             >
-              Выбрать тип кухни
+              Выбрать тип гарнитура
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
