@@ -244,7 +244,7 @@ function buildMetaDescription(project: PortfolioProject) {
     size,
     material,
   ].filter((item) => item && !isGenericPortfolioPhrase(item));
-  const description = `${baseTitle}, ${projectMarker}: ${details.join(", ")}. Рассчитаем похожую кухню под ваши размеры и бюджет.`;
+  const description = `${baseTitle}, ${projectMarker}: ${details.join(", ")}. Рассчитаем похожую кухню под ваш размер.`;
 
   return trimMetaDescription(description, description);
 }
