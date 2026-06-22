@@ -194,22 +194,57 @@ function portfolioBaseTitle(project: PortfolioProject) {
     .trim();
 }
 
+function normalizePortfolioMetaValue(value: string | null | undefined) {
+  const trimmed = value?.trim();
+  if (!trimmed) return "";
+
+  const colorLabels: Record<string, string> = {
+    belaya: "белые фасады",
+    bezhevaya: "бежевые фасады",
+    derevo: "фасады под дерево",
+    kombinacii: "комбинированные фасады",
+    seraya: "серые фасады",
+    zelenaya: "зеленые фасады",
+  };
+  const lower = trimmed.toLowerCase();
+
+  return colorLabels[lower] ?? trimmed;
+}
+
+function isGenericPortfolioPhrase(value: string | null | undefined) {
+  const normalized = value?.trim().toLowerCase() || "";
+
+  return (
+    !normalized ||
+    normalized.startsWith("краткое описание проекта") ||
+    normalized.includes("получился аккуратный визуальный пример кухни") ||
+    normalized.includes("можно использовать как ориентир для будущего проекта") ||
+    normalized.startsWith("визуальный пример кухни по индивидуальным размерам")
+  );
+}
+
 function buildMetaDescription(project: PortfolioProject) {
   const projectMarker = projectNumberFromSlug(project.slug);
   const baseTitle = portfolioBaseTitle(project);
+  const type = normalizePortfolioMetaValue(project.kitchenType);
+  const style = normalizePortfolioMetaValue(project.style);
+  const color = normalizePortfolioMetaValue(project.color);
+  const size = normalizePortfolioMetaValue(project.size);
+  const material = normalizePortfolioMetaValue(
+    project.materials.length > 0 ? project.materials[0] : project.facades,
+  );
+  const location = [normalizePortfolioMetaValue(project.city), normalizePortfolioMetaValue(project.district)]
+    .filter(Boolean)
+    .join(", ");
   const details = [
-    baseTitle,
-    projectMarker,
-    project.city,
-    project.district,
-    project.kitchenType,
-    project.style,
-    project.color,
-    project.size,
-    project.materials.length > 0 ? project.materials.join(", ") : project.facades,
-    project.features[0],
-  ].filter(Boolean);
-  const description = `✨ ${details.join(", ")}. Рассчитаем похожую кухню под ваши размеры, материалы и бюджет — без шаблонной сметы на коленке.`;
+    location,
+    type,
+    style ? `стиль ${style}` : "",
+    color,
+    size,
+    material,
+  ].filter((item) => item && !isGenericPortfolioPhrase(item));
+  const description = `${baseTitle}, ${projectMarker}: ${details.join(", ")}. Рассчитаем похожую кухню под ваши размеры и бюджет.`;
 
   return trimMetaDescription(description, description);
 }
@@ -237,9 +272,9 @@ function isGenericPortfolioDescription(description: string | null | undefined) {
   const value = description?.trim().toLowerCase() || "";
 
   return (
+    isGenericPortfolioPhrase(description) ||
     value ===
-      "визуальный пример кухни по индивидуальным размерам. точные размеры, материалы, комплектация и бюджет уточняются после замера и согласования проекта." ||
-    value.startsWith("визуальный пример кухни по индивидуальным размерам")
+      "визуальный пример кухни по индивидуальным размерам. точные размеры, материалы, комплектация и бюджет уточняются после замера и согласования проекта."
   );
 }
 
