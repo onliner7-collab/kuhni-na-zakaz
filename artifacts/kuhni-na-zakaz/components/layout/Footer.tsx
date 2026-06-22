@@ -67,7 +67,6 @@ export function Footer() {
             <Link
               href="/"
               className="flex items-center gap-2"
-              aria-label="КухниBY — производитель кухонь на заказ в Беларуси"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-black text-white">
                 К

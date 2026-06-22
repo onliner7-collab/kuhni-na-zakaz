@@ -422,24 +422,28 @@ const minskHeroStoryImages = [
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-mobile.webp",
+    mobileSmallSrc: "/uploads/locations/minsk-3d/minsk-hero-light-20260619-mobile-480.webp",
     alt: "Светлый гарнитур на заказ в Минске",
     caption: "Светлый гарнитур",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-mobile.webp",
+    mobileSmallSrc: "/uploads/locations/minsk-3d/minsk-hero-dark-wood-20260619-mobile-480.webp",
     alt: "Темный гарнитур на заказ в Минске с древесной фактурой",
     caption: "Темный гарнитур с древесной фактурой",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-mobile.webp",
+    mobileSmallSrc: "/uploads/locations/minsk-3d/minsk-hero-island-20260619-mobile-480.webp",
     alt: "Гарнитур для кухни-гостиной с островом на заказ в Минске",
     caption: "Гостиная с островом",
   },
   {
     src: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-desktop.webp",
     mobileSrc: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-mobile.webp",
+    mobileSmallSrc: "/uploads/locations/minsk-3d/minsk-hero-floor-to-ceiling-20260619-mobile-480.webp",
     alt: "Гарнитур до потолка на заказ в Минске",
     caption: "Гарнитур до потолка",
   },
@@ -848,6 +852,7 @@ export function RegionalLocationPage({
   const isBorisov = location.slug === "borisov";
   const minskHeroImage = "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp";
   const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-mobile-background-20260620.webp";
+  const minskHeroMobileSmallImage = "/uploads/locations/minsk-3d/minsk-hero-mobile-background-20260620-480.webp";
   const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-20260617.webp";
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
   const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
@@ -950,7 +955,7 @@ export function RegionalLocationPage({
           >
             {isMinsk ? (
               <picture>
-                <source media="(max-width: 767px)" srcSet={minskHeroMobileImage} />
+                <source media="(max-width: 767px)" srcSet={minskHeroMobileSmallImage} />
                 <img
                   src={heroImage}
                   alt={heroAlt}
@@ -1117,7 +1122,10 @@ export function RegionalLocationPage({
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-stone-900 md:aspect-[16/10]">
                     <picture>
-                      <source media="(max-width: 767px)" srcSet={image.mobileSrc} />
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={image.mobileSmallSrc}
+                      />
                       <img
                         src={image.src}
                         alt={image.alt}

@@ -158,6 +158,8 @@ const LOCAL_BUSINESS_IMAGE =
   "/uploads/seo-showcase/home-hero-dark-kitchen-2026.webp";
 const MOBILE_HERO_IMAGE =
   "/uploads/seo-showcase/home-hero-mobile-kitchen-2026.webp";
+const MOBILE_HERO_IMAGE_480 =
+  "/uploads/seo-showcase/home-hero-mobile-kitchen-2026-480.webp";
 const HOME_ORIGIN = CANONICAL_SITE_URL;
 const HOME_URL = canonicalSiteUrl("/");
 
@@ -349,6 +351,10 @@ export default async function HomePage() {
       <section className="relative overflow-hidden bg-[#17130f] pt-32 text-white lg:pt-40">
         <picture className="absolute inset-0 block">
           <source media="(min-width: 1024px)" srcSet={LOCAL_BUSINESS_IMAGE} />
+          <source
+            media="(max-width: 767px)"
+            srcSet={MOBILE_HERO_IMAGE_480}
+          />
           <img
             src={MOBILE_HERO_IMAGE}
             alt={HERO_KITCHEN_ALT}
@@ -376,7 +382,7 @@ export default async function HomePage() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/contacts#form"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#c99a62] px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-black/25 transition-all hover:bg-[#b9874f] active:scale-95"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#8f5f2c] px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-black/25 transition-all hover:bg-[#7d5123] active:scale-95"
                 data-testid="hero-cta-order"
               >
                 Рассчитать гарнитур
