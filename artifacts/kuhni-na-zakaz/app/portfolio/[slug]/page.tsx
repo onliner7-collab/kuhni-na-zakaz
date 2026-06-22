@@ -226,7 +226,6 @@ function isGenericPortfolioPhrase(value: string | null | undefined) {
 function buildMetaDescription(project: PortfolioProject) {
   const projectMarker = projectNumberFromSlug(project.slug);
   const baseTitle = portfolioBaseTitle(project);
-  const type = normalizePortfolioMetaValue(project.kitchenType);
   const style = normalizePortfolioMetaValue(project.style);
   const color = normalizePortfolioMetaValue(project.color);
   const size = normalizePortfolioMetaValue(project.size);
@@ -238,7 +237,6 @@ function buildMetaDescription(project: PortfolioProject) {
     .join(", ");
   const details = [
     location,
-    type,
     style ? `стиль ${style}` : "",
     color,
     size,
