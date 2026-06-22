@@ -79,6 +79,26 @@ const nextConfig: NextConfig = {
         statusCode: 301,
       },
       {
+        source: "/preload",
+        destination: "/",
+        statusCode: 301,
+      },
+      {
+        source: "/catalog/preload",
+        destination: "/catalog",
+        statusCode: 301,
+      },
+      {
+        source: "/locations/preload",
+        destination: "/locations",
+        statusCode: 301,
+      },
+      {
+        source: "/https\\:/kuhni.minsk.by/images/blog/:image*",
+        destination: "/images/blog/:image*",
+        statusCode: 301,
+      },
+      {
         source: "/configurator",
         destination: "/design-proekt-kuhni",
         statusCode: 301,
