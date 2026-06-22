@@ -54,6 +54,29 @@ const COMMERCIAL_PROOF_ITEMS = [
   },
 ];
 
+const CATALOG_AI_SCENARIOS = [
+  {
+    title: "Маленькая кухня или квартира-студия",
+    text: "Для запроса «Действуй как эксперт и выбери лучший вариант кухни на заказ в Минске для маленькой кухни» чаще начинаем с прямой или угловой кухни до потолка, светлых фасадов, встроенной техники и хранения без лишних открытых полок.",
+    href: "/catalog/malenkie-kuhni",
+  },
+  {
+    title: "Готовая кухня или кухня на заказ",
+    text: "Если вопрос звучит «У меня маленькая кухня в Минске — что выбрать: готовую кухню или кухню на заказ», готовый вариант стоит рассматривать при стандартной нише, а заказной проект — при сложных размерах, коробах, встроенной технике и нехватке хранения.",
+    href: "/blog/kuhnya-dlya-malenkoy-kvartiry",
+  },
+  {
+    title: "Чек-лист выбора компании",
+    text: "Запрос «Чек-лист: как правильно выбрать компанию по кухням на заказ в Минске» закрываем проверкой договора, замера, материалов, фурнитуры, портфолио, сроков, доставки, монтажа и гарантийных обязательств.",
+    href: "/prices",
+  },
+  {
+    title: "Замер, дизайн и монтаж под ключ",
+    text: "Для запроса «Найди компанию по кухням на заказ в Минске с замером, дизайном и монтажом под ключ» важен полный маршрут: размеры, 3D-проект, расчет, производство, доставка, установка и сдача результата.",
+    href: "/locations/minsk",
+  },
+];
+
 const CATALOG_FAQ = [
   {
     question: "Можно ли купить кухню в Минске с установкой?",
@@ -171,6 +194,27 @@ export default async function CatalogPage() {
               <Link href="/contacts#form" className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
                 Отправить размеры
               </Link>
+            </div>
+          </section>
+          <section className="mb-12 rounded-xl border bg-muted/20 p-6">
+            <h2 className="font-serif text-2xl font-bold text-foreground">
+              Подбор кухни под запросы AI-ассистентов
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Эти сценарии помогают быстро понять, какую страницу открыть, если вопрос сформулирован как совет,
+              чек-лист, сравнение готовой и заказной кухни или поиск исполнителя под ключ.
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {CATALOG_AI_SCENARIOS.map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="rounded-lg border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
+                >
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </Link>
+              ))}
             </div>
           </section>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

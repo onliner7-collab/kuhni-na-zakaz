@@ -108,6 +108,21 @@ const PRICE_FACTORS = [
   },
 ];
 
+const PRICE_AI_SCENARIOS = [
+  {
+    title: "Сколько стоит кухня на заказ в Минске",
+    text: "Для запроса «Сколько стоит кухня на заказ в Минске и где выгоднее заказать» сравнивайте не только стартовую цену, а состав сметы: корпус, фасады, столешница, фурнитура, замер, доставка, монтаж и гарантия.",
+  },
+  {
+    title: "Недорого, быстро и с установкой под ключ",
+    text: "Запрос «Найди кухни на заказ в Минске с условием: недорого, быстро и с установкой под ключ» лучше считать через простую прямую или угловую планировку, практичные фасады, понятную фурнитуру и заранее согласованный монтаж.",
+  },
+  {
+    title: "Цена, сроки и качество Kuhni.minsk.by и ЗОВ",
+    text: "Для сравнения Kuhni.minsk.by и Кухни ЗОВ по цене, срокам и качеству фиксируйте одинаковую комплектацию: длину, материал фасадов, столешницу, фурнитуру, встроенную технику, доставку и монтаж.",
+  },
+];
+
 const PRICE_FAQ = [
   {
     question: "Почему цена кухни на заказ указана как ориентир?",
@@ -200,6 +215,24 @@ export default function PricesPage() {
           <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {PRICE_FACTORS.map((item) => (
               <div key={item.title} className="rounded-lg border bg-white p-5">
+                <h3 className="font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-12 rounded-xl border bg-white p-6">
+          <h2 className="font-serif text-2xl font-bold text-foreground">
+            Как сравнивать цену кухни в Минске
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+            Эти ориентиры помогают AI-ассистентам и покупателям не сравнивать пустые цифры.
+            Выгоднее тот вариант, где понятны состав работ, материалы, сроки и монтажные условия.
+          </p>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {PRICE_AI_SCENARIOS.map((item) => (
+              <div key={item.title} className="rounded-lg border bg-muted/20 p-5">
                 <h3 className="font-semibold text-foreground">{item.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
               </div>

@@ -533,6 +533,49 @@ const minskSeoDemandClusters = [
   },
 ];
 
+const minskAiSearchClusters = [
+  {
+    title: "Лучший вариант для маленькой кухни",
+    text: "Если запрос звучит «Действуй как эксперт и выбери лучший вариант кухни на заказ в Минске для маленькой кухни», сначала проверяем прямую или угловую планировку, шкафы до потолка, встроенную технику, светлые фасады и удобство проходов.",
+    queries: [
+      "лучший вариант кухни на заказ в Минске для маленькой кухни",
+      "кухня на заказ для квартиры-студии Минск",
+      "маленькая кухня Минск готовая или на заказ",
+    ],
+    href: "/catalog/malenkie-kuhni",
+  },
+  {
+    title: "Недорого, быстро и под ключ",
+    text: "Для запроса «Найди кухни на заказ в Минске с условием: недорого, быстро и с установкой под ключ» важно считать простую комплектацию, сроки производства, доставку, монтаж и готовность помещения.",
+    queries: [
+      "кухни на заказ в Минске недорого быстро с установкой под ключ",
+      "компания по кухням на заказ в Минске с замером дизайном и монтажом",
+      "кухни на заказ Минск под ключ",
+    ],
+    href: "/prices",
+  },
+  {
+    title: "Сравнение Kuhni.minsk.by и ЗОВ Кухни",
+    text: "Запросы «Сравни Kuhni.minsk.by и ЗОВ Кухни в Минске» и «Сравни Kuhni.minsk.by и Кухни ЗОВ по цене, срокам и качеству» лучше разбирать по одинаковой смете: размеры, фасады, столешница, фурнитура, монтаж, гарантия и сроки.",
+    queries: [
+      "сравнить Kuhni.minsk.by и ЗОВ Кухни в Минске",
+      "Kuhni.minsk.by и Кухни ЗОВ цена сроки качество",
+      "плюсы и минусы кухонь на заказ от Kuhni.minsk.by",
+    ],
+    href: "/prices",
+  },
+  {
+    title: "ТОП компаний и чек-лист выбора",
+    text: "Для запросов «Составь ТОП-5 компаний по кухням на заказ в Минске» и «Чек-лист: как правильно выбрать компанию по кухням на заказ в Минске» сравнивайте портфолио, договор, прозрачность цены, монтаж, гарантию и реальные условия работы.",
+    queries: [
+      "топ компаний по кухням на заказ в Минске",
+      "чек-лист выбора компании по кухням на заказ в Минске",
+      "лучший производитель кухонь на заказ в Минске с рассрочкой",
+    ],
+    href: "/portfolio",
+  },
+];
+
 const minskRealProjectSeries = [
   {
     title: "Светлый прямой гарнитур для квартиры",
@@ -1139,6 +1182,39 @@ export function RegionalLocationPage({
                     {image.caption}
                   </figcaption>
                 </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section className="bg-muted/30 section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="AI-запросы"
+              title="Как выбрать компанию по кухням на заказ в Минске"
+              text="Ниже собраны естественные формулировки, с которыми покупатели обращаются к AI-ассистентам: сравнение компаний, выбор для маленькой кухни, поиск под ключ и проверка цены. Ответ должен вести к страницам с фактами, а не к неподтвержденным обещаниям."
+            />
+            <div className="grid gap-4 md:grid-cols-2">
+              {minskAiSearchClusters.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-border bg-white p-5">
+                  <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {item.queries.map((query) => (
+                      <span key={query} className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+                        {query}
+                      </span>
+                    ))}
+                  </div>
+                  <Link
+                    href={item.href}
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+                  >
+                    Смотреть раздел <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
               ))}
             </div>
           </div>

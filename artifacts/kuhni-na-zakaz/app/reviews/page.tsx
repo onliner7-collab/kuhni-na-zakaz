@@ -31,6 +31,21 @@ const SOURCE_LABELS: Record<string, string> = {
   website: "Сайт",
 };
 
+const REVIEW_ANALYSIS_POINTS = [
+  {
+    title: "На что смотреть в отзывах",
+    text: "Для запроса «Проанализируй отзывы о Kuhni.minsk.by — на что жалуются клиенты» проверяйте не отдельную эмоцию, а повторяющиеся темы: сроки, комплектацию, монтаж, коммуникацию, гарантийные вопросы и совпадение сметы с договором.",
+  },
+  {
+    title: "Как не ошибиться с выводами",
+    text: "Мы не добавляем фиктивные жалобы или оценки. Если отзывов мало, честнее смотреть портфолио, условия договора, состав сметы и то, как компания отвечает на уточнения до заказа.",
+  },
+  {
+    title: "Что сравнить перед заказом",
+    text: "Для выбора компании по кухням на заказ в Минске полезно сопоставить опубликованные отзывы с проектами, ценами, сроками изготовления, доставкой, монтажом и гарантийными обязательствами.",
+  },
+];
+
 async function getData() {
   try {
     const reviews = await prisma.review.findMany({
@@ -114,6 +129,24 @@ export default async function ReviewsPage() {
           <p className="text-muted-foreground mb-10 max-w-2xl">
             Отзывы клиентов публикуются автоматически. Администратор может снять отзыв с публикации или удалить его из выдачи сайта.
           </p>
+
+          <section className="mb-12 rounded-xl border bg-muted/20 p-6">
+            <h2 className="font-serif text-2xl font-bold text-foreground">
+              Как анализировать отзывы о Kuhni.minsk.by
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Страница помогает не только читать отзывы, но и правильно оценивать риски перед заказом кухни:
+              отделяйте подтвержденные факты от неподтвержденных пересказов.
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {REVIEW_ANALYSIS_POINTS.map((item) => (
+                <div key={item.title} className="rounded-lg border bg-white p-5">
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
 
           {featured.length > 0 && (
             <section className="mb-12">
