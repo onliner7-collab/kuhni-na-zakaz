@@ -1105,9 +1105,9 @@ export function RegionalLocationPage({
         <section className="bg-white pb-12 md:pb-16">
           <div className="container-site">
             <SectionTitle
-              eyebrow="Визуальная концепция"
-              title="Варианты гарнитура на заказ в Минске"
-              text="Подобрали четыре понятных направления: светлый проект, темная древесная фактура, гостиная с островом и шкафы до потолка."
+              eyebrow="Шаг 1"
+              title="Выбор кухни, планировки и бюджета"
+              text="Сначала выбираем тип гарнитура под помещение: прямой, угловой, до потолка, маленький, с островом или встроенной техникой. На этом этапе удобно сравнить каталог кухонь в Минске, материалы, фасады, столешницы, фурнитуру, готовые решения и ориентир цены перед точным расчетом."
             />
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {minskHeroStoryImages.map((image) => (
@@ -1141,29 +1141,9 @@ export function RegionalLocationPage({
         <section className="bg-white section-padding">
           <div className="container-site">
             <SectionTitle
-              eyebrow="Реальные проекты"
-              title="Фото серий гарнитуров на заказ в Минске"
-              text="Шесть визуальных серий показывают разные сценарии покупки: прямой гарнитур, угловая компоновка до потолка, темные древесные фасады, компактное решение, остров и современный проект для дома."
-            />
-            <div className="space-y-12">
-              {minskRealProjectSeries.map((project) => (
-                <div key={project.title}>
-                  <SectionTitle title={project.title} text={project.text} />
-                  <RegionalVisualStoryGallery images={project.images} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {isMinsk && (
-        <section className="bg-muted/30 section-padding">
-          <div className="container-site">
-            <SectionTitle
-              eyebrow="Рассмотрите детали вблизи"
+              eyebrow="Шаг 1"
               title="Материалы, фасады, столешницы и фурнитура крупным планом"
-              text="Крупные фото помогают оценить то, что влияет на цену и ощущение мебели: матовые фасады, древесную текстуру, каменную столешницу, кромку, профиль без ручек, петли, направляющие, хранение, подсветку и встроенные розетки."
+              text="После выбора формы смотрим комплектацию: МДФ, белые и древесные фасады, каменную столешницу, профиль без ручек, петли, направляющие, хранение, подсветку и встроенные розетки. Эти решения влияют на цену кухни на заказ в Минске и помогают заранее понять, где можно собрать недорогой вариант, а где лучше не экономить."
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {minskCloseDetailImages.map((image) => (
@@ -1194,12 +1174,12 @@ export function RegionalLocationPage({
       )}
 
       {isMinsk && (
-        <section id="minsk-mechanisms" className="bg-white section-padding">
+        <section id="minsk-mechanisms" className="bg-muted/30 section-padding">
           <div className="container-site">
             <SectionTitle
-              eyebrow="Этап 5"
+              eyebrow="Шаг 1"
               title="Механизмы и наполнение гарнитура на заказ"
-              text="Показываем не только фасады, но и то, как мебель работает каждый день: ящики, подъемные фасады, угловые механизмы, хранение под мойкой, встроенную технику, подсветку и выдвижные системы."
+              text="На выборе комплектации фиксируем доводчики, выдвижные ящики, угловые механизмы, хранение под мойкой, встроенную технику, подсветку и выдвижные системы. Так запросы вроде кухни с доводчиками, фурнитура для кухни на заказ и кухня с выдвижными ящиками в Минске переходят в понятные фото и решения."
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {minskMechanismImages.map((image) => (
@@ -1235,12 +1215,12 @@ export function RegionalLocationPage({
       )}
 
       {isMinsk && (
-        <section id="minsk-measurement" className="bg-muted/30 section-padding">
+        <section id="minsk-measurement" className="bg-white section-padding">
           <div className="container-site">
             <SectionTitle
-              eyebrow="Этап 6"
+              eyebrow="Шаг 2"
               title="Как проходит замер мебели в Минске"
-              text="Замер нужен не только для ширины и высоты. На месте проверяем углы, коммуникации, розетки, вентиляцию, открывание фасадов и сценарий будущего гарнитура, чтобы смета и проект были ближе к реальному монтажу."
+              text="После выбора приезжаем на замер кухни в Минске: проверяем ширину, высоту, углы, воду, розетки, вентиляцию, открывание фасадов и сценарий будущего гарнитура. Расчет кухни после замера точнее, потому что проект уже опирается на реальные размеры помещения."
             />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {minskMeasurementImages.map((image) => (
@@ -1273,12 +1253,12 @@ export function RegionalLocationPage({
       )}
 
       {isMinsk && (
-        <section id="minsk-production" className="bg-white section-padding">
+        <section id="minsk-production" className="bg-muted/30 section-padding">
           <div className="container-site">
             <SectionTitle
-              eyebrow="Этап 7"
+              eyebrow="Шаг 3"
               title="Производство, доставка и монтаж"
-              text="Показываем путь заказа после проекта: раскрой деталей, сборку корпуса, проверку кромки, комплектацию, доставку, монтаж шкафов и регулировку фасадов перед сдачей."
+              text="После проекта заказ уходит в производство кухонь на заказ: раскрой деталей, сборка корпуса, проверка кромки, комплектация, доставка, монтаж шкафов и регулировка фасадов. Здесь закрываются запросы про кухню с доставкой и установкой в Минске без отдельного повторяющегося текстового блока."
             />
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
               {minskProductionImages.map((image) => (
@@ -1313,6 +1293,27 @@ export function RegionalLocationPage({
         </section>
       )}
 
+      {isMinsk && (
+        <section className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Шаг 4"
+              title="Готовый результат: фото гарнитуров на заказ в Минске"
+              text="Финальный блок показывает результат после выбора, замера, производства и монтажа: прямой гарнитур, угловую компоновку до потолка, темные древесные фасады, компактное решение, остров и современный проект для дома. Здесь же остаются запросы про купить кухню в Минске, угловую кухню, маленькую кухню, кухню до потолка и фото готовых работ."
+            />
+            <div className="space-y-12">
+              {minskRealProjectSeries.map((project) => (
+                <div key={project.title}>
+                  <SectionTitle title={project.title} text={project.text} />
+                  <RegionalVisualStoryGallery images={project.images} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {!isMinsk && (
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
           <SectionTitle
@@ -1333,7 +1334,9 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
 
+      {!isMinsk && (
       <section className="bg-white section-padding">
         <div className="container-site">
           <SectionTitle
@@ -1352,7 +1355,9 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
 
+      {!isMinsk && (
       <section className="bg-white section-padding">
         <div className="container-site">
           <SectionTitle
@@ -1393,8 +1398,9 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
 
-      {location.isMinskRegionCity && !isMinskRegionHub && (
+      {location.isMinskRegionCity && !isMinskRegionHub && !isMinsk && (
         <section className="bg-muted/30 section-padding">
           <div className="container-site">
             <SectionTitle
@@ -1507,13 +1513,16 @@ export function RegionalLocationPage({
         </section>
       )}
 
-      <KitchenIdeas3DSection
-        cityName={location.cityName}
-        citySlug={location.slug}
-        cityPrepositional={location.cityPrepositional}
-        titleSubject={location.cityGenitive}
-      />
+      {!isMinsk && (
+        <KitchenIdeas3DSection
+          cityName={location.cityName}
+          citySlug={location.slug}
+          cityPrepositional={location.cityPrepositional}
+          titleSubject={location.cityGenitive}
+        />
+      )}
 
+      {!isMinsk && (
       <section className="bg-white section-padding">
         <div className="container-site">
           <SectionTitle
@@ -1538,6 +1547,7 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
 
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
@@ -1575,6 +1585,7 @@ export function RegionalLocationPage({
         </div>
       </section>
 
+      {!isMinsk && (
       <section className="bg-muted/30 section-padding">
         <div className="container-site">
           <SectionTitle
@@ -1592,6 +1603,7 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
 
       <section className="bg-white section-padding">
         <div className="container-site">
