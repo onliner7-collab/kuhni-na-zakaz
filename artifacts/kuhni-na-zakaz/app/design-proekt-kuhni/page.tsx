@@ -303,14 +303,11 @@ export default function DesignProektKuhniPage() {
               </dl>
             </div>
             <div className="relative">
-              <Image
-                src={`${imageBase}/3d-proekt-kuhni-hero.webp`}
-                alt="Современная светлая кухня на заказ с деревом, камнем и встроенной техникой"
-                width={1600}
-                height={900}
-                priority
-                sizes="(min-width: 1024px) 52vw, 100vw"
-                className="aspect-[16/9] w-full rounded-lg object-cover shadow-2xl shadow-black/10"
+              <iframe
+                src="/kitchen-logo-codepen.html?embed=design-hero&v=design-proekt-codepen-20260626-7"
+                title="3D-анимация логотипа КухниBY"
+                aria-label="3D-анимация логотипа КухниBY"
+                className="aspect-[16/9] w-full rounded-lg border-0 bg-[#252423] shadow-2xl shadow-black/10"
               />
             </div>
           </div>
