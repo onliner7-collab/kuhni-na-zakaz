@@ -537,12 +537,13 @@ export default async function HomePage() {
             <p className="text-sm font-black text-[#201b16]">Популярные города Минской области</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {HOME_TOP_CITY_LINKS.map((item) => (
-                <span
+                <Link
                   key={item.href}
+                  href={item.href}
                   className="rounded-md border border-[#e8e1d8] px-3 py-2 text-sm font-bold text-[#7d5431]"
                 >
                   {item.label}
-                </span>
+                </Link>
               ))}
             </div>
           </div>
@@ -718,13 +719,14 @@ export default async function HomePage() {
               { href: "/portfolio", title: "Портфолио", text: "Фото и визуализации проектов с заполненными характеристиками." },
               { href: "/materials", title: "Материалы", text: "Фасады, корпуса, столешницы и практичные варианты отделки." },
             ].map((item) => (
-              <div
+              <Link
                 key={item.href}
-                className="rounded-2xl border border-border bg-muted/20 p-5"
+                href={item.href}
+                className="group rounded-2xl border border-border bg-muted/20 p-5 transition-colors hover:border-primary/45 hover:bg-primary/5"
               >
-                <p className="font-bold text-foreground">{item.title}</p>
+                <p className="font-bold text-foreground transition-colors group-hover:text-primary">{item.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
