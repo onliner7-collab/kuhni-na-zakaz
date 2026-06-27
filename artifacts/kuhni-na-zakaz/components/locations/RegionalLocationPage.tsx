@@ -896,8 +896,9 @@ export function RegionalLocationPage({
   const minskHeroImage = "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp";
   const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-mobile-background-20260620.webp";
   const minskHeroMobileSmallImage = "/uploads/locations/minsk-3d/minsk-hero-mobile-background-20260620-480.webp";
-  const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-20260617.webp";
-  const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-distinctive-mobile-20260617.webp";
+  const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-bright-20260628.webp";
+  const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-bright-mobile-20260628.webp";
+  const borisovHeroMobileSmallImage = "/uploads/locations/borisov-3d/borisov-hero-bright-mobile-20260628-480.webp";
   const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
   const heroAlt = isMinsk
     ? "Купить кухню на заказ в Минске, светлый гарнитур под размер"
@@ -993,6 +994,8 @@ export function RegionalLocationPage({
             className={
               isMinsk
                 ? "absolute inset-x-0 top-0 h-[100svh] opacity-40 md:inset-0 md:h-auto md:opacity-28"
+                : isBorisov
+                ? "absolute inset-x-0 top-0 h-[100svh] opacity-[0.5] md:inset-0 md:h-auto md:opacity-[0.46]"
                 : "absolute inset-0 opacity-28"
             }
           >
@@ -1008,15 +1011,15 @@ export function RegionalLocationPage({
               </picture>
             ) : isBorisov ? (
               <>
-                <Image
-                  src={borisovHeroMobileImage}
-                  alt={heroAlt}
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="100vw"
-                  className="object-cover md:hidden"
-                />
+                <picture className="absolute inset-0 md:hidden">
+                  <source media="(max-width: 480px)" srcSet={borisovHeroMobileSmallImage} />
+                  <img
+                    src={borisovHeroMobileImage}
+                    alt={heroAlt}
+                    fetchPriority="high"
+                    className="h-full w-full object-contain object-top"
+                  />
+                </picture>
                 <Image
                   src={heroImage}
                   alt={heroAlt}
