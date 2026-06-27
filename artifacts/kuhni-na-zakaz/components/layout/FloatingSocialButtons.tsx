@@ -4,6 +4,7 @@ import { type ComponentType, useEffect, useLayoutEffect, useRef, useState } from
 import { ChevronDown, Instagram, MessageCircle, Phone } from "lucide-react";
 import { createLayout, type AutoLayout } from "animejs/layout";
 
+import { ElectricContactBorder } from "@/components/layout/ElectricContactBorder";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
@@ -202,8 +203,9 @@ export function FloatingSocialButtons({
         aria-expanded={isOpen}
         aria-controls="floating-contact-panel"
         data-testid="floating-contact-toggle"
-        className="floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+        className="electric-contact-toggle floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-transparent bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
       >
+        <ElectricContactBorder className="electric-contact-frame" borderRadius={999} color="#5bf4ff" chaos={0.075} speed={0.38} thickness={0.95} />
         <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950">
           <CycleIcon className="h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]" aria-hidden="true" />
         </span>

@@ -19,6 +19,10 @@ test.describe("FloatingSocialButtons (public)", () => {
     const fab = page.getByTestId("floating-social-buttons");
     await expect(fab).toBeVisible();
 
+    const toggle = page.getByTestId("floating-contact-toggle");
+    await toggle.click();
+    await expect(toggle).toHaveAttribute("aria-expanded", "true");
+
     const instagramLink = page.getByTestId("floating-social-instagram");
     await expect(instagramLink).toBeVisible();
     await expect(instagramLink).toHaveAttribute("target", "_blank");
