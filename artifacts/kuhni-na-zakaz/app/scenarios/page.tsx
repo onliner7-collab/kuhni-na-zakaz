@@ -5,7 +5,7 @@ import { prisma } from "@/lib/db";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 
 export const metadata: Metadata = {
-  title: "Как выбрать кухню под ваши задачи",
+  title: "Сценарии кухни: семья, студия, бюджет",
   description:
     "Подберите кухню под вашу ситуацию: семья с детьми, маленькая площадь, кухня-гостиная, любите готовить, нужна экономия или максимум хранения. Советы и решения.",
   alternates: { canonical: "/scenarios" },

@@ -184,7 +184,7 @@ function formatProjectPrice(project: PortfolioProject) {
 
 function projectNumberFromSlug(slug: string) {
   const match = slug.match(/-(\d{2,})$/);
-  return match?.[1] ? `проект №${match[1]}` : slug;
+  return match?.[1] ? `проект №${match[1]}` : "";
 }
 
 function portfolioBaseTitle(project: PortfolioProject) {
@@ -242,28 +242,30 @@ function buildMetaDescription(project: PortfolioProject) {
     size,
     material,
   ].filter((item) => item && !isGenericPortfolioPhrase(item));
-  const description = `${baseTitle}, ${projectMarker}: ${details.join(", ")}. Рассчитаем похожую кухню под ваш размер.`;
+  const prefix = [baseTitle, projectMarker].filter(Boolean).join(", ");
+  const description = `${prefix}: ${details.join(", ")}. Рассчитаем похожую кухню под ваш размер.`;
 
   return trimMetaDescription(description, description);
 }
 
 function buildPortfolioMetaTitle(project: PortfolioProject) {
-  const projectMarker = projectNumberFromSlug(project.slug);
   const baseTitle = portfolioBaseTitle(project);
+  const baseTitleLower = baseTitle.toLowerCase();
+  const city = project.city && !baseTitleLower.includes(project.city.toLowerCase()) ? project.city : "";
+  const kitchenType = project.kitchenType && !baseTitleLower.includes(project.kitchenType.toLowerCase()) ? project.kitchenType : "";
   const parts = [
     baseTitle,
-    projectMarker,
-    project.city,
-    project.kitchenType,
-  ].filter(Boolean);
+    city,
+    kitchenType,
+  ].filter((item) => item && !isGenericPortfolioPhrase(item));
   const title = parts.join(" — ");
 
-  if (title.length <= 65) return title;
+  if (title.length <= 55) return title;
 
-  const compactTitle = `${baseTitle} — ${projectMarker}`;
-  if (compactTitle.length <= 65) return compactTitle;
+  const compactTitle = [baseTitle, city].filter(Boolean).join(" — ");
+  if (compactTitle.length <= 55) return compactTitle;
 
-  return `${projectMarker}: ${baseTitle}`;
+  return baseTitle.length <= 55 ? baseTitle : `${project.kitchenType || "Кухня на заказ"} — ${project.city || "портфолио"}`;
 }
 
 function isGenericPortfolioDescription(description: string | null | undefined) {

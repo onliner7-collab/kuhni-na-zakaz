@@ -28,13 +28,13 @@ import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
 const pageTitle = "Фурнитура для кухни на заказ";
 const pageDescription =
-  "Разбираем фурнитуру для кухни на заказ: петли, направляющие, доводчики, подъемные механизмы, ручки и системы хранения. Поможем подобрать решение под проект кухни в Минске и Беларуси.";
+  "Фурнитура для кухни на заказ: петли, направляющие, доводчики, подъемники, ручки и системы хранения. Подбор под проект в Минске.";
 const heroImage = "/images/materials-gallery-v2/furnitura/furniture-furnitura-hero-01.webp";
 const pagePath = "/materials/furnitura";
 const imageBasePath = "/images/materials-gallery-v2/furnitura";
 
 export const metadata: Metadata = {
-  title: "Фурнитура для кухни на заказ в Минске | Петли, направляющие, доводчики",
+  title: "Фурнитура для кухни: петли и направляющие",
   description: pageDescription,
   alternates: { canonical: "/materials/furnitura" },
   robots: { index: true, follow: true },

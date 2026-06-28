@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 import { JsonLd, aggregateRatingJsonLd, breadcrumbJsonLd, compactJsonLd, isTrustedReviewForSchema, productReviewsJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const title = "Отзывы клиентов о кухнях";
+const title = "Отзывы о кухнях на заказ в Минске";
 const description =
-  "Отзывы клиентов о кухнях на заказ по Беларуси: Минск, Брест, Гродно, Витебск, Гомель, Могилёв. Новые отзывы публикуются автоматически и управляются через админ-панель.";
+  "Отзывы клиентов о кухнях на заказ в Минске и Беларуси: оценки, города, связанные проекты, фото в портфолио и форма для нового отзыва.";
 
 export const metadata: Metadata = {
   title,
@@ -44,6 +44,12 @@ const REVIEW_ANALYSIS_POINTS = [
     title: "Что сравнить перед заказом",
     text: "Для выбора компании по кухням на заказ в Минске полезно сопоставить опубликованные отзывы с проектами, ценами, сроками изготовления, доставкой, монтажом и гарантийными обязательствами.",
   },
+];
+
+const TRUST_GUIDE = [
+  { title: "Город и объект", text: "Смотрите, указан ли город, тип кухни и связанный проект. Такой отзыв легче сопоставить с реальной задачей." },
+  { title: "Смета и сроки", text: "Полезны отзывы, где клиент пишет о совпадении цены, сроках изготовления, доставке и монтаже." },
+  { title: "Сервис после монтажа", text: "Для кухни важна не только установка, но и готовность ответить на вопрос по регулировке или гарантии." },
 ];
 
 async function getData() {
@@ -148,6 +154,15 @@ export default async function ReviewsPage() {
             </div>
           </section>
 
+          <section className="mb-12 grid gap-5 md:grid-cols-3">
+            {TRUST_GUIDE.map((item) => (
+              <article key={item.title} className="rounded-lg border border-border bg-white p-5 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold">{item.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.text}</p>
+              </article>
+            ))}
+          </section>
+
           {featured.length > 0 && (
             <section className="mb-12">
               <h2 className="font-serif text-2xl font-semibold mb-5">Избранные отзывы</h2>
@@ -238,6 +253,19 @@ export default async function ReviewsPage() {
               <p className="text-sm">Будьте первым — оставьте отзыв ниже.</p>
             </div>
           )}
+
+          <section className="mb-16 grid gap-4 md:grid-cols-3">
+            {[
+              { href: "/portfolio", title: "Портфолио", text: "Откройте проекты кухонь с фото, материалами, городом и параметрами." },
+              { href: "/warranty", title: "Гарантия", text: "Проверьте условия сервиса и порядок обращения после монтажа." },
+              { href: "/about", title: "О компании", text: "Узнайте, как строится работа от замера до передачи кухни." },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="rounded-lg border border-border p-5 transition-shadow hover:shadow-md">
+                <h2 className="font-serif text-2xl font-bold">{item.title}</h2>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+              </Link>
+            ))}
+          </section>
 
           <div className="max-w-2xl mx-auto">
             <h2 className="font-serif text-3xl font-bold text-center mb-2">Оставить отзыв</h2>

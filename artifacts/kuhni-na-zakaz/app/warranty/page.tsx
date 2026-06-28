@@ -12,9 +12,28 @@ const WARRANTY_CARDS = [
   { years: "1 год", label: "на монтажные работы" },
 ];
 
+const WARRANTY_DETAILS = [
+  {
+    title: "Что фиксируем в документах",
+    items: [
+      "состав кухни, материалы, фурнитуру и выбранную столешницу",
+      "условия доставки, монтажа и передачи готовой кухни",
+      "сроки гарантии по корпусу, фасадам, фурнитуре и монтажным работам",
+    ],
+  },
+  {
+    title: "Что проверяем при обращении",
+    items: [
+      "фото или видео проблемы, чтобы понять узел и подготовить мастера",
+      "дату монтажа и номер заказа, если он есть в документах",
+      "условия эксплуатации: вода, нагрузка, вмешательство в конструкцию, уход",
+    ],
+  },
+];
+
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("warranty");
-  const title = cleanSeoTitle(page?.seoTitle, "Гарантия на кухни");
+  const title = cleanSeoTitle(null, "Гарантия на кухни: условия и сервис");
   const description = trimMetaDescription(
     page?.seoDescription,
     "Гарантия на кухни на заказ: 5 лет на фурнитуру Blum, 2 года на корпус и фасады, 1 год на монтажные работы.",
@@ -70,6 +89,37 @@ export default async function WarrantyPage() {
         <div className="space-y-4">
           {renderContent(content)}
         </div>
+
+        <section className="mt-12 grid gap-5 md:grid-cols-2">
+          {WARRANTY_DETAILS.map((block) => (
+            <article key={block.title} className="rounded-lg border border-border bg-white p-5 shadow-sm">
+              <h2 className="font-serif text-2xl font-bold">{block.title}</h2>
+              <ul className="mt-4 space-y-3">
+                {block.items.map((item) => (
+                  <li key={item} className="flex gap-2 text-sm leading-6 text-muted-foreground">
+                    <Shield className="mt-1 h-4 w-4 shrink-0 text-primary" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-12 rounded-lg bg-primary/5 p-6">
+          <h2 className="font-serif text-3xl font-bold">Как проходит гарантийное обращение</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-4">
+            {["Получаем описание", "Проверяем документы", "Назначаем мастера", "Закрываем вопрос"].map((step, index) => (
+              <div key={step} className="rounded-md bg-white p-4">
+                <p className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</p>
+                <p className="mt-2 text-sm font-semibold">{step}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-5 text-sm leading-6 text-muted-foreground">
+            Если вопрос связан с регулировкой петель, доводчиков или ящиков, часто достаточно сервисного выезда. Если подтверждается заводской дефект, подбираем замену и согласуем срок работ.
+          </p>
+        </section>
         </div>
       </div>
     </>

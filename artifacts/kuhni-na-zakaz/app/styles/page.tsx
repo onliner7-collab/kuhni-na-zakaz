@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const title = "Стили кухонь на заказ";
+const title = "Стили кухонь: модерн, классика, лофт";
 const description =
   "Кухни на заказ в разных стилях по всей Беларуси: современный, классический, скандинавский, минимализм, лофт. Фото, цены, советы по выбору.";
 

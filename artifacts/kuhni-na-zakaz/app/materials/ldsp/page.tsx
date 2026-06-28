@@ -16,7 +16,7 @@ import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGalle
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const pageTitle = "Кухни из ЛДСП на заказ";
+const pageTitle = "Кухни из ЛДСП: корпуса, фасады, цена";
 const pageDescription =
   "Кухни из ЛДСП на заказ: где используется ЛДСП, плюсы и ограничения, сравнение с МДФ, примеры бюджетных решений и заявка на расчет.";
 
