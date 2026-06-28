@@ -260,6 +260,7 @@ function buildPortfolioMetaTitle(project: PortfolioProject) {
   ].filter((item) => item && !isGenericPortfolioPhrase(item));
   const title = parts.join(" — ");
 
+  if (title.length < 25 && project.city) return `${baseTitle} в ${project.city} — проект`;
   if (title.length <= 55) return title;
 
   const compactTitle = [baseTitle, city].filter(Boolean).join(" — ");

@@ -34,6 +34,16 @@ const BLOG_CITY_LINK_SLUGS = [
   "minskaya-oblast",
 ];
 
+const BLOG_META_TITLE_OVERRIDES: Record<string, string> = {
+  "kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh": "Бюджет кухни: материалы и монтаж",
+  "kak-podgotovitsya-k-zameru-kuhni": "Подготовка к замеру кухни: чек-лист",
+  "chto-vhodit-v-stoimost-kuhni-na-zakaz": "Что входит в стоимость кухни",
+  "kakie-fasady-luchshe": "Фасады кухни: МДФ, пластик, эмаль, шпон",
+  "kakuyu-planirovku-kuhni-vybrat": "Планировка кухни: прямая, угловая, остров",
+  "kak-vybrat-materialy-dlya-kuhni": "Материалы для кухни: фасады и столешница",
+  "kuhnya-pod-scenarij-semi-studii-doma": "Кухня под сценарий: семья, студия, дом",
+};
+
 async function getRelatedContent(
   relatedCaseSlugs: string[],
   relatedStyleSlugs: string[],
@@ -97,7 +107,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const merged = await getMergedPublishedBlogPost(slug);
   if (!merged) return { title: "Статья" };
 
-  const title = cleanSeoTitle(merged.seoTitle, merged.title);
+  const title = cleanSeoTitle(BLOG_META_TITLE_OVERRIDES[slug] ?? merged.seoTitle, merged.title);
   const description = trimMetaDescription(merged.seoDescription, merged.excerpt);
   const ogImage = merged.coverImage ? canonicalSiteUrl(merged.coverImage) : undefined;
   const imgW = merged.coverImageWidth ?? 1200;
