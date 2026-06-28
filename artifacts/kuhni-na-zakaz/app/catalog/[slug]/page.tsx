@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";

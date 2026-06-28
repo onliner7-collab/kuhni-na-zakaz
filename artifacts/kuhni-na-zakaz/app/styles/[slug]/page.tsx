@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { notFound } from "next/navigation";
 import { CheckCircle, XCircle, Droplets, ArrowRight, Layers, Users, Wallet, Camera, HelpCircle, Lightbulb, Link2 } from "lucide-react";
 import { prisma } from "@/lib/db";

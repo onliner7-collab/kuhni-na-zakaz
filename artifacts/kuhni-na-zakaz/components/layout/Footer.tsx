@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { Clock, Instagram, Mail, MapPin } from "lucide-react";
 
 import { regionalLocations } from "@/data/locations";
@@ -66,6 +66,7 @@ export function Footer() {
           <div>
             <Link
               href="/"
+              prefetch={false}
               className="flex items-center gap-2"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-black text-white">
@@ -150,7 +151,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               {FOOTER_LINKS.catalog.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/55 transition-colors hover:text-white">
+                  <Link href={link.href} prefetch={false} className="text-sm text-white/55 transition-colors hover:text-white">
                     {link.label}
                   </Link>
                 </li>
@@ -163,7 +164,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               {FOOTER_LINKS.info.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/55 transition-colors hover:text-white">
+                  <Link href={link.href} prefetch={false} className="text-sm text-white/55 transition-colors hover:text-white">
                     {link.label}
                   </Link>
                 </li>
@@ -176,7 +177,7 @@ export function Footer() {
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {priorityCities.map((city) => (
                 <li key={city.href}>
-                  <Link href={city.href} className="text-sm text-white/55 transition-colors hover:text-white">
+                  <Link href={city.href} prefetch={false} className="text-sm text-white/55 transition-colors hover:text-white">
                     {city.label}
                   </Link>
                 </li>
@@ -187,7 +188,7 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {FOOTER_LINKS.legal.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-white/55 transition-colors hover:text-white">
+                    <Link href={link.href} prefetch={false} className="text-sm text-white/55 transition-colors hover:text-white">
                       {link.label}
                     </Link>
                   </li>

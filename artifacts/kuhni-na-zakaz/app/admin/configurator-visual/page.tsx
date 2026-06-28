@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Layers, LayoutTemplate, Palette, ChefHat, Settings, Grid3x3, Wrench, Zap, AlertTriangle } from "lucide-react";

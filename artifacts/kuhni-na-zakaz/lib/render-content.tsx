@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 
 function renderInline(text: string): React.ReactNode {
   const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);

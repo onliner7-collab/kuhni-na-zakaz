@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import Image from "next/image";
 import { ArrowRight, Clock, Factory, FileCheck, MapPin, Shield, Star, Wrench } from "lucide-react";
 import { prisma } from "@/lib/db";

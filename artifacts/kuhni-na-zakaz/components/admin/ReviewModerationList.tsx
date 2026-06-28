@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import {
   Star, CheckCircle, XCircle, Trash2, Clock, ExternalLink,
   Star as StarFill, MessageSquare, Globe, Send, Instagram,

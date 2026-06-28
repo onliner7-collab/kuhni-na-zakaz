@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { renderContent } from "@/lib/render-content";
 import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { ArrowRight, MapPin, Package, Palette, Ruler } from "lucide-react";
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import type { PortfolioProject } from "@/data/portfolio-projects";

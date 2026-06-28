@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";

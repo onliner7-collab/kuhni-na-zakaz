@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { ArrowRight, CheckCircle2, Maximize2, MessageCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 

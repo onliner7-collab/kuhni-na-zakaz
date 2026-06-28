@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { CheckCircle } from "lucide-react";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 

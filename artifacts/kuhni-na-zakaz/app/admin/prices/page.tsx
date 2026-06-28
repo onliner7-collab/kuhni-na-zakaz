@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { PriceRulesEditor } from "@/components/admin/PriceRulesEditor";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { ExternalLink } from "lucide-react";
 
 export const dynamic = "force-dynamic";

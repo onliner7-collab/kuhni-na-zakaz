@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { prisma } from "@/lib/db";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { usePathname } from "next/navigation";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";

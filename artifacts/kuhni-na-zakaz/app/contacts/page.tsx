@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { Clock, FileText, Handshake, Instagram, Mail, MapPin, Phone, Ruler, ShieldCheck } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { prisma } from "@/lib/db";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { ArrowRight, Calculator } from "lucide-react";
 
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";

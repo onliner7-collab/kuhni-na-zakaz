@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { ArrowLeft, History, ShieldAlert } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";

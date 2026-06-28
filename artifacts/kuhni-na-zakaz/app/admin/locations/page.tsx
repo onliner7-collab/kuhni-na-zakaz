@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { MapPin, Plus, ExternalLink, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
 
 interface LocationRow {

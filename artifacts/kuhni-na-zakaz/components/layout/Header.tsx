@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, Phone, X } from "lucide-react";
 
@@ -72,6 +72,7 @@ function DesktopNavLink({
   return (
     <Link
       href={href}
+      prefetch={false}
       aria-current={isActive ? "page" : undefined}
       className={cn(
         "relative inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200",
@@ -103,6 +104,7 @@ function MobileNavLink({
   return (
     <Link
       href={href}
+      prefetch={false}
       aria-current={isActive ? "page" : undefined}
       className={cn(
         "flex items-center justify-between rounded-2xl px-4 py-3.5 text-sm font-semibold transition-all",
@@ -200,6 +202,7 @@ export function Header({
         <div className="flex min-h-[4.5rem] items-center justify-between gap-3 py-3 lg:min-h-20 lg:py-4">
           <Link
             href="/"
+            prefetch={false}
             className="group flex min-w-0 items-center gap-3"
             aria-label={HOME_ARIA}
           >
@@ -226,6 +229,7 @@ export function Header({
 
             <Link
               href="/contacts#form"
+              prefetch={false}
               className={cn(
                 "inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition-all active:scale-95",
                 isOverlay
@@ -323,6 +327,7 @@ export function Header({
             <div className="mt-4 grid gap-2">
               <Link
                 href="/contacts#form"
+                prefetch={false}
                 className="btn-primary justify-center rounded-2xl py-3.5 text-sm shadow-xl shadow-primary/20"
               >
                 {CTA_LABEL}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { ArrowLeft, ArrowRight, CheckCircle, AlertCircle, Phone, Calculator } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";

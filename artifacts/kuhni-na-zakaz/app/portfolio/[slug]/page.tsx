@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { notFound } from "next/navigation";
 import { AlertTriangle, ArrowRight, CheckCircle2, Clock, Lightbulb, MapPin, Palette, Ruler, Square, Star, Wrench } from "lucide-react";
 import { prisma } from "@/lib/db";

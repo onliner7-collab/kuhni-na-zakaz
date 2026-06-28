@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/navigation/Link";
 import { Star, ExternalLink, Globe, Send } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ReviewForm } from "@/components/sections/ReviewForm";
