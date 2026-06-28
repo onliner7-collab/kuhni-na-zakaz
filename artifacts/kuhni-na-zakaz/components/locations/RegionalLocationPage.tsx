@@ -899,6 +899,7 @@ export function RegionalLocationPage({
   const borisovHeroImage = "/uploads/locations/borisov-3d/borisov-hero-bright-20260628.webp";
   const borisovHeroMobileImage = "/uploads/locations/borisov-3d/borisov-hero-bright-mobile-20260628.webp";
   const borisovHeroMobileSmallImage = "/uploads/locations/borisov-3d/borisov-hero-bright-mobile-20260628-480.webp";
+  const transparentPixel = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
   const heroImage = isMinsk ? minskHeroImage : isBorisov ? borisovHeroImage : heroIdea?.image ?? "/images/hero.webp";
   const heroAlt = isMinsk
     ? "Купить кухню на заказ в Минске, светлый гарнитур под размер"
@@ -1013,22 +1014,23 @@ export function RegionalLocationPage({
               <>
                 <picture className="absolute inset-0 md:hidden">
                   <source media="(max-width: 480px)" srcSet={borisovHeroMobileSmallImage} />
+                  <source media="(max-width: 767px)" srcSet={borisovHeroMobileImage} />
                   <img
-                    src={borisovHeroMobileImage}
+                    src={transparentPixel}
                     alt={heroAlt}
                     fetchPriority="high"
                     className="h-full w-full object-contain object-top"
                   />
                 </picture>
-                <Image
-                  src={heroImage}
-                  alt={heroAlt}
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="100vw"
-                  className="hidden object-contain md:block"
-                />
+                <picture className="absolute inset-0 hidden md:block">
+                  <source media="(min-width: 768px)" srcSet={heroImage} />
+                  <img
+                    src={transparentPixel}
+                    alt={heroAlt}
+                    fetchPriority="high"
+                    className="h-full w-full object-contain"
+                  />
+                </picture>
               </>
             ) : (
               <Image
