@@ -210,6 +210,12 @@ function getScenarioGuide(slug: string) {
   return SCENARIO_LANDING_GUIDES[slug] ?? DEFAULT_SCENARIO_GUIDE;
 }
 
+function buildScenarioMetaTitle(scenario: { title: string; seoTitle: string | null; slug: string }) {
+  const fallback = `${scenario.title} под размер в Минске`;
+  const cleaned = cleanSeoTitle(scenario.seoTitle, fallback);
+  return cleaned.length < 30 ? fallback : cleaned;
+}
+
 async function getScenario(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
 
@@ -261,10 +267,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!s) return { title: "Сценарий не найден" };
   const canonical = SECONDARY_SCENARIO_CANONICALS[s.slug] ?? `/scenarios/${s.slug}`;
   const isSecondaryScenario = Boolean(SECONDARY_SCENARIO_CANONICALS[s.slug]);
-  const title = cleanSeoTitle(
-    isSecondaryScenario ? null : s.seoTitle,
-    isSecondaryScenario ? `${s.title} — дополнительный сценарий кухни` : `${s.title} — кухня на заказ`,
-  );
+  const title = isSecondaryScenario
+    ? cleanSeoTitle(null, `${s.title} — дополнительный сценарий кухни`)
+    : buildScenarioMetaTitle(s);
   const description = trimMetaDescription(
     isSecondaryScenario ? null : s.seoDescription,
     isSecondaryScenario ? `${s.intro} Основная индексируемая версия страницы указана через canonical.` : s.intro,
