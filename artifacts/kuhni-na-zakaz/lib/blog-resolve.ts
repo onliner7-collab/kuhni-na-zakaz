@@ -22,6 +22,8 @@ export type MergedBlogPost = {
 export async function getMergedPublishedBlogPost(
   slug: string,
 ): Promise<MergedBlogPost | null> {
+  const staticPost = BLOG_POSTS_BY_SLUG[slug] ?? SEO_BLOG_POSTS_BY_SLUG[slug];
+
   try {
     const p = await prisma.blogPost.findUnique({ where: { slug } });
     if (p?.published) {
@@ -36,9 +38,18 @@ export async function getMergedPublishedBlogPost(
         seoDescription: p.seoDescription,
         publishedAt: p.publishedAt,
         updatedAt: p.updatedAt,
-        relatedCaseSlugs: p.relatedCaseSlugs,
-        relatedStyleSlugs: p.relatedStyleSlugs,
-        relatedScenarioSlugs: p.relatedScenarioSlugs,
+        relatedCaseSlugs:
+          p.relatedCaseSlugs.length > 0
+            ? p.relatedCaseSlugs
+            : staticPost?.relatedCaseSlugs,
+        relatedStyleSlugs:
+          p.relatedStyleSlugs.length > 0
+            ? p.relatedStyleSlugs
+            : staticPost?.relatedStyleSlugs,
+        relatedScenarioSlugs:
+          p.relatedScenarioSlugs.length > 0
+            ? p.relatedScenarioSlugs
+            : staticPost?.relatedScenarioSlugs,
         coverImage: p.coverImage,
       }) as MergedBlogPost;
     }
@@ -46,7 +57,7 @@ export async function getMergedPublishedBlogPost(
     /* БД недоступна — ниже статический fallback */
   }
 
-  const s = BLOG_POSTS_BY_SLUG[slug] ?? SEO_BLOG_POSTS_BY_SLUG[slug];
+  const s = staticPost;
   if (s?.published) {
     return mergeBlogCover({
       slug,
