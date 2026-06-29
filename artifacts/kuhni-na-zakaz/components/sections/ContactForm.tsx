@@ -123,6 +123,36 @@ function readIdeaComment(defaultComment = "") {
   return ideaTitle ? `Интересует 3D-идея: ${ideaTitle}` : defaultComment;
 }
 
+function readDesignProjectComment(defaultComment = "") {
+  if (typeof window === "undefined") return defaultComment;
+
+  const rawSelection = window.sessionStorage.getItem("designProjectSelection");
+  if (!rawSelection) return defaultComment;
+
+  try {
+    const selection = JSON.parse(rawSelection) as {
+      shape?: string;
+      size?: string;
+      style?: string;
+      facade?: string;
+      extras?: string[];
+    };
+    const lines = [
+      defaultComment,
+      "Выбранные параметры 3D-проекта:",
+      selection.shape ? `Тип кухни: ${selection.shape}` : "",
+      selection.size ? `Размер помещения: ${selection.size}` : "",
+      selection.style ? `Стиль: ${selection.style}` : "",
+      selection.facade ? `Фасады: ${selection.facade}` : "",
+      selection.extras?.length ? `Дополнительно: ${selection.extras.join(", ")}` : "",
+    ].filter(Boolean);
+
+    return lines.join("\n");
+  } catch {
+    return defaultComment;
+  }
+}
+
 function readSourceTypeOverride() {
   if (typeof window === "undefined") return "";
 
@@ -174,8 +204,9 @@ export function ContactForm({
   useEffect(() => {
     setTrackingFields(readTrackingFields(sourcePage || pathname, sourcePage));
     setEffectiveSourceType(readSourceTypeOverride() || resolvedSourceType);
-    setIdeaComment(readIdeaComment(defaultComment));
-  }, [defaultComment, pathname, resolvedSourceType, sourcePage]);
+    const baseComment = readIdeaComment(defaultComment);
+    setIdeaComment(source === "design-proekt-kuhni" ? readDesignProjectComment(baseComment) : baseComment);
+  }, [defaultComment, pathname, resolvedSourceType, source, sourcePage]);
 
   const defaultValues = useMemo<FormData>(() => ({
     name: "",
@@ -212,8 +243,13 @@ export function ContactForm({
 
     const currentTracking = readTrackingFields(fallbackSourcePage, sourcePage);
     const currentSourceType = readSourceTypeOverride() || data.sourceType || resolvedSourceType;
+    const currentComment =
+      source === "design-proekt-kuhni"
+        ? readDesignProjectComment(data.comment || defaultComment)
+        : data.comment;
     const payload = {
       ...data,
+      comment: currentComment,
       source,
       formType,
       city: data.city || city || "",
