@@ -19,6 +19,7 @@ import { getOtherBlogPostLinks } from "@/lib/blog-nav-posts";
 import { getMergedPublishedBlogPost } from "@/lib/blog-resolve";
 import { isPublicContentSlug } from "@/lib/public-content";
 import { regionalLocations } from "@/data/locations";
+import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -92,9 +93,40 @@ async function getRelatedContent(
           })
         : Promise.resolve([]),
     ]);
-    return { cases, styles, scenarios };
+    const generatedCases = GENERATED_MINSK_PORTFOLIO_CASES
+      .filter((item) => relatedCaseSlugs.includes(item.slug))
+      .map((item) => ({
+        id: item.id,
+        slug: item.slug,
+        title: item.title,
+        city: item.city,
+        area: item.area,
+        priceFrom: item.priceFrom,
+        mainImage: item.mainImage,
+        style: item.style,
+      }));
+    const caseBySlug = new Map(
+      [...generatedCases, ...cases].map((item) => [item.slug, item]),
+    );
+
+    return { cases: Array.from(caseBySlug.values()), styles, scenarios };
   } catch {
-    return { cases: [], styles: [], scenarios: [] };
+    return {
+      cases: GENERATED_MINSK_PORTFOLIO_CASES
+        .filter((item) => relatedCaseSlugs.includes(item.slug))
+        .map((item) => ({
+          id: item.id,
+          slug: item.slug,
+          title: item.title,
+          city: item.city,
+          area: item.area,
+          priceFrom: item.priceFrom,
+          mainImage: item.mainImage,
+          style: item.style,
+        })),
+      styles: [],
+      scenarios: [],
+    };
   }
 }
 

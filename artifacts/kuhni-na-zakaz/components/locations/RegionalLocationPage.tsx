@@ -230,6 +230,33 @@ function getHubDeliveryText(city: RegionalLocationData) {
   return `${area}; маршрут и стоимость уточняются по адресу, объему кухни и условиям разгрузки.`;
 }
 
+function getLocalProofItems(location: RegionalLocationData, hasLocalCases: boolean) {
+  const mainArea = location.areas[1] ?? location.regionName;
+
+  return [
+    {
+      title: "Маршрут и выезд",
+      text: location.isMinskRegionCity
+        ? `${mainArea}: дату замера и доставки согласуем по адресу, готовности ремонта и составу кухни.`
+        : "Для удаленных городов сначала собираем размеры, фото и список техники, затем согласуем замер и логистику.",
+    },
+    {
+      title: "Смета без угадывания",
+      text: location.priceNote,
+    },
+    {
+      title: "Что проверяем на замере",
+      text: location.measurementText,
+    },
+    {
+      title: "Фото и кейсы",
+      text: hasLocalCases
+        ? "На странице показываются только проекты, где город в данных портфолио совпадает с этой локацией."
+        : "Локальные кейсы не подменяются чужими фото. Пока их нет, страница показывает условия работы и визуальные примеры без ложной привязки.",
+    },
+  ];
+}
+
 const hubDirections = [
   {
     title: "Север",
@@ -889,6 +916,7 @@ export function RegionalLocationPage({
   const serviceItems = getServiceItems(location);
   const popularSolutions = getPopularSolutions(location);
   const faqItems = getFaqItems(location);
+  const localProofItems = getLocalProofItems(location, hasLocalCases);
   const cityIdeas = getKitchenIdeas3DForCity(location.slug);
   const heroIdea = cityIdeas[0];
   const isMinsk = location.slug === "minsk";
@@ -1636,6 +1664,43 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
+
+      {!isMinskRegionHub && (
+        <section className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Локальные условия"
+              title={`Что уточнить для кухни в ${location.cityPrepositional}`}
+              text="Этот блок отделяет реальные условия заказа от шаблонных обещаний: маршрут, замер, смета, доставка и статус локальных кейсов проверяются по конкретной заявке."
+            />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {localProofItems.map((item) => (
+                <article key={item.title} className="rounded-lg border border-border bg-muted/30 p-5">
+                  <h3 className="mb-3 text-base font-semibold text-foreground">{item.title}</h3>
+                  <p className="text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {[
+                { href: "/prices", label: "Цены и смета" },
+                { href: "/calculator", label: "Калькулятор" },
+                { href: "/portfolio", label: "Портфолио" },
+                { href: "/warranty", label: "Гарантия" },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                >
+                  {link.label}
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
       )}
 
       <section className="bg-muted/30 section-padding">

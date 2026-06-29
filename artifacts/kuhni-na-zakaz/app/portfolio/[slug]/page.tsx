@@ -309,6 +309,42 @@ function DetailRow({ label, value }: { label: string; value?: string }) {
   );
 }
 
+function getProjectProofItems(project: PortfolioProject, isConceptProject: boolean) {
+  const imageStatus = isConceptProject
+    ? "Изображение подписано как 3D-визуализация, без привязки к выполненной работе."
+    : "Город, фото и характеристики берутся из данных опубликованного кейса.";
+
+  return [
+    {
+      title: "Что было важно",
+      text: project.task || "Перед расчетом уточняем размеры, технику, хранение и ограничения помещения.",
+    },
+    {
+      title: "Как решали",
+      text: project.solution || "Планировку, материалы и комплектацию пересчитываем после точного замера.",
+    },
+    {
+      title: "Материалы и фурнитура",
+      text: [
+        project.facades && `фасады: ${project.facades}`,
+        project.countertop && `столешница: ${project.countertop}`,
+        project.fittings && `фурнитура: ${project.fittings}`,
+      ].filter(Boolean).join("; ") || "Материалы и фурнитура фиксируются в смете перед запуском.",
+    },
+    {
+      title: "Срок и бюджет",
+      text: [
+        project.workDuration && `срок: ${project.workDuration}`,
+        formatProjectPrice(project) && `ориентир: ${formatProjectPrice(project)}`,
+      ].filter(Boolean).join("; ") || "Срок и бюджет зависят от размеров, материалов, доставки и монтажа.",
+    },
+    {
+      title: "Статус изображения",
+      text: imageStatus,
+    },
+  ];
+}
+
 export async function generateStaticParams() {
   const projects = await getPortfolioProjects();
 
@@ -372,6 +408,15 @@ export default async function PortfolioProjectPage({ params }: Props) {
   const cityKey = locationPage?.slug || regionalLocationByCity?.slug || "";
   const mainImageDisclosure = getImageDisclosure(project.mainImage);
   const isConceptProject = mainImageDisclosure.kind === "generated";
+  const projectProofItems = getProjectProofItems(project, isConceptProject);
+  const projectNextLinks = [
+    { href: "/prices", label: "Цены и смета" },
+    { href: "/calculator", label: "Калькулятор кухни" },
+    { href: "/materials", label: "Материалы" },
+    regionalLink ? { href: regionalLink, label: regionalTitle || `Кухни в ${project.city}` } : null,
+    { href: "/warranty", label: "Гарантия" },
+    { href: "/reviews", label: "Отзывы" },
+  ].filter(Boolean) as Array<{ href: string; label: string }>;
 
   const jsonLd = [
     breadcrumbJsonLd([
@@ -593,6 +638,40 @@ export default async function PortfolioProjectPage({ params }: Props) {
                     <p className="mt-3 text-sm leading-relaxed text-foreground">{portfolioCase.result}</p>
                   </article>
                 )}
+
+                <section aria-labelledby="project-proof-heading" className="rounded-lg border border-border bg-white p-5 shadow-sm sm:p-6">
+                  <div className="max-w-2xl">
+                    <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">
+                      Доказательства
+                    </p>
+                    <h2 id="project-proof-heading" className="font-serif text-3xl font-bold">
+                      Что проверить в похожем проекте
+                    </h2>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      Этот блок помогает сравнить кейс с будущей сметой: город, материалы, срок, статус изображения и следующий шаг к расчету.
+                    </p>
+                  </div>
+                  <div className="mt-6 grid gap-4 md:grid-cols-2">
+                    {projectProofItems.map((item) => (
+                      <article key={item.title} className="rounded-md border border-border bg-muted/30 p-4">
+                        <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
+                        <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                      </article>
+                    ))}
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {projectNextLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary"
+                      >
+                        {link.label}
+                        <ArrowRight className="h-4 w-4" aria-hidden />
+                      </Link>
+                    ))}
+                  </div>
+                </section>
               </section>
 
               {(portfolioCase.photosBefore.length > 0 || portfolioCase.photosAfter.length > 0) && (
