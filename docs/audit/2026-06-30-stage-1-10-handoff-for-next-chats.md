@@ -249,7 +249,7 @@ pnpm.cmd run build
 
 Дата выполнения: 30 июня 2026
 Страница: `/design-proekt-kuhni`
-Статус: код реализован и локально проверен; далее нужен deploy стандартным Timeweb-путем.
+Статус: код реализован, локально проверен, запушен в `origin/work` и задеплоен на production.
 
 ### Что сделано
 
@@ -316,6 +316,20 @@ pnpm.cmd exec playwright test -c playwright.smoke.config.ts tests/smoke/design-p
 ### GSC/Яндекс
 
 Новых URL, sitemap-изменений, robots/canonical-изменений и новых индексируемых страниц не добавлено. После деплоя этапов 17-20 обязательный переобход GSC/Яндекс не требуется; если нужно вручную отправить обновленную `/design-proekt-kuhni`, делать это через встроенный браузер в авторизованном сеансе и фиксировать только факт отправки, не обещая индексацию.
+
+### Production после деплоя
+
+- commit с кодом этапов 17-20: `613fa76 feat: finish design project cta stages`;
+- `git rev-parse --short HEAD` на сервере: `613fa76`;
+- `systemctl is-active kuhni-na-zakaz` -> `active`;
+- `https://kuhni.minsk.by/design-proekt-kuhni` -> `200`;
+- live HTML содержит `3D-проект кухни на заказ в Минске`, `Мессенджер`, `Фото или план помещения`, `SEO-раздел`, `Частые вопросы о 3D-проекте кухни`;
+- live images: `/images/design-proekt-kuhni/3d-proekt-kuhni-hero.webp` -> `200`, `image/webp`, `154592` bytes; `/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629.webp` -> `200`, `image/webp`, `35912` bytes.
+
+Live browser QA на production:
+
+- mobile `390x844`: `scrollWidth=390`, `innerWidth=390`, форма есть, `form-messenger=true`, `form-room-file=true`, `FAQ=10`, `brokenImages=[]`, `imageCount=40`;
+- desktop `1440x960`: `scrollWidth=1440`, `innerWidth=1440`, форма есть, `form-messenger=true`, `form-room-file=true`, `FAQ=10`, `brokenImages=[]`, `imageCount=40`.
 
 ## Важные выводы для следующего чата
 
