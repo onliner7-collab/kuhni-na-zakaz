@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import type { Prisma } from "@prisma/client";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { randomUUID } from "node:crypto";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { sendLeadNotifications } from "@/lib/telegram";
@@ -8,6 +11,7 @@ import { sendEmailNotification } from "@/lib/email";
 
 const MAX_LEADS_PER_WINDOW = 5;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const MAX_LEAD_FILE_SIZE = 8 * 1024 * 1024;
 const leadAttempts = new Map<string, { count: number; resetAt: number }>();
 
 const phoneSchema = z
@@ -17,14 +21,22 @@ const phoneSchema = z
   .max(30, "Слишком длинный номер")
   .refine((value) => value.replace(/\D/g, "").length >= 7, "Введите корректный номер");
 
+const booleanField = z.preprocess((value) => {
+  if (value === true || value === "true" || value === "on" || value === "1") return true;
+  if (value === false || value === "false" || value === "0" || value === "") return false;
+  return value;
+}, z.boolean());
+
 const leadSchema = z.object({
   name: z.string().trim().min(2).max(100),
   phone: phoneSchema,
   city: z.string().trim().max(100).optional().default(""),
   kitchenType: z.string().trim().max(80).optional().default(""),
   comment: z.string().trim().max(2000).optional().default(""),
-  hasMeasurements: z.boolean().optional().default(false),
-  agreement: z.boolean().refine(Boolean, "Нужно согласие на обработку данных"),
+  messenger: z.string().trim().max(80).optional().default(""),
+  uploadNote: z.string().trim().max(300).optional().default(""),
+  hasMeasurements: booleanField.optional().default(false),
+  agreement: booleanField.refine(Boolean, "Нужно согласие на обработку данных"),
   source: z.string().trim().max(100).optional().default("website"),
   formType: z.string().trim().max(50).optional().default("contact"),
   sourcePage: z.string().trim().max(500).optional().default(""),
@@ -48,10 +60,14 @@ const leadSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const { body, file } = await readLeadRequest(req);
 
     if (body.honeypot && body.honeypot.length > 0) {
       return NextResponse.json({ ok: true });
+    }
+
+    if (file && file.size > MAX_LEAD_FILE_SIZE) {
+      return NextResponse.json({ error: "Файл слишком большой. Максимум 8 МБ." }, { status: 400 });
     }
 
     const rateLimitKey = getRateLimitKey(req);
@@ -72,6 +88,8 @@ export async function POST(req: NextRequest) {
       ...(data.answers || {}),
       kitchenType: data.kitchenType || undefined,
       hasMeasurements: data.hasMeasurements || undefined,
+      messenger: data.messenger || undefined,
+      uploadNote: data.uploadNote || undefined,
       sourcePage: data.sourcePage || undefined,
       sourceType: data.sourceType || undefined,
       projectSlug: data.projectSlug || undefined,
@@ -86,13 +104,19 @@ export async function POST(req: NextRequest) {
       },
       agreement: data.agreement ? "accepted" : undefined,
     } as Prisma.InputJsonValue;
+    const fileComment = file
+      ? `\nФайл помещения: ${file.name} (${Math.round(file.size / 1024)} КБ).`
+      : data.uploadNote
+        ? `\nФайл помещения: ${data.uploadNote}.`
+        : "";
+    const messengerComment = data.messenger ? `\nМессенджер: ${data.messenger}.` : "";
 
     const lead = await prisma.lead.create({
       data: {
         name: data.name,
         phone: data.phone,
         city: data.city || "",
-        comment: data.comment || "",
+        comment: `${data.comment || ""}${messengerComment}${fileComment}`.trim(),
         source: data.source || "website",
         formType: data.formType || "contact",
         answers,
@@ -103,6 +127,32 @@ export async function POST(req: NextRequest) {
         budgetLevel: data.budgetLevel || "",
       },
     });
+
+    if (file) {
+      try {
+        const storedFile = await saveLeadFile(lead.id, file);
+        await prisma.lead.update({
+          where: { id: lead.id },
+          data: {
+            answers: {
+              ...(answers as Record<string, unknown>),
+              uploadedPlan: storedFile,
+            } as Prisma.InputJsonValue,
+          },
+        }).catch(() => {});
+      } catch (err) {
+        console.error("[LEAD FILE]", getSafeErrorMessage(err));
+        await prisma.lead.update({
+          where: { id: lead.id },
+          data: {
+            answers: {
+              ...(answers as Record<string, unknown>),
+              uploadError: "file_storage_failed",
+            } as Prisma.InputJsonValue,
+          },
+        }).catch(() => {});
+      }
+    }
 
     if (data.configSessionId) {
       prisma.savedConfig.updateMany({
@@ -124,6 +174,73 @@ export async function POST(req: NextRequest) {
     console.error("[LEADS POST]", getSafeErrorMessage(err));
     return NextResponse.json({ error: "Внутренняя ошибка" }, { status: 500 });
   }
+}
+
+async function readLeadRequest(req: NextRequest) {
+  const contentType = req.headers.get("content-type") || "";
+
+  if (!contentType.includes("multipart/form-data")) {
+    return { body: await req.json(), file: null as File | null };
+  }
+
+  const formData = await req.formData();
+  const body: Record<string, unknown> = {};
+  let file: File | null = null;
+
+  for (const [key, value] of formData.entries()) {
+    if (value instanceof File) {
+      if (key === "roomFile" && value.size > 0) {
+        file = value;
+      }
+      continue;
+    }
+
+    if (key === "answers") {
+      body.answers = parseJsonField(value);
+      continue;
+    }
+
+    body[key] = value;
+  }
+
+  return { body, file };
+}
+
+function parseJsonField(value: string) {
+  try {
+    return JSON.parse(value);
+  } catch {
+    return {};
+  }
+}
+
+async function saveLeadFile(leadId: number, file: File) {
+  const safeExt = getSafeFileExt(file);
+  const uploadDir = path.join(process.cwd(), "storage", "lead-uploads", String(leadId));
+  await mkdir(uploadDir, { recursive: true });
+
+  const filename = `${Date.now()}-${randomUUID()}${safeExt}`;
+  const absolutePath = path.join(uploadDir, filename);
+  const buffer = Buffer.from(await file.arrayBuffer());
+  await writeFile(absolutePath, buffer);
+
+  return {
+    originalName: file.name,
+    size: file.size,
+    type: file.type,
+    storage: `storage/lead-uploads/${leadId}/${filename}`,
+  };
+}
+
+function getSafeFileExt(file: File) {
+  const nameExt = path.extname(file.name).toLowerCase();
+  const allowed = new Set([".jpg", ".jpeg", ".png", ".webp", ".heic", ".pdf"]);
+
+  if (allowed.has(nameExt)) return nameExt;
+  if (file.type === "application/pdf") return ".pdf";
+  if (file.type === "image/png") return ".png";
+  if (file.type === "image/webp") return ".webp";
+  return ".jpg";
 }
 
 export async function GET() {

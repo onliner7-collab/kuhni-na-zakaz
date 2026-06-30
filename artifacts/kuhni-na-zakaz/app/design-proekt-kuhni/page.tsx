@@ -376,7 +376,9 @@ export default function DesignProektKuhniPage() {
                 successMessage="Спасибо, заявка отправлена. Мы свяжемся с вами для уточнения размеров, фото помещения и пожеланий."
                 errorMessage="Не удалось отправить заявку. Попробуйте ещё раз или напишите в Telegram."
                 showCity={false}
+                showMessenger
                 showHasMeasurements
+                showRoomFile
                 defaultComment="Интересует 3D-проект кухни на заказ."
               />
             </div>

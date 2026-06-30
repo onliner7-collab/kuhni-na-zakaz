@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,6 +28,8 @@ const schema = z.object({
   phone: z.string().trim().min(7, "Введите корректный номер").max(30, "Слишком длинный номер"),
   city: z.string().trim().max(100, "Слишком длинный город").optional(),
   kitchenType: z.string().trim().max(80).optional(),
+  messenger: z.string().trim().max(80).optional(),
+  uploadNote: z.string().trim().max(300).optional(),
   hasMeasurements: z.boolean().optional(),
   comment: z.string().trim().max(2000, "Комментарий слишком длинный").optional(),
   agreement: z.literal(true, {
@@ -62,7 +64,9 @@ interface ContactFormProps {
   errorMessage?: string;
   showCity?: boolean;
   showKitchenType?: boolean;
+  showMessenger?: boolean;
   showHasMeasurements?: boolean;
+  showRoomFile?: boolean;
   defaultKitchenType?: string;
   defaultComment?: string;
 }
@@ -179,13 +183,18 @@ export function ContactForm({
   errorMessage,
   showCity = true,
   showKitchenType = true,
+  showMessenger = false,
   showHasMeasurements = false,
+  showRoomFile = false,
   defaultKitchenType = "",
   defaultComment = "",
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [roomFile, setRoomFile] = useState<File | null>(null);
   const pathname = usePathname() || "/";
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const formOpenTracked = useRef(false);
   const formId = useId();
   const resolvedSourceType = sourceType || detectSourceType(pathname);
   const fallbackSourcePage = sourcePage || pathname;
@@ -196,7 +205,9 @@ export function ContactForm({
   const phoneId = `${formId}-lead-phone`;
   const cityId = `${formId}-lead-city`;
   const kitchenTypeId = `${formId}-lead-kitchen-type`;
+  const messengerId = `${formId}-lead-messenger`;
   const hasMeasurementsId = `${formId}-lead-has-measurements`;
+  const roomFileId = `${formId}-lead-room-file`;
   const commentId = `${formId}-lead-comment`;
   const agreementId = `${formId}-lead-agreement`;
   const formErrorSummaryId = `${formId}-lead-errors`;
@@ -213,6 +224,8 @@ export function ContactForm({
     phone: "",
     city: city || "",
     kitchenType: defaultKitchenType,
+    messenger: "",
+    uploadNote: "",
     comment: ideaComment,
     hasMeasurements: false,
     agreement: true,
@@ -238,6 +251,27 @@ export function ContactForm({
     .filter(Boolean);
   const fallbackErrorMessage = "Ошибка отправки. Попробуйте ещё раз или позвоните нам.";
 
+  useEffect(() => {
+    if (source !== "design-proekt-kuhni" || !formRef.current || formOpenTracked.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting || formOpenTracked.current) return;
+        formOpenTracked.current = true;
+        trackAnalyticsEvent(ANALYTICS_EVENTS.DESIGN_FORM_OPEN, {
+          source,
+          formLocation,
+          pagePath: readPagePath(pathname),
+        });
+        observer.disconnect();
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(formRef.current);
+    return () => observer.disconnect();
+  }, [formLocation, pathname, source]);
+
   const onSubmit = async (data: FormData) => {
     if (data.honeypot) return;
 
@@ -247,9 +281,11 @@ export function ContactForm({
       source === "design-proekt-kuhni"
         ? readDesignProjectComment(data.comment || defaultComment)
         : data.comment;
+    const fileNote = roomFile ? `${roomFile.name} (${Math.round(roomFile.size / 1024)} КБ)` : "";
     const payload = {
       ...data,
       comment: currentComment,
+      uploadNote: fileNote || data.uploadNote || "",
       source,
       formType,
       city: data.city || city || "",
@@ -278,19 +314,18 @@ export function ContactForm({
     });
 
     try {
-      const res = await fetch("/kapi/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch("/kapi/leads", createLeadRequestBody(payload, roomFile));
 
       if (res.ok) {
         setSent(true);
+        setRoomFile(null);
         reset({
           ...defaultValues,
           name: "",
           phone: "",
           comment: "",
+          messenger: "",
+          uploadNote: "",
           hasMeasurements: false,
           agreement: true,
         });
@@ -345,6 +380,7 @@ export function ContactForm({
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-4"
       data-testid="contact-form"
@@ -430,6 +466,24 @@ export function ContactForm({
         </div>
       )}
 
+      {showMessenger && (
+        <div>
+          <Label htmlFor={messengerId}>Мессенджер</Label>
+          <select
+            id={messengerId}
+            {...register("messenger")}
+            className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            data-testid="form-messenger"
+          >
+            <option value="">Как удобнее связаться</option>
+            <option value="Telegram">Telegram</option>
+            <option value="Viber">Viber</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Телефонный звонок">Телефонный звонок</option>
+          </select>
+        </div>
+      )}
+
       {showHasMeasurements && (
         <div>
           <label className="flex items-start gap-3 rounded-md border border-border bg-muted/20 p-3 text-sm leading-5 text-muted-foreground">
@@ -442,6 +496,34 @@ export function ContactForm({
             />
             <span>У меня уже есть размеры помещения</span>
           </label>
+        </div>
+      )}
+
+      {showRoomFile && (
+        <div>
+          <Label htmlFor={roomFileId}>Фото или план помещения</Label>
+          <Input
+            id={roomFileId}
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/heic,application/pdf"
+            className="mt-1"
+            data-testid="form-room-file"
+            onChange={(event) => {
+              const file = event.currentTarget.files?.[0] || null;
+              setRoomFile(file);
+              if (file) {
+                trackAnalyticsEvent(ANALYTICS_EVENTS.DESIGN_FILE_SELECT, {
+                  source,
+                  formLocation,
+                  fileType: file.type || "unknown",
+                  fileSizeKb: Math.round(file.size / 1024),
+                });
+              }
+            }}
+          />
+          <p className="mt-1 text-xs leading-5 text-muted-foreground">
+            Подойдут фото, план БТИ или PDF до 8 МБ. Если файл больше, отправьте его в Telegram.
+          </p>
         </div>
       )}
 
@@ -483,4 +565,30 @@ export function ContactForm({
       </Button>
     </form>
   );
+}
+
+function createLeadRequestBody(payload: FormData & Record<string, unknown>, roomFile: File | null): RequestInit {
+  if (!roomFile) {
+    return {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    };
+  }
+
+  const formData = new window.FormData();
+  Object.entries(payload).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+    if (typeof value === "object") {
+      formData.append(key, JSON.stringify(value));
+      return;
+    }
+    formData.append(key, String(value));
+  });
+  formData.append("roomFile", roomFile);
+
+  return {
+    method: "POST",
+    body: formData,
+  };
 }

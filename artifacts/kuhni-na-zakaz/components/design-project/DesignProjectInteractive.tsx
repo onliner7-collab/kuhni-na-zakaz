@@ -254,6 +254,8 @@ export function DesignProjectInteractive() {
   const [activeMaterialCategory, setActiveMaterialCategory] = useState<string>(materialCategories[0]);
   const [activeMaterial, setActiveMaterial] = useState<string>(materials[0][1]);
   const touchStartX = useRef<number | null>(null);
+  const configStarted = useRef(false);
+  const trackedScrollDepths = useRef(new Set<number>());
   const lightboxIndex = lightbox ? gallery.findIndex((item) => item[0] === lightbox[0]) : -1;
 
   useEffect(() => {
@@ -264,17 +266,52 @@ export function DesignProjectInteractive() {
       return;
     }
 
+    let frame = 0;
     const onScroll = () => {
-      const hero = document.getElementById("design-hero-stage");
-      if (!hero) return;
-      const rect = hero.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
-      setHeroStage(Math.min(4, Math.floor(progress * 5)));
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const hero = document.getElementById("design-hero-stage");
+        if (!hero) return;
+        const rect = hero.getBoundingClientRect();
+        const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+        setHeroStage(Math.min(4, Math.floor(progress * 5)));
+      });
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
+    const depths = [25, 50, 75, 90];
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (maxScroll <= 0) return;
+        const currentDepth = Math.round((window.scrollY / maxScroll) * 100);
+        depths.forEach((depth) => {
+          if (currentDepth >= depth && !trackedScrollDepths.current.has(depth)) {
+            trackedScrollDepths.current.add(depth);
+            track(ANALYTICS_EVENTS.DESIGN_SCROLL_DEPTH, { depth, page: "design-proekt-kuhni" });
+          }
+        });
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   useEffect(() => {
@@ -309,11 +346,13 @@ export function DesignProjectInteractive() {
   const caseImageLabel = ["Пустое помещение", "План", "3D-визуализация", "Реализация"][caseState];
 
   function choose<K extends keyof Omit<SelectionState, "extras">>(key: K, value: SelectionState[K]) {
+    trackConfigStart();
     setSelection((current) => ({ ...current, [key]: value }));
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: key, value });
   }
 
   function toggleExtra(value: string) {
+    trackConfigStart();
     setSelection((current) => {
       const extras = current.extras.includes(value)
         ? current.extras.filter((item) => item !== value)
@@ -321,6 +360,12 @@ export function DesignProjectInteractive() {
       return { ...current, extras };
     });
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: "extras", value });
+  }
+
+  function trackConfigStart() {
+    if (configStarted.current) return;
+    configStarted.current = true;
+    track(ANALYTICS_EVENTS.DESIGN_CONFIG_START, { page: "design-proekt-kuhni" });
   }
 
   function chooseMaterialCategory(category: string) {
@@ -394,11 +439,11 @@ export function DesignProjectInteractive() {
               Увидьте будущую кухню до производства — с материалами, техникой, хранением и планировкой.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#request" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-amber-100">
+              <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-hero", target: "request" })} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-amber-100">
                 Создать концепцию кухни
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link href="/portfolio" className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
+              <Link href="/portfolio" onClick={() => track(ANALYTICS_EVENTS.DESIGN_GALLERY_NAVIGATE, { source: "design-hero", target: "portfolio" })} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
                 Смотреть реальные проекты
               </Link>
             </div>
@@ -456,13 +501,13 @@ export function DesignProjectInteractive() {
                 <p className="mt-3 text-sm leading-relaxed text-white/75">Мы подготовим планировку, подберем материалы и покажем будущую кухню до начала производства.</p>
                 <p className="mt-4 rounded-lg bg-white/10 p-3 text-sm text-white/80">{selectedSummary}</p>
                 <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                  <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.DESIGN_CONFIG_COMPLETE, { shape: selection.shape, style: selection.style })} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-100">
+                  <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.DESIGN_CONFIG_COMPLETE, { shape: selection.shape, style: selection.style, size: selection.size, facade: selection.facade, extras: selection.extras.join(", ") })} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-100">
                     Получить 3D-проект
                   </Link>
-                  <Link href="#request" className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
+                  <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-configurator", target: "send-measurements" })} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
                     Отправить размеры
                   </Link>
-                  <Link href="/contacts#form" className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
+                  <Link href="/contacts#form" onClick={() => track(ANALYTICS_EVENTS.MEASURE_REQUEST, { source: "design-configurator" })} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
                     Записаться на замер
                   </Link>
                 </div>
@@ -578,7 +623,7 @@ export function DesignProjectInteractive() {
               </article>
             ))}
           </div>
-          <Link href="#request" className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:bg-primary/90">
+          <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-route", target: "request" })} className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:bg-primary/90">
             Начать проект кухни
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
@@ -673,7 +718,7 @@ export function DesignProjectInteractive() {
         </div>
       </section>
 
-      <Link href="#request" className="fixed inset-x-3 bottom-3 z-40 inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-xl shadow-black/20 md:hidden">
+      <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-mobile-sticky", target: "request" })} className="fixed inset-x-3 bottom-3 z-40 inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-xl shadow-black/20 md:hidden">
         Получить проект
       </Link>
 

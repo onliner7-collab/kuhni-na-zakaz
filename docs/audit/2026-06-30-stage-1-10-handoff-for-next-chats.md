@@ -245,6 +245,78 @@ pnpm.cmd run build
 
 Новых URL, sitemap-изменений и robots/canonical-изменений не добавлено. После деплоя панельный переобход GSC/Яндекс не обязателен; если нужно отправлять именно обновленную страницу `/design-proekt-kuhni`, это лучше делать отдельным браузерным действием через авторизованный сеанс пользователя.
 
+## Отчет по моей части: этапы 17-20
+
+Дата выполнения: 30 июня 2026
+Страница: `/design-proekt-kuhni`
+Статус: код реализован и локально проверен; далее нужен deploy стандартным Timeweb-путем.
+
+### Что сделано
+
+| Этап | Статус | Что изменено |
+|---|---|---|
+| 17. Финальный CTA-блок | Выполнен | Финальная форма заявки усилена полями "Мессенджер" и "Фото или план помещения"; CTA по Telegram сохранен, выбранные параметры конфигуратора продолжают попадать в комментарий заявки. |
+| 18. Мобильная версия | Проверена | Mobile `390x844`: `scrollWidth=390`, sticky-кнопка "Получить проект" сохранена, форма и интерактивные блоки доступны вертикальным скроллом без горизонтального overflow. |
+| 19. Фото и визуальный контент | Проверен | Новые фото не генерировались: для этапов 17-20 хватило существующих WebP-изображений. Тяжелые PNG/JPEG не подключались как visible `src`; `images:audit` не нашел broken/oversized/badNames. |
+| 20. Анимации и производительность | Выполнен | Scroll-driven hero и scroll-depth analytics переведены на `requestAnimationFrame`; `prefers-reduced-motion` fallback сохранен; добавлены события начала конфигуратора, глубины скролла, открытия формы и выбора файла. |
+
+### Основные файлы
+
+- `artifacts/kuhni-na-zakaz/app/design-proekt-kuhni/page.tsx`
+- `artifacts/kuhni-na-zakaz/components/design-project/DesignProjectInteractive.tsx`
+- `artifacts/kuhni-na-zakaz/components/sections/ContactForm.tsx`
+- `artifacts/kuhni-na-zakaz/app/kapi/leads/route.ts`
+- `artifacts/kuhni-na-zakaz/lib/analytics.ts`
+
+### Заявка и файл помещения
+
+- Обычные формы сайта продолжают отправляться как JSON.
+- Если в финальной форме 3D-проекта выбран файл, заявка отправляется как `multipart/form-data`.
+- Поддержан файл фото/плана до `8 МБ`; файл сохраняется не в `public`, а в приватный путь `storage/lead-uploads/<leadId>/...`.
+- В `Lead.answers` добавляются `messenger`, `uploadNote`, а после сохранения файла — `uploadedPlan` с именем, размером, типом и приватным storage-path.
+- В комментарий заявки добавляются выбранный мессенджер и факт приложенного файла, чтобы Telegram/email-уведомление не теряло контекст.
+
+### Аналитика
+
+Добавлены/расширены события:
+
+- `design_project_config_start`;
+- `design_project_config_complete` с `shape`, `size`, `style`, `facade`, `extras`;
+- `design_project_scroll_depth` для `25`, `50`, `75`, `90`;
+- `design_project_form_open`;
+- `design_project_file_select`;
+- `cta_click` для hero/route/mobile sticky CTA;
+- `measure_request` для записи на замер из конфигуратора.
+
+Глобальный `messenger_click` уже покрывает Telegram-ссылки через `AnalyticsProvider`, отдельный клиентский обработчик для финального Telegram CTA не добавлялся.
+
+### Локальные проверки
+
+```powershell
+node_modules\.bin\tsc.CMD --noEmit --incremental false
+pnpm.cmd run images:audit
+pnpm.cmd run build
+pnpm.cmd exec playwright test -c playwright.smoke.config.ts tests/smoke/design-proekt-kuhni.spec.ts --reporter=line
+```
+
+Результаты:
+
+- TypeScript: без ошибок.
+- `images:audit`: `broken: []`, `oversized: []`, `badNames: []`.
+- Production build: успешно; ожидаемые Prisma-сообщения про недоступную локальную БД `127.0.0.1:5434` остались, но сборка завершилась.
+- После build `/design-proekt-kuhni`: `12.7 kB`, First Load JS `170 kB`.
+- Smoke `/design-proekt-kuhni`: `9 passed`; один dev-only timeout на проверке внутренних ссылок при запросе `/catalog`, без факта 404.
+
+Отдельная production-like/dev DOM QA на свежем сервере `127.0.0.1:3174`:
+
+- mobile `390x844`: `scrollWidth=390`, `innerWidth=390`, форма есть, `form-messenger=true`, `form-room-file=true`, `FAQ=10`, `brokenImages=[]`, `imageCount=40`;
+- desktop `1440x960`: `scrollWidth=1440`, `innerWidth=1440`, форма есть, `form-messenger=true`, `form-room-file=true`, `FAQ=10`, `brokenImages=[]`, `imageCount=40`;
+- внутренняя link-проверка: `25` URL, `broken: []`; `/portfolio` один раз ушел в локальный timeout на dev-сервере, отдельный `curl -I` подтвердил `/portfolio -> 200`.
+
+### GSC/Яндекс
+
+Новых URL, sitemap-изменений, robots/canonical-изменений и новых индексируемых страниц не добавлено. После деплоя этапов 17-20 обязательный переобход GSC/Яндекс не требуется; если нужно вручную отправить обновленную `/design-proekt-kuhni`, делать это через встроенный браузер в авторизованном сеансе и фиксировать только факт отправки, не обещая индексацию.
+
 ## Важные выводы для следующего чата
 
 1. Не откатывать `a92693c`, `e78efbc`, `bdf9f45`, `18e2f13`: это уже опубликованная рабочая цепочка.
