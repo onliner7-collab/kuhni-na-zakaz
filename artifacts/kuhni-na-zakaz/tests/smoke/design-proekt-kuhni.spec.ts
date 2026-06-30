@@ -103,4 +103,54 @@ test.describe("design project page", () => {
 
     expect(brokenLinks).toEqual([]);
   });
+
+  test("keeps stage 21-23 SEO links, metadata, and schema visible", async ({ page }) => {
+    await gotoDesignProjectPage(page);
+
+    const requiredLinks = [
+      "/catalog/uglovye-kuhni",
+      "/catalog/pryamye-kuhni",
+      "/catalog/malenkie-kuhni",
+      "/catalog/p-obraznye-kuhni",
+      "/catalog/kuhni-s-ostrovom",
+      "/catalog/kuhni-do-potolka",
+      "/catalog/kuhni-bez-ruchek",
+      "/portfolio?style=neoklassika",
+      "/catalog",
+      "/portfolio",
+      "/materials",
+      "/materials/furnitura",
+      "/prices",
+      "/contacts",
+    ];
+
+    for (const href of requiredLinks) {
+      await expect(page.locator(`#seo-content a[href="${href}"]`)).toBeVisible();
+    }
+
+    await expect(page).toHaveTitle("3D-проект кухни на заказ в Минске — дизайн, планировка и визуализация");
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      "content",
+      "Разработаем 3D-проект кухни по вашим размерам: планировка, материалы, техника, системы хранения и предварительный расчёт стоимости. Работаем в Минске и по Беларуси.",
+    );
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /3d-proekt-kuhni-hero\.webp/);
+
+    const schemaTypes = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) =>
+      nodes
+        .flatMap((node) => {
+          const parsed = JSON.parse(node.textContent || "[]");
+          return Array.isArray(parsed) ? parsed : [parsed];
+        })
+        .map((item) => item?.["@type"]),
+    );
+
+    expect(schemaTypes).toEqual(expect.arrayContaining([
+      "BreadcrumbList",
+      "WebPage",
+      "Service",
+      "LocalBusiness",
+      "ImageObject",
+      "FAQPage",
+    ]));
+  });
 });

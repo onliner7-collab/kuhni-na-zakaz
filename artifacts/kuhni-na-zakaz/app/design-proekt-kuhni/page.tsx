@@ -194,27 +194,28 @@ export default function DesignProektKuhniPage() {
   });
   const jsonLdImages = compactJsonLd({
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Ключевые изображения 3D-проекта кухни",
-    itemListElement: [
-      {
-        "@type": "ImageObject",
-        position: 1,
-        name: "Пустое помещение перед проектированием кухни",
-        url: siteUrl(emptyRoomImage),
-      },
-      {
-        "@type": "ImageObject",
-        position: 2,
-        name: "Финальная 3D-визуализация кухни",
-        url: siteUrl(heroImage),
-      },
-    ],
+    "@type": "ImageObject",
+    name: "Финальная 3D-визуализация кухни",
+    url: siteUrl(heroImage),
+    contentUrl: siteUrl(heroImage),
+    width: 1600,
+    height: 900,
+    caption: "Финальная современная кухня после 3D-проектирования",
+  });
+  const jsonLdEmptyRoomImage = compactJsonLd({
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    name: "Пустое помещение перед проектированием кухни",
+    url: siteUrl(emptyRoomImage),
+    contentUrl: siteUrl(emptyRoomImage),
+    width: 1600,
+    height: 914,
+    caption: "Пустое помещение кухни с окном и коммуникациями перед созданием 3D-проекта",
   });
   const jsonLdFaq = faqJsonLd(faqItems);
   const jsonLdItems: JsonLdObject[] = jsonLdFaq
-    ? [jsonLdBreadcrumb, jsonLdWebPage, jsonLdService, jsonLdOrganization, jsonLdImages, jsonLdFaq]
-    : [jsonLdBreadcrumb, jsonLdWebPage, jsonLdService, jsonLdOrganization, jsonLdImages];
+    ? [jsonLdBreadcrumb, jsonLdWebPage, jsonLdService, jsonLdOrganization, jsonLdImages, jsonLdEmptyRoomImage, jsonLdFaq]
+    : [jsonLdBreadcrumb, jsonLdWebPage, jsonLdService, jsonLdOrganization, jsonLdImages, jsonLdEmptyRoomImage];
 
   return (
     <>

@@ -390,6 +390,10 @@ export function DesignProjectInteractive() {
     track(ANALYTICS_EVENTS.DESIGN_GALLERY_NAVIGATE, { title: nextItem[0], direction });
   }
 
+  function trackPortfolioClick(source: string, target: string, title?: string) {
+    track(ANALYTICS_EVENTS.DESIGN_PORTFOLIO_CLICK, { source, target, title: title || "" });
+  }
+
   const selectedSummary = useMemo(() => [
     selection.shape,
     selection.size,
@@ -443,7 +447,7 @@ export function DesignProjectInteractive() {
                 Создать концепцию кухни
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link href="/portfolio" onClick={() => track(ANALYTICS_EVENTS.DESIGN_GALLERY_NAVIGATE, { source: "design-hero", target: "portfolio" })} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
+              <Link href="/portfolio" onClick={() => trackPortfolioClick("design-hero", "/portfolio")} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
                 Смотреть реальные проекты
               </Link>
             </div>
@@ -565,7 +569,7 @@ export function DesignProjectInteractive() {
                   <h3 className="mt-3 text-lg font-extrabold">{item.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground"><b className="text-foreground">Проблема:</b> {item.problem}</p>
                   <p className="mt-2 text-sm text-muted-foreground"><b className="text-foreground">Решение:</b> {item.solution}</p>
-                  <Link href={item.href} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+                  <Link href={item.href} onClick={() => trackPortfolioClick("design-before-after", item.href, item.title)} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
                     Смотреть похожие кухни
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
@@ -588,7 +592,7 @@ export function DesignProjectInteractive() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {situations.map(([title, text, href, image]) => (
-              <Link key={title} href={href} className="group relative min-h-[260px] overflow-hidden rounded-lg border border-white/15 bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+              <Link key={title} href={href} onClick={() => trackPortfolioClick("design-situation", href, title)} className="group relative min-h-[260px] overflow-hidden rounded-lg border border-white/15 bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
                 <Image src={image} alt={title} width={600} height={760} sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw" className="absolute inset-0 h-full w-full object-cover opacity-70 transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/35 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-4">
@@ -655,7 +659,7 @@ export function DesignProjectInteractive() {
                 <div className="p-4">
                   <h3 className="font-extrabold">{item[0]}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{item[1]} · {item[2]} · {item[3]}</p>
-                  <Link href={item[5]} className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+                  <Link href={item[5]} onClick={() => trackPortfolioClick("design-gallery", item[5], item[0])} className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
                     {index < 8 ? "Подробнее" : "Открыть раздел"}
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>

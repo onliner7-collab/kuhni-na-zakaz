@@ -45,6 +45,7 @@ const schema = z.object({
   utmTerm: z.string().optional(),
   utmContent: z.string().optional(),
   referrer: z.string().optional(),
+  answers: z.record(z.unknown()).optional(),
   honeypot: z.string().max(0, "Это поле должно быть пустым").optional(),
 });
 
@@ -79,6 +80,14 @@ interface TrackingFields {
   utmTerm: string;
   utmContent: string;
   referrer: string;
+}
+
+interface DesignProjectSelection {
+  shape?: string;
+  size?: string;
+  style?: string;
+  facade?: string;
+  extras?: string[];
 }
 
 function detectSourceType(pathname: string) {
@@ -130,30 +139,41 @@ function readIdeaComment(defaultComment = "") {
 function readDesignProjectComment(defaultComment = "") {
   if (typeof window === "undefined") return defaultComment;
 
+  const selection = readDesignProjectSelection();
+  if (!selection) return defaultComment;
+
+  const lines = [
+    defaultComment,
+    "Выбранные параметры 3D-проекта:",
+    selection.shape ? `Тип кухни: ${selection.shape}` : "",
+    selection.size ? `Размер помещения: ${selection.size}` : "",
+    selection.style ? `Стиль: ${selection.style}` : "",
+    selection.facade ? `Фасады: ${selection.facade}` : "",
+    selection.extras?.length ? `Дополнительно: ${selection.extras.join(", ")}` : "",
+  ].filter(Boolean);
+
+  return lines.join("\n");
+}
+
+function readDesignProjectSelection(): DesignProjectSelection | null {
+  if (typeof window === "undefined") return null;
+
   const rawSelection = window.sessionStorage.getItem("designProjectSelection");
-  if (!rawSelection) return defaultComment;
+  if (!rawSelection) return null;
 
   try {
-    const selection = JSON.parse(rawSelection) as {
-      shape?: string;
-      size?: string;
-      style?: string;
-      facade?: string;
-      extras?: string[];
-    };
-    const lines = [
-      defaultComment,
-      "Выбранные параметры 3D-проекта:",
-      selection.shape ? `Тип кухни: ${selection.shape}` : "",
-      selection.size ? `Размер помещения: ${selection.size}` : "",
-      selection.style ? `Стиль: ${selection.style}` : "",
-      selection.facade ? `Фасады: ${selection.facade}` : "",
-      selection.extras?.length ? `Дополнительно: ${selection.extras.join(", ")}` : "",
-    ].filter(Boolean);
+    const selection = JSON.parse(rawSelection) as DesignProjectSelection;
+    const hasValue = Boolean(
+      selection.shape ||
+        selection.size ||
+        selection.style ||
+        selection.facade ||
+        selection.extras?.length,
+    );
 
-    return lines.join("\n");
+    return hasValue ? selection : null;
   } catch {
-    return defaultComment;
+    return null;
   }
 }
 
@@ -282,10 +302,17 @@ export function ContactForm({
         ? readDesignProjectComment(data.comment || defaultComment)
         : data.comment;
     const fileNote = roomFile ? `${roomFile.name} (${Math.round(roomFile.size / 1024)} КБ)` : "";
+    const designSelection = source === "design-proekt-kuhni" ? readDesignProjectSelection() : null;
     const payload = {
       ...data,
       comment: currentComment,
       uploadNote: fileNote || data.uploadNote || "",
+      answers: designSelection
+        ? {
+            ...(data.answers || {}),
+            designProjectSelection: designSelection,
+          }
+        : data.answers,
       source,
       formType,
       city: data.city || city || "",
@@ -334,6 +361,11 @@ export function ContactForm({
           sourceType: payload.sourceType,
           formLocation,
           hasMeasurements: Boolean(payload.hasMeasurements),
+          shape: designSelection?.shape,
+          size: designSelection?.size,
+          style: designSelection?.style,
+          facade: designSelection?.facade,
+          extras: designSelection?.extras?.join(", "),
           pagePath: readPagePath(pathname),
         });
         trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_FORM_SUBMIT, {

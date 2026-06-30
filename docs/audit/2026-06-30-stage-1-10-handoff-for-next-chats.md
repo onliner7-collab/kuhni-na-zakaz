@@ -331,6 +331,68 @@ Live browser QA на production:
 - mobile `390x844`: `scrollWidth=390`, `innerWidth=390`, форма есть, `form-messenger=true`, `form-room-file=true`, `FAQ=10`, `brokenImages=[]`, `imageCount=40`;
 - desktop `1440x960`: `scrollWidth=1440`, `innerWidth=1440`, форма есть, `form-messenger=true`, `form-room-file=true`, `FAQ=10`, `brokenImages=[]`, `imageCount=40`.
 
+## Отчет по моей части: этапы 21-25
+
+Дата выполнения: 30 июня 2026
+Страница: `/design-proekt-kuhni`
+Статус: код реализован, локально проверен, запушен в `origin/work` и задеплоен на production.
+
+### Что сделано
+
+| Этап | Статус | Что изменено |
+|---|---|---|
+| 21. Внутренние ссылки | Выполнен и покрыт smoke-тестом | В SEO-блоке подтверждены обычные HTML-ссылки на угловые, прямые, маленькие, П-образные кухни, кухни с островом, до потолка, без ручек, неоклассику, каталог, портфолио, материалы, фурнитуру, цены и замер. |
+| 22. Метаданные | Проверен и покрыт smoke-тестом | Title, Description, canonical, OG image и Twitter preview сохранены для `/design-proekt-kuhni`; OG-картинка ведет на легкий WebP hero. |
+| 23. Schema-разметка | Усилен | JSON-LD теперь содержит явные `ImageObject` для hero-кухни и пустого помещения, плюс `BreadcrumbList`, `WebPage`, `Service`, `LocalBusiness` и `FAQPage` по видимому FAQ. |
+| 24. Аналитика | Усилен | Добавлено событие `design_project_portfolio_click` для переходов из hero, кейсов, ситуаций и галереи. Выбор конфигуратора теперь передается в заявку не только текстом в комментарии, но и структурировано в `Lead.answers.designProjectSelection`; в успешное событие заявки добавлены shape, size, style, facade и extras. |
+| 25. Критерии готовности | Проверен | Добавлен smoke-тест на этапы 21-23; повторно пройдены typecheck, image audit, production build и smoke desktop/mobile. |
+
+### Основные файлы
+
+- `artifacts/kuhni-na-zakaz/app/design-proekt-kuhni/page.tsx`
+- `artifacts/kuhni-na-zakaz/components/design-project/DesignProjectInteractive.tsx`
+- `artifacts/kuhni-na-zakaz/components/sections/ContactForm.tsx`
+- `artifacts/kuhni-na-zakaz/lib/analytics.ts`
+- `artifacts/kuhni-na-zakaz/tests/smoke/design-proekt-kuhni.spec.ts`
+- `docs/audit/2026-06-30-stage-1-10-handoff-for-next-chats.md`
+
+### Изображения и производительность
+
+- Новые фото не генерировались: этапы 21-25 закрывались ссылками, metadata, schema, аналитикой, заявкой и проверками.
+- Новые PNG/JPEG не подключались.
+- `pnpm.cmd run images:audit`: `broken: []`, `oversized: []`, `badNames: []`.
+- После production build `/design-proekt-kuhni`: `12.8 kB`, First Load JS `170 kB`.
+
+### Локальные проверки
+
+```powershell
+node_modules\.bin\tsc.CMD --noEmit --incremental false
+pnpm.cmd run images:audit
+pnpm.cmd run build
+$env:PORT='3182'; pnpm.cmd exec playwright test -c playwright.smoke.config.ts tests/smoke/design-proekt-kuhni.spec.ts --reporter=line --workers=1
+```
+
+Результаты:
+
+- TypeScript: без ошибок.
+- `images:audit`: `260` referenced images, `broken: []`, `oversized: []`, `badNames: []`.
+- Production build: успешно; локальные Prisma-сообщения про недоступную БД `127.0.0.1:5434` ожидаемы, сборка завершилась через fallback-данные.
+- Smoke `/design-proekt-kuhni`: `12 passed` на desktop и mobile.
+- Первая попытка build упала на stale `.next` без реальной ошибки кода; после очистки generated `.next` build прошел.
+- `next start` в локальной среде не поднялся из-за отсутствующего `.next/BUILD_ID` после успешного build, поэтому финальная production-like проверка перенесена на live production после деплоя.
+
+### GSC/Яндекс
+
+Новых URL, sitemap-изменений, robots/canonical-изменений и новых индексируемых страниц не добавлено. Обязательный переобход GSC/Яндекс не требуется; если нужно вручную отправить обновленную `/design-proekt-kuhni`, делать это отдельным действием через встроенный браузер в авторизованном сеансе и фиксировать только факт отправки.
+
+### Production после деплоя
+
+- commit с кодом этапов 21-25: `TBD`;
+- `git rev-parse --short HEAD` на сервере: `TBD`;
+- `systemctl is-active kuhni-na-zakaz`: `TBD`;
+- `https://kuhni.minsk.by/design-proekt-kuhni`: `TBD`;
+- live HTML/schema/mobile QA: `TBD`.
+
 ## Важные выводы для следующего чата
 
 1. Не откатывать `a92693c`, `e78efbc`, `bdf9f45`, `18e2f13`: это уже опубликованная рабочая цепочка.

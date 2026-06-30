@@ -20,6 +20,7 @@ export const ANALYTICS_EVENTS = {
   DESIGN_LAYER_OPEN: "design_project_layer_open",
   DESIGN_CASE_VIEW: "design_project_case_view",
   DESIGN_GALLERY_NAVIGATE: "design_project_gallery_navigate",
+  DESIGN_PORTFOLIO_CLICK: "design_project_portfolio_click",
   DESIGN_PROJECT_PART_OPEN: "design_project_part_open",
   DESIGN_MATERIAL_OPEN: "design_project_material_open",
   DESIGN_FORM_OPEN: "design_project_form_open",
