@@ -14,32 +14,32 @@ const portfolioBase = "/uploads/kitchens/portfolio";
 
 const heroStages = [
   {
-    title: "Пустое помещение",
-    text: "Фиксируем стены, окно, коммуникации и реальные ограничения.",
+    title: "Кухня",
+    text: "Сразу показываем, каким может быть понятный финальный результат.",
+    image: `${imageBase}/3d-proekt-kuhni-hero.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-hero-mobile.webp`,
+    alt: "Готовая кухня после 3D-проектирования",
+  },
+  {
+    title: "Комната",
+    text: "Проверяем стены, окно, коммуникации и реальные ограничения.",
     image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629.webp`,
     mobileImage: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`,
     alt: "Пустое помещение кухни перед созданием 3D-проекта",
   },
   {
-    title: "Планируем пространство",
+    title: "План",
     text: "Появляются размеры, рабочие зоны, техника и проходы.",
     image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-plan.webp`,
     mobileImage: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-plan-mobile.webp`,
     alt: "Помещение кухни с чертежными линиями планировки",
   },
   {
-    title: "Подбираем материалы",
+    title: "Материалы",
     text: "Добавляем модули, фасады, столешницу и встроенную технику.",
     image: `${imageBase}/3d-proekt-uglovaya-kuhnya.webp`,
     mobileImage: `${imageBase}/3d-proekt-uglovaya-kuhnya-mobile.webp`,
     alt: "Появление модулей угловой кухни в 3D-проекте",
-  },
-  {
-    title: "Видите будущую кухню до производства",
-    text: "Финальная визуализация помогает согласовать кухню до заказа.",
-    image: `${imageBase}/3d-proekt-kuhni-hero.webp`,
-    mobileImage: `${imageBase}/3d-proekt-kuhni-hero-mobile.webp`,
-    alt: "Готовая кухня после 3D-проектирования",
   },
 ];
 
@@ -337,8 +337,7 @@ export function DesignProjectInteractive() {
         frame = 0;
         const hero = document.getElementById("design-hero-stage");
         if (!hero) return;
-        const rect = hero.getBoundingClientRect();
-        const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+        const progress = Math.min(1, Math.max(0, (window.scrollY - hero.offsetTop) / (window.innerHeight * 1.15)));
         setHeroStage(Math.min(heroStages.length - 1, Math.floor(progress * heroStages.length)));
       });
     };
@@ -516,20 +515,20 @@ export function DesignProjectInteractive() {
             <img src={`${imageBase}/3d-proekt-kuhni-hero.webp`} alt="Готовая кухня после 3D-проектирования" className="h-full w-full object-cover" />
           </noscript>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-stone-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/45 to-stone-950/5" />
         <div className="container-site relative z-10 flex min-h-[100svh] items-end pb-28 pt-24 sm:items-center sm:pb-0">
           <div className="max-w-3xl">
             <h1 className="text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">3D-проект кухни на заказ</h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-xl">
               Увидьте будущую кухню до производства: планировка, материалы, техника и свет.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-hero", target: "request" })} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-amber-100">
-                Создать проект кухни
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            <div className="mt-7 grid grid-cols-2 gap-3 sm:flex sm:flex-row">
+              <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-hero", target: "request" })} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-3 py-3 text-center text-sm font-bold leading-tight text-stone-950 transition-colors hover:bg-amber-100 sm:px-6">
+                Создать проект
+                <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
-              <Link href="#visual-gallery" onClick={() => trackPortfolioClick("design-hero", "#visual-gallery")} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
-                Смотреть кухни
+              <Link href="#visual-gallery" onClick={() => trackPortfolioClick("design-hero", "#visual-gallery")} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-3 py-3 text-center text-sm font-bold leading-tight text-white transition-colors hover:bg-white/10 sm:px-6">
+                Кухни
               </Link>
             </div>
             <div className="mt-7 grid grid-cols-3 gap-2" aria-label="Короткие преимущества 3D-проекта">
@@ -539,15 +538,15 @@ export function DesignProjectInteractive() {
                 </div>
               ))}
             </div>
-            <div className="mt-5 flex snap-x gap-2 overflow-x-auto overscroll-x-contain pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0" aria-label="Этапы превращения помещения в кухню">
+            <div className="mt-5 grid grid-cols-4 gap-2" aria-label="Этапы превращения помещения в кухню">
               {heroStages.map((item, index) => (
                 <button
                   key={item.title}
                   type="button"
                   onClick={() => setHeroStage(index)}
-                  className={`w-[74vw] shrink-0 snap-start rounded-lg border px-3 py-3 text-left text-xs transition-colors sm:w-auto ${heroStage === index ? "border-amber-200 bg-white text-stone-950" : "border-white/20 bg-white/10 text-white/80"}`}
+                  className={`min-h-10 rounded-lg border px-2 py-2 text-center text-[11px] font-bold leading-tight transition-colors sm:text-xs ${heroStage === index ? "border-amber-200 bg-white text-stone-950" : "border-white/20 bg-white/10 text-white/80"}`}
                 >
-                  <span className="block font-bold">{item.title}</span>
+                  {item.title}
                 </button>
               ))}
             </div>
@@ -622,12 +621,14 @@ export function DesignProjectInteractive() {
                   ))}
                 </div>
                 <p className="mt-4 rounded-lg bg-white/10 p-3 text-sm text-white/80">{selectedSummary}</p>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <Link href={activeShapeItem.href} onClick={() => trackPortfolioClick("design-shape", activeShapeItem.href, activeShapeItem.name)} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
-                    Посмотреть похожие кухни
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  <Link href={activeShapeItem.href} onClick={() => trackPortfolioClick("design-shape", activeShapeItem.href, activeShapeItem.name)} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-3 py-2 text-center text-sm font-bold leading-tight text-white hover:bg-white/10">
+                    <span className="sm:hidden">Похожие</span>
+                    <span className="hidden sm:inline">Посмотреть похожие кухни</span>
                   </Link>
-                  <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.DESIGN_CONFIG_COMPLETE, { shape: selection.shape, style: selection.style, size: selection.size, facade: selection.facade, extras: selection.extras.join(", ") })} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-100">
-                    Получить проект такой кухни
+                  <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.DESIGN_CONFIG_COMPLETE, { shape: selection.shape, style: selection.style, size: selection.size, facade: selection.facade, extras: selection.extras.join(", ") })} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-3 py-2 text-center text-sm font-bold leading-tight text-stone-950 hover:bg-amber-100">
+                    <span className="sm:hidden">Заявка</span>
+                    <span className="hidden sm:inline">Получить проект такой кухни</span>
                   </Link>
                 </div>
               </div>
