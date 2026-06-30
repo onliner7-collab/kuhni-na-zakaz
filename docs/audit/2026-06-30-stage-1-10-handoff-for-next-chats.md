@@ -1,0 +1,186 @@
+# Handoff для новых чатов: этапы 1-10
+
+Дата: 30 июня 2026  
+Проект: `C:\Users\User\Desktop\kuhni-na-zakaz`  
+Ветка: `work`  
+Сайт: `https://kuhni.minsk.by`  
+Production HEAD после последнего деплоя: `18e2f13`
+
+## Короткий вывод
+
+Этапы 1-10 уже реализованы, проверены, запушены в `origin/work` и задеплоены на production. Следующим чатам не нужно начинать заново или переписывать страницу `/design-proekt-kuhni`: работать нужно поверх текущей реализации.
+
+Главные рабочие коммиты:
+
+| Коммит | Назначение |
+|---|---|
+| `a92693c feat: rebuild design project page` | Основная реализация этапов 1-5 для `/design-proekt-kuhni` |
+| `e78efbc feat: strengthen seo stages 7 10` | Усиление блога, кейсов, geo-страниц, внутренней перелинковки и внешний sprint |
+| `bdf9f45 fix: keep static blog seo relations` | Production-fix: SEO-связи блога сохраняются, даже если статья приходит из БД |
+| `18e2f13 fix: update design project neoclassical links` | Production-fix: битые ссылки `/styles/neoklassika` заменены на `/portfolio?style=neoklassika` |
+
+## Что сделано по этапам 1-10
+
+| Этап | Статус | Где смотреть | Что сделано |
+|---|---|---|---|
+| 1. Страница `/design-proekt-kuhni` | Выполнен | `app/design-proekt-kuhni/page.tsx` | Полностью переработана посадочная страница 3D-проекта кухни: hero, SEO-текст, FAQ, CTA, внутренние ссылки, JSON-LD. |
+| 2. Интерактивный hero | Выполнен | `components/design-project/DesignProjectInteractive.tsx` | Добавлен сценарий "пустая комната -> будущая кухня" с этапами превращения помещения в кухню. |
+| 3. Визуальный конфигуратор | Выполнен | `DesignProjectInteractive.tsx`, `ContactForm.tsx` | Блок "Соберите идею кухни" собирает форму, размер, стиль, фасады и пожелания; выбранные параметры попадают в комментарий формы заявки. |
+| 4. Слои кухни | Выполнен | `DesignProjectInteractive.tsx` | Добавлен блок "Разберите кухню на слои": фасады, столешница, фурнитура, техника, свет. |
+| 5. Кейсы, ситуации, маршрут, галерея | Выполнен | `DesignProjectInteractive.tsx`, `page.tsx` | Добавлены 6 кейсов, ситуации клиента, маршрут создания проекта, галерея, материалы, SEO-блоки и финальный CTA. |
+| 6. Контент-кластеры и блог | Выполнен + усилен | `app/blog/[slug]/page.tsx`, `lib/blog-seo-fallback.ts`, `lib/blog-resolve.ts` | Блоговые статьи получили связи с релевантными кейсами портфолио; production-статьи из БД теперь сохраняют fallback SEO-связи. |
+| 7. Портфолио и кейсы | Выполнен | `app/portfolio/[slug]/page.tsx` | Кейсы усилены proof-блоком: задача, решение, материалы, срок/бюджет, статус изображения и переходы на money/trust-страницы. |
+| 8. Geo-страницы | Выполнен | `components/locations/RegionalLocationPage.tsx` | Городские страницы получили блок локальных условий без фальшивой привязки чужих фото к городам. |
+| 9. Внутренняя перелинковка | Выполнен | blog, portfolio, geo templates | Блог ведет на кейсы; кейсы ведут на цены, калькулятор, материалы, город, гарантию и отзывы; geo ведет на цены, калькулятор, портфолио и гарантию. |
+| 10. Внешние сигналы | Подготовлен | `docs/audit/2026-06-29-stage-7-10-trust-linking-external-sprint.md` | Создан NAP-пакет, список 50 площадок/направлений, UTM-шаблоны, план отзывов и 14-дневный чеклист. Аккаунтные размещения остаются ручным шагом. |
+
+## Файлы, которые уже трогались
+
+Основная реализация `/design-proekt-kuhni`:
+
+- `artifacts/kuhni-na-zakaz/app/design-proekt-kuhni/page.tsx`
+- `artifacts/kuhni-na-zakaz/components/design-project/DesignProjectInteractive.tsx`
+- `artifacts/kuhni-na-zakaz/components/sections/ContactForm.tsx`
+- `artifacts/kuhni-na-zakaz/lib/analytics.ts`
+- `artifacts/kuhni-na-zakaz/public/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629.png`
+- `artifacts/kuhni-na-zakaz/public/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629.webp`
+- `artifacts/kuhni-na-zakaz/public/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629-mobile.webp`
+
+SEO и перелинковка этапов 6-10:
+
+- `artifacts/kuhni-na-zakaz/app/blog/[slug]/page.tsx`
+- `artifacts/kuhni-na-zakaz/lib/blog-seo-fallback.ts`
+- `artifacts/kuhni-na-zakaz/lib/blog-resolve.ts`
+- `artifacts/kuhni-na-zakaz/app/portfolio/[slug]/page.tsx`
+- `artifacts/kuhni-na-zakaz/components/locations/RegionalLocationPage.tsx`
+- `docs/audit/2026-06-13-top1-progress.md`
+- `docs/audit/2026-06-29-stage-7-10-trust-linking-external-sprint.md`
+
+Последний точечный фикс:
+
+- `app/design-proekt-kuhni/page.tsx`: `/styles/neoklassika` -> `/portfolio?style=neoklassika`
+- `components/design-project/DesignProjectInteractive.tsx`: `/styles/neoklassika` -> `/portfolio?style=neoklassika`
+
+## Проверки, которые прошли
+
+Перед последним деплоем были выполнены:
+
+```powershell
+node_modules\.bin\tsc.CMD --noEmit --incremental false
+pnpm.cmd run images:audit
+pnpm.cmd exec playwright test -c playwright.smoke.config.ts tests/smoke/design-proekt-kuhni.spec.ts --reporter=line
+pnpm.cmd run build
+```
+
+Результат:
+
+- TypeScript: без ошибок.
+- `images:audit`: `broken: []`, `oversized: []`, `badNames: []`.
+- Smoke `/design-proekt-kuhni`: `10 passed`.
+- Build: успешно. Локально в build есть ожидаемые Prisma-сообщения про недоступную БД `127.0.0.1:5434`, но сборка завершается через fallback-данные.
+
+Production-проверки после деплоя:
+
+```text
+server git rev-parse --short HEAD -> 18e2f13
+systemctl is-active kuhni-na-zakaz -> active
+https://kuhni.minsk.by/design-proekt-kuhni -> 200
+```
+
+Live HTML подтвердил:
+
+- есть `3D-проект кухни на заказ`;
+- есть `Соберите идею кухни`;
+- есть `Разберите кухню на слои`;
+- есть `Примеры кухонь, которые можно спроектировать`;
+- есть `FAQ`;
+- есть `/portfolio?style=neoklassika`;
+- нет `/styles/neoklassika`;
+- `3d-proekt-kuhni-empty-room-20260629.webp` подключен;
+- `3d-proekt-kuhni-empty-room-20260629.png` не подключен как основной `src`.
+
+Live image checks:
+
+| URL | Статус |
+|---|---|
+| `/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629.webp` | `200`, `image/webp`, `35912` bytes |
+| `/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629-mobile.webp` | `200`, `image/webp`, `9324` bytes |
+| `/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629.png` | `200`, `image/png`, `1696996` bytes; это исходник, не основной visible src |
+
+Production browser-check:
+
+| Viewport | Статус | Горизонтальный scroll | Картинки |
+|---|---|---|---|
+| Mobile `390x844` | `200` | нет, `scrollWidth=390` | 40 видимых, битых нет |
+| Desktop `1440x960` | `200` | нет, `scrollWidth=1440` | 40 видимых, битых нет |
+
+## Важные выводы для следующего чата
+
+1. Не откатывать `a92693c`, `e78efbc`, `bdf9f45`, `18e2f13`: это уже опубликованная рабочая цепочка.
+2. Перед любой новой работой обязательно:
+
+```powershell
+git fetch origin
+git checkout work
+git pull --ff-only origin work
+git log --oneline -5
+```
+
+3. В рабочем дереве могут быть чужие незакоммиченные изменения и много untracked-артефактов. Не чистить их без прямой команды пользователя.
+4. Если smoke-тест `/design-proekt-kuhni` падает на horizontal scroll, сначала убедиться, что dev-server свежий и CSS реально загрузился. В прошлой проверке старый dev-server отдавал `_next` чанки с `404/ERR_ABORTED`, из-за чего страница считалась без CSS.
+5. Если smoke-тест внутренних ссылок падает по timeout на `/prices` или `/privacy-policy`, это может быть cold compile dev-server. Прогреть страницу или перезапустить server и повторить тест. Реальная 404 была только на `/styles/neoklassika`, она уже исправлена.
+6. Для новых фото кухонь строго соблюдать `AGENTS.md`: только встроенный `imagegen`, исходник сохранять в проекте, WebP использовать в UI, alt-тексты на русском.
+7. Для сайта не подключать тяжелый PNG как основной `src`. Исходники можно хранить, но visible content должен использовать WebP.
+8. GSC/Яндекс переобход не был выполнен для этих изменений: новых URL нет, а панельные действия требуют авторизованный browser-сеанс.
+9. Этап 10 по внешним сигналам подготовлен, но не равен фактическому созданию внешних карточек/отзывов. Карты, отзывы и каталоги требуют ручного входа/подтверждений.
+
+## Что делать дальше
+
+Следующим этапом логично делать этап 11:
+
+- открыть GSC и Яндекс Вебмастер через встроенный браузер;
+- проверить sitemap, coverage/indexing, URL inspection для `/design-proekt-kuhni`;
+- при необходимости отправить обновленную страницу на переобход;
+- не обещать индексацию, фиксировать только факт отправки/доступности.
+
+После этого этап 12:
+
+- еженедельный SEO-контроль;
+- свежий sitemap count;
+- GSC/Yandex статусы;
+- PR-CY/PixelPlus позиции, если доступен экспорт;
+- проверка CTR и внешних ссылок.
+
+Параллельно по этапу 10:
+
+- создать/обновить Яндекс/Google/2ГИС карточки;
+- заполнить единый NAP;
+- собрать первые реальные отзывы;
+- начать 3-5 профильных внешних упоминаний с UTM.
+
+## Готовый стартовый prompt для следующего чата
+
+```text
+Работай в C:\Users\User\Desktop\kuhni-na-zakaz, ветка work, сайт https://kuhni.minsk.by.
+
+Сначала:
+git fetch origin
+git checkout work
+git pull --ff-only origin work
+git log --oneline -5
+
+Убедись, что HEAD содержит:
+- a92693c feat: rebuild design project page
+- e78efbc feat: strengthen seo stages 7 10
+- bdf9f45 fix: keep static blog seo relations
+- 18e2f13 fix: update design project neoclassical links
+
+Прочитай:
+- docs/audit/2026-06-30-stage-1-10-handoff-for-next-chats.md
+- docs/audit/2026-06-13-top1-progress.md
+- docs/audit/2026-06-29-stage-7-10-trust-linking-external-sprint.md
+
+Не откатывай чужие незакоммиченные изменения.
+Если нужны фото кухни, используй только встроенный imagegen и подключай WebP.
+Следующая задача: этап 11 или 12 по GSC/Яндекс/еженедельному SEO-контролю.
+```
