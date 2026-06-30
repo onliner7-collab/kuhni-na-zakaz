@@ -387,11 +387,15 @@ $env:PORT='3182'; pnpm.cmd exec playwright test -c playwright.smoke.config.ts te
 
 ### Production после деплоя
 
-- commit с кодом этапов 21-25: `TBD`;
-- `git rev-parse --short HEAD` на сервере: `TBD`;
-- `systemctl is-active kuhni-na-zakaz`: `TBD`;
-- `https://kuhni.minsk.by/design-proekt-kuhni`: `TBD`;
-- live HTML/schema/mobile QA: `TBD`.
+- commit с кодом этапов 21-25: `3c36759 feat: finish design project seo readiness stages`;
+- `git rev-parse --short HEAD` на сервере: `3c36759`;
+- `systemctl is-active kuhni-na-zakaz` -> `active`;
+- `https://kuhni.minsk.by/design-proekt-kuhni` -> `HTTP/2 200`;
+- live metadata: Title совпадает с ТЗ, Description на странице ровно `Разработаем 3D-проект кухни по вашим размерам: планировка, материалы, техника, системы хранения и предварительный расчёт стоимости. Работаем в Минске и по Беларуси.`;
+- live JSON-LD types: `BreadcrumbList`, `WebPage`, `Service`, `LocalBusiness`, `ImageObject`, `ImageObject`, `FAQPage`;
+- live SEO links in `#seo-content`: missing `[]`;
+- live mobile browser-check `390x844`: `scrollWidth=390`, `innerWidth=390`, `FAQ=10`, `imageCount=40`, `brokenImages=[]`, форма есть, `form-messenger=true`, `form-room-file=true`;
+- live desktop browser-check `1440x960`: `scrollWidth=1440`, `innerWidth=1440`, `FAQ=10`, `imageCount=40`, `brokenImages=[]`, форма есть, `form-messenger=true`, `form-room-file=true`.
 
 ## Важные выводы для следующего чата
 
