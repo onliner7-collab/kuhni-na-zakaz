@@ -187,7 +187,7 @@ Production browser-check:
 
 Дата выполнения: 30 июня 2026
 Страница: `/design-proekt-kuhni`
-Статус: код реализован, локально проверен, деплой выполняется следующим шагом.
+Статус: код реализован, проверен, запушен в `origin/work` и задеплоен на production.
 
 ### Что сделано
 
@@ -230,6 +230,16 @@ pnpm.cmd run build
 - Отдельная проверка внутренних ссылок: `16` URL, `broken: []`; локальные `500` у части catalog-страниц связаны с недоступной dev-БД `127.0.0.1:5434`, а не с новыми ссылками.
 - Production build: успешно; Prisma-сообщения про `127.0.0.1:5434` ожидаемы, сборка завершилась через fallback-данные.
 - Production-like browser QA на `next start -p 3160`: mobile `390x844` и desktop `1440x960` без горизонтального scroll; после прокрутки нет битых загруженных изображений; lightbox листается кнопкой и свайпом.
+
+### Production после деплоя
+
+- commit: `7c843ca feat: finish design project seo stages 11 16`;
+- production code baseline: `7c843ca`; последующие docs-only обновления отчета не меняют код страницы;
+- `systemctl is-active kuhni-na-zakaz` -> `active`;
+- `https://kuhni.minsk.by/design-proekt-kuhni` -> `200`;
+- live mobile browser-check `390x844`: `scrollWidth=390`, блоки `project-route`, `visual-gallery`, `project-includes`, `materials-eye`, `seo-content`, `faq` на месте;
+- live counts: `project-includes` содержит `10` кнопок, `FAQ` содержит `10` раскрываемых вопросов;
+- live lightbox: кнопка "следующее изображение" и свайп меняют изображение в полноэкранном просмотре.
 
 ### GSC/Яндекс
 
