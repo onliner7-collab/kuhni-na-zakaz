@@ -283,7 +283,7 @@ export default function DesignProektKuhniPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Ошибки, которые предотвращает проект</p>
               <h2 className="text-3xl font-extrabold sm:text-4xl">Проект показывает проблемы до производства</h2>
             </div>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {[
                 ["Холодильник открывается не полностью", "Проверяем сторону открывания, соседние фасады и проход."],
                 ["Посудомойка перекрывает проход", "Смотрим открывание дверцы на плане и в 3D-сцене."],
@@ -295,14 +295,23 @@ export default function DesignProektKuhniPage() {
                 ["Рабочая зона неудобная", "Собираем кухню вокруг привычек семьи и маршрутов готовки."],
                 ["Неверная высота кухни", "Учитываем рост, цоколь, столешницу и верхние модули."],
                 ["Материалы выглядят иначе", "Сравниваем визуализацию и реальные образцы перед запуском."],
-              ].map(([error, solution]) => (
-                <article key={error} className="rounded-lg border border-border bg-white p-5">
-                  <div className="mb-4 inline-flex rounded-full bg-destructive/10 p-2 text-destructive">
-                    <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+              ].map(([error, solution], index) => (
+                <details key={error} className="group rounded-lg border border-border bg-white p-5 open:bg-muted/20">
+                  <summary className="flex cursor-pointer list-none items-center gap-3 font-extrabold outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                    <span className="inline-flex rounded-full bg-destructive/10 p-2 text-destructive">
+                      <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    {error}
+                  </summary>
+                  <div className="mt-4 rounded-lg border border-dashed border-primary/40 bg-white p-4" aria-hidden="true">
+                    <div className="grid grid-cols-3 gap-2">
+                      {[0, 1, 2].map((cell) => (
+                        <span key={cell} className={`h-14 rounded-md ${cell === index % 3 ? "bg-primary/20 ring-2 ring-primary" : "bg-muted"}`} />
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="font-extrabold">{error}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{solution}</p>
-                </article>
+                </details>
               ))}
             </div>
           </div>
@@ -327,7 +336,7 @@ export default function DesignProektKuhniPage() {
           </div>
         </section>
 
-        <section id="request" className="relative overflow-hidden bg-stone-950 py-14 text-white lg:py-20">
+        <section id="request" className="relative overflow-hidden bg-stone-950 pb-28 pt-14 text-white md:pb-14 lg:py-20">
           <Image
             src={heroImage}
             alt="Премиальная кухня с вечерней подсветкой для финального 3D-проекта"

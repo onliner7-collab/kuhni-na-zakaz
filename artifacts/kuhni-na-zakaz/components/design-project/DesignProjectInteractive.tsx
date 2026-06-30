@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowRight, Check, ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight, Maximize2, MessageCircle, X } from "lucide-react";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 const imageBase = "/images/design-proekt-kuhni";
@@ -13,11 +13,34 @@ const minskMechanismsBase = "/uploads/locations/minsk-stage56";
 const portfolioBase = "/uploads/kitchens/portfolio";
 
 const heroStages = [
-  { title: "Пустое помещение", text: "Фиксируем стены, окно, коммуникации и реальные ограничения." },
-  { title: "Сначала проектируем пространство", text: "Появляются размеры, рабочие зоны, техника и проходы." },
-  { title: "Затем строим удобную планировку", text: "Расставляем нижние модули, хранение и рабочий треугольник." },
-  { title: "Подбираем материалы и технику", text: "Добавляем фасады, столешницу, фартук и встроенную технику." },
-  { title: "И показываем результат до заказа", text: "Вы видите будущую кухню до производства и монтажа." },
+  {
+    title: "Пустое помещение",
+    text: "Фиксируем стены, окно, коммуникации и реальные ограничения.",
+    image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`,
+    alt: "Пустое помещение кухни перед созданием 3D-проекта",
+  },
+  {
+    title: "Планируем пространство",
+    text: "Появляются размеры, рабочие зоны, техника и проходы.",
+    image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-plan.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-plan-mobile.webp`,
+    alt: "Помещение кухни с чертежными линиями планировки",
+  },
+  {
+    title: "Подбираем материалы",
+    text: "Добавляем модули, фасады, столешницу и встроенную технику.",
+    image: `${imageBase}/3d-proekt-uglovaya-kuhnya.webp`,
+    mobileImage: `${imageBase}/3d-proekt-uglovaya-kuhnya-mobile.webp`,
+    alt: "Появление модулей угловой кухни в 3D-проекте",
+  },
+  {
+    title: "Видите будущую кухню до производства",
+    text: "Финальная визуализация помогает согласовать кухню до заказа.",
+    image: `${imageBase}/3d-proekt-kuhni-hero.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-hero-mobile.webp`,
+    alt: "Готовая кухня после 3D-проектирования",
+  },
 ];
 
 const choices = {
@@ -28,13 +51,53 @@ const choices = {
   extras: ["Кухня до потолка", "Встроенная техника", "Подсветка", "Остров или барная стойка", "Много систем хранения"],
 };
 
-const previewByStyle: Record<string, string> = {
-  "Современный минимализм": `${imageBase}/3d-proekt-kuhnya-bez-ruchek.webp`,
-  "Теплая кухня с деревом": `${minskProjectBase}/minsk-project-06-private-house-obshchiy-vid.webp`,
-  "Светлая кухня": `${imageBase}/3d-proekt-pryamaya-kuhnya.webp`,
-  "Темная кухня": `${minskProjectBase}/minsk-project-03-dark-wood-obshchiy-vid.webp`,
-  "Неоклассика": `${imageBase}/3d-proekt-neoklassicheskaya-kuhnya.webp`,
-};
+const shapeOptions = [
+  {
+    name: "Прямая",
+    image: `${imageBase}/3d-proekt-pryamaya-kuhnya.webp`,
+    mobileImage: `${imageBase}/3d-proekt-pryamaya-kuhnya-mobile.webp`,
+    href: "/catalog/pryamye-kuhni",
+    caption: "Лаконичная линия для вытянутой кухни или небольшой квартиры.",
+    benefits: ["легко рассчитать бюджет", "удобно встроить технику"],
+    alt: "Прямая светлая кухня в 3D-проекте",
+  },
+  {
+    name: "Угловая",
+    image: `${imageBase}/3d-proekt-uglovaya-kuhnya.webp`,
+    mobileImage: `${imageBase}/3d-proekt-uglovaya-kuhnya-mobile.webp`,
+    href: "/catalog/uglovye-kuhni",
+    caption: "Рабочий треугольник получается компактным, а хранение уходит на две стены.",
+    benefits: ["много рабочей поверхности", "подходит для большинства квартир"],
+    alt: "Угловая кухня в 3D-проекте",
+  },
+  {
+    name: "П-образная",
+    image: `${imageBase}/3d-proekt-p-obraznaya-kuhnya.webp`,
+    mobileImage: `${imageBase}/3d-proekt-p-obraznaya-kuhnya-mobile.webp`,
+    href: "/catalog/p-obraznye-kuhni",
+    caption: "Максимум хранения и столешницы, когда нужно задействовать три стороны.",
+    benefits: ["много зон хранения", "удобно разделить мойку, плиту и подготовку"],
+    alt: "П-образная кухня в 3D-проекте",
+  },
+  {
+    name: "С островом",
+    image: `${imageBase}/3d-proekt-kuhnya-s-ostrovom.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhnya-s-ostrovom-mobile.webp`,
+    href: "/catalog/kuhni-s-ostrovom",
+    caption: "Остров показывает, как кухня будет работать для готовки и общения.",
+    benefits: ["дополнительная поверхность", "видны проходы вокруг острова"],
+    alt: "Кухня с островом в 3D-проекте",
+  },
+  {
+    name: "Кухня-гостиная",
+    image: `${minskProjectBase}/minsk-project-05-island-living-obshchiy-vid.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhnya-gostinaya-mobile.webp`,
+    href: "/catalog/kuhni-s-ostrovom",
+    caption: "Смотрим кухню как часть гостиной: фасады, свет и спокойную линию хранения.",
+    benefits: ["единый интерьер", "понятен вид со стороны гостиной"],
+    alt: "Кухня-гостиная с островом в 3D-проекте",
+  },
+];
 
 const layerItems = [
   {
@@ -207,15 +270,15 @@ const projectParts = [
 ] as const;
 
 const materials = [
-  ["Фасады", "Светлый матовый фасад", `${imageBase}/3d-proekt-pryamaya-kuhnya.webp`, "Спокойная база для маленьких и светлых помещений."],
-  ["Фасады", "Графитовый матовый фасад", `${minskProjectBase}/minsk-project-03-dark-wood-obshchiy-vid.webp`, "Выразительный вариант для современного интерьера."],
-  ["Фасады", "Дубовый фасад", `${minskDetailsBase}/minsk-detail-02-drevesnaya-tekstura.webp`, "Теплая фактура дерева смягчает современную планировку."],
-  ["Столешницы", "Мраморная столешница", `${minskDetailsBase}/minsk-detail-03-kamennaya-stoleshnitsa.webp`, "Акцентная фактура для рабочей зоны и острова."],
-  ["Столешницы", "Темный камень", `${minskProjectBase}/minsk-project-03-dark-wood-stoleshnitsa-krupno.webp`, "Глубокий контраст для темной кухни с деревом."],
-  ["Фартуки", "Каменный фартук", `${minskProjectBase}/minsk-project-06-private-house-stoleshnitsa-kamen.webp`, "Единая плоскость столешницы и фартука выглядит собранно."],
-  ["Ручки", "Профиль без ручек", `${minskDetailsBase}/minsk-detail-05-profil-bez-ruchek.webp`, "Линия фасадов остается чистой, а открывание проверяется в проекте."],
-  ["Фурнитура", "Выдвижной ящик", `${minskDetailsBase}/minsk-detail-09-vydvizhnoy-yashchik-vnutri.webp`, "Внутреннее хранение видно до заказа кухни."],
-  ["Подсветка", "Подсветка рабочей зоны", `${minskDetailsBase}/minsk-detail-12-podsvetka-rabochey-zony.webp`, "Рабочая зона становится удобнее вечером."],
+  ["Фасады", "Светлый матовый фасад", `${imageBase}/3d-proekt-pryamaya-kuhnya.webp`, "Спокойная база для маленьких и светлых помещений.", `${imageBase}/3d-proekt-pryamaya-kuhnya.webp`],
+  ["Фасады", "Графитовый матовый фасад", `${minskProjectBase}/minsk-project-03-dark-wood-obshchiy-vid.webp`, "Выразительный вариант для современного интерьера.", `${minskProjectBase}/minsk-project-03-dark-wood-tehnika-podsvetka.webp`],
+  ["Фасады", "Дубовый фасад", `${minskDetailsBase}/minsk-detail-02-drevesnaya-tekstura.webp`, "Теплая фактура дерева смягчает современную планировку.", `${minskProjectBase}/minsk-project-06-private-house-obshchiy-vid.webp`],
+  ["Столешницы", "Мраморная столешница", `${minskDetailsBase}/minsk-detail-03-kamennaya-stoleshnitsa.webp`, "Акцентная фактура для рабочей зоны и острова.", `${imageBase}/3d-proekt-kuhnya-s-ostrovom.webp`],
+  ["Столешницы", "Темный камень", `${minskProjectBase}/minsk-project-03-dark-wood-stoleshnitsa-krupno.webp`, "Глубокий контраст для темной кухни с деревом.", `${minskProjectBase}/minsk-project-03-dark-wood-obshchiy-vid.webp`],
+  ["Фартуки", "Каменный фартук", `${minskProjectBase}/minsk-project-06-private-house-stoleshnitsa-kamen.webp`, "Единая плоскость столешницы и фартука выглядит собранно.", `${minskProjectBase}/minsk-project-06-private-house-obshchiy-vid.webp`],
+  ["Ручки", "Профиль без ручек", `${minskDetailsBase}/minsk-detail-05-profil-bez-ruchek.webp`, "Линия фасадов остается чистой, а открывание проверяется в проекте.", `${imageBase}/3d-proekt-kuhnya-bez-ruchek.webp`],
+  ["Фурнитура", "Выдвижной ящик", `${minskDetailsBase}/minsk-detail-09-vydvizhnoy-yashchik-vnutri.webp`, "Внутреннее хранение видно до заказа кухни.", `${minskMechanismsBase}/minsk-mechanism-06-organayzer-dlya-priborov-square.webp`],
+  ["Подсветка", "Подсветка рабочей зоны", `${minskDetailsBase}/minsk-detail-12-podsvetka-rabochey-zony.webp`, "Рабочая зона становится удобнее вечером.", `${minskProjectBase}/minsk-project-01-light-straight-tehnika-podsvetka.webp`],
 ] as const;
 
 const materialCategories = ["Фасады", "Столешницы", "Фартуки", "Ручки", "Фурнитура", "Подсветка"] as const;
@@ -234,6 +297,7 @@ interface SelectionState {
   size: string;
   style: string;
   facade: string;
+  material?: string;
   extras: string[];
 }
 
@@ -262,7 +326,7 @@ export function DesignProjectInteractive() {
     track(ANALYTICS_EVENTS.DESIGN_HERO_VIEW, { page: "design-proekt-kuhni" });
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setHeroStage(4);
+      setHeroStage(heroStages.length - 1);
       return;
     }
 
@@ -275,7 +339,7 @@ export function DesignProjectInteractive() {
         if (!hero) return;
         const rect = hero.getBoundingClientRect();
         const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
-        setHeroStage(Math.min(4, Math.floor(progress * 5)));
+        setHeroStage(Math.min(heroStages.length - 1, Math.floor(progress * heroStages.length)));
       });
     };
 
@@ -319,6 +383,27 @@ export function DesignProjectInteractive() {
   }, [selection]);
 
   useEffect(() => {
+    const update = () => {
+      const request = document.getElementById("request");
+      const panel = document.getElementById("design-mobile-sticky-panel");
+      if (!panel || !request) return;
+      const requestTop = request.getBoundingClientRect().top;
+      const shouldShow = window.scrollY > window.innerHeight * 0.9 && requestTop > window.innerHeight * 1.2;
+      panel.classList.toggle("hidden", !shouldShow);
+    };
+
+    update();
+    const interval = window.setInterval(update, 400);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!lightbox) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -342,10 +427,10 @@ export function DesignProjectInteractive() {
   const activePartItem = projectParts.find((item) => item[0] === activePart) || projectParts[0];
   const visibleMaterials = materials.filter((item) => item[0] === activeMaterialCategory);
   const activeMaterialItem = materials.find((item) => item[1] === activeMaterial) || visibleMaterials[0] || materials[0];
-  const previewImage = previewByStyle[selection.style] || previewByStyle["Современный минимализм"];
+  const activeShapeItem = shapeOptions.find((item) => item.name === selection.shape) || shapeOptions[1];
   const caseImageLabel = ["Пустое помещение", "План", "3D-визуализация", "Реализация"][caseState];
 
-  function choose<K extends keyof Omit<SelectionState, "extras">>(key: K, value: SelectionState[K]) {
+  function choose<K extends "shape" | "size" | "style" | "facade">(key: K, value: SelectionState[K]) {
     trackConfigStart();
     setSelection((current) => ({ ...current, [key]: value }));
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: key, value });
@@ -382,6 +467,12 @@ export function DesignProjectInteractive() {
     track(ANALYTICS_EVENTS.DESIGN_PROJECT_PART_OPEN, { part });
   }
 
+  function chooseMaterial(material: (typeof materials)[number]) {
+    setActiveMaterial(material[1]);
+    setSelection((current) => ({ ...current, material: material[1] }));
+    track(ANALYTICS_EVENTS.DESIGN_MATERIAL_OPEN, { category: material[0], material: material[1] });
+  }
+
   function navigateLightbox(direction: -1 | 1) {
     if (!lightbox) return;
     const nextIndex = (lightboxIndex + direction + gallery.length) % gallery.length;
@@ -399,71 +490,68 @@ export function DesignProjectInteractive() {
     selection.size,
     selection.style,
     selection.facade,
+    selection.material || activeMaterial,
     ...selection.extras,
-  ].join(" · "), [selection]);
+  ].join(" · "), [activeMaterial, selection]);
 
   return (
     <>
       <section id="design-hero-stage" className="relative min-h-[100svh] overflow-hidden bg-stone-950 text-white">
-        <picture>
-          <source media="(max-width: 640px)" srcSet={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} />
-          <img
-            src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629.webp`}
-            alt="Пустое помещение кухни с окном и коммуникациями перед созданием 3D-проекта"
-            className="absolute inset-0 h-full w-full object-cover"
-            width={1600}
-            height={914}
-            fetchPriority="high"
-          />
-        </picture>
-        <Image
-          src={`${imageBase}/3d-proekt-kuhni-hero.webp`}
-          alt="Финальная современная кухня после 3D-проектирования"
-          width={1600}
-          height={900}
-          priority
-          sizes="100vw"
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none"
-          style={{ opacity: heroStage >= 2 ? Math.min(0.9, (heroStage - 1) * 0.32) : 0 }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/45 to-stone-950/10" />
-        <div className={`absolute inset-x-[8%] top-[24%] hidden h-[42%] border border-white/35 md:block ${heroStage >= 1 ? "opacity-100" : "opacity-0"} transition-opacity duration-500`}>
-          <div className="absolute left-1/4 top-0 h-full border-l border-dashed border-white/35" />
-          <div className="absolute left-0 top-1/2 w-full border-t border-dashed border-white/35" />
-          <div className="absolute bottom-4 left-6 rounded-full border border-white/50 px-3 py-1 text-xs">зона мойки</div>
-          <div className="absolute right-8 top-6 rounded-full border border-white/50 px-3 py-1 text-xs">техника</div>
+        <div className="absolute inset-0 bg-stone-900">
+          {heroStages.map((stage, index) => (
+            <picture key={stage.title}>
+              <source media="(max-width: 640px)" srcSet={stage.mobileImage} />
+              <img
+                src={stage.image}
+                alt={stage.alt}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${heroStage === index ? "opacity-100" : "opacity-0"}`}
+                width={index < 2 ? 1600 : 1200}
+                height={index < 2 ? 914 : 900}
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+              />
+            </picture>
+          ))}
+          <noscript>
+            <img src={`${imageBase}/3d-proekt-kuhni-hero.webp`} alt="Готовая кухня после 3D-проектирования" className="h-full w-full object-cover" />
+          </noscript>
         </div>
-        <div className="container-site relative z-10 flex min-h-[100svh] items-end pb-14 pt-28 sm:items-center sm:pb-0">
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-stone-950/10" />
+        <div className="container-site relative z-10 flex min-h-[100svh] items-end pb-28 pt-24 sm:items-center sm:pb-0">
           <div className="max-w-3xl">
-            <p className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur">
-              От пустой комнаты до вашей будущей кухни
-            </p>
-            <h1 className="text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">3D-проект кухни на заказ в Минске</h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-xl">
-              Увидьте будущую кухню до производства — с материалами, техникой, хранением и планировкой.
+            <h1 className="text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">3D-проект кухни на заказ</h1>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-xl">
+              Увидьте будущую кухню до производства: планировка, материалы, техника и свет.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-hero", target: "request" })} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-bold text-stone-950 transition-colors hover:bg-amber-100">
-                Создать концепцию кухни
+                Создать проект кухни
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link href="/portfolio" onClick={() => trackPortfolioClick("design-hero", "/portfolio")} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
-                Смотреть реальные проекты
+              <Link href="#visual-gallery" onClick={() => trackPortfolioClick("design-hero", "#visual-gallery")} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10">
+                Смотреть кухни
               </Link>
             </div>
-            <div className="mt-8 grid gap-2 sm:grid-cols-5" aria-label="Этапы превращения помещения в кухню">
+            <div className="mt-7 grid grid-cols-3 gap-2" aria-label="Короткие преимущества 3D-проекта">
+              {["3D — увидите результат", "Планировка — всё поместится", "Смета — понятен бюджет"].map((item) => (
+                <div key={item} className="rounded-lg border border-white/20 bg-white/10 p-3 text-xs font-bold leading-snug text-white backdrop-blur">
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 flex snap-x gap-2 overflow-x-auto overscroll-x-contain pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0" aria-label="Этапы превращения помещения в кухню">
               {heroStages.map((item, index) => (
                 <button
                   key={item.title}
                   type="button"
                   onClick={() => setHeroStage(index)}
-                  className={`rounded-lg border px-3 py-3 text-left text-xs transition-colors ${heroStage === index ? "border-amber-200 bg-white text-stone-950" : "border-white/20 bg-white/10 text-white/80"}`}
+                  className={`w-[74vw] shrink-0 snap-start rounded-lg border px-3 py-3 text-left text-xs transition-colors sm:w-auto ${heroStage === index ? "border-amber-200 bg-white text-stone-950" : "border-white/20 bg-white/10 text-white/80"}`}
                 >
-                  <span className="block font-bold">{index + 1}. {item.title}</span>
+                  <span className="block font-bold">{item.title}</span>
                 </button>
               ))}
             </div>
-            <p className="mt-4 text-sm text-white/70">{heroStages[heroStage]?.text}</p>
+            <p className="mt-2 min-h-10 text-sm text-white/75">{heroStages[heroStage]?.text}</p>
           </div>
         </div>
       </section>
@@ -472,12 +560,32 @@ export function DesignProjectInteractive() {
         <div className="container-site">
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Соберите идею кухни</p>
-            <h2 className="text-3xl font-extrabold sm:text-4xl">Быстрый визуальный подбор направления</h2>
-            <p className="mt-4 text-muted-foreground">Это не сложный конструктор, а быстрый способ понять форму, стиль, фасады и дополнительные пожелания перед заявкой.</p>
+            <h2 className="text-3xl font-extrabold sm:text-4xl">Выберите форму будущей кухни</h2>
+            <p className="mt-4 text-muted-foreground">Нажмите на вариант — покажем, как может выглядеть кухня в таком формате.</p>
           </div>
           <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div className="space-y-6 rounded-lg border border-border bg-muted/20 p-4 sm:p-5">
-              <ChoiceGroup title="Форма кухни" items={choices.shape} value={selection.shape} onChoose={(value) => choose("shape", value)} />
+            <div className="min-w-0 space-y-6">
+              <div className="-mx-4 flex snap-x gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-1">
+                {shapeOptions.map((shape) => (
+                  <button
+                    key={shape.name}
+                    type="button"
+                    onClick={() => choose("shape", shape.name)}
+                    className={`w-[82vw] shrink-0 snap-start overflow-hidden rounded-lg border text-left transition-colors sm:w-auto ${selection.shape === shape.name ? "border-primary bg-primary text-primary-foreground shadow-lg shadow-primary/15" : "border-border bg-white hover:border-primary/40"}`}
+                  >
+                    <picture>
+                      <source media="(max-width: 640px)" srcSet={shape.mobileImage} />
+                      <img src={shape.image} alt={shape.alt} width={720} height={540} loading="lazy" className="aspect-[4/3] w-full object-cover" />
+                    </picture>
+                    <span className="block p-4">
+                      <span className="block text-lg font-extrabold">{shape.name}</span>
+                      <span className={`mt-2 block text-sm ${selection.shape === shape.name ? "text-primary-foreground/80" : "text-muted-foreground"}`}>{shape.caption}</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <div className="space-y-6 rounded-lg border border-border bg-muted/20 p-4 sm:p-5">
+                <p className="mb-4 text-sm font-bold text-muted-foreground">Уточните стиль и комплектацию</p>
               <ChoiceGroup title="Размер помещения" items={choices.size} value={selection.size} onChoose={(value) => choose("size", value)} />
               <ChoiceGroup title="Стиль" items={choices.style} value={selection.style} onChoose={(value) => choose("style", value)} />
               <ChoiceGroup title="Фасады" items={choices.facade} value={selection.facade} onChoose={(value) => choose("facade", value)} />
@@ -498,21 +606,28 @@ export function DesignProjectInteractive() {
                 </div>
               </div>
             </div>
+            </div>
             <div className="sticky top-4 overflow-hidden rounded-lg border border-border bg-stone-950 text-white">
-              <Image src={previewImage} alt={`Визуализация: ${selection.style}, ${selection.shape}`} width={1200} height={900} sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[4/3] w-full object-cover" />
+              <picture>
+                <source media="(max-width: 640px)" srcSet={activeShapeItem.mobileImage} />
+                <img src={activeShapeItem.image} alt={activeShapeItem.alt} width={1200} height={900} loading="lazy" className="aspect-[4/5] w-full object-cover transition-opacity duration-300 sm:aspect-[4/3]" />
+              </picture>
               <div className="p-5">
-                <h3 className="text-2xl font-extrabold">Ваша кухня может выглядеть так</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/75">Мы подготовим планировку, подберем материалы и покажем будущую кухню до начала производства.</p>
+                <p className="rounded-lg bg-white/10 p-3 text-sm font-bold text-white">Вы выбрали: {selection.shape.toLowerCase()} кухня</p>
+                <h3 className="mt-4 text-2xl font-extrabold">{selection.shape} кухня в проекте</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/75">{activeShapeItem.caption}</p>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {activeShapeItem.benefits.map((benefit) => (
+                    <span key={benefit} className="rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white/85">{benefit}</span>
+                  ))}
+                </div>
                 <p className="mt-4 rounded-lg bg-white/10 p-3 text-sm text-white/80">{selectedSummary}</p>
-                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  <Link href={activeShapeItem.href} onClick={() => trackPortfolioClick("design-shape", activeShapeItem.href, activeShapeItem.name)} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
+                    Посмотреть похожие кухни
+                  </Link>
                   <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.DESIGN_CONFIG_COMPLETE, { shape: selection.shape, style: selection.style, size: selection.size, facade: selection.facade, extras: selection.extras.join(", ") })} className="inline-flex min-h-11 items-center justify-center rounded-lg bg-white px-4 py-2 text-sm font-bold text-stone-950 hover:bg-amber-100">
-                    Получить 3D-проект
-                  </Link>
-                  <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-configurator", target: "send-measurements" })} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
-                    Отправить размеры
-                  </Link>
-                  <Link href="/contacts#form" onClick={() => track(ANALYTICS_EVENTS.MEASURE_REQUEST, { source: "design-configurator" })} className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/30 px-4 py-2 text-sm font-bold text-white hover:bg-white/10">
-                    Записаться на замер
+                    Получить проект такой кухни
                   </Link>
                 </div>
               </div>
@@ -551,14 +666,14 @@ export function DesignProjectInteractive() {
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">До и после проектирования</p>
             <h2 className="text-3xl font-extrabold sm:text-4xl">Шесть ситуаций, где проект экономит ошибки</h2>
           </div>
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <div className="mt-8 flex snap-x gap-4 overflow-x-auto overscroll-x-contain pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
             {cases.map((item) => (
-              <article key={item.title} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
+              <article key={item.title} className="w-[86vw] shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-white shadow-sm sm:w-[420px] lg:w-auto">
                 <div className="relative">
                   {caseState === 0 ? (
-                    <img src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} alt={`Исходное помещение для кейса ${item.title}`} className="aspect-[4/3] w-full object-cover" loading="lazy" width={760} height={434} />
+                    <img src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} alt={`Исходное помещение для кейса ${item.title}`} className="h-[58svh] min-h-[360px] w-full object-cover lg:h-auto lg:aspect-[4/3] lg:min-h-0" loading="lazy" width={760} height={1010} />
                   ) : (
-                    <Image src={item.final} alt={`${caseImageLabel}: ${item.title.toLowerCase()}`} width={900} height={675} sizes="(min-width: 1024px) 33vw, 100vw" className={`aspect-[4/3] w-full object-cover ${caseState === 1 ? "grayscale" : ""}`} />
+                    <Image src={item.final} alt={`${caseImageLabel}: ${item.title.toLowerCase()}`} width={900} height={675} sizes="(min-width: 1024px) 33vw, 86vw" className={`h-[58svh] min-h-[360px] w-full object-cover lg:h-auto lg:aspect-[4/3] lg:min-h-0 ${caseState === 1 ? "grayscale" : ""}`} />
                   )}
                   {caseState === 1 && <div className="absolute inset-6 border border-primary/70 bg-white/10"><div className="absolute left-1/2 top-0 h-full border-l border-dashed border-primary/80" /><div className="absolute left-0 top-1/2 w-full border-t border-dashed border-primary/80" /></div>}
                 </div>
@@ -578,8 +693,19 @@ export function DesignProjectInteractive() {
             ))}
           </div>
           <div className="mt-6 rounded-lg border border-border bg-muted/30 p-4">
-            <label htmlFor="case-state" className="text-sm font-bold">Состояние кейсов: {caseImageLabel}</label>
-            <input id="case-state" type="range" min={0} max={3} value={caseState} onChange={(event) => { const value = Number(event.target.value); setCaseState(value); track(ANALYTICS_EVENTS.DESIGN_CASE_VIEW, { state: value }); }} className="mt-3 w-full accent-primary" />
+            <p className="text-sm font-bold">Этап кейса: {caseImageLabel}</p>
+            <div className="mt-3 grid grid-cols-4 gap-2">
+              {["До", "План", "3D", "Результат"].map((label, index) => (
+                <button
+                  key={label}
+                  type="button"
+                  onClick={() => { setCaseState(index); track(ANALYTICS_EVENTS.DESIGN_CASE_VIEW, { state: index }); }}
+                  className={`min-h-11 rounded-lg border px-2 text-sm font-bold transition-colors ${caseState === index ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -649,18 +775,20 @@ export function DesignProjectInteractive() {
               ))}
             </div>
           </div>
-          <div className="mt-8 columns-1 gap-5 sm:columns-2 lg:columns-3">
+          <div className="mt-8 flex snap-x gap-4 overflow-x-auto overscroll-x-contain pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
             {visibleGallery.map((item, index) => (
-              <article key={`${item[0]}-${index}`} className="mb-5 break-inside-avoid overflow-hidden rounded-lg border border-border bg-white">
+              <article key={`${item[0]}-${index}`} className="relative w-[86vw] shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-white sm:w-[420px] lg:w-auto">
                 <button type="button" onClick={() => { setLightbox(item); track(ANALYTICS_EVENTS.LIGHTBOX_OPEN, { source: "design-gallery", title: item[0] }); }} className="group relative block w-full text-left">
-                  <Image src={item[4]} alt={`${item[0]}: ${item[1]}, ${item[2]}, ${item[3]}`} width={1000} height={index % 2 ? 1250 : 760} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="w-full object-cover" />
-                  <span className="absolute right-3 top-3 rounded-full bg-white/90 p-2 text-stone-950 opacity-0 transition-opacity group-hover:opacity-100"><Maximize2 className="h-4 w-4" aria-hidden="true" /></span>
+                  <Image src={item[4]} alt={`${item[0]}: ${item[1]}, ${item[2]}, ${item[3]}`} width={1000} height={1250} sizes="(min-width: 1024px) 33vw, 86vw" className="h-[68svh] min-h-[430px] w-full object-cover lg:h-[520px] lg:min-h-0" />
+                  <span className="absolute right-3 top-3 rounded-full bg-white/90 p-2 text-stone-950"><Maximize2 className="h-4 w-4" aria-hidden="true" /></span>
+                  <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-stone-950 via-stone-950/55 to-transparent p-5 pt-20 text-white">
+                    <span className="block text-xl font-extrabold">{item[0]}</span>
+                    <span className="mt-1 block text-sm text-white/80">{item[1]} · {item[2]} · {item[3]}</span>
+                  </span>
                 </button>
-                <div className="p-4">
-                  <h3 className="font-extrabold">{item[0]}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{item[1]} · {item[2]} · {item[3]}</p>
-                  <Link href={item[5]} onClick={() => trackPortfolioClick("design-gallery", item[5], item[0])} className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
-                    {index < 8 ? "Подробнее" : "Открыть раздел"}
+                <div className="absolute bottom-5 left-5 right-5 z-10">
+                  <Link href={item[5]} onClick={() => trackPortfolioClick("design-gallery", item[5], item[0])} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-bold text-stone-950 shadow-lg">
+                    Смотреть похожие
                     <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
@@ -697,12 +825,19 @@ export function DesignProjectInteractive() {
       <section className="section-padding overflow-hidden bg-muted/30" id="materials-eye">
         <div className="container-site grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
           <div className="min-w-0 max-w-full overflow-hidden rounded-lg border border-border bg-white">
-            <Image src={activeMaterialItem[2]} alt={`Материал в проекте кухни: ${activeMaterialItem[1]}`} width={1200} height={850} sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[16/10] w-full max-w-full object-cover" />
+            <Image src={activeMaterialItem[4]} alt={`Кухня с материалом: ${activeMaterialItem[1]}`} width={1200} height={900} sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[4/5] w-full max-w-full object-cover transition-opacity duration-300 sm:aspect-[16/10]" />
+            <div className="p-5">
+              <h3 className="text-2xl font-extrabold">{activeMaterialItem[1]}</h3>
+              <p className="mt-2 text-muted-foreground">{activeMaterialItem[3]}</p>
+              <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-material", target: "request" })} className="mt-4 inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-bold text-primary-foreground hover:bg-primary/90">
+                Показать в интерьере
+              </Link>
+            </div>
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Материалы глазами</p>
             <h2 className="text-3xl font-extrabold sm:text-4xl">Смотрите фактуры крупно</h2>
-            <p className="mt-4 text-muted-foreground">{activeMaterialItem[3]}</p>
+            <p className="mt-4 text-muted-foreground">Выбирайте категорию и листайте карточки пальцем. При нажатии меняется крупная кухня слева.</p>
             <div className="mt-6 flex w-full max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-2">
               {materialCategories.map((category) => (
                 <button key={category} type="button" onClick={() => chooseMaterialCategory(category)} className={`shrink-0 rounded-full border px-4 py-2 text-sm font-bold transition-colors ${activeMaterialCategory === category ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
@@ -710,21 +845,35 @@ export function DesignProjectInteractive() {
                 </button>
               ))}
             </div>
-            <div className="mt-4 grid gap-2">
-              {visibleMaterials.map((item) => (
-                <button key={item[1]} type="button" onClick={() => { setActiveMaterial(item[1]); track(ANALYTICS_EVENTS.DESIGN_MATERIAL_OPEN, { category: item[0], material: item[1] }); }} className={`rounded-lg border px-4 py-3 text-left text-sm font-bold transition-colors ${activeMaterial === item[1] ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
-                  {item[1]}
+            <div className="-mx-4 mt-4 flex snap-x gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 sm:mx-0 sm:px-0">
+              {visibleMaterials.map((item, index) => (
+                <button key={item[1]} type="button" onClick={() => chooseMaterial(item)} className={`min-h-[430px] w-[84vw] shrink-0 snap-start overflow-hidden rounded-lg border text-left transition-colors sm:w-[340px] ${activeMaterial === item[1] ? "border-primary bg-primary text-primary-foreground shadow-lg shadow-primary/15" : "border-border bg-white hover:border-primary/40"}`}>
+                  <Image src={item[2]} alt={`Фактура материала: ${item[1]}`} width={720} height={840} sizes="(min-width: 640px) 340px, 84vw" className="h-[300px] w-full object-cover" />
+                  <span className="block p-4">
+                    <span className="block text-xs font-bold uppercase tracking-wide opacity-70">{index + 1} / {visibleMaterials.length}</span>
+                    <span className="mt-2 block text-xl font-extrabold">{item[1]}</span>
+                    <span className={`mt-2 block text-sm ${activeMaterial === item[1] ? "text-primary-foreground/80" : "text-muted-foreground"}`}>{item[3]}</span>
+                    <span className={`mt-4 inline-flex min-h-10 items-center rounded-lg px-3 py-2 text-sm font-bold ${activeMaterial === item[1] ? "bg-white text-stone-950" : "bg-muted text-foreground"}`}>Посмотреть в интерьере</span>
+                  </span>
                 </button>
               ))}
             </div>
+            <p className="mt-2 text-sm font-bold text-muted-foreground">{Math.max(1, visibleMaterials.findIndex((item) => item[1] === activeMaterial) + 1)} / {visibleMaterials.length}</p>
             <p className="mt-5 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950">Оттенок материалов на экране может отличаться от реального. Перед производством образцы согласовываются лично.</p>
           </div>
         </div>
       </section>
 
-      <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-mobile-sticky", target: "request" })} className="fixed inset-x-3 bottom-3 z-40 inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-bold text-primary-foreground shadow-xl shadow-black/20 md:hidden">
-        Получить проект
-      </Link>
+      <div id="design-mobile-sticky-panel" className="fixed inset-x-0 bottom-0 z-40 hidden border-t border-border bg-white/95 px-3 py-3 shadow-2xl shadow-black/20 backdrop-blur md:hidden" aria-label="Мобильная панель заявки">
+        <div className="grid grid-cols-[1fr_auto] gap-2">
+          <Link href="#request" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-mobile-sticky", target: "request" })} className="inline-flex min-h-12 items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-bold text-primary-foreground">
+            Получить проект
+          </Link>
+          <Link href="https://t.me/kuhniminsk_bot" onClick={() => track(ANALYTICS_EVENTS.CTA_CLICK, { source: "design-mobile-sticky", target: "telegram" })} className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-border bg-white text-foreground" aria-label="Написать в Telegram">
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+          </Link>
+        </div>
+      </div>
 
       {lightbox && (
         <div

@@ -87,6 +87,7 @@ interface DesignProjectSelection {
   size?: string;
   style?: string;
   facade?: string;
+  material?: string;
   extras?: string[];
 }
 
@@ -149,6 +150,7 @@ function readDesignProjectComment(defaultComment = "") {
     selection.size ? `Размер помещения: ${selection.size}` : "",
     selection.style ? `Стиль: ${selection.style}` : "",
     selection.facade ? `Фасады: ${selection.facade}` : "",
+    selection.material ? `Материал: ${selection.material}` : "",
     selection.extras?.length ? `Дополнительно: ${selection.extras.join(", ")}` : "",
   ].filter(Boolean);
 
@@ -168,6 +170,7 @@ function readDesignProjectSelection(): DesignProjectSelection | null {
         selection.size ||
         selection.style ||
         selection.facade ||
+        selection.material ||
         selection.extras?.length,
     );
 
