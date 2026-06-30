@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
-import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, Check, Maximize2, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 const imageBase = "/images/design-proekt-kuhni";
@@ -154,22 +154,71 @@ const gallery = [
 
 const filters = ["Все", "Прямые", "Угловые", "Маленькие", "П-образные", "С островом", "До потолка", "Без ручек", "Светлые", "Темные", "Неоклассика"];
 
+const routeSteps = [
+  {
+    title: "Отправляете помещение",
+    text: "Фото комнаты, размеры, план БТИ или короткое видео.",
+    image: `${minskMechanismsBase}/minsk-measurement-01-vhod-v-kvartiru-mobile.webp`,
+    cue: "вводные",
+  },
+  {
+    title: "Изучаем ограничения",
+    text: "Окна, двери, вентиляция, трубы, радиаторы и розетки.",
+    image: `${minskMechanismsBase}/minsk-measurement-04-kommunikatsii-mobile.webp`,
+    cue: "проверка",
+  },
+  {
+    title: "Создаем планировку",
+    text: "Собираем схему сверху и проверяем рабочие маршруты.",
+    image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`,
+    cue: "план",
+  },
+  {
+    title: "Подбираем материалы",
+    text: "Фасады, столешница, ручки, фурнитура и техника.",
+    image: `${minskDetailsBase}/minsk-detail-15-fasad-i-svet-pod-uglom.webp`,
+    cue: "образцы",
+  },
+  {
+    title: "Показываем 3D-визуализацию",
+    text: "Вы видите будущую кухню до заказа и правок в производстве.",
+    image: `${imageBase}/3d-proekt-kuhni-hero.webp`,
+    cue: "визуал",
+  },
+  {
+    title: "Согласовываем и рассчитываем",
+    text: "Финальный проект, правки и предварительная стоимость.",
+    image: `${minskProjectBase}/minsk-project-01-light-straight-tehnika-podsvetka.webp`,
+    cue: "расчет",
+  },
+] as const;
+
 const projectParts = [
-  ["Планировка", "Схема модулей, проходов и рабочих зон под реальные размеры.", `${minskMechanismsBase}/minsk-measurement-02-lazernaya-ruletka-mobile.webp`],
-  ["Расстановка техники", "Проверяем холодильник, духовой шкаф, варочную, мойку и посудомойку.", `${minskMechanismsBase}/minsk-mechanism-08-vstroennaya-posudomoyka-square.webp`],
-  ["Схема хранения", "Показываем пеналы, ящики, органайзеры и верхние зоны.", `${minskMechanismsBase}/minsk-mechanism-06-organayzer-dlya-priborov-square.webp`],
-  ["Подбор фасадов", "Сравниваем матовые, древесные, рамочные и комбинированные фасады.", `${minskDetailsBase}/minsk-detail-01-matovyy-fasad.webp`],
-  ["Освещение", "Отдельно смотрим рабочий свет, вечерний сценарий и декоративную подсветку.", `${minskDetailsBase}/minsk-detail-12-podsvetka-rabochey-zony.webp`],
-  ["3D-визуализация", "Финальный вид кухни помогает принять решение до производства.", `${imageBase}/3d-proekt-kuhni-hero.webp`],
+  ["Планировка", "Схема модулей, проходов и рабочих зон под реальные размеры.", `${minskMechanismsBase}/minsk-measurement-02-lazernaya-ruletka-mobile.webp`, "размеры и проходы"],
+  ["Расстановка техники", "Проверяем холодильник, духовой шкаф, варочную, мойку и посудомойку.", `${minskMechanismsBase}/minsk-mechanism-08-vstroennaya-posudomoyka-square.webp`, "техника"],
+  ["Схема хранения", "Показываем пеналы, ящики, органайзеры и верхние зоны.", `${minskMechanismsBase}/minsk-mechanism-06-organayzer-dlya-priborov-square.webp`, "хранение"],
+  ["Подбор фасадов", "Сравниваем матовые, древесные, рамочные и комбинированные фасады.", `${minskDetailsBase}/minsk-detail-01-matovyy-fasad.webp`, "фасады"],
+  ["Подбор столешницы", "Смотрим толщину, кромку, стыки, влагостойкость и визуальный баланс с фасадами.", `${minskDetailsBase}/minsk-detail-13-styk-stoleshnitsy.webp`, "столешница"],
+  ["Цветовая палитра", "Собираем сочетание фасадов, дерева, камня, фартука и стен без случайных оттенков.", `${minskProjectBase}/minsk-project-06-private-house-fasady-derevo.webp`, "палитра"],
+  ["Освещение", "Отдельно смотрим рабочий свет, вечерний сценарий и декоративную подсветку.", `${minskDetailsBase}/minsk-detail-12-podsvetka-rabochey-zony.webp`, "свет"],
+  ["3D-визуализация", "Финальный вид кухни помогает принять решение до производства.", `${imageBase}/3d-proekt-kuhni-hero.webp`, "рендер"],
+  ["Предварительный расчет", "После согласования решений понятнее видны материалы, сложность и ориентир бюджета.", `${minskProjectBase}/minsk-project-02-corner-ceiling-stoleshnitsa-krupno.webp`, "стоимость"],
+  ["Правки до согласования", "Можно заменить фасады, ручки, технику, свет и компоновку до запуска кухни.", `${minskMechanismsBase}/minsk-measurement-05-obsuzhdenie-planirovki-mobile.webp`, "правки"],
 ] as const;
 
 const materials = [
-  ["Светлый матовый фасад", `${imageBase}/3d-proekt-pryamaya-kuhnya.webp`, "Спокойная база для маленьких и светлых помещений."],
-  ["Графитовый матовый фасад", `${minskProjectBase}/minsk-project-03-dark-wood-obshchiy-vid.webp`, "Выразительный вариант для современного интерьера."],
-  ["Дуб и камень", `${minskProjectBase}/minsk-project-06-private-house-stoleshnitsa-kamen.webp`, "Теплое дерево смягчает каменную столешницу."],
-  ["Мраморная столешница", `${minskDetailsBase}/minsk-detail-03-kamennaya-stoleshnitsa.webp`, "Акцентная фактура для рабочей зоны и острова."],
-  ["Подсветка", `${minskDetailsBase}/minsk-detail-12-podsvetka-rabochey-zony.webp`, "Рабочая зона становится удобнее вечером."],
+  ["Фасады", "Светлый матовый фасад", `${imageBase}/3d-proekt-pryamaya-kuhnya.webp`, "Спокойная база для маленьких и светлых помещений."],
+  ["Фасады", "Графитовый матовый фасад", `${minskProjectBase}/minsk-project-03-dark-wood-obshchiy-vid.webp`, "Выразительный вариант для современного интерьера."],
+  ["Фасады", "Дубовый фасад", `${minskDetailsBase}/minsk-detail-02-drevesnaya-tekstura.webp`, "Теплая фактура дерева смягчает современную планировку."],
+  ["Столешницы", "Мраморная столешница", `${minskDetailsBase}/minsk-detail-03-kamennaya-stoleshnitsa.webp`, "Акцентная фактура для рабочей зоны и острова."],
+  ["Столешницы", "Темный камень", `${minskProjectBase}/minsk-project-03-dark-wood-stoleshnitsa-krupno.webp`, "Глубокий контраст для темной кухни с деревом."],
+  ["Фартуки", "Каменный фартук", `${minskProjectBase}/minsk-project-06-private-house-stoleshnitsa-kamen.webp`, "Единая плоскость столешницы и фартука выглядит собранно."],
+  ["Ручки", "Профиль без ручек", `${minskDetailsBase}/minsk-detail-05-profil-bez-ruchek.webp`, "Линия фасадов остается чистой, а открывание проверяется в проекте."],
+  ["Фурнитура", "Выдвижной ящик", `${minskDetailsBase}/minsk-detail-09-vydvizhnoy-yashchik-vnutri.webp`, "Внутреннее хранение видно до заказа кухни."],
+  ["Подсветка", "Подсветка рабочей зоны", `${minskDetailsBase}/minsk-detail-12-podsvetka-rabochey-zony.webp`, "Рабочая зона становится удобнее вечером."],
 ] as const;
+
+const materialCategories = ["Фасады", "Столешницы", "Фартуки", "Ручки", "Фурнитура", "Подсветка"] as const;
 
 function track(event: string, params: Record<string, string | number | boolean> = {}) {
   trackAnalyticsEvent(event as typeof ANALYTICS_EVENTS[keyof typeof ANALYTICS_EVENTS], params);
@@ -202,7 +251,10 @@ export function DesignProjectInteractive() {
   const [activeFilter, setActiveFilter] = useState("Все");
   const [lightbox, setLightbox] = useState<(typeof gallery)[number] | null>(null);
   const [activePart, setActivePart] = useState<string>(projectParts[0][0]);
-  const [activeMaterial, setActiveMaterial] = useState<string>(materials[0][0]);
+  const [activeMaterialCategory, setActiveMaterialCategory] = useState<string>(materialCategories[0]);
+  const [activeMaterial, setActiveMaterial] = useState<string>(materials[0][1]);
+  const touchStartX = useRef<number | null>(null);
+  const lightboxIndex = lightbox ? gallery.findIndex((item) => item[0] === lightbox[0]) : -1;
 
   useEffect(() => {
     track(ANALYTICS_EVENTS.DESIGN_HERO_VIEW, { page: "design-proekt-kuhni" });
@@ -229,10 +281,30 @@ export function DesignProjectInteractive() {
     saveSelection(selection);
   }, [selection]);
 
+  useEffect(() => {
+    if (!lightbox) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setLightbox(null);
+      }
+      if (event.key === "ArrowLeft") {
+        navigateLightbox(-1);
+      }
+      if (event.key === "ArrowRight") {
+        navigateLightbox(1);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [lightbox, lightboxIndex]);
+
   const activeLayerItem = layerItems.find((item) => item.key === activeLayer) || layerItems[0];
   const visibleGallery = gallery.filter((item) => activeFilter === "Все" || item[1] === activeFilter || item[2] === activeFilter);
   const activePartItem = projectParts.find((item) => item[0] === activePart) || projectParts[0];
-  const activeMaterialItem = materials.find((item) => item[0] === activeMaterial) || materials[0];
+  const visibleMaterials = materials.filter((item) => item[0] === activeMaterialCategory);
+  const activeMaterialItem = materials.find((item) => item[1] === activeMaterial) || visibleMaterials[0] || materials[0];
   const previewImage = previewByStyle[selection.style] || previewByStyle["Современный минимализм"];
   const caseImageLabel = ["Пустое помещение", "План", "3D-визуализация", "Реализация"][caseState];
 
@@ -249,6 +321,28 @@ export function DesignProjectInteractive() {
       return { ...current, extras };
     });
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: "extras", value });
+  }
+
+  function chooseMaterialCategory(category: string) {
+    const firstMaterial = materials.find((item) => item[0] === category);
+    setActiveMaterialCategory(category);
+    if (firstMaterial) {
+      setActiveMaterial(firstMaterial[1]);
+    }
+    track(ANALYTICS_EVENTS.DESIGN_MATERIAL_OPEN, { category });
+  }
+
+  function chooseProjectPart(part: string) {
+    setActivePart(part);
+    track(ANALYTICS_EVENTS.DESIGN_PROJECT_PART_OPEN, { part });
+  }
+
+  function navigateLightbox(direction: -1 | 1) {
+    if (!lightbox) return;
+    const nextIndex = (lightboxIndex + direction + gallery.length) % gallery.length;
+    const nextItem = gallery[nextIndex];
+    setLightbox(nextItem);
+    track(ANALYTICS_EVENTS.DESIGN_GALLERY_NAVIGATE, { title: nextItem[0], direction });
   }
 
   const selectedSummary = useMemo(() => [
@@ -463,27 +557,23 @@ export function DesignProjectInteractive() {
         </div>
       </section>
 
-      <section className="section-padding bg-white" id="project-route">
+      <section className="section-padding overflow-hidden bg-white" id="project-route">
         <div className="container-site">
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Как создается проект</p>
             <h2 className="text-3xl font-extrabold sm:text-4xl">Маршрут от размеров до расчета</h2>
           </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[
-              ["Отправляете помещение", "Фото комнаты, размеры, план БТИ или видео.", `${minskMechanismsBase}/minsk-measurement-01-vhod-v-kvartiru-mobile.webp`],
-              ["Изучаем ограничения", "Окна, двери, вентиляция, трубы, радиаторы и розетки.", `${minskMechanismsBase}/minsk-measurement-04-kommunikatsii-mobile.webp`],
-              ["Создаем планировку", "Собираем схему сверху и проверяем рабочие маршруты.", `${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`],
-              ["Подбираем материалы", "Фасады, столешница, ручки, фурнитура и техника.", `${minskDetailsBase}/minsk-detail-15-fasad-i-svet-pod-uglom.webp`],
-              ["Показываем 3D-визуализацию", "Вы видите будущую кухню до заказа.", `${imageBase}/3d-proekt-kuhni-hero.webp`],
-              ["Согласовываем и рассчитываем", "Финальный проект, правки и предварительная стоимость.", `${minskProjectBase}/minsk-project-01-light-straight-tehnika-podsvetka.webp`],
-            ].map(([title, text, image], index) => (
-              <article key={title} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
-                <Image src={image} alt={`${index + 1}. ${title}`} width={760} height={570} sizes="(min-width: 768px) 33vw, 100vw" className="aspect-[4/3] w-full object-cover" />
+          <div className="mt-8 flex w-full max-w-full snap-x gap-4 overflow-x-auto overscroll-x-contain pb-4 lg:grid lg:grid-cols-6 lg:overflow-visible lg:pb-0">
+            {routeSteps.map((step, index) => (
+              <article key={step.title} className="w-[78vw] shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-white shadow-sm sm:w-[360px] lg:w-auto lg:min-w-0">
+                <div className="relative">
+                  <Image src={step.image} alt={`${index + 1}. ${step.title}`} width={760} height={570} sizes="(min-width: 1024px) 17vw, (min-width: 640px) 360px, 78vw" className="aspect-[4/3] w-full object-cover" />
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-stone-950">{step.cue}</span>
+                </div>
                 <div className="p-5">
                   <p className="text-sm font-bold text-primary">0{index + 1}</p>
-                  <h3 className="mt-2 text-lg font-extrabold">{title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{text}</p>
+                  <h3 className="mt-2 text-lg font-extrabold">{step.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{step.text}</p>
                 </div>
               </article>
             ))}
@@ -495,14 +585,14 @@ export function DesignProjectInteractive() {
         </div>
       </section>
 
-      <section className="section-padding bg-muted/30" id="visual-gallery">
+      <section className="section-padding overflow-hidden bg-muted/30" id="visual-gallery">
         <div className="container-site">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Галерея визуализаций</p>
               <h2 className="text-3xl font-extrabold sm:text-4xl">Примеры кухонь, которые можно спроектировать</h2>
             </div>
-            <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex w-full max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-2 lg:w-auto">
               {filters.map((filter) => (
                 <button key={filter} type="button" onClick={() => setActiveFilter(filter)} className={`shrink-0 rounded-full border px-4 py-2 text-sm font-bold transition-colors ${activeFilter === filter ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
                   {filter}
@@ -538,8 +628,9 @@ export function DesignProjectInteractive() {
             <h2 className="text-3xl font-extrabold sm:text-4xl">Проект как набор понятных решений</h2>
             <div className="mt-6 grid gap-2 sm:grid-cols-2">
               {projectParts.map((item) => (
-                <button key={item[0]} type="button" onClick={() => setActivePart(item[0])} className={`rounded-lg border px-4 py-3 text-left text-sm font-bold transition-colors ${activePart === item[0] ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
-                  {item[0]}
+                <button key={item[0]} type="button" onClick={() => chooseProjectPart(item[0])} className={`rounded-lg border px-4 py-3 text-left text-sm font-bold transition-colors ${activePart === item[0] ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
+                  <span className="block">{item[0]}</span>
+                  <span className={`mt-1 block text-xs font-semibold ${activePart === item[0] ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{item[3]}</span>
                 </button>
               ))}
             </div>
@@ -554,19 +645,26 @@ export function DesignProjectInteractive() {
         </div>
       </section>
 
-      <section className="section-padding bg-muted/30" id="materials-eye">
-        <div className="container-site grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div className="overflow-hidden rounded-lg border border-border bg-white">
-            <Image src={activeMaterialItem[1]} alt={`Материал в проекте кухни: ${activeMaterialItem[0]}`} width={1200} height={850} sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[16/10] w-full object-cover" />
+      <section className="section-padding overflow-hidden bg-muted/30" id="materials-eye">
+        <div className="container-site grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
+          <div className="min-w-0 max-w-full overflow-hidden rounded-lg border border-border bg-white">
+            <Image src={activeMaterialItem[2]} alt={`Материал в проекте кухни: ${activeMaterialItem[1]}`} width={1200} height={850} sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[16/10] w-full max-w-full object-cover" />
           </div>
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Материалы глазами</p>
             <h2 className="text-3xl font-extrabold sm:text-4xl">Смотрите фактуры крупно</h2>
-            <p className="mt-4 text-muted-foreground">{activeMaterialItem[2]}</p>
-            <div className="mt-6 grid gap-2">
-              {materials.map((item) => (
-                <button key={item[0]} type="button" onClick={() => { setActiveMaterial(item[0]); track(ANALYTICS_EVENTS.DESIGN_MATERIAL_OPEN, { material: item[0] }); }} className={`rounded-lg border px-4 py-3 text-left text-sm font-bold transition-colors ${activeMaterial === item[0] ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
-                  {item[0]}
+            <p className="mt-4 text-muted-foreground">{activeMaterialItem[3]}</p>
+            <div className="mt-6 flex w-full max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-2">
+              {materialCategories.map((category) => (
+                <button key={category} type="button" onClick={() => chooseMaterialCategory(category)} className={`shrink-0 rounded-full border px-4 py-2 text-sm font-bold transition-colors ${activeMaterialCategory === category ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
+                  {category}
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 grid gap-2">
+              {visibleMaterials.map((item) => (
+                <button key={item[1]} type="button" onClick={() => { setActiveMaterial(item[1]); track(ANALYTICS_EVENTS.DESIGN_MATERIAL_OPEN, { category: item[0], material: item[1] }); }} className={`rounded-lg border px-4 py-3 text-left text-sm font-bold transition-colors ${activeMaterial === item[1] ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
+                  {item[1]}
                 </button>
               ))}
             </div>
@@ -580,10 +678,32 @@ export function DesignProjectInteractive() {
       </Link>
 
       {lightbox && (
-        <div className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4" role="dialog" aria-modal="true" aria-label={lightbox[0]}>
+        <div
+          className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox[0]}
+          onTouchStart={(event) => {
+            touchStartX.current = event.touches[0]?.clientX ?? null;
+          }}
+          onTouchEnd={(event) => {
+            if (touchStartX.current === null) return;
+            const delta = event.changedTouches[0]?.clientX - touchStartX.current;
+            touchStartX.current = null;
+            if (Math.abs(delta) > 48) {
+              navigateLightbox(delta > 0 ? -1 : 1);
+            }
+          }}
+        >
           <div className="relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-lg bg-white">
             <button type="button" onClick={() => setLightbox(null)} className="absolute right-3 top-3 z-10 rounded-full bg-white p-2 text-stone-950 shadow" aria-label="Закрыть просмотр">
               <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => navigateLightbox(-1)} className="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-stone-950 shadow" aria-label="Предыдущее изображение">
+              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button type="button" onClick={() => navigateLightbox(1)} className="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-stone-950 shadow" aria-label="Следующее изображение">
+              <ChevronRight className="h-5 w-5" aria-hidden="true" />
             </button>
             <Image src={lightbox[4]} alt={`${lightbox[0]} крупным планом`} width={1400} height={950} sizes="100vw" className="max-h-[78vh] w-full object-contain bg-stone-950" />
             <div className="p-5">

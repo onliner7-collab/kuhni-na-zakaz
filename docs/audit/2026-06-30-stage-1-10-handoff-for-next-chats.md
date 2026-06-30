@@ -19,6 +19,75 @@ Production HEAD после последнего деплоя: `18e2f13`
 | `bdf9f45 fix: keep static blog seo relations` | Production-fix: SEO-связи блога сохраняются, даже если статья приходит из БД |
 | `18e2f13 fix: update design project neoclassical links` | Production-fix: битые ссылки `/styles/neoklassika` заменены на `/portfolio?style=neoklassika` |
 
+## Отчет по моей части: этапы 1-5
+
+Моя часть работы была выполнена в коммите `a92693c feat: rebuild design project page`, запушена в `origin/work` и задеплоена на production до последующих доработок этапов 6-10. Следующие чаты должны считать этот коммит базовой реализацией интерактивной страницы `/design-proekt-kuhni`, а не черновиком.
+
+### Что было реализовано
+
+| Этап | Что сделано | Основные файлы |
+|---|---|---|
+| 1. Базовая SEO-страница `/design-proekt-kuhni` | Страница переписана под концепцию "От пустой комнаты до будущей кухни"; обновлены Title, Description, Open Graph, H1, хлебные крошки, SEO-текст, FAQ, внутренние ссылки, CTA и JSON-LD. | `artifacts/kuhni-na-zakaz/app/design-proekt-kuhni/page.tsx` |
+| 2. Первый экран с превращением комнаты | Добавлен fullscreen hero: пустое помещение, этапы проектирования, чертежные линии, появление финальной кухни, CTA и fallback через реальные изображения. | `components/design-project/DesignProjectInteractive.tsx`, `public/images/design-proekt-kuhni/*empty-room*` |
+| 3. Визуальный конфигуратор | Добавлен блок "Соберите идею кухни": форма кухни, размер, стиль, фасады, дополнительные опции; справа меняется крупная визуализация. | `DesignProjectInteractive.tsx` |
+| 4. Передача выбора в заявку и аналитика | Выбранные параметры конфигуратора сохраняются в `sessionStorage` и добавляются в комментарий заявки. Добавлены события аналитики для hero, выбора параметров, завершения конфигуратора, слоев, кейсов и материалов. | `components/sections/ContactForm.tsx`, `lib/analytics.ts` |
+| 5. Визуальные блоки страницы | Добавлены блоки "Разберите кухню на слои", 6 кейсов до/после, "Выберите свою ситуацию", маршрут создания проекта, фильтруемая галерея, "Что входит в 3D-проект", материалы, ошибки, FAQ и финальный CTA. | `DesignProjectInteractive.tsx`, `page.tsx` |
+
+### Сгенерированное изображение
+
+Для первого экрана через встроенный Codex/OpenAI `imagegen` было сгенерировано реалистичное пустое кухонное помещение без текста, людей и мебели. Исходник сохранен в проекте, в UI подключены оптимизированные WebP-версии.
+
+| Файл | Назначение | Размер |
+|---|---|---:|
+| `artifacts/kuhni-na-zakaz/public/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629.png` | Исходник, не основной visible `src` | `1696996` bytes |
+| `artifacts/kuhni-na-zakaz/public/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629.webp` | Desktop hero layer | `35912` bytes |
+| `artifacts/kuhni-na-zakaz/public/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-20260629-mobile.webp` | Mobile hero layer | `9324` bytes |
+
+### Проверки моей части
+
+После этапов 1-5 были выполнены проверки:
+
+```powershell
+node_modules\.bin\tsc.CMD --noEmit --incremental false
+pnpm.cmd run images:audit
+pnpm.cmd exec playwright test -c playwright.smoke.config.ts tests/smoke/design-proekt-kuhni.spec.ts --reporter=line
+pnpm.cmd run build
+```
+
+Результаты:
+
+- TypeScript: без ошибок.
+- `images:audit`: битых, oversized и плохих имен изображений не найдено.
+- Smoke `/design-proekt-kuhni`: `10 passed`.
+- Production build: успешно; локальные Prisma-сообщения про `127.0.0.1:5434` были ожидаемыми, сборка завершилась через fallback-данные.
+- Browser QA на production-like сервере: desktop и mobile без горизонтального overflow, H1/FAQ/form/schema на месте, загруженные изображения без `naturalWidth=0`.
+
+### Production после моей части
+
+Моя часть была опубликована стандартным Timeweb-путем:
+
+```powershell
+git push origin work
+ssh -i C:\Users\User\.ssh\timeweb_kuhni_ed25519 -o StrictHostKeyChecking=no root@5.42.108.140 "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work"
+```
+
+Проверки после деплоя моей части:
+
+- server git: `a92693c`;
+- `systemctl is-active kuhni-na-zakaz` -> `active`;
+- `https://kuhni.minsk.by/design-proekt-kuhni` -> `200`;
+- `3d-proekt-kuhni-empty-room-20260629.webp` -> `200`, `image/webp`, `35912` bytes;
+- `3d-proekt-kuhni-empty-room-20260629-mobile.webp` -> `200`, `image/webp`, `9324` bytes;
+- live HTML содержал `3D-проект кухни на заказ в Минске`, `Соберите идею кухни`, `Разберите кухню на слои`, `Примеры кухонь, которые можно спроектировать`, `Частые вопросы о 3D-проекте кухни`.
+
+### Важные ограничения для следующих чатов
+
+- Не переписывать `/design-proekt-kuhni` с нуля: этапы 1-5 уже являются рабочей production-базой.
+- Если расширять hero, галерею или материалы, не подключать тяжелый PNG как основной `src`; использовать WebP/AVIF и сохранять исходники отдельно.
+- Сохранять SEO-контент, FAQ, внутренние ссылки и JSON-LD доступными в HTML, а не только через client-only интерактив.
+- Сохранять русские видимые тексты и русские alt-тексты.
+- Если нужны новые фото кухни, использовать только встроенный `imagegen` по правилам `AGENTS.md`.
+
 ## Что сделано по этапам 1-10
 
 | Этап | Статус | Где смотреть | Что сделано |
@@ -113,6 +182,58 @@ Production browser-check:
 |---|---|---|---|
 | Mobile `390x844` | `200` | нет, `scrollWidth=390` | 40 видимых, битых нет |
 | Desktop `1440x960` | `200` | нет, `scrollWidth=1440` | 40 видимых, битых нет |
+
+## Отчет по моей части: этапы 11-16
+
+Дата выполнения: 30 июня 2026
+Страница: `/design-proekt-kuhni`
+Статус: код реализован, локально проверен, деплой выполняется следующим шагом.
+
+### Что сделано
+
+| Этап | Статус | Что изменено |
+|---|---|---|
+| 11. Как создается проект | Выполнен | Блок превращен в горизонтальный визуальный маршрут из 6 сцен. На mobile это свайп-лента без горизонтального overflow документа, на desktop — 6 сцен в ряд. |
+| 12. Галерея визуализаций | Выполнен | Сохранена masonry-галерея с фильтрами, добавлены кнопки предыдущего/следующего изображения, клавиатурная навигация и свайп в полноэкранном просмотре. |
+| 13. Что входит в 3D-проект | Выполнен | Состав проекта расширен до 10 элементов из ТЗ: планировка, техника, хранение, фасады, столешница, палитра, свет, 3D-визуализация, расчет, правки. |
+| 14. Материалы глазами | Выполнен | Материалы разделены по категориям: фасады, столешницы, фартуки, ручки, фурнитура, подсветка. Выбор категории меняет доступные образцы и крупную визуализацию. |
+| 15. SEO-блоки | Проверен и сохранен | Читаемый HTML SEO-раздел, внутренние ссылки, H1/H2/H3, metadata и schema остаются в серверной странице. Новых URL не добавлено. |
+| 16. FAQ | Проверен и сохранен | На странице остаются 10 видимых `details` FAQ; JSON-LD FAQ соответствует видимым вопросам и ответам. |
+
+### Основные файлы
+
+- `artifacts/kuhni-na-zakaz/components/design-project/DesignProjectInteractive.tsx`
+- `artifacts/kuhni-na-zakaz/lib/analytics.ts`
+- `docs/audit/2026-06-30-stage-1-10-handoff-for-next-chats.md`
+
+### Изображения и производительность
+
+- Новые фото кухни не генерировались: для этапов 11-16 хватило уже сохраненных в проекте WebP-изображений.
+- Тяжелые PNG/JPEG не подключались как visible `src`.
+- После изменений `/design-proekt-kuhni` в production build: `12.4 kB`, First Load JS `169 kB`.
+- Горизонтальные интерактивные ленты ограничены собственными `overflow-x-auto` контейнерами, чтобы mobile-документ не распирался.
+
+### Локальные проверки
+
+```powershell
+node_modules\.bin\tsc.CMD --noEmit --incremental false
+pnpm.cmd run images:audit
+pnpm.cmd exec playwright test -c playwright.smoke.config.ts tests/smoke/design-proekt-kuhni.spec.ts --reporter=line
+pnpm.cmd run build
+```
+
+Результаты:
+
+- TypeScript: без ошибок.
+- `images:audit`: `broken: []`, `oversized: []`, `badNames: []`.
+- Smoke `/design-proekt-kuhni`: `9 passed`; один dev-only timeout на проверке внутренних ссылок при запросе `/privacy-policy`, без факта 404.
+- Отдельная проверка внутренних ссылок: `16` URL, `broken: []`; локальные `500` у части catalog-страниц связаны с недоступной dev-БД `127.0.0.1:5434`, а не с новыми ссылками.
+- Production build: успешно; Prisma-сообщения про `127.0.0.1:5434` ожидаемы, сборка завершилась через fallback-данные.
+- Production-like browser QA на `next start -p 3160`: mobile `390x844` и desktop `1440x960` без горизонтального scroll; после прокрутки нет битых загруженных изображений; lightbox листается кнопкой и свайпом.
+
+### GSC/Яндекс
+
+Новых URL, sitemap-изменений и robots/canonical-изменений не добавлено. После деплоя панельный переобход GSC/Яндекс не обязателен; если нужно отправлять именно обновленную страницу `/design-proekt-kuhni`, это лучше делать отдельным браузерным действием через авторизованный сеанс пользователя.
 
 ## Важные выводы для следующего чата
 

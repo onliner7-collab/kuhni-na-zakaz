@@ -18,6 +18,8 @@ export const ANALYTICS_EVENTS = {
   DESIGN_CONFIG_COMPLETE: "design_project_config_complete",
   DESIGN_LAYER_OPEN: "design_project_layer_open",
   DESIGN_CASE_VIEW: "design_project_case_view",
+  DESIGN_GALLERY_NAVIGATE: "design_project_gallery_navigate",
+  DESIGN_PROJECT_PART_OPEN: "design_project_part_open",
   DESIGN_MATERIAL_OPEN: "design_project_material_open",
   EMAIL_CLICK: "email_click",
   MEASURE_REQUEST: "measure_request",
