@@ -146,7 +146,7 @@ const gallery = [
   ["П-образная кухня", "П-образные", "Светлые", "13 м2", `${imageBase}/3d-proekt-p-obraznaya-kuhnya.webp`, "/catalog/p-obraznye-kuhni"],
   ["Кухня с островом", "С островом", "Современные", "22 м2", `${imageBase}/3d-proekt-kuhnya-s-ostrovom.webp`, "/catalog/kuhni-s-ostrovom"],
   ["Кухня без ручек", "Без ручек", "Темные", "12 м2", `${imageBase}/3d-proekt-kuhnya-bez-ruchek.webp`, "/catalog/kuhni-bez-ruchek"],
-  ["Неоклассическая кухня", "Неоклассика", "Светлые", "14 м2", `${imageBase}/3d-proekt-neoklassicheskaya-kuhnya.webp`, "/styles/neoklassika"],
+  ["Неоклассическая кухня", "Неоклассика", "Светлые", "14 м2", `${imageBase}/3d-proekt-neoklassicheskaya-kuhnya.webp`, "/portfolio?style=neoklassika"],
   ["Темная кухня с деревом", "Угловые", "Темные", "14 м2", `${minskProjectBase}/minsk-project-03-dark-wood-obshchiy-vid.webp`, "/catalog/uglovye-kuhni"],
   ["Кухня-гостиная с островом", "С островом", "Современные", "20 м2", `${minskProjectBase}/minsk-project-05-island-living-obshchiy-vid.webp`, "/catalog/kuhni-s-ostrovom"],
   ["Кухня до потолка", "До потолка", "Светлые", "11 м2", `${imageBase}/3d-proekt-kuhnya-do-potolka.webp`, "/catalog/kuhni-do-potolka"],

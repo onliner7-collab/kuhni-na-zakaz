@@ -104,7 +104,7 @@ const internalLinks = [
   { label: "Кухни с островом", href: "/catalog/kuhni-s-ostrovom" },
   { label: "Кухни до потолка", href: "/catalog/kuhni-do-potolka" },
   { label: "Кухни без ручек", href: "/catalog/kuhni-bez-ruchek" },
-  { label: "Неоклассические кухни", href: "/styles/neoklassika" },
+  { label: "Неоклассические кухни", href: "/portfolio?style=neoklassika" },
   { label: "Каталог кухонь", href: "/catalog" },
   { label: "Портфолио", href: "/portfolio" },
   { label: "Материалы", href: "/materials" },
