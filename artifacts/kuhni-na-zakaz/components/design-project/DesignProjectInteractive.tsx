@@ -17,28 +17,28 @@ const heroStages = [
     title: "Кухня",
     text: "Сразу показываем, каким может быть понятный финальный результат.",
     image: `${imageBase}/3d-proekt-kuhni-hero.webp`,
-    mobileImage: `${imageBase}/3d-proekt-kuhni-hero-mobile.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-hero-mobile-v2.webp`,
     alt: "Готовая кухня после 3D-проектирования",
   },
   {
     title: "Комната",
     text: "Проверяем стены, окно, коммуникации и реальные ограничения.",
     image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629.webp`,
-    mobileImage: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-empty-room-mobile-v2.webp`,
     alt: "Пустое помещение кухни перед созданием 3D-проекта",
   },
   {
     title: "План",
     text: "Появляются размеры, рабочие зоны, техника и проходы.",
     image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-plan.webp`,
-    mobileImage: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-plan-mobile.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-plan-mobile-v2.webp`,
     alt: "Помещение кухни с чертежными линиями планировки",
   },
   {
     title: "Материалы",
     text: "Добавляем модули, фасады, столешницу и встроенную технику.",
     image: `${imageBase}/3d-proekt-uglovaya-kuhnya.webp`,
-    mobileImage: `${imageBase}/3d-proekt-uglovaya-kuhnya-mobile.webp`,
+    mobileImage: `${imageBase}/3d-proekt-kuhni-materials-mobile-v2.webp`,
     alt: "Появление модулей угловой кухни в 3D-проекте",
   },
 ];
@@ -98,6 +98,120 @@ const shapeOptions = [
     alt: "Кухня-гостиная с островом в 3D-проекте",
   },
 ];
+
+const configVisuals = {
+  style: {
+    "Современный минимализм": {
+      image: `${imageBase}/config-style-modern-minimalism.webp`,
+      title: "Современный минимализм",
+      caption: "Чистые линии, ровные фасады и спокойная палитра без лишних деталей.",
+      benefits: ["ровная геометрия", "легко согласовать технику"],
+      alt: "Кухня в стиле современный минимализм",
+    },
+    "Теплая кухня с деревом": {
+      image: `${imageBase}/config-style-warm-wood.webp`,
+      title: "Теплая кухня с деревом",
+      caption: "Древесная фактура делает проект мягче и хорошо сочетается со светлым камнем.",
+      benefits: ["теплая фактура", "уютный вид кухни"],
+      alt: "Теплая кухня с древесными фасадами",
+    },
+    "Светлая кухня": {
+      image: `${imageBase}/config-style-light.webp`,
+      title: "Светлая кухня",
+      caption: "Светлые фасады визуально расширяют помещение и дают спокойный базовый образ.",
+      benefits: ["легкий интерьер", "подходит для маленькой кухни"],
+      alt: "Светлая кухня в 3D-проекте",
+    },
+    "Темная кухня": {
+      image: `${imageBase}/config-style-dark.webp`,
+      title: "Темная кухня",
+      caption: "Графитовые фасады смотрятся выразительно, если сразу заложить свет и теплые акценты.",
+      benefits: ["выразительный образ", "важен сценарий света"],
+      alt: "Темная современная кухня",
+    },
+    "Неоклассика": {
+      image: `${imageBase}/config-style-neoclassic.webp`,
+      title: "Неоклассика",
+      caption: "Рамочные фасады и мягкие оттенки дают более спокойный классический характер кухни.",
+      benefits: ["рамочные детали", "мягкий классический вид"],
+      alt: "Неоклассическая кухня в 3D-проекте",
+    },
+  },
+  facade: {
+    "Матовые": {
+      image: `${imageBase}/config-facade-matte.webp`,
+      title: "Матовые фасады",
+      caption: "Матовая поверхность выглядит спокойно и не перегружает кухню бликами.",
+      benefits: ["меньше визуального шума", "спокойный современный вид"],
+      alt: "Кухня с матовыми фасадами",
+    },
+    "Под дерево": {
+      image: `${imageBase}/config-facade-wood.webp`,
+      title: "Фасады под дерево",
+      caption: "Древесная текстура добавляет тепла и помогает связать кухню с интерьером.",
+      benefits: ["видна текстура", "теплый материал"],
+      alt: "Кухня с фасадами под дерево",
+    },
+    "Без ручек": {
+      image: `${imageBase}/config-facade-handleless.webp`,
+      title: "Фасады без ручек",
+      caption: "Профиль или push-to-open оставляют фасады ровными и визуально легче.",
+      benefits: ["чистая линия", "аккуратное открывание"],
+      alt: "Кухня с фасадами без ручек",
+    },
+    "Рамочные": {
+      image: `${imageBase}/config-facade-framed.webp`,
+      title: "Рамочные фасады",
+      caption: "Рамка добавляет глубину фасадам и подходит для неоклассики.",
+      benefits: ["объемная дверь", "классический акцент"],
+      alt: "Кухня с рамочными фасадами",
+    },
+    "Комбинированные": {
+      image: `${imageBase}/config-facade-combined.webp`,
+      title: "Комбинированные фасады",
+      caption: "Сочетание светлых и древесных фасадов помогает разделить зоны кухни.",
+      benefits: ["баланс материалов", "видно разделение зон"],
+      alt: "Кухня с комбинированными фасадами",
+    },
+  },
+  extras: {
+    "Кухня до потолка": {
+      image: `${imageBase}/config-extra-ceiling.webp`,
+      title: "Кухня до потолка",
+      caption: "Антресоли и доборы сразу показывают, как будет выглядеть верхняя линия кухни.",
+      benefits: ["больше хранения", "ровная линия до потолка"],
+      alt: "Кухня со шкафами до потолка",
+    },
+    "Встроенная техника": {
+      image: `${imageBase}/config-extra-appliances.webp`,
+      title: "Встроенная техника",
+      caption: "Духовой шкаф, холодильник и посудомойка учитываются до запуска мебели.",
+      benefits: ["понятны габариты", "видно расположение техники"],
+      alt: "Кухня со встроенной техникой",
+    },
+    "Подсветка": {
+      image: `${imageBase}/config-extra-lighting.webp`,
+      title: "Подсветка",
+      caption: "Рабочий свет сразу меняет восприятие фасадов, фартука и столешницы.",
+      benefits: ["виден вечерний сценарий", "удобнее рабочая зона"],
+      alt: "Кухня с подсветкой рабочей зоны",
+    },
+    "Остров или барная стойка": {
+      image: `${imageBase}/config-extra-island.webp`,
+      title: "Остров или барная стойка",
+      caption: "В проекте видно, хватает ли проходов и как остров работает в кухне-гостиной.",
+      benefits: ["проверка проходов", "дополнительная поверхность"],
+      alt: "Кухня с островом и барной стойкой",
+    },
+    "Много систем хранения": {
+      image: `${imageBase}/config-extra-storage.webp`,
+      title: "Много систем хранения",
+      caption: "Выдвижные ящики, пеналы и органайзеры лучше согласовать до производства.",
+      benefits: ["понятно наполнение", "меньше пустых зон"],
+      alt: "Кухня с системами хранения",
+    },
+  },
+} as const;
 
 const layerItems = [
   {
@@ -301,6 +415,11 @@ interface SelectionState {
   extras: string[];
 }
 
+type ConfigVisualSource = {
+  type: "shape" | "style" | "facade" | "extras";
+  value: string;
+};
+
 export function DesignProjectInteractive() {
   const [heroStage, setHeroStage] = useState(0);
   const [selection, setSelection] = useState<SelectionState>({
@@ -317,6 +436,7 @@ export function DesignProjectInteractive() {
   const [activePart, setActivePart] = useState<string>(projectParts[0][0]);
   const [activeMaterialCategory, setActiveMaterialCategory] = useState<string>(materialCategories[0]);
   const [activeMaterial, setActiveMaterial] = useState<string>(materials[0][1]);
+  const [activeConfigSource, setActiveConfigSource] = useState<ConfigVisualSource>({ type: "shape", value: choices.shape[1] });
   const touchStartX = useRef<number | null>(null);
   const configStarted = useRef(false);
   const trackedScrollDepths = useRef(new Set<number>());
@@ -427,11 +547,32 @@ export function DesignProjectInteractive() {
   const visibleMaterials = materials.filter((item) => item[0] === activeMaterialCategory);
   const activeMaterialItem = materials.find((item) => item[1] === activeMaterial) || visibleMaterials[0] || materials[0];
   const activeShapeItem = shapeOptions.find((item) => item.name === selection.shape) || shapeOptions[1];
+  const activeConfigVisual = useMemo(() => {
+    if (activeConfigSource.type === "style") {
+      return configVisuals.style[activeConfigSource.value as keyof typeof configVisuals.style] || configVisuals.style[selection.style as keyof typeof configVisuals.style];
+    }
+    if (activeConfigSource.type === "facade") {
+      return configVisuals.facade[activeConfigSource.value as keyof typeof configVisuals.facade] || configVisuals.facade[selection.facade as keyof typeof configVisuals.facade];
+    }
+    if (activeConfigSource.type === "extras") {
+      return configVisuals.extras[activeConfigSource.value as keyof typeof configVisuals.extras] || configVisuals.extras[selection.extras[selection.extras.length - 1] as keyof typeof configVisuals.extras];
+    }
+    return {
+      image: activeShapeItem.image,
+      title: `${activeShapeItem.name} кухня`,
+      caption: activeShapeItem.caption,
+      benefits: activeShapeItem.benefits,
+      alt: activeShapeItem.alt,
+    };
+  }, [activeConfigSource, activeShapeItem, selection.extras, selection.facade, selection.style]);
   const caseImageLabel = ["Пустое помещение", "План", "3D-визуализация", "Реализация"][caseState];
 
   function choose<K extends "shape" | "size" | "style" | "facade">(key: K, value: SelectionState[K]) {
     trackConfigStart();
     setSelection((current) => ({ ...current, [key]: value }));
+    if (key === "shape" || key === "style" || key === "facade") {
+      setActiveConfigSource({ type: key, value });
+    }
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: key, value });
   }
 
@@ -443,6 +584,7 @@ export function DesignProjectInteractive() {
         : [...current.extras, value];
       return { ...current, extras };
     });
+    setActiveConfigSource({ type: "extras", value });
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: "extras", value });
   }
 
@@ -516,7 +658,7 @@ export function DesignProjectInteractive() {
           </noscript>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/45 to-stone-950/5" />
-        <div className="container-site relative z-10 flex min-h-[100svh] items-end pb-28 pt-24 sm:items-center sm:pb-0">
+        <div className="container-site relative z-10 flex min-h-[100svh] items-end pb-12 pt-36 sm:items-center sm:pb-0">
           <div className="max-w-3xl">
             <h1 className="text-4xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">3D-проект кухни на заказ</h1>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-xl">
@@ -607,16 +749,13 @@ export function DesignProjectInteractive() {
             </div>
             </div>
             <div className="sticky top-4 overflow-hidden rounded-lg border border-border bg-stone-950 text-white">
-              <picture>
-                <source media="(max-width: 640px)" srcSet={activeShapeItem.mobileImage} />
-                <img src={activeShapeItem.image} alt={activeShapeItem.alt} width={1200} height={900} loading="lazy" className="aspect-[4/5] w-full object-cover transition-opacity duration-300 sm:aspect-[4/3]" />
-              </picture>
+              <img src={activeConfigVisual.image} alt={activeConfigVisual.alt} width={960} height={720} loading="lazy" className="aspect-[4/5] w-full object-cover transition-opacity duration-300 sm:aspect-[4/3]" />
               <div className="p-5">
-                <p className="rounded-lg bg-white/10 p-3 text-sm font-bold text-white">Вы выбрали: {selection.shape.toLowerCase()} кухня</p>
-                <h3 className="mt-4 text-2xl font-extrabold">{selection.shape} кухня в проекте</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/75">{activeShapeItem.caption}</p>
+                <p className="rounded-lg bg-white/10 p-3 text-sm font-bold text-white">Показано: {activeConfigVisual.title.toLowerCase()}</p>
+                <h3 className="mt-4 text-2xl font-extrabold">{activeConfigVisual.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/75">{activeConfigVisual.caption}</p>
                 <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {activeShapeItem.benefits.map((benefit) => (
+                  {activeConfigVisual.benefits.map((benefit) => (
                     <span key={benefit} className="rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white/85">{benefit}</span>
                   ))}
                 </div>
