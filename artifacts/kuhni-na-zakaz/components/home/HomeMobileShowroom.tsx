@@ -10,12 +10,18 @@ import {
   FileCheck,
   Images,
   LayoutGrid,
+  MapPin,
+  MessageCircle,
   MoveHorizontal,
+  PenTool,
   Ruler,
+  Star,
   Sparkles,
+  Truck,
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
+import { ContactForm } from "@/components/sections/ContactForm";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
@@ -36,6 +42,32 @@ interface HomeProjectCard {
 
 interface HomeMobileShowroomProps {
   projects: HomeProjectCard[];
+  reviews: HomeReviewCard[];
+  faqs: HomeFaqItem[];
+  locations: HomeLocationCard[];
+}
+
+interface HomeReviewCard {
+  id: number | string;
+  name: string;
+  city: string | null;
+  date: string | null;
+  text: string;
+  rating: number;
+  image?: string | null;
+}
+
+interface HomeFaqItem {
+  id: number | string;
+  question: string;
+  answer: string;
+}
+
+interface HomeLocationCard {
+  slug: string;
+  city: string;
+  region: string | null;
+  priceFrom: number;
 }
 
 interface LayoutOption {
@@ -226,6 +258,167 @@ const materialCards = [
   },
 ];
 
+const orderSteps = [
+  {
+    number: "01",
+    title: "Заявка",
+    text: "Вы оставляете телефон, город и пару пожеланий по будущей кухне.",
+    image: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.avif",
+    alt: "Светлая прямая кухня на заказ как пример для первичной заявки",
+    icon: MessageCircle,
+  },
+  {
+    number: "02",
+    title: "Консультация",
+    text: "Уточняем стиль, планировку, технику, сроки и ориентир по бюджету.",
+    image: "/uploads/seo-showcase/kuhnya-skandi-svetlaya-1.avif",
+    alt: "Светлая кухня для консультации по стилю и планировке",
+    icon: FileCheck,
+  },
+  {
+    number: "03",
+    title: "Замер",
+    text: "Проверяем размеры, коммуникации, окна, вентиляцию и будущую технику.",
+    image: "/images/home-showroom/left-window-linear-before-20260701.webp",
+    alt: "Помещение кухни до замера и проектирования гарнитура",
+    icon: Ruler,
+  },
+  {
+    number: "04",
+    title: "3D-проект",
+    text: "Показываем фасады, хранение, проходы и рабочие зоны до запуска.",
+    image: "/images/design-proekt-kuhni/3d-proekt-kuhni-hero.webp",
+    alt: "3D-проект кухни перед производством",
+    icon: PenTool,
+  },
+  {
+    number: "05",
+    title: "Производство",
+    text: "Изготавливаем корпус, фасады и детали под утвержденные размеры.",
+    image: "/uploads/seo-showcase/kuhnya-do-potolka-1.avif",
+    alt: "Кухня до потолка как пример производственного проекта",
+    icon: Factory,
+  },
+  {
+    number: "06",
+    title: "Доставка",
+    text: "Согласуем дату, адрес, занос и условия работы по Минску или региону.",
+    image: "/uploads/seo-showcase/portfolio-minsk-uglovaya-1.avif",
+    alt: "Угловая кухня в Минске после доставки и установки",
+    icon: Truck,
+  },
+  {
+    number: "07",
+    title: "Монтаж",
+    text: "Собираем гарнитур, выставляем фасады, проверяем фурнитуру и узлы.",
+    image: "/images/home-showroom/left-window-linear-after-20260701.webp",
+    alt: "Готовая кухня после монтажа в квартире",
+    icon: LayoutGrid,
+  },
+  {
+    number: "08",
+    title: "Гарантия",
+    text: "Фиксируем условия в договоре и остаемся на связи после установки.",
+    image: "/uploads/seo-showcase/kuhnya-neoklassika-1.avif",
+    alt: "Готовая кухня с гарантийными условиями по договору",
+    icon: BadgeCheck,
+  },
+];
+
+const priceCards = [
+  {
+    title: "Прямые кухни",
+    price: "от 1 200 BYN",
+    href: "/catalog/pryamye-kuhni",
+    image: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.avif",
+    alt: "Прямая светлая кухня на заказ в Минске",
+    text: "Для студий, вытянутых комнат и спокойных проектов вдоль одной стены.",
+  },
+  {
+    title: "Угловые кухни",
+    price: "от 1 800 BYN",
+    href: "/catalog/uglovye-kuhni",
+    image: "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.avif",
+    alt: "Угловая кухня на заказ с современными фасадами",
+    text: "Помогают задействовать угол, увеличить хранение и рабочую поверхность.",
+  },
+  {
+    title: "П-образные кухни",
+    price: "от 3 500 BYN",
+    href: "/catalog/p-obraznye-kuhni",
+    image: "/uploads/seo-showcase/kuhnya-p-obraznaya-premium-1.avif",
+    alt: "П-образная премиальная кухня на заказ",
+    text: "Для помещений, где нужна большая рабочая зона и много модулей.",
+  },
+  {
+    title: "Кухни с островом",
+    price: "от 4 500 BYN",
+    href: "/catalog/kuhni-s-ostrovom",
+    image: "/uploads/seo-showcase/kuhnya-s-ostrovom-1.avif",
+    alt: "Кухня с островом на заказ для просторной кухни-гостиной",
+    text: "Подходят для кухни-гостиной, барной зоны и семейного общения.",
+  },
+  {
+    title: "Маленькие кухни",
+    price: "от 900 BYN",
+    href: "/catalog/malenkie-kuhni",
+    image: "/uploads/seo-showcase/kuhnya-malenkaya-funkcionalnaya-1.avif",
+    alt: "Маленькая функциональная кухня на заказ",
+    text: "Для хрущевок, студий и квартир, где каждый сантиметр важен.",
+  },
+  {
+    title: "Кухни до потолка",
+    price: "от 2 200 BYN",
+    href: "/catalog/kuhni-do-potolka",
+    image: "/uploads/seo-showcase/kuhnya-do-potolka-1.avif",
+    alt: "Кухня до потолка с высокими шкафами на заказ",
+    text: "Дают больше хранения и закрывают верхнюю зону от пыли.",
+  },
+];
+
+const fallbackFaqItems: HomeFaqItem[] = [
+  {
+    id: "price",
+    question: "Сколько стоит кухня на заказ?",
+    answer: "Стоимость зависит от размеров, материалов, фурнитуры, столешницы, техники, доставки и монтажа. Точный расчет делаем после размеров и комплектации.",
+  },
+  {
+    id: "term",
+    question: "Как долго изготавливается кухня?",
+    answer: "Ориентир по срокам зависит от сложности проекта и выбранных материалов. Для стандартных кухонь минимальный срок начинается от 14 рабочих дней.",
+  },
+  {
+    id: "size",
+    question: "Можно ли заказать кухню по своим размерам?",
+    answer: "Да. Гарнитур проектируется под конкретное помещение, коммуникации, высоту потолка, технику и сценарии хранения.",
+  },
+  {
+    id: "delivery",
+    question: "Есть ли доставка и монтаж?",
+    answer: "Да. Доставку, занос, сборку и монтаж согласуем по адресу и фиксируем в условиях заказа.",
+  },
+  {
+    id: "region",
+    question: "Можно ли заказать кухню в Минской области?",
+    answer: "Да. Работаем по Минску, Минской области и другим городам Беларуси. Условия выезда и доставки уточняются при заявке.",
+  },
+  {
+    id: "warranty",
+    question: "Какая гарантия?",
+    answer: "Гарантийные условия фиксируются в договоре и зависят от комплектации, материалов и фурнитуры.",
+  },
+  {
+    id: "ceiling",
+    question: "Можно ли сделать кухню до потолка?",
+    answer: "Да. Кухни до потолка помогают увеличить хранение, закрыть верхнюю зону и сделать фасад визуально цельнее.",
+  },
+  {
+    id: "included",
+    question: "Что входит в стоимость кухни?",
+    answer: "В смете отдельно учитываются корпус, фасады, столешница, фурнитура, замер, доставка, монтаж и дополнительные работы по проекту.",
+  },
+];
+
 function LayoutSchema({ type }: { type: LayoutOption["schema"] }) {
   const base = "absolute rounded-sm bg-[#d5b078]";
   const line = "absolute rounded-sm border border-[#d5b078]";
@@ -306,8 +499,17 @@ function saveSelection(style: string, layout: string, budget: string) {
   window.sessionStorage.setItem("homeKitchenSelection", JSON.stringify(selection));
 }
 
-export function HomeMobileShowroom({ projects }: HomeMobileShowroomProps) {
+export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeMobileShowroomProps) {
   const visibleProjects = useMemo(() => normalizeProjects(projects).slice(0, 4), [projects]);
+  const visibleReviews = reviews.slice(0, 4);
+  const visibleFaqs = useMemo(() => {
+    const existingQuestions = new Set(faqs.map((item) => item.question.trim().toLowerCase()));
+    return [
+      ...faqs,
+      ...fallbackFaqItems.filter((item) => !existingQuestions.has(item.question.trim().toLowerCase())),
+    ].slice(0, 8);
+  }, [faqs]);
+  const visibleLocations = locations.slice(0, 8);
   const [selectedStyle, setSelectedStyle] = useState(styleOptions[0].id);
   const [selectedLayout, setSelectedLayout] = useState(layoutOptions[1].id);
   const [selectedBudget, setSelectedBudget] = useState(budgetOptions[1].id);
@@ -333,7 +535,7 @@ export function HomeMobileShowroom({ projects }: HomeMobileShowroomProps) {
   }
 
   return (
-    <div className="bg-[#15110d] text-white">
+    <div className="bg-[#15110d] pb-24 text-white md:pb-0">
       <section className="relative min-h-[100svh] overflow-hidden pt-24" aria-labelledby="home-showroom-hero">
         <picture className="absolute inset-0 block">
           <source media="(max-width: 767px)" srcSet={heroMobileImage} />
@@ -711,6 +913,246 @@ export function HomeMobileShowroom({ projects }: HomeMobileShowroomProps) {
           </div>
         </div>
       </section>
+
+      <section id="home-order-steps" className="bg-[#211811] py-10 md:py-14" aria-labelledby="home-order-steps-title">
+        <div className="container-site">
+          <div className="mb-7 max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#d5b078]">Как проходит заказ</p>
+            <h2 id="home-order-steps-title" className="mt-2 text-3xl font-black leading-tight text-white md:text-4xl">
+              От заявки до кухни, которую можно сразу использовать
+            </h2>
+          </div>
+          <div className="relative grid gap-4 lg:grid-cols-2">
+            {orderSteps.map((step) => {
+              const Icon = step.icon;
+
+              return (
+                <article key={step.number} className="grid overflow-hidden rounded-lg border border-white/12 bg-white/[0.04] sm:grid-cols-[9rem_1fr]">
+                  <div className="relative min-h-36">
+                    <Image
+                      src={step.image}
+                      alt={step.alt}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 640px) 100vw, 9rem"
+                      className="object-cover"
+                    />
+                    <span className="absolute inset-0 bg-black/20" />
+                  </div>
+                  <div className="p-5">
+                    <div className="mb-3 flex items-center gap-3">
+                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-[#d5b078] text-sm font-black text-[#17110b]">
+                        {step.number}
+                      </span>
+                      <Icon className="h-5 w-5 text-[#d5b078]" aria-hidden />
+                    </div>
+                    <h3 className="text-xl font-black text-white">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-white/64">{step.text}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="home-prices" className="bg-[#fffaf4] py-10 text-[#201912] md:py-14" aria-labelledby="home-prices-title">
+        <div className="container-site">
+          <div className="mb-7 max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">Цены</p>
+            <h2 id="home-prices-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
+              Сколько стоит кухня на заказ
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-[#75695f]">
+              Точная стоимость зависит от размеров, материалов, фурнитуры, столешницы, техники, доставки и монтажа.
+            </p>
+          </div>
+          <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-3">
+            {priceCards.map((item) => (
+              <Link key={item.href} href={item.href} className="w-[84vw] max-w-[22rem] shrink-0 snap-start overflow-hidden rounded-lg border border-[#e2d7ca] bg-white sm:w-auto sm:max-w-none">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={item.image}
+                    alt={item.alt}
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 640px) 84vw, (max-width: 1024px) 45vw, 31vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-xl font-black">{item.title}</h3>
+                  <p className="mt-2 text-2xl font-black text-[#9b6b3e]">{item.price}</p>
+                  <p className="mt-3 text-sm leading-6 text-[#75695f]">{item.text}</p>
+                  <span className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#201912] px-4 py-2 text-sm font-black text-white">
+                    Посмотреть цены
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="home-cities" className="bg-[#f6f1ea] py-10 text-[#201912] md:py-14" aria-labelledby="home-cities-title">
+        <div className="container-site">
+          <div className="mb-7 max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">Города</p>
+            <h2 id="home-cities-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
+              Кухни на заказ по Минску, области и Беларуси
+            </h2>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <Link href="/locations/minsk" className="rounded-lg border border-[#e2d7ca] bg-white p-4">
+              <MapPin className="mb-3 h-5 w-5 text-[#9b6b3e]" aria-hidden />
+              <h3 className="text-lg font-black">Минск</h3>
+              <p className="mt-2 text-sm leading-5 text-[#75695f]">Замер, проект, изготовление и монтаж под ключ.</p>
+            </Link>
+            <Link href="/locations/minskaya-oblast" className="rounded-lg border border-[#e2d7ca] bg-white p-4">
+              <MapPin className="mb-3 h-5 w-5 text-[#9b6b3e]" aria-hidden />
+              <h3 className="text-lg font-black">Минская область</h3>
+              <p className="mt-2 text-sm leading-5 text-[#75695f]">Выезд и доставка по условиям конкретного проекта.</p>
+            </Link>
+            {visibleLocations.map((location) => (
+              <Link key={location.slug} href={`/locations/${location.slug}`} className="rounded-lg border border-[#e2d7ca] bg-white p-4">
+                <MapPin className="mb-3 h-5 w-5 text-[#9b6b3e]" aria-hidden />
+                <h3 className="text-lg font-black">{location.city}</h3>
+                <p className="mt-2 text-sm leading-5 text-[#75695f]">
+                  {location.region || "Беларусь"} · ориентир от {location.priceFrom.toLocaleString("ru")} BYN
+                </p>
+              </Link>
+            ))}
+          </div>
+          <Link href="/locations" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#9b6b3e]/40 bg-white px-4 py-2 text-sm font-black text-[#6e4727]">
+            Все города Беларуси
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+        </div>
+      </section>
+
+      {visibleReviews.length > 0 && (
+        <section id="home-reviews" className="bg-[#17120e] py-10 md:py-14" aria-labelledby="home-reviews-title">
+          <div className="container-site">
+            <div className="mb-7 flex items-end justify-between gap-4">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#d5b078]">Отзывы</p>
+                <h2 id="home-reviews-title" className="mt-2 text-3xl font-black leading-tight text-white md:text-4xl">
+                  Что говорят клиенты после установки
+                </h2>
+              </div>
+              <Link href="/reviews" className="hidden min-h-11 items-center gap-2 rounded-lg border border-[#d5b078]/60 px-4 py-2 text-sm font-black text-[#f1d0a3] sm:inline-flex">
+                Все отзывы
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+            <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
+              {visibleReviews.map((review) => (
+                <article key={review.id} className="w-[84vw] max-w-[22rem] shrink-0 snap-start rounded-lg border border-white/12 bg-white/[0.04] p-5 sm:w-auto sm:max-w-none">
+                  <div className="mb-3 flex items-center gap-1" aria-label={`Оценка ${review.rating} из 5`}>
+                    {Array.from({ length: Math.max(1, Math.min(5, review.rating)) }).map((_, index) => (
+                      <Star key={index} className="h-4 w-4 fill-[#d5b078] text-[#d5b078]" aria-hidden />
+                    ))}
+                  </div>
+                  <p className="line-clamp-5 text-sm leading-6 text-white/72">&ldquo;{review.text}&rdquo;</p>
+                  <div className="mt-4 border-t border-white/10 pt-4 text-sm">
+                    <p className="font-black text-white">{review.name}</p>
+                    <p className="mt-1 text-white/52">
+                      {[review.city, review.date].filter(Boolean).join(" · ")}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <Link href="/reviews" className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#d5b078]/60 px-4 py-2 text-sm font-black text-[#f1d0a3] sm:hidden">
+              Смотреть все отзывы
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+        </section>
+      )}
+
+      <section id="home-faq" className="bg-[#fffaf4] py-10 text-[#201912] md:py-14" aria-labelledby="home-faq-title">
+        <div className="container-site">
+          <div className="mb-7 max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">FAQ</p>
+            <h2 id="home-faq-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
+              Частые вопросы о кухнях на заказ
+            </h2>
+          </div>
+          <div className="grid gap-3 lg:grid-cols-2">
+            {visibleFaqs.map((item, index) => (
+              <details key={item.id} className="group rounded-lg border border-[#e2d7ca] bg-white p-4" open={index === 0}>
+                <summary className="flex min-h-11 cursor-pointer list-none items-center text-base font-black">
+                  {item.question}
+                </summary>
+                <p className="mt-3 text-sm leading-6 text-[#75695f]">{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="home-final-form" className="bg-[#17120e] py-10 md:py-14" aria-labelledby="home-final-form-title">
+        <div className="container-site">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#d5b078]">Расчёт</p>
+              <h2 id="home-final-form-title" className="mt-2 text-3xl font-black leading-tight text-white md:text-4xl">
+                Получить расчёт кухни в два шага
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-white/64">
+                Пришлите фото помещения — подскажем, какая планировка и материалы подойдут именно вам.
+              </p>
+              <div className="mt-6 grid gap-3 text-sm">
+                <div className="rounded-lg border border-[#d5b078]/35 bg-[#d5b078]/10 p-4">
+                  <p className="font-black text-[#f1d0a3]">Шаг 1</p>
+                  <p className="mt-1 text-white/70">Телефон, город и удобный способ связи.</p>
+                </div>
+                <div className="rounded-lg border border-white/12 bg-white/[0.04] p-4">
+                  <p className="font-black text-white">Шаг 2</p>
+                  <p className="mt-1 text-white/64">Фото помещения, размеры, тип кухни и комментарий.</p>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-lg border border-white/12 bg-white p-4 text-[#201912] shadow-[0_20px_60px_rgba(0,0,0,0.22)] sm:p-6">
+              <ContactForm
+                source="home"
+                sourceType="home"
+                formType="home-showroom"
+                formLocation="home-final-form"
+                submitLabel="Получить расчёт"
+                showMessenger
+                showHasMeasurements
+                showRoomFile
+                defaultKitchenType={layout.title}
+                defaultComment={`Интересует ${selectedStyleTitle.toLowerCase()}, ${layout.title.toLowerCase()}, бюджет ${budget.title.toLowerCase()}.`}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-[#d5b078]/24 bg-[#17120e]/96 px-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-[0_-12px_34px_rgba(0,0,0,0.28)] backdrop-blur md:hidden" aria-label="Нижняя навигация по главной странице">
+        <div className="grid grid-cols-4 gap-2 text-[0.72rem] font-black text-white/80">
+          <a href="#home-real-projects" className="flex min-h-12 flex-col items-center justify-center rounded-lg px-2 py-1">
+            <Images className="mb-1 h-4 w-4" aria-hidden />
+            Проекты
+          </a>
+          <a href="#home-kitchen-picker" className="flex min-h-12 flex-col items-center justify-center rounded-lg px-2 py-1">
+            <Sparkles className="mb-1 h-4 w-4" aria-hidden />
+            Стили
+          </a>
+          <a href="#home-prices" className="flex min-h-12 flex-col items-center justify-center rounded-lg px-2 py-1">
+            <Calculator className="mb-1 h-4 w-4" aria-hidden />
+            Цены
+          </a>
+          <a href="#home-final-form" className="flex min-h-12 flex-col items-center justify-center rounded-lg bg-[#c99a62] px-2 py-1 text-[#17110b]">
+            <FileCheck className="mb-1 h-4 w-4" aria-hidden />
+            Рассчитать
+          </a>
+        </div>
+      </nav>
     </div>
   );
 }

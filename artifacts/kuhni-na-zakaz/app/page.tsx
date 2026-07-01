@@ -383,6 +383,25 @@ export default async function HomePage() {
           priceFrom: item.priceFrom,
           mainImage: item.mainImage,
         }))}
+        reviews={trustedReviews.map((item) => ({
+          id: item.id,
+          name: item.name,
+          city: item.city,
+          date: item.date,
+          text: item.text,
+          rating: item.rating,
+        }))}
+        faqs={displayFaqs.slice(0, 8).map((item) => ({
+          id: item.id,
+          question: item.question,
+          answer: item.answer,
+        }))}
+        locations={primaryLocationLinks.map((item) => ({
+          slug: item.slug,
+          city: item.city,
+          region: item.region,
+          priceFrom: item.priceFrom,
+        }))}
       />
 
       <HomeKitchenIdeas3DSection limit={4} />
