@@ -311,7 +311,7 @@ export function HomeMobileShowroom({ projects }: HomeMobileShowroomProps) {
   const [selectedStyle, setSelectedStyle] = useState(styleOptions[0].id);
   const [selectedLayout, setSelectedLayout] = useState(layoutOptions[1].id);
   const [selectedBudget, setSelectedBudget] = useState(budgetOptions[1].id);
-  const [beforeAfter, setBeforeAfter] = useState(78);
+  const [beforeAfter, setBeforeAfter] = useState(100);
 
   const layout = layoutOptions.find((item) => item.id === selectedLayout) || layoutOptions[1];
   const budget = budgetOptions.find((item) => item.id === selectedBudget) || budgetOptions[1];
@@ -585,22 +585,22 @@ export function HomeMobileShowroom({ projects }: HomeMobileShowroomProps) {
         <div className="container-site">
           <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="overflow-hidden rounded-lg border border-[#e2d7ca] bg-white">
-              <div className="relative aspect-[4/5] touch-pan-y overflow-hidden bg-[#e7ded4] sm:aspect-[16/10]">
+              <div className="relative aspect-square touch-pan-y overflow-hidden bg-[#e7ded4] sm:aspect-[16/10]">
                 <Image
-                  src="/images/design-proekt-kuhni/3d-proekt-kuhni-empty-room-mobile-v2.webp"
-                  alt="Помещение кухни до проектирования и установки гарнитура"
+                  src="/images/home-showroom/left-window-linear-before-20260701.webp"
+                  alt="Комната до установки кухни: окно слева и свободная стена под прямой гарнитур"
                   fill
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 55vw"
-                  className="object-cover"
+                  className="object-contain"
                 />
                 <Image
-                  src="/images/home-showroom/same-room-kitchen-after-20260701.webp"
-                  alt="Та же комната после установки кухни по правой стене"
+                  src="/images/home-showroom/left-window-linear-after-20260701.webp"
+                  alt="Та же комната после установки прямой кухни: окно слева, гарнитур по всей стене"
                   fill
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 55vw"
-                  className="object-cover"
+                  className="object-contain"
                   style={{ clipPath: `inset(0 ${100 - beforeAfter}% 0 0)` }}
                 />
                 <div className="absolute inset-y-0 z-10 w-1 bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.18)]" style={{ left: `${beforeAfter}%` }} />
@@ -610,8 +610,8 @@ export function HomeMobileShowroom({ projects }: HomeMobileShowroomProps) {
                   <span className="sr-only">Сравнить кухню до и после</span>
                   <input
                     type="range"
-                    min="18"
-                    max="82"
+                    min="0"
+                    max="100"
                     value={beforeAfter}
                     onChange={(event) => setBeforeAfter(Number(event.target.value))}
                     className="h-10 w-full touch-pan-y accent-[#c99a62]"
