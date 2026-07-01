@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
 import Link from "@/components/navigation/Link";
-import Image from "next/image";
-import { ArrowRight, Clock, Factory, FileCheck, MapPin, Shield, Star, Wrench } from "lucide-react";
+import { ArrowRight, Clock, FileCheck, MapPin, Shield, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { HomeKitchenIdeas3DSection } from "@/components/sections/KitchenIdeas3DSection";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, isTrustedReviewForSchema } from "@/lib/schema-org";
-import { optimizedImageSrc } from "@/lib/image-optimization";
-import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
-import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
-import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { CANONICAL_SITE_URL, SITE_ALTERNATE_NAMES, SITE_NAME, canonicalSiteUrl } from "@/lib/seo";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
+import { HomeMobileShowroom } from "@/components/home/HomeMobileShowroom";
 
 type HomeAdvantage = {
   id: number;
@@ -374,306 +369,21 @@ export default async function HomePage() {
     <>
       <JsonLd data={jsonLdItems} />
 
-      {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden bg-[#17130f] pt-32 text-white lg:pt-40">
-        <picture className="absolute inset-0 block">
-          <source media="(min-width: 1024px)" srcSet={LOCAL_BUSINESS_IMAGE} />
-          <source
-            media="(max-width: 767px)"
-            srcSet={MOBILE_HERO_IMAGE_480}
-          />
-          <img
-            src={MOBILE_HERO_IMAGE}
-            alt={HERO_KITCHEN_ALT}
-            fetchPriority="high"
-            decoding="async"
-            className="h-full w-full object-cover object-center opacity-76 lg:object-contain lg:object-right lg:opacity-72"
-          />
-        </picture>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,14,10,0.94)_0%,rgba(18,14,10,0.76)_34%,rgba(18,14,10,0.30)_66%,rgba(18,14,10,0.18)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/55 to-transparent" />
-        <BrandedImageWatermark show={getImageDisclosure(LOCAL_BUSINESS_IMAGE).kind === "generated"} />
-
-        <div className="container-site relative z-10">
-          <div className="min-h-[560px] max-w-2xl pb-16 lg:min-h-[640px] lg:pb-24">
-            <p className="mb-5 inline-flex rounded-full border border-white/18 bg-black/18 px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-white/78">
-              Гарнитуры под размер
-            </p>
-            <h1 className="max-w-xl text-4xl font-black leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Купить кухню, кухня на заказ в Минске под ваш размер, стиль и бюджет
-            </h1>
-            <p className="mt-6 max-w-xl text-base font-medium leading-relaxed text-white/78 sm:text-lg">
-              Купить кухню, кухня на заказ удобнее после замера и проекта: проверяем помещение, изготавливаем гарнитур на производстве, доставляем и монтируем с фиксацией цены в договоре.
-            </p>
-
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contacts#form"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#8f5f2c] px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-black/25 transition-all hover:bg-[#7d5123] active:scale-95"
-                data-testid="hero-cta-order"
-              >
-                Рассчитать гарнитур
-                <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center justify-center rounded-lg border border-white/38 bg-black/12 px-7 py-4 text-sm font-extrabold text-white transition-all hover:bg-white/12 active:scale-95"
-                data-testid="hero-cta-portfolio"
-              >
-                Смотреть проекты
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== BENEFITS STRIP ===== */}
-      <section className="border-b border-[#eee8df] bg-white py-6">
-        <div className="container-site">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {[
-              { icon: Factory, title: "Собственное производство" },
-              { icon: FileCheck, title: "Цена фиксируется в договоре" },
-              { icon: Wrench, title: "Монтаж под ключ" },
-              { icon: MapPin, title: "Работаем по всей Беларуси" },
-              { icon: Shield, title: "Гарантия по договору" },
-            ].map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div key={item.title} className="flex items-center justify-center gap-3 text-center sm:text-left">
-                  <Icon className="h-8 w-8 shrink-0 stroke-[1.5] text-[#201b16]" aria-hidden />
-                  <p className="max-w-[9rem] text-xs font-extrabold leading-tight text-[#201b16]">
-                    {item.title}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== CUSTOM ORDER INTENT ===== */}
-      <section className="section-padding bg-white" aria-labelledby="home-custom-kitchen-heading">
-        <div className="container-site">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:items-start">
-            <div>
-              <h2
-                id="home-custom-kitchen-heading"
-                className="max-w-3xl text-3xl font-black leading-tight text-[#201b16] lg:text-4xl"
-              >
-                Купить кухню на заказ под размеры помещения
-              </h2>
-              <div className="mt-5 space-y-4 text-base leading-relaxed text-[#5f554c]">
-                <p>
-                  Кухня под заказ - это не готовый модуль со склада, который приходится подгонять под стены и технику. Мы начинаем с размеров помещения, расположения воды, розеток, вентиляции, окон и проходов, а затем собираем проект под ваш сценарий: готовка каждый день, хранение посуды, встроенная техника, барная зона или обеденное место.
-                </p>
-                <p>
-                  На этапе расчета подбираем фасады, корпус, столешницу, фурнитуру и наполнение шкафов. После согласования проекта фиксируем комплектацию, сроки, доставку и монтаж в договоре. Такой подход помогает заранее понять бюджет, не терять полезные сантиметры и получить гарнитур, который подходит именно вашей квартире или дому.
-                </p>
-              </div>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link
-                  href="/contacts#form"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#201b16] px-6 py-3 text-sm font-extrabold text-white transition-colors hover:bg-[#3a3028]"
-                >
-                  Получить расчет
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
-                <Link
-                  href="/prices"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#d7ccbf] px-6 py-3 text-sm font-extrabold text-[#201b16] transition-colors hover:border-[#b9874f] hover:text-[#7d5431]"
-                >
-                  Смотреть цены
-                  <ArrowRight className="h-4 w-4" aria-hidden />
-                </Link>
-              </div>
-            </div>
-
-            <div className="overflow-hidden rounded-lg border border-[#e8e1d8] bg-[#fbf8f4]">
-              <div className="grid grid-cols-1 divide-y divide-[#e8e1d8] text-sm md:grid-cols-3 md:divide-x md:divide-y-0">
-                <div className="bg-[#201b16] px-4 py-3 font-black text-white">Что входит</div>
-                <div className="bg-[#201b16] px-4 py-3 font-black text-white">Когда нужно</div>
-                <div className="bg-[#201b16] px-4 py-3 font-black text-white">Что влияет на цену</div>
-              </div>
-              {CUSTOM_KITCHEN_TABLE.map((row) => (
-                <div key={row.included} className="grid grid-cols-1 divide-y divide-[#e8e1d8] border-t border-[#e8e1d8] text-sm md:grid-cols-3 md:divide-x md:divide-y-0">
-                  <div className="px-4 py-4 font-bold text-[#201b16]">{row.included}</div>
-                  <div className="px-4 py-4 leading-relaxed text-[#62584f]">{row.needed}</div>
-                  <div className="px-4 py-4 leading-relaxed text-[#62584f]">{row.price}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-10 border-t border-[#eee8df] pt-8">
-            <h3 className="text-xl font-black text-[#201b16]">Что фиксируем перед запуском гарнитура в работу</h3>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
-              {HOME_TRUST_STEPS.map((item, index) => (
-                <div key={item} className="rounded-lg border border-[#e8e1d8] bg-[#fbf8f4] px-4 py-4">
-                  <div className="text-xs font-black text-[#9b6b3e]">{String(index + 1).padStart(2, "0")}</div>
-                  <div className="mt-2 text-sm font-extrabold text-[#201b16]">{item}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {HOME_INTERNAL_LINKS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="group rounded-lg border border-[#e8e1d8] bg-white p-5 transition-colors hover:border-[#c99a62] hover:bg-[#fbf8f4]"
-              >
-                <span className="flex items-center justify-between gap-3 text-sm font-black text-[#201b16] transition-colors group-hover:text-[#7d5431]">
-                  {item.title}
-                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
-                </span>
-                <span className="mt-2 block text-sm leading-relaxed text-[#6f665d]">{item.text}</span>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-6 rounded-lg border border-[#e8e1d8] bg-white p-5">
-            <p className="text-sm font-black text-[#201b16]">Популярные города Минской области</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {HOME_TOP_CITY_LINKS.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-md border border-[#e8e1d8] px-3 py-2 text-sm font-bold text-[#7d5431]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== PORTFOLIO preview ===== */}
-      {cases.length > 0 && (
-        <section className="bg-white py-10 lg:py-14">
-          <div className="container-site">
-            <div className="mb-7 flex items-end justify-between gap-4">
-              <div>
-                <h2 className="text-2xl font-black tracking-tight text-[#201b16] lg:text-3xl">
-                  Реальные проекты кухонь
-                </h2>
-                <p className="mt-2 text-sm text-[#6f665d]">
-                  Фотографии кухонь, которые мы изготовили и установили
-                </p>
-              </div>
-              <Link href="/portfolio" className="hidden items-center gap-2 text-sm font-semibold text-[#7d5431] hover:underline sm:flex">
-                Смотреть все проекты <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {cases.map((c) => {
-                const disclosure = getImageDisclosure(c.mainImage);
-
-                return (
-                <Link key={c.id} href={`/portfolio/${c.slug}`} className="group overflow-hidden rounded-lg border border-[#e8e1d8] bg-white transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(39,32,25,0.12)]">
-                  <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#f3eee8]">
-                    {c.mainImage
-                      ? (
-                        <Image
-                          src={optimizedImageSrc(c.mainImage) || c.mainImage}
-                          alt={buildImageAlt(c.mainImage, `${c.title}, ${c.city}`)}
-                          fill
-                          loading="lazy"
-                          decoding="async"
-                          quality={75}
-                          sizes="(max-width: 768px) 92vw, (max-width: 1280px) 45vw, 300px"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      )
-                      : (
-                        <div className="flex h-full w-full items-center justify-center text-4xl">
-                          <span role="img" aria-label="Нет фото проекта, значок дома">
-                            🏠
-                          </span>
-                        </div>
-                      )
-                    }
-                    {c.mainImage && (
-                      <>
-                        <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
-                        <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-[#201b16] shadow-sm">
-                          {disclosure.label}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <div className="p-4">
-                    <p className="text-sm font-black text-[#201b16] transition-colors group-hover:text-[#7d5431]">{c.city || "Минск"}</p>
-                    <p className="mt-1 line-clamp-1 text-xs font-semibold text-[#6f665d]">{c.title}</p>
-                    <div className="mt-4 grid grid-cols-2 gap-3 text-xs text-[#6f665d]">
-                      <div>
-                        <p>Площадь</p>
-                        <p className="mt-1 font-black text-[#201b16]">{c.area || "8,2"} п.м</p>
-                      </div>
-                      <div>
-                        <p>Срок изготовления</p>
-                        <p className="mt-1 font-black text-[#201b16]">от 21 дня</p>
-                      </div>
-                    </div>
-                    {c.priceFrom > 0 && (
-                      <div className="mt-4 flex items-center justify-between gap-3">
-                        <p className="text-sm font-black text-[#201b16]">
-                          {c.priceFrom.toLocaleString("ru")} BYN
-                        </p>
-                        <span className="rounded-md border border-[#c99a62] px-3 py-2 text-xs font-bold text-[#9b6b3e]">
-                          Хочу такую
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </Link>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ===== PRICE TYPES ===== */}
-      <section className="bg-[#f7f4ef] py-10 lg:py-12">
-        <div className="container-site">
-          <div className="grid gap-4 lg:grid-cols-[260px_1fr] lg:items-stretch">
-            <div className="rounded-lg bg-white p-6 shadow-sm">
-              <h2 className="text-2xl font-black leading-tight text-[#201b16]">
-                Сколько стоит кухня на заказ
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-[#6f665d]">
-                Ориентировочные цены на кухни разных форм. Точная стоимость рассчитывается после замера.
-              </p>
-              <Link href="/prices" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#7d5431] hover:underline">
-                Все цены <ArrowRight className="h-4 w-4" aria-hidden />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-            {CATALOG_CATEGORIES.map((cat, index) => {
-              const image = resolveCatalogCategoryImage({
-                slug: cat.slug,
-                title: cat.title,
-              });
-
-              return (
-                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="group overflow-hidden rounded-lg border border-[#e8e1d8] bg-white p-3 text-center transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(39,32,25,0.10)]">
-                  <div className="relative mx-auto aspect-[4/3] w-full max-w-[8rem] overflow-hidden rounded-md bg-[#f3eee8]">
-                    <CatalogCategoryImage src={image.src} alt={image.alt} />
-                  </div>
-                  <div className="pt-3">
-                    <p className="text-sm font-black leading-tight text-[#201b16] transition-colors group-hover:text-[#7d5431]">{cat.title}</p>
-                    <p className="mt-2 text-sm font-black text-[#201b16]">{cat.price}</p>
-                  </div>
-                </Link>
-              );
-            })}
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeMobileShowroom
+        projects={cases.map((item) => ({
+          id: item.id,
+          slug: item.slug,
+          title: item.title,
+          city: item.city,
+          kitchenType: item.kitchenType,
+          style: item.style,
+          material: item.material,
+          area: item.area,
+          size: item.size,
+          priceFrom: item.priceFrom,
+          mainImage: item.mainImage,
+        }))}
+      />
 
       <HomeKitchenIdeas3DSection limit={4} />
 

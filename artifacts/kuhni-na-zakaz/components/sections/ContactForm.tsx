@@ -91,6 +91,13 @@ interface DesignProjectSelection {
   extras?: string[];
 }
 
+interface HomeKitchenSelection {
+  style?: string;
+  layout?: string;
+  budget?: string;
+  source?: string;
+}
+
 function detectSourceType(pathname: string) {
   if (pathname === "/") return "home";
   if (pathname.startsWith("/portfolio/")) return "portfolio-project";
@@ -157,6 +164,24 @@ function readDesignProjectComment(defaultComment = "") {
   return lines.join("\n");
 }
 
+function readHomeKitchenComment(defaultComment = "") {
+  if (typeof window === "undefined") return defaultComment;
+
+  const selection = readHomeKitchenSelection();
+  if (!selection) return defaultComment;
+
+  const lines = [
+    defaultComment,
+    "Выбранные параметры на главной странице:",
+    selection.style ? `Стиль: ${selection.style}` : "",
+    selection.layout ? `Планировка: ${selection.layout}` : "",
+    selection.budget ? `Бюджет: ${selection.budget}` : "",
+    selection.source ? `Источник выбора: ${selection.source}` : "",
+  ].filter(Boolean);
+
+  return lines.join("\n");
+}
+
 function readDesignProjectSelection(): DesignProjectSelection | null {
   if (typeof window === "undefined") return null;
 
@@ -173,6 +198,22 @@ function readDesignProjectSelection(): DesignProjectSelection | null {
         selection.material ||
         selection.extras?.length,
     );
+
+    return hasValue ? selection : null;
+  } catch {
+    return null;
+  }
+}
+
+function readHomeKitchenSelection(): HomeKitchenSelection | null {
+  if (typeof window === "undefined") return null;
+
+  const rawSelection = window.sessionStorage.getItem("homeKitchenSelection");
+  if (!rawSelection) return null;
+
+  try {
+    const selection = JSON.parse(rawSelection) as HomeKitchenSelection;
+    const hasValue = Boolean(selection.style || selection.layout || selection.budget);
 
     return hasValue ? selection : null;
   } catch {
@@ -223,7 +264,11 @@ export function ContactForm({
   const fallbackSourcePage = sourcePage || pathname;
   const [trackingFields, setTrackingFields] = useState<TrackingFields>(() => readTrackingFields(fallbackSourcePage, sourcePage));
   const [effectiveSourceType, setEffectiveSourceType] = useState(() => readSourceTypeOverride() || resolvedSourceType);
-  const [ideaComment, setIdeaComment] = useState(() => readIdeaComment(defaultComment));
+  const [ideaComment, setIdeaComment] = useState(() => {
+    const baseComment = readIdeaComment(defaultComment);
+
+    return source === "home" ? readHomeKitchenComment(baseComment) : baseComment;
+  });
   const nameId = `${formId}-lead-name`;
   const phoneId = `${formId}-lead-phone`;
   const cityId = `${formId}-lead-city`;
@@ -239,7 +284,13 @@ export function ContactForm({
     setTrackingFields(readTrackingFields(sourcePage || pathname, sourcePage));
     setEffectiveSourceType(readSourceTypeOverride() || resolvedSourceType);
     const baseComment = readIdeaComment(defaultComment);
-    setIdeaComment(source === "design-proekt-kuhni" ? readDesignProjectComment(baseComment) : baseComment);
+    const sourceComment =
+      source === "design-proekt-kuhni"
+        ? readDesignProjectComment(baseComment)
+        : source === "home"
+          ? readHomeKitchenComment(baseComment)
+          : baseComment;
+    setIdeaComment(sourceComment);
   }, [defaultComment, pathname, resolvedSourceType, source, sourcePage]);
 
   const defaultValues = useMemo<FormData>(() => ({
@@ -303,17 +354,21 @@ export function ContactForm({
     const currentComment =
       source === "design-proekt-kuhni"
         ? readDesignProjectComment(data.comment || defaultComment)
+        : source === "home"
+          ? readHomeKitchenComment(data.comment || defaultComment)
         : data.comment;
     const fileNote = roomFile ? `${roomFile.name} (${Math.round(roomFile.size / 1024)} КБ)` : "";
     const designSelection = source === "design-proekt-kuhni" ? readDesignProjectSelection() : null;
+    const homeSelection = source === "home" ? readHomeKitchenSelection() : null;
     const payload = {
       ...data,
       comment: currentComment,
       uploadNote: fileNote || data.uploadNote || "",
-      answers: designSelection
+      answers: designSelection || homeSelection
         ? {
             ...(data.answers || {}),
-            designProjectSelection: designSelection,
+            ...(designSelection ? { designProjectSelection: designSelection } : {}),
+            ...(homeSelection ? { homeKitchenSelection: homeSelection } : {}),
           }
         : data.answers,
       source,
