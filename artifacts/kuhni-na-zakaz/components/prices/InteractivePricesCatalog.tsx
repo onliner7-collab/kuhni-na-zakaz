@@ -130,10 +130,26 @@ function KitchenCard({ model, onOpen, eager }: { model: PriceKitchenModel; onOpe
   );
 }
 
-function ModelDialog({ model, onClose }: { model: PriceKitchenModel; onClose: () => void }) {
+function ModelDialog({
+  model,
+  relatedModels,
+  onClose,
+  onOpenModel,
+}: {
+  model: PriceKitchenModel;
+  relatedModels: PriceKitchenModel[];
+  onClose: () => void;
+  onOpenModel: (model: PriceKitchenModel) => void;
+}) {
   const [activeImage, setActiveImage] = useState(0);
+  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
   const currentImage = model.gallery[activeImage];
+
+  useEffect(() => {
+    setActiveImage(0);
+    setIsFullscreenOpen(false);
+  }, [model.id]);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -141,7 +157,13 @@ function ModelDialog({ model, onClose }: { model: PriceKitchenModel; onClose: ()
     dialogRef.current?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        if (isFullscreenOpen) {
+          setIsFullscreenOpen(false);
+          return;
+        }
+        onClose();
+      }
       if (event.key === "ArrowLeft") setActiveImage((value) => (value === 0 ? model.gallery.length - 1 : value - 1));
       if (event.key === "ArrowRight") setActiveImage((value) => (value + 1) % model.gallery.length);
     };
@@ -152,14 +174,14 @@ function ModelDialog({ model, onClose }: { model: PriceKitchenModel; onClose: ()
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [model.gallery.length, onClose]);
+  }, [isFullscreenOpen, model.gallery.length, onClose]);
 
   return (
     <div className="fixed inset-0 z-[80] overflow-y-auto bg-black/68 px-3 py-4 backdrop-blur-sm md:px-6" role="dialog" aria-modal="true" aria-labelledby="price-model-title">
       <div
         ref={dialogRef}
         tabIndex={-1}
-        className="mx-auto max-w-5xl overflow-hidden rounded-lg bg-white shadow-2xl outline-none"
+        className="mx-auto max-w-6xl overflow-hidden rounded-lg bg-white shadow-2xl outline-none"
       >
         <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b bg-white/95 px-4 py-3 backdrop-blur">
           <div>
@@ -171,7 +193,7 @@ function ModelDialog({ model, onClose }: { model: PriceKitchenModel; onClose: ()
           </button>
         </div>
 
-        <div className="grid gap-0 lg:grid-cols-[1.12fr_0.88fr]">
+        <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
           <div className="bg-stone-950 p-3 md:p-5">
             <div className="relative mx-auto aspect-[4/3] max-h-[72svh] overflow-hidden rounded-lg bg-stone-900">
               <Image
@@ -204,13 +226,14 @@ function ModelDialog({ model, onClose }: { model: PriceKitchenModel; onClose: ()
               >
                 <ChevronRight className="h-5 w-5" aria-hidden />
               </button>
-              <Link
-                href={optimizedImageSrc(currentImage.src) || currentImage.src}
+              <button
+                type="button"
+                onClick={() => setIsFullscreenOpen(true)}
                 className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/88 text-stone-950"
                 aria-label="Открыть изображение на весь экран"
               >
                 <Maximize2 className="h-5 w-5" aria-hidden />
-              </Link>
+              </button>
             </div>
             <div className="mt-3 flex snap-x gap-2 overflow-x-auto pb-1">
               {model.gallery.map((image, index) => (
@@ -272,13 +295,102 @@ function ModelDialog({ model, onClose }: { model: PriceKitchenModel; onClose: ()
               </ul>
             </div>
 
-            <a href="#calculate" onClick={onClose} className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-stone-950 px-5 py-3 text-sm font-black text-white">
-              Рассчитать похожую кухню
-              <Calculator className="h-4 w-4" aria-hidden />
-            </a>
+            {relatedModels.length > 0 && (
+              <div className="mt-6">
+                <h3 className="text-lg font-black text-stone-950">Похожие кухни</h3>
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                  {relatedModels.map((related) => (
+                    <button
+                      key={related.id}
+                      type="button"
+                      onClick={() => onOpenModel(related)}
+                      className="overflow-hidden rounded-lg border border-stone-200 bg-white text-left transition hover:border-[#d5b078]"
+                    >
+                      <span className="relative block aspect-[4/3] bg-stone-100">
+                        <Image
+                          src={optimizedImageSrc(related.coverImage) || related.coverImage}
+                          alt={related.coverAlt}
+                          fill
+                          loading="lazy"
+                          sizes="(max-width: 640px) 42vw, 13rem"
+                          className="object-cover"
+                        />
+                      </span>
+                      <span className="block p-3">
+                        <span className="line-clamp-2 text-sm font-black text-stone-950">{related.name}</span>
+                        <span className="mt-1 block text-xs text-stone-600">{related.layoutLabel} · от {formatByn(related.priceFrom)} BYN</span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
+              <h3 className="text-lg font-black text-stone-950">Короткая форма заявки</h3>
+              <p className="mt-2 text-sm leading-6 text-stone-600">
+                Отправьте контакты — рассчитаем похожую кухню по вашим размерам и материалам.
+              </p>
+              <div className="mt-4">
+                <ContactForm
+                  source="prices"
+                  sourceType="prices"
+                  formType="prices-model-modal"
+                  formLocation={`prices-model-${model.id}`}
+                  submitLabel="Рассчитать похожую кухню"
+                  showCity
+                  showKitchenType
+                  showMessenger
+                  defaultKitchenType={model.layoutLabel}
+                  defaultComment={`Интересует похожая кухня: ${model.name}. Стиль: ${model.styleLabel}. Планировка: ${model.layoutLabel}. Ориентир: от ${formatByn(model.priceFrom)} BYN.`}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {isFullscreenOpen && (
+        <div className="fixed inset-0 z-[90] bg-black/95 p-3 md:p-6" role="dialog" aria-modal="true" aria-label={`Полноэкранный ракурс: ${currentImage.caption}`}>
+          <div className="relative h-full w-full">
+            <Image
+              src={optimizedImageSrc(currentImage.src) || currentImage.src}
+              alt={currentImage.alt}
+              fill
+              sizes="100vw"
+              className="object-contain"
+              priority
+            />
+            <div className="absolute left-3 top-3 rounded-md bg-white/90 px-3 py-2 text-sm font-black text-stone-950">
+              {activeImage + 1} / {model.gallery.length} · {currentImage.caption}
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsFullscreenOpen(false)}
+              className="absolute right-3 top-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-stone-950"
+              aria-label="Закрыть полноэкранный просмотр"
+            >
+              <X className="h-5 w-5" aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveImage((value) => (value === 0 ? model.gallery.length - 1 : value - 1))}
+              className="absolute left-3 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-stone-950"
+              aria-label="Предыдущий ракурс в полноэкранном просмотре"
+            >
+              <ChevronLeft className="h-6 w-6" aria-hidden />
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveImage((value) => (value + 1) % model.gallery.length)}
+              className="absolute right-3 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-stone-950"
+              aria-label="Следующий ракурс в полноэкранном просмотре"
+            >
+              <ChevronRight className="h-6 w-6" aria-hidden />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -307,6 +419,23 @@ export function InteractivePricesCatalog() {
     () => priceKitchenModels.find((model) => model.id === filters.model) || null,
     [filters.model],
   );
+  const relatedModels = useMemo(() => {
+    if (!selectedModel) return [];
+
+    const ranked = priceKitchenModels
+      .filter((model) => model.id !== selectedModel.id)
+      .map((model) => ({
+        model,
+        score:
+          (model.style === selectedModel.style ? 4 : 0) +
+          (model.layout === selectedModel.layout ? 3 : 0) +
+          (model.budget === selectedModel.budget ? 2 : 0) +
+          (model.roomType === selectedModel.roomType ? 1 : 0),
+      }))
+      .sort((a, b) => b.score - a.score || a.model.priceFrom - b.model.priceFrom);
+
+    return ranked.slice(0, 2).map((item) => item.model);
+  }, [selectedModel]);
 
   function patchFilters(next: Partial<FilterState>) {
     const nextFilters = { ...filters, ...next };
@@ -462,7 +591,14 @@ export function InteractivePricesCatalog() {
         </div>
       </div>
 
-      {selectedModel && <ModelDialog model={selectedModel} onClose={closeModel} />}
+      {selectedModel && (
+        <ModelDialog
+          model={selectedModel}
+          relatedModels={relatedModels}
+          onClose={closeModel}
+          onOpenModel={openModel}
+        />
+      )}
     </section>
   );
 }
