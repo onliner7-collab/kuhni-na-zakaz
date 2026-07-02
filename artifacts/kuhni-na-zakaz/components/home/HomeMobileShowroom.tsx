@@ -662,8 +662,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         </div>
       </section>
 
-      <section id="home-kitchen-picker" className="border-t border-white/10 bg-[#17120e] py-10 md:py-14" aria-labelledby="home-picker-title" data-home-nav="selector">
-        <span id="selector" className="block scroll-mt-24" aria-hidden />
+      <section id="selector" className="border-t border-white/10 bg-[#17120e] py-10 md:py-14 scroll-mt-24" aria-labelledby="home-picker-title" data-home-nav="selector">
         <div className="container-site">
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
@@ -796,8 +795,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         </div>
       </section>
 
-      <section id="home-real-projects" className="bg-[#f6f1ea] py-10 text-[#201912] md:py-14" aria-labelledby="home-projects-title" data-home-nav="projects">
-        <span id="projects" className="block scroll-mt-24" aria-hidden />
+      <section id="projects" className="bg-[#f6f1ea] py-10 text-[#201912] md:py-14 scroll-mt-24" aria-labelledby="home-projects-title" data-home-nav="projects">
         <div className="container-site">
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>

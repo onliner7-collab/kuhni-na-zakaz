@@ -166,6 +166,26 @@ function ModelDialog({
       }
       if (event.key === "ArrowLeft") setActiveImage((value) => (value === 0 ? model.gallery.length - 1 : value - 1));
       if (event.key === "ArrowRight") setActiveImage((value) => (value + 1) % model.gallery.length);
+      if (event.key === "Tab" && dialogRef.current && !isFullscreenOpen) {
+        const focusable = Array.from(
+          dialogRef.current.querySelectorAll<HTMLElement>(
+            "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])",
+          ),
+        ).filter((element) => !element.hasAttribute("disabled") && element.offsetParent !== null);
+
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -398,7 +418,7 @@ function ModelDialog({
 export function InteractivePricesCatalog() {
   const searchParams = useSearchParams();
   const [filters, setFilters] = useState<FilterState>(() => getInitialFilters(new URLSearchParams(searchParams.toString())));
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
     setFilters(getInitialFilters(new URLSearchParams(searchParams.toString())));
@@ -440,7 +460,7 @@ export function InteractivePricesCatalog() {
   function patchFilters(next: Partial<FilterState>) {
     const nextFilters = { ...filters, ...next };
     setFilters(nextFilters);
-    setVisibleCount(6);
+    setVisibleCount(4);
     updateUrl(nextFilters);
   }
 
@@ -573,7 +593,7 @@ export function InteractivePricesCatalog() {
 
           {visibleCount < filteredModels.length && (
             <div className="mt-7 text-center">
-              <button type="button" onClick={() => setVisibleCount((value) => value + 6)} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-black text-stone-950">
+              <button type="button" onClick={() => setVisibleCount((value) => value + 4)} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-black text-stone-950">
                 Показать ещё кухни
               </button>
             </div>
