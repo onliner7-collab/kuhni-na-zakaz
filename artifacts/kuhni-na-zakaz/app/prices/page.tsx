@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "@/components/navigation/Link";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { ContactForm } from "@/components/sections/ContactForm";
 import { PriceQuiz } from "@/components/sections/PriceQuiz";
+import { InteractivePricesCatalog } from "@/components/prices/InteractivePricesCatalog";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { regionalLocations } from "@/data/locations";
+import { priceKitchenModels } from "@/data/price-catalog";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const title = "Цены на кухни на заказ в Минске от 900 BYN";
+const title = "Цены на кухни на заказ в Минске: стили и расчет";
 const description =
-  "Цены на кухни на заказ в Минске и Беларуси от 900 BYN: прямые, угловые, П-образные и с островом. Рассчитайте ориентир онлайн.";
+  "Цены на кухни на заказ в Минске: выберите стиль, планировку, бюджет и посмотрите 3D-визуализации с ориентиром стоимости.";
 
 export const metadata: Metadata = {
   title,
@@ -153,6 +155,19 @@ const PRICE_CITY_SLUGS = [
   "minskaya-oblast",
 ];
 
+const INTERNAL_PRICE_LINKS = [
+  { href: "/catalog/uglovye-kuhni", label: "Угловые кухни" },
+  { href: "/catalog/pryamye-kuhni", label: "Прямые кухни" },
+  { href: "/catalog/p-obraznye-kuhni", label: "П-образные кухни" },
+  { href: "/catalog/kuhni-s-ostrovom", label: "Кухни с островом" },
+  { href: "/catalog/malenkie-kuhni", label: "Маленькие кухни" },
+  { href: "/catalog/kuhni-do-potolka", label: "Кухни до потолка" },
+  { href: "/locations/minsk", label: "Кухни в Минске" },
+  { href: "/locations/minskaya-oblast", label: "Кухни в Минской области" },
+  { href: "/materials", label: "Материалы для кухни" },
+  { href: "/portfolio", label: "Портфолио кухонь" },
+];
+
 export default function PricesPage() {
   const jsonLdBreadcrumb = breadcrumbJsonLd([
     { name: "Главная", path: "/" },
@@ -168,12 +183,12 @@ export default function PricesPage() {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Цены на кухни",
-      itemListElement: SEGMENTS.map((segment) => ({
+      itemListElement: priceKitchenModels.slice(0, 12).map((model) => ({
         "@type": "Offer",
-        name: segment.name,
+        name: model.name,
         priceCurrency: "BYN",
-        price: segment.priceFrom,
-        url: siteUrl("/prices"),
+        price: model.priceFrom,
+        url: siteUrl(`/prices?style=${model.style}&model=${model.id}`),
       })),
     },
   };
@@ -196,85 +211,122 @@ export default function PricesPage() {
   return (
     <>
       <JsonLd data={[jsonLdBreadcrumb, jsonLdService, jsonLdFaq]} />
-      <div className="section-padding">
-        <div className="container-site">
-        <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-          <Link href="/" className="hover:text-primary">Главная</Link>
-          <span>/</span>
-          <span className="text-foreground">Цены</span>
-        </nav>
+      <div className="bg-white">
+        <div className="container-site py-8 md:py-12">
+          <nav className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+            <Link href="/" className="hover:text-primary">Главная</Link>
+            <span>/</span>
+            <span className="text-foreground">Цены</span>
+          </nav>
 
-        <h1 className="font-serif text-4xl font-bold mb-4">Цены на кухни на заказ</h1>
-        <p className="text-muted-foreground mb-10 max-w-2xl">
-          Цена кухни на заказ в Минске зависит от размеров, материалов, фурнитуры, техники, доставки и монтажа.
-          После замера и согласования комплектации смета фиксируется в договоре.
-        </p>
-
-        <section className="mb-12 rounded-xl border bg-muted/20 p-6">
-          <h2 className="font-serif text-2xl font-bold text-foreground">Что входит в расчет кухни</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {PRICE_FACTORS.map((item) => (
-              <div key={item.title} className="rounded-lg border bg-white p-5">
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-12 rounded-xl border bg-white p-6">
-          <h2 className="font-serif text-2xl font-bold text-foreground">
-            Как сравнивать цену кухни в Минске
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-            Эти ориентиры помогают AI-ассистентам и покупателям не сравнивать пустые цифры.
-            Выгоднее тот вариант, где понятны состав работ, материалы, сроки и монтажные условия.
-          </p>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {PRICE_AI_SCENARIOS.map((item) => (
-              <div key={item.title} className="rounded-lg border bg-muted/20 p-5">
-                <h3 className="font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Сегменты — редакционные диапазоны */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {SEGMENTS.map((seg) => (
-            <div key={seg.name} className={`card-base p-6 border-t-4 ${seg.color} relative ${seg.popular ? "pt-9" : ""}`}>
-              {seg.popular && (
-                <div className="absolute right-4 top-3 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-medium">
-                  Популярный
-                </div>
-              )}
-              <h2 className="font-serif text-2xl font-bold mb-1">{seg.name}</h2>
-              <p className="text-primary font-semibold text-lg mb-4">
-                от {seg.priceFrom.toLocaleString("ru")} BYN
-                {seg.priceTo ? ` до ${seg.priceTo.toLocaleString("ru")} BYN` : "+"}
+          <div className="grid gap-7 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#8a5a2f]">Купить кухню в Минске</p>
+              <h1 className="mt-2 text-4xl font-black leading-tight text-stone-950 md:text-5xl">
+                Цены на кухни на заказ в Минске
+              </h1>
+              <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
+                Выберите стиль, посмотрите кухни с разных ракурсов и получите ориентир стоимости.
+                Точная цена зависит от размеров, материалов, фурнитуры, столешницы, техники, доставки и монтажа.
               </p>
-              <ul className="space-y-2 mb-6">
-                {seg.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm">
-                    <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <div className="border-t border-border pt-4">
-                <p className="text-xs text-muted-foreground font-medium mb-2">Примеры:</p>
-                {seg.examples.map((e) => (
-                  <p key={e} className="text-xs text-muted-foreground">{e}</p>
-                ))}
-              </div>
             </div>
-          ))}
+            <div className="rounded-lg border border-[#eadccb] bg-[#fff8ef] p-5">
+              <p className="text-sm font-black text-stone-950">Как работает каталог</p>
+              <ol className="mt-3 grid gap-2 text-sm leading-6 text-stone-700">
+                <li>1. Выберите стиль кухни.</li>
+                <li>2. Откройте карточку и посмотрите ракурсы.</li>
+                <li>3. Сравните комплектацию и отправьте заявку на расчёт.</li>
+              </ol>
+              <a href="#calculate" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-stone-950 px-4 py-2 text-sm font-black text-white">
+                Рассчитать кухню <ArrowRight className="h-4 w-4" aria-hidden />
+              </a>
+            </div>
+          </div>
         </div>
+
+        <Suspense fallback={<div className="container-site py-10 text-sm text-muted-foreground">Загружаем каталог кухонь...</div>}>
+          <InteractivePricesCatalog />
+        </Suspense>
+
+        <div className="container-site py-12 md:py-16">
+          <section className="mb-12">
+            <h2 className="font-serif text-3xl font-bold text-foreground">Кухни по стилю и бюджету</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Визуальный каталог выше помогает купить кухню на заказ осознанно: сначала выбрать стиль, затем планировку,
+              бюджет и материалы. Ниже оставлены текстовые блоки и внутренние ссылки, чтобы страница была полезна и людям,
+              и поисковым системам.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {INTERNAL_PRICE_LINKS.map((item) => (
+                <Link key={item.href} href={item.href} className="inline-flex min-h-10 items-center rounded-lg border border-border bg-white px-3 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:bg-primary/5">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="font-serif text-3xl font-bold text-foreground">Сколько стоит купить кухню на заказ в Минске</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Стартовый ориентир начинается от 900 BYN для простой компактной кухни, но честная смета считается по размерам,
+              материалам, фурнитуре, столешнице, технике, доставке и монтажу. Поэтому на странице показаны не абстрактные
+              цифры, а связка: стиль, планировка, комплектация и ориентир стоимости.
+            </p>
+            <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {PRICE_FACTORS.map((item) => (
+                <div key={item.title} className="rounded-lg border bg-white p-5">
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-16">
+            <h2 className="font-serif text-3xl font-bold text-foreground">Цена кухни по форме и планировке</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Прямая кухня обычно проще в расчёте, угловая добавляет рабочую поверхность, П-образная и островная требуют
+              больше модулей, столешницы и монтажной подгонки. Поэтому сравнивать нужно не только цену, но и состав.
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {SEGMENTS.map((seg) => (
+                <div key={seg.name} className={`card-base p-6 border-t-4 ${seg.color} relative ${seg.popular ? "pt-9" : ""}`}>
+                  {seg.popular && (
+                    <div className="absolute right-4 top-3 bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full font-medium">
+                      Популярный
+                    </div>
+                  )}
+                  <h3 className="font-serif text-2xl font-bold mb-1">{seg.name}</h3>
+                  <p className="text-primary font-semibold text-lg mb-4">
+                    от {seg.priceFrom.toLocaleString("ru")} BYN
+                    {seg.priceTo ? ` до ${seg.priceTo.toLocaleString("ru")} BYN` : "+"}
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    {seg.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="border-t border-border pt-4">
+                    <p className="text-xs text-muted-foreground font-medium mb-2">Примеры:</p>
+                    {seg.examples.map((e) => (
+                      <p key={e} className="text-xs text-muted-foreground">{e}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
 
         {/* Дополнительные работы — статический fallback */}
         <div className="card-base p-6 mb-16">
-          <h2 className="font-serif text-2xl font-bold mb-4">Стоимость дополнительных работ</h2>
+          <h2 className="font-serif text-2xl font-bold mb-4">Кухни на заказ с доставкой и монтажом</h2>
+          <p className="mb-5 max-w-3xl text-sm leading-6 text-muted-foreground">
+            Доставка, занос, монтаж и подключение техники считаются по адресу и условиям объекта. Эти строки помогают заранее
+            понять, что входит в расчёт кухни под ключ.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {EXTRA_WORKS.map((row) => (
               <div key={row.item} className="flex justify-between items-center py-2 border-b border-border last:border-0">
@@ -287,7 +339,7 @@ export default function PricesPage() {
 
         {/* Калькулятор — DB-driven через /kapi/calculator */}
         <div className="mb-16">
-          <h2 className="font-serif text-3xl font-bold text-center mb-4">Рассчитайте стоимость онлайн</h2>
+          <h2 className="font-serif text-3xl font-bold text-center mb-4">Как получить точный расчёт кухни</h2>
           <p className="text-center text-muted-foreground mb-8">Ответьте на 5 вопросов — получите ориентировочный бюджет</p>
           <PriceQuiz />
           <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground">
@@ -329,7 +381,7 @@ export default function PricesPage() {
         </section>
 
         <section className="card-base p-6 mb-16">
-          <h2 className="font-serif text-2xl font-bold mb-3">Как комплектация влияет на цену</h2>
+          <h2 className="font-serif text-2xl font-bold mb-3">От чего зависит стоимость кухни</h2>
           <p className="text-sm leading-relaxed text-muted-foreground mb-4">
             На итоговую смету влияет не только длина гарнитура, но и фурнитура для кухни:
             петли с доводчиками, направляющие полного выдвижения, подъемные механизмы,
@@ -353,12 +405,6 @@ export default function PricesPage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <div className="max-w-2xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-4">Точный расчёт по вашей заявке</h2>
-          <p className="text-center text-muted-foreground mb-8">Оставьте заявку — рассчитаем под ваши параметры</p>
-          <ContactForm source="prices" sourceType="prices" />
-        </div>
         </div>
       </div>
     </>

@@ -26,6 +26,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
+import { formatByn, kitchenStyles, priceKitchenModels, type KitchenStyleId } from "@/data/price-catalog";
 
 interface HomeProjectCard {
   id: number | string;
@@ -532,6 +533,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const [selectedStyle, setSelectedStyle] = useState(styleOptions[0].id);
   const [selectedLayout, setSelectedLayout] = useState(layoutOptions[1].id);
   const [selectedBudget, setSelectedBudget] = useState(budgetOptions[1].id);
+  const [selectedPriceStyle, setSelectedPriceStyle] = useState<KitchenStyleId>("minimalism");
   const [beforeAfter, setBeforeAfter] = useState(100);
   const [activeNav, setActiveNav] = useState<HomeNavId>("selector");
   const [isFormFocused, setIsFormFocused] = useState(false);
@@ -539,6 +541,8 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const layout = layoutOptions.find((item) => item.id === selectedLayout) || layoutOptions[1];
   const budget = budgetOptions.find((item) => item.id === selectedBudget) || budgetOptions[1];
   const selectedStyleTitle = styleOptions.find((item) => item.id === selectedStyle)?.title || styleOptions[0].title;
+  const selectedPriceStyleLabel = kitchenStyles.find((item) => item.id === selectedPriceStyle)?.title || kitchenStyles[0].title;
+  const priceStyleModels = priceKitchenModels.filter((model) => model.style === selectedPriceStyle).slice(0, 4);
 
   function handleSelection(next: Partial<{ style: string; layout: string; budget: string }>) {
     const style = next.style || selectedStyle;
@@ -1036,37 +1040,104 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           <div className="mb-7 max-w-3xl">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">Цены</p>
             <h2 id="home-prices-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
-              Сколько стоит кухня на заказ
+              Купить кухню на заказ: выберите стиль и узнайте ориентир по цене
             </h2>
             <p className="mt-3 text-sm leading-6 text-[#75695f]">
-              Точная стоимость зависит от размеров, материалов, фурнитуры, столешницы, техники, доставки и монтажа.
+              Выберите стиль, посмотрите реальные примеры и 3D-визуализации. Точную цену кухни рассчитаем после замера и выбора материалов.
             </p>
           </div>
-          <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-3">
-            {priceCards.map((item) => (
-              <Link key={item.href} href={item.href} className="w-[84vw] max-w-[22rem] shrink-0 snap-start overflow-hidden rounded-lg border border-[#e2d7ca] bg-white sm:w-auto sm:max-w-none">
+
+          <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 sm:mx-0 sm:px-0" aria-label="Выбор стиля кухни по цене">
+            {kitchenStyles.map((style) => {
+              const isActive = selectedPriceStyle === style.id;
+
+              return (
+                <button
+                  key={style.id}
+                  type="button"
+                  onClick={() => setSelectedPriceStyle(style.id)}
+                  className={`w-[84vw] max-w-[22rem] shrink-0 snap-start overflow-hidden rounded-lg border bg-white text-left transition md:w-[19rem] ${
+                    isActive ? "border-[#9b6b3e] ring-2 ring-[#d5b078]/40" : "border-[#e2d7ca] hover:border-[#d5b078]"
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  <span className="relative block aspect-[4/3]">
+                    <Image
+                      src={optimizedImageSrc(style.image) || style.image}
+                      alt={style.alt}
+                      fill
+                      loading={style.id === "minimalism" ? "eager" : "lazy"}
+                      sizes="(max-width: 640px) 84vw, 19rem"
+                      className="object-cover"
+                    />
+                  </span>
+                  <span className="block p-4">
+                    <span className="text-lg font-black leading-tight">{style.title}</span>
+                    <span className="mt-2 line-clamp-2 block min-h-10 text-sm leading-5 text-[#75695f]">{style.description}</span>
+                    <span className="mt-3 flex items-center justify-between gap-2 text-sm">
+                      <strong className="text-[#9b6b3e]">от {formatByn(style.priceFrom)} BYN</strong>
+                      <span>{style.variantsCount} вариантов</span>
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-7 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-sm font-bold text-[#9b6b3e]">Сейчас выбран стиль</p>
+              <h3 className="text-2xl font-black">{selectedPriceStyleLabel}</h3>
+            </div>
+            <Link href={`/prices?style=${selectedPriceStyle}`} className="hidden min-h-11 items-center gap-2 rounded-lg border border-[#9b6b3e]/40 bg-white px-4 py-2 text-sm font-black text-[#6e4727] sm:inline-flex">
+              Все варианты
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {priceStyleModels.map((item, index) => (
+              <Link
+                key={item.id}
+                href={`/prices?style=${item.style}&model=${item.id}`}
+                className="overflow-hidden rounded-lg border border-[#e2d7ca] bg-white"
+              >
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src={item.image}
-                    alt={item.alt}
+                    src={optimizedImageSrc(item.coverImage) || item.coverImage}
+                    alt={item.coverAlt}
                     fill
-                    loading="lazy"
-                    sizes="(max-width: 640px) 84vw, (max-width: 1024px) 45vw, 31vw"
+                    loading={index < 2 ? "eager" : "lazy"}
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 24vw"
                     className="object-cover"
                   />
+                  {item.is3dVisualization && (
+                    <span className="absolute left-3 top-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-bold text-white">
+                      3D-визуализация
+                    </span>
+                  )}
                 </div>
                 <div className="p-4">
-                  <h3 className="text-xl font-black">{item.title}</h3>
-                  <p className="mt-2 text-2xl font-black text-[#9b6b3e]">{item.price}</p>
-                  <p className="mt-3 text-sm leading-6 text-[#75695f]">{item.text}</p>
+                  <h3 className="text-xl font-black">{item.name}</h3>
+                  <dl className="mt-3 grid gap-1 text-sm leading-5 text-[#75695f]">
+                    <div><dt className="inline font-bold">Стиль: </dt><dd className="inline">{item.styleLabel}</dd></div>
+                    <div><dt className="inline font-bold">Планировка: </dt><dd className="inline">{item.layoutLabel}</dd></div>
+                    <div><dt className="inline font-bold">Размер: </dt><dd className="inline">{item.sizeRange}</dd></div>
+                    <div><dt className="inline font-bold">Фасады: </dt><dd className="inline">{item.facadeMaterial}</dd></div>
+                  </dl>
+                  <p className="mt-3 text-2xl font-black text-[#9b6b3e]">от {formatByn(item.priceFrom)} BYN</p>
                   <span className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#201912] px-4 py-2 text-sm font-black text-white">
-                    Посмотреть цены
+                    Посмотреть кухню
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </span>
                 </div>
               </Link>
             ))}
           </div>
+          <Link href={`/prices?style=${selectedPriceStyle}`} className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#9b6b3e]/40 bg-white px-4 py-2 text-sm font-black text-[#6e4727] sm:hidden">
+            Все варианты выбранного стиля
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </div>
       </section>
 
@@ -1209,46 +1280,6 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         </div>
       </section>
 
-      <nav
-        className={`fixed inset-x-0 bottom-0 z-[60] border-t border-[#d5b078]/24 bg-[#17120e]/96 px-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-[0_-12px_34px_rgba(0,0,0,0.28)] backdrop-blur transition duration-200 md:hidden ${
-          isFormFocused ? "pointer-events-none translate-y-full opacity-0" : "translate-y-0 opacity-100"
-        }`}
-        aria-label="Нижняя навигация по главной странице"
-        data-testid="home-bottom-nav"
-      >
-        <div className="grid grid-cols-4 gap-2 text-[0.68rem] font-black text-white/76">
-          {mobileNavItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeNav === item.id;
-
-            return (
-              <a
-                key={item.id}
-                href={item.href}
-                aria-current={isActive ? "location" : undefined}
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToHomeSection(item.id);
-                }}
-                className={`relative flex min-h-12 flex-col items-center justify-center rounded-lg px-1.5 py-1 transition ${
-                  isActive
-                    ? "bg-[#c99a62] text-[#17110b] shadow-[0_8px_20px_rgba(201,154,98,0.24)]"
-                    : "text-white/76 hover:bg-white/8 hover:text-white"
-                }`}
-              >
-                <span
-                  className={`absolute inset-x-4 top-0 h-0.5 rounded-full transition ${
-                    isActive ? "bg-[#17110b]/70" : "bg-transparent"
-                  }`}
-                  aria-hidden
-                />
-                <Icon className="mb-1 h-4 w-4" aria-hidden />
-                <span>{item.label}</span>
-              </a>
-            );
-          })}
-        </div>
-      </nav>
     </div>
   );
 }
