@@ -89,7 +89,15 @@ function matchesRoom(model: PriceKitchenModel, room: FilterState["room"]) {
   return true;
 }
 
+function getVisualBadge(model: PriceKitchenModel) {
+  if (model.coverImage.includes("/prices-catalog/") && model.coverImage.includes("-generated-")) return "Сгенерированное фото";
+  if (model.is3dVisualization) return "3D-визуализация";
+  return null;
+}
+
 function KitchenCard({ model, onOpen, eager }: { model: PriceKitchenModel; onOpen: () => void; eager?: boolean }) {
+  const visualBadge = getVisualBadge(model);
+
   return (
     <article className="group min-w-0 overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:border-stone-300 hover:shadow-lg">
       <button type="button" onClick={onOpen} className="block w-full text-left" aria-label={`Посмотреть кухню ${model.name}`}>
@@ -103,9 +111,9 @@ function KitchenCard({ model, onOpen, eager }: { model: PriceKitchenModel; onOpe
             sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 31vw"
             className="object-cover transition duration-500 group-hover:scale-[1.03]"
           />
-          {model.is3dVisualization && (
+          {visualBadge && (
             <span className="absolute left-3 top-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-bold text-white">
-              3D-визуализация
+              {visualBadge}
             </span>
           )}
         </span>
@@ -483,7 +491,7 @@ export function InteractivePricesCatalog() {
             Выберите стиль кухни и посмотрите ориентир по цене
           </h2>
           <p className="mt-3 text-sm leading-6 text-stone-600">
-            Карточки ниже — 3D-визуализации для расчёта. Они не выдаются за реальные выполненные проекты:
+            Карточки ниже — сгенерированные фото и 3D-визуализации для расчёта. Они не выдаются за реальные выполненные проекты:
             точную смету считаем после замера, материалов и комплектации.
           </p>
         </div>
