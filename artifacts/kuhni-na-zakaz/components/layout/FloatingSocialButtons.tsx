@@ -142,7 +142,7 @@ export function FloatingSocialButtons({
     <nav
       ref={rootRef}
       aria-label="Быстрая связь"
-      className="fixed right-4 bottom-36 z-40 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-2 lg:right-5 lg:bottom-6"
+      className="fixed right-7 bottom-36 z-40 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-2 lg:right-5 lg:bottom-6"
       data-state={isOpen ? "open" : "closed"}
       data-testid="floating-social-buttons"
     >

@@ -91,7 +91,7 @@ function matchesRoom(model: PriceKitchenModel, room: FilterState["room"]) {
 
 function KitchenCard({ model, onOpen, eager }: { model: PriceKitchenModel; onOpen: () => void; eager?: boolean }) {
   return (
-    <article className="group overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:border-stone-300 hover:shadow-lg">
+    <article className="group min-w-0 overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:border-stone-300 hover:shadow-lg">
       <button type="button" onClick={onOpen} className="block w-full text-left" aria-label={`Посмотреть кухню ${model.name}`}>
         <span className="relative block aspect-[4/3] overflow-hidden bg-stone-100">
           <Image
@@ -117,9 +117,9 @@ function KitchenCard({ model, onOpen, eager }: { model: PriceKitchenModel; onOpe
             <span>Размер: {model.sizeRange}</span>
             <span>Фасады: {model.facadeMaterial}</span>
           </span>
-          <span className="mt-4 flex items-center justify-between gap-3">
+          <span className="mt-4 flex flex-col items-start gap-3 min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between">
             <span className="text-lg font-black text-[#8a5a2f]">от {formatByn(model.priceFrom)} BYN</span>
-            <span className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-stone-950 px-3 py-2 text-sm font-bold text-white">
+            <span className="inline-flex min-h-10 max-w-full items-center gap-2 rounded-lg bg-stone-950 px-3 py-2 text-sm font-bold text-white">
               Посмотреть
               <ArrowRight className="h-4 w-4" aria-hidden />
             </span>
@@ -197,25 +197,25 @@ function ModelDialog({
   }, [isFullscreenOpen, model.gallery.length, onClose]);
 
   return (
-    <div className="fixed inset-0 z-[80] overflow-y-auto bg-black/68 px-3 py-4 backdrop-blur-sm md:px-6" role="dialog" aria-modal="true" aria-labelledby="price-model-title">
+    <div className="fixed inset-0 z-[80] overflow-x-hidden overflow-y-auto bg-black/68 px-3 py-4 backdrop-blur-sm md:px-6" role="dialog" aria-modal="true" aria-labelledby="price-model-title">
       <div
         ref={dialogRef}
         tabIndex={-1}
-        className="mx-auto max-w-6xl overflow-hidden rounded-lg bg-white shadow-2xl outline-none"
+        className="mx-auto w-full max-w-6xl overflow-hidden rounded-lg bg-white shadow-2xl outline-none"
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b bg-white/95 px-4 py-3 backdrop-blur">
-          <div>
+        <div className="sticky top-0 z-10 flex items-start justify-between gap-3 border-b bg-white/95 px-4 py-3 backdrop-blur">
+          <div className="min-w-0">
             <p className="text-xs font-bold uppercase tracking-[0.12em] text-stone-500">Пример дизайна для расчёта</p>
             <h2 id="price-model-title" className="text-lg font-black leading-tight text-stone-950 md:text-2xl">{model.name}</h2>
           </div>
-          <button type="button" onClick={onClose} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-stone-200 text-stone-700" aria-label="Закрыть карточку кухни">
+          <button type="button" onClick={onClose} className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-stone-200 text-stone-700" aria-label="Закрыть карточку кухни">
             <X className="h-5 w-5" aria-hidden />
           </button>
         </div>
 
-        <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
-          <div className="bg-stone-950 p-3 md:p-5">
-            <div className="relative mx-auto aspect-[4/3] max-h-[72svh] overflow-hidden rounded-lg bg-stone-900">
+        <div className="grid min-w-0 gap-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
+          <div className="min-w-0 bg-stone-950 p-3 md:p-5">
+            <div className="relative mx-auto aspect-[4/3] w-full max-w-full overflow-hidden rounded-lg bg-stone-900 md:max-h-[72svh]">
               <Image
                 src={optimizedImageSrc(currentImage.src) || currentImage.src}
                 alt={currentImage.alt}
@@ -227,7 +227,7 @@ function ModelDialog({
               <span className="absolute left-3 top-3 rounded-md bg-black/72 px-2.5 py-1 text-xs font-bold text-white">
                 {activeImage + 1} / {model.gallery.length}
               </span>
-              <span className="absolute bottom-3 left-3 right-3 rounded-md bg-black/62 px-3 py-2 text-sm font-bold text-white">
+              <span className="absolute bottom-3 left-3 right-3 rounded-md bg-black/62 px-3 py-2 text-sm font-bold leading-snug text-white">
                 {currentImage.caption}
               </span>
               <button
@@ -272,7 +272,7 @@ function ModelDialog({
             </div>
           </div>
 
-          <div className="p-4 md:p-6">
+          <div className="min-w-0 p-4 md:p-6">
             <div className="rounded-lg border border-[#eadccb] bg-[#fff8ef] p-4">
               <p className="text-sm font-bold text-stone-600">Ориентир стоимости</p>
               <p className="mt-1 text-3xl font-black text-[#8a5a2f]">от {formatByn(model.priceFrom)} BYN</p>
@@ -318,13 +318,13 @@ function ModelDialog({
             {relatedModels.length > 0 && (
               <div className="mt-6">
                 <h3 className="text-lg font-black text-stone-950">Похожие кухни</h3>
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <div className="mt-3 grid min-w-0 gap-3 sm:grid-cols-2">
                   {relatedModels.map((related) => (
                     <button
                       key={related.id}
                       type="button"
                       onClick={() => onOpenModel(related)}
-                      className="overflow-hidden rounded-lg border border-stone-200 bg-white text-left transition hover:border-[#d5b078]"
+                      className="min-w-0 overflow-hidden rounded-lg border border-stone-200 bg-white text-left transition hover:border-[#d5b078]"
                     >
                       <span className="relative block aspect-[4/3] bg-stone-100">
                         <Image
