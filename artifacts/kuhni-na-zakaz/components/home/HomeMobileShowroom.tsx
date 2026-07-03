@@ -20,7 +20,7 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
-import { type ComponentType, type SVGProps, useCallback, useEffect, useMemo, useState } from "react";
+import { type ComponentType, type SVGProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
@@ -40,6 +40,14 @@ interface HomeProjectCard {
   size: string | null;
   priceFrom: number;
   mainImage: string | null;
+  images?: string[];
+  imageAlts?: string[];
+}
+
+interface HomeProjectPhotoCard extends HomeProjectCard {
+  image: string;
+  imageAlt: string;
+  photoIndex: number;
 }
 
 interface HomeMobileShowroomProps {
@@ -492,7 +500,7 @@ function LayoutSchema({ type }: { type: LayoutOption["schema"] }) {
 function normalizeProjects(projects: HomeProjectCard[]) {
   if (projects.length > 0) return projects;
 
-  return GENERATED_MINSK_PORTFOLIO_CASES.slice(0, 4).map((item) => ({
+  return GENERATED_MINSK_PORTFOLIO_CASES.map((item) => ({
     id: item.externalId || item.slug,
     slug: item.slug,
     title: item.title,
@@ -504,7 +512,31 @@ function normalizeProjects(projects: HomeProjectCard[]) {
     size: item.size,
     priceFrom: item.priceFrom,
     mainImage: item.mainImage,
+    images: item.images,
+    imageAlts: item.imageAlts,
   }));
+}
+
+function normalizeProjectPhotos(projects: HomeProjectCard[]) {
+  return normalizeProjects(projects).flatMap((project) => {
+    const seen = new Set<string>();
+    const sources = [project.mainImage, ...(project.images || [])]
+      .filter((src): src is string => Boolean(src))
+      .filter((src) => {
+        if (seen.has(src)) return false;
+        seen.add(src);
+        return true;
+      });
+
+    const photoSources = sources.length > 0 ? sources : ["/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp"];
+
+    return photoSources.map<HomeProjectPhotoCard>((src, index) => ({
+      ...project,
+      image: src,
+      imageAlt: project.imageAlts?.[index] || `${project.title}, ${project.city || "Минск"}, фото ${index + 1}`,
+      photoIndex: index,
+    }));
+  });
 }
 
 function saveSelection(style: string, layout: string, budget: string) {
@@ -520,7 +552,19 @@ function saveSelection(style: string, layout: string, budget: string) {
 }
 
 export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeMobileShowroomProps) {
-  const visibleProjects = useMemo(() => normalizeProjects(projects).slice(0, 4), [projects]);
+  const projectTrackRef = useRef<HTMLDivElement>(null);
+  const portfolioPhotos = useMemo(() => normalizeProjectPhotos(projects), [projects]);
+  const loopedPortfolioPhotos = useMemo(() => {
+    if (portfolioPhotos.length <= 1) return portfolioPhotos;
+    const repeatCount = portfolioPhotos.length < 12 ? 5 : 3;
+
+    return Array.from({ length: repeatCount }, (_, repeatIndex) =>
+      portfolioPhotos.map((project) => ({
+        ...project,
+        id: `${project.id}-${project.photoIndex}-${repeatIndex}`,
+      })),
+    ).flat();
+  }, [portfolioPhotos]);
   const visibleReviews = reviews.slice(0, 4);
   const visibleFaqs = useMemo(() => {
     const existingQuestions = new Set(faqs.map((item) => item.question.trim().toLowerCase()));
@@ -543,6 +587,33 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const selectedStyleTitle = styleOptions.find((item) => item.id === selectedStyle)?.title || styleOptions[0].title;
   const selectedPriceStyleLabel = kitchenStyles.find((item) => item.id === selectedPriceStyle)?.title || kitchenStyles[0].title;
   const priceStyleModels = priceKitchenModels.filter((model) => model.style === selectedPriceStyle).slice(0, 4);
+
+  useEffect(() => {
+    const track = projectTrackRef.current;
+    if (!track || portfolioPhotos.length <= 1) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      const repeatCount = loopedPortfolioPhotos.length / portfolioPhotos.length;
+      track.scrollLeft = (track.scrollWidth / repeatCount) * Math.floor(repeatCount / 2);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [loopedPortfolioPhotos.length, portfolioPhotos.length]);
+
+  const handleProjectsScroll = useCallback(() => {
+    const track = projectTrackRef.current;
+    if (!track || portfolioPhotos.length <= 1) return;
+
+    const repeatCount = loopedPortfolioPhotos.length / portfolioPhotos.length;
+    const segmentWidth = track.scrollWidth / repeatCount;
+    if (segmentWidth <= 0) return;
+
+    if (track.scrollLeft < segmentWidth * 0.75) {
+      track.scrollLeft += segmentWidth;
+    } else if (track.scrollLeft > segmentWidth * (repeatCount - 1.75)) {
+      track.scrollLeft -= segmentWidth;
+    }
+  }, [loopedPortfolioPhotos.length, portfolioPhotos.length]);
 
   function handleSelection(next: Partial<{ style: string; layout: string; budget: string }>) {
     const style = next.style || selectedStyle;
@@ -804,33 +875,49 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
               </h2>
               <p className="mt-2 text-sm font-semibold text-[#75695f]">Листайте →</p>
             </div>
-            <div className="hidden gap-1 sm:flex" aria-hidden>
-              {visibleProjects.map((project, index) => (
-                <span key={project.slug} className={`h-2 rounded-full ${index === 0 ? "w-6 bg-[#9b6b3e]" : "w-2 bg-[#d8c9b8]"}`} />
-              ))}
+            <div className="hidden rounded-full border border-[#e2d7ca] bg-white px-3 py-1 text-xs font-black text-[#75695f] sm:block">
+              {portfolioPhotos.length} фото из портфолио
             </div>
           </div>
-          <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4">
-            {visibleProjects.map((project) => {
-              const rawImage = project.mainImage || "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp";
+          <div
+            ref={projectTrackRef}
+            onScroll={handleProjectsScroll}
+            className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 sm:mx-0 sm:px-0"
+            aria-label="Фото реальных кухонь из портфолио"
+            data-testid="home-portfolio-photo-loop"
+          >
+            {loopedPortfolioPhotos.map((project, index) => {
+              const rawImage = project.image;
               const image = optimizedImageSrc(rawImage) || rawImage;
+              const middleStart = portfolioPhotos.length * Math.floor((loopedPortfolioPhotos.length / portfolioPhotos.length) / 2);
+              const isDuplicate = portfolioPhotos.length > 1 && (
+                index < middleStart || index >= middleStart + portfolioPhotos.length
+              );
+              const isInitiallyVisible = index >= middleStart && index < middleStart + 6;
 
               return (
                 <Link
-                  key={project.slug}
+                  key={`${project.slug}-${project.photoIndex}-${index}`}
                   href={`/portfolio/${project.slug}`}
-                  className="group w-[88vw] max-w-[24rem] shrink-0 snap-start overflow-hidden rounded-lg border border-[#e2d7ca] bg-white shadow-[0_16px_40px_rgba(46,34,22,0.10)] transition hover:-translate-y-0.5 sm:w-auto sm:max-w-none"
+                  aria-hidden={isDuplicate || undefined}
+                  tabIndex={isDuplicate ? -1 : undefined}
+                  className="group w-[88vw] max-w-[24rem] shrink-0 snap-start overflow-hidden rounded-lg border border-[#e2d7ca] bg-white shadow-[0_16px_40px_rgba(46,34,22,0.10)] transition hover:-translate-y-0.5 sm:w-[22rem] lg:w-[24rem]"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-[#eadfd3] sm:aspect-[4/3]">
                     <Image
                       src={image}
-                      alt={buildImageAlt(rawImage, `${project.title}, ${project.city || "Минск"}`)}
+                      alt={buildImageAlt(rawImage, project.imageAlt)}
                       fill
-                      loading="lazy"
-                      sizes="(max-width: 640px) 88vw, (max-width: 1024px) 45vw, 25vw"
+                      loading={isInitiallyVisible ? "eager" : "lazy"}
+                      sizes="(max-width: 640px) 88vw, 24rem"
                       className="object-cover transition duration-500 group-hover:scale-[1.03]"
                     />
                     <BrandedImageWatermark show={getImageDisclosure(rawImage).kind === "generated"} compact />
+                    {project.photoIndex > 0 && (
+                      <span className="absolute left-3 top-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-black text-white">
+                        Ракурс {project.photoIndex + 1}
+                      </span>
+                    )}
                   </div>
                   <div className="p-4">
                     <p className="text-lg font-black text-[#201912]">{project.title}</p>
@@ -852,9 +939,9 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
             })}
           </div>
           <div className="mt-4 flex justify-center gap-1 sm:hidden" aria-hidden>
-            {visibleProjects.map((project, index) => (
-              <span key={project.slug} className={`h-2 rounded-full ${index === 0 ? "w-6 bg-[#9b6b3e]" : "w-2 bg-[#d8c9b8]"}`} />
-            ))}
+            <span className="rounded-full border border-[#e2d7ca] bg-white px-3 py-1 text-xs font-black text-[#75695f]">
+              {portfolioPhotos.length} фото из портфолио
+            </span>
           </div>
         </div>
       </section>

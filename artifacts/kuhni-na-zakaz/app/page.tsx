@@ -225,7 +225,10 @@ export const revalidate = 3600;
 async function getHomeData() {
   try {
     const [cases, reviews, faqs, scenarios, steps, advantages, trust, locations] = await Promise.all([
-      prisma.portfolioCase.findMany({ where: { published: true, slug: publicSlugWhere() }, take: 4, orderBy: { createdAt: "desc" } }),
+      prisma.portfolioCase.findMany({
+        where: { published: true, slug: publicSlugWhere() },
+        orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+      }),
       prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 12, orderBy: { createdAt: "desc" } }),
       prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" } }),
       prisma.homepageBlock.findMany({ where: { type: "scenario", published: true }, orderBy: { order: "asc" } }),
@@ -382,6 +385,8 @@ export default async function HomePage() {
           size: item.size,
           priceFrom: item.priceFrom,
           mainImage: item.mainImage,
+          images: item.images,
+          imageAlts: item.imageAlts,
         }))}
         reviews={trustedReviews.map((item) => ({
           id: item.id,
