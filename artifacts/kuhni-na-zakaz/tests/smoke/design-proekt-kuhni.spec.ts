@@ -36,9 +36,13 @@ test.describe("design project page", () => {
     ).toBeVisible();
     await expect(page.locator("#visual-gallery").getByRole("link", { name: /Смотреть похожие/ })).toHaveCount(10);
     await expect(page.locator("#design-hero-stage").getByRole("link", { name: "До/после" })).toBeVisible();
-    await expect(page.locator("#before-after")).toContainText("До и после проектирования");
-    await expect(page.locator("#before-after").getByRole("img", { name: /До проектирования/ })).toBeVisible();
+    await expect(page.locator("#before-after")).toContainText("Как меняется пространство");
+    await expect(page.locator("#before-after")).toContainText("Кухня в хрущёвке, 6,3 м²");
     await expect(page.locator("#before-after").getByRole("img", { name: /После проектирования/ })).toBeVisible();
+    const beforeAfterSlider = page.locator("#before-after-slider");
+    await expect(beforeAfterSlider).toBeVisible();
+    await beforeAfterSlider.fill("72");
+    await expect(beforeAfterSlider).toHaveValue("72");
   });
 
   test("redirects old configurator URL to design project page", async ({

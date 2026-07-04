@@ -370,6 +370,13 @@ const routeSteps = [
   },
 ] as const;
 
+const beforeAfterBenefits = [
+  "Добавили хранение до потолка",
+  "Увеличили рабочую зону",
+  "Скрыли коммуникации",
+  "Встроили технику",
+];
+
 const projectParts = [
   ["Планировка", "Схема модулей, проходов и рабочих зон под реальные размеры.", `${minskMechanismsBase}/minsk-measurement-02-lazernaya-ruletka-mobile.webp`, "размеры и проходы"],
   ["Расстановка техники", "Проверяем холодильник, духовой шкаф, варочную, мойку и посудомойку.", `${minskMechanismsBase}/minsk-mechanism-08-vstroennaya-posudomoyka-square.webp`, "техника"],
@@ -437,6 +444,7 @@ export function DesignProjectInteractive() {
   const [activeMaterialCategory, setActiveMaterialCategory] = useState<string>(materialCategories[0]);
   const [activeMaterial, setActiveMaterial] = useState<string>(materials[0][1]);
   const [activeConfigSource, setActiveConfigSource] = useState<ConfigVisualSource>({ type: "shape", value: choices.shape[1] });
+  const [beforeAfterPosition, setBeforeAfterPosition] = useState(52);
   const touchStartX = useRef<number | null>(null);
   const configStarted = useRef(false);
   const trackedScrollDepths = useRef(new Set<number>());
@@ -704,15 +712,17 @@ export function DesignProjectInteractive() {
         <div className="container-site">
           <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">До и после проектирования</p>
-              <h2 className="text-3xl font-extrabold sm:text-4xl">Сначала пустое помещение, затем понятная будущая кухня</h2>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">До / После</p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">Как меняется пространство</h2>
+              <p className="mt-4 text-lg font-extrabold text-foreground">Кухня в хрущёвке, 6,3 м²</p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                3D-проект показывает, как меняется комната: где встанет гарнитур, техника, хранение, подсветка и рабочая зона. Так легче согласовать кухню до производства.
+                Передвигайте ползунок: слева исходное помещение до проекта, справа готовая кухня после согласования планировки, фасадов и техники.
               </p>
-              <div className="mt-6 grid grid-cols-2 gap-3">
-                {["До: размеры и коммуникации", "После: кухня с материалами"].map((item) => (
-                  <div key={item} className="rounded-lg border border-border bg-muted/30 p-3 text-sm font-bold">
-                    {item}
+              <div className="mt-6 grid gap-3">
+                {beforeAfterBenefits.map((item) => (
+                  <div key={item} className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-3 text-sm font-bold">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                    <span>{item}</span>
                   </div>
                 ))}
               </div>
@@ -721,15 +731,42 @@ export function DesignProjectInteractive() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <figure className="overflow-hidden rounded-lg border border-border bg-white">
-                <Image src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} alt="До проектирования: пустое помещение кухни с окном и коммуникациями" width={760} height={1010} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" className="aspect-[4/5] w-full object-cover" />
-                <figcaption className="p-4 text-sm font-bold">До: исходное помещение</figcaption>
-              </figure>
-              <figure className="overflow-hidden rounded-lg border border-border bg-white">
-                <Image src={`${imageBase}/3d-proekt-kuhni-hero.webp`} alt="После проектирования: готовая визуализация кухни на заказ" width={900} height={675} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" className="aspect-[4/5] w-full object-cover" />
-                <figcaption className="p-4 text-sm font-bold">После: 3D-визуализация</figcaption>
-              </figure>
+            <div className="rounded-lg border border-border bg-white p-3 shadow-sm sm:p-4">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-stone-100 sm:aspect-[16/10]" aria-label="Сравнение кухни до и после проектирования">
+                <Image src={`${imageBase}/3d-proekt-kuhni-hero.webp`} alt="После проектирования: готовая визуализация кухни на заказ" fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" />
+                <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${beforeAfterPosition}%` }} aria-hidden="true">
+                  <Image src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} alt="До проектирования: пустое помещение кухни с окном и коммуникациями" fill sizes="(min-width: 1024px) 52vw, 100vw" className="max-w-none object-cover" style={{ width: `${10000 / Math.max(beforeAfterPosition, 1)}%` }} />
+                </div>
+                <div className="absolute inset-y-0 w-0.5 bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.18)]" style={{ left: `${beforeAfterPosition}%` }} aria-hidden="true" />
+                <div className="absolute top-3 flex w-full justify-between px-3 text-xs font-extrabold text-white">
+                  <span className="rounded-full bg-stone-950/75 px-3 py-1">До</span>
+                  <span className="rounded-full bg-stone-950/75 px-3 py-1">После</span>
+                </div>
+                <div className="absolute top-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white bg-primary text-primary-foreground shadow-lg" style={{ left: `${beforeAfterPosition}%` }} aria-hidden="true">
+                  <span className="flex items-center">
+                    <ChevronLeft className="h-4 w-4" />
+                    <ChevronRight className="-ml-1 h-4 w-4" />
+                  </span>
+                </div>
+              </div>
+              <label htmlFor="before-after-slider" className="mt-4 block text-sm font-bold">
+                Ручной ползунок «до / после»
+              </label>
+              <input
+                id="before-after-slider"
+                type="range"
+                min="8"
+                max="92"
+                value={beforeAfterPosition}
+                onChange={(event) => setBeforeAfterPosition(Number(event.target.value))}
+                aria-label="Переместить ползунок до и после проекта кухни"
+                className="mt-3 h-8 w-full cursor-ew-resize accent-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                style={{ touchAction: "pan-y" }}
+              />
+              <div className="mt-3 grid grid-cols-2 gap-3 text-sm font-bold">
+                <p className="rounded-lg bg-muted/40 p-3">До: пустое помещение, коммуникации и мало хранения.</p>
+                <p className="rounded-lg bg-muted/40 p-3">После: кухня до потолка, техника и рабочая зона.</p>
+              </div>
             </div>
           </div>
         </div>
