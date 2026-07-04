@@ -21,7 +21,7 @@ test.describe("design project page", () => {
     await expect(
       page
         .getByRole("link", {
-          name: /Получить 3D-проект|Оставить заявку на проект|Отправить заявку на проект|Закажите 3D-проект/i,
+          name: /Создать проект|Получить проект кухни|Получить 3D-проект|Оставить заявку на проект|Отправить заявку на проект|Закажите 3D-проект/i,
         })
         .first(),
     ).toBeVisible();
@@ -32,9 +32,13 @@ test.describe("design project page", () => {
       }),
     ).toBeVisible();
     await expect(
-      page.getByRole("img", { name: /Угловая кухня/ }),
+      page.locator("#idea-builder").getByRole("img", { name: "Угловая кухня в 3D-проекте" }).first(),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: /Подробнее/ })).toHaveCount(8);
+    await expect(page.locator("#visual-gallery").getByRole("link", { name: /Смотреть похожие/ })).toHaveCount(10);
+    await expect(page.locator("#design-hero-stage").getByRole("link", { name: "До/после" })).toBeVisible();
+    await expect(page.locator("#before-after")).toContainText("До и после проектирования");
+    await expect(page.locator("#before-after").getByRole("img", { name: /До проектирования/ })).toBeVisible();
+    await expect(page.locator("#before-after").getByRole("img", { name: /После проектирования/ })).toBeVisible();
   });
 
   test("redirects old configurator URL to design project page", async ({

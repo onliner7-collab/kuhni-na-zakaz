@@ -669,7 +669,10 @@ export function DesignProjectInteractive() {
                 Создать проект
                 <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
               </Link>
-              <Link href="#visual-gallery" onClick={() => trackPortfolioClick("design-hero", "#visual-gallery")} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-3 py-3 text-center text-sm font-bold leading-tight text-white transition-colors hover:bg-white/10 sm:px-6">
+              <Link href="#before-after" onClick={() => trackPortfolioClick("design-hero", "#before-after")} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/45 px-3 py-3 text-center text-sm font-bold leading-tight text-white transition-colors hover:bg-white/10 sm:px-6">
+                До/после
+              </Link>
+              <Link href="#visual-gallery" onClick={() => trackPortfolioClick("design-hero", "#visual-gallery")} className="col-span-2 inline-flex min-h-12 items-center justify-center rounded-lg border border-white/35 px-3 py-3 text-center text-sm font-bold leading-tight text-white transition-colors hover:bg-white/10 sm:col-span-1 sm:px-6">
                 Кухни
               </Link>
             </div>
@@ -693,6 +696,41 @@ export function DesignProjectInteractive() {
               ))}
             </div>
             <p className="mt-2 min-h-10 text-sm text-white/75">{heroStages[heroStage]?.text}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white" id="before-after">
+        <div className="container-site">
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+            <div>
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">До и после проектирования</p>
+              <h2 className="text-3xl font-extrabold sm:text-4xl">Сначала пустое помещение, затем понятная будущая кухня</h2>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                3D-проект показывает, как меняется комната: где встанет гарнитур, техника, хранение, подсветка и рабочая зона. Так легче согласовать кухню до производства.
+              </p>
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {["До: размеры и коммуникации", "После: кухня с материалами"].map((item) => (
+                  <div key={item} className="rounded-lg border border-border bg-muted/30 p-3 text-sm font-bold">
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <Link href="#before-after-cases" onClick={() => trackPortfolioClick("design-before-after-preview", "#before-after-cases")} className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-primary-foreground hover:bg-primary/90">
+                Смотреть примеры по ситуациям
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <figure className="overflow-hidden rounded-lg border border-border bg-white">
+                <Image src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} alt="До проектирования: пустое помещение кухни с окном и коммуникациями" width={760} height={1010} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" className="aspect-[4/5] w-full object-cover" />
+                <figcaption className="p-4 text-sm font-bold">До: исходное помещение</figcaption>
+              </figure>
+              <figure className="overflow-hidden rounded-lg border border-border bg-white">
+                <Image src={`${imageBase}/3d-proekt-kuhni-hero.webp`} alt="После проектирования: готовая визуализация кухни на заказ" width={900} height={675} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" className="aspect-[4/5] w-full object-cover" />
+                <figcaption className="p-4 text-sm font-bold">После: 3D-визуализация</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
@@ -800,10 +838,10 @@ export function DesignProjectInteractive() {
         </div>
       </section>
 
-      <section className="section-padding bg-white" id="before-after">
+      <section className="section-padding bg-white" id="before-after-cases">
         <div className="container-site">
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">До и после проектирования</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Примеры до и после</p>
             <h2 className="text-3xl font-extrabold sm:text-4xl">Шесть ситуаций, где проект экономит ошибки</h2>
           </div>
           <div className="mt-8 flex snap-x gap-4 overflow-x-auto overscroll-x-contain pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
