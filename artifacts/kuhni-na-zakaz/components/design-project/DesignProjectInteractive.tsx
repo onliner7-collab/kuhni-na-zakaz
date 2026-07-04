@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
+import type { TouchEvent as ReactTouchEvent } from "react";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Maximize2, MessageCircle, X } from "lucide-react";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
@@ -445,6 +447,8 @@ export function DesignProjectInteractive() {
   const [activeMaterial, setActiveMaterial] = useState<string>(materials[0][1]);
   const [activeConfigSource, setActiveConfigSource] = useState<ConfigVisualSource>({ type: "shape", value: choices.shape[1] });
   const [beforeAfterPosition, setBeforeAfterPosition] = useState(52);
+  const beforeAfterRef = useRef<HTMLDivElement>(null);
+  const beforeAfterTouchStart = useRef<{ x: number; y: number } | null>(null);
   const touchStartX = useRef<number | null>(null);
   const configStarted = useRef(false);
   const trackedScrollDepths = useRef(new Set<number>());
@@ -574,6 +578,53 @@ export function DesignProjectInteractive() {
     };
   }, [activeConfigSource, activeShapeItem, selection.extras, selection.facade, selection.style]);
   const caseImageLabel = ["Пустое помещение", "План", "3D-визуализация", "Реализация"][caseState];
+
+  const updateBeforeAfterPosition = useCallback((clientX: number) => {
+    const bounds = beforeAfterRef.current?.getBoundingClientRect();
+    if (!bounds || bounds.width <= 0) return;
+
+    const nextPosition = ((clientX - bounds.left) / bounds.width) * 100;
+    setBeforeAfterPosition(Math.min(92, Math.max(8, Math.round(nextPosition))));
+  }, []);
+
+  const handleBeforeAfterPointer = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (event.type === "pointerdown") {
+        event.currentTarget.setPointerCapture(event.pointerId);
+      }
+
+      if (event.type === "pointermove" && event.pointerType === "mouse" && event.buttons !== 1) return;
+
+      updateBeforeAfterPosition(event.clientX);
+    },
+    [updateBeforeAfterPosition],
+  );
+
+  const handleBeforeAfterTouchStart = useCallback(
+    (event: ReactTouchEvent<HTMLDivElement>) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+
+      beforeAfterTouchStart.current = { x: touch.clientX, y: touch.clientY };
+      updateBeforeAfterPosition(touch.clientX);
+    },
+    [updateBeforeAfterPosition],
+  );
+
+  const handleBeforeAfterTouchMove = useCallback(
+    (event: ReactTouchEvent<HTMLDivElement>) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+
+      const start = beforeAfterTouchStart.current;
+      if (start && Math.abs(touch.clientX - start.x) > Math.abs(touch.clientY - start.y) + 4) {
+        event.preventDefault();
+      }
+
+      updateBeforeAfterPosition(touch.clientX);
+    },
+    [updateBeforeAfterPosition],
+  );
 
   function choose<K extends "shape" | "size" | "style" | "facade">(key: K, value: SelectionState[K]) {
     trackConfigStart();
@@ -732,10 +783,32 @@ export function DesignProjectInteractive() {
               </Link>
             </div>
             <div className="rounded-lg border border-border bg-white p-3 shadow-sm sm:p-4">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-stone-100 sm:aspect-[16/10]" aria-label="Сравнение кухни до и после проектирования">
-                <Image src={`${imageBase}/3d-proekt-kuhni-hero.webp`} alt="После проектирования: готовая визуализация кухни на заказ" fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" />
+              <div
+                ref={beforeAfterRef}
+                role="group"
+                className="relative aspect-[4/5] cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-lg bg-stone-100 sm:aspect-[16/10]"
+                aria-label="Сравнение кухни до и после проектирования"
+                onPointerDown={handleBeforeAfterPointer}
+                onPointerMove={handleBeforeAfterPointer}
+                onTouchStart={handleBeforeAfterTouchStart}
+                onTouchMove={handleBeforeAfterTouchMove}
+                onTouchEnd={() => {
+                  beforeAfterTouchStart.current = null;
+                }}
+                style={{ touchAction: "pan-y" }}
+              >
+                <Image src={`${imageBase}/before-after-hruschevka-room-after-20260704.webp`} alt="После проектирования: та же кухня в хрущёвке с гарнитуром до потолка и встроенной техникой" fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" draggable={false} />
                 <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${beforeAfterPosition}%` }} aria-hidden="true">
-                  <Image src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} alt="До проектирования: пустое помещение кухни с окном и коммуникациями" fill sizes="(min-width: 1024px) 52vw, 100vw" className="max-w-none object-cover" style={{ width: `${10000 / Math.max(beforeAfterPosition, 1)}%` }} />
+                  <img
+                    src={`${imageBase}/before-after-hruschevka-room-before-20260704.webp`}
+                    alt="До проектирования: та же пустая кухня в хрущёвке с окном, радиатором и коммуникациями"
+                    width={1400}
+                    height={933}
+                    className="absolute inset-0 h-full max-w-none object-cover"
+                    draggable={false}
+                    loading="eager"
+                    style={{ width: `${10000 / Math.max(beforeAfterPosition, 1)}%` }}
+                  />
                 </div>
                 <div className="absolute inset-y-0 w-0.5 bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.18)]" style={{ left: `${beforeAfterPosition}%` }} aria-hidden="true" />
                 <div className="absolute top-3 flex w-full justify-between px-3 text-xs font-extrabold text-white">

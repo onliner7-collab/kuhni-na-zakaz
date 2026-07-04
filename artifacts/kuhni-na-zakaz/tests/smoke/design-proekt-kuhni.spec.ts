@@ -39,10 +39,37 @@ test.describe("design project page", () => {
     await expect(page.locator("#before-after")).toContainText("Как меняется пространство");
     await expect(page.locator("#before-after")).toContainText("Кухня в хрущёвке, 6,3 м²");
     await expect(page.locator("#before-after").getByRole("img", { name: /После проектирования/ })).toBeVisible();
+    await expect(page.locator("#before-after img").first()).toHaveAttribute("src", /before-after-hruschevka-room-after-20260704/);
+    await expect(page.locator("#before-after img").nth(1)).toHaveAttribute("src", /before-after-hruschevka-room-before-20260704/);
     const beforeAfterSlider = page.locator("#before-after-slider");
     await expect(beforeAfterSlider).toBeVisible();
     await beforeAfterSlider.fill("72");
     await expect(beforeAfterSlider).toHaveValue("72");
+    const comparison = page.locator('#before-after [aria-label="Сравнение кухни до и после проектирования"]');
+    const box = await comparison.boundingBox();
+    expect(box).not.toBeNull();
+    await page.mouse.move(box!.x + box!.width * 0.85, box!.y + box!.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box!.x + box!.width * 0.28, box!.y + box!.height / 2, { steps: 6 });
+    await page.mouse.up();
+    await expect(beforeAfterSlider).toHaveValue(/2[6-9]|3[0-1]/);
+
+    if (test.info().project.name === "mobile") {
+      await comparison.dispatchEvent("touchstart", {
+        touches: [{ identifier: 1, clientX: box!.x + box!.width * 0.82, clientY: box!.y + box!.height / 2 }],
+        changedTouches: [{ identifier: 1, clientX: box!.x + box!.width * 0.82, clientY: box!.y + box!.height / 2 }],
+      });
+      await expect(beforeAfterSlider).toHaveValue("82");
+      await comparison.dispatchEvent("touchmove", {
+        touches: [{ identifier: 1, clientX: box!.x + box!.width * 0.24, clientY: box!.y + box!.height / 2 + 1 }],
+        changedTouches: [{ identifier: 1, clientX: box!.x + box!.width * 0.24, clientY: box!.y + box!.height / 2 + 1 }],
+      });
+      await comparison.dispatchEvent("touchend", {
+        touches: [],
+        changedTouches: [{ identifier: 1, clientX: box!.x + box!.width * 0.24, clientY: box!.y + box!.height / 2 + 1 }],
+      });
+      await expect(beforeAfterSlider).toHaveValue("24");
+    }
   });
 
   test("redirects old configurator URL to design project page", async ({
