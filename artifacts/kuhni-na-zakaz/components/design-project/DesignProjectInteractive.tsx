@@ -584,7 +584,7 @@ export function DesignProjectInteractive() {
     if (!bounds || bounds.width <= 0) return;
 
     const nextPosition = ((clientX - bounds.left) / bounds.width) * 100;
-    setBeforeAfterPosition(Math.min(92, Math.max(8, Math.round(nextPosition))));
+    setBeforeAfterPosition(Math.min(100, Math.max(0, Math.round(nextPosition))));
   }, []);
 
   const handleBeforeAfterPointer = useCallback(
@@ -786,7 +786,7 @@ export function DesignProjectInteractive() {
               <div
                 ref={beforeAfterRef}
                 role="group"
-                className="relative aspect-[4/5] cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-lg bg-stone-100 sm:aspect-[16/10]"
+                className="relative aspect-[3/2] cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-lg bg-stone-100"
                 aria-label="Сравнение кухни до и после проектирования"
                 onPointerDown={handleBeforeAfterPointer}
                 onPointerMove={handleBeforeAfterPointer}
@@ -797,17 +797,17 @@ export function DesignProjectInteractive() {
                 }}
                 style={{ touchAction: "pan-y" }}
               >
-                <Image src={`${imageBase}/before-after-hruschevka-room-after-20260704.webp`} alt="После проектирования: та же кухня в хрущёвке с гарнитуром до потолка и встроенной техникой" fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-cover" draggable={false} />
+                <Image src={`${imageBase}/before-after-hruschevka-room-after-20260704.webp`} alt="После проектирования: та же кухня в хрущёвке с гарнитуром до потолка и встроенной техникой" fill sizes="(min-width: 1024px) 52vw, 100vw" className="object-contain" draggable={false} />
                 <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${beforeAfterPosition}%` }} aria-hidden="true">
                   <img
                     src={`${imageBase}/before-after-hruschevka-room-before-20260704.webp`}
                     alt="До проектирования: та же пустая кухня в хрущёвке с окном, радиатором и коммуникациями"
                     width={1400}
                     height={933}
-                    className="absolute inset-0 h-full max-w-none object-cover"
+                    className="absolute inset-0 h-full max-w-none object-contain"
                     draggable={false}
                     loading="eager"
-                    style={{ width: `${10000 / Math.max(beforeAfterPosition, 1)}%` }}
+                    style={{ width: beforeAfterPosition <= 0 ? "100%" : `${10000 / beforeAfterPosition}%` }}
                   />
                 </div>
                 <div className="absolute inset-y-0 w-0.5 bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.18)]" style={{ left: `${beforeAfterPosition}%` }} aria-hidden="true" />
@@ -815,7 +815,7 @@ export function DesignProjectInteractive() {
                   <span className="rounded-full bg-stone-950/75 px-3 py-1">До</span>
                   <span className="rounded-full bg-stone-950/75 px-3 py-1">После</span>
                 </div>
-                <div className="absolute top-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white bg-primary text-primary-foreground shadow-lg" style={{ left: `${beforeAfterPosition}%` }} aria-hidden="true">
+                <div className="absolute top-1/2 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white bg-primary text-primary-foreground shadow-lg" style={{ left: `${beforeAfterPosition}%`, opacity: beforeAfterPosition === 0 || beforeAfterPosition === 100 ? 0 : 1 }} aria-hidden="true">
                   <span className="flex items-center">
                     <ChevronLeft className="h-4 w-4" />
                     <ChevronRight className="-ml-1 h-4 w-4" />
@@ -828,8 +828,8 @@ export function DesignProjectInteractive() {
               <input
                 id="before-after-slider"
                 type="range"
-                min="8"
-                max="92"
+                min="0"
+                max="100"
                 value={beforeAfterPosition}
                 onChange={(event) => setBeforeAfterPosition(Number(event.target.value))}
                 aria-label="Переместить ползунок до и после проекта кухни"

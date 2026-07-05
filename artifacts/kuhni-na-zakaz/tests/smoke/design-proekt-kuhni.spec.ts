@@ -43,6 +43,12 @@ test.describe("design project page", () => {
     await expect(page.locator("#before-after img").nth(1)).toHaveAttribute("src", /before-after-hruschevka-room-before-20260704/);
     const beforeAfterSlider = page.locator("#before-after-slider");
     await expect(beforeAfterSlider).toBeVisible();
+    await expect(beforeAfterSlider).toHaveAttribute("min", "0");
+    await expect(beforeAfterSlider).toHaveAttribute("max", "100");
+    await beforeAfterSlider.fill("0");
+    await expect(beforeAfterSlider).toHaveValue("0");
+    await beforeAfterSlider.fill("100");
+    await expect(beforeAfterSlider).toHaveValue("100");
     await beforeAfterSlider.fill("72");
     await expect(beforeAfterSlider).toHaveValue("72");
     const comparison = page.locator('#before-after [aria-label="Сравнение кухни до и после проектирования"]');
