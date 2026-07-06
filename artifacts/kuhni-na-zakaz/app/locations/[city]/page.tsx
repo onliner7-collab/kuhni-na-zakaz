@@ -530,7 +530,7 @@ export default async function LocationPage({ params }: Props) {
       <JsonLd data={[jsonLdWebPage, jsonLdBreadcrumb, jsonLdService, jsonLdFaq].filter(isJsonLdObject)} />
 
       {/* HERO */}
-      <section className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
+      <section id="location-prices" className="relative bg-gradient-to-br from-[#1a0533] via-[#2d0a5e] to-[#0f1525] text-white overflow-hidden">
         {loc.images[0] && (
           <div className="absolute inset-0 opacity-15">
             <Image src={optimizedImageSrc(loc.images[0]) || loc.images[0]} alt={buildImageAlt(loc.images[0], loc.city)} fill priority fetchPriority="high" sizes="100vw" className="object-cover" />
@@ -735,7 +735,7 @@ export default async function LocationPage({ params }: Props) {
         </section>
       )}
 
-      <section className="section-padding bg-white">
+      <section id="location-projects" className="section-padding bg-white">
         <div className="container-site">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
             <div>
@@ -862,7 +862,7 @@ export default async function LocationPage({ params }: Props) {
 
       {/* LOCAL REVIEWS */}
       {reviews.length > 0 && (
-        <section className="section-padding bg-muted/30">
+        <section id="location-reviews" className="section-padding bg-muted/30">
           <div className="container-site">
             <div className="flex items-center justify-between mb-8">
               <div>
@@ -946,7 +946,7 @@ export default async function LocationPage({ params }: Props) {
 
       {/* FAQ */}
       {faqItems.length > 0 && (
-        <section className="section-padding bg-muted/30">
+        <section id="location-faq" className="section-padding bg-muted/30">
           <div className="container-site">
             <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-2">
               Частые вопросы о кухнях в {cityGen}

@@ -602,7 +602,7 @@ export default async function CatalogItemPage({ params }: Props) {
                 exampleImages={exampleGalleryImages}
               />
             ) : (
-              <div className="mb-6 overflow-hidden rounded-2xl border bg-card shadow-sm">
+              <div id="catalog-gallery-heading" className="mb-6 overflow-hidden rounded-2xl border bg-card shadow-sm">
                 <CatalogCategoryImage src={heroImage.src} alt={heroImage.alt} priority sizes="(max-width: 1024px) 100vw, 820px" />
               </div>
             )}
@@ -689,7 +689,7 @@ export default async function CatalogItemPage({ params }: Props) {
                   </ul>
                 </section>
 
-                <section className="rounded-xl border bg-card p-6">
+                <section id="catalog-layouts" className="rounded-xl border bg-card p-6">
                   <h2 className="font-serif text-2xl font-semibold mb-4">Особенности планировки</h2>
                   <div className="space-y-3">
                     {seo.planning.map((item) => (
@@ -737,7 +737,7 @@ export default async function CatalogItemPage({ params }: Props) {
                   </div>
                 </section>
 
-                <section className="grid gap-6 md:grid-cols-2">
+                <section id="catalog-prices" className="grid gap-6 md:grid-cols-2">
                   <div className="rounded-xl border bg-card p-6">
                     <h2 className="font-serif text-2xl font-semibold mb-3">Ориентиры цены</h2>
                     <p className="text-sm leading-6 text-muted-foreground">{seo.priceGuide}</p>

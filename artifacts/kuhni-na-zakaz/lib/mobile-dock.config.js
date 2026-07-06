@@ -46,9 +46,9 @@ export const MOBILE_DOCK_TYPES = {
   portfolio: {
     match: ["/portfolio"],
     items: [
-      { label: "Все", icon: "grid-2x2", target: "#portfolio-catalog-heading" },
-      { label: "Стили", icon: "palette", target: "#portfolio-catalog-heading" },
-      { label: "Планировки", icon: "layout-template", target: "#portfolio-catalog-heading" },
+      { label: "Все", icon: "grid-2x2", target: "#all-projects" },
+      { label: "Стили", icon: "palette", target: "#styles-filter" },
+      { label: "Планировки", icon: "layout-template", target: "#layouts-filter" },
       { label: "Похожую", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#portfolio-request", primary: true },
     ],
   },
@@ -58,7 +58,14 @@ export const MOBILE_DOCK_TYPES = {
     items: [
       { label: "Проекты", icon: "images", target: "#location-projects", requiredIdStatus: "add-in-chat-2" },
       { label: "Цены", icon: "wallet", target: "#location-prices", requiredIdStatus: "add-in-chat-2" },
-      { label: "Отзывы", icon: "message-circle", target: "#location-reviews", optional: true, requiredIdStatus: "add-in-chat-2" },
+      {
+        label: "Отзывы",
+        icon: "message-circle",
+        target: "#location-reviews",
+        optional: true,
+        requiredIdStatus: "add-in-chat-2",
+        alternatives: [{ label: "Вопросы", icon: "message-circle", target: "#location-faq" }],
+      },
       { label: "Замер", icon: "ruler", action: "open-measurement-form", fallbackTarget: "#form", primary: true },
     ],
   },
@@ -68,7 +75,14 @@ export const MOBILE_DOCK_TYPES = {
     items: [
       { label: "Проекты", icon: "images", target: "#location-projects", requiredIdStatus: "add-in-chat-2" },
       { label: "Цены", icon: "wallet", target: "#location-prices", requiredIdStatus: "add-in-chat-2" },
-      { label: "Отзывы", icon: "message-circle", target: "#location-reviews", optional: true, requiredIdStatus: "add-in-chat-2" },
+      {
+        label: "Отзывы",
+        icon: "message-circle",
+        target: "#location-reviews",
+        optional: true,
+        requiredIdStatus: "add-in-chat-2",
+        alternatives: [{ label: "Вопросы", icon: "message-circle", target: "#location-faq" }],
+      },
       { label: "Замер", icon: "ruler", action: "open-measurement-form", fallbackTarget: "#form", primary: true },
     ],
   },
@@ -97,9 +111,28 @@ export const MOBILE_DOCK_TYPES = {
     match: ["/materials/*"],
     items: [
       { label: "Фото", icon: "images", target: "#material-detail-gallery", targetPrefix: true },
-      { label: "Стоимость", icon: "wallet", target: "#material-price", requiredIdStatus: "add-in-chat-2" },
-      { label: "Примеры", icon: "layout-grid", target: "#material-projects", requiredIdStatus: "add-in-chat-2" },
-      { label: "Подобрать", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#form", primary: true },
+      {
+        label: "Стоимость",
+        icon: "wallet",
+        target: "#material-price",
+        requiredIdStatus: "add-in-chat-2",
+        alternatives: [{ label: "Цены", icon: "wallet", href: "/prices" }],
+      },
+      {
+        label: "Примеры",
+        icon: "layout-grid",
+        target: "#material-projects",
+        requiredIdStatus: "add-in-chat-2",
+        alternatives: [{ label: "Проекты", icon: "layout-grid", href: "/portfolio" }],
+      },
+      {
+        label: "Подобрать",
+        icon: "calculator",
+        action: "open-calculation-form",
+        fallbackTarget: "#form",
+        primary: true,
+        alternatives: [{ label: "Расчёт", icon: "calculator", href: "/contacts#form", primary: true }],
+      },
     ],
   },
 
@@ -107,7 +140,13 @@ export const MOBILE_DOCK_TYPES = {
     match: ["/portfolio/*"],
     items: [
       { label: "Фото", icon: "images", target: "#project-gallery-heading" },
-      { label: "Материалы", icon: "layers", target: "#project-used-heading", optional: true },
+      {
+        label: "Материалы",
+        icon: "layers",
+        target: "#project-used-heading",
+        optional: true,
+        alternatives: [{ label: "Описание", icon: "layers", target: "#project-description-heading" }],
+      },
       { label: "Цена", icon: "wallet", target: "#project-specs-heading" },
       { label: "Похожую", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#project-request", primary: true },
     ],
@@ -119,7 +158,7 @@ export const MOBILE_DOCK_TYPES = {
       { label: "Примеры", icon: "images", target: "#style-projects", requiredIdStatus: "audit-before-chat-2" },
       { label: "Цены", icon: "wallet", target: "#style-prices", requiredIdStatus: "audit-before-chat-2" },
       { label: "Материалы", icon: "layers", target: "#style-materials", requiredIdStatus: "audit-before-chat-2" },
-      { label: "Расчёт", icon: "calculator", href: "/contacts#form", primary: true },
+      { label: "Расчёт", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#form", primary: true },
     ],
   },
 };

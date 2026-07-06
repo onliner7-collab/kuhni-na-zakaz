@@ -115,18 +115,20 @@ function doesMatchCity(project: PortfolioProject, value: string) {
 }
 
 function FilterGroup({
+  id,
   label,
   options,
   value,
   onChange,
 }: {
+  id?: string;
   label: string;
   options: FilterOption[];
   value: string;
   onChange: (value: string) => void;
 }) {
   return (
-    <fieldset className="space-y-2">
+    <fieldset id={id} className="space-y-2">
       <legend className="text-sm font-semibold text-foreground">{label}</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((option) => {
@@ -214,7 +216,7 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
   }
 
   return (
-    <section aria-labelledby="portfolio-catalog-heading" className="space-y-8">
+    <section id="all-projects" aria-labelledby="portfolio-catalog-heading" className="space-y-8">
       <div className="rounded-lg border border-border bg-white p-4 shadow-sm sm:p-5">
         <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -238,8 +240,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
 
         <div className="grid gap-5 lg:grid-cols-2">
           <FilterGroup label="Город" options={cityOptions} value={cityFilter} onChange={(value) => handleFilterChange("city", value)} />
-          <FilterGroup label="Тип кухни" options={kitchenTypeOptions} value={typeFilter} onChange={(value) => handleFilterChange("type", value)} />
-          <FilterGroup label="Стиль" options={styleOptions} value={styleFilter} onChange={(value) => handleFilterChange("style", value)} />
+          <FilterGroup id="layouts-filter" label="Тип кухни" options={kitchenTypeOptions} value={typeFilter} onChange={(value) => handleFilterChange("type", value)} />
+          <FilterGroup id="styles-filter" label="Стиль" options={styleOptions} value={styleFilter} onChange={(value) => handleFilterChange("style", value)} />
           <FilterGroup label="Цвет" options={colorOptions} value={colorFilter} onChange={(value) => handleFilterChange("color", value)} />
         </div>
       </div>

@@ -210,7 +210,7 @@ export default async function StylePage({ params }: Props) {
 
               {/* Price block */}
               {s.priceFrom > 0 && (
-                <div className="bg-primary/10 border border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div id="style-prices" className="bg-primary/10 border border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Wallet className="w-5 h-5 text-primary" />
@@ -224,7 +224,7 @@ export default async function StylePage({ params }: Props) {
                 </div>
               )}
 
-              <section>
+              <section id="style-projects">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-9 h-9 rounded-xl bg-violet-100 flex items-center justify-center shrink-0">
                     <Lightbulb className="w-5 h-5 text-violet-600" />
@@ -407,7 +407,7 @@ export default async function StylePage({ params }: Props) {
 
               {/* Рекомендуемые материалы */}
               {materials.length > 0 && (
-                <section>
+                <section id="style-materials">
                   <h2 className="font-serif text-2xl font-bold mb-4">Рекомендуемые материалы</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {materials.map((m) => (
@@ -490,7 +490,7 @@ export default async function StylePage({ params }: Props) {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-5">
-                <div className="card-base p-6">
+                <div id="form" className="card-base p-6">
                   <h2 className="font-serif text-xl font-semibold mb-4">Заказать замер</h2>
                   <p className="text-sm text-muted-foreground mb-4">Условия замера уточняются при заявке. Выезд согласуем по адресу.</p>
                   <ContactForm source={`styles/${slug}`} />

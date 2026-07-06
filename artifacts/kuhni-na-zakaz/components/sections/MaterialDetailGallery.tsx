@@ -102,7 +102,7 @@ export function MaterialDetailGallery({ slug, title }: MaterialDetailGalleryProp
   const activeImage = images[activeIndex] ?? images[0];
 
   return (
-    <section className="mt-12 rounded-2xl border border-border bg-white p-4 shadow-sm sm:p-6" aria-labelledby={`material-detail-gallery-${slug}`}>
+    <section id="material-detail-gallery" className="mt-12 rounded-2xl border border-border bg-white p-4 shadow-sm sm:p-6" aria-labelledby={`material-detail-gallery-${slug}`}>
       <div className="mb-5 max-w-3xl">
         <p className="mb-2 text-sm font-semibold uppercase text-primary">Фото материала и кухонь</p>
         <h2 id={`material-detail-gallery-${slug}`} className="font-serif text-3xl font-bold">

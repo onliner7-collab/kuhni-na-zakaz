@@ -1,77 +1,221 @@
 "use client";
 
-import { Calculator, FolderOpen, Home, Images, Palette, Ruler } from "lucide-react";
+import {
+  Calculator,
+  Grid2X2,
+  Images,
+  Layers,
+  LayoutGrid,
+  LayoutTemplate,
+  Palette,
+  PenTool,
+  Ruler,
+  Send,
+  Settings2,
+  SlidersHorizontal,
+  Sparkles,
+  SquareStack,
+  Wallet,
+  type LucideIcon,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
-import { type ComponentType, type SVGProps, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-type BottomNavItem = {
+import {
+  MOBILE_DOCK_DISABLED_PATH_PREFIXES,
+  MOBILE_DOCK_SCROLL_OFFSETS,
+  MOBILE_DOCK_TYPES,
+} from "@/lib/mobile-dock.config";
+import { cn } from "@/lib/utils";
+
+type MobileDockAction = "open-calculation-form" | "open-design-form" | "open-measurement-form";
+
+type MobileDockItem = {
   label: string;
-  href: string;
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
-  sectionId?: string;
+  icon: keyof typeof ICONS;
+  target?: string;
+  href?: string;
+  action?: MobileDockAction;
+  fallbackTarget?: string;
+  primary?: boolean;
+  optional?: boolean;
+  alternatives?: MobileDockItem[];
 };
 
-function getItems(pathname: string): BottomNavItem[] {
-  if (pathname === "/") {
-    return [
-      { label: "Проекты", href: "/#projects", icon: Images, sectionId: "projects" },
-      { label: "Подобрать", href: "/#selector", icon: Palette, sectionId: "selector" },
-      { label: "Цены", href: "/#prices", icon: Calculator, sectionId: "prices" },
-      { label: "Рассчитать", href: "/#calculate", icon: Ruler, sectionId: "calculate" },
-    ];
+type MobileDockType = {
+  match: string[];
+  items: MobileDockItem[];
+};
+
+type ResolvedDockItem = MobileDockItem & {
+  key: string;
+  Icon: LucideIcon;
+  activeTarget?: string;
+};
+
+const ICONS = {
+  calculator: Calculator,
+  "grid-2x2": Grid2X2,
+  images: Images,
+  layers: Layers,
+  "layout-grid": LayoutGrid,
+  "layout-template": LayoutTemplate,
+  palette: Palette,
+  "pen-tool": PenTool,
+  ruler: Ruler,
+  send: Send,
+  "settings-2": Settings2,
+  sliders: SlidersHorizontal,
+  sparkles: Sparkles,
+  "square-stack": SquareStack,
+  wallet: Wallet,
+};
+
+const CONFIG = MOBILE_DOCK_TYPES as Record<string, MobileDockType>;
+
+function isDisabledPath(pathname: string) {
+  return MOBILE_DOCK_DISABLED_PATH_PREFIXES.some((prefix: string) => pathname.startsWith(prefix));
+}
+
+function matchesPattern(pathname: string, pattern: string) {
+  if (pattern.endsWith("/*")) {
+    const base = pattern.slice(0, -2);
+    return pathname.startsWith(`${base}/`);
   }
 
-  if (pathname === "/prices") {
-    return [
-      { label: "Главная", href: "/", icon: Home },
-      { label: "Стили", href: "#styles", icon: Palette, sectionId: "styles" },
-      { label: "Цены", href: "#catalog", icon: Calculator, sectionId: "catalog" },
-      { label: "Рассчитать", href: "#calculate", icon: Ruler, sectionId: "calculate" },
-    ];
+  return pathname === pattern;
+}
+
+function getDockEntry(pathname: string) {
+  if (isDisabledPath(pathname)) return null;
+
+  const entries = Object.entries(CONFIG);
+  const exact = entries.find(([, entry]) => entry.match.some((pattern) => !pattern.endsWith("/*") && pathname === pattern));
+  if (exact) return { key: exact[0], entry: exact[1] };
+
+  const wildcard = entries.find(([, entry]) => entry.match.some((pattern) => matchesPattern(pathname, pattern)));
+  return wildcard ? { key: wildcard[0], entry: wildcard[1] } : null;
+}
+
+function targetExists(selector?: string) {
+  if (!selector) return false;
+
+  try {
+    return Boolean(document.querySelector(selector));
+  } catch {
+    return false;
+  }
+}
+
+function getActionTarget(item: MobileDockItem) {
+  return item.fallbackTarget || item.target;
+}
+
+function resolveItem(item: MobileDockItem, index: number): ResolvedDockItem | null {
+  const candidates = [item, ...(item.alternatives || [])];
+
+  for (const candidate of candidates) {
+    const target = candidate.target || getActionTarget(candidate);
+    const hasTarget = target ? targetExists(target) : false;
+    const hasHref = Boolean(candidate.href);
+    const hasAction = Boolean(candidate.action && getActionTarget(candidate) && targetExists(getActionTarget(candidate)));
+
+    if (!hasHref && !hasTarget && !hasAction) continue;
+
+    const Icon = ICONS[candidate.icon] || Calculator;
+    return {
+      ...candidate,
+      key: `${candidate.label}-${candidate.href || candidate.target || candidate.action || index}`,
+      Icon,
+      activeTarget: target,
+    };
   }
 
-  if (pathname.startsWith("/catalog") || pathname.startsWith("/portfolio")) {
-    return [
-      { label: "Главная", href: "/", icon: Home },
-      { label: "Каталог", href: "/catalog", icon: FolderOpen },
-      { label: "Цены", href: "/prices", icon: Calculator },
-      { label: "Рассчитать", href: "/contacts#form", icon: Ruler },
-    ];
-  }
+  return null;
+}
 
-  if (pathname.startsWith("/locations")) {
-    return [
-      { label: "Главная", href: "/", icon: Home },
-      { label: "Проекты", href: "/portfolio", icon: Images },
-      { label: "Цены", href: "/prices", icon: Calculator },
-      { label: "Рассчитать", href: "/contacts#form", icon: Ruler },
-    ];
-  }
+function focusFirstField(container: Element | null) {
+  const field = container?.querySelector<HTMLElement>(
+    "input:not([type='hidden']):not([disabled]), textarea:not([disabled]), select:not([disabled]), button:not([disabled])",
+  );
 
-  return [
-    { label: "Главная", href: "/", icon: Home },
-    { label: "Каталог", href: "/catalog", icon: FolderOpen },
-    { label: "Цены", href: "/prices", icon: Calculator },
-    { label: "Рассчитать", href: "/contacts#form", icon: Ruler },
+  window.setTimeout(() => field?.focus({ preventScroll: true }), 260);
+}
+
+function scrollToTarget(selector: string, focusForm = false) {
+  const target = document.querySelector(selector);
+  if (!target) return;
+
+  const top = target.getBoundingClientRect().top + window.scrollY - MOBILE_DOCK_SCROLL_OFFSETS.header;
+
+  window.scrollTo({
+    top: Math.max(0, top),
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+  });
+
+  if (focusForm) focusFirstField(target);
+}
+
+function isSuppressedByOverlay() {
+  const overlaySelectors = [
+    "[role='dialog']",
+    "[data-radix-dialog-content]",
+    ".fixed.inset-0",
+    "[data-mobile-dock-suppress='true']",
   ];
+
+  return overlaySelectors.some((selector) => {
+    const element = document.querySelector<HTMLElement>(selector);
+    if (!element) return false;
+
+    const style = window.getComputedStyle(element);
+    if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0) return false;
+
+    const rect = element.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0 && rect.bottom > window.innerHeight * 0.72;
+  });
 }
 
 export function MobileBottomNav() {
   const pathname = usePathname();
-  const items = useMemo(() => getItems(pathname), [pathname]);
-  const [activeHref, setActiveHref] = useState(items[0]?.href || "/");
+  const dockEntry = useMemo(() => getDockEntry(pathname), [pathname]);
+  const [items, setItems] = useState<ResolvedDockItem[]>([]);
+  const [activeKey, setActiveKey] = useState("");
   const [isFormFocused, setIsFormFocused] = useState(false);
+  const [isSuppressed, setIsSuppressed] = useState(false);
+  const clickLockRef = useRef(0);
 
   useEffect(() => {
-    setActiveHref(items.find((item) => item.href === pathname)?.href || items[0]?.href || "/");
-  }, [items, pathname]);
+    if (!dockEntry) {
+      document.body.removeAttribute("data-mobile-dock");
+      setItems([]);
+      return;
+    }
+
+    document.body.dataset.mobileDock = dockEntry.key;
+
+    const resolve = () => {
+      const resolved = dockEntry.entry.items
+        .map((item, index) => resolveItem(item, index))
+        .filter((item): item is ResolvedDockItem => Boolean(item))
+        .slice(0, 4);
+
+      setItems(resolved.length === 4 ? resolved : []);
+      setActiveKey(resolved[0]?.key || "");
+    };
+
+    resolve();
+    const frame = window.requestAnimationFrame(resolve);
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [dockEntry]);
 
   useEffect(() => {
     const onFocusIn = (event: FocusEvent) => {
       const target = event.target as HTMLElement | null;
       setIsFormFocused(Boolean(target?.closest("input, textarea, select, [contenteditable='true']")));
     };
-    const onFocusOut = () => setIsFormFocused(false);
+    const onFocusOut = () => window.setTimeout(() => setIsFormFocused(false), 80);
 
     document.addEventListener("focusin", onFocusIn);
     document.addEventListener("focusout", onFocusOut);
@@ -83,80 +227,110 @@ export function MobileBottomNav() {
   }, []);
 
   useEffect(() => {
-    const sectionItems = items.filter((item) => item.sectionId);
-    if (sectionItems.length === 0) return;
-
-    const elements = sectionItems
-      .map((item) => ({ item, element: document.getElementById(item.sectionId || "") }))
-      .filter((entry): entry is { item: BottomNavItem; element: HTMLElement } => Boolean(entry.element));
-
-    if (elements.length === 0) return;
-
     let frame = 0;
-    const onScroll = () => {
+    const update = () => {
       if (frame) return;
-
       frame = window.requestAnimationFrame(() => {
         frame = 0;
-        const current = elements
-          .map((entry) => ({
-            href: entry.item.href,
-            distance: Math.abs(entry.element.getBoundingClientRect().top - 90),
-            top: entry.element.getBoundingClientRect().top,
-          }))
-          .filter((entry) => entry.top < window.innerHeight * 0.72)
-          .sort((a, b) => a.distance - b.distance)[0];
-
-        if (current) setActiveHref(current.href);
+        setIsSuppressed(isSuppressedByOverlay());
       });
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    document.addEventListener("click", update, true);
+    document.addEventListener("keydown", update, true);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      document.removeEventListener("click", update, true);
+      document.removeEventListener("keydown", update, true);
       if (frame) window.cancelAnimationFrame(frame);
     };
+  }, []);
+
+  useEffect(() => {
+    const sectionItems = items.filter((item) => item.activeTarget?.startsWith("#") && !item.href);
+    if (sectionItems.length === 0) return;
+
+    const observed = sectionItems
+      .map((item) => ({ item, element: document.querySelector(item.activeTarget || "") }))
+      .filter((entry): entry is { item: ResolvedDockItem; element: Element } => Boolean(entry.element));
+
+    if (observed.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))[0];
+
+        const match = observed.find((entry) => entry.element === visible?.target);
+        if (match) setActiveKey(match.item.key);
+      },
+      { rootMargin: "-35% 0px -52% 0px", threshold: [0, 0.12, 0.4] },
+    );
+
+    observed.forEach(({ element }) => observer.observe(element));
+    return () => observer.disconnect();
   }, [items]);
+
+  if (!dockEntry || items.length !== 4) return null;
+
+  function handleItemClick(item: ResolvedDockItem) {
+    const now = Date.now();
+    if (now - clickLockRef.current < 180) return;
+    clickLockRef.current = now;
+    setActiveKey(item.key);
+
+    if (item.href) {
+      window.location.href = item.href;
+      return;
+    }
+
+    const target = getActionTarget(item) || item.target;
+    if (!target) return;
+
+    scrollToTarget(target, Boolean(item.action));
+  }
+
+  const hidden = isFormFocused || isSuppressed;
 
   return (
     <nav
-      className={`fixed inset-x-0 bottom-0 z-[70] border-t border-[#d5b078]/24 bg-[#17120e]/96 px-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-[0_-12px_34px_rgba(0,0,0,0.28)] backdrop-blur transition duration-200 md:hidden ${
-        isFormFocused ? "pointer-events-none translate-y-full opacity-0" : "translate-y-0 opacity-100"
-      }`}
-      aria-label="Нижняя навигация сайта"
+      className={cn("mobile-page-dock", hidden && "mobile-page-dock--hidden")}
+      aria-label="Навигация по странице"
       data-testid="mobile-bottom-nav"
+      data-mobile-dock-type={dockEntry.key}
     >
-      <div className="grid grid-cols-4 gap-2 text-[0.68rem] font-black text-white/76">
-        {items.map((item) => {
-          const Icon = item.icon;
-          const isActive = activeHref === item.href || (item.href !== "/" && pathname === item.href);
+      {items.map((item, index) => {
+        const isActive = activeKey === item.key;
+        const isNeighbor = items[index - 1]?.key === activeKey || items[index + 1]?.key === activeKey;
+        const ariaCurrent = isActive && !item.action ? "location" : undefined;
 
-          return (
-            <a
-              key={`${item.label}-${item.href}`}
-              href={item.href}
-              aria-current={isActive ? "page" : undefined}
-              onClick={() => setActiveHref(item.href)}
-              className={`relative flex min-h-12 flex-col items-center justify-center rounded-lg px-1.5 py-1 transition ${
-                isActive
-                  ? "bg-[#c99a62] text-[#17110b] shadow-[0_8px_20px_rgba(201,154,98,0.24)]"
-                  : "text-white/76 hover:bg-white/8 hover:text-white"
-              }`}
-            >
-              <span
-                className={`absolute inset-x-4 top-0 h-0.5 rounded-full transition ${
-                  isActive ? "bg-[#17110b]/70" : "bg-transparent"
-                }`}
-                aria-hidden
-              />
-              <Icon className="mb-1 h-4 w-4" aria-hidden />
-              <span>{item.label}</span>
-            </a>
-          );
-        })}
-      </div>
+        return (
+          <button
+            key={item.key}
+            className={cn(
+              "mobile-page-dock__item",
+              item.primary && "mobile-page-dock__item--primary",
+              isActive && "mobile-page-dock__item--active",
+              isNeighbor && "mobile-page-dock__item--neighbor",
+            )}
+            type="button"
+            aria-current={ariaCurrent}
+            aria-label={item.label}
+            onClick={() => handleItemClick(item)}
+          >
+            <span className="mobile-page-dock__icon" aria-hidden="true">
+              <item.Icon />
+            </span>
+            <span className="mobile-page-dock__label">{item.label}</span>
+          </button>
+        );
+      })}
     </nav>
   );
 }

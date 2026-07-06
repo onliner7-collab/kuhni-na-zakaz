@@ -1004,7 +1004,7 @@ export function RegionalLocationPage({
     <>
       <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq, jsonLdService].filter(isJsonLdObject)} />
 
-      <section className="relative overflow-hidden bg-stone-950 text-white">
+      <section id="location-prices" className="relative overflow-hidden bg-stone-950 text-white">
         {isMinskRegionHub ? (
           <div className="absolute inset-0">
             <picture>
@@ -1759,7 +1759,7 @@ export function RegionalLocationPage({
       </section>
       )}
 
-      <section className="bg-white section-padding">
+      <section id="location-projects" className="bg-white section-padding">
         <div className="container-site">
           <SectionTitle
             eyebrow="Портфолио"
@@ -1819,7 +1819,7 @@ export function RegionalLocationPage({
         </div>
       </section>
 
-      <section className="bg-muted/30 section-padding">
+      <section id="location-faq" className="bg-muted/30 section-padding">
         <div className="container-site">
           <SectionTitle
             eyebrow="FAQ"
