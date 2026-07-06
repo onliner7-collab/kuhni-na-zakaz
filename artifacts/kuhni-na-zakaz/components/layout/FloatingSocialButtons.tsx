@@ -43,6 +43,8 @@ const DOCK_SCROLL_Y = 120;
 const FLIGHT_DURATION = 680;
 const FLIGHT_EASE = "out(3)";
 const FLIGHT_ROTATION_DEG = 360;
+const FLIGHT_TRANSFORM =
+  "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))";
 
 type FloatingContactIcon = ComponentType<{ className?: string }>;
 type FloatingContactOption = {
@@ -51,6 +53,13 @@ type FloatingContactOption = {
   href: string;
   icon: FloatingContactIcon;
 };
+
+function setFlightTransform(element: HTMLElement, x: number, y: number, rotate: number) {
+  element.style.setProperty("--floating-contact-flight-x", `${x}px`);
+  element.style.setProperty("--floating-contact-flight-y", `${y}px`);
+  element.style.setProperty("--floating-contact-flight-rotate", `${rotate}deg`);
+  element.style.transform = FLIGHT_TRANSFORM;
+}
 
 function TelegramIcon({ className }: { className?: string }) {
   return (
@@ -80,6 +89,7 @@ export function FloatingSocialButtons({
   const layoutRef = useRef<AutoLayout | null>(null);
   const flightAnimationRef = useRef<JSAnimation | null>(null);
   const rootRef = useRef<HTMLElement>(null);
+  const motionRef = useRef<HTMLDivElement>(null);
   const flightFromRectRef = useRef<DOMRect | null>(null);
   const reducedMotionRef = useRef(false);
   const telegramHref = buildTelegramHref(telegram);
@@ -92,14 +102,14 @@ export function FloatingSocialButtons({
   ] as Array<FloatingContactOption | null>).filter((item): item is FloatingContactOption => Boolean(item));
 
   useLayoutEffect(() => {
-    if (!rootRef.current) return;
+    if (!motionRef.current) return;
 
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     reducedMotionRef.current = isReducedMotion;
     setPrefersReducedMotion(isReducedMotion);
     if (isReducedMotion) return;
 
-    layoutRef.current = createLayout(rootRef.current, {
+    layoutRef.current = createLayout(motionRef.current, {
       children: ".floating-contact-item",
       duration: 380,
       ease: "out(3)",
@@ -115,10 +125,11 @@ export function FloatingSocialButtons({
 
   useLayoutEffect(() => {
     const root = rootRef.current;
+    const motion = motionRef.current;
     const fromRect = flightFromRectRef.current;
     flightFromRectRef.current = null;
 
-    if (!root || !fromRect || reducedMotionRef.current) return;
+    if (!root || !motion || !fromRect || reducedMotionRef.current) return;
 
     const toRect = root.getBoundingClientRect();
     const deltaX = fromRect.left - toRect.left;
@@ -127,9 +138,7 @@ export function FloatingSocialButtons({
     if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) return;
 
     flightAnimationRef.current?.cancel();
-    root.style.setProperty("--floating-contact-flight-x", `${deltaX}px`);
-    root.style.setProperty("--floating-contact-flight-y", `${deltaY}px`);
-    root.style.setProperty("--floating-contact-flight-rotate", `${isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG}deg`);
+    setFlightTransform(motion, deltaX, deltaY, isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG);
 
     const flight = {
       x: deltaX,
@@ -144,14 +153,10 @@ export function FloatingSocialButtons({
       duration: FLIGHT_DURATION,
       ease: FLIGHT_EASE,
       onUpdate: () => {
-        root.style.setProperty("--floating-contact-flight-x", `${flight.x}px`);
-        root.style.setProperty("--floating-contact-flight-y", `${flight.y}px`);
-        root.style.setProperty("--floating-contact-flight-rotate", `${flight.rotate}deg`);
+        setFlightTransform(motion, flight.x, flight.y, flight.rotate);
       },
       onComplete: () => {
-        root.style.setProperty("--floating-contact-flight-x", "0px");
-        root.style.setProperty("--floating-contact-flight-y", "0px");
-        root.style.setProperty("--floating-contact-flight-rotate", "0deg");
+        setFlightTransform(motion, 0, 0, 0);
         flightAnimationRef.current = null;
       },
     });
@@ -225,12 +230,14 @@ export function FloatingSocialButtons({
   }
 
   const CycleIcon = visibleOptions[cycleIndex]?.icon ?? MessageCircle;
-  const flightStyle = {
+  const rootStyle = {
+    left: isDocked ? "calc(50% - min(9.5rem, calc((100vw - 2rem) / 2)))" : undefined,
+  } as CSSProperties;
+  const motionStyle = {
     "--floating-contact-flight-x": "0px",
     "--floating-contact-flight-y": "0px",
     "--floating-contact-flight-rotate": "0deg",
-    left: isDocked ? "calc(50% - min(9.5rem, calc((100vw - 2rem) / 2)))" : undefined,
-    transform: "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))",
+    transform: FLIGHT_TRANSFORM,
     transformOrigin: "center center",
     transition: prefersReducedMotion ? "none" : undefined,
   } as CSSProperties;
@@ -239,94 +246,103 @@ export function FloatingSocialButtons({
     <nav
       ref={rootRef}
       aria-label="Быстрая связь"
-      style={flightStyle}
+      style={rootStyle}
       className={cn(
-        "fixed flex max-w-[calc(100vw-2rem)] gap-2 will-change-transform motion-reduce:transition-none",
+        "fixed max-w-[calc(100vw-2rem)] motion-reduce:transition-none",
         isDocked
-          ? "top-3 bottom-auto right-auto z-[60] w-[min(19rem,calc(100vw-2rem))] flex-col items-center lg:top-4"
-          : "right-7 bottom-36 left-auto top-auto z-40 flex-col items-end lg:right-5 lg:bottom-6",
+          ? "top-3 bottom-auto right-auto z-[60] w-[min(19rem,calc(100vw-2rem))] lg:top-4"
+          : "right-7 bottom-36 left-auto top-auto z-40 lg:right-5 lg:bottom-6",
       )}
       data-state={isOpen ? "open" : "closed"}
       data-position={isDocked ? "header" : "floating"}
       data-testid="floating-social-buttons"
     >
-      {isOpen && (
-        <div
-          id="floating-contact-panel"
-          className={cn(
-            "floating-contact-item w-[min(19rem,calc(100vw-2rem))] rounded-lg border border-border/80 bg-white p-3 shadow-2xl shadow-black/20",
-            isDocked ? "order-2" : "order-1",
-          )}
-        >
-          <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            Скидка 5% с сайта
-          </p>
-          <div className="grid gap-2">
-            {telegramHref && (
-              <a
-                href={telegramHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Написать в Telegram"
-                data-analytics-source="floating-contact-buttons"
-                data-testid="floating-social-telegram"
-                className="inline-flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
-                style={{ backgroundColor: TELEGRAM_BLUE }}
-              >
-                <TelegramIcon className="h-5 w-5" />
-                Написать в Telegram
-              </a>
-            )}
-            {instagramHref && (
-              <a
-                href={instagramHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Открыть Instagram"
-                data-analytics-source="floating-contact-buttons"
-                data-testid="floating-social-instagram"
-                className="inline-flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
-                style={{ background: INSTAGRAM_GRADIENT }}
-              >
-                <Instagram className="h-5 w-5" aria-hidden="true" />
-                Открыть Instagram
-              </a>
-            )}
-            {phoneHref && (
-              <PhoneReveal
-                phone={phone}
-                phoneHref={phoneHref}
-                source="floating-contact-buttons"
-                compact
-                className="min-h-11 w-full justify-start rounded-md"
-              />
-            )}
-          </div>
-        </div>
-      )}
-      <button
-        type="button"
-        onClick={toggleOpen}
-        aria-expanded={isOpen}
-        aria-controls="floating-contact-panel"
-        data-testid="floating-contact-toggle"
+      <div
+        ref={motionRef}
+        style={motionStyle}
         className={cn(
-          "electric-contact-toggle floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-transparent bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100",
-          isDocked ? "order-1" : "order-2",
+          "flex gap-2 will-change-transform motion-reduce:transition-none",
+          isDocked ? "w-full flex-col items-center" : "flex-col items-end",
         )}
       >
-        <ElectricContactBorder className="electric-contact-frame" borderRadius={999} color="#5bf4ff" chaos={0.075} speed={0.38} thickness={0.95} />
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950">
-          <CycleIcon className="h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]" aria-hidden="true" />
-        </span>
-        <span className={cn("min-w-0 pr-1", isOpen ? "hidden sm:block" : "block")}>
-          <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100/78">
-            Скидка 5%
+        {isOpen && (
+          <div
+            id="floating-contact-panel"
+            className={cn(
+              "floating-contact-item w-[min(19rem,calc(100vw-2rem))] rounded-lg border border-border/80 bg-white p-3 shadow-2xl shadow-black/20",
+              isDocked ? "order-2" : "order-1",
+            )}
+          >
+            <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+              Скидка 5% с сайта
+            </p>
+            <div className="grid gap-2">
+              {telegramHref && (
+                <a
+                  href={telegramHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Написать в Telegram"
+                  data-analytics-source="floating-contact-buttons"
+                  data-testid="floating-social-telegram"
+                  className="inline-flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
+                  style={{ backgroundColor: TELEGRAM_BLUE }}
+                >
+                  <TelegramIcon className="h-5 w-5" />
+                  Написать в Telegram
+                </a>
+              )}
+              {instagramHref && (
+                <a
+                  href={instagramHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Открыть Instagram"
+                  data-analytics-source="floating-contact-buttons"
+                  data-testid="floating-social-instagram"
+                  className="inline-flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-white transition-transform hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
+                  style={{ background: INSTAGRAM_GRADIENT }}
+                >
+                  <Instagram className="h-5 w-5" aria-hidden="true" />
+                  Открыть Instagram
+                </a>
+              )}
+              {phoneHref && (
+                <PhoneReveal
+                  phone={phone}
+                  phoneHref={phoneHref}
+                  source="floating-contact-buttons"
+                  compact
+                  className="min-h-11 w-full justify-start rounded-md"
+                />
+              )}
+            </div>
+          </div>
+        )}
+        <button
+          type="button"
+          onClick={toggleOpen}
+          aria-expanded={isOpen}
+          aria-controls="floating-contact-panel"
+          data-testid="floating-contact-toggle"
+          className={cn(
+            "electric-contact-toggle floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-transparent bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100",
+            isDocked ? "order-1" : "order-2",
+          )}
+        >
+          <ElectricContactBorder className="electric-contact-frame" borderRadius={999} color="#5bf4ff" chaos={0.075} speed={0.38} thickness={0.95} />
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950">
+            <CycleIcon className="h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]" aria-hidden="true" />
           </span>
-          <span className="block whitespace-nowrap text-sm font-bold">Связаться</span>
-        </span>
-        <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} aria-hidden="true" />
-      </button>
+          <span className={cn("min-w-0 pr-1", isOpen ? "hidden sm:block" : "block")}>
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100/78">
+              Скидка 5%
+            </span>
+            <span className="block whitespace-nowrap text-sm font-bold">Связаться</span>
+          </span>
+          <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} aria-hidden="true" />
+        </button>
+      </div>
     </nav>
   );
 }
