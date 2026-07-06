@@ -229,9 +229,8 @@ export function FloatingSocialButtons({
     "--floating-contact-flight-x": "0px",
     "--floating-contact-flight-y": "0px",
     "--floating-contact-flight-rotate": "0deg",
-    transform: isDocked
-      ? "translateX(-50%) translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))"
-      : "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))",
+    left: isDocked ? "calc(50% - min(9.5rem, calc((100vw - 2rem) / 2)))" : undefined,
+    transform: "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))",
     transformOrigin: "center center",
     transition: prefersReducedMotion ? "none" : undefined,
   } as CSSProperties;
@@ -244,7 +243,7 @@ export function FloatingSocialButtons({
       className={cn(
         "fixed flex max-w-[calc(100vw-2rem)] gap-2 will-change-transform motion-reduce:transition-none",
         isDocked
-          ? "left-1/2 top-3 bottom-auto right-auto z-[60] flex-col-reverse items-center lg:top-4"
+          ? "top-3 bottom-auto right-auto z-[60] w-[min(19rem,calc(100vw-2rem))] flex-col items-center lg:top-4"
           : "right-7 bottom-36 left-auto top-auto z-40 flex-col items-end lg:right-5 lg:bottom-6",
       )}
       data-state={isOpen ? "open" : "closed"}
@@ -254,7 +253,10 @@ export function FloatingSocialButtons({
       {isOpen && (
         <div
           id="floating-contact-panel"
-          className="floating-contact-item w-[min(19rem,calc(100vw-2rem))] rounded-lg border border-border/80 bg-white p-3 shadow-2xl shadow-black/20"
+          className={cn(
+            "floating-contact-item w-[min(19rem,calc(100vw-2rem))] rounded-lg border border-border/80 bg-white p-3 shadow-2xl shadow-black/20",
+            isDocked ? "order-2" : "order-1",
+          )}
         >
           <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
             Скидка 5% с сайта
@@ -308,7 +310,10 @@ export function FloatingSocialButtons({
         aria-expanded={isOpen}
         aria-controls="floating-contact-panel"
         data-testid="floating-contact-toggle"
-        className="electric-contact-toggle floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-transparent bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+        className={cn(
+          "electric-contact-toggle floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-transparent bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100",
+          isDocked ? "order-1" : "order-2",
+        )}
       >
         <ElectricContactBorder className="electric-contact-frame" borderRadius={999} color="#5bf4ff" chaos={0.075} speed={0.38} thickness={0.95} />
         <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950">

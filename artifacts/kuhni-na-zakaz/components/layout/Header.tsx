@@ -97,9 +97,7 @@ const CTA_LABEL = "\u0421\u043e\u0433\u043b\u0430\u0441\u043e\u0432\u0430\u0442\
 const USEFUL_SECTIONS_LABEL = "\u041f\u043e\u043b\u0435\u0437\u043d\u044b\u0435 \u0440\u0430\u0437\u0434\u0435\u043b\u044b";
 const HOME_ARIA =
   "\u041a\u0443\u0445\u043d\u0438BY \u2014 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c \u043a\u0443\u0445\u043e\u043d\u044c \u043d\u0430 \u0437\u0430\u043a\u0430\u0437 \u0432 \u0411\u0435\u043b\u0430\u0440\u0443\u0441\u0438";
-const CARD_NAV_OPEN = "Открыть карточное меню";
-const CARD_NAV_CLOSE = "Закрыть карточное меню";
-const CARD_NAV_DURATION = 420;
+const CARD_NAV_DURATION = 1050;
 const CARD_NAV_EASE = "out(3)";
 
 function isActivePath(pathname: string, href: string, exact = false) {
@@ -171,12 +169,12 @@ function MobileNavLink({
 
 function HeaderCardNavPanel({
   open,
-  isOverlay,
   reducedMotion,
+  pathname,
 }: {
   open: boolean;
-  isOverlay: boolean;
   reducedMotion: boolean;
+  pathname: string;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -194,7 +192,8 @@ function HeaderCardNavPanel({
     cardAnimationRefs.current = [];
 
     const cards = cardRefs.current.filter((card): card is HTMLDivElement => Boolean(card));
-    const targetHeight = open ? content.scrollHeight + 16 : 0;
+    const maxPanelHeight = Math.max(320, window.innerHeight - 72);
+    const targetHeight = open ? Math.min(content.scrollHeight + 16, maxPanelHeight) : 0;
 
     if (reducedMotion) {
       panel.style.height = open ? `${targetHeight}px` : "0px";
@@ -214,7 +213,7 @@ function HeaderCardNavPanel({
         panel.style.height = `${heightState.height}px`;
       },
       onComplete: () => {
-        panel.style.height = open ? "auto" : "0px";
+        panel.style.height = open ? `${targetHeight}px` : "0px";
         animationRef.current = null;
       },
     });
@@ -228,8 +227,8 @@ function HeaderCardNavPanel({
       const cardAnimation = animate(cardState, {
         y: open ? 0 : 24,
         opacity: open ? 1 : 0,
-        duration: open ? 360 : 220,
-        delay: open ? index * 70 + 80 : 0,
+        duration: open ? 820 : 420,
+        delay: open ? index * 150 + 180 : 0,
         ease: CARD_NAV_EASE,
         onUpdate: () => {
           card.style.opacity = String(cardState.opacity);
@@ -251,23 +250,21 @@ function HeaderCardNavPanel({
   return (
     <div
       ref={panelRef}
-      id="header-card-navigation"
-      className={cn(
-        "hidden overflow-hidden lg:block",
-        isOverlay ? "border-t border-white/12" : "border-t border-border/70",
-      )}
+      id="mobile-navigation"
+      className="overflow-hidden border-t border-border bg-white/95 shadow-[0_18px_44px_rgba(15,23,42,0.08)] backdrop-blur-xl lg:hidden"
       style={{ height: 0 }}
       aria-hidden={!open}
-      data-testid="header-card-nav-panel"
+      inert={!open ? true : undefined}
+      data-testid="mobile-card-nav-panel"
     >
-      <div ref={contentRef} className="grid grid-cols-3 gap-3 py-3">
+      <div ref={contentRef} className="container-site grid h-full gap-3 overflow-y-auto py-4">
         {HEADER_CARD_GROUPS.map((group, index) => (
           <div
             key={group.label}
             ref={(element) => {
               cardRefs.current[index] = element;
             }}
-            className="min-h-[8.5rem] rounded-lg p-4 opacity-0 shadow-sm"
+            className="min-h-48 rounded-lg p-4 opacity-0 shadow-sm"
             style={
               {
                 backgroundColor: group.bgColor,
@@ -293,6 +290,46 @@ function HeaderCardNavPanel({
             </div>
           </div>
         ))}
+        <div
+          ref={(element) => {
+            cardRefs.current[HEADER_CARD_GROUPS.length] = element;
+          }}
+          className="rounded-lg border border-border bg-muted/40 p-4 opacity-0"
+          style={{ transform: "translate3d(0, 24px, 0)" }}
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+            {USEFUL_SECTIONS_LABEL}
+          </p>
+          <div className="mt-3 grid gap-2">
+            {[...SECONDARY_NAV_LINKS, ...MOBILE_EXTRA_LINKS].map((link) => (
+              <MobileNavLink key={link.href} {...link} pathname={pathname} />
+            ))}
+          </div>
+        </div>
+        <div
+          ref={(element) => {
+            cardRefs.current[HEADER_CARD_GROUPS.length + 1] = element;
+          }}
+          className="grid gap-2 opacity-0"
+          style={{ transform: "translate3d(0, 24px, 0)" }}
+        >
+          <Link
+            href="/contacts#form"
+            prefetch={false}
+            tabIndex={open ? undefined : -1}
+            className="btn-primary justify-center rounded-lg py-3.5 text-sm shadow-xl shadow-primary/20"
+          >
+            {CTA_LABEL}
+          </Link>
+
+          <PhoneReveal
+            phone={CONTACT_DEFAULTS.phoneDisplay}
+            phoneHref={`tel:${CONTACT_DEFAULTS.phone}`}
+            source="mobile-menu"
+            compact
+            className="justify-center rounded-lg py-3.5"
+          />
+        </div>
       </div>
     </div>
   );
@@ -309,7 +346,6 @@ export function Header({
   const phoneLink = phoneHref || `tel:${CONTACT_DEFAULTS.phone}`;
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [cardNavOpen, setCardNavOpen] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
@@ -356,7 +392,6 @@ export function Header({
 
   useEffect(() => {
     setOpen(false);
-    setCardNavOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -383,7 +418,8 @@ export function Header({
   return (
     <header
       className={cn(
-        "top-0 z-50 border-b transition-all duration-300",
+        "top-0 border-b transition-all duration-300",
+        open ? "z-[90]" : "z-50",
         isOverlay
           ? "absolute inset-x-0 border-white/12 bg-transparent text-white"
           : "sticky border-border/70 bg-white/96 text-foreground",
@@ -482,81 +518,15 @@ export function Header({
               aria-label={EXTRA_NAV_ARIA}
               className="flex items-center gap-1 py-2"
             >
-              <button
-                type="button"
-                onClick={() => setCardNavOpen((value) => !value)}
-                aria-expanded={cardNavOpen}
-                aria-controls="header-card-navigation"
-                aria-label={cardNavOpen ? CARD_NAV_CLOSE : CARD_NAV_OPEN}
-                data-testid="header-card-nav-toggle"
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200",
-                  isOverlay
-                    ? "text-white/86 hover:bg-white/12 hover:text-white"
-                    : cardNavOpen
-                      ? "bg-primary/10 text-primary"
-                      : "text-foreground/72 hover:bg-muted hover:text-foreground",
-                )}
-              >
-                {cardNavOpen ? <X className="h-4 w-4" aria-hidden /> : <Menu className="h-4 w-4" aria-hidden />}
-                <span>Разделы</span>
-              </button>
               {SECONDARY_NAV_LINKS.map((link) => (
                 <DesktopNavLink key={link.href} {...link} pathname={pathname} isOverlay={isOverlay} />
               ))}
             </nav>
           </div>
         </div>
-        <HeaderCardNavPanel open={cardNavOpen} isOverlay={isOverlay} reducedMotion={reducedMotion} />
       </div>
 
-      {open && (
-        <div
-          id="mobile-navigation"
-          className="border-t border-border bg-white/95 shadow-[0_18px_44px_rgba(15,23,42,0.08)] backdrop-blur-xl lg:hidden"
-        >
-          <div className="container-site py-4">
-            <nav aria-label={MOBILE_NAV_ARIA} className="grid gap-2">
-              {PRIMARY_NAV_LINKS.map((link) => (
-                <MobileNavLink key={link.href} {...link} pathname={pathname} />
-              ))}
-              {SECONDARY_NAV_LINKS.map((link) => (
-                <MobileNavLink key={link.href} {...link} pathname={pathname} />
-              ))}
-            </nav>
-
-            <div className="mt-4 rounded-3xl border border-border bg-muted/40 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                {USEFUL_SECTIONS_LABEL}
-              </p>
-              <div className="mt-3 grid gap-2">
-                {MOBILE_EXTRA_LINKS.map((link) => (
-                  <MobileNavLink key={link.href} {...link} pathname={pathname} />
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 grid gap-2">
-              <Link
-                href="/contacts#form"
-                prefetch={false}
-                className="btn-primary justify-center rounded-2xl py-3.5 text-sm shadow-xl shadow-primary/20"
-              >
-                {CTA_LABEL}
-              </Link>
-
-              <PhoneReveal
-                phone={phoneDisplay}
-                phoneHref={phoneLink}
-                source="mobile-menu"
-                compact
-                className="justify-center rounded-2xl py-3.5"
-              />
-
-            </div>
-          </div>
-        </div>
-      )}
+      <HeaderCardNavPanel open={open} reducedMotion={reducedMotion} pathname={pathname} />
     </header>
   );
 }
