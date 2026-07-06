@@ -101,6 +101,7 @@ interface LayoutOption {
 
 const heroImage = "/uploads/seo-showcase/home-hero-dark-kitchen-2026.webp";
 const heroMobileImage = "/uploads/seo-showcase/home-hero-mobile-kitchen-2026-480.webp";
+const MAX_HOME_PORTFOLIO_PHOTOS = 12;
 
 const styleOptions = [
   {
@@ -536,7 +537,7 @@ function normalizeProjectPhotos(projects: HomeProjectCard[]) {
       imageAlt: project.imageAlts?.[index] || `${project.title}, ${project.city || "Минск"}, фото ${index + 1}`,
       photoIndex: index,
     }));
-  });
+  }).slice(0, MAX_HOME_PORTFOLIO_PHOTOS);
 }
 
 function saveSelection(style: string, layout: string, budget: string) {
@@ -556,7 +557,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const portfolioPhotos = useMemo(() => normalizeProjectPhotos(projects), [projects]);
   const loopedPortfolioPhotos = useMemo(() => {
     if (portfolioPhotos.length <= 1) return portfolioPhotos;
-    const repeatCount = portfolioPhotos.length < 12 ? 5 : 3;
+    const repeatCount = portfolioPhotos.length < 6 ? 3 : 2;
 
     return Array.from({ length: repeatCount }, (_, repeatIndex) =>
       portfolioPhotos.map((project) => ({

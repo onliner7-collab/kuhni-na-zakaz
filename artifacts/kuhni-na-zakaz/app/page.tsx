@@ -187,11 +187,11 @@ const HOME_URL = canonicalSiteUrl("/");
 
 /** Alt для витринного фото в первом экране (SEO / доступность). */
 const HERO_KITCHEN_ALT =
-  "Купить кухню, кухня на заказ в Минске, темный гарнитур с островом и подсветкой";
+  "Темный кухонный гарнитур с островом и подсветкой для квартиры в Минске";
 
-const HOME_TITLE = "Купить кухню, кухня на заказ в Минске";
+const HOME_TITLE = "Кухни на заказ в Минске под размер";
 const HOME_DESCRIPTION =
-  "Купить кухню, кухня на заказ в Минске от производителя: замер, проект, изготовление, доставка, монтаж и расчет цены под размеры помещения.";
+  "Кухни на заказ в Минске под размеры помещения: замер, 3D-проект, изготовление, доставка, монтаж и расчет цены по комплектации.";
 
 export const metadata: Metadata = {
   title: `${HOME_TITLE} | ${SITE_NAME}`,
@@ -228,6 +228,7 @@ async function getHomeData() {
       prisma.portfolioCase.findMany({
         where: { published: true, slug: publicSlugWhere() },
         orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
+        take: 12,
       }),
       prisma.review.findMany({ where: { status: "PUBLISHED" }, take: 12, orderBy: { createdAt: "desc" } }),
       prisma.fAQItem.findMany({ where: { page: "home" }, orderBy: { order: "asc" } }),
@@ -470,7 +471,7 @@ export default async function HomePage() {
         <div className="container-site">
           <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Купить кухню, кухня на заказ: фасады и материалы</h2>
+              <h2 className="font-serif text-3xl lg:text-4xl font-bold">Фасады и материалы для кухни под заказ</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                 Сравните МДФ, ЛДСП и пластик HPL до расчета: где каждый материал уместен, какие есть ограничения и на что смотреть в проекте.
               </p>
