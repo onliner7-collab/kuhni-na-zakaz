@@ -42,6 +42,7 @@ const INSTAGRAM_GRADIENT =
 const DOCK_SCROLL_Y = 120;
 const FLIGHT_DURATION = 680;
 const FLIGHT_EASE = "out(3)";
+const FLIGHT_ROTATION_DEG = 360;
 
 type FloatingContactIcon = ComponentType<{ className?: string }>;
 type FloatingContactOption = {
@@ -128,21 +129,29 @@ export function FloatingSocialButtons({
     flightAnimationRef.current?.cancel();
     root.style.setProperty("--floating-contact-flight-x", `${deltaX}px`);
     root.style.setProperty("--floating-contact-flight-y", `${deltaY}px`);
+    root.style.setProperty("--floating-contact-flight-rotate", `${isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG}deg`);
 
-    const flight = { x: deltaX, y: deltaY };
+    const flight = {
+      x: deltaX,
+      y: deltaY,
+      rotate: isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG,
+    };
 
     flightAnimationRef.current = animate(flight, {
       x: 0,
       y: 0,
+      rotate: 0,
       duration: FLIGHT_DURATION,
       ease: FLIGHT_EASE,
       onUpdate: () => {
         root.style.setProperty("--floating-contact-flight-x", `${flight.x}px`);
         root.style.setProperty("--floating-contact-flight-y", `${flight.y}px`);
+        root.style.setProperty("--floating-contact-flight-rotate", `${flight.rotate}deg`);
       },
       onComplete: () => {
         root.style.setProperty("--floating-contact-flight-x", "0px");
         root.style.setProperty("--floating-contact-flight-y", "0px");
+        root.style.setProperty("--floating-contact-flight-rotate", "0deg");
         flightAnimationRef.current = null;
       },
     });
@@ -219,9 +228,11 @@ export function FloatingSocialButtons({
   const flightStyle = {
     "--floating-contact-flight-x": "0px",
     "--floating-contact-flight-y": "0px",
+    "--floating-contact-flight-rotate": "0deg",
     transform: isDocked
-      ? "translateX(-50%) translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0)"
-      : "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0)",
+      ? "translateX(-50%) translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))"
+      : "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))",
+    transformOrigin: "center center",
     transition: prefersReducedMotion ? "none" : undefined,
   } as CSSProperties;
 
