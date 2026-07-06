@@ -7,8 +7,8 @@ import { expect, test } from "@playwright/test";
 //   Instagram-кнопка должна быть отрисована — что и проверяем.
 // - На /admin страницах кнопок быть не должно: app/layout.tsx отключает их
 //   через флаг isAdmin (path.startsWith("/admin")).
-// - На мобильном viewport (где появляется MobileCTA после скролла) кнопки
-//   не должны физически перекрывать панель MobileCTA.
+// - На мобильном viewport кнопки после скролла переезжают в шапку и не должны
+//   физически перекрывать нижнюю мобильную навигацию.
 
 test.describe("FloatingSocialButtons (public)", () => {
   test("visible on public homepage when contact links are configured", async ({
@@ -44,33 +44,34 @@ test.describe("FloatingSocialButtons (public)", () => {
     await expect(page.getByTestId("floating-social-buttons")).toHaveCount(0);
   });
 
-  test("does not overlap MobileCTA on mobile viewport", async ({ page }) => {
+  test("moves into the header and does not overlap mobile bottom nav", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    // MobileCTA появляется только после скролла > 300px (см. MobileCTA.tsx).
     await page.evaluate(() => window.scrollTo(0, 800));
 
-    const mobileCTA = page.getByTestId("mobile-cta-bar");
+    const mobileNav = page.getByTestId("mobile-bottom-nav");
     const fab = page.getByTestId("floating-social-buttons");
 
-    await expect(mobileCTA).toBeVisible();
+    await expect(mobileNav).toBeVisible();
     await expect(fab).toBeVisible();
+    await expect(fab).toHaveAttribute("data-position", "header");
 
-    const ctaBox = await mobileCTA.boundingBox();
+    const navBox = await mobileNav.boundingBox();
     const fabBox = await fab.boundingBox();
 
-    expect(ctaBox, "MobileCTA bounding box").not.toBeNull();
+    expect(navBox, "Mobile bottom nav bounding box").not.toBeNull();
     expect(fabBox, "FloatingSocialButtons bounding box").not.toBeNull();
 
-    if (ctaBox && fabBox) {
+    if (navBox && fabBox) {
       const fabBottom = fabBox.y + fabBox.height;
-      // Нижняя граница плавающих кнопок должна быть выше верхней границы
-      // MobileCTA — иначе кнопки и панель визуально перекрывают друг друга.
       expect(
         fabBottom,
-        `FAB bottom=${fabBottom} must be <= MobileCTA top=${ctaBox.y}`,
-      ).toBeLessThanOrEqual(ctaBox.y);
+        `FAB bottom=${fabBottom} must be <= mobile nav top=${navBox.y}`,
+      ).toBeLessThanOrEqual(navBox.y);
+
+      const fabCenterX = fabBox.x + fabBox.width / 2;
+      expect(Math.abs(fabCenterX - 195)).toBeLessThanOrEqual(24);
     }
   });
 });

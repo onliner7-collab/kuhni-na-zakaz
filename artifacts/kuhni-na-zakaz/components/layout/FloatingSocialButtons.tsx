@@ -69,6 +69,7 @@ export function FloatingSocialButtons({
   phoneHref,
 }: FloatingSocialButtonsProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDocked, setIsDocked] = useState(false);
   const [cycleIndex, setCycleIndex] = useState(0);
   const layoutRef = useRef<AutoLayout | null>(null);
   const rootRef = useRef<HTMLElement>(null);
@@ -100,6 +101,34 @@ export function FloatingSocialButtons({
     return () => {
       layoutRef.current?.revert();
       layoutRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    let frame = 0;
+    let lastDocked = window.scrollY > 120;
+
+    setIsDocked(lastDocked);
+
+    const onScroll = () => {
+      if (frame) return;
+
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const nextDocked = window.scrollY > 120;
+
+        if (nextDocked !== lastDocked) {
+          lastDocked = nextDocked;
+          setIsDocked(nextDocked);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 
@@ -142,8 +171,14 @@ export function FloatingSocialButtons({
     <nav
       ref={rootRef}
       aria-label="Быстрая связь"
-      className="fixed right-7 bottom-36 z-40 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-2 lg:right-5 lg:bottom-6"
+      className={cn(
+        "fixed flex max-w-[calc(100vw-2rem)] gap-2 transition-[top,right,bottom,left,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+        isDocked
+          ? "left-1/2 top-3 bottom-auto right-auto z-[60] -translate-x-1/2 flex-col-reverse items-center lg:top-4"
+          : "right-7 bottom-36 left-auto top-auto z-40 translate-x-0 flex-col items-end lg:right-5 lg:bottom-6",
+      )}
       data-state={isOpen ? "open" : "closed"}
+      data-position={isDocked ? "header" : "floating"}
       data-testid="floating-social-buttons"
     >
       {isOpen && (
