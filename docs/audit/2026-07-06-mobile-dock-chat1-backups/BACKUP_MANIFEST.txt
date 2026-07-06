@@ -1,0 +1,16 @@
+﻿artifacts\kuhni-na-zakaz\components\layout\MobileBottomNav.tsx
+artifacts\kuhni-na-zakaz\components\layout\PublicChrome.tsx
+artifacts\kuhni-na-zakaz\components\layout\Header.tsx
+artifacts\kuhni-na-zakaz\components\layout\FloatingSocialButtons.tsx
+artifacts\kuhni-na-zakaz\components\sections\ContactForm.tsx
+artifacts\kuhni-na-zakaz\app\globals.css
+artifacts\kuhni-na-zakaz\app\layout.tsx
+artifacts\kuhni-na-zakaz\components\home\HomeMobileShowroom.tsx
+artifacts\kuhni-na-zakaz\components\prices\InteractivePricesCatalog.tsx
+artifacts\kuhni-na-zakaz\components\design-project\DesignProjectInteractive.tsx
+artifacts\kuhni-na-zakaz\components\portfolio\PortfolioFilters.tsx
+artifacts\kuhni-na-zakaz\components\locations\RegionalLocationPage.tsx
+artifacts\kuhni-na-zakaz\app\locations\[city]\page.tsx
+artifacts\kuhni-na-zakaz\app\catalog\[slug]\page.tsx
+artifacts\kuhni-na-zakaz\app\materials\[slug]\page.tsx
+artifacts\kuhni-na-zakaz\app\portfolio\[slug]\page.tsx
