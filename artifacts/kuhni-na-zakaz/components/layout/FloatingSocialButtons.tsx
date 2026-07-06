@@ -1,7 +1,8 @@
 "use client";
 
-import { type ComponentType, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { type ComponentType, type CSSProperties, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ChevronDown, Instagram, MessageCircle, Phone } from "lucide-react";
+import { animate, type JSAnimation } from "animejs";
 import { createLayout, type AutoLayout } from "animejs/layout";
 
 import { ElectricContactBorder } from "@/components/layout/ElectricContactBorder";
@@ -38,6 +39,9 @@ interface FloatingSocialButtonsProps {
 const TELEGRAM_BLUE = "#229ED9";
 const INSTAGRAM_GRADIENT =
   "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)";
+const DOCK_SCROLL_Y = 120;
+const FLIGHT_DURATION = 680;
+const FLIGHT_EASE = "out(3)";
 
 type FloatingContactIcon = ComponentType<{ className?: string }>;
 type FloatingContactOption = {
@@ -71,8 +75,11 @@ export function FloatingSocialButtons({
   const [isOpen, setIsOpen] = useState(false);
   const [isDocked, setIsDocked] = useState(false);
   const [cycleIndex, setCycleIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const layoutRef = useRef<AutoLayout | null>(null);
+  const flightAnimationRef = useRef<JSAnimation | null>(null);
   const rootRef = useRef<HTMLElement>(null);
+  const flightFromRectRef = useRef<DOMRect | null>(null);
   const reducedMotionRef = useRef(false);
   const telegramHref = buildTelegramHref(telegram);
   const instagramHref = buildInstagramHref(instagram);
@@ -88,6 +95,7 @@ export function FloatingSocialButtons({
 
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     reducedMotionRef.current = isReducedMotion;
+    setPrefersReducedMotion(isReducedMotion);
     if (isReducedMotion) return;
 
     layoutRef.current = createLayout(rootRef.current, {
@@ -104,9 +112,50 @@ export function FloatingSocialButtons({
     };
   }, []);
 
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    const fromRect = flightFromRectRef.current;
+    flightFromRectRef.current = null;
+
+    if (!root || !fromRect || reducedMotionRef.current) return;
+
+    const toRect = root.getBoundingClientRect();
+    const deltaX = fromRect.left - toRect.left;
+    const deltaY = fromRect.top - toRect.top;
+
+    if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) return;
+
+    flightAnimationRef.current?.cancel();
+    root.style.setProperty("--floating-contact-flight-x", `${deltaX}px`);
+    root.style.setProperty("--floating-contact-flight-y", `${deltaY}px`);
+
+    const flight = { x: deltaX, y: deltaY };
+
+    flightAnimationRef.current = animate(flight, {
+      x: 0,
+      y: 0,
+      duration: FLIGHT_DURATION,
+      ease: FLIGHT_EASE,
+      onUpdate: () => {
+        root.style.setProperty("--floating-contact-flight-x", `${flight.x}px`);
+        root.style.setProperty("--floating-contact-flight-y", `${flight.y}px`);
+      },
+      onComplete: () => {
+        root.style.setProperty("--floating-contact-flight-x", "0px");
+        root.style.setProperty("--floating-contact-flight-y", "0px");
+        flightAnimationRef.current = null;
+      },
+    });
+
+    return () => {
+      flightAnimationRef.current?.cancel();
+      flightAnimationRef.current = null;
+    };
+  }, [isDocked]);
+
   useEffect(() => {
     let frame = 0;
-    let lastDocked = window.scrollY > 120;
+    let lastDocked = window.scrollY > DOCK_SCROLL_Y;
 
     setIsDocked(lastDocked);
 
@@ -115,10 +164,11 @@ export function FloatingSocialButtons({
 
       frame = window.requestAnimationFrame(() => {
         frame = 0;
-        const nextDocked = window.scrollY > 120;
+        const nextDocked = window.scrollY > DOCK_SCROLL_Y;
 
         if (nextDocked !== lastDocked) {
           lastDocked = nextDocked;
+          flightFromRectRef.current = rootRef.current?.getBoundingClientRect() ?? null;
           setIsDocked(nextDocked);
         }
       });
@@ -166,16 +216,25 @@ export function FloatingSocialButtons({
   }
 
   const CycleIcon = visibleOptions[cycleIndex]?.icon ?? MessageCircle;
+  const flightStyle = {
+    "--floating-contact-flight-x": "0px",
+    "--floating-contact-flight-y": "0px",
+    transform: isDocked
+      ? "translateX(-50%) translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0)"
+      : "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0)",
+    transition: prefersReducedMotion ? "none" : undefined,
+  } as CSSProperties;
 
   return (
     <nav
       ref={rootRef}
       aria-label="Быстрая связь"
+      style={flightStyle}
       className={cn(
-        "fixed flex max-w-[calc(100vw-2rem)] gap-2 transition-[top,right,bottom,left,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+        "fixed flex max-w-[calc(100vw-2rem)] gap-2 will-change-transform motion-reduce:transition-none",
         isDocked
-          ? "left-1/2 top-3 bottom-auto right-auto z-[60] -translate-x-1/2 flex-col-reverse items-center lg:top-4"
-          : "right-7 bottom-36 left-auto top-auto z-40 translate-x-0 flex-col items-end lg:right-5 lg:bottom-6",
+          ? "left-1/2 top-3 bottom-auto right-auto z-[60] flex-col-reverse items-center lg:top-4"
+          : "right-7 bottom-36 left-auto top-auto z-40 flex-col items-end lg:right-5 lg:bottom-6",
       )}
       data-state={isOpen ? "open" : "closed"}
       data-position={isDocked ? "header" : "floating"}
