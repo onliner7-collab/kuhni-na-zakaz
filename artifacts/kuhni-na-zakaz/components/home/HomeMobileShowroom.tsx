@@ -555,17 +555,6 @@ function saveSelection(style: string, layout: string, budget: string) {
 export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeMobileShowroomProps) {
   const projectTrackRef = useRef<HTMLDivElement>(null);
   const portfolioPhotos = useMemo(() => normalizeProjectPhotos(projects), [projects]);
-  const loopedPortfolioPhotos = useMemo(() => {
-    if (portfolioPhotos.length <= 1) return portfolioPhotos;
-    const repeatCount = portfolioPhotos.length < 6 ? 3 : 2;
-
-    return Array.from({ length: repeatCount }, (_, repeatIndex) =>
-      portfolioPhotos.map((project) => ({
-        ...project,
-        id: `${project.id}-${project.photoIndex}-${repeatIndex}`,
-      })),
-    ).flat();
-  }, [portfolioPhotos]);
   const visibleReviews = reviews.slice(0, 4);
   const visibleFaqs = useMemo(() => {
     const existingQuestions = new Set(faqs.map((item) => item.question.trim().toLowerCase()));
@@ -588,33 +577,6 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const selectedStyleTitle = styleOptions.find((item) => item.id === selectedStyle)?.title || styleOptions[0].title;
   const selectedPriceStyleLabel = kitchenStyles.find((item) => item.id === selectedPriceStyle)?.title || kitchenStyles[0].title;
   const priceStyleModels = priceKitchenModels.filter((model) => model.style === selectedPriceStyle).slice(0, 4);
-
-  useEffect(() => {
-    const track = projectTrackRef.current;
-    if (!track || portfolioPhotos.length <= 1) return;
-
-    const frame = window.requestAnimationFrame(() => {
-      const repeatCount = loopedPortfolioPhotos.length / portfolioPhotos.length;
-      track.scrollLeft = (track.scrollWidth / repeatCount) * Math.floor(repeatCount / 2);
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, [loopedPortfolioPhotos.length, portfolioPhotos.length]);
-
-  const handleProjectsScroll = useCallback(() => {
-    const track = projectTrackRef.current;
-    if (!track || portfolioPhotos.length <= 1) return;
-
-    const repeatCount = loopedPortfolioPhotos.length / portfolioPhotos.length;
-    const segmentWidth = track.scrollWidth / repeatCount;
-    if (segmentWidth <= 0) return;
-
-    if (track.scrollLeft < segmentWidth * 0.75) {
-      track.scrollLeft += segmentWidth;
-    } else if (track.scrollLeft > segmentWidth * (repeatCount - 1.75)) {
-      track.scrollLeft -= segmentWidth;
-    }
-  }, [loopedPortfolioPhotos.length, portfolioPhotos.length]);
 
   function handleSelection(next: Partial<{ style: string; layout: string; budget: string }>) {
     const style = next.style || selectedStyle;
@@ -882,26 +844,19 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           </div>
           <div
             ref={projectTrackRef}
-            onScroll={handleProjectsScroll}
-            className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 sm:mx-0 sm:px-0"
+            className="-mx-4 flex touch-pan-x snap-x gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:px-0"
             aria-label="Фото реальных кухонь из портфолио"
             data-testid="home-portfolio-photo-loop"
           >
-            {loopedPortfolioPhotos.map((project, index) => {
+            {portfolioPhotos.map((project, index) => {
               const rawImage = project.image;
               const image = optimizedImageSrc(rawImage) || rawImage;
-              const middleStart = portfolioPhotos.length * Math.floor((loopedPortfolioPhotos.length / portfolioPhotos.length) / 2);
-              const isDuplicate = portfolioPhotos.length > 1 && (
-                index < middleStart || index >= middleStart + portfolioPhotos.length
-              );
-              const isInitiallyVisible = index >= middleStart && index < middleStart + 6;
+              const isInitiallyVisible = index < 6;
 
               return (
                 <Link
                   key={`${project.slug}-${project.photoIndex}-${index}`}
                   href={`/portfolio/${project.slug}`}
-                  aria-hidden={isDuplicate || undefined}
-                  tabIndex={isDuplicate ? -1 : undefined}
                   className="group w-[88vw] max-w-[24rem] shrink-0 snap-start overflow-hidden rounded-lg border border-[#e2d7ca] bg-white shadow-[0_16px_40px_rgba(46,34,22,0.10)] transition hover:-translate-y-0.5 sm:w-[22rem] lg:w-[24rem]"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-[#eadfd3] sm:aspect-[4/3]">
