@@ -7,6 +7,8 @@ interface ElectricContactBorderProps {
   speed?: number;
   chaos?: number;
   borderRadius?: number;
+  padding?: number;
+  displacement?: number;
   thickness?: number;
   className?: string;
   style?: CSSProperties;
@@ -29,6 +31,8 @@ export function ElectricContactBorder({
   speed = 0.42,
   chaos = 0.075,
   borderRadius = 999,
+  padding = 26,
+  displacement = 58,
   thickness = 0.95,
   className,
   style,
@@ -150,8 +154,7 @@ export function ElectricContactBorder({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const borderOffset = 26;
-    const displacement = 58;
+    const borderOffset = padding;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const updateSize = () => {
@@ -252,7 +255,7 @@ export function ElectricContactBorder({
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       resizeObserver.disconnect();
     };
-  }, [borderRadius, chaos, color, getRoundedRectPoint, octavedNoise, speed, thickness]);
+  }, [borderRadius, chaos, color, displacement, getRoundedRectPoint, octavedNoise, padding, speed, thickness]);
 
   return (
     <span
