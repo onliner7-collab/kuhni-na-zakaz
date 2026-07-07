@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 //   этой соцсети не показывается.
 //
 // Расположение:
-// - Mobile: bottom-36 до скролла, затем компактный dock слева в шапке, чтобы
+// - Mobile: bottom-36 до скролла, затем компактный dock по центру шапки, чтобы
 //   не перекрывать кнопку телефона справа.
 // - Desktop (>= lg): dock в верхней зоне может занимать широкую панель.
 // - z-40 — ниже MobileCTA (z-50), но выше обычного контента/тостов.
@@ -240,6 +240,7 @@ export function FloatingSocialButtons({
   }
 
   const CycleIcon = visibleOptions[cycleIndex]?.icon ?? MessageCircle;
+  const isCompactHeaderDock = isDocked && !isWideHeaderDock;
   const rootStyle = {
     left: isDocked && isWideHeaderDock ? "calc(50% - min(9.5rem, calc((100vw - 2rem) / 2)))" : undefined,
   } as CSSProperties;
@@ -262,7 +263,7 @@ export function FloatingSocialButtons({
         isDocked && isWideHeaderDock
           ? "top-3 bottom-auto right-auto z-[60] w-[min(19rem,calc(100vw-2rem))] lg:top-4"
           : isDocked
-            ? "left-3 top-3 right-auto bottom-auto z-[60] w-auto"
+            ? "left-1/2 top-3 right-auto bottom-auto z-[60] w-auto -translate-x-1/2"
             : "right-7 bottom-36 left-auto top-auto z-40 lg:right-5 lg:bottom-6",
       )}
       data-state={isOpen ? "open" : "closed"}
@@ -274,7 +275,7 @@ export function FloatingSocialButtons({
         style={motionStyle}
         className={cn(
           "flex gap-2 will-change-transform motion-reduce:transition-none",
-          isDocked && isWideHeaderDock ? "w-full flex-col items-center" : isDocked ? "flex-col items-start" : "flex-col items-end",
+          isDocked ? "flex-col items-center" : "flex-col items-end",
         )}
       >
         {isOpen && (
@@ -339,20 +340,23 @@ export function FloatingSocialButtons({
           data-testid="floating-contact-toggle"
           className={cn(
             "electric-contact-toggle floating-contact-item inline-flex min-h-12 items-center gap-2 rounded-full border border-transparent bg-stone-950/88 px-3 py-2 text-left text-white shadow-2xl shadow-black/20 backdrop-blur-md transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100",
+            isCompactHeaderDock && "min-h-11 gap-1.5 px-2.5 py-1.5",
             isDocked ? "order-1" : "order-2",
           )}
         >
           <ElectricContactBorder className="electric-contact-frame" borderRadius={999} color="#5bf4ff" chaos={0.075} speed={0.38} thickness={0.95} />
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950">
-            <CycleIcon className="h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]" aria-hidden="true" />
+          <span className={cn("flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950", isCompactHeaderDock && "h-8 w-8")}>
+            <CycleIcon className={cn("h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]", isCompactHeaderDock && "h-4 w-4")} aria-hidden="true" />
           </span>
-          <span className={cn("min-w-0 pr-1", isOpen ? "hidden sm:block" : "block")}>
-            <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100/78">
+          <span className={cn("min-w-0 pr-1", isOpen ? "hidden sm:block" : "block", isCompactHeaderDock && "pr-0")}>
+            <span className={cn("block text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100/78", isCompactHeaderDock && "hidden")}>
               Скидка 5%
             </span>
-            <span className="block whitespace-nowrap text-sm font-bold">Связаться</span>
+            <span className={cn("block whitespace-nowrap text-sm font-bold", isCompactHeaderDock && "text-xs")}>
+              {isCompactHeaderDock ? "Связь" : "Связаться"}
+            </span>
           </span>
-          <ChevronDown className={cn("h-4 w-4 transition-transform", isOpen && "rotate-180")} aria-hidden="true" />
+          <ChevronDown className={cn("h-4 w-4 transition-transform", isCompactHeaderDock && "h-3.5 w-3.5", isOpen && "rotate-180")} aria-hidden="true" />
         </button>
       </div>
     </nav>
