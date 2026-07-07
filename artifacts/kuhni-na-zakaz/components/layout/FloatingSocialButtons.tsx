@@ -43,8 +43,9 @@ const DOCK_SCROLL_Y = 120;
 const FLIGHT_DURATION = 680;
 const FLIGHT_EASE = "out(3)";
 const FLIGHT_ROTATION_DEG = 360;
+const FLIGHT_TWIST_DEG = 360;
 const FLIGHT_TRANSFORM =
-  "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))";
+  "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) perspective(720px) rotateY(var(--floating-contact-flight-twist)) rotate(var(--floating-contact-flight-rotate))";
 
 type FloatingContactIcon = ComponentType<{ className?: string }>;
 type FloatingContactOption = {
@@ -54,10 +55,11 @@ type FloatingContactOption = {
   icon: FloatingContactIcon;
 };
 
-function setFlightTransform(element: HTMLElement, x: number, y: number, rotate: number) {
+function setFlightTransform(element: HTMLElement, x: number, y: number, rotate: number, twist: number) {
   element.style.setProperty("--floating-contact-flight-x", `${x}px`);
   element.style.setProperty("--floating-contact-flight-y", `${y}px`);
   element.style.setProperty("--floating-contact-flight-rotate", `${rotate}deg`);
+  element.style.setProperty("--floating-contact-flight-twist", `${twist}deg`);
   element.style.transform = FLIGHT_TRANSFORM;
 }
 
@@ -140,25 +142,28 @@ export function FloatingSocialButtons({
 
     flightAnimationRef.current?.cancel();
     const flightRotation = isWideHeaderDock ? (isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG) : 0;
-    setFlightTransform(motion, deltaX, deltaY, flightRotation);
+    const flightTwist = isWideHeaderDock ? 0 : (isDocked ? -FLIGHT_TWIST_DEG : FLIGHT_TWIST_DEG);
+    setFlightTransform(motion, deltaX, deltaY, flightRotation, flightTwist);
 
     const flight = {
       x: deltaX,
       y: deltaY,
       rotate: flightRotation,
+      twist: flightTwist,
     };
 
     flightAnimationRef.current = animate(flight, {
       x: 0,
       y: 0,
       rotate: 0,
+      twist: 0,
       duration: FLIGHT_DURATION,
       ease: FLIGHT_EASE,
       onUpdate: () => {
-        setFlightTransform(motion, flight.x, flight.y, flight.rotate);
+        setFlightTransform(motion, flight.x, flight.y, flight.rotate, flight.twist);
       },
       onComplete: () => {
-        setFlightTransform(motion, 0, 0, 0);
+        setFlightTransform(motion, 0, 0, 0, 0);
         flightAnimationRef.current = null;
       },
     });
@@ -249,6 +254,7 @@ export function FloatingSocialButtons({
     "--floating-contact-flight-x": "0px",
     "--floating-contact-flight-y": "0px",
     "--floating-contact-flight-rotate": "0deg",
+    "--floating-contact-flight-twist": "0deg",
     transform: FLIGHT_TRANSFORM,
     transformOrigin: "center center",
     transition: prefersReducedMotion ? "none" : undefined,
