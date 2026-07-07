@@ -87,9 +87,7 @@ export function breadcrumbJsonLd(items: Array<{ name: string; path: string }>): 
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: {
-        "@id": siteUrl(item.path),
-      },
+      item: siteUrl(item.path),
     })),
   };
 }
