@@ -344,7 +344,16 @@ export function FloatingSocialButtons({
             isDocked ? "order-1" : "order-2",
           )}
         >
-          <ElectricContactBorder className="electric-contact-frame" borderRadius={999} color="#5bf4ff" chaos={0.075} speed={0.38} thickness={0.95} />
+          <ElectricContactBorder
+            className="electric-contact-frame"
+            borderRadius={999}
+            color="#5bf4ff"
+            chaos={0.075}
+            speed={0.38}
+            thickness={0.95}
+            padding={8}
+            displacement={12}
+          />
           <span className={cn("flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950", isCompactHeaderDock && "h-8 w-8")}>
             <CycleIcon className={cn("h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]", isCompactHeaderDock && "h-4 w-4")} aria-hidden="true" />
           </span>

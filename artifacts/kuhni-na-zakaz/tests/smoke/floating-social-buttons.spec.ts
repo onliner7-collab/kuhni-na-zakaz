@@ -48,7 +48,7 @@ test.describe("FloatingSocialButtons (public)", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    await page.evaluate(() => window.scrollTo(0, 800));
+    await page.mouse.wheel(0, 900);
 
     const mobileNav = page.getByTestId("mobile-bottom-nav");
     const fab = page.getByTestId("floating-social-buttons");
@@ -56,12 +56,26 @@ test.describe("FloatingSocialButtons (public)", () => {
     await expect(mobileNav).toBeVisible();
     await expect(fab).toBeVisible();
     await expect(fab).toHaveAttribute("data-position", "header");
+    await page.waitForTimeout(750);
 
     const navBox = await mobileNav.boundingBox();
     const fabBox = await fab.boundingBox();
+    const borderSizing = await page.evaluate(() => {
+      const toggle = document.querySelector<HTMLElement>('[data-testid="floating-contact-toggle"]');
+      const canvas = document.querySelector<HTMLElement>(".electric-contact-canvas");
+      const toggleBox = toggle?.getBoundingClientRect();
+      const canvasBox = canvas?.getBoundingClientRect();
+
+      return {
+        extraWidth: toggleBox && canvasBox ? canvasBox.width - toggleBox.width : null,
+        extraHeight: toggleBox && canvasBox ? canvasBox.height - toggleBox.height : null,
+      };
+    });
 
     expect(navBox, "Mobile bottom nav bounding box").not.toBeNull();
     expect(fabBox, "FloatingSocialButtons bounding box").not.toBeNull();
+    expect(borderSizing.extraWidth, "Compact electric border horizontal overflow").not.toBeNull();
+    expect(borderSizing.extraHeight, "Compact electric border vertical overflow").not.toBeNull();
 
     if (navBox && fabBox) {
       const fabBottom = fabBox.y + fabBox.height;
@@ -72,6 +86,11 @@ test.describe("FloatingSocialButtons (public)", () => {
 
       const fabCenterX = fabBox.x + fabBox.width / 2;
       expect(Math.abs(fabCenterX - 195)).toBeLessThanOrEqual(24);
+    }
+
+    if (borderSizing.extraWidth !== null && borderSizing.extraHeight !== null) {
+      expect(borderSizing.extraWidth).toBeLessThanOrEqual(32);
+      expect(borderSizing.extraHeight).toBeLessThanOrEqual(32);
     }
   });
 });
