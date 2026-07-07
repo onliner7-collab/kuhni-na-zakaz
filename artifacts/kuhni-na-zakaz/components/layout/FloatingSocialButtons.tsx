@@ -43,9 +43,8 @@ const DOCK_SCROLL_Y = 120;
 const FLIGHT_DURATION = 680;
 const FLIGHT_EASE = "out(3)";
 const FLIGHT_ROTATION_DEG = 360;
-const FLIGHT_TWIST_DEG = 360;
 const FLIGHT_TRANSFORM =
-  "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) perspective(720px) rotateY(var(--floating-contact-flight-twist)) rotate(var(--floating-contact-flight-rotate))";
+  "translate3d(var(--floating-contact-flight-x), var(--floating-contact-flight-y), 0) rotate(var(--floating-contact-flight-rotate))";
 
 type FloatingContactIcon = ComponentType<{ className?: string }>;
 type FloatingContactOption = {
@@ -55,11 +54,10 @@ type FloatingContactOption = {
   icon: FloatingContactIcon;
 };
 
-function setFlightTransform(element: HTMLElement, x: number, y: number, rotate: number, twist: number) {
+function setFlightTransform(element: HTMLElement, x: number, y: number, rotate: number) {
   element.style.setProperty("--floating-contact-flight-x", `${x}px`);
   element.style.setProperty("--floating-contact-flight-y", `${y}px`);
   element.style.setProperty("--floating-contact-flight-rotate", `${rotate}deg`);
-  element.style.setProperty("--floating-contact-flight-twist", `${twist}deg`);
   element.style.transform = FLIGHT_TRANSFORM;
 }
 
@@ -141,29 +139,25 @@ export function FloatingSocialButtons({
     if (Math.abs(deltaX) < 1 && Math.abs(deltaY) < 1) return;
 
     flightAnimationRef.current?.cancel();
-    const flightRotation = isWideHeaderDock ? (isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG) : 0;
-    const flightTwist = isWideHeaderDock ? 0 : (isDocked ? -FLIGHT_TWIST_DEG : FLIGHT_TWIST_DEG);
-    setFlightTransform(motion, deltaX, deltaY, flightRotation, flightTwist);
+    setFlightTransform(motion, deltaX, deltaY, isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG);
 
     const flight = {
       x: deltaX,
       y: deltaY,
-      rotate: flightRotation,
-      twist: flightTwist,
+      rotate: isDocked ? -FLIGHT_ROTATION_DEG : FLIGHT_ROTATION_DEG,
     };
 
     flightAnimationRef.current = animate(flight, {
       x: 0,
       y: 0,
       rotate: 0,
-      twist: 0,
       duration: FLIGHT_DURATION,
       ease: FLIGHT_EASE,
       onUpdate: () => {
-        setFlightTransform(motion, flight.x, flight.y, flight.rotate, flight.twist);
+        setFlightTransform(motion, flight.x, flight.y, flight.rotate);
       },
       onComplete: () => {
-        setFlightTransform(motion, 0, 0, 0, 0);
+        setFlightTransform(motion, 0, 0, 0);
         flightAnimationRef.current = null;
       },
     });
@@ -172,7 +166,7 @@ export function FloatingSocialButtons({
       flightAnimationRef.current?.cancel();
       flightAnimationRef.current = null;
     };
-  }, [isDocked, isWideHeaderDock]);
+  }, [isDocked]);
 
   useEffect(() => {
     let frame = 0;
@@ -254,7 +248,6 @@ export function FloatingSocialButtons({
     "--floating-contact-flight-x": "0px",
     "--floating-contact-flight-y": "0px",
     "--floating-contact-flight-rotate": "0deg",
-    "--floating-contact-flight-twist": "0deg",
     transform: FLIGHT_TRANSFORM,
     transformOrigin: "center center",
     transition: prefersReducedMotion ? "none" : undefined,
@@ -351,16 +344,7 @@ export function FloatingSocialButtons({
             isDocked ? "order-1" : "order-2",
           )}
         >
-          <ElectricContactBorder
-            className="electric-contact-frame"
-            borderRadius={999}
-            color="#5bf4ff"
-            chaos={isCompactHeaderDock ? 0.045 : 0.075}
-            displacement={isCompactHeaderDock ? 22 : 58}
-            padding={isCompactHeaderDock ? 14 : 26}
-            speed={0.38}
-            thickness={0.95}
-          />
+          <ElectricContactBorder className="electric-contact-frame" borderRadius={999} color="#5bf4ff" chaos={0.075} speed={0.38} thickness={0.95} />
           <span className={cn("flex h-9 w-9 items-center justify-center rounded-full bg-amber-300 text-stone-950", isCompactHeaderDock && "h-8 w-8")}>
             <CycleIcon className={cn("h-5 w-5 animate-[regional-contact-icon_1.8s_ease-in-out_infinite]", isCompactHeaderDock && "h-4 w-4")} aria-hidden="true" />
           </span>
