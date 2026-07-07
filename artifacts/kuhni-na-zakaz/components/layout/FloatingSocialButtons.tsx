@@ -24,9 +24,9 @@ import { cn } from "@/lib/utils";
 //   этой соцсети не показывается.
 //
 // Расположение:
-// - Mobile: bottom-36, чтобы не перекрывать MobileCTA (bottom-0, ~64px
-//   высоты + safe-area).
-// - Desktop (>= lg): bottom-6, MobileCTA на этом размере скрыт.
+// - Mobile: bottom-36 до скролла, затем компактный dock слева в шапке, чтобы
+//   не перекрывать кнопку телефона справа.
+// - Desktop (>= lg): dock в верхней зоне может занимать широкую панель.
 // - z-40 — ниже MobileCTA (z-50), но выше обычного контента/тостов.
 
 interface FloatingSocialButtonsProps {
@@ -84,6 +84,7 @@ export function FloatingSocialButtons({
 }: FloatingSocialButtonsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDocked, setIsDocked] = useState(false);
+  const [isWideHeaderDock, setIsWideHeaderDock] = useState(false);
   const [cycleIndex, setCycleIndex] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const layoutRef = useRef<AutoLayout | null>(null);
@@ -169,9 +170,16 @@ export function FloatingSocialButtons({
 
   useEffect(() => {
     let frame = 0;
+    const media = window.matchMedia("(min-width: 1024px)");
     let lastDocked = window.scrollY > DOCK_SCROLL_Y;
 
+    setIsWideHeaderDock(media.matches);
     setIsDocked(lastDocked);
+
+    const onMediaChange = () => {
+      setIsWideHeaderDock(media.matches);
+      flightFromRectRef.current = rootRef.current?.getBoundingClientRect() ?? null;
+    };
 
     const onScroll = () => {
       if (frame) return;
@@ -188,9 +196,11 @@ export function FloatingSocialButtons({
       });
     };
 
+    media.addEventListener("change", onMediaChange);
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
+      media.removeEventListener("change", onMediaChange);
       window.removeEventListener("scroll", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
@@ -231,7 +241,7 @@ export function FloatingSocialButtons({
 
   const CycleIcon = visibleOptions[cycleIndex]?.icon ?? MessageCircle;
   const rootStyle = {
-    left: isDocked ? "calc(50% - min(9.5rem, calc((100vw - 2rem) / 2)))" : undefined,
+    left: isDocked && isWideHeaderDock ? "calc(50% - min(9.5rem, calc((100vw - 2rem) / 2)))" : undefined,
   } as CSSProperties;
   const motionStyle = {
     "--floating-contact-flight-x": "0px",
@@ -249,9 +259,11 @@ export function FloatingSocialButtons({
       style={rootStyle}
       className={cn(
         "fixed max-w-[calc(100vw-2rem)] motion-reduce:transition-none",
-        isDocked
+        isDocked && isWideHeaderDock
           ? "top-3 bottom-auto right-auto z-[60] w-[min(19rem,calc(100vw-2rem))] lg:top-4"
-          : "right-7 bottom-36 left-auto top-auto z-40 lg:right-5 lg:bottom-6",
+          : isDocked
+            ? "left-3 top-3 right-auto bottom-auto z-[60] w-auto"
+            : "right-7 bottom-36 left-auto top-auto z-40 lg:right-5 lg:bottom-6",
       )}
       data-state={isOpen ? "open" : "closed"}
       data-position={isDocked ? "header" : "floating"}
@@ -262,7 +274,7 @@ export function FloatingSocialButtons({
         style={motionStyle}
         className={cn(
           "flex gap-2 will-change-transform motion-reduce:transition-none",
-          isDocked ? "w-full flex-col items-center" : "flex-col items-end",
+          isDocked && isWideHeaderDock ? "w-full flex-col items-center" : isDocked ? "flex-col items-start" : "flex-col items-end",
         )}
       >
         {isOpen && (
