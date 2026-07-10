@@ -6,9 +6,9 @@ import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { regionalLocations } from "@/data/locations";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const title = "Купить кухню в Минске: каталог кухонь на заказ";
+const title = "Каталог кухонь на заказ: виды, формы и гарнитуры";
 const description =
-  "Каталог кухонь на заказ в Минске: угловые, прямые, маленькие, до потолка и с островом. Расчет под размеры, доставка и монтаж.";
+  "Каталог кухонь на заказ: угловые, прямые, П-образные, маленькие, до потолка, с островом и без ручек. Выберите тип гарнитура перед расчетом.";
 
 export const metadata: Metadata = {
   title,
@@ -37,6 +37,7 @@ const BUYING_GUIDE_ROWS = [
   { type: "Маленькая кухня", fit: "хрущевка, гостинка, студия или помещение со сложными нишами", href: "/catalog/malenkie-kuhni" },
   { type: "Кухня до потолка", fit: "нужно больше хранения и аккуратный встроенный вид без зазора сверху", href: "/catalog/kuhni-do-potolka" },
   { type: "Кухня с островом", fit: "кухня-гостиная, частный дом или большая новостройка с проходами от 100 см", href: "/catalog/kuhni-s-ostrovom" },
+  { type: "Кухня без ручек", fit: "современный интерьер, гладкие фасады, легкий уход и спокойный визуальный ряд", href: "/catalog/kuhni-bez-ruchek" },
 ];
 
 const COMMERCIAL_PROOF_ITEMS = [
@@ -127,23 +128,23 @@ export default async function CatalogPage() {
             <span>/</span>
             <span className="text-foreground">Каталог</span>
           </nav>
-          <h1 className="font-serif text-4xl font-bold mb-4">Купить кухню в Минске: каталог кухонь на заказ</h1>
+          <h1 className="font-serif text-4xl font-bold mb-4">Каталог кухонь на заказ: виды, формы и гарнитуры</h1>
           <p className="text-muted-foreground mb-10 max-w-2xl">
-            Изготавливаем кухни по индивидуальным размерам. Каждый проект — отдельный дизайн и расчёт.
+            Выберите формат будущей кухни: угловую, прямую, П-образную, маленькую, до потолка, с островом или без ручек.
+            Эта страница помогает сравнить виды кухонь перед расчетом, а не заменяет главную страницу покупки.
           </p>
           <section className="mb-12 border-y border-border py-8">
             <div className="max-w-4xl space-y-4 text-sm leading-relaxed text-muted-foreground">
-              <h2 className="font-serif text-2xl font-bold text-foreground">Купить кухню в Минске под размер квартиры или дома</h2>
+              <h2 className="font-serif text-2xl font-bold text-foreground">Как выбрать тип кухни под помещение</h2>
               <p>
                 В каталоге удобно выбрать тип будущей кухни до расчета: угловую, прямую, П-образную, маленькую,
-                до потолка или с островом. Готовый гарнитур со склада быстрее купить, но он редко точно попадает
+                до потолка, с островом или без ручек. Готовый гарнитур со склада быстрее купить, но он редко точно попадает
                 в размеры ниши, вентиляционный короб, технику и привычки семьи. Кухня на заказ проектируется под
                 помещение: замеряем стены, проверяем коммуникации, расставляем мойку, плиту, холодильник и хранение,
                 а затем подбираем фасады, столешницу и фурнитуру под бюджет.
               </p>
               <p>
-                Если нужно купить кухню в Минске с доставкой и установкой, сначала выбираем планировку и комплектацию,
-                после этого фиксируем смету. Цена зависит не только от длины гарнитура: важны материал фасадов,
+                Сначала выбираем планировку и комплектацию, после этого фиксируем смету. Цена зависит не только от длины гарнитура: важны материал фасадов,
                 количество ящиков, подъемники, угловые механизмы, высота шкафов, столешница и сложность монтажа.
                 Поэтому каталог помогает сузить выбор, а точный расчет делаем после размеров и состава проекта.
               </p>
@@ -217,12 +218,12 @@ export default async function CatalogPage() {
               ))}
             </div>
           </section>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div id="catalog-types" className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 scroll-mt-24 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3">
             {DEFAULT_CATEGORIES.map((cat, index) => {
               const image = resolveCatalogCategoryImage(cat);
 
               return (
-                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base hover:shadow-md transition-shadow group">
+                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base group w-[84vw] max-w-[22rem] shrink-0 snap-start transition-shadow hover:shadow-md sm:w-auto sm:max-w-none">
                   <CatalogCategoryImage src={image.src} alt={image.alt} priority={index === 0} />
                   <div className="p-5">
                     <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{cat.title}</h2>

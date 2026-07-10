@@ -671,24 +671,24 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
               ))}
             </div>
             <h1 id="home-showroom-hero" className="max-w-3xl text-4xl font-black leading-[1.03] text-white sm:text-5xl lg:text-6xl">
-              Кухни на заказ в Минске под ваш размер, стиль и бюджет
+              Купить кухню в Минске под размер, с проектом и монтажом
             </h1>
             <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-white/82 sm:text-lg">
-              Проектируем, изготавливаем и устанавливаем кухни под ключ по Минску, Минской области и Беларуси.
+              Замеряем помещение, готовим 3D-проект, производим гарнитур, доставляем и монтируем кухню под ключ с понятным расчетом цены.
             </p>
             <div className="mt-7 grid gap-3 sm:flex">
               <a
-                href="#selector"
+                href="#calculate"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#c99a62] px-6 py-3 text-sm font-black text-[#17110b] shadow-xl shadow-black/25 transition hover:bg-[#d9ad78]"
               >
-                Подобрать кухню
+                Рассчитать цену
                 <Sparkles className="h-4 w-4" aria-hidden />
               </a>
               <a
-                href="#projects"
+                href="/catalog"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/34 bg-black/20 px-6 py-3 text-sm font-black text-white backdrop-blur transition hover:bg-white/12"
               >
-                Смотреть реальные проекты
+                Перейти в каталог
                 <Images className="h-4 w-4" aria-hidden />
               </a>
             </div>

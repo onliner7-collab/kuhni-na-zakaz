@@ -685,6 +685,52 @@ const minskRealProjectSeries = [
   })),
 }));
 
+const minskDistrictGroups = [
+  {
+    title: "Центр и север",
+    text: "Центральный, Советский и Первомайский районы: заранее проверяем подъезд, лифт, высоту потолка и доступ к коммуникациям.",
+    areas: ["Центральный", "Советский", "Первомайский", "Уручье"],
+  },
+  {
+    title: "Запад Минска",
+    text: "Фрунзенский и Московский районы: часто считаем кухни для новостроек, студий и квартир с большим хранением до потолка.",
+    areas: ["Фрунзенский", "Московский", "Каменная Горка", "Сухарево"],
+  },
+  {
+    title: "Юг и восток",
+    text: "Заводской, Ленинский, Октябрьский и Партизанский районы: согласуем доставку, занос столешницы и монтажный день по адресу.",
+    areas: ["Заводской", "Ленинский", "Октябрьский", "Партизанский"],
+  },
+  {
+    title: "Новые кварталы рядом с Минском",
+    text: "Новая Боровая и ближайшие жилые комплексы: можно начать с плана застройщика, но производство запускаем после точного замера.",
+    areas: ["Новая Боровая", "Копище", "Сеница", "Боровляны"],
+  },
+];
+
+const minskProcessCards = [
+  {
+    title: "Замер в Минске",
+    text: "Проверяем стены, углы, высоту, воду, электрику, вентиляцию, газовые ограничения и условия заноса деталей.",
+    icon: Ruler,
+  },
+  {
+    title: "Доставка по адресу",
+    text: "Дату доставки согласуем ближе к монтажу, чтобы комплект не мешал ремонту и приехал к готовому объекту.",
+    icon: Truck,
+  },
+  {
+    title: "Монтаж и регулировка",
+    text: "Собираем корпуса, навешиваем фасады, устанавливаем столешницу, регулируем механизмы и проверяем открывание.",
+    icon: Hammer,
+  },
+  {
+    title: "Сроки по проекту",
+    text: "Ориентир зависит от материалов, фурнитуры и сложности кухни; дату производства и монтажа фиксируем после комплектации.",
+    icon: ClipboardList,
+  },
+];
+
 const minskCloseDetailImages = [
   ["minsk-detail-01-matovyy-fasad.webp", "Матовый фасад гарнитура на заказ крупным планом", "Матовый фасад"],
   ["minsk-detail-02-drevesnaya-tekstura.webp", "Древесная текстура фасада крупным планом", "Древесная текстура"],
@@ -1363,6 +1409,73 @@ export function RegionalLocationPage({
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">{image.text}</p>
                   </figcaption>
                 </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section id="minsk-districts" className="bg-muted/30 section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Районы Минска"
+              title="Кухни на заказ по районам Минска"
+              text="Работаем по всем районам города. Условия замера, доставки, заноса и монтажа уточняем по конкретному адресу, этажу, готовности ремонта и составу кухни."
+            />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {minskDistrictGroups.map((group) => (
+                <article key={group.title} className="rounded-lg border border-border bg-white p-5">
+                  <h3 className="text-base font-semibold text-foreground">{group.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{group.text}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {group.areas.map((area) => (
+                      <span key={area} className="rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
+                        {area}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/" className="inline-flex min-h-10 items-center rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary">
+                Главная
+              </Link>
+              <Link href="/catalog" className="inline-flex min-h-10 items-center rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary">
+                Каталог
+              </Link>
+              <Link href="/prices" className="inline-flex min-h-10 items-center rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary">
+                Цены
+              </Link>
+              <Link href="/catalog/uglovye-kuhni" className="inline-flex min-h-10 items-center rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary">
+                Угловые кухни
+              </Link>
+              <Link href="/portfolio" className="inline-flex min-h-10 items-center rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary">
+                Портфолио Минска
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isMinsk && (
+        <section id="minsk-delivery-installation" className="bg-white section-padding">
+          <div className="container-site">
+            <SectionTitle
+              eyebrow="Локальный процесс"
+              title="Замер, доставка, монтаж и сроки по Минску"
+              text="Минская страница отвечает за локальную услугу: как проходит выезд, когда привозим кухню, что входит в монтаж и почему сроки фиксируются после комплектации."
+            />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {minskProcessCards.map(({ title, text, icon: Icon }) => (
+                <article key={title} className="rounded-lg border border-border bg-muted/30 p-5">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
+                    <Icon className="h-5 w-5 text-primary" aria-hidden />
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{text}</p>
+                </article>
               ))}
             </div>
           </div>

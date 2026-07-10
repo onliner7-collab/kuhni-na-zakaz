@@ -33,6 +33,16 @@ export const MOBILE_DOCK_TYPES = {
     ],
   },
 
+  catalogIndex: {
+    match: ["/catalog"],
+    items: [
+      { label: "Типы", icon: "layout-grid", target: "#catalog-types" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Материалы", icon: "layers", href: "/materials" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
   designProject: {
     match: ["/design-proekt-kuhni"],
     items: [
@@ -110,7 +120,13 @@ export const MOBILE_DOCK_TYPES = {
   materials: {
     match: ["/materials/*"],
     items: [
-      { label: "Фото", icon: "images", target: "#material-detail-gallery", targetPrefix: true },
+      {
+        label: "Фото",
+        icon: "images",
+        target: "#material-detail-gallery",
+        targetPrefix: true,
+        alternatives: [{ label: "Материалы", icon: "layers", href: "/materials" }],
+      },
       {
         label: "Стоимость",
         icon: "wallet",
@@ -156,8 +172,20 @@ export const MOBILE_DOCK_TYPES = {
     match: ["/styles/*"],
     items: [
       { label: "Примеры", icon: "images", target: "#style-projects", requiredIdStatus: "audit-before-chat-2" },
-      { label: "Цены", icon: "wallet", target: "#style-prices", requiredIdStatus: "audit-before-chat-2" },
-      { label: "Материалы", icon: "layers", target: "#style-materials", requiredIdStatus: "audit-before-chat-2" },
+      {
+        label: "Цены",
+        icon: "wallet",
+        target: "#style-prices",
+        requiredIdStatus: "audit-before-chat-2",
+        alternatives: [{ label: "Цены", icon: "wallet", href: "/prices" }],
+      },
+      {
+        label: "Материалы",
+        icon: "layers",
+        target: "#style-materials",
+        requiredIdStatus: "audit-before-chat-2",
+        alternatives: [{ label: "Материалы", icon: "layers", href: "/materials" }],
+      },
       { label: "Расчёт", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#form", primary: true },
     ],
   },

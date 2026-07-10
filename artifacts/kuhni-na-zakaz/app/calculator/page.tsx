@@ -5,9 +5,9 @@ import { CalculatorWizard } from "@/components/calculator/CalculatorWizard";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const title = "Калькулятор кухни: цена под размер";
+const title = "Калькулятор кухни онлайн: расчет стоимости";
 const description =
-  "Рассчитайте ориентировочную стоимость кухни на заказ в Минске: форма, материалы, фурнитура, монтаж и диапазон цены за 2 минуты.";
+  "Онлайн-калькулятор кухни: рассчитайте ориентировочную стоимость по форме, материалам, фурнитуре и монтажу, затем отправьте заявку на точную смету.";
 
 export const metadata: Metadata = {
   title,
@@ -68,12 +68,20 @@ export default function CalculatorPage() {
             <Calculator className="w-4 h-4" /> Калькулятор
           </div>
           <h1 className="font-serif text-4xl font-bold mb-4">
-            Сколько стоит кухня на заказ?
+            Рассчитать кухню онлайн
           </h1>
           <p className="text-muted-foreground text-lg">
-            Ответьте на 8 вопросов и получите ориентировочный диапазон стоимости.
-            Без звонков и переговоров — сразу цифры.
+            Ответьте на 8 вопросов и получите предварительный диапазон стоимости.
+            За подробными бюджетными диапазонами перейдите на страницу цен, а точную смету подготовим после размеров и комплектации.
           </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/prices" className="inline-flex min-h-11 items-center rounded-xl border border-border px-4 py-2 text-sm font-semibold text-primary hover:bg-muted">
+              Смотреть цены на кухни
+            </Link>
+            <Link href="/contacts#form" className="inline-flex min-h-11 items-center rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
+              Отправить заявку
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

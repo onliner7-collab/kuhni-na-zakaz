@@ -27,14 +27,90 @@ const budgetColor: Record<string, string> = {
   Премиум: "bg-purple-100 text-purple-700 border-purple-200",
 };
 
+const STATIC_STYLE_CARDS = [
+  {
+    slug: "neoklassika",
+    title: "Кухни в стиле неоклассика",
+    description: "Рамочные фасады, спокойные цвета, эмаль, шпон и аккуратная фурнитура.",
+    image: "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp",
+    budgetLevel: "Выше среднего",
+    priceFrom: 2800,
+    pros: ["Мягкая классика без тяжелого декора"],
+  },
+  {
+    slug: "hay-tek",
+    title: "Кухни в стиле хай-тек",
+    description: "Ровные фасады, техника, подсветка и практичные материалы.",
+    image: "/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
+    budgetLevel: "Выше среднего",
+    priceFrom: 3000,
+    pros: ["Удобно интегрировать технику"],
+  },
+  {
+    slug: "provans",
+    title: "Кухни в стиле прованс",
+    description: "Светлые фасады, уютные детали и мягкий классический характер.",
+    image: "/uploads/seo-showcase/kuhnya-neoklassika-1.webp",
+    budgetLevel: "Средний",
+    priceFrom: 2400,
+    pros: ["Теплый визуальный образ"],
+  },
+  {
+    slug: "loft",
+    title: "Кухни в стиле лофт",
+    description: "Темные фасады, дерево, металл и выразительные материалы.",
+    image: "/uploads/seo-showcase/home-hero-dark-kitchen-2026.webp",
+    budgetLevel: "Средний",
+    priceFrom: 2600,
+    pros: ["Выразительный современный вид"],
+  },
+  {
+    slug: "sovremennye",
+    title: "Современные кухни",
+    description: "Ровные фасады, хранение, встроенная техника и спокойная палитра.",
+    image: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
+    budgetLevel: "Средний",
+    priceFrom: 2200,
+    pros: ["Универсальный вид"],
+  },
+  {
+    slug: "skandinavskie",
+    title: "Скандинавские кухни",
+    description: "Светлые фасады, древесные фактуры и простая эргономика.",
+    image: "/uploads/seo-showcase/kuhnya-skandi-svetlaya-1.avif",
+    budgetLevel: "Средний",
+    priceFrom: 2000,
+    pros: ["Визуально облегчает помещение"],
+  },
+  {
+    slug: "klassicheskie",
+    title: "Классические кухни",
+    description: "Фрезеровка, витрины, ручки и традиционный вид кухни.",
+    image: "/uploads/seo-showcase/kuhnya-neoklassika-1.avif",
+    budgetLevel: "Выше среднего",
+    priceFrom: 3000,
+    pros: ["Солидный традиционный вид"],
+  },
+  {
+    slug: "minimalizm",
+    title: "Кухни в стиле минимализм",
+    description: "Скрытые ручки, ровные фасады, встроенная техника и чистые линии.",
+    image: "/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
+    budgetLevel: "Средний",
+    priceFrom: 2400,
+    pros: ["Меньше визуального шума"],
+  },
+];
+
 async function getStyles() {
   try {
-    return await prisma.stylePage.findMany({
+    const styles = await prisma.stylePage.findMany({
       where: { published: true, slug: publicSlugWhere() },
       orderBy: [{ order: "asc" }, { id: "asc" }],
     });
+    return styles.length > 0 ? styles : STATIC_STYLE_CARDS;
   } catch {
-    return [];
+    return STATIC_STYLE_CARDS;
   }
 }
 

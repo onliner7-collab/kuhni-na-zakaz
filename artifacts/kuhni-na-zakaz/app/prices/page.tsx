@@ -9,9 +9,9 @@ import { regionalLocations } from "@/data/locations";
 import { priceKitchenModels } from "@/data/price-catalog";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const title = "Цены на кухни на заказ в Минске: стили и расчет";
+const title = "Цены на кухни на заказ в Минске: стоимость и смета";
 const description =
-  "Цены на кухни на заказ в Минске: выберите стиль, планировку, бюджет и посмотрите 3D-визуализации с ориентиром стоимости.";
+  "Цены на кухни на заказ в Минске: бюджетные диапазоны, что влияет на стоимость, примеры комплектаций, калькулятор и заявка на точную смету.";
 
 export const metadata: Metadata = {
   title,
@@ -221,13 +221,13 @@ export default function PricesPage() {
 
           <div className="grid gap-7 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#8a5a2f]">Купить кухню в Минске</p>
+              <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#8a5a2f]">Стоимость кухни</p>
               <h1 className="mt-2 text-4xl font-black leading-tight text-stone-950 md:text-5xl">
-                Цены на кухни на заказ в Минске
+                Цены на кухни на заказ в Минске и точная смета
               </h1>
               <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
-                Выберите стиль, посмотрите кухни с разных ракурсов и получите ориентир стоимости.
-                Точная цена зависит от размеров, материалов, фурнитуры, столешницы, техники, доставки и монтажа.
+                Сравните бюджетные диапазоны, комплектации и факторы цены. Точная стоимость зависит от размеров,
+                материалов, фурнитуры, столешницы, техники, доставки и монтажа, поэтому финальную смету считаем после заявки.
               </p>
             </div>
             <div className="rounded-lg border border-[#eadccb] bg-[#fff8ef] p-5">
@@ -244,6 +244,8 @@ export default function PricesPage() {
           </div>
         </div>
 
+        <span id="styles" className="block scroll-mt-24" aria-hidden />
+        <span id="catalog" className="block scroll-mt-24" aria-hidden />
         <Suspense fallback={<div className="container-site py-10 text-sm text-muted-foreground">Загружаем каталог кухонь...</div>}>
           <InteractivePricesCatalog />
         </Suspense>
@@ -338,7 +340,7 @@ export default function PricesPage() {
         </div>
 
         {/* Калькулятор — DB-driven через /kapi/calculator */}
-        <div className="mb-16">
+        <div id="calculate" className="mb-16 scroll-mt-24">
           <h2 className="font-serif text-3xl font-bold text-center mb-4">Как получить точный расчёт кухни</h2>
           <p className="text-center text-muted-foreground mb-8">Ответьте на 5 вопросов — получите ориентировочный бюджет</p>
           <PriceQuiz />

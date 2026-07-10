@@ -843,6 +843,7 @@ export const regionalLocations = [
       { href: "/locations/zhodino", label: "Жодино" },
     ],
     internalLinks: [
+      { href: "/", label: "Главная" },
       ...minskCommercialLinks,
       { href: "/locations/minskaya-oblast", label: "Минская область" },
       { href: "/blog/kakuyu-planirovku-kuhni-vybrat", label: "Как выбрать планировку" },
