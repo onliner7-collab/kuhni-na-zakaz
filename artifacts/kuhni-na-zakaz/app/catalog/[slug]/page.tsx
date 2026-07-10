@@ -366,6 +366,14 @@ const DESIGN_PROJECT_LINKS: Record<string, string> = {
   "malenkie-kuhni": "посмотреть компактную кухню в 3D-визуализации",
   "p-obraznye-kuhni": "согласовать П-образный дизайн-проект кухни",
   "kuhni-s-ostrovom": "рассчитать кухню с проектом острова",
+  "kuhni-do-potolka": "проверить высоту и доборы в 3D-проекте",
+  "kuhni-bez-ruchek": "согласовать открывание фасадов в дизайн-проекте",
+};
+
+const CATEGORY_SCENARIO_LINKS: Record<string, SeoLink[]> = {
+  "kuhni-s-ostrovom": [{ href: "/scenarios/s-ostrovom", label: "Когда подходит остров" }],
+  "kuhni-do-potolka": [{ href: "/scenarios/do-potolka", label: "Плюсы и ограничения кухни до потолка" }],
+  "malenkie-kuhni": [{ href: "/scenarios/dlya-malenkoy-kuhni", label: "Как выбрать кухню для маленького помещения" }],
 };
 
 const CATEGORY_BUYING_GUIDES: Record<string, CategoryBuyingGuide> = {
@@ -428,6 +436,16 @@ const CATEGORY_BUYING_GUIDES: Record<string, CategoryBuyingGuide> = {
       { parameter: "Коммуникации", recommendation: "планировать розетки, воду и вытяжку до ремонта", mistake: "переносить варочную или мойку после готового пола" },
     ],
     blog: [{ href: "/blog/kuhnya-s-ostrovom", label: "Кухня с островом: размеры и сценарии" }],
+  },
+  "kuhni-bez-ruchek": {
+    title: "Купить кухню без ручек на заказ",
+    copy: "Кухню без ручек выбирают не только ради минимализма: важны привычки семьи, тип фасада, высота пеналов и зона, где открывание будет удобным каждый день. Перед заказом нужно решить, где ставить профиль, где уместен push-to-open, а где лучше оставить скрытую фрезеровку. На цену влияют фасады, профиль, нажимные механизмы, встроенная техника, видимые боковины и точность монтажа. После замера мы проверяем высоту хвата, посудомойку, холодильник, углы и проходы, чтобы гладкая кухня не стала неудобной в быту.",
+    rows: [
+      { parameter: "Нижние фасады", recommendation: "J-профиль или профиль Gola для ежедневного хвата", mistake: "ставить push-to-open на все активные ящики без проверки привычек" },
+      { parameter: "Пеналы и техника", recommendation: "отдельно считать холодильник, посудомойку и высокие фасады", mistake: "использовать один тип открывания для всех зон" },
+      { parameter: "Поверхность фасадов", recommendation: "матовая эмаль, пластик или акрил под уход и стиль", mistake: "выбирать глянец без учета следов от рук" },
+    ],
+    blog: [{ href: "/blog/materialy-dlya-kuhni-ldsp-mdf-emal-hpl-shpon", label: "Материалы фасадов для кухни" }],
   },
 };
 
@@ -536,6 +554,7 @@ export default async function CatalogItemPage({ params }: Props) {
 
   const seo = STATIC_CATEGORIES[slug]?.seo;
   const buyingGuide = CATEGORY_BUYING_GUIDES[slug];
+  const scenarioLinks = CATEGORY_SCENARIO_LINKS[slug] ?? [];
   const designProjectAnchor = DESIGN_PROJECT_LINKS[slug];
   const heroImage = resolveCatalogCategoryImage({
     slug,
@@ -784,6 +803,7 @@ export default async function CatalogItemPage({ params }: Props) {
                     />
                     <RelatedLinks title="Портфолио" links={seo.links.portfolio} />
                     {buyingGuide && <RelatedLinks title="Блог" links={buyingGuide.blog} />}
+                    {scenarioLinks.length > 0 && <RelatedLinks title="Гид" links={scenarioLinks} />}
                     <RelatedLinks
                       title="География"
                       links={CATEGORY_CITY_LINKS}

@@ -73,6 +73,28 @@ const minskCommercialLinks: RegionalInternalLink[] = [
   { href: "/portfolio", label: "Портфолио" },
 ];
 
+const requiredRegionalCommercialLinks: RegionalInternalLink[] = [
+  { href: "/catalog", label: "Каталог кухонь" },
+  { href: "/catalog/uglovye-kuhni", label: "Угловые кухни" },
+  { href: "/catalog/pryamye-kuhni", label: "Прямые кухни" },
+  { href: "/catalog/kuhni-do-potolka", label: "Кухни до потолка" },
+  { href: "/prices", label: "Цены на кухни" },
+  { href: "/portfolio", label: "Портфолио" },
+];
+
+function mergeRegionalLinks(links: RegionalInternalLink[]) {
+  const seen = new Set<string>();
+  const result: RegionalInternalLink[] = [];
+
+  for (const item of [...links, ...requiredRegionalCommercialLinks]) {
+    if (seen.has(item.href)) continue;
+    seen.add(item.href);
+    result.push(item);
+  }
+
+  return result;
+}
+
 function location(data: Omit<RegionalLocationData, "title" | "description" | "introText" | "seoText" | "warrantyText" | "isMainRegion" | "portfolioCityKey" | "areas"> & {
   seoText: string;
   warrantyText?: string;
@@ -84,6 +106,7 @@ function location(data: Omit<RegionalLocationData, "title" | "description" | "in
     title: data.pageTitle,
     description: data.metaDescription,
     introText: data.intro,
+    internalLinks: mergeRegionalLinks(data.internalLinks),
     portfolioCityKey: data.portfolioCityKey ?? data.cityName,
     areas: data.areas ?? data.nearbyAreas.map((area) => area.label),
     warrantyText:

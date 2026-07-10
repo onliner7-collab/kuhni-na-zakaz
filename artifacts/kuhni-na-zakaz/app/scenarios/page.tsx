@@ -3,6 +3,7 @@ import Link from "@/components/navigation/Link";
 import { ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { STATIC_SCENARIO_FALLBACKS } from "@/data/scenario-fallbacks";
 
 export const metadata: Metadata = {
   title: "Сценарии кухни: семья, студия, бюджет",
@@ -17,13 +18,34 @@ const SCENARIO_CANONICAL_PATHS: Record<string, string> = {
 
 async function getScenarios() {
   try {
-    return await prisma.scenarioPage.findMany({
+    const scenarios = await prisma.scenarioPage.findMany({
       where: { published: true, slug: publicSlugWhere() },
       orderBy: [{ order: "asc" }, { createdAt: "asc" }],
       select: { slug: true, icon: true, badge: true, title: true, intro: true },
     });
+    const seen = new Set(scenarios.map((item) => item.slug));
+    return [
+      ...scenarios,
+      ...STATIC_SCENARIO_FALLBACKS.filter((item) => !seen.has(item.slug)).map((item) => ({
+        slug: item.slug,
+        icon: item.icon,
+        badge: item.badge,
+        title: item.title,
+        intro: item.intro,
+      })),
+    ].sort((a, b) => {
+      const aOrder = STATIC_SCENARIO_FALLBACKS.find((item) => item.slug === a.slug)?.order ?? 999;
+      const bOrder = STATIC_SCENARIO_FALLBACKS.find((item) => item.slug === b.slug)?.order ?? 999;
+      return aOrder - bOrder;
+    });
   } catch {
-    return [];
+    return STATIC_SCENARIO_FALLBACKS.map((item) => ({
+      slug: item.slug,
+      icon: item.icon,
+      badge: item.badge,
+      title: item.title,
+      intro: item.intro,
+    }));
   }
 }
 

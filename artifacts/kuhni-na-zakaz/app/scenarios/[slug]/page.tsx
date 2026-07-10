@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { STATIC_SCENARIO_FALLBACKS, getStaticScenarioFallback } from "@/data/scenario-fallbacks";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -183,6 +184,32 @@ const SCENARIO_LANDING_GUIDES: Record<string, {
   },
 };
 
+const SCENARIO_CATALOG_CTA: Record<string, {
+  href: string;
+  title: string;
+  text: string;
+  label: string;
+}> = {
+  "s-ostrovom": {
+    href: "/catalog/kuhni-s-ostrovom",
+    title: "Если остров подходит — переходите к расчету",
+    text: "Эта страница помогает понять проходы, функции и ограничения. Коммерческие варианты, цена от, фото и заявка собраны на странице кухонь с островом.",
+    label: "Смотреть кухни с островом",
+  },
+  "do-potolka": {
+    href: "/catalog/kuhni-do-potolka",
+    title: "Если нужен высокий гарнитур — смотрите каталог",
+    text: "Здесь разобраны плюсы, ограничения и ошибки. Купить кухню до потолка, посмотреть цену от и отправить заявку можно на отдельной коммерческой странице.",
+    label: "Смотреть кухни до потолка",
+  },
+  "dlya-malenkoy-kuhni": {
+    href: "/catalog/malenkie-kuhni",
+    title: "Если формат понятен — переходите к маленьким кухням",
+    text: "Сценарий помогает выбрать решения для компактного помещения, а коммерческая страница показывает цены, фото, материалы и форму расчета.",
+    label: "Смотреть маленькие кухни",
+  },
+};
+
 const DEFAULT_SCENARIO_GUIDE = {
   planning: [
     "начать с размеров, коммуникаций, техники и того, как вы готовите каждый день",
@@ -220,8 +247,8 @@ async function getScenario(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
 
   try {
-    return await prisma.scenarioPage.findFirst({ where: { slug, published: true } });
-  } catch { return null; }
+    return (await prisma.scenarioPage.findFirst({ where: { slug, published: true } })) ?? getStaticScenarioFallback(slug);
+  } catch { return getStaticScenarioFallback(slug); }
 }
 
 async function getRelatedData(scenario: {
@@ -257,8 +284,9 @@ async function getRelatedData(scenario: {
 export async function generateStaticParams() {
   try {
     const scenarios = await prisma.scenarioPage.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true } });
-    return scenarios.filter((s) => isPublicContentSlug(s.slug)).map((s) => ({ slug: s.slug }));
-  } catch { return []; }
+    const slugs = new Set([...STATIC_SCENARIO_FALLBACKS.map((item) => item.slug), ...scenarios.map((item) => item.slug)]);
+    return Array.from(slugs).filter(isPublicContentSlug).map((slug) => ({ slug }));
+  } catch { return STATIC_SCENARIO_FALLBACKS.map((item) => ({ slug: item.slug })); }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -295,6 +323,7 @@ export default async function ScenarioDetailPage({ params }: Props) {
 
   const { cases, styles, materials } = await getRelatedData(scenario);
   const landingGuide = getScenarioGuide(scenario.slug);
+  const catalogCta = SCENARIO_CATALOG_CTA[scenario.slug];
 
   const features = Array.isArray(scenario.features)
     ? (scenario.features as { icon: string; title: string; description: string }[])
@@ -478,6 +507,19 @@ export default async function ScenarioDetailPage({ params }: Props) {
               Посмотреть цены
             </Link>
           </div>
+          {catalogCta && (
+            <div className="mt-8 rounded-xl border border-primary/20 bg-white p-5">
+              <h3 className="text-lg font-bold text-foreground">{catalogCta.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{catalogCta.text}</p>
+              <Link
+                href={catalogCta.href}
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-white hover:bg-primary/90"
+              >
+                {catalogCta.label}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
