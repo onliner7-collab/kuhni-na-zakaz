@@ -151,6 +151,11 @@ export function ReviewExplorer({ reviews }: { reviews: ReviewExplorerItem[] }) {
                         Смотреть проект <ExternalLink className="h-3 w-3" aria-hidden="true" />
                       </Link>
                     )}
+                    {!review.project && (
+                      <Link href="/portfolio" className="mt-3 inline-flex min-h-10 items-center gap-1 text-xs font-semibold text-primary hover:underline">
+                        Смотреть портфолио <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                      </Link>
+                    )}
                   </div>
                 </div>
               </article>
