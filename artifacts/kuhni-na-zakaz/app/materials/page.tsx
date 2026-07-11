@@ -8,6 +8,7 @@ import { MaterialsGallerySection } from "@/components/sections/MaterialsGalleryS
 import { MaterialsCardsGrid } from "@/components/sections/MaterialsCardsGrid";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { STATIC_MATERIAL_PAGES } from "@/data/material-fallbacks";
 
 const title = "Материалы для кухонных фасадов";
 const description =
@@ -61,8 +62,9 @@ const featuredMaterialPages = [
 
 async function getMaterials() {
   try {
-    return await prisma.materialPage.findMany({ where: { published: true, slug: publicSlugWhere() }, orderBy: [{ order: "asc" }, { id: "asc" }] });
-  } catch { return []; }
+    const materials = await prisma.materialPage.findMany({ where: { published: true, slug: publicSlugWhere() }, orderBy: [{ order: "asc" }, { id: "asc" }] });
+    return materials.length > 0 ? materials : STATIC_MATERIAL_PAGES;
+  } catch { return STATIC_MATERIAL_PAGES; }
 }
 
 export default async function MaterialsPage() {

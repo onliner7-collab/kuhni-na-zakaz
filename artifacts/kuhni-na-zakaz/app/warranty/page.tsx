@@ -31,6 +31,13 @@ const WARRANTY_DETAILS = [
   },
 ];
 
+const WARRANTY_EXCLUSIONS = [
+  "повреждения после самостоятельной переделки, переноса или разборки кухни",
+  "следы удара, абразивной чистки, длительного контакта с водой или перегрева",
+  "неисправности техники, сантехники и коммуникаций, которые не входят в изготовленный гарнитур",
+  "естественный износ и регулировка после нарушения правил эксплуатации",
+];
+
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("warranty");
   const title = cleanSeoTitle(null, "Гарантия на кухни: условия и сервис");
@@ -104,6 +111,18 @@ export default async function WarrantyPage() {
               </ul>
             </article>
           ))}
+        </section>
+
+        <section className="mt-12 rounded-lg border border-amber-200 bg-amber-50/60 p-6">
+          <h2 className="font-serif text-3xl font-bold">На что гарантия не распространяется</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+            Окончательные условия определяются договором и причиной дефекта. Ниже — типовые ситуации, которые требуют отдельной оценки.
+          </p>
+          <ul className="mt-5 grid gap-3 md:grid-cols-2">
+            {WARRANTY_EXCLUSIONS.map((item) => (
+              <li key={item} className="rounded-md bg-white p-4 text-sm leading-6">{item}</li>
+            ))}
+          </ul>
         </section>
 
         <section className="mt-12 rounded-lg bg-primary/5 p-6">

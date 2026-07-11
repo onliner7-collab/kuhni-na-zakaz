@@ -54,6 +54,11 @@ export default async function DeliveryPage() {
     "завершить мокрые работы, плитку и основные пыльные этапы ремонта",
     "предупредить о сложном подъеме, узких дверях или ограничениях по времени",
   ];
+  const deliveryFaq = [
+    { question: "Входит ли подъем кухни в стоимость?", answer: "Зависит от адреса, этажа, лифта и габаритов деталей. Условия подъема и заноса согласуем до доставки и фиксируем в смете." },
+    { question: "Подключаете ли технику, воду и газ?", answer: "Состав работ уточняется заранее. Электрические, сантехнические и газовые подключения выполняются только если они прямо согласованы; газовые работы требуют профильного специалиста." },
+    { question: "Когда можно пользоваться кухней после монтажа?", answer: "После приемки и проверки открывания фасадов и ящиков. Для герметиков, клеевых соединений и подключенной техники мастер может дать отдельные рекомендации по времени ожидания." },
+  ];
 
   return (
     <>
@@ -88,6 +93,39 @@ export default async function DeliveryPage() {
           <p className="mt-5 text-sm leading-6 text-muted-foreground">
             Для Минска и Минской области заранее считаем логистику, чтобы доставка, занос и монтаж не сдвинули срок передачи кухни.
           </p>
+        </section>
+
+        <section className="mt-12 grid gap-5 lg:grid-cols-2">
+          <div className="rounded-lg border border-border bg-white p-6">
+            <h2 className="font-serif text-3xl font-bold">География и сроки</h2>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Работаем в Минске, Минской области и согласовываем заказы по Беларуси. Дату доставки и монтажный день подтверждаем после готовности комплекта и проверки адреса, подъезда, лифта и условий заноса.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/locations/minsk" className="min-h-11 rounded-md border border-border px-4 py-2.5 text-sm font-semibold hover:border-primary/40 hover:text-primary">Минск</Link>
+              <Link href="/locations/minskaya-oblast" className="min-h-11 rounded-md border border-border px-4 py-2.5 text-sm font-semibold hover:border-primary/40 hover:text-primary">Минская область</Link>
+              <Link href="/locations" className="min-h-11 rounded-md border border-border px-4 py-2.5 text-sm font-semibold hover:border-primary/40 hover:text-primary">Все регионы</Link>
+            </div>
+          </div>
+          <div className="rounded-lg border border-border bg-white p-6">
+            <h2 className="font-serif text-3xl font-bold">Подключения и дополнительные работы</h2>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Демонтаж, сложный подъем, вырезы, подключение техники и сантехники нельзя считать включенными автоматически. До договора уточняем состав работ, ограничения объекта и ответственного специалиста, чтобы на монтаже не возникли неожиданные доплаты.
+            </p>
+            <Link href="/contacts#form" className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-primary hover:underline">Уточнить состав работ</Link>
+          </div>
+        </section>
+
+        <section className="mt-12" aria-labelledby="delivery-faq-heading">
+          <h2 id="delivery-faq-heading" className="font-serif text-3xl font-bold">Вопросы о доставке и монтаже</h2>
+          <div className="mt-5 grid gap-3">
+            {deliveryFaq.map((item) => (
+              <details key={item.question} className="group rounded-lg border border-border bg-white p-5">
+                <summary className="cursor-pointer font-semibold">{item.question}</summary>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.answer}</p>
+              </details>
+            ))}
+          </div>
         </section>
 
         <section className="mt-12 grid gap-4 md:grid-cols-3">

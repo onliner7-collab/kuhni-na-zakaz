@@ -1,8 +1,6 @@
 /**
- * Chat 1 preparation config for the future mobile page Dock.
- *
- * This file is intentionally not wired into the UI yet. Chat 2 should import
- * or convert it when replacing MobileBottomNav with the contextual Dock.
+ * Единая конфигурация контекстного мобильного Dock для публичных страниц.
+ * Каждый маршрут получает ровно четыре действия без копирования разметки.
  */
 
 export const MOBILE_DOCK_BREAKPOINT_PX = 767;
@@ -16,10 +14,10 @@ export const MOBILE_DOCK_TYPES = {
   home: {
     match: ["/"],
     items: [
-      { label: "Подобрать", icon: "sliders", target: "#selector" },
-      { label: "Проекты", icon: "images", target: "#projects" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
       { label: "Цены", icon: "wallet", target: "#prices" },
-      { label: "Расчёт", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#calculate", primary: true },
+      { label: "Портфолио", icon: "images", target: "#projects", alternatives: [{ label: "Портфолио", icon: "images", href: "/portfolio" }] },
+      { label: "Заявка", icon: "send", action: "open-calculation-form", fallbackTarget: "#calculate", primary: true },
     ],
   },
 
@@ -53,67 +51,63 @@ export const MOBILE_DOCK_TYPES = {
     ],
   },
 
+  locationsIndex: {
+    match: ["/locations"],
+    items: [
+      { label: "Города", icon: "layout-grid", href: "/locations/minskaya-oblast" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Каталог", icon: "grid-2x2", href: "/catalog" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
   portfolio: {
     match: ["/portfolio"],
     items: [
-      { label: "Все", icon: "grid-2x2", target: "#all-projects" },
-      { label: "Стили", icon: "palette", target: "#styles-filter" },
-      { label: "Планировки", icon: "layout-template", target: "#layouts-filter" },
-      { label: "Похожую", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#portfolio-request", primary: true },
+      { label: "Фильтр", icon: "sliders", target: "#all-projects" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Заявка", icon: "send", action: "open-calculation-form", fallbackTarget: "#portfolio-request", primary: true },
     ],
   },
 
   location: {
     match: ["/locations/*"],
     items: [
-      { label: "Проекты", icon: "images", target: "#location-projects", requiredIdStatus: "add-in-chat-2" },
-      { label: "Цены", icon: "wallet", target: "#location-prices", requiredIdStatus: "add-in-chat-2" },
-      {
-        label: "Отзывы",
-        icon: "message-circle",
-        target: "#location-reviews",
-        optional: true,
-        requiredIdStatus: "add-in-chat-2",
-        alternatives: [{ label: "Вопросы", icon: "message-circle", target: "#location-faq" }],
-      },
-      { label: "Замер", icon: "ruler", action: "open-measurement-form", fallbackTarget: "#form", primary: true },
+      { label: "Замер", icon: "ruler", action: "open-measurement-form", fallbackTarget: "#form" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
     ],
   },
 
   regionalLocation: {
     match: ["/locations/minsk", "/locations/minskaya-oblast"],
     items: [
-      { label: "Проекты", icon: "images", target: "#location-projects", requiredIdStatus: "add-in-chat-2" },
-      { label: "Цены", icon: "wallet", target: "#location-prices", requiredIdStatus: "add-in-chat-2" },
-      {
-        label: "Отзывы",
-        icon: "message-circle",
-        target: "#location-reviews",
-        optional: true,
-        requiredIdStatus: "add-in-chat-2",
-        alternatives: [{ label: "Вопросы", icon: "message-circle", target: "#location-faq" }],
-      },
-      { label: "Замер", icon: "ruler", action: "open-measurement-form", fallbackTarget: "#form", primary: true },
+      { label: "Замер", icon: "ruler", action: "open-measurement-form", fallbackTarget: "#form" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
     ],
   },
 
   category: {
     match: ["/catalog/*"],
     items: [
-      { label: "Примеры", icon: "images", target: "#catalog-gallery-heading" },
-      { label: "Планировки", icon: "layout-template", target: "#catalog-layouts", requiredIdStatus: "add-in-chat-2" },
-      { label: "Стоимость", icon: "wallet", target: "#catalog-prices", requiredIdStatus: "add-in-chat-2" },
-      { label: "Расчёт", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#form", primary: true },
+      { label: "Фото", icon: "images", target: "#catalog-gallery-heading", alternatives: [{ label: "Фото", icon: "images", href: "/portfolio" }] },
+      { label: "Цена", icon: "wallet", target: "#catalog-prices", alternatives: [{ label: "Цена", icon: "wallet", href: "/prices" }] },
+      { label: "Материалы", icon: "layers", href: "/materials" },
+      { label: "Заявка", icon: "send", action: "open-calculation-form", fallbackTarget: "#form", primary: true },
     ],
   },
 
   materialsIndex: {
     match: ["/materials"],
     items: [
-      { label: "Фасады", icon: "layers", href: "/materials/mdf-fasady" },
-      { label: "ЛДСП", icon: "square-stack", href: "/materials/ldsp" },
-      { label: "Фурнитура", icon: "settings-2", href: "/materials/furnitura" },
-      { label: "Расчёт", icon: "calculator", href: "/contacts#form", primary: true },
+      { label: "Фактуры", icon: "layers", href: "/materials/mdf-fasady" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
     ],
   },
 
@@ -121,33 +115,31 @@ export const MOBILE_DOCK_TYPES = {
     match: ["/materials/*"],
     items: [
       {
-        label: "Фото",
+        label: "Фактуры",
         icon: "images",
         target: "#material-detail-gallery",
         targetPrefix: true,
-        alternatives: [{ label: "Материалы", icon: "layers", href: "/materials" }],
+        alternatives: [{ label: "Фактуры", icon: "layers", href: "/materials" }],
       },
       {
-        label: "Стоимость",
+        label: "Цены",
         icon: "wallet",
         target: "#material-price",
         requiredIdStatus: "add-in-chat-2",
         alternatives: [{ label: "Цены", icon: "wallet", href: "/prices" }],
       },
       {
-        label: "Примеры",
+        label: "Каталог",
         icon: "layout-grid",
-        target: "#material-projects",
-        requiredIdStatus: "add-in-chat-2",
-        alternatives: [{ label: "Проекты", icon: "layout-grid", href: "/portfolio" }],
+        href: "/catalog",
       },
       {
-        label: "Подобрать",
-        icon: "calculator",
+        label: "Заявка",
+        icon: "send",
         action: "open-calculation-form",
         fallbackTarget: "#form",
         primary: true,
-        alternatives: [{ label: "Расчёт", icon: "calculator", href: "/contacts#form", primary: true }],
+        alternatives: [{ label: "Заявка", icon: "send", href: "/contacts#form", primary: true }],
       },
     ],
   },
@@ -189,15 +181,92 @@ export const MOBILE_DOCK_TYPES = {
       { label: "Расчёт", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#form", primary: true },
     ],
   },
+
+  stylesIndex: {
+    match: ["/styles"],
+    items: [
+      { label: "Стили", icon: "palette", href: "/styles/sovremennye" },
+      { label: "Материалы", icon: "layers", href: "/materials" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
+  calculator: {
+    match: ["/calculator"],
+    items: [
+      { label: "Расчёт", icon: "calculator", href: "/calculator" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
+  scenariosIndex: {
+    match: ["/scenarios"],
+    items: [
+      { label: "Сценарии", icon: "layout-template", href: "/scenarios" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
+  scenario: {
+    match: ["/scenarios/*"],
+    items: [
+      { label: "Решение", icon: "layout-template", href: "/scenarios" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
+  blogIndex: {
+    match: ["/blog"],
+    items: [
+      { label: "Статьи", icon: "grid-2x2", href: "/blog" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
+  blog: {
+    match: ["/blog/*"],
+    items: [
+      { label: "Статьи", icon: "grid-2x2", href: "/blog" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
+  trust: {
+    match: ["/about", "/reviews", "/warranty", "/delivery-installation", "/contacts"],
+    items: [
+      { label: "О компании", icon: "message-circle", href: "/about" },
+      { label: "Отзывы", icon: "sparkles", href: "/reviews" },
+      { label: "Портфолио", icon: "images", href: "/portfolio" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
+
+  legal: {
+    match: ["/privacy-policy", "/personal-data", "/terms"],
+    items: [
+      { label: "Контакты", icon: "message-circle", href: "/contacts" },
+      { label: "Каталог", icon: "layout-grid", href: "/catalog" },
+      { label: "Цены", icon: "wallet", href: "/prices" },
+      { label: "Заявка", icon: "send", href: "/contacts#form", primary: true },
+    ],
+  },
 };
 
 export const MOBILE_DOCK_DISABLED_PATH_PREFIXES = [
   "/admin",
   "/kapi",
   "/thanks",
-  "/privacy-policy",
-  "/personal-data",
-  "/terms",
   "/robots.txt",
   "/sitemap.xml",
 ];

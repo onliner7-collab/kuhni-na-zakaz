@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "@/components/navigation/Link";
-import { Star, ExternalLink, Globe, Send } from "lucide-react";
+import { Star } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { ReviewForm } from "@/components/sections/ReviewForm";
 import { cn } from "@/lib/utils";
 import { JsonLd, aggregateRatingJsonLd, breadcrumbJsonLd, compactJsonLd, isTrustedReviewForSchema, productReviewsJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { ReviewExplorer } from "@/components/reviews/ReviewExplorer";
 
 const title = "Отзывы о кухнях на заказ в Минске";
 const description =
@@ -20,16 +21,6 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 3600;
-
-const SOURCE_LABELS: Record<string, string> = {
-  google: "Google",
-  yandex: "Яндекс",
-  telegram: "Telegram",
-  instagram: "Instagram",
-  vk: "ВКонтакте",
-  direct: "Напрямую",
-  website: "Сайт",
-};
 
 const REVIEW_ANALYSIS_POINTS = [
   {
@@ -63,7 +54,7 @@ async function getData() {
     const cases = slugs.length
       ? await prisma.portfolioCase.findMany({
           where: { slug: { in: slugs } },
-          select: { slug: true, title: true, mainImage: true },
+          select: { slug: true, title: true, mainImage: true, kitchenType: true },
         })
       : [];
     const caseMap = Object.fromEntries(cases.map((c) => [c.slug, c]));
@@ -88,9 +79,19 @@ function StarRow({ rating, size = "sm" }: { rating: number; size?: "sm" | "md" }
 export default async function ReviewsPage() {
   const { reviews, caseMap } = await getData();
 
-  const featured = reviews.filter((r) => r.featured);
-  const regular = reviews.filter((r) => !r.featured);
   const schemaReviews = reviews.filter(isTrustedReviewForSchema);
+  const reviewExplorerItems = reviews.map((review) => ({
+    id: review.id,
+    name: review.name,
+    city: review.city,
+    region: review.region,
+    rating: review.rating,
+    text: review.text,
+    date: review.date,
+    source: review.source,
+    featured: review.featured,
+    project: review.caseSlug ? caseMap[review.caseSlug] ?? null : null,
+  }));
 
   const totalCount = reviews.length;
   const avgRating = totalCount > 0
@@ -163,96 +164,7 @@ export default async function ReviewsPage() {
             ))}
           </section>
 
-          {featured.length > 0 && (
-            <section className="mb-12">
-              <h2 className="font-serif text-2xl font-semibold mb-5">Избранные отзывы</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {featured.map((r) => {
-                  const kase = r.caseSlug ? caseMap[r.caseSlug] : null;
-                  return (
-                    <div key={r.id} className="card-base p-6 border-2 border-primary/20 relative">
-                      <div className="absolute top-4 right-4">
-                        <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
-                      </div>
-                      <StarRow rating={r.rating} />
-                      <p className="text-sm leading-relaxed mt-3 mb-4 text-foreground">&ldquo;{r.text}&rdquo;</p>
-                      <div className="flex items-end justify-between gap-4">
-                        <div>
-                          <p className="font-semibold text-sm">{r.name}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {r.city}{r.region ? `, ${r.region}` : ""}{r.date ? ` · ${r.date}` : ""}
-                          </p>
-                          {r.source && r.source !== "website" && (
-                            <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                              <Globe className="w-3 h-3" /> {SOURCE_LABELS[r.source] || r.source}
-                            </p>
-                          )}
-                        </div>
-                        {kase && (
-                          <Link
-                            href={`/portfolio/${kase.slug}`}
-                            className="flex-shrink-0 text-xs text-primary hover:underline flex items-center gap-1"
-                          >
-                            Смотреть проект <ExternalLink className="w-3 h-3" />
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {regular.length > 0 && (
-            <section className="mb-16">
-              {featured.length > 0 && (
-                <h2 className="font-serif text-2xl font-semibold mb-5">Все отзывы</h2>
-              )}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {regular.map((r) => {
-                  const kase = r.caseSlug ? caseMap[r.caseSlug] : null;
-                  return (
-                    <div key={r.id} className="card-base p-5">
-                      <StarRow rating={r.rating} />
-                      <p className="text-sm leading-relaxed mt-3 mb-4 text-muted-foreground line-clamp-4">
-                        &ldquo;{r.text}&rdquo;
-                      </p>
-                      <div className="border-t border-border pt-3 flex items-end justify-between gap-2">
-                        <div>
-                          <p className="font-medium text-xs">{r.name}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {r.city}{r.region ? `, ${r.region}` : ""}{r.date ? ` · ${r.date}` : ""}
-                          </p>
-                          {r.source && r.source !== "website" && (
-                            <span className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
-                              {r.source === "telegram" ? <Send className="w-3 h-3" /> : <Globe className="w-3 h-3" />}
-                              {SOURCE_LABELS[r.source] || r.source}
-                            </span>
-                          )}
-                        </div>
-                        {kase && (
-                          <Link
-                            href={`/portfolio/${kase.slug}`}
-                            className="flex-shrink-0 text-xs text-primary hover:underline flex items-center gap-1"
-                          >
-                            Проект <ExternalLink className="w-3 h-3" />
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {reviews.length === 0 && (
-            <div className="text-center py-12 text-muted-foreground mb-16">
-              <p className="text-lg mb-2">Отзывы пока не опубликованы</p>
-              <p className="text-sm">Будьте первым — оставьте отзыв ниже.</p>
-            </div>
-          )}
+          <ReviewExplorer reviews={reviewExplorerItems} />
 
           <section className="mb-16 grid gap-4 md:grid-cols-3">
             {[

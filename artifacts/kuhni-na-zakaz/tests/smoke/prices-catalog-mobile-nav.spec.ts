@@ -54,13 +54,13 @@ test.describe("prices visual catalog and mobile navigation", () => {
     const bottomNav = page.getByTestId("mobile-bottom-nav");
     await expect(bottomNav).toBeVisible();
 
-    await bottomNav.getByRole("link", { name: /Подобрать/ }).click();
-    await expect(page).toHaveURL(/#selector/);
-    await expect(page.locator("#selector")).toBeVisible();
-
-    await bottomNav.getByRole("link", { name: /Проекты/ }).click();
-    await expect(page).toHaveURL(/#projects/);
-    await expect(page.locator("#projects")).toBeVisible();
+    await expect(bottomNav.getByRole("button")).toHaveCount(4);
+    await expect(bottomNav.getByRole("button").allTextContents()).resolves.toEqual([
+      "Каталог",
+      "Цены",
+      "Портфолио",
+      "Заявка",
+    ]);
 
     const hasHorizontalOverflow = await page.evaluate(
       () => document.documentElement.scrollWidth > window.innerWidth + 1,
@@ -70,6 +70,6 @@ test.describe("prices visual catalog and mobile navigation", () => {
     await page.goto("/prices#calculate", { waitUntil: "domcontentloaded" });
     await expect(bottomNav).toBeVisible();
     await page.locator("#calculate").getByLabel("Имя *").focus();
-    await expect(bottomNav).toHaveClass(/opacity-0/);
+    await expect(bottomNav).toHaveClass(/mobile-page-dock--hidden/);
   });
 });

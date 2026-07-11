@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { renderContent } from "@/lib/render-content";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { getStaticPage } from "@/lib/static-page";
+import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 
 const FACTS = [
   { n: "BY", t: "частные заказы", d: "Работаем с клиентами по Беларуси" },
@@ -94,6 +96,52 @@ export default async function AboutPage() {
               {renderContent(content)}
             </div>
           )}
+
+          <section className="mb-16" aria-labelledby="about-proof-heading">
+            <div className="mb-6 max-w-3xl">
+              <h2 id="about-proof-heading" className="font-serif text-3xl font-bold">Что можно проверить до заказа</h2>
+              <p className="mt-3 leading-7 text-muted-foreground">
+                Мы не подменяем доказательства красивыми обещаниями: реальные фотографии отделены от 3D-визуализаций, условия гарантии опубликованы отдельно, а комплектация и сроки фиксируются в документах по заказу.
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {[
+                {
+                  src: "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-belaya-002-main.webp",
+                  alt: "Фото угловой кухни с белыми фасадами из портфолио",
+                  label: "Фото из портфолио",
+                  text: "Готовые решения можно оценить по общему виду, стыкам, фасадам и компоновке.",
+                  generated: false,
+                },
+                {
+                  src: "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
+                  alt: "Фото белой кухни с островом из портфолио",
+                  label: "Фото из портфолио",
+                  text: "В карточках проектов указаны планировка, материалы и особенности решения, если данные подтверждены.",
+                  generated: false,
+                },
+                {
+                  src: "/uploads/locations/minsk-stage78/minsk-production-01-raskroy-detalei-desktop.webp",
+                  alt: "3D-визуализация раскроя деталей будущей кухни",
+                  label: "3D-визуализация процесса",
+                  text: "Это иллюстрация этапа, а не документальное фото производства. Фактическую комплектацию фиксируем в смете и договоре.",
+                  generated: true,
+                },
+              ].map((item) => (
+                <article key={item.src} className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
+                  <div className="relative aspect-[3/2] overflow-hidden bg-muted">
+                    <Image src={item.src} alt={item.alt} width={720} height={480} loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" className="h-full w-full object-cover" />
+                    <BrandedImageWatermark show={item.generated} compact />
+                    <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold">{item.label}</span>
+                  </div>
+                  <p className="p-4 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                </article>
+              ))}
+            </div>
+            <Link href="/portfolio" className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-primary hover:underline">
+              Открыть портфолио и проверить проекты
+            </Link>
+          </section>
 
           <section className="mb-16 grid gap-5 md:grid-cols-3">
             {TRUST_BLOCKS.map((item) => (

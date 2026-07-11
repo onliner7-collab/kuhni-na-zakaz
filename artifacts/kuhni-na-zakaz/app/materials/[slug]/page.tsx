@@ -11,6 +11,7 @@ import { renderContent } from "@/lib/render-content";
 import { getMaterialEnrichment } from "@/lib/kitchen-page-enrichment";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { STATIC_MATERIAL_BY_SLUG, STATIC_MATERIAL_PAGES } from "@/data/material-fallbacks";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -41,8 +42,8 @@ async function getMaterial(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
 
   try {
-    return await prisma.materialPage.findFirst({ where: { slug, published: true } });
-  } catch { return null; }
+    return (await prisma.materialPage.findFirst({ where: { slug, published: true } })) ?? STATIC_MATERIAL_BY_SLUG.get(slug) ?? null;
+  } catch { return STATIC_MATERIAL_BY_SLUG.get(slug) ?? null; }
 }
 
 async function getRelatedData(m: Awaited<ReturnType<typeof getMaterial>>) {
@@ -78,7 +79,9 @@ async function getOtherMaterials(currentSlug: string) {
       select: { slug: true, title: true },
     });
   } catch {
-    return [];
+    return STATIC_MATERIAL_PAGES.filter((material) => material.slug !== currentSlug)
+      .slice(0, 5)
+      .map((material) => ({ slug: material.slug, title: material.title }));
   }
 }
 

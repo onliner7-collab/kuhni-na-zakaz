@@ -22,6 +22,7 @@ export interface PortfolioProject {
   styleSlug: string;
   color: string;
   price: string;
+  priceFrom: number;
   priceNote: string;
   size: string;
   materials: string[];
@@ -546,6 +547,7 @@ export function toPortfolioProject(portfolioCase: EditablePortfolioCase): Portfo
     styleSlug: portfolioCase.styleSlug ?? "",
     color: portfolioCase.color || "Светлая",
     price,
+    priceFrom: portfolioCase.priceFrom,
     priceNote: portfolioCase.priceNote || defaultPriceNote,
     size: normalizeSize(portfolioCase),
     materials,

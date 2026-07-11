@@ -56,6 +56,22 @@ const colorOptions: FilterOption[] = [
   { label: "Комбинированные", value: "kombinirovannye" },
 ];
 
+const materialOptions: FilterOption[] = [
+  { label: "Все", value: "all" },
+  { label: "МДФ", value: "mdf" },
+  { label: "Эмаль", value: "emal" },
+  { label: "ЛДСП", value: "ldsp" },
+  { label: "HPL", value: "hpl" },
+  { label: "Шпон", value: "shpon" },
+];
+
+const budgetOptions: FilterOption[] = [
+  { label: "Любой", value: "all" },
+  { label: "до 4 000 BYN", value: "under-4000" },
+  { label: "4 000–7 000 BYN", value: "4000-7000" },
+  { label: "от 7 000 BYN", value: "from-7000" },
+];
+
 function getKitchenTypeValue(project: PortfolioProject) {
   const type = project.kitchenType.toLowerCase();
 
@@ -103,6 +119,28 @@ function getColorValue(project: PortfolioProject) {
   if (color.includes("комб")) return "kombinirovannye";
 
   return "";
+}
+
+function doesMatchMaterial(project: PortfolioProject, value: string) {
+  if (value === "all") return true;
+  const materialText = [project.facades, ...project.materials].join(" ").toLowerCase();
+
+  if (value === "mdf") return materialText.includes("мдф");
+  if (value === "emal") return materialText.includes("эмал");
+  if (value === "ldsp") return materialText.includes("лдсп");
+  if (value === "hpl") return materialText.includes("hpl") || materialText.includes("пластик");
+  if (value === "shpon") return materialText.includes("шпон");
+
+  return false;
+}
+
+function doesMatchBudget(project: PortfolioProject, value: string) {
+  if (value === "all") return true;
+  if (project.priceFrom <= 0) return false;
+  if (value === "under-4000") return project.priceFrom < 4000;
+  if (value === "4000-7000") return project.priceFrom >= 4000 && project.priceFrom < 7000;
+  if (value === "from-7000") return project.priceFrom >= 7000;
+  return false;
 }
 
 function doesMatchCity(project: PortfolioProject, value: string) {
@@ -160,12 +198,16 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
   const [typeFilter, setTypeFilter] = useState("all");
   const [styleFilter, setStyleFilter] = useState("all");
   const [colorFilter, setColorFilter] = useState("all");
+  const [materialFilter, setMaterialFilter] = useState("all");
+  const [budgetFilter, setBudgetFilter] = useState("all");
 
   const hasFilters =
     cityFilter !== "all" ||
     typeFilter !== "all" ||
     styleFilter !== "all" ||
-    colorFilter !== "all";
+    colorFilter !== "all" ||
+    materialFilter !== "all" ||
+    budgetFilter !== "all";
 
   const filteredProjects = useMemo(
     () =>
@@ -174,18 +216,22 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
         if (typeFilter !== "all" && getKitchenTypeValue(project) !== typeFilter) return false;
         if (styleFilter !== "all" && getStyleValue(project) !== styleFilter) return false;
         if (colorFilter !== "all" && getColorValue(project) !== colorFilter) return false;
+        if (!doesMatchMaterial(project, materialFilter)) return false;
+        if (!doesMatchBudget(project, budgetFilter)) return false;
 
         return true;
       }),
-    [cityFilter, colorFilter, projects, styleFilter, typeFilter],
+    [budgetFilter, cityFilter, colorFilter, materialFilter, projects, styleFilter, typeFilter],
   );
 
-  function handleFilterChange(filterName: "city" | "type" | "style" | "color", value: string) {
+  function handleFilterChange(filterName: "city" | "type" | "style" | "color" | "material" | "budget", value: string) {
     const nextFilters = {
       city: cityFilter,
       type: typeFilter,
       style: styleFilter,
       color: colorFilter,
+      material: materialFilter,
+      budget: budgetFilter,
       [filterName]: value,
     };
 
@@ -196,12 +242,16 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
       type_filter: nextFilters.type,
       style_filter: nextFilters.style,
       color_filter: nextFilters.color,
+      material_filter: nextFilters.material,
+      budget_filter: nextFilters.budget,
     });
 
     if (filterName === "city") setCityFilter(value);
     if (filterName === "type") setTypeFilter(value);
     if (filterName === "style") setStyleFilter(value);
     if (filterName === "color") setColorFilter(value);
+    if (filterName === "material") setMaterialFilter(value);
+    if (filterName === "budget") setBudgetFilter(value);
   }
 
   function resetFilters() {
@@ -213,6 +263,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
     setTypeFilter("all");
     setStyleFilter("all");
     setColorFilter("all");
+    setMaterialFilter("all");
+    setBudgetFilter("all");
   }
 
   return (
@@ -243,6 +295,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
           <FilterGroup id="layouts-filter" label="Тип кухни" options={kitchenTypeOptions} value={typeFilter} onChange={(value) => handleFilterChange("type", value)} />
           <FilterGroup id="styles-filter" label="Стиль" options={styleOptions} value={styleFilter} onChange={(value) => handleFilterChange("style", value)} />
           <FilterGroup label="Цвет" options={colorOptions} value={colorFilter} onChange={(value) => handleFilterChange("color", value)} />
+          <FilterGroup label="Материал" options={materialOptions} value={materialFilter} onChange={(value) => handleFilterChange("material", value)} />
+          <FilterGroup label="Бюджет" options={budgetOptions} value={budgetFilter} onChange={(value) => handleFilterChange("budget", value)} />
         </div>
       </div>
 
