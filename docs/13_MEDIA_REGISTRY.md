@@ -25,3 +25,13 @@
 | GROUP-019 | `artifacts/kuhni-na-zakaz/public/icon-192.png/`                  | Группа медиа | Не подтверждено реестром                    | См. имя группы и usages в коде | png                  | Смешанные; точные размеры проверяются на этапе медиакарты | Частично: alt хранится в JSX/данных, не в файле | Требует проверки/оптимизации                        | Проверить; аудит SHA-256 нашёл 47 групп дублей в public | 1 файлов, 0.0 МБ     |
 | GROUP-020 | `artifacts/kuhni-na-zakaz/public/logo.png/`                      | Группа медиа | Не подтверждено реестром                    | См. имя группы и usages в коде | png                  | Смешанные; точные размеры проверяются на этапе медиакарты | Частично: alt хранится в JSX/данных, не в файле | Требует проверки/оптимизации                        | Проверить; аудит SHA-256 нашёл 47 групп дублей в public | 1 файлов, 0.0 МБ     |
 | GROUP-021 | `artifacts/kuhni-na-zakaz/public/favicon.svg/`                   | Группа медиа | Не подтверждено реестром                    | См. имя группы и usages в коде | svg                  | Смешанные; точные размеры проверяются на этапе медиакарты | Частично: alt хранится в JSX/данных, не в файле | Требует проверки/оптимизации                        | Проверить; аудит SHA-256 нашёл 47 групп дублей в public | 1 файлов, 0.0 МБ     |
+
+## Planned pilot media — этап 2
+
+| Asset group       | Requirements                                 | Page usage               | Real/AI contract                                                         | Status  |
+| ----------------- | -------------------------------------------- | ------------------------ | ------------------------------------------------------------------------ | ------- |
+| `PILOT-AK-01..09` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/catalog/uglovye-kuhni` | Real projects exact provenance; остальное AI/technical с disclosure      | PLANNED |
+| `PILOT-BR-01..12` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/locations/borisov`     | Production media — illustration until real proof; local cases exact-city | PLANNED |
+| `PILOT-HW-01..12` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/materials/furnitura`   | Technical render; official sources required for specs                    | PLANNED |
+
+Итого: 33 planned media groups. Существующие assets не получают статус `MEDIA_READY` автоматически.

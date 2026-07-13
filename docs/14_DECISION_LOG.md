@@ -45,3 +45,51 @@
 - **Риски:** выявленные targets 40–42 px остаются долгом до разрешённого UI-этапа.
 - **Rollback:** документационное правило можно изменить только отдельным решением.
 - **Статус:** принято.
+
+## 2026-07-13 — этап 2 начинается с reverse-audit существующих пилотов
+
+- **Решение:** существующие pilot implementations не считаются автоматически утверждённым target design; сохранить работающие contracts, а target state описать отдельно.
+- **Причина:** код содержит Angular/Borisov/Hardware pilot branches, созданные до нового Master Plan.
+- **Проверенный код:** `app/catalog/[slug]/page.tsx`, `app/locations/[city]/page.tsx`, `app/materials/furnitura/page.tsx`, pilot components/data/media.
+- **Расхождение документации и кода:** Master Plan называет пилоты будущими этапами, но production code уже реализован. Source of truth для current state — код; stage docs задают будущий contract.
+- **Rollback:** удалить только `docs/pilots/*` и восстановить registry/log/handoff из commit этапа 1; production code не затронут.
+- **Статус:** принято.
+
+## 2026-07-13 — три разные модели взаимодействия
+
+- **Решение:** Angular = пространственный `CornerStorageExplorer`; Borisov = временной `ProductionJourney`; Hardware = причинно-механический `HardwareCabinetExplorer`.
+- **Причина:** одинаковый hero/sequence с заменой текста не создаёт уникального продукта.
+- **Расхождение кода:** текущие Angular и Borisov используют близкий full-screen hero pattern; Hardware визуально отличается.
+- **Риск:** общие primitives могут незаметно вернуть одинаковую композицию.
+- **Контроль:** uniqueness failure test в `docs/pilots/07_PILOT_UNIQUENESS_MATRIX.md`.
+- **Статус:** принято.
+
+## 2026-07-13 — furnitura gallery не монтируется целиком
+
+- **Решение:** legacy gallery остаётся источником/архивом, но target initial DOM ограничивается 8–12 thumbnails; остальные категории монтируются по intent.
+- **Причина:** проверено 201 registry item, 203 image elements, 220 buttons, 2894 DOM elements и 55–60 тыс. px mobile page height.
+- **Альтернатива:** оставить 201 lazy image отклонено; lazy network не устраняет DOM/a11y/layout cost.
+- **Rollback:** будущая реализация сохраняет legacy registry и может вернуть category view без повторной генерации.
+- **Статус:** принято.
+
+## 2026-07-13 — schema должна совпадать с visible content
+
+- **Решение:** Angular/Borisov FAQPage не переносится автоматически: будущая реализация либо показывает exact FAQ, либо удаляет schema отдельным SEO change.
+- **Причина:** current pilot branches получают FAQ JSON-LD из data, но не выводят видимый FAQ.
+- **Дополнительно:** Borisov Service/Offer/provider address и Furnitura Article/ImageObject scope требуют evidence/role review; на этапе 2 ничего не меняется.
+- **Статус:** принято, открыто для реализации.
+
+## 2026-07-13 — media plan до генерации
+
+- **Решение:** этап 3 получает 33 planned media groups: Angular 9, Borisov 12, Hardware 12.
+- **Причина:** storyboard, consistency, provenance и load contract должны быть утверждены до prompts/generation.
+- **Ограничение:** существующие media не получают `MEDIA_READY`; финальные images в этапе 2 не генерируются.
+- **Статус:** принято.
+
+## 2026-07-13 — публикация документации этапа 2
+
+- **Решение:** по прямому финальному указанию пользователя выполнить deploy отдельного docs-only commit после проверок; runtime code/media/SEO/UI не менять.
+- **Причина:** ТЗ внутри этапа запрещает внедрение/deploy production changes, но пользователь отдельно потребовал deploy после завершения. Публикуется только документация; сайт функционально не перерабатывается.
+- **Риск:** production deploy pipeline выполнит стандартную сборку без runtime diff.
+- **Rollback:** вернуть ветку `work` к предыдущему commit через отдельный revert docs commit; не использовать destructive reset.
+- **Статус:** принято как явно запрошенная операция передачи состояния.

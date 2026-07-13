@@ -2,71 +2,93 @@
 
 ## Current stage
 
-Этап 1 — архитектурный фундамент и фактический аудит. Документация сформирована на baseline commit `658571b` ветки `work`.
+Этап 2 — reverse-audit и детальное проектирование трёх пилотов. Baseline этапа 1: `6f78fbb`. Commit этапа 2: `STAGE2_COMMIT_TO_BE_REPLACED`.
 
 ## Completed
 
-- Проанализированы workspace/app structure, routes, metadata, sitemap, robots, schema, components, styles, safe-area/reduced-motion, media, forms, Prisma, notifications, analytics и performance risks.
-- Production sitemap и локальный static fallback подтверждают 112 URL.
-- Созданы обязательные 16 документов и краткий `AGENT.md`.
-- Реестры основаны на фактических URL, 91 TSX-компоненте и media directories.
+- Фактически изучены `/catalog/uglovye-kuhni`, `/locations/borisov`, `/materials/furnitura`: routes, server/client boundaries, hooks, data/Prisma fallbacks, metadata, JSON-LD, links, forms, Dock, media and build scripts.
+- Локальный production-like DOM проверен во встроенном браузере на 360/390/412/768/1440 px.
+- Созданы 9 документов `docs/pilots/00_*`–`08_*`.
+- Зафиксированы preserve/replace decisions, три уникальных user flows, component contracts, 33 planned media groups, SEO ownership/cannibalization и future acceptance gate.
+- Page/Component/Media Registry, Decision Log и Handoff обновлены.
 
 ## Created files
 
-`docs/00_MASTER_PLAN.md` — `docs/15_HANDOFF.md`; обновлён `AGENT.md`. Старая дублирующая серия `docs/00_PROJECT_VISION.md` — `docs/08_HANDOFF.md` удалена после переноса актуальной информации.
+- `docs/pilots/00_PILOT_OVERVIEW.md`
+- `docs/pilots/01_ANGULAR_KITCHENS_SPEC.md`
+- `docs/pilots/02_BORISOV_SPEC.md`
+- `docs/pilots/03_HARDWARE_SPEC.md`
+- `docs/pilots/04_PILOT_COMPONENT_MAP.md`
+- `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md`
+- `docs/pilots/06_PILOT_SEO_MAP.md`
+- `docs/pilots/07_PILOT_UNIQUENESS_MATRIX.md`
+- `docs/pilots/08_PILOT_ACCEPTANCE_CRITERIA.md`
 
 ## Modified production files
 
-Нет. Файлы внутри `artifacts/kuhni-na-zakaz`, runtime config, routes, styles, SEO, forms и media не изменялись.
+Нет. `artifacts/kuhni-na-zakaz`, routes, metadata, schema, CSS, components, forms, Prisma, sitemap, robots и media не изменялись.
 
-## Git status
+## Reverse-audit evidence
 
-До работы: clean, `work...origin/work`. После работы изменены только `AGENT.md` и документация: старая серия 00–08 удалена, новая серия 00–15 добавлена. Production-пути вне `docs/` не затронуты. Следующий чат обязан повторить `git status`.
+| Page at 390 px |  DOM |                  Images | Main height | Overflow | Dock              |
+| -------------- | ---: | ----------------------: | ----------: | -------: | ----------------- |
+| Angular        |  700 |     5 (1 eager, 4 lazy) |     9709 px |        0 | correct 4 actions |
+| Borisov        |  679 |     3 (1 eager, 2 lazy) |     8401 px |        0 | correct 4 actions |
+| Furnitura      | 2894 | 203 (1 eager, 202 lazy) |    57839 px |        0 | correct 4 actions |
 
-## Latest commit
+- Dock at 390 px: 68 px fixed panel, 104 px main padding. At 1440 px: hidden, padding 0.
+- Completed broken images: 0 in initial states. All 201 furnitura registry WebP exist; named AVIF/WebP pilot derivatives exist.
+- Raw local script bytes in current build: Angular 972.2 KiB; Borisov 963.8 KiB; Furnitura 1030.5 KiB. Not gzip/transfer/CWV.
+- Production browser before deploy timed out and is not claimed as verified. Local browser evidence is explicitly local.
 
-`658571b docs: record full project deploy`.
+## Preserve
 
-## Checks executed
+- URLs/canonicals, server route shells, forms/API, Context Dock labels, crawlable links, Russian alt/caption, AI/real disclosure, exact-city project filtering and AVIF/WebP pattern.
+- One main interactive client island per pilot; important meaning remains in server HTML.
 
-- `git status --short --branch` и `git log -5 --oneline --decorate`.
-- `pnpm.cmd run sitemap:check` в app: passed, 112 URL, static fallback.
-- Production `https://kuhni.minsk.by/sitemap.xml`: HTTP 200, 112 URL.
-- Static inventory: 103 pages, 68 route handlers, 91 components, 1008 public files.
-- Browser mobile DOM: 360, 390 и 412 px; H1/overflow/broken images; pilot Dock после hydration.
-- Проверка 17 обязательных файлов, UTF-8 без BOM, 112/91/21 строк реестров, sitemap-to-registry diff, `git diff --check` и Prettier Markdown.
+## Replace in future implementation
 
-## Checks passed
+- Angular: button-only gallery → swipe+buttons; target CornerStorageExplorer; correct tab semantics; hidden FAQ schema resolved.
+- Borisov: 4-step/decorative flow → 7-step ProductionJourney; hero composition distinct; selections optionally passed to lead; no unverified local claims; hidden FAQ schema resolved.
+- Furnitura: 201-image initial DOM → intent-mounted category gallery; real cabinet hotspots/text fallback; mobile comparisons; unsupported resource/brand claims removed or sourced.
 
-Sitemap consistency; production sitemap availability; отсутствие horizontal overflow и broken completed images на проверенных страницах; один H1; hydrated pilot Dock = 4 items; все обязательные файлы существуют; Page Registry совпадает с 112 sitemap URL; только документационный git diff; Markdown после форматирования проходит Prettier.
+## Registries
 
-## Checks failed or not executed
+- Page Registry: three rows now `Current status=AUDITED`, `Redesign status=DESIGNED`; not MEDIA_READY/IMPLEMENTED/VERIFIED for the new project stage.
+- Component Registry: shared and page-specific future components added as `PLANNED`.
+- Media Registry: `PILOT-AK-01..09`, `PILOT-BR-01..12`, `PILOT-HW-01..12` added as `PLANNED`.
 
-- Build/typecheck/lint не запускались: production-код не менялся.
-- Lighthouse/CWV/throttled network не запускались; абсолютные показатели не подтверждены.
-- Локальная DB недоступна для sitemap script, поэтому использован предусмотренный static fallback.
+## Known open risks
 
-## Known issues
+- Angular/Borisov current FAQPage schema is not backed by visible pilot FAQ.
+- Borisov shared Service schema/address/Offer and data timing/warranty claims need business evidence review.
+- Furnitura current Article/ImageObject scope and technical/resource claims need review; 203-image DOM is P1 performance/UX debt.
+- Global PublicChrome and forms still contain controls below future 44×44 target.
+- Field CWV/Lighthouse, throttled network and real Android tests were not run in stage 2.
+- Existing pilot media provenance/rights/consistency are not fully approved.
 
-79/91 client components; глобальный client PublicChrome; монолиты 600–2100 строк; controls 40–42 px; 358 МБ public media; 47 duplicate hash groups; furnitura DOM с 203 images; нет route error/loading boundaries; неполный media provenance.
+## Checks
 
-## Unverified assumptions
+- `git diff --check` and docs-only scope.
+- UTF-8 without BOM.
+- Markdown formatting/check.
+- Required 9 pilot docs and registry states.
+- Local browser DOM matrix 360/390/412/768/1440.
+- Media reference existence.
+- `pnpm.cmd run sitemap:check`: passed, 112 URLs; dynamic DB source unavailable, static fallback used.
+- `pnpm.cmd run typecheck`: passed.
+- Build не запускался локально до commit: production code не менялся; deploy pipeline/build result записать после публикации.
 
-Права и real/AI status старых медиа, актуальные field CWV, полнота DB-driven alt, бизнес-актуальность всех цен/сроков/гарантий, наличие реальных проектов в каждом городе.
+## Rollback
 
-## Do not change
-
-URL/canonical/sitemap/robots/metadata, формы и API, Prisma schema, shared chrome/Dock, pilot implementations и media до соответствующего утверждённого этапа. Не выдавать AI за реальные проекты.
+Revert the stage-2 docs commit with a new Git revert commit. No database/media/runtime rollback is required because production code is unchanged.
 
 ## Next required stage
 
-Следующий этап: проектирование трёх пилотных страниц без реализации и без генерации финальных медиа. Поскольку код уже содержит более поздние реализации, сначала выполнить reverse-audit и не считать существующий UI автоматически утверждённым дизайном.
+ЭТАП 3 — создание точной медиасистемы, генерационных prompts и медиакарт для трёх утверждённых пилотных страниц. Не генерировать assets до проверки всех 33 groups и approval consistency/provenance contract.
 
-## Exact starting instruction
+## Exact starting instruction for next chat
 
-Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md и /docs/15_HANDOFF.md.
-Затем прочитай документы, относящиеся к текущему этапу.
-Проверь git status, последние коммиты и фактический код.
-Не полагайся только на описание предыдущего чата.
-
-Выполни ЭТАП 2 — детальное UX-, SEO- и компонентное проектирование /catalog/uglovye-kuhni, /locations/borisov, /materials/furnitura без изменений production-страниц, без генерации финальных медиа и без массового создания компонентов. Сначала сопоставь проектирование с уже существующими pilot implementations и зафиксируй расхождения.
+```text
+Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md и все /docs/pilots/*.md. Проверь git status, ветку work, последние коммиты и baseline этапа 2, указанный в Handoff. Выполни ЭТАП 3 — создай точную медиасистему, asset-level медиакарты и генерационные prompts для 33 групп PILOT-AK-01..09, PILOT-BR-01..12, PILOT-HW-01..12. Не меняй production UI/routes/metadata/schema/forms/Prisma. Не генерируй изображения, пока не проверены storyboard, mobile/desktop crop, consistency, provenance, real/AI labels, AVIF/WebP/master contract, loading priority и sequence budget. Для новых фото кухонь используй только встроенный imagegen после чтения его SKILL.md; masters сохраняй в проекте, visible src — оптимизированный AVIF/WebP. Обнови Page/Component/Media Registry, Decision Log и Handoff; не отмечай MEDIA_READY без реальных файлов и QA.
+```

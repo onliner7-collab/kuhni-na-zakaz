@@ -1,0 +1,66 @@
+# Требования к медиа пилотов
+
+Этап 2 создаёт перечень, а не prompts и не файлы. Всего запланировано **33 media groups**: 9 для угловых кухонь, 12 для Борисова и 12 для фурнитуры. Количество кадров уточняется в этапе 3 после storyboard; masters не подключаются как visible src.
+
+## Общий contract
+
+- Format type: master PNG/JPEG при необходимости + production AVIF/WebP; video/WebGL не требуется.
+- Mobile baseline: portrait 3:4 или landscape 3:2 с безопасным mobile crop. Hero ориентир 900×1200; section media 1200×800; technical states могут быть 1200×900.
+- Desktop: responsive source до 1600×1000/1200 без бессмысленного сверхразрешения.
+- Один hero eager/priority на страницу. Всё ниже fold lazy; sequence frames — только после intent.
+- AI: `AI-концепт` для интерьерных идей; `Иллюстрация процесса` для процесса; `Техническая иллюстрация` для механизмов. Real project — только с подтверждённым provenance.
+- Alt объясняет содержимое/функцию по-русски. Caption объясняет статус, назначение и ограничения; не повторяет alt механически.
+
+## `/catalog/uglovye-kuhni` — 9 groups
+
+| Asset ID                  | Section / purpose             | Type / orientation / ratio                   | Mobile / desktop     | Real or AI / photo or render                | Sequence / consistency                          | Alt / caption purpose                          | Loading                             |
+| ------------------------- | ----------------------------- | -------------------------------------------- | -------------------- | ------------------------------------------- | ----------------------------------------------- | ---------------------------------------------- | ----------------------------------- |
+| `AK-01-HERO`              | Hero: угол как главный объект | portrait 3:4, desktop crop 16:10             | 900×1200 / 1600×1000 | AI concept, photoreal                       | single; same kitchen as AK-02–06                | describe L-layout; disclose AI                 | only priority                       |
+| `AK-02-ANGLES`            | swipe ракурсов                | landscape 3:2, 3 states                      | 1200×800 / 1600×1000 | AI concept, photoreal                       | no animation; same kitchen/lens/light           | what each angle reveals; AI caption            | current lazy, adjacent after intent |
+| `AK-03-CORNER-TYPES`      | worktop/sink/storage          | technical + interior, 3 states, 4:3          | 960×720 / 1200×900   | AI technical render                         | same footprint/camera                           | function and constraint; not project           | selected only                       |
+| `AK-04-OPEN-SEQUENCE`     | CornerStorageExplorer         | landscape 3:2, storyboard target 6–12 frames | 1200×800 each        | AI technical render                         | strict geometry, lighting, mechanism continuity | frame state; sequence disclosure               | poster first, frames after intent   |
+| `AK-05-MECHANISM-COMPARE` | shelf/carousel/pullout        | 3:2, 3 matched states                        | 1200×800 / 1600×1000 | AI technical render                         | identical cabinet/crop/contents load class      | name + access difference; no unsupported specs | selected pair lazy                  |
+| `AK-06-STORAGE-CONTENTS`  | what to store                 | 3:2, 3 states                                | 1200×800 / 1600×1000 | AI illustration                             | same cabinet, different contents only           | contents/scenario; AI caption                  | lazy                                |
+| `AK-07-LAYOUT-DIAGRAMS`   | size check/fallback           | SVG/code-native preferred; otherwise 4:3     | 720×540 / 1200×900   | technical diagram                           | 2–3 constraint states, consistent scale         | dimensions/obstacles; not technical project    | inline/no preload                   |
+| `AK-08-MATERIAL-SWATCHES` | facades/materials             | square/4:3, 4–6 items                        | 640×640 / 900×675    | real samples preferred; provenance required | consistent light/color management               | material appearance, not performance claim     | selected/near viewport              |
+| `AK-09-VERIFIED-PROJECTS` | related projects              | landscape 4:3, max 3 initial                 | 800×600 / 1200×900   | real only                                   | dynamic DB; exact project source                | actual project title/location only if verified | lazy                                |
+
+## `/locations/borisov` — 12 groups
+
+| Asset ID                  | Section / purpose                | Type / orientation / ratio       | Mobile / desktop     | Real or AI / photo or render                  | Sequence / consistency                         | Alt / caption purpose                      | Loading                                   |
+| ------------------------- | -------------------------------- | -------------------------------- | -------------------- | --------------------------------------------- | ---------------------------------------------- | ------------------------------------------ | ----------------------------------------- |
+| `BR-01-HERO`              | путь идеи к кухне                | portrait 3:4, desktop split crop | 900×1200 / 1600×1000 | AI process illustration                       | single; not factory photo                      | process overview; explicit illustration    | priority                                  |
+| `BR-02-JOURNEY`           | 7 этапов ProductionJourney       | landscape 3:2, 7 cards           | 1200×800 / 1600×1000 | AI process illustrations except verified docs | one visual language, recurring neutral project | stage action; `Иллюстрация процесса`       | current lazy, next after intent           |
+| `BR-03-TYPES`             | form choice                      | 4:3, 4 states                    | 800×600 / 1200×900   | AI concepts                                   | same neutral room/camera                       | form of kitchen; AI concept                | after intent/links may work without media |
+| `BR-04-STYLES`            | style choice                     | 4:3, 3 states                    | 800×600 / 1200×900   | AI concepts                                   | same geometry; style only changes              | style direction; no real-project claim     | after intent                              |
+| `BR-05-FACADES`           | facade choice                    | square/4:3, 3–5                  | 640×640 / 900×675    | real samples preferred                        | consistent color-managed light                 | visible finish only                        | after intent                              |
+| `BR-06-WORKTOPS`          | worktop choice                   | square/4:3, 3–5                  | 640×640 / 900×675    | real samples preferred                        | matched crop/light                             | visible surface; no performance claim      | after intent                              |
+| `BR-07-HARDWARE-LEVELS`   | level choice                     | technical 4:3, 3 states          | 800×600 / 1200×900   | AI technical illustration                     | same cabinet                                   | comfort scenario, no brand superiority     | after intent                              |
+| `BR-08-MEASURE`           | what happens at measure          | 3:2, 1–2                         | 1200×800 / 1600×1000 | AI process illustration unless real rights    | no employee identity mimic                     | measuring action; illustration caption     | lazy                                      |
+| `BR-09-PRODUCTION`        | production explanation           | 3:2, 1–2                         | 1200×800 / 1600×1000 | AI process illustration only until real proof | no fake factory identity/signage               | clearly not real workshop                  | lazy                                      |
+| `BR-10-DELIVERY-INSTALL`  | delivery and mounting            | 3:2, 2 states                    | 1200×800 / 1600×1000 | AI process illustration                       | same project object across states              | action and condition; illustration caption | lazy                                      |
+| `BR-11-VERIFIED-PROJECTS` | local proof                      | 4:3, max 3                       | 800×600 / 1200×900   | real only                                     | exact-city DB match                            | factual title/city                         | lazy; empty state if none                 |
+| `BR-12-AI-CONCEPTS`       | inspiration separated from proof | 3:2, max 3                       | 1200×800 / 1600×1000 | AI concept                                    | distinct frame treatment from real projects    | concept description + explicit label       | lazy/on expand                            |
+
+## `/materials/furnitura` — 12 groups
+
+| Asset ID                   | Section / purpose         | Type / orientation / ratio     | Mobile / desktop     | Real or AI / photo or render             | Sequence / consistency                        | Alt / caption purpose                      | Loading                |
+| -------------------------- | ------------------------- | ------------------------------ | -------------------- | ---------------------------------------- | --------------------------------------------- | ------------------------------------------ | ---------------------- |
+| `HW-01-CABINET-HERO`       | virtual cabinet base      | portrait 3:4 / desktop 4:3     | 900×1200 / 1400×1050 | neutral technical render                 | base geometry for HW-02–08                    | open cabinet zones; technical illustration | priority               |
+| `HW-02-HOTSPOT-STATES`     | 5 cabinet zones           | 4:3, 5 states                  | 1200×900 / 1400×1050 | technical render                         | exact same cabinet/camera/light               | active mechanism and purpose               | selected only          |
+| `HW-03-DRAWER-SEQUENCE`    | drawer motion             | 3:2, target 6–8 frames         | 1200×800 each        | technical render                         | strict rail/drawer continuity                 | motion state, no load values               | poster then intent     |
+| `HW-04-RUNNER-CUTAWAY`     | rail cutaway              | 3:2, 2 states                  | 1200×800 / 1600×1000 | technical cutaway                        | same drawer/scale                             | partial/full access concept                | lazy                   |
+| `HW-05-HINGES`             | hinge/damper scenarios    | 3:2, 3 states                  | 1200×800 / 1600×1000 | macro technical render/photo if licensed | same neutral facade                           | function, no cycles/lifetime               | selected lazy          |
+| `HW-06-LIFTS`              | lift mechanisms           | 3:2, 3 states                  | 1200×800 / 1600×1000 | technical render                         | same upper cabinet                            | opening direction/use                      | selected lazy          |
+| `HW-07-CARGO`              | bottle/cargo systems      | 3:2, 3 states                  | 1200×800 / 1600×1000 | technical render                         | same tall/narrow module                       | access and use case                        | lazy                   |
+| `HW-08-CORNER`             | corner systems cross-link | 3:2, 3 states                  | 1200×800 / 1600×1000 | technical render                         | distinct from AK visual family, limited scope | mechanism category; link to angular page   | lazy                   |
+| `HW-09-WASTE`              | sorting options           | 3:2, 3 states                  | 1200×800 / 1600×1000 | technical render                         | same under-sink cabinet                       | arrangement only                           | lazy                   |
+| `HW-10-PACKAGES`           | 3 levels                  | 4:3, 3 matched boards          | 960×720 / 1200×900   | technical comparison                     | same kitchen modules, additive differences    | included scenarios, no `best` claim        | selected/near viewport |
+| `HW-11-PICKER-RESULTS`     | quiz summaries            | SVG/code-native preferred, 3–5 | 720×540 / 1200×900   | diagram                                  | consistent iconography                        | discussion checklist                       | inline/no preload      |
+| `HW-12-RELATED-CATEGORIES` | contextual links          | 4:3, max 3                     | 800×600 / 1200×900   | existing category media with provenance  | no new generation required                    | destination category                       | lazy                   |
+
+## Existing media disposition
+
+- Current 21/6/6 pilot master families are candidates, not automatically `MEDIA_READY`.
+- Legacy 201-image furnitura gallery remains an archive source. Target initial DOM: no more than 8–12 gallery thumbnails; the rest mounts by category/intent.
+- Этап 3 обязан создать asset-level manifest, prompts, provenance, checksums, crop map и exact sequence count before generation.
