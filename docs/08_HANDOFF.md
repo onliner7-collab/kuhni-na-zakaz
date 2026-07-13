@@ -17,7 +17,7 @@ Production: `https://kuhni.minsk.by`
 - серверный checkout был обновлён fast-forward с `53a4955` до `b5a7888`;
 - production build завершён успешно;
 - сервис `kuhni-na-zakaz.service` после рестарта — `active (running)`;
-- итоговый docs-only commit с этим handoff будет идти следующим коммитом и не меняет runtime-код.
+- итоговые docs-only commits с этим handoff идут после implementation commit и не меняют runtime-код; серверный checkout после deploy также fast-forward до актуального `origin/work` без повторной сборки приложения.
 
 Перед продолжением обязательно выполнить:
 
