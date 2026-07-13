@@ -15,6 +15,7 @@ import {
 } from "@/lib/schema-org";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
+import { AngularKitchenPage } from "@/components/catalog/angular-kitchens/AngularKitchenPage";
 import { isPublicContentSlug } from "@/lib/public-content";
 
 type SeoLink = {
@@ -478,12 +479,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (cat) {
     const title = cleanSeoTitle(cat.title, "Кухня на заказ");
     const description = trimMetaDescription(cat.description, cat.description);
+    const angularHero = "/media/pilots/angular-kitchens/webp/angular-kitchens-hero-corner-wide-portrait.webp";
     return {
       title,
       description,
       alternates: { canonical: `/catalog/${slug}` },
-      openGraph: buildOpenGraph(`/catalog/${slug}`, title, description),
-      twitter: buildTwitterMetadata(title, description),
+      openGraph: buildOpenGraph(`/catalog/${slug}`, title, description, slug === "uglovye-kuhni" ? {
+        images: [{ url: angularHero, width: 900, height: 1200, alt: "Светлая угловая кухня на заказ" }],
+      } : undefined),
+      twitter: buildTwitterMetadata(title, description, slug === "uglovye-kuhni" ? angularHero : undefined),
       robots: { index: true, follow: true },
     };
   }
@@ -556,12 +560,17 @@ export default async function CatalogItemPage({ params }: Props) {
   const buyingGuide = CATEGORY_BUYING_GUIDES[slug];
   const scenarioLinks = CATEGORY_SCENARIO_LINKS[slug] ?? [];
   const designProjectAnchor = DESIGN_PROJECT_LINKS[slug];
-  const heroImage = resolveCatalogCategoryImage({
-    slug,
-    title: data.title,
-    mainImage: data.mainImage,
-    images: data.images,
-  });
+  const heroImage = slug === "uglovye-kuhni"
+    ? {
+        src: "/media/pilots/angular-kitchens/webp/angular-kitchens-hero-corner-wide-portrait.webp",
+        alt: "Светлая угловая кухня с серо-бежевыми фасадами и дубовыми деталями",
+      }
+    : resolveCatalogCategoryImage({
+        slug,
+        title: data.title,
+        mainImage: data.mainImage,
+        images: data.images,
+      });
   const galleryImages = getCatalogCategoryGallery(slug);
   const projectGalleryImages = galleryImages.slice(0, 3);
   const exampleGalleryImages = galleryImages.slice(3);
@@ -598,6 +607,29 @@ export default async function CatalogItemPage({ params }: Props) {
         })),
       })
     : null;
+
+  if (slug === "uglovye-kuhni") {
+    const jsonLdImage = compactJsonLd({
+      "@context": "https://schema.org",
+      "@type": "ImageObject",
+      contentUrl: siteUrl(heroImage.src),
+      url: siteUrl(heroImage.src),
+      name: "Угловая кухня на заказ под размеры помещения",
+      description: heroImage.alt,
+      caption: "AI-концепт угловой кухни для выбора планировки",
+      representativeOfPage: true,
+      encodingFormat: "image/webp",
+    });
+
+    return (
+      <AngularKitchenPage
+        priceFrom={data.priceFrom}
+        jsonLd={jsonLdFaq
+          ? [jsonLdBreadcrumb, jsonLdProduct, jsonLdFaq, jsonLdImage]
+          : [jsonLdBreadcrumb, jsonLdProduct, jsonLdImage]}
+      />
+    );
+  }
 
   return (
     <>

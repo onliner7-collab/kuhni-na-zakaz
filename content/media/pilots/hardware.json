@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "pilot": "hardware",
+  "pageUrl": "/materials/furnitura",
+  "generationStatus": "planned-not-generated",
+  "assetCount": 69,
+  "promptCompositionRule": "Готовый prompt = promptBase + prompt ассета + negativePrompt. Для frame-sequence обязательно добавляется continuityAnchor группы; между кадрами меняется только положение механизма.",
+  "promptBase": "Фотореалистичная предметная и техническая визуализация кухонной фурнитуры без бренда, современная европейская кухня, натуральный дуб, тёплый белый, серо-бежевые фасады, светлый камень, графитовый металл, мягкий студийный или интерьерный свет, точная правдоподобная геометрия, высокая читаемость механизма, без текста и логотипов. ",
+  "negativePrompt": " Без выдуманных характеристик, размеров и нагрузок, без брендов, лишних деталей, сломанных креплений, невозможных шарниров, пересечений металла, плавающих предметов, рук с искажениями и смены корпуса между кадрами.",
+  "defaults":{"pageUrl":"/materials/furnitura","provenance":"AI-generated","masterFormat":"PNG","deliveryFormats":["AVIF","WebP"],"generationStatus":"planned-not-generated","loadingPriority":"lazy","sequenceName":null,"sequenceIndex":null},
+  "groups":[
+    {
+      "name":"macro","order":2,
+      "defaults":{"sectionId":"hotspots","purpose":"Макрокадры ключевых механизмов","assetType":"macro-photo","orientation":"landscape","aspectRatio":"3:2","mobileDimensions":"1200x800","desktopDimensions":"1800x1200"},
+      "assets":[
+        {"assetId":"hardware-macro-01","filename":"hardware-hotspots-hinge-landscape","alt":"Кухонная петля на открытом фасаде","caption":"AI-иллюстрация кухонной петли без указания бренда.","prompt":"Макро петли на открытом фасаде, видны чашка, плечо и крепление, без маркировок."},
+        {"assetId":"hardware-macro-02","filename":"hardware-hotspots-runner-landscape","alt":"Скрытая направляющая кухонного ящика","caption":"AI-иллюстрация скрытой направляющей.","prompt":"Макро нижней части выдвинутого ящика и скрытой направляющей, точные зазоры."},
+        {"assetId":"hardware-macro-03","filename":"hardware-hotspots-soft-close-landscape","alt":"Доводчик кухонного ящика","caption":"AI-иллюстрация механизма мягкого закрывания.","prompt":"Крупный план нейтрального доводящего узла внутри направляющей, без бренда и цифр."},
+        {"assetId":"hardware-macro-04","filename":"hardware-hotspots-lift-landscape","alt":"Подъёмный механизм верхнего кухонного шкафа","caption":"AI-иллюстрация подъёмного механизма.","prompt":"Открытый верхний фасад и боковой подъёмный механизм, безопасная траектория и крепления."},
+        {"assetId":"hardware-macro-05","filename":"hardware-hotspots-bottle-pullout-landscape","alt":"Выдвижная бутылочница для кухни","caption":"AI-концепт узкой бутылочницы.","prompt":"Узкая бутылочница полностью выдвинута, металлические ограждения и содержимое реалистичны."},
+        {"assetId":"hardware-macro-06","filename":"hardware-hotspots-cargo-landscape","alt":"Выдвижная корзина карго для кухни","caption":"AI-концепт выдвижной системы карго.","prompt":"Средний макро-ракурс двухуровневой корзины карго в открытом состоянии."},
+        {"assetId":"hardware-macro-07","filename":"hardware-hotspots-tall-pantry-landscape","alt":"Высокий выдвижной шкаф для продуктов","caption":"AI-концепт высокого выдвижного шкафа.","prompt":"Высокий узкий шкаф полностью выдвинут, полки с продуктами устойчивы и доступны с двух сторон."},
+        {"assetId":"hardware-macro-08","filename":"hardware-hotspots-waste-sorter-landscape","alt":"Выдвижная система сортировки отходов","caption":"AI-концепт системы сортировки под мойкой.","prompt":"Открытый нижний ящик с несколькими нейтральными контейнерами для сортировки, без маркировки."},
+        {"assetId":"hardware-macro-09","filename":"hardware-hotspots-corner-system-landscape","alt":"Выдвижная система для углового шкафа","caption":"AI-концепт углового механизма.","prompt":"Две корзины угловой системы полностью выдвинуты, направляющие и траектория логичны."},
+        {"assetId":"hardware-macro-10","filename":"hardware-hotspots-full-extension-landscape","alt":"Полностью выдвинутый кухонный ящик","caption":"AI-концепт полного выдвижения ящика.","prompt":"Широкий ящик полностью выдвинут, вся глубина и содержимое видны, корпус не деформирован."}
+      ]
+    },
+    {
+      "name":"technical-cuts","order":3,
+      "defaults":{"sectionId":"cutaways","purpose":"Показать внутреннее устройство без числовых обещаний","assetType":"technical-cutaway","orientation":"landscape","aspectRatio":"3:2","mobileDimensions":"1200x800","desktopDimensions":"1800x1200"},
+      "assets":[
+        {"assetId":"hardware-cut-01","filename":"hardware-cutaways-hinge-landscape","alt":"Разрез крепления кухонной петли","caption":"AI-иллюстрация: принцип крепления петли.","prompt":"Чистый cutaway фасада и боковины с петлёй, слои и крепления видны без размеров."},
+        {"assetId":"hardware-cut-02","filename":"hardware-cutaways-runner-landscape","alt":"Разрез кухонного ящика со скрытой направляющей","caption":"AI-иллюстрация: положение скрытой направляющей.","prompt":"Разрез боковины ящика и корпуса, скрытая направляющая под дном, без подписей."},
+        {"assetId":"hardware-cut-03","filename":"hardware-cutaways-soft-close-landscape","alt":"Разрез механизма мягкого закрывания","caption":"AI-иллюстрация: доведение ящика.","prompt":"Увеличенный cutaway доводящего узла с логичным поршнем и зацепом, без характеристик."},
+        {"assetId":"hardware-cut-04","filename":"hardware-cutaways-lift-landscape","alt":"Разрез подъёмного механизма фасада","caption":"AI-иллюстрация: траектория подъёма фасада.","prompt":"Боковой cutaway верхнего шкафа в двух полупрозрачных положениях фасада, без стрелок и чисел."},
+        {"assetId":"hardware-cut-05","filename":"hardware-cutaways-bottle-pullout-landscape","alt":"Разрез узкой бутылочницы в корпусе","caption":"AI-иллюстрация: бутылочница внутри модуля.","prompt":"Разрез узкого корпуса с корзиной, направляющими и бутылками, реалистичные зазоры."},
+        {"assetId":"hardware-cut-06","filename":"hardware-cutaways-tall-pantry-landscape","alt":"Разрез высокого выдвижного шкафа","caption":"AI-иллюстрация: устройство высокого пенала.","prompt":"Вертикальный cutaway высокого выдвижного пенала с рамой и полками, без нагрузок и размеров."},
+        {"assetId":"hardware-cut-07","filename":"hardware-cutaways-waste-sorter-landscape","alt":"Разрез системы сортировки отходов под мойкой","caption":"AI-иллюстрация: компоновка контейнеров.","prompt":"Разрез нижнего модуля с мойкой, сифоном и выдвижными контейнерами без пересечений."},
+        {"assetId":"hardware-cut-08","filename":"hardware-cutaways-corner-landscape","alt":"Разрез выдвижного углового механизма","caption":"AI-иллюстрация: размещение корзин в углу.","prompt":"Трёхчетвертной cutaway углового корпуса, одна корзина снаружи, вторая внутри."},
+        {"assetId":"hardware-cut-09","filename":"hardware-cutaways-partial-drawer-landscape","alt":"Разрез ящика с частичным выдвижением","caption":"AI-иллюстрация: доступ при частичном выдвижении.","prompt":"Боковой разрез ящика в конечном частично выдвинутом положении, дальняя зона видна в корпусе."},
+        {"assetId":"hardware-cut-10","filename":"hardware-cutaways-full-drawer-landscape","alt":"Разрез ящика с полным выдвижением","caption":"AI-иллюстрация: доступ при полном выдвижении.","prompt":"Боковой разрез того же корпуса с полностью выдвинутым ящиком и доступной глубиной."}
+      ]
+    },
+    {
+      "name":"comparisons","order":4,
+      "defaults":{"sectionId":"compare","purpose":"Сравнить решения без неподтверждённых рейтингов","assetType":"comparison-image","orientation":"landscape","aspectRatio":"16:9","mobileDimensions":"1280x720","desktopDimensions":"1920x1080"},
+      "assets":[
+        {"assetId":"hardware-compare-01","filename":"hardware-compare-partial-full-drawer-landscape","alt":"Сравнение частичного и полного выдвижения ящика","caption":"AI-иллюстрация: разница доступной глубины.","prompt":"Split-screen одного корпуса: частично и полностью выдвинутый одинаковый ящик, без текста."},
+        {"assetId":"hardware-compare-02","filename":"hardware-compare-standard-soft-close-landscape","alt":"Сравнение обычного закрывания и доводчика","caption":"AI-иллюстрация: два сценария закрывания.","prompt":"Два одинаковых ящика в соседних состояниях перед закрытием, справа виден нейтральный доводящий узел."},
+        {"assetId":"hardware-compare-03","filename":"hardware-compare-hinge-lift-landscape","alt":"Сравнение распашного и подъёмного верхнего фасада","caption":"AI-концепт: два способа открытия верхнего шкафа.","prompt":"Одинаковый верхний модуль: слева распашной фасад, справа подъёмный, одинаковая кухня и свет."},
+        {"assetId":"hardware-compare-04","filename":"hardware-compare-shelf-cargo-landscape","alt":"Сравнение полки и выдвижной системы карго","caption":"AI-концепт: доступ к содержимому узкого шкафа.","prompt":"Split-screen узкого модуля: статичные полки и полностью выдвинутая корзина карго."},
+        {"assetId":"hardware-compare-05","filename":"hardware-compare-corner-shelf-pullout-landscape","alt":"Сравнение полки и механизма в угловом шкафу","caption":"AI-концепт: два варианта углового хранения.","prompt":"Одинаковый угловой корпус: глубокая полка и выдвижные корзины, одинаковое содержимое."}
+      ]
+    },
+    {
+      "name":"hinge-sequence","order":5,
+      "continuityAnchor":"Один верхний серо-бежевый фасад, одна безымянная петля, фиксированная боковая камера и свет; меняется только угол фасада.",
+      "defaults":{"sectionId":"sequence-hinge","purpose":"Показать открытие петли","assetType":"frame-sequence","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200","sequenceName":"hardware-hinge-open"},
+      "assets":[
+        {"assetId":"hardware-hinge-01","filename":"hardware-sequence-hinge-frame-01-landscape","alt":"Закрытый фасад на петле, кадр 1","caption":"AI-иллюстрация: фасад закрыт.","prompt":"Кадр 1 из 8: фасад полностью закрыт.","sequenceIndex":1},
+        {"assetId":"hardware-hinge-02","filename":"hardware-sequence-hinge-frame-02-landscape","alt":"Начало открытия фасада, кадр 2","caption":"AI-иллюстрация: начало открытия.","prompt":"Кадр 2 из 8: фасад открыт примерно на 15 градусов.","sequenceIndex":2},
+        {"assetId":"hardware-hinge-03","filename":"hardware-sequence-hinge-frame-03-landscape","alt":"Петля при частично открытом фасаде, кадр 3","caption":"AI-иллюстрация: движение петли.","prompt":"Кадр 3 из 8: фасад открыт примерно на 30 градусов.","sequenceIndex":3},
+        {"assetId":"hardware-hinge-04","filename":"hardware-sequence-hinge-frame-04-landscape","alt":"Фасад открыт наполовину, кадр 4","caption":"AI-иллюстрация: фасад наполовину открыт.","prompt":"Кадр 4 из 8: фасад открыт примерно на 45 градусов.","sequenceIndex":4},
+        {"assetId":"hardware-hinge-05","filename":"hardware-sequence-hinge-frame-05-landscape","alt":"Открытая петля, кадр 5","caption":"AI-иллюстрация: рабочее положение петли.","prompt":"Кадр 5 из 8: фасад открыт примерно на 60 градусов.","sequenceIndex":5},
+        {"assetId":"hardware-hinge-06","filename":"hardware-sequence-hinge-frame-06-landscape","alt":"Фасад почти полностью открыт, кадр 6","caption":"AI-иллюстрация: приближение к полному открытию.","prompt":"Кадр 6 из 8: фасад открыт примерно на 75 градусов.","sequenceIndex":6},
+        {"assetId":"hardware-hinge-07","filename":"hardware-sequence-hinge-frame-07-landscape","alt":"Петля в почти конечном положении, кадр 7","caption":"AI-иллюстрация: почти полный угол.","prompt":"Кадр 7 из 8: фасад открыт примерно на 90 градусов.","sequenceIndex":7},
+        {"assetId":"hardware-hinge-08","filename":"hardware-sequence-hinge-frame-08-landscape","alt":"Полностью открытый фасад на петле, кадр 8","caption":"AI-иллюстрация: полный доступ в шкаф.","prompt":"Кадр 8 из 8: конечное открытое положение без указания точного угла.","sequenceIndex":8}
+      ]
+    },
+    {
+      "name":"drawer-sequence","order":6,
+      "continuityAnchor":"Один серо-бежевый нижний ящик со скрытыми направляющими и одинаковым наполнением, фиксированная камера; меняется только глубина выдвижения.",
+      "defaults":{"sectionId":"sequence-drawer","purpose":"Показать полное выдвижение ящика","assetType":"frame-sequence","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200","sequenceName":"hardware-drawer-open"},
+      "assets":[
+        {"assetId":"hardware-drawer-01","filename":"hardware-sequence-drawer-frame-01-landscape","alt":"Закрытый кухонный ящик, кадр 1","caption":"AI-концепт: ящик закрыт.","prompt":"Кадр 1 из 8: ящик полностью закрыт.","sequenceIndex":1},
+        {"assetId":"hardware-drawer-02","filename":"hardware-sequence-drawer-frame-02-landscape","alt":"Начало выдвижения ящика, кадр 2","caption":"AI-концепт: начало выдвижения.","prompt":"Кадр 2 из 8: ящик выдвинут примерно на одну восьмую.","sequenceIndex":2},
+        {"assetId":"hardware-drawer-03","filename":"hardware-sequence-drawer-frame-03-landscape","alt":"Ящик выдвинут на четверть, кадр 3","caption":"AI-концепт: частичный доступ.","prompt":"Кадр 3 из 8: ящик выдвинут примерно на четверть.","sequenceIndex":3},
+        {"assetId":"hardware-drawer-04","filename":"hardware-sequence-drawer-frame-04-landscape","alt":"Ящик выдвинут почти наполовину, кадр 4","caption":"AI-концепт: движение по направляющим.","prompt":"Кадр 4 из 8: ящик выдвинут примерно на 40 процентов.","sequenceIndex":4},
+        {"assetId":"hardware-drawer-05","filename":"hardware-sequence-drawer-frame-05-landscape","alt":"Ящик выдвинут наполовину, кадр 5","caption":"AI-концепт: половина глубины.","prompt":"Кадр 5 из 8: ящик выдвинут примерно наполовину.","sequenceIndex":5},
+        {"assetId":"hardware-drawer-06","filename":"hardware-sequence-drawer-frame-06-landscape","alt":"Ящик выдвинут больше половины, кадр 6","caption":"AI-концепт: доступ к содержимому.","prompt":"Кадр 6 из 8: ящик выдвинут примерно на две трети.","sequenceIndex":6},
+        {"assetId":"hardware-drawer-07","filename":"hardware-sequence-drawer-frame-07-landscape","alt":"Ящик почти полностью выдвинут, кадр 7","caption":"AI-концепт: почти полный доступ.","prompt":"Кадр 7 из 8: ящик почти полностью выдвинут.","sequenceIndex":7},
+        {"assetId":"hardware-drawer-08","filename":"hardware-sequence-drawer-frame-08-landscape","alt":"Полностью выдвинутый кухонный ящик, кадр 8","caption":"AI-концепт: полный доступ к глубине ящика.","prompt":"Кадр 8 из 8: конечное положение полного выдвижения.","sequenceIndex":8}
+      ]
+    },
+    {
+      "name":"lift-sequence","order":7,
+      "continuityAnchor":"Один верхний шкаф с цельным тёпло-белым фасадом и безымянным подъёмником, фиксированная боковая камера; меняется только высота фасада.",
+      "defaults":{"sectionId":"sequence-lift","purpose":"Показать подъём фасада","assetType":"frame-sequence","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200","sequenceName":"hardware-lift-open"},
+      "assets":[
+        {"assetId":"hardware-lift-01","filename":"hardware-sequence-lift-frame-01-landscape","alt":"Закрытый верхний фасад, кадр 1","caption":"AI-концепт: подъёмник закрыт.","prompt":"Кадр 1 из 8: фасад полностью закрыт.","sequenceIndex":1},
+        {"assetId":"hardware-lift-02","filename":"hardware-sequence-lift-frame-02-landscape","alt":"Начало подъёма фасада, кадр 2","caption":"AI-концепт: начало подъёма.","prompt":"Кадр 2 из 8: нижний край фасада слегка поднят.","sequenceIndex":2},
+        {"assetId":"hardware-lift-03","filename":"hardware-sequence-lift-frame-03-landscape","alt":"Фасад частично поднят, кадр 3","caption":"AI-концепт: движение подъёмника.","prompt":"Кадр 3 из 8: фасад поднят примерно на четверть траектории.","sequenceIndex":3},
+        {"assetId":"hardware-lift-04","filename":"hardware-sequence-lift-frame-04-landscape","alt":"Подъёмный фасад открыт наполовину, кадр 4","caption":"AI-концепт: середина подъёма.","prompt":"Кадр 4 из 8: фасад проходит середину траектории.","sequenceIndex":4},
+        {"assetId":"hardware-lift-05","filename":"hardware-sequence-lift-frame-05-landscape","alt":"Фасад поднят выше половины, кадр 5","caption":"AI-концепт: открыт доступ к полке.","prompt":"Кадр 5 из 8: фасад выше середины, нижняя полка доступна.","sequenceIndex":5},
+        {"assetId":"hardware-lift-06","filename":"hardware-sequence-lift-frame-06-landscape","alt":"Фасад почти поднят, кадр 6","caption":"AI-концепт: приближение к верхнему положению.","prompt":"Кадр 6 из 8: фасад поднят примерно на три четверти.","sequenceIndex":6},
+        {"assetId":"hardware-lift-07","filename":"hardware-sequence-lift-frame-07-landscape","alt":"Подъёмный фасад почти открыт, кадр 7","caption":"AI-концепт: почти полный доступ.","prompt":"Кадр 7 из 8: фасад близок к конечному верхнему положению.","sequenceIndex":7},
+        {"assetId":"hardware-lift-08","filename":"hardware-sequence-lift-frame-08-landscape","alt":"Полностью поднятый верхний фасад, кадр 8","caption":"AI-концепт: верхний шкаф полностью открыт.","prompt":"Кадр 8 из 8: конечное открытое положение, механизм не пересекает корпус.","sequenceIndex":8}
+      ]
+    },
+    {
+      "name":"cargo-sequence","order":8,
+      "continuityAnchor":"Одна узкая бутылочница с двумя корзинами, те же бутылки и специи, фиксированная камера; меняется только глубина выдвижения.",
+      "defaults":{"sectionId":"sequence-cargo","purpose":"Показать выдвижение бутылочницы","assetType":"frame-sequence","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200","sequenceName":"hardware-cargo-open"},
+      "assets":[
+        {"assetId":"hardware-cargo-01","filename":"hardware-sequence-cargo-frame-01-landscape","alt":"Закрытая бутылочница, кадр 1","caption":"AI-концепт: бутылочница закрыта.","prompt":"Кадр 1 из 8: узкий фасад полностью закрыт.","sequenceIndex":1},
+        {"assetId":"hardware-cargo-02","filename":"hardware-sequence-cargo-frame-02-landscape","alt":"Начало выдвижения бутылочницы, кадр 2","caption":"AI-концепт: начало движения.","prompt":"Кадр 2 из 8: фасад и корзина вышли на небольшую глубину.","sequenceIndex":2},
+        {"assetId":"hardware-cargo-03","filename":"hardware-sequence-cargo-frame-03-landscape","alt":"Бутылочница выдвинута на четверть, кадр 3","caption":"AI-концепт: частичный доступ.","prompt":"Кадр 3 из 8: корзина выдвинута примерно на четверть.","sequenceIndex":3},
+        {"assetId":"hardware-cargo-04","filename":"hardware-sequence-cargo-frame-04-landscape","alt":"Бутылочница выдвинута наполовину, кадр 4","caption":"AI-концепт: доступ к передней части.","prompt":"Кадр 4 из 8: корзина выдвинута почти наполовину.","sequenceIndex":4},
+        {"assetId":"hardware-cargo-05","filename":"hardware-sequence-cargo-frame-05-landscape","alt":"Открытая бутылочница, кадр 5","caption":"AI-концепт: содержимое видно сбоку.","prompt":"Кадр 5 из 8: корзина вышла больше половины, содержимое не меняется.","sequenceIndex":5},
+        {"assetId":"hardware-cargo-06","filename":"hardware-sequence-cargo-frame-06-landscape","alt":"Бутылочница почти выдвинута, кадр 6","caption":"AI-концепт: почти полный доступ.","prompt":"Кадр 6 из 8: корзина выдвинута примерно на три четверти.","sequenceIndex":6},
+        {"assetId":"hardware-cargo-07","filename":"hardware-sequence-cargo-frame-07-landscape","alt":"Корзины бутылочницы почти полностью снаружи, кадр 7","caption":"AI-концепт: видны обе корзины.","prompt":"Кадр 7 из 8: обе корзины почти полностью снаружи корпуса.","sequenceIndex":7},
+        {"assetId":"hardware-cargo-08","filename":"hardware-sequence-cargo-frame-08-landscape","alt":"Полностью выдвинутая бутылочница, кадр 8","caption":"AI-концепт: полный доступ к бутылочнице.","prompt":"Кадр 8 из 8: конечное полное выдвижение, устойчивое содержимое.","sequenceIndex":8}
+      ]
+    },
+    {
+      "name":"corner-sequence","order":9,
+      "continuityAnchor":"Один угловой корпус, две безымянные корзины с одинаковой посудой, фиксированная камера; меняется только положение связанных корзин.",
+      "defaults":{"sectionId":"sequence-corner","purpose":"Показать открытие угловой системы","assetType":"frame-sequence","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200","sequenceName":"hardware-corner-open"},
+      "assets":[
+        {"assetId":"hardware-corner-01","filename":"hardware-sequence-corner-frame-01-landscape","alt":"Закрытый угловой механизм, кадр 1","caption":"AI-концепт: угловой механизм закрыт.","prompt":"Кадр 1 из 8: фасад полностью закрыт.","sequenceIndex":1},
+        {"assetId":"hardware-corner-02","filename":"hardware-sequence-corner-frame-02-landscape","alt":"Начало открытия углового механизма, кадр 2","caption":"AI-концепт: начало открытия.","prompt":"Кадр 2 из 8: фасад приоткрыт, передняя корзина начинает движение.","sequenceIndex":2},
+        {"assetId":"hardware-corner-03","filename":"hardware-sequence-corner-frame-03-landscape","alt":"Передняя корзина выходит из угла, кадр 3","caption":"AI-концепт: передняя корзина выходит.","prompt":"Кадр 3 из 8: передняя корзина частично проходит проём.","sequenceIndex":3},
+        {"assetId":"hardware-corner-04","filename":"hardware-sequence-corner-frame-04-landscape","alt":"Передняя корзина наполовину выдвинута, кадр 4","caption":"AI-концепт: середина траектории.","prompt":"Кадр 4 из 8: передняя корзина наполовину снаружи, задняя внутри.","sequenceIndex":4},
+        {"assetId":"hardware-corner-05","filename":"hardware-sequence-corner-frame-05-landscape","alt":"Задняя корзина движется к проёму, кадр 5","caption":"AI-концепт: задняя корзина приближается.","prompt":"Кадр 5 из 8: передняя корзина смещена, задняя начинает выходить.","sequenceIndex":5},
+        {"assetId":"hardware-corner-06","filename":"hardware-sequence-corner-frame-06-landscape","alt":"Обе корзины угловой системы видны, кадр 6","caption":"AI-концепт: доступны обе корзины.","prompt":"Кадр 6 из 8: обе корзины видны, задняя частично внутри.","sequenceIndex":6},
+        {"assetId":"hardware-corner-07","filename":"hardware-sequence-corner-frame-07-landscape","alt":"Угловая система почти полностью открыта, кадр 7","caption":"AI-концепт: почти полный выдвиг.","prompt":"Кадр 7 из 8: задняя корзина почти прошла проём.","sequenceIndex":7},
+        {"assetId":"hardware-corner-08","filename":"hardware-sequence-corner-frame-08-landscape","alt":"Полностью открытая угловая система, кадр 8","caption":"AI-концепт: полный доступ к углу.","prompt":"Кадр 8 из 8: обе корзины в конечном доступном положении.","sequenceIndex":8}
+      ]
+    },
+    {
+      "name":"hero","order":1,
+      "defaults":{"sectionId":"hero","purpose":"Hero страницы о работе фурнитуры","assetType":"hero-photo","orientation":"portrait","aspectRatio":"3:4","mobileDimensions":"900x1200","desktopDimensions":"1350x1800"},
+      "assets":[
+        {"assetId":"hardware-hero-01","filename":"hardware-hero-open-cabinet-portrait","alt":"Открытый кухонный шкаф с видимыми механизмами","caption":"AI-концепт: фурнитура внутри кухонного шкафа.","prompt":"Вертикальный hero открытого нижнего и верхнего модуля, петля, направляющая и подъёмник читаются без технического коллажа.","loadingPriority":"eager"},
+        {"assetId":"hardware-hero-02","filename":"hardware-hero-full-drawer-portrait","alt":"Полностью выдвинутый ящик современной кухни","caption":"AI-концепт: полный доступ к ящику.","prompt":"Вертикальный интерьерный hero, полностью выдвинутый широкий ящик в нижней трети, спокойное место сверху."},
+        {"assetId":"hardware-hero-03","filename":"hardware-hero-corner-system-portrait","alt":"Открытый угловой механизм с корзинами","caption":"AI-концепт: механизм углового хранения.","prompt":"Вертикальная композиция с полностью открытой угловой системой и читаемой кухней вокруг."},
+        {"assetId":"hardware-hero-04","filename":"hardware-hero-mechanism-macro-portrait","alt":"Крупный план кухонной петли и направляющей","caption":"AI-иллюстрация кухонных механизмов без бренда.","prompt":"Вертикальная предметная композиция петли и фрагмента скрытой направляющей в реальном корпусе, без парящих деталей."}
+      ]
+    }
+  ],
+  "displayOrder":["hardware-hero-01","hardware-macro-01..10","hardware-cut-01..10","hardware-compare-01..05","hardware-hinge-01..08","hardware-drawer-01..08","hardware-lift-01..08","hardware-cargo-01..08","hardware-corner-01..08"],
+  "notGenerated":"Все 69 ассетов этого manifest. На этапе 5 они генерируются встроенным imagegen; существующие изображения страницы не используются как замена."
+}

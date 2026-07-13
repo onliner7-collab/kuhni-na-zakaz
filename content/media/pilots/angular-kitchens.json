@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "pilot": "angular-kitchens",
+  "pageUrl": "/catalog/uglovye-kuhni",
+  "generationStatus": "partially-generated-stage-3",
+  "assetCount": 48,
+  "generatedAssetCount": 21,
+  "generationNote": "Для этапа 3 создан минимальный рабочий набор: 9 самостоятельных сцен и 12 кадров одной последовательности. Остальные позиции manifest остаются резервом и не генерировались.",
+  "promptCompositionRule": "Готовый prompt = promptBase + prompt конкретного ассета + negativePrompt. Нельзя менять continuityAnchor внутри одной sequenceName.",
+  "promptBase": "Фотореалистичная современная европейская угловая кухня, реалистичная архитектурная фотография, светлый интерьер, натуральный дуб, тёплый белый, серо-бежевые фасады, светлый камень, аккуратный дневной свет, правдоподобная геометрия и техника, хорошая читаемость деталей, без текста и логотипов. ",
+  "negativePrompt": " Без людей в центре, без брендов, без невозможной геометрии, кривых фасадов, лишних ручек, дублированной техники, плавающих предметов, случайной смены цвета или материалов.",
+  "defaults": {
+    "pageUrl": "/catalog/uglovye-kuhni",
+    "provenance": "AI-generated",
+    "masterFormat": "PNG",
+    "deliveryFormats": ["AVIF", "WebP"],
+    "generationStatus": "planned-not-generated",
+    "loadingPriority": "lazy"
+  },
+  "groups": [
+    {
+      "name": "interiors",
+      "order": 1,
+      "defaults": {"sectionId":"angles","purpose":"Свайп ракурсов и примеры планировки","assetType":"interior-photo","orientation":"landscape","aspectRatio":"3:2","mobileDimensions":"1200x800","desktopDimensions":"1800x1200","sequenceName":null},
+      "assets": [
+        {"assetId":"angular-interior-01","filename":"angular-kitchens-angles-full-room-front-landscape","alt":"Угловая кухня с дубовыми деталями, вид спереди","caption":"AI-концепт: общий вид угловой кухни.","prompt":"Общий фронтальный вид всей Г-образной кухни, оба плеча полностью в кадре, свободный проход, камера на уровне глаз.","sequenceIndex":null},
+        {"assetId":"angular-interior-02","filename":"angular-kitchens-angles-long-side-landscape","alt":"Длинное плечо угловой кухни с рабочей зоной","caption":"AI-концепт: длинное плечо и рабочая поверхность.","prompt":"Ракурс вдоль длинного плеча, непрерывная рабочая поверхность, мойка и варочная зона разделены подготовительной зоной.","sequenceIndex":null},
+        {"assetId":"angular-interior-03","filename":"angular-kitchens-angles-short-side-landscape","alt":"Короткое плечо угловой кухни с высокими шкафами","caption":"AI-концепт: короткое плечо с хранением.","prompt":"Ракурс на короткое плечо, колонна встроенной техники и закрытое хранение, без тесноты в проходе.","sequenceIndex":null},
+        {"assetId":"angular-interior-04","filename":"angular-kitchens-angles-corner-sink-landscape","alt":"Угловая мойка в светлой кухне","caption":"AI-концепт: вариант угловой мойки.","prompt":"Средний план угловой мойки, смеситель и две рабочие зоны по сторонам, правдоподобные стыки столешницы.","sequenceIndex":null},
+        {"assetId":"angular-interior-05","filename":"angular-kitchens-angles-corner-worktop-landscape","alt":"Свободная столешница в углу кухни","caption":"AI-концепт: угол как рабочая поверхность.","prompt":"Угол оставлен свободной рабочей поверхностью, мягкая подсветка, хорошо видны стык фартука и глубина модулей.","sequenceIndex":null},
+        {"assetId":"angular-interior-06","filename":"angular-kitchens-angles-green-accent-landscape","alt":"Угловая кухня с зелёным акцентным шкафом","caption":"AI-концепт: спокойный зелёный акцент.","prompt":"Общий вид с одним приглушённо-зелёным акцентным высоким шкафом, остальные фасады серо-бежевые и дубовые.","sequenceIndex":null},
+        {"assetId":"angular-interior-07","filename":"angular-kitchens-angles-graphite-accent-landscape","alt":"Угловая кухня с графитовыми деталями","caption":"AI-концепт: графитовые детали в светлом интерьере.","prompt":"Диагональный общий вид, графитовый фартук и тонкие профили как акцент, светлая кухня остаётся визуально лёгкой.","sequenceIndex":null},
+        {"assetId":"angular-interior-08","filename":"angular-kitchens-angles-blue-accent-landscape","alt":"Угловая кухня с синими нижними фасадами","caption":"AI-концепт: синий акцент нижних фасадов.","prompt":"Общий вид с приглушённо-синими нижними фасадами на коротком плече, верх светлый, материалы согласованы.","sequenceIndex":null},
+        {"assetId":"angular-interior-09","filename":"angular-kitchens-angles-upper-open-landscape","alt":"Угловая кухня с открытыми верхними шкафами","caption":"AI-концепт: открытые верхние модули.","prompt":"Ракурс выше рабочей зоны, несколько верхних фасадов открыты, видна внутренняя организация без изменения кухни.","sequenceIndex":null},
+        {"assetId":"angular-interior-10","filename":"angular-kitchens-angles-full-drawer-landscape","alt":"Полностью выдвинутый ящик угловой кухни","caption":"AI-концепт: полный доступ к ящику.","prompt":"Низкий ракурс, широкий нижний ящик полностью выдвинут, внутри кастрюли и разделители, проход остаётся читаемым.","sequenceIndex":null},
+        {"assetId":"angular-interior-11","filename":"angular-kitchens-angles-lighting-landscape","alt":"Подсветка рабочей зоны угловой кухни","caption":"AI-концепт: равномерная рабочая подсветка.","prompt":"Вечерний, но светлый интерьер; включена непрерывная тёплая подсветка под верхними шкафами, детали не проваливаются в тень.","sequenceIndex":null},
+        {"assetId":"angular-interior-12","filename":"angular-kitchens-angles-storage-overview-landscape","alt":"Открытое хранение в угловой кухне","caption":"AI-концепт: обзор внутренней организации.","prompt":"Широкий диагональный вид той же кухни с открытыми ящиками и двумя шкафами, логичное хранение, без визуального хаоса.","sequenceIndex":null}
+      ]
+    },
+    {
+      "name": "open-storage",
+      "order": 2,
+      "defaults": {"sectionId":"inside","purpose":"Показать варианты хранения в углу","assetType":"storage-photo","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200","sequenceName":null},
+      "assets": [
+        {"assetId":"angular-storage-01","filename":"angular-kitchens-inside-basic-shelf-landscape","alt":"Обычная глубокая полка в угловом шкафу","caption":"AI-концепт: бюджетная глубокая полка.","prompt":"Открытый нижний угловой шкаф с простой глубокой полкой, крупная посуда размещена реалистично, камера показывает доступ рукой.","sequenceIndex":null},
+        {"assetId":"angular-storage-02","filename":"angular-kitchens-inside-carousel-landscape","alt":"Карусель в угловом кухонном шкафу","caption":"AI-концепт: поворотная карусель.","prompt":"Открытый угловой шкаф с круглой двухуровневой каруселью, механизм частично выдвинут, без бренда и размеров.","sequenceIndex":null},
+        {"assetId":"angular-storage-03","filename":"angular-kitchens-inside-pullout-landscape","alt":"Выдвижной механизм в угловом шкафу","caption":"AI-концепт: выдвижная угловая система.","prompt":"Две связанные корзины углового механизма выдвинуты в проход, видны траектория и доступ к задней корзине.","sequenceIndex":null},
+        {"assetId":"angular-storage-04","filename":"angular-kitchens-inside-pots-landscape","alt":"Кастрюли в системе хранения угловой кухни","caption":"AI-концепт: хранение кастрюль в углу.","prompt":"Крупный план выдвижной угловой системы с кастрюлями и крышками, устойчивое размещение, естественный масштаб.","sequenceIndex":null},
+        {"assetId":"angular-storage-05","filename":"angular-kitchens-inside-bottle-pullout-landscape","alt":"Узкая бутылочница рядом с углом кухни","caption":"AI-концепт: бутылочница рядом с рабочей зоной.","prompt":"Узкая вертикальная бутылочница полностью выдвинута рядом с угловым модулем, бутылки и специи закреплены безопасно.","sequenceIndex":null},
+        {"assetId":"angular-storage-06","filename":"angular-kitchens-inside-upper-cabinets-landscape","alt":"Открытые верхние шкафы угловой кухни","caption":"AI-концепт: организация верхних шкафов.","prompt":"Два верхних шкафа открыты, посуда и сухие продукты распределены по полкам, безопасные зазоры у угла.","sequenceIndex":null},
+        {"assetId":"angular-storage-07","filename":"angular-kitchens-inside-full-extension-landscape","alt":"Полностью выдвинутый ящик с разделителями","caption":"AI-концепт: полный выдвижной ящик.","prompt":"Вид сверху под углом на полностью выдвинутый широкий ящик, разделители для приборов и посуды, точные пропорции.","sequenceIndex":null},
+        {"assetId":"angular-storage-08","filename":"angular-kitchens-inside-led-organizer-landscape","alt":"Подсвеченная внутренняя организация шкафа","caption":"AI-концепт: подсветка внутреннего хранения.","prompt":"Открытый шкаф с мягкой встроенной подсветкой и аккуратными органайзерами, свет не пересвечивает материалы.","sequenceIndex":null}
+      ]
+    },
+    {
+      "name": "corner-opening-sequence",
+      "order": 3,
+      "continuityAnchor": "Одна и та же серо-бежевая угловая кухня, один выдвижной механизм с двумя корзинами, фиксированная камера 35 мм, одинаковый свет и предметы; меняется только положение механизма.",
+      "defaults": {"sectionId":"corner-mechanism","purpose":"Покадрово объяснить открытие углового механизма","assetType":"frame-sequence","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200","sequenceName":"angular-corner-pullout-open"},
+      "assets": [
+        {"assetId":"angular-sequence-01","filename":"angular-kitchens-corner-mechanism-open-frame-01-landscape","alt":"Закрытый фасад углового механизма, кадр 1","caption":"AI-концепт: механизм закрыт.","prompt":"Кадр 1 из 12: фасад полностью закрыт, нейтральное исходное состояние.","sequenceIndex":1},
+        {"assetId":"angular-sequence-02","filename":"angular-kitchens-corner-mechanism-open-frame-02-landscape","alt":"Начало открытия углового механизма, кадр 2","caption":"AI-концепт: фасад начал открываться.","prompt":"Кадр 2 из 12: фасад открыт примерно на 10 процентов, корзины ещё внутри.","sequenceIndex":2},
+        {"assetId":"angular-sequence-03","filename":"angular-kitchens-corner-mechanism-open-frame-03-landscape","alt":"Фасад углового механизма приоткрыт, кадр 3","caption":"AI-концепт: начало траектории.","prompt":"Кадр 3 из 12: фасад открыт примерно на 20 процентов, передняя корзина начала смещаться.","sequenceIndex":3},
+        {"assetId":"angular-sequence-04","filename":"angular-kitchens-corner-mechanism-open-frame-04-landscape","alt":"Передняя корзина выходит из угла, кадр 4","caption":"AI-концепт: передняя корзина выходит.","prompt":"Кадр 4 из 12: фасад на треть открыт, передняя корзина частично вышла по направляющей.","sequenceIndex":4},
+        {"assetId":"angular-sequence-05","filename":"angular-kitchens-corner-mechanism-open-frame-05-landscape","alt":"Угловая корзина частично выдвинута, кадр 5","caption":"AI-концепт: корзина проходит фасад.","prompt":"Кадр 5 из 12: передняя корзина наполовину снаружи, задняя остаётся в углу.","sequenceIndex":5},
+        {"assetId":"angular-sequence-06","filename":"angular-kitchens-corner-mechanism-open-frame-06-landscape","alt":"Передняя корзина выдвинута наполовину, кадр 6","caption":"AI-концепт: середина открытия.","prompt":"Кадр 6 из 12: фасад около 60 процентов, передняя корзина полностью видна, задняя начала движение.","sequenceIndex":6},
+        {"assetId":"angular-sequence-07","filename":"angular-kitchens-corner-mechanism-open-frame-07-landscape","alt":"Задняя корзина движется к проёму, кадр 7","caption":"AI-концепт: задняя корзина приближается.","prompt":"Кадр 7 из 12: передняя корзина смещается в сторону, задняя идёт к проёму.","sequenceIndex":7},
+        {"assetId":"angular-sequence-08","filename":"angular-kitchens-corner-mechanism-open-frame-08-landscape","alt":"Обе корзины углового механизма видны, кадр 8","caption":"AI-концепт: доступны обе корзины.","prompt":"Кадр 8 из 12: обе корзины полностью видны, задняя ещё частично в корпусе.","sequenceIndex":8},
+        {"assetId":"angular-sequence-09","filename":"angular-kitchens-corner-mechanism-open-frame-09-landscape","alt":"Задняя корзина выходит из корпуса, кадр 9","caption":"AI-концепт: задняя корзина выходит.","prompt":"Кадр 9 из 12: задняя корзина почти полностью проходит проём, детали механизма логичны.","sequenceIndex":9},
+        {"assetId":"angular-sequence-10","filename":"angular-kitchens-corner-mechanism-open-frame-10-landscape","alt":"Угловой механизм почти полностью открыт, кадр 10","caption":"AI-концепт: почти полный доступ.","prompt":"Кадр 10 из 12: механизм открыт примерно на 85 процентов, сохранён свободный доступ к содержимому.","sequenceIndex":10},
+        {"assetId":"angular-sequence-11","filename":"angular-kitchens-corner-mechanism-open-frame-11-landscape","alt":"Полностью выдвинутые корзины, кадр 11","caption":"AI-концепт: полный выдвиг.","prompt":"Кадр 11 из 12: обе корзины полностью выдвинуты, фасад и направляющие в конечном положении.","sequenceIndex":11},
+        {"assetId":"angular-sequence-12","filename":"angular-kitchens-corner-mechanism-open-frame-12-landscape","alt":"Открытый угловой механизм с посудой, кадр 12","caption":"AI-концепт: полный доступ к хранению.","prompt":"Кадр 12 из 12: финальный полный выдвиг, кастрюли и крышки хорошо доступны, композиция для остановочного poster.","sequenceIndex":12}
+      ]
+    },
+    {
+      "name": "technical-cuts",
+      "order": 4,
+      "defaults": {"sectionId":"technical","purpose":"Объяснить устройство без неподтверждённых характеристик","assetType":"technical-cutaway","orientation":"landscape","aspectRatio":"3:2","mobileDimensions":"1200x800","desktopDimensions":"1800x1200","sequenceName":null},
+      "assets": [
+        {"assetId":"angular-cut-01","filename":"angular-kitchens-technical-corner-carcass-landscape","alt":"Разрез корпуса углового кухонного шкафа","caption":"AI-иллюстрация: устройство углового корпуса без размеров.","prompt":"Чистый фотореалистичный технический разрез углового корпуса, полки и пустоты видны, без чисел и текста.","sequenceIndex":null},
+        {"assetId":"angular-cut-02","filename":"angular-kitchens-technical-basic-shelf-landscape","alt":"Разрез углового шкафа с обычной полкой","caption":"AI-иллюстрация: глубокая полка в углу.","prompt":"Разрез углового шкафа с одной глубокой полкой и посудой, показать дальнюю зону и доступ без стрелок.","sequenceIndex":null},
+        {"assetId":"angular-cut-03","filename":"angular-kitchens-technical-carousel-landscape","alt":"Разрез шкафа с угловой каруселью","caption":"AI-иллюстрация: карусель внутри корпуса.","prompt":"Разрез корпуса с двухуровневой круглой каруселью, логичные опоры и зазоры, без спецификаций.","sequenceIndex":null},
+        {"assetId":"angular-cut-04","filename":"angular-kitchens-technical-pullout-landscape","alt":"Разрез шкафа с выдвижным угловым механизмом","caption":"AI-иллюстрация: траектория выдвижной системы.","prompt":"Трёхчетвертной cutaway с выдвижными корзинами в промежуточном положении, траектория читается по положению деталей.","sequenceIndex":null},
+        {"assetId":"angular-cut-05","filename":"angular-kitchens-technical-sink-plumbing-landscape","alt":"Разрез угловой мойки и пространства под ней","caption":"AI-иллюстрация: зона под угловой мойкой.","prompt":"Разрез угловой тумбы с мойкой, сифоном и свободной сервисной зоной, без выдуманных размеров и брендов.","sequenceIndex":null},
+        {"assetId":"angular-cut-06","filename":"angular-kitchens-technical-work-triangle-landscape","alt":"Схема рабочих зон угловой кухни","caption":"AI-иллюстрация: взаимное расположение мойки, подготовки и варочной зоны.","prompt":"Изометрический вид сверху угловой кухни, визуально различимы мойка, рабочая поверхность и варочная зона, без текста.","sequenceIndex":null}
+      ]
+    },
+    {
+      "name": "comparisons",
+      "order": 5,
+      "defaults": {"sectionId":"compare","purpose":"Парное сравнение решений для угла","assetType":"comparison-image","orientation":"landscape","aspectRatio":"16:9","mobileDimensions":"1280x720","desktopDimensions":"1920x1080","sequenceName":null},
+      "assets": [
+        {"assetId":"angular-compare-01","filename":"angular-kitchens-compare-shelf-carousel-landscape","alt":"Сравнение обычной полки и угловой карусели","caption":"AI-концепт: полка и карусель в одинаковом корпусе.","prompt":"Split-screen одного корпуса: слева глубокая полка, справа карусель; одинаковая камера, свет и наполнение, без текста.","sequenceIndex":null},
+        {"assetId":"angular-compare-02","filename":"angular-kitchens-compare-carousel-pullout-landscape","alt":"Сравнение карусели и выдвижного углового механизма","caption":"AI-концепт: два способа доступа к углу.","prompt":"Split-screen: слева открытая карусель, справа полностью выдвижные корзины; одинаковая геометрия кухни.","sequenceIndex":null},
+        {"assetId":"angular-compare-03","filename":"angular-kitchens-compare-corner-sink-worktop-landscape","alt":"Сравнение угловой мойки и свободной столешницы","caption":"AI-концепт: два назначения угла.","prompt":"Две версии одной кухни: слева мойка в углу, справа свободная столешница и мойка на длинном плече.","sequenceIndex":null},
+        {"assetId":"angular-compare-04","filename":"angular-kitchens-compare-upper-full-light-landscape","alt":"Сравнение сплошных и облегчённых верхних шкафов","caption":"AI-концепт: плотный и лёгкий верх кухни.","prompt":"Две версии одинаковой комнаты: сплошной ряд верхних шкафов и облегчённый вариант с открытой стеной.","sequenceIndex":null},
+        {"assetId":"angular-compare-05","filename":"angular-kitchens-compare-drawer-shelf-landscape","alt":"Сравнение полного ящика и нижней полки","caption":"AI-концепт: доступ к нижнему хранению.","prompt":"Split-screen нижнего модуля: полностью выдвинутый ящик и распашной шкаф с полкой, одинаковое содержимое.","sequenceIndex":null},
+        {"assetId":"angular-compare-06","filename":"angular-kitchens-compare-light-off-on-landscape","alt":"Рабочая зона угловой кухни без подсветки и с подсветкой","caption":"AI-концепт: влияние рабочей подсветки.","prompt":"Одна и та же рабочая зона side-by-side: подсветка выключена и включена, одинаковая экспозиция и материалы.","sequenceIndex":null}
+      ]
+    },
+    {
+      "name": "mobile-hero",
+      "order": 0,
+      "defaults": {"sectionId":"hero","purpose":"Полноэкранный mobile hero","assetType":"hero-photo","orientation":"portrait","aspectRatio":"3:4","mobileDimensions":"900x1200","desktopDimensions":"1350x1800","sequenceName":null},
+      "assets": [
+        {"assetId":"angular-hero-01","filename":"angular-kitchens-hero-corner-wide-portrait","alt":"Светлая угловая кухня с дубовыми деталями","caption":"AI-концепт угловой кухни.","prompt":"Вертикальная композиция hero, угол кухни в центре, оба плеча читаются, верх оставлен спокойным под HTML-заголовок.","sequenceIndex":null,"loadingPriority":"eager"},
+        {"assetId":"angular-hero-02","filename":"angular-kitchens-hero-open-mechanism-portrait","alt":"Угловая кухня с открытым выдвижным механизмом","caption":"AI-концепт: открытый угловой механизм.","prompt":"Вертикальный hero, общий интерьер и открытый угловой механизм в нижней трети, чистая верхняя зона.","sequenceIndex":null},
+        {"assetId":"angular-hero-03","filename":"angular-kitchens-hero-green-accent-portrait","alt":"Угловая кухня с зелёным акцентом","caption":"AI-концепт: угловая кухня с зелёным акцентом.","prompt":"Вертикальный общий вид, один приглушённо-зелёный акцент, светлый камень и дуб, свободное место сверху.","sequenceIndex":null},
+        {"assetId":"angular-hero-04","filename":"angular-kitchens-hero-lighting-portrait","alt":"Угловая кухня с тёплой рабочей подсветкой","caption":"AI-концепт: рабочая подсветка угловой кухни.","prompt":"Вертикальный вечерний hero со включённой подсветкой, детали сохраняют натуральный цвет и читаемость.","sequenceIndex":null}
+      ]
+    }
+  ],
+  "displayOrder": ["angular-hero-01","angular-interior-01","angular-interior-02","angular-interior-04","angular-storage-01","angular-storage-02","angular-sequence-01..12","angular-cut-01..06","angular-compare-01..06","angular-interior-06..12"],
+  "notGenerated": "Все 48 ассетов этого manifest. Генерация выполняется только перед этапом 3 встроенным imagegen, затем PNG сохраняется в masters и создаются AVIF/WebP."
+}

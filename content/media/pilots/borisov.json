@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "pilot": "borisov",
+  "pageUrl": "/locations/borisov",
+  "generationStatus": "planned-not-generated",
+  "assetCount": 32,
+  "promptCompositionRule": "Готовый prompt = promptBase + prompt конкретного ассета + negativePrompt. Любое изображение производства имеет видимую caption «Иллюстрация процесса», пока нет подтверждённой реальной фотографии.",
+  "promptBase": "Фотореалистичная современная европейская кухня и правдоподобная иллюстрация процесса индивидуального изготовления мебели, светлая нейтральная палитра, натуральный дуб, тёплый белый, серо-бежевые фасады, светлый камень, отдельные зелёные, графитовые или синие акценты, естественный свет, реалистичные пропорции, без текста и логотипов. ",
+  "negativePrompt": " Без выдуманного салона, адреса, вывески или бренда, без людей в центре кадра, без узнаваемых лиц, без невозможного оборудования, искажённой техники, опасных действий, случайной смены кухни и материалов.",
+  "defaults": {"pageUrl":"/locations/borisov","provenance":"AI-generated","masterFormat":"PNG","deliveryFormats":["AVIF","WebP"],"generationStatus":"planned-not-generated","loadingPriority":"lazy","sequenceName":null,"sequenceIndex":null},
+  "groups": [
+    {
+      "name":"interior-concepts","order":2,
+      "defaults":{"sectionId":"concepts","purpose":"Показать варианты будущей кухни, не выдавая их за проекты","assetType":"interior-concept","orientation":"landscape","aspectRatio":"3:2","mobileDimensions":"1200x800","desktopDimensions":"1800x1200"},
+      "assets":[
+        {"assetId":"borisov-concept-01","filename":"borisov-concepts-angular-oak-landscape","alt":"Концепт угловой кухни с дубовыми деталями","caption":"AI-концепт, не реализованный проект.","prompt":"Общий вид угловой кухни с дубовой нишей и серо-бежевыми фасадами, типовая жилая комната без географических выдумок."},
+        {"assetId":"borisov-concept-02","filename":"borisov-concepts-straight-warm-white-landscape","alt":"Концепт прямой кухни в тёплом белом цвете","caption":"AI-концепт, не реализованный проект.","prompt":"Прямая кухня вдоль одной стены, тёплые белые фасады и светлый камень, компактная обеденная зона."},
+        {"assetId":"borisov-concept-03","filename":"borisov-concepts-u-shape-graphite-landscape","alt":"Концепт П-образной кухни с графитовым акцентом","caption":"AI-концепт, не реализованный проект.","prompt":"П-образная кухня с безопасным проходом, один графитовый блок, остальные поверхности светлые."},
+        {"assetId":"borisov-concept-04","filename":"borisov-concepts-island-green-landscape","alt":"Концепт кухни с островом и зелёным акцентом","caption":"AI-концепт, не реализованный проект.","prompt":"Просторная кухня с небольшим островом и приглушённо-зелёным акцентом, реалистичные проходы."},
+        {"assetId":"borisov-concept-05","filename":"borisov-concepts-small-blue-landscape","alt":"Концепт небольшой кухни с синими фасадами","caption":"AI-концепт, не реализованный проект.","prompt":"Небольшая кухня с синими нижними фасадами и светлым верхом, компактное логичное хранение."},
+        {"assetId":"borisov-concept-06","filename":"borisov-concepts-ceiling-high-landscape","alt":"Концепт кухни со шкафами до потолка","caption":"AI-концепт, не реализованный проект.","prompt":"Кухня до потолка с высокими серо-бежевыми шкафами и дубовой открытой нишей, лёгкая композиция."},
+        {"assetId":"borisov-concept-07","filename":"borisov-concepts-handleless-landscape","alt":"Концепт кухни без выступающих ручек","caption":"AI-концепт, не реализованный проект.","prompt":"Современная кухня без выступающих ручек, правдоподобные профили открывания, светлый интерьер."},
+        {"assetId":"borisov-concept-08","filename":"borisov-concepts-family-landscape","alt":"Концепт семейной кухни с большой рабочей зоной","caption":"AI-концепт, не реализованный проект.","prompt":"Семейная кухня с большой свободной рабочей поверхностью и организованным хранением, без людей в центре."}
+      ]
+    },
+    {
+      "name":"process","order":3,
+      "continuityAnchor":"Один проект: серо-бежевая угловая кухня с дубовой нишей; чертёж, образцы, детали, упаковка и готовая кухня должны согласовываться по цвету и геометрии.",
+      "defaults":{"sectionId":"process","purpose":"Объяснить путь заказа от проектирования до монтажа","assetType":"process-illustration","orientation":"landscape","aspectRatio":"3:2","mobileDimensions":"1200x800","desktopDimensions":"1800x1200"},
+      "assets":[
+        {"assetId":"borisov-process-01","filename":"borisov-process-design-landscape","alt":"Проектирование кухни по размерам помещения","caption":"Иллюстрация процесса: проектирование.","prompt":"Рабочий стол дизайнера, нейтральная схема кухни на экране без читаемого текста, образцы материалов и рулетка, лицо не показано."},
+        {"assetId":"borisov-process-02","filename":"borisov-process-measure-landscape","alt":"Замер помещения перед проектированием кухни","caption":"Иллюстрация процесса: замер помещения.","prompt":"Руки специалиста измеряют пустую стену лазерным дальномером и обычной рулеткой, безопасная поза, без адреса и логотипов."},
+        {"assetId":"borisov-process-03","filename":"borisov-process-material-selection-landscape","alt":"Выбор фасадов, столешницы и древесного декора","caption":"Иллюстрация процесса: выбор материалов.","prompt":"Крупный план рук и образцов серо-бежевого фасада, светлого камня и натурального дуба, без маркировок брендов."},
+        {"assetId":"borisov-process-04","filename":"borisov-process-cutting-landscape","alt":"Раскрой мебельных деталей для кухни","caption":"Иллюстрация процесса производства, не фотография реального цеха.","prompt":"Чистая производственная зона, безопасный раскрой мебельной плиты на реалистичном оборудовании, оператор не в центре и без лица."},
+        {"assetId":"borisov-process-05","filename":"borisov-process-assembly-landscape","alt":"Сборка корпуса кухонного шкафа","caption":"Иллюстрация процесса производства, не фотография реального цеха.","prompt":"Сборочный стол с корпусом кухонного шкафа, мастер крепит деталь безопасным инструментом, геометрия прямоугольная."},
+        {"assetId":"borisov-process-06","filename":"borisov-process-packaging-landscape","alt":"Упаковка кухонных фасадов и корпусов","caption":"Иллюстрация процесса: защитная упаковка.","prompt":"Аккуратно защищённые углы, фасады и корпуса в нейтральной упаковке без логотипов, порядок и читаемая последовательность."},
+        {"assetId":"borisov-process-07","filename":"borisov-process-delivery-landscape","alt":"Подготовленные к доставке модули кухни","caption":"Иллюстрация процесса: доставка без выдуманного адреса.","prompt":"Упакованные модули кухни в чистом грузовом отсеке без логотипа, номера и адреса, надёжная фиксация груза."},
+        {"assetId":"borisov-process-08","filename":"borisov-process-installation-landscape","alt":"Монтаж кухонных шкафов в помещении","caption":"Иллюстрация процесса: монтаж кухни.","prompt":"Монтаж верхнего шкафа в жилом помещении, безопасная работа двух специалистов без узнаваемых лиц, готовые части соответствуют концепту."}
+      ]
+    },
+    {
+      "name":"technical-illustrations","order":4,
+      "defaults":{"sectionId":"technical","purpose":"Объяснить этапы и узлы без выдуманных параметров","assetType":"technical-illustration","orientation":"landscape","aspectRatio":"3:2","mobileDimensions":"1200x800","desktopDimensions":"1800x1200"},
+      "assets":[
+        {"assetId":"borisov-technical-01","filename":"borisov-technical-room-measurement-landscape","alt":"Схема точек замера помещения для кухни","caption":"AI-иллюстрация: точки проверки помещения без размеров.","prompt":"Чистая изометрия пустого помещения, стены, окно, дверь, коммуникации и несколько линий замера без чисел и текста."},
+        {"assetId":"borisov-technical-02","filename":"borisov-technical-module-exploded-landscape","alt":"Разнесённая схема корпуса кухонного шкафа","caption":"AI-иллюстрация: состав корпуса без характеристик.","prompt":"Exploded-view одного кухонного корпуса, боковины, полки и фасад логично разнесены, без крепёжных спецификаций."},
+        {"assetId":"borisov-technical-03","filename":"borisov-technical-work-zones-landscape","alt":"Схема рабочих зон угловой кухни","caption":"AI-иллюстрация: расположение основных зон.","prompt":"Изометрический вид кухни с различимыми зонами хранения, мойки, подготовки и готовки, без подписей и размеров."},
+        {"assetId":"borisov-technical-04","filename":"borisov-technical-wall-fit-landscape","alt":"Схема подгонки кухни к неровной стене","caption":"AI-иллюстрация: учёт геометрии помещения.","prompt":"Cutaway кухни у слегка неровной стены с корректным добором, без преувеличения дефекта и без чисел."},
+        {"assetId":"borisov-technical-05","filename":"borisov-technical-packaging-layers-landscape","alt":"Схема защитной упаковки кухонного фасада","caption":"AI-иллюстрация: принцип защитной упаковки.","prompt":"Послойная exploded-view упаковки фасада с защитой углов и поверхности, без текста и обещаний характеристик."},
+        {"assetId":"borisov-technical-06","filename":"borisov-technical-installation-sequence-landscape","alt":"Схема порядка монтажа кухни","caption":"AI-иллюстрация: общий порядок монтажа.","prompt":"Три последовательных изометрических состояния в одном кадре: нижние корпуса, верхние шкафы, столешница; без текста."}
+      ]
+    },
+    {
+      "name":"kitchen-types","order":5,
+      "defaults":{"sectionId":"types","purpose":"Помочь выбрать форму кухни","assetType":"type-illustration","orientation":"landscape","aspectRatio":"4:3","mobileDimensions":"1200x900","desktopDimensions":"1600x1200"},
+      "assets":[
+        {"assetId":"borisov-type-01","filename":"borisov-types-straight-landscape","alt":"Прямая планировка кухни","caption":"AI-концепт: прямая кухня.","prompt":"Фронтальная интерьерная схема прямой кухни вдоль одной стены, свободный проход, согласованная палитра проекта."},
+        {"assetId":"borisov-type-02","filename":"borisov-types-angular-landscape","alt":"Угловая планировка кухни","caption":"AI-концепт: угловая кухня.","prompt":"Трёхчетвертной вид Г-образной кухни, оба плеча и рабочий угол читаются полностью."},
+        {"assetId":"borisov-type-03","filename":"borisov-types-u-shape-landscape","alt":"П-образная планировка кухни","caption":"AI-концепт: П-образная кухня.","prompt":"Вид с входа на П-образную кухню, правдоподобный проход и непрерывная рабочая поверхность."},
+        {"assetId":"borisov-type-04","filename":"borisov-types-island-landscape","alt":"Кухня с отдельным островом","caption":"AI-концепт: кухня с островом.","prompt":"Широкий вид кухни с компактным островом, вокруг сохранены реалистичные проходы, без барных преувеличений."},
+        {"assetId":"borisov-type-05","filename":"borisov-types-peninsula-landscape","alt":"Кухня с полуостровом","caption":"AI-концепт: кухня с полуостровом.","prompt":"Г-образная кухня с присоединённым полуостровом, рабочая и обеденная стороны логично разделены."},
+        {"assetId":"borisov-type-06","filename":"borisov-types-compact-landscape","alt":"Компактная кухня для небольшого помещения","caption":"AI-концепт: компактная кухня.","prompt":"Компактная кухня в небольшой комнате, высокий шкаф, достаточная рабочая поверхность, без визуального переполнения."}
+      ]
+    },
+    {
+      "name":"hero","order":1,
+      "defaults":{"sectionId":"hero","purpose":"Hero «от идеи до готовой кухни»","assetType":"hero-photo","orientation":"portrait","aspectRatio":"3:4","mobileDimensions":"900x1200","desktopDimensions":"1350x1800"},
+      "assets":[
+        {"assetId":"borisov-hero-01","filename":"borisov-hero-idea-to-kitchen-portrait","alt":"Путь от эскиза до готовой современной кухни","caption":"AI-концепт: от идеи до готовой кухни.","prompt":"Вертикальная цельная композиция: внизу образцы и нейтральный эскиз, выше готовая серо-бежевая кухня; без коллажа с рваными границами.","loadingPriority":"eager"},
+        {"assetId":"borisov-hero-02","filename":"borisov-hero-design-samples-portrait","alt":"Материалы и проект будущей кухни","caption":"AI-концепт этапа проектирования.","prompt":"Вертикальный hero с образцами дуба, фасада и камня на переднем плане, готовая кухня мягко видна на заднем плане."},
+        {"assetId":"borisov-hero-03","filename":"borisov-hero-process-modules-portrait","alt":"Собранные кухонные модули перед установкой","caption":"Иллюстрация процесса, не фотография реального производства.","prompt":"Вертикальная композиция аккуратно собранных модулей и фасадов в нейтральной чистой зоне, без вывесок и адреса."},
+        {"assetId":"borisov-hero-04","filename":"borisov-hero-finished-kitchen-portrait","alt":"Готовая светлая кухня с дубовой нишей","caption":"AI-концепт готовой кухни, не реализованный проект.","prompt":"Вертикальный общий вид готовой кухни из continuityAnchor, свободная спокойная верхняя зона под HTML-заголовок."}
+      ]
+    }
+  ],
+  "displayOrder":["borisov-hero-01","borisov-process-01","borisov-process-02","borisov-process-03","borisov-process-04","borisov-process-05","borisov-process-06","borisov-process-07","borisov-process-08","borisov-type-01..06","borisov-concept-01..08","borisov-technical-01..06"],
+  "notGenerated":"Все 32 ассета этого manifest. На этапе 4 каждый новый кадр генерируется встроенным imagegen; существующие фотографии не подменяют эти позиции."
+}

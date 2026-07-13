@@ -41,6 +41,16 @@ export const MOBILE_DOCK_TYPES = {
     ],
   },
 
+  angularKitchen: {
+    match: ["/catalog/uglovye-kuhni"],
+    items: [
+      { label: "Планировка", icon: "ruler", target: "#planning" },
+      { label: "Внутри", icon: "layers", target: "#inside" },
+      { label: "Цена", icon: "wallet", target: "#catalog-prices" },
+      { label: "Рассчитать", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#calculate", primary: true },
+    ],
+  },
+
   designProject: {
     match: ["/design-proekt-kuhni"],
     items: [
