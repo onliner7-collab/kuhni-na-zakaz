@@ -12,7 +12,9 @@ Production: `https://kuhni.minsk.by`
 
 - рабочая ветка: `work`;
 - implementation commit этапов 4–6: `b5a7888` (`feat: complete pilot stages 4-6`);
+- commit всего оставшегося проектного набора: `417f650` (`chore: publish remaining project work`);
 - `b5a7888` отправлен в `origin/work`;
+- `417f650` отправлен в `origin/work` и полностью задеплоен после этапов 4–6;
 - deploy выполнен штатным скриптом `deploy/scripts/update-production.sh work`;
 - серверный checkout был обновлён fast-forward с `53a4955` до `b5a7888`;
 - production build завершён успешно;
@@ -130,6 +132,10 @@ Best Practices 78 объясняется общими Chrome-предупреж�
 - Борисов: переключение на «Производство» и выбор «Угловая»;
 - фурнитура: hotspot направляющей и рекомендация мини-подбора;
 - новые AVIF/WebP изображения отображаются на live-страницах.
+
+После deploy `417f650` отдельно проверена live-главная на 390 px: 6 горизонтальных scroller-блоков получили stepper-индикаторы, все индикаторы имеют `aria-hidden="true"`, горизонтального overflow и битых изображений нет, browser console без ошибок и предупреждений.
+
+`RegionalContactChooser.tsx` сохранён в репозитории как подготовленный компонент, но на текущих маршрутах не импортируется и не меняет production UI.
 
 ## Медиа и manifests
 
