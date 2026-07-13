@@ -2,7 +2,7 @@
 
 ## Current stage
 
-Этап 2 — reverse-audit и детальное проектирование трёх пилотов. Baseline этапа 1: `6f78fbb`. Commit этапа 2: `STAGE2_COMMIT_TO_BE_REPLACED`.
+Этап 2 — reverse-audit и детальное проектирование трёх пилотов. Baseline этапа 1: `6f78fbb`. Отдельный commit этапа 2: `c0a97ca` (`docs: design three interactive pilot pages`).
 
 ## Completed
 
