@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import Script from "next/script";
 
 import { PublicChrome } from "@/components/layout/PublicChrome";
+import { HorizontalScrollStepperMotion } from "@/components/layout/HorizontalScrollStepperMotion";
 import { Toaster } from "@/components/ui/toaster";
 import { getSiteUrl } from "@/lib/site-url";
 import { CANONICAL_SITE_URL, SITE_NAME } from "@/lib/seo";
@@ -110,6 +111,7 @@ export default async function RootLayout({
         </Script>
       </head>
       <body>
+        <HorizontalScrollStepperMotion />
         <PublicChrome>{children}</PublicChrome>
         <Toaster />
       </body>
