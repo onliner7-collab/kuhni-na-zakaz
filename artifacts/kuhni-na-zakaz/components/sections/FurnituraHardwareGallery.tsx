@@ -104,7 +104,7 @@ export function FurnituraHardwareGallery() {
                           "hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
                           "motion-reduce:transition-none motion-reduce:hover:translate-y-0",
                         )}
-                        aria-label={`Открыть изображение: ${image.alt}`}
+                        aria-label={`Открыть изображение — ${shotLabels[image.type] ?? "Фото"}: ${image.alt}`}
                       >
                         <Image
                           src={image.src}

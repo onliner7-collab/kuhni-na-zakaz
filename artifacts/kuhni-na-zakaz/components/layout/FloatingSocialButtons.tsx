@@ -4,6 +4,7 @@ import { type ComponentType, type CSSProperties, useEffect, useLayoutEffect, use
 import { ChevronDown, Instagram, MessageCircle, Phone } from "lucide-react";
 import { animate, type JSAnimation } from "animejs";
 import { createLayout, type AutoLayout } from "animejs/layout";
+import { usePathname } from "next/navigation";
 
 import { ElectricContactBorder } from "@/components/layout/ElectricContactBorder";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
@@ -82,6 +83,7 @@ export function FloatingSocialButtons({
   phone,
   phoneHref,
 }: FloatingSocialButtonsProps) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isDocked, setIsDocked] = useState(false);
   const [isWideHeaderDock, setIsWideHeaderDock] = useState(false);
@@ -95,6 +97,11 @@ export function FloatingSocialButtons({
   const reducedMotionRef = useRef(false);
   const telegramHref = buildTelegramHref(telegram);
   const instagramHref = buildInstagramHref(instagram);
+  const hasPilotMobileDock = [
+    "/catalog/uglovye-kuhni",
+    "/locations/borisov",
+    "/materials/furnitura",
+  ].includes(pathname);
 
   const visibleOptions = ([
     telegramHref ? { id: "telegram", label: "Telegram", href: telegramHref, icon: TelegramIcon } : null,
@@ -260,6 +267,7 @@ export function FloatingSocialButtons({
       style={rootStyle}
       className={cn(
         "fixed max-w-[calc(100vw-2rem)] motion-reduce:transition-none",
+        hasPilotMobileDock && "max-md:hidden",
         isDocked && isWideHeaderDock
           ? "top-3 bottom-auto right-auto z-[60] w-[min(19rem,calc(100vw-2rem))] lg:top-4"
           : isDocked

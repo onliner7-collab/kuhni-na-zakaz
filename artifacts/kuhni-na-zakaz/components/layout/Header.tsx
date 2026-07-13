@@ -129,7 +129,7 @@ function DesktopNavLink({
           : isOverlay
             ? "text-white/86 hover:bg-white/12 hover:text-white"
             : isActive
-          ? "bg-primary/10 text-primary"
+          ? "bg-primary/10 text-foreground"
           : "text-foreground/72 hover:bg-muted hover:text-foreground",
       )}
     >
@@ -157,7 +157,7 @@ function MobileNavLink({
       className={cn(
         "flex items-center justify-between rounded-2xl px-4 py-3.5 text-sm font-semibold transition-all",
         isActive
-          ? "bg-primary/10 text-primary"
+          ? "bg-primary/10 text-foreground"
           : "text-foreground hover:bg-muted hover:text-foreground",
       )}
     >

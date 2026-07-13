@@ -51,6 +51,26 @@ export const MOBILE_DOCK_TYPES = {
     ],
   },
 
+  borisovPilot: {
+    match: ["/locations/borisov"],
+    items: [
+      { label: "Виды", icon: "layout-grid", target: "#types" },
+      { label: "Процесс", icon: "layers", target: "#process" },
+      { label: "Стоимость", icon: "wallet", target: "#location-prices" },
+      { label: "Замер", icon: "ruler", action: "open-measurement-form", fallbackTarget: "#measure", primary: true },
+    ],
+  },
+
+  hardwarePilot: {
+    match: ["/materials/furnitura"],
+    items: [
+      { label: "Механизмы", icon: "sliders", target: "#mechanisms" },
+      { label: "Сравнить", icon: "layers", target: "#compare" },
+      { label: "Комплектация", icon: "layout-grid", target: "#package" },
+      { label: "Подобрать", icon: "calculator", action: "open-calculation-form", fallbackTarget: "#pick", primary: true },
+    ],
+  },
+
   designProject: {
     match: ["/design-proekt-kuhni"],
     items: [

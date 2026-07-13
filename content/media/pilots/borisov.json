@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "pilot": "borisov",
   "pageUrl": "/locations/borisov",
-  "generationStatus": "planned-not-generated",
+  "generationStatus": "partially-generated-stage-4",
   "assetCount": 32,
   "promptCompositionRule": "Готовый prompt = promptBase + prompt конкретного ассета + negativePrompt. Любое изображение производства имеет видимую caption «Иллюстрация процесса», пока нет подтверждённой реальной фотографии.",
   "promptBase": "Фотореалистичная современная европейская кухня и правдоподобная иллюстрация процесса индивидуального изготовления мебели, светлая нейтральная палитра, натуральный дуб, тёплый белый, серо-бежевые фасады, светлый камень, отдельные зелёные, графитовые или синие акценты, естественный свет, реалистичные пропорции, без текста и логотипов. ",
@@ -74,5 +74,6 @@
     }
   ],
   "displayOrder":["borisov-hero-01","borisov-process-01","borisov-process-02","borisov-process-03","borisov-process-04","borisov-process-05","borisov-process-06","borisov-process-07","borisov-process-08","borisov-type-01..06","borisov-concept-01..08","borisov-technical-01..06"],
-  "notGenerated":"Все 32 ассета этого manifest. На этапе 4 каждый новый кадр генерируется встроенным imagegen; существующие фотографии не подменяют эти позиции."
+  "generatedAssetIds":["borisov-hero-01","borisov-process-01","borisov-process-02","borisov-process-05","borisov-process-08","borisov-concept-01"],
+  "notGenerated":"Остаются 26 запланированных ассетов. Этап 4 использует только 6 сгенерированных кадров; существующие фотографии не подменяют остальные позиции."
 }

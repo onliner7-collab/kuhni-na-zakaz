@@ -25,11 +25,12 @@ import { FurnituraHardwareGallery } from "@/components/sections/FurnituraHardwar
 import { furnituraGalleryRegistry } from "@/lib/furnitura-gallery-registry";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl, type JsonLdObject } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { HardwareShowroom } from "@/components/materials/hardware/HardwareShowroom";
 
 const pageTitle = "Фурнитура для кухни на заказ";
 const pageDescription =
   "Фурнитура для кухни на заказ: петли, направляющие, доводчики, подъемники, ручки и системы хранения. Подбор под проект в Минске.";
-const heroImage = "/images/materials-gallery-v2/furnitura/furniture-furnitura-hero-01.webp";
+const heroImage = "/media/pilots/hardware/webp/hardware-hero-open-cabinet-portrait.webp";
 const pagePath = "/materials/furnitura";
 const imageBasePath = "/images/materials-gallery-v2/furnitura";
 
@@ -305,7 +306,7 @@ export default function FurnituraMaterialsPage() {
     mainEntityOfPage: siteUrl(pagePath),
     image: jsonLdImages.map((image) => image.contentUrl).filter(Boolean),
     datePublished: "2026-06-02",
-    dateModified: "2026-06-04",
+    dateModified: "2026-07-13",
     author: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
     publisher: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
     inLanguage: "ru-BY",
@@ -340,7 +341,7 @@ export default function FurnituraMaterialsPage() {
               </h1>
               <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
                 Петли, направляющие, доводчики, подъемные механизмы, ручки и системы хранения влияют на то,
-                насколько удобно пользоваться кухней через год, пять и десять лет. Разбираем, что стоит заложить
+                насколько удобно пользоваться кухней каждый день. Разбираем, что стоит заложить
                 в проект сразу, а где можно выбрать более спокойное решение без потери надежности.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -359,29 +360,27 @@ export default function FurnituraMaterialsPage() {
               </div>
             </div>
             <aside className="rounded-2xl border border-border bg-white p-6 shadow-sm" aria-labelledby="hardware-summary">
-              <div className="relative -mx-2 -mt-2 mb-5 aspect-video overflow-hidden rounded-xl bg-muted">
-                <Image
-                  src={heroImage}
-                  alt="Фурнитура для кухни на заказ — выдвижной ящик с направляющими в современной кухне"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 420px"
-                  className="object-cover"
-                />
+              <div className="relative -mx-2 -mt-2 mb-5 aspect-[3/4] overflow-hidden rounded-xl bg-muted">
+                <picture>
+                  <source type="image/avif" srcSet="/media/pilots/hardware/avif/hardware-hero-open-cabinet-portrait.avif" />
+                  <img src={heroImage} alt="Открытый кухонный шкаф с видимыми механизмами" width="900" height="1200" fetchPriority="high" className="h-full w-full object-cover" />
+                </picture>
               </div>
               <Sparkles className="mb-4 h-8 w-8 text-primary" aria-hidden="true" />
               <h2 id="hardware-summary" className="font-serif text-2xl font-bold">Что обсуждаем на замере</h2>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
-                <li>Какие ящики будут самыми тяжелыми и частыми в использовании.</li>
+                <li>Какие ящики будут самыми частыми в использовании и что в них планируют хранить.</li>
                 <li>Где нужны доводчики, полное выдвижение и подъемные механизмы.</li>
                 <li>Подходит ли кухня без ручек под планировку и привычки семьи.</li>
                 <li>Какие системы хранения действительно окупятся в вашем проекте.</li>
               </ul>
               <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                Демонстрационные изображения не являются фотографиями выполненных проектов.
+                AI-концепт: демонстрационные изображения не являются фотографиями выполненных проектов.
               </p>
             </aside>
           </section>
+
+          <HardwareShowroom />
 
           <section className="mt-16 grid gap-5 md:grid-cols-3" aria-labelledby="importance-heading">
             <div className="md:col-span-3">
@@ -475,7 +474,7 @@ export default function FurnituraMaterialsPage() {
 
           <FurnituraHardwareGallery />
 
-          <section className="mt-16" aria-labelledby="budget-heading">
+          <section id="hardware-levels" className="mt-16 scroll-mt-24" aria-labelledby="budget-heading">
             <div className="mb-6 flex items-center gap-3">
               <CircleDollarSign className="h-6 w-6 text-primary" aria-hidden="true" />
               <h2 id="budget-heading" className="font-serif text-3xl font-bold">Как выбрать фурнитуру по бюджету</h2>

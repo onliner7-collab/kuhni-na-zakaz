@@ -30,6 +30,7 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
 import { RegionalVisualStoryGallery } from "@/components/locations/RegionalVisualStoryGallery";
+import { BorisovPilotPage } from "@/components/locations/borisov/BorisovPilotPage";
 
 export interface PortfolioCasePreview {
   id: number | string;
@@ -1045,6 +1046,17 @@ export function RegionalLocationPage({
       availability: "https://schema.org/InStock",
     },
   });
+
+  if (isBorisov) {
+    return (
+      <BorisovPilotPage
+        location={location}
+        cases={cases}
+        hasLocalCases={hasLocalCases}
+        jsonLd={[jsonLdBreadcrumb, jsonLdFaq, jsonLdService].filter(isJsonLdObject)}
+      />
+    );
+  }
 
   return (
     <>

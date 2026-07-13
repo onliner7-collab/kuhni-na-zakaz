@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "pilot": "hardware",
   "pageUrl": "/materials/furnitura",
-  "generationStatus": "planned-not-generated",
+  "generationStatus": "partially-generated-stage-5",
   "assetCount": 69,
   "promptCompositionRule": "Готовый prompt = promptBase + prompt ассета + negativePrompt. Для frame-sequence обязательно добавляется continuityAnchor группы; между кадрами меняется только положение механизма.",
   "promptBase": "Фотореалистичная предметная и техническая визуализация кухонной фурнитуры без бренда, современная европейская кухня, натуральный дуб, тёплый белый, серо-бежевые фасады, светлый камень, графитовый металл, мягкий студийный или интерьерный свет, точная правдоподобная геометрия, высокая читаемость механизма, без текста и логотипов. ",
@@ -139,5 +139,6 @@
     }
   ],
   "displayOrder":["hardware-hero-01","hardware-macro-01..10","hardware-cut-01..10","hardware-compare-01..05","hardware-hinge-01..08","hardware-drawer-01..08","hardware-lift-01..08","hardware-cargo-01..08","hardware-corner-01..08"],
-  "notGenerated":"Все 69 ассетов этого manifest. На этапе 5 они генерируются встроенным imagegen; существующие изображения страницы не используются как замена."
+  "generatedAssetIds":["hardware-hero-01","hardware-macro-01","hardware-macro-02","hardware-macro-04","hardware-macro-09","hardware-compare-01"],
+  "notGenerated":"Остаются 63 запланированных ассета. Этап 5 использует только 6 сгенерированных кадров; существующие изображения страницы не считаются заменой остальных позиций."
 }

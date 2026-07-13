@@ -107,7 +107,7 @@ export function AngularKitchenShowroom() {
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-700">Планировка</p>
             <h2 id="angles-title" className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Посмотрите на угол с разных сторон</h2>
           </div>
-          <span className="shrink-0 text-sm font-semibold text-stone-500" aria-live="polite">{angleIndex + 1} / {angles.length}</span>
+          <span className="shrink-0 text-sm font-semibold text-stone-600" aria-live="polite">{angleIndex + 1} / {angles.length}</span>
         </div>
 
         <figure className="overflow-hidden rounded-[1.75rem] bg-stone-900 shadow-xl">

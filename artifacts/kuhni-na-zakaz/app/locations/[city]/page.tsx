@@ -298,7 +298,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
               alt: "Светлая кухня на заказ в Минске",
             },
           ]
-        : undefined;
+        : city === "borisov"
+          ? [{
+              url: "/media/pilots/borisov/webp/borisov-hero-idea-to-kitchen-portrait.webp",
+              width: 900,
+              height: 1200,
+              alt: "Путь от идеи до готовой кухни в Борисове",
+            }]
+          : undefined;
 
     return {
       title: regionalLocation.title,
