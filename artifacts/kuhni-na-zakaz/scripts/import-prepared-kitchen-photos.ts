@@ -202,8 +202,11 @@ async function importPortfolioDrafts() {
     if (existingByExternalId) {
       const nextData = {
         title: existingByExternalId.title || text.title,
-        mainImage,
-        images,
+        // Existing portfolio records are owned by the richer project-folder
+        // importer. The prepared-photo importer may fill empty media fields,
+        // but must not replace that canonical gallery on a repeated run.
+        mainImage: existingByExternalId.mainImage || mainImage,
+        images: existingByExternalId.images.length > 0 ? existingByExternalId.images : images,
         layout: existingByExternalId.layout || text.layout,
         style: existingByExternalId.style || text.style,
         styleSlug: existingByExternalId.styleSlug || text.styleSlug,
