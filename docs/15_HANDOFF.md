@@ -2,7 +2,25 @@
 
 ## Current stage
 
-ЭТАП 4 — COMPONENT LIBRARY реализован изолированно от production pilots. Production baseline начала этапа: `19ac6ab`; import guard: `994516a`; component baseline: `86eebe5`; canonical-media idempotency fix: `791f245`; asset baseline этапа 3: `c791346`. Следующий этап после приёмки: 5 — `/catalog/uglovye-kuhni`.
+ЭТАП 5 — `/catalog/uglovye-kuhni` реализован и проверен локально поверх production baseline `4c15678`. Commit/deploy/live verification ещё не записаны; до них этап имеет статус `IMPLEMENTED / VERIFIED_LOCAL`, не production `VERIFIED`. Следующий этап после live-приёмки: 6 — `/locations/borisov` с `ProductionJourney`.
+
+## Stage 5 implemented locally
+
+- Route сохранил Server Component shell, URL/canonical/BreadcrumbList/Product/ImageObject; hidden FAQPage удалён.
+- Подключены `MobileHero`, `SwipeGallery`, `CornerStorageExplorer`, `KitchenLayoutCheck`, `MechanismComparison`, `BottomSheet`; Angular orchestration находится в одном feature-local client island.
+- Global `MobileBottomNav` остаётся единственным Context Dock: `Планировка / Внутри / Цена / Рассчитать`; второй fixed Dock не создан.
+- 10 новых imagegen masters сохранены в проекте, созданы AVIF/WebP; 24 connected media прошли local browser QA до `VERIFIED`.
+- Форма передаёт structured answers по event bridge в существующий `/kapi/leads`; request body проверен Playwright.
+- Local: typecheck/build/assets/sitemap pass; target Playwright 13 pass + 1 expected desktop skip; browser 390 px — 1 H1, 0 overflow, 0 broken images, 0 visible PNG.
+- Полный отчёт: `docs/pilots/09_ANGULAR_IMPLEMENTATION_REPORT.md`.
+
+## Stage 5 pending before final acceptance
+
+- commit/push;
+- Timeweb deploy без `RUN_CONTENT_IMPORTS=1`;
+- server hash/service check;
+- production HTTP/HTML/schema/media/Dock/form smoke;
+- lifecycle 24 assets `VERIFIED → LIVE`, registries/report/handoff final update.
 
 ## Stage 4 completed
 
@@ -110,7 +128,7 @@ Revert commit `c791346` with a new Git revert commit. No database migration or r
 
 ## Known open risks
 
-- Angular/Borisov current FAQPage schema is not backed by visible pilot FAQ.
+- Borisov current FAQPage schema is not backed by visible pilot FAQ; Angular hidden FAQPage удалён в stage 5.
 - Borisov shared Service schema/address/Offer and data timing/warranty claims need business evidence review.
 - Furnitura current Article/ImageObject scope and technical/resource claims need review; 203-image DOM is P1 performance/UX debt.
 - Global PublicChrome and forms still contain controls below future 44×44 target.
@@ -129,16 +147,16 @@ Revert commit `c791346` with a new Git revert commit. No database migration or r
 - `pnpm.cmd run typecheck`: passed.
 - Build не запускался локально до commit: production code не менялся; deploy pipeline/build result записать после публикации.
 
-## Rollback
+## Stage 5 rollback
 
-Revert the stage-2 docs commit with a new Git revert commit. No database/media/runtime rollback is required because production code is unchanged.
+Revert итоговый stage-5 commit отдельным Git revert и задеплоить `work`. Это вернёт прежний Angular page shell/showroom, media mapping, schema branch и form props. Prisma migration и content imports в stage 5 отсутствуют.
 
 ## Next required stage
 
-ЭТАП 5 — пилот `/catalog/uglovye-kuhni`. Подключать библиотеку адресно только к этому пилоту по Master Plan и Angular specification; остальные production pilots не менять.
+После успешной production-приёмки: ЭТАП 6 — пилот `/locations/borisov`. Использовать `ProductionJourney`; не копировать spatial Angular flow.
 
 ## Exact starting instruction for next chat
 
 ```text
-Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md, /docs/components/*.md, /docs/assets/*.md, /docs/pilots/01_ANGULAR_KITCHENS_SPEC.md и manifests v2. Проверь git status, ветку work и финальный baseline этапа 4 из Handoff. Выполни ЭТАП 5 только для /catalog/uglovye-kuhni, используя изолированно проверенную component library и только REGISTERED media. Не подключай библиотеку массово к Borisov или furnitura. Проверь 360/390/412/768/desktop, reduced motion, intent loading, schema/visible-content parity и production после deploy.
+Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md и /docs/pilots/09_ANGULAR_IMPLEMENTATION_REPORT.md. Проверь production commit и stage-5 live evidence. Выполни ЭТАП 6 только для /locations/borisov, используя ProductionJourney и временную модель из docs/pilots/02_BORISOV_SPEC.md. Не копируй spatial hero, CornerStorageExplorer, sequence, порядок блоков или material selector страницы угловых кухонь. Сохрани URL/canonical/forms/schema parity, используй только lifecycle-approved media и проверь 360/390/412/768/1440, reduced motion, intent loading, sitemap 112 URL и production после deploy.
 ```

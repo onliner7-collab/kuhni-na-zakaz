@@ -30,7 +30,7 @@
 
 | Asset group       | Requirements                                 | Page usage               | Real/AI contract                                                         | Status  |
 | ----------------- | -------------------------------------------- | ------------------------ | ------------------------------------------------------------------------ | ------- |
-| `PILOT-AK-01..09` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/catalog/uglovye-kuhni` | Real projects exact provenance; остальное AI/technical с disclosure      | PLANNED |
+| `PILOT-AK-01..09` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/catalog/uglovye-kuhni` | Real projects exact provenance; остальное AI/technical с disclosure      | VERIFIED_LOCAL |
 | `PILOT-BR-01..12` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/locations/borisov`     | Production media — illustration until real proof; local cases exact-city | PLANNED |
 | `PILOT-HW-01..12` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/materials/furnitura`   | Technical render; official sources required for specs                    | PLANNED |
 
@@ -85,3 +85,19 @@ Asset-level source of truth находится в manifests v2. Статусы �
 - `PROMPT_READY`, `PLANNED`, `REVIEW_REQUIRED` представлены текстовым fallback без фиктивного src.
 - `DeferredMediaViewer`, `CornerStorageExplorer` и `HardwareCabinetExplorer` монтируют current/poster media по intent; 203-image archive не передаётся в props и не сериализуется.
 - Уточнение duplicate scope: stage 3 = 306 файлов двух pilot/furnitura roots, exact SHA-256; 47 групп из архитектурного аудита = весь runtime public (~1008 файлов).
+
+## Stage 5 Angular consumption
+
+| Collection | Local status after page QA | Usage |
+| --- | --- | --- |
+| `PILOT-AK-01` | `VERIFIED 1`, `REGISTERED 3` | один critical hero |
+| `PILOT-AK-02` | `VERIFIED 3`, `REGISTERED 1`, `PROMPT_READY 1` | swipe gallery |
+| `PILOT-AK-03` | `VERIFIED 2`, `PROMPT_READY 3` | worktop/sink tab media |
+| `PILOT-AK-04` | `VERIFIED 12` | intent sequence, один frame в DOM |
+| `PILOT-AK-05` | `VERIFIED 3`, `REVIEW_REQUIRED 1`, `PROMPT_READY 2` | shelf/carousel/pullout |
+| `PILOT-AK-06` | `REVIEW_REQUIRED 1`, `PROMPT_READY 2` | не подключён как отдельный bitmap set; comparison использует verified mechanism media |
+| `PILOT-AK-07` | `REGISTERED 1`, `PROMPT_READY 4` | не подключён в stage 5 |
+| `PILOT-AK-08` | `VERIFIED 3`, `PROMPT_READY 2` | warm white/green/graphite selector |
+| `PILOT-AK-09` | `PROMPT_READY 6` | price factors оставлены server text cards без лишних images |
+
+Итого Angular: 24 `VERIFIED`, 5 `REGISTERED`, 20 `PROMPT_READY`, 2 `REVIEW_REQUIRED`. После production QA ровно подключённые 24 записи могут перейти в `LIVE`; остальные статусы не повышаются.

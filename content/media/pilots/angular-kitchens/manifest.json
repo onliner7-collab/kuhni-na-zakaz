@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "stage": "ЭТАП 3 — DIGITAL ASSET LIBRARY",
+  "stage": "ЭТАП 5 — ANGULAR KITCHENS IMPLEMENTATION",
   "pilot": "angular-kitchens",
   "pageUrl": "/catalog/uglovye-kuhni",
   "lifecycle": [
@@ -36,13 +36,15 @@
           "componentName": "MobileHero",
           "sectionId": "hero",
           "purpose": "Mobile Hero",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "hero",
@@ -314,9 +316,16 @@
           "componentName": "SwipeGallery",
           "sectionId": "angles",
           "purpose": "Swipe Angles",
-          "status": "PROMPT_READY",
+          "status": "VERIFIED",
           "lifecycleHistory": [
-            "PROMPT_READY"
+            "PROMPT_READY",
+            "GENERATED",
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -362,11 +371,11 @@
           "loadingPriority": "near-view",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": null,
-            "avifSha256": null,
-            "webpSha256": null
+            "masterSha256": "96fea821760051b95e0061ef6cb5923b4325444419dc3971ad6aa6429da60aae",
+            "avifSha256": "a5f76b8580773a4464e37a2fdb2bf6cc5a7fe73cd86e2f483f4e0fbdd669631d",
+            "webpSha256": "00bd59f6fb3e23e82844a810488f78c86d1b75268b3a3c6fd55fa6ae009b017a"
           },
-          "notes": "Файл не создан на этапе 3; точный prompt и delivery contract готовы."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-02-002",
@@ -377,13 +386,15 @@
           "componentName": "SwipeGallery",
           "sectionId": "angles",
           "purpose": "Swipe Angles",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -444,9 +455,16 @@
           "componentName": "SwipeGallery",
           "sectionId": "angles",
           "purpose": "Swipe Angles",
-          "status": "PROMPT_READY",
+          "status": "VERIFIED",
           "lifecycleHistory": [
-            "PROMPT_READY"
+            "PROMPT_READY",
+            "GENERATED",
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -492,11 +510,11 @@
           "loadingPriority": "near-view",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": null,
-            "avifSha256": null,
-            "webpSha256": null
+            "masterSha256": "666eb5d620d7dab731a4d5a392d4a445a1f4cdfc0fcd4057e4799879cddb6f00",
+            "avifSha256": "04bb3d059093119c9384f87a80c61fbe18f20993454d070749fb995a7cb228c2",
+            "webpSha256": "7443e35c3696eaa31c3335a125837c1b592ac736415adec95b4d8e81eac4480e"
           },
-          "notes": "Файл не создан на этапе 3; точный prompt и delivery contract готовы."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-02-004",
@@ -647,16 +665,23 @@
           "componentName": "CornerTypeSelector",
           "sectionId": "corner-types",
           "purpose": "Corner Types",
-          "status": "PROMPT_READY",
+          "status": "VERIFIED",
           "lifecycleHistory": [
-            "PROMPT_READY"
+            "PROMPT_READY",
+            "GENERATED",
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "gallery",
           "orientation": "landscape",
-          "aspectRatio": "4:3",
-          "mobileWidth": 960,
-          "mobileHeight": 720,
+          "aspectRatio": "3:2",
+          "mobileWidth": 1200,
+          "mobileHeight": 800,
           "desktopWidth": 1200,
           "desktopHeight": 900,
           "masterFormat": "PNG",
@@ -695,11 +720,11 @@
           "loadingPriority": "interaction-only",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": null,
-            "avifSha256": null,
-            "webpSha256": null
+            "masterSha256": "059b18388228c21eeadfe4251f2896afb8997aced353ae4c7b096e505b35709d",
+            "avifSha256": "f3e03a2bc259652bedbff6ad671ceb0c3e04f892d29c7c0fa6c32a4a9d28f53d",
+            "webpSha256": "e3ef830e1b41ae6c97dbe80758e99997782c6078261134eb2fef340a918e0c41"
           },
-          "notes": "Файл не создан на этапе 3; точный prompt и delivery contract готовы."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-03-002",
@@ -773,16 +798,23 @@
           "componentName": "CornerTypeSelector",
           "sectionId": "corner-types",
           "purpose": "Corner Types",
-          "status": "PROMPT_READY",
+          "status": "VERIFIED",
           "lifecycleHistory": [
-            "PROMPT_READY"
+            "PROMPT_READY",
+            "GENERATED",
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "gallery",
           "orientation": "landscape",
-          "aspectRatio": "4:3",
-          "mobileWidth": 960,
-          "mobileHeight": 720,
+          "aspectRatio": "3:2",
+          "mobileWidth": 1200,
+          "mobileHeight": 800,
           "desktopWidth": 1200,
           "desktopHeight": 900,
           "masterFormat": "PNG",
@@ -821,11 +853,11 @@
           "loadingPriority": "interaction-only",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": null,
-            "avifSha256": null,
-            "webpSha256": null
+            "masterSha256": "241b2f6885f79d39584b6f76abca15ba80ee835bfac0068efa67a45ce6dd6908",
+            "avifSha256": "9ce536edefbc929aa6118ce2a807f03f6da6580ee2c14d043b0fd05318d76c4e",
+            "webpSha256": "504a7d0e76134f07188b422f7543376e37440bfd16555f7e1f9e6d67ee23d772"
           },
-          "notes": "Файл не создан на этапе 3; точный prompt и delivery contract готовы."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-03-004",
@@ -972,13 +1004,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1039,13 +1073,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1106,13 +1142,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1173,13 +1211,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1240,13 +1280,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1307,13 +1349,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1374,13 +1418,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1441,13 +1487,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1508,13 +1556,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1575,13 +1625,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1642,13 +1694,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1709,13 +1763,15 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "REGISTERED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
             "SELECTED",
             "OPTIMIZED",
-            "REGISTERED"
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1780,16 +1836,22 @@
         {
           "assetId": "PILOT-AK-05-001",
           "legacyAssetId": "angular-storage-01",
-          "version": 1,
+          "version": 2,
           "collectionId": "PILOT-AK-05",
           "pageUrl": "/catalog/uglovye-kuhni",
           "componentName": "StorageUseCases",
           "sectionId": "storage",
           "purpose": "Storage Use Cases",
-          "status": "REVIEW_REQUIRED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
+            "PROMPT_READY",
             "GENERATED",
-            "REVIEW_REQUIRED"
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -1804,15 +1866,15 @@
             "AVIF",
             "WebP"
           ],
-          "filename": "angular-kitchens-inside-basic-shelf-landscape",
+          "filename": "angular-storage-deep-shelf-landscape-v2",
           "namingStatus": "LEGACY_GRANDFATHERED",
           "paths": {
-            "master": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/masters/angular-kitchens-inside-basic-shelf-landscape.png",
-            "avif": "/media/pilots/angular-kitchens/avif/angular-kitchens-inside-basic-shelf-landscape.avif",
-            "webp": "/media/pilots/angular-kitchens/webp/angular-kitchens-inside-basic-shelf-landscape.webp",
-            "projectMaster": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/masters/angular-kitchens-inside-basic-shelf-landscape.png",
-            "projectAvif": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/avif/angular-kitchens-inside-basic-shelf-landscape.avif",
-            "projectWebp": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/webp/angular-kitchens-inside-basic-shelf-landscape.webp"
+            "master": "prepared-images/generated-sources/pilots/angular-kitchens/angular-storage-deep-shelf-landscape-v2.png",
+            "avif": "/media/pilots/angular-kitchens/details/angular-storage-deep-shelf-landscape-v2.avif",
+            "webp": "/media/pilots/angular-kitchens/details/angular-storage-deep-shelf-landscape-v2.webp",
+            "projectMaster": "prepared-images/generated-sources/pilots/angular-kitchens/angular-storage-deep-shelf-landscape-v2.png",
+            "projectAvif": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/details/angular-storage-deep-shelf-landscape-v2.avif",
+            "projectWebp": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/details/angular-storage-deep-shelf-landscape-v2.webp"
           },
           "alt": "Обычная глубокая полка в угловом шкафу",
           "caption": "AI-концепт: бюджетная глубокая полка.",
@@ -1835,25 +1897,31 @@
           "loadingPriority": "lazy",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": "f1ea9b558864c891023459f6ba8a903bdb3c5995e9e81414080594f70c709868",
-            "avifSha256": "5bcf859ca95a21221efdbbbb69c9749c01c44ce3a874c5b5bfe78f5ef51af252",
-            "webpSha256": "f7ce69fd1981fb7c9e2c9833545b09058090d0d739dbd866511ec0489c41a1c3"
+            "masterSha256": "7b4d32a77dfd84bc1dcb69d4ade4b154cb1e6f7233be5431778d7c51f9056c18",
+            "avifSha256": "a1e1a57bd41be235fae7ebb8f02625913219a96e867f7757b423a2e44d69c518",
+            "webpSha256": "56455fe38aa92e83aa2c07749fc04bbc7d6a930f7ad73360dc064a6107250ae5"
           },
-          "notes": "Существующий кандидат требует нового crop/ratio или дополнительного визуального отбора; файл сохранён и не подключается как target-stage asset."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-05-002",
           "legacyAssetId": "angular-storage-02",
-          "version": 1,
+          "version": 2,
           "collectionId": "PILOT-AK-05",
           "pageUrl": "/catalog/uglovye-kuhni",
           "componentName": "StorageUseCases",
           "sectionId": "storage",
           "purpose": "Storage Use Cases",
-          "status": "REVIEW_REQUIRED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
+            "PROMPT_READY",
             "GENERATED",
-            "REVIEW_REQUIRED"
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -1868,15 +1936,15 @@
             "AVIF",
             "WebP"
           ],
-          "filename": "angular-kitchens-inside-carousel-landscape",
+          "filename": "angular-storage-carousel-landscape-v2",
           "namingStatus": "LEGACY_GRANDFATHERED",
           "paths": {
-            "master": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/masters/angular-kitchens-inside-carousel-landscape.png",
-            "avif": "/media/pilots/angular-kitchens/avif/angular-kitchens-inside-carousel-landscape.avif",
-            "webp": "/media/pilots/angular-kitchens/webp/angular-kitchens-inside-carousel-landscape.webp",
-            "projectMaster": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/masters/angular-kitchens-inside-carousel-landscape.png",
-            "projectAvif": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/avif/angular-kitchens-inside-carousel-landscape.avif",
-            "projectWebp": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/webp/angular-kitchens-inside-carousel-landscape.webp"
+            "master": "prepared-images/generated-sources/pilots/angular-kitchens/angular-storage-carousel-landscape-v2.png",
+            "avif": "/media/pilots/angular-kitchens/details/angular-storage-carousel-landscape-v2.avif",
+            "webp": "/media/pilots/angular-kitchens/details/angular-storage-carousel-landscape-v2.webp",
+            "projectMaster": "prepared-images/generated-sources/pilots/angular-kitchens/angular-storage-carousel-landscape-v2.png",
+            "projectAvif": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/details/angular-storage-carousel-landscape-v2.avif",
+            "projectWebp": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/details/angular-storage-carousel-landscape-v2.webp"
           },
           "alt": "Карусель в угловом кухонном шкафу",
           "caption": "AI-концепт: поворотная карусель.",
@@ -1899,25 +1967,31 @@
           "loadingPriority": "lazy",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": "4ffcd6152308ca2ed04ed9e42d709eea7c1a9626ba806546ec183f0fe07c32ab",
-            "avifSha256": "fb8f0eb3fa57c80d477865b0dfa69975221ecb03b881dcf04a2d30675ce16a5d",
-            "webpSha256": "3114ea1c20bbabbc74940a41c8e5e15c22ac78b2b52f356c61f3f01f6d81a577"
+            "masterSha256": "16db41d15019d034a16c9f551a9bc54b2286730d6be3f680d95d42c43d3eaf7a",
+            "avifSha256": "ed36130a42b7aa00a12b21e8e3f0c745a7fd4902b1c633c265a6dacc3efaeab3",
+            "webpSha256": "42792a852f9d468d1d09051a6c76bcbfb05742a33a1a3350bace89218e584f50"
           },
-          "notes": "Существующий кандидат требует нового crop/ratio или дополнительного визуального отбора; файл сохранён и не подключается как target-stage asset."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-05-003",
           "legacyAssetId": "angular-storage-03",
-          "version": 1,
+          "version": 2,
           "collectionId": "PILOT-AK-05",
           "pageUrl": "/catalog/uglovye-kuhni",
           "componentName": "StorageUseCases",
           "sectionId": "storage",
           "purpose": "Storage Use Cases",
-          "status": "REVIEW_REQUIRED",
+          "status": "VERIFIED",
           "lifecycleHistory": [
+            "PROMPT_READY",
             "GENERATED",
-            "REVIEW_REQUIRED"
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -1932,15 +2006,15 @@
             "AVIF",
             "WebP"
           ],
-          "filename": "angular-kitchens-inside-pullout-landscape",
+          "filename": "angular-storage-pullout-landscape-v2",
           "namingStatus": "LEGACY_GRANDFATHERED",
           "paths": {
-            "master": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/masters/angular-kitchens-inside-pullout-landscape.png",
-            "avif": "/media/pilots/angular-kitchens/avif/angular-kitchens-inside-pullout-landscape.avif",
-            "webp": "/media/pilots/angular-kitchens/webp/angular-kitchens-inside-pullout-landscape.webp",
-            "projectMaster": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/masters/angular-kitchens-inside-pullout-landscape.png",
-            "projectAvif": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/avif/angular-kitchens-inside-pullout-landscape.avif",
-            "projectWebp": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/webp/angular-kitchens-inside-pullout-landscape.webp"
+            "master": "prepared-images/generated-sources/pilots/angular-kitchens/angular-storage-pullout-landscape-v2.png",
+            "avif": "/media/pilots/angular-kitchens/details/angular-storage-pullout-landscape-v2.avif",
+            "webp": "/media/pilots/angular-kitchens/details/angular-storage-pullout-landscape-v2.webp",
+            "projectMaster": "prepared-images/generated-sources/pilots/angular-kitchens/angular-storage-pullout-landscape-v2.png",
+            "projectAvif": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/details/angular-storage-pullout-landscape-v2.avif",
+            "projectWebp": "artifacts/kuhni-na-zakaz/public/media/pilots/angular-kitchens/details/angular-storage-pullout-landscape-v2.webp"
           },
           "alt": "Выдвижной механизм в угловом шкафу",
           "caption": "AI-концепт: выдвижная угловая система.",
@@ -1963,11 +2037,11 @@
           "loadingPriority": "lazy",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": "1dcbf08ce612ffbf89694d8cb8085fd57b134aa2c78528c47247332856521f28",
-            "avifSha256": "571316636c1686596792be7faa1ed6634a49b6276aa923291393fa9ad781676b",
-            "webpSha256": "177f2bd5f81d6d8950c9ea027cbff9add8ebecac549685e9e2a76dcf973c8ae6"
+            "masterSha256": "719b8b8d271001353e62b4c439d7099763897021300636de72f108e429a89db8",
+            "avifSha256": "c85b52ff6e9cec7ff536e13158ad53a04027eb68f4f28901bbac2929c59e12bc",
+            "webpSha256": "45ce0caf7f54a27a47556c4a8ccc0d8704089a52a0410fdef0b2cca3a1605403"
           },
-          "notes": "Существующий кандидат требует нового crop/ratio или дополнительного визуального отбора; файл сохранён и не подключается как target-stage asset."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-05-004",
@@ -2770,16 +2844,23 @@
           "componentName": "MaterialSwatches",
           "sectionId": "materials",
           "purpose": "Materials",
-          "status": "PROMPT_READY",
+          "status": "VERIFIED",
           "lifecycleHistory": [
-            "PROMPT_READY"
+            "PROMPT_READY",
+            "GENERATED",
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "detail",
-          "orientation": "square",
-          "aspectRatio": "1:1",
-          "mobileWidth": 640,
-          "mobileHeight": 640,
+          "orientation": "landscape",
+          "aspectRatio": "3:2",
+          "mobileWidth": 1200,
+          "mobileHeight": 800,
           "desktopWidth": 900,
           "desktopHeight": 900,
           "masterFormat": "PNG",
@@ -2818,11 +2899,11 @@
           "loadingPriority": "near-view",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": null,
-            "avifSha256": null,
-            "webpSha256": null
+            "masterSha256": "cd9091df2dda8f44bb06c3bd88a1ba6580b110b3ee5a15b3f75de5c6b96ee934",
+            "avifSha256": "98620392e194703af816a8aab1326541570989ff7708ce4445737b7ecaa6aa17",
+            "webpSha256": "dc5ef66dd048d429343934e4941e4d8a7cb843f93d9a1ffeb585d552be3bffe9"
           },
-          "notes": "Файл не создан на этапе 3; точный prompt и delivery contract готовы."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-08-003",
@@ -2896,16 +2977,23 @@
           "componentName": "MaterialSwatches",
           "sectionId": "materials",
           "purpose": "Materials",
-          "status": "PROMPT_READY",
+          "status": "VERIFIED",
           "lifecycleHistory": [
-            "PROMPT_READY"
+            "PROMPT_READY",
+            "GENERATED",
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "detail",
-          "orientation": "square",
-          "aspectRatio": "1:1",
-          "mobileWidth": 640,
-          "mobileHeight": 640,
+          "orientation": "landscape",
+          "aspectRatio": "3:2",
+          "mobileWidth": 1200,
+          "mobileHeight": 800,
           "desktopWidth": 900,
           "desktopHeight": 900,
           "masterFormat": "PNG",
@@ -2944,11 +3032,11 @@
           "loadingPriority": "near-view",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": null,
-            "avifSha256": null,
-            "webpSha256": null
+            "masterSha256": "29a397b3172e442931e1f542a44866d7cc6df0d9769810b7ea62c0c280fd0b8e",
+            "avifSha256": "df3557ebbcc74aef810967f63d12d6a1e641309abacd423165eeffe79d973eb3",
+            "webpSha256": "d5ed349aa9876022509dab74fb95f719c99949e5c84fab4960670ad6077ee8c9"
           },
-          "notes": "Файл не создан на этапе 3; точный prompt и delivery contract готовы."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         },
         {
           "assetId": "PILOT-AK-08-005",
@@ -2959,16 +3047,23 @@
           "componentName": "MaterialSwatches",
           "sectionId": "materials",
           "purpose": "Materials",
-          "status": "PROMPT_READY",
+          "status": "VERIFIED",
           "lifecycleHistory": [
-            "PROMPT_READY"
+            "PROMPT_READY",
+            "GENERATED",
+            "REVIEW_REQUIRED",
+            "SELECTED",
+            "OPTIMIZED",
+            "REGISTERED",
+            "CONNECTED",
+            "VERIFIED"
           ],
           "origin": "AI",
           "assetType": "detail",
-          "orientation": "square",
-          "aspectRatio": "1:1",
-          "mobileWidth": 640,
-          "mobileHeight": 640,
+          "orientation": "landscape",
+          "aspectRatio": "3:2",
+          "mobileWidth": 1200,
+          "mobileHeight": 800,
           "desktopWidth": 900,
           "desktopHeight": 900,
           "masterFormat": "PNG",
@@ -3007,11 +3102,11 @@
           "loadingPriority": "near-view",
           "rightsStatus": "AI_GENERATED",
           "checksum": {
-            "masterSha256": null,
-            "avifSha256": null,
-            "webpSha256": null
+            "masterSha256": "8c84b06f96f674117681140343f443b2d897bc8e3556ec7a31345194cfe80474",
+            "avifSha256": "23f8667f1c55dc4db03f06fa28bb3b206f08eff54911542546f2decdcfa2ffe2",
+            "webpSha256": "975a47425b18d8fb57d208bb190efe8b2103fa327596d937feec640ca126886d"
           },
-          "notes": "Файл не создан на этапе 3; точный prompt и delivery contract готовы."
+          "notes": "Сгенерировано встроенным imagegen для этапа 5, визуально отобрано, оптимизировано и подключено к пилотной странице."
         }
       ]
     },
@@ -3409,6 +3504,6 @@
     "assets": 51,
     "promptReady": 51,
     "existingCandidates": 24,
-    "connected": 0
+    "connected": 24
   }
 }

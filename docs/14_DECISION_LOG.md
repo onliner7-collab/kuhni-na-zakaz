@@ -150,3 +150,13 @@
 - **Причина:** сначала проверить API, mobile, a11y и intent-loading без замены работающих пилотных страниц.
 - **Media:** только `REGISTERED`; остальное — текстовый fallback. Hardware archive 203 не передаётся компонентам.
 - **Статус:** принято как `ISOLATED_TESTED`, не `IMPLEMENTED` на pilot pages.
+
+## 2026-07-14 — адресное подключение Angular stage 5
+
+- **Решение:** подключить stage-4 primitives только к `/catalog/uglovye-kuhni`; route/page остаются Server Components, один `AngularStage5Interactive` оркестрирует связанные selections.
+- **Причина:** тип угла, механизм, материал и размеры должны передаваться в существующую форму согласованным structured state без превращения всей страницы в Client Component.
+- **SEO:** hidden FAQPage schema удалена, потому что видимого exact FAQ нет; canonical, BreadcrumbList, Product и ImageObject сохранены.
+- **Dock:** используется единственный существующий global `MobileBottomNav` с exact Angular config; второй fixed `ContextDock` запрещён как конфликтующая дублирующая навигация.
+- **Media:** 10 новых imagegen masters сохранены в проекте; 24 connected assets прошли local QA до `VERIFIED`; `LIVE` только после deploy.
+- **Rollback:** revert итогового stage-5 commit; content imports и Prisma migration отсутствуют.
+- **Статус:** реализовано и проверено локально; production pending.

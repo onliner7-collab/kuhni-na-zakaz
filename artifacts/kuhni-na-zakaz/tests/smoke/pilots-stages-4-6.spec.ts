@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 const pilots = [
   {
     path: "/catalog/uglovye-kuhni",
-    h1: "Угловая кухня на заказ под ваши размеры",
+    h1: "Угловые кухни на заказ",
     dock: ["Планировка", "Внутри", "Цена", "Рассчитать"],
   },
   {

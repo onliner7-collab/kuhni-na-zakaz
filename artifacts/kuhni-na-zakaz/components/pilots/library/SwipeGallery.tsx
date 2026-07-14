@@ -16,7 +16,9 @@ export function SwipeGallery({ items, label }: SwipeGalleryProps) {
     const next = Math.min(Math.max(index, 0), items.length - 1);
     setActiveIndex(next);
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    scrollerRef.current?.children.item(next)?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "nearest", inline: "start" });
+    const scroller = scrollerRef.current;
+    const child = scroller?.children.item(next) as HTMLElement | null;
+    if (scroller && child) scroller.scrollTo({ left: child.offsetLeft - scroller.offsetLeft, behavior: prefersReducedMotion ? "auto" : "smooth" });
   }
 
   if (items.length === 0) return <p>Изображения пока не подготовлены.</p>;
@@ -25,8 +27,9 @@ export function SwipeGallery({ items, label }: SwipeGalleryProps) {
     <section data-component="SwipeGallery" aria-label={label} className="space-y-3">
       <div ref={scrollerRef} className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain" onScroll={(event) => {
         const node = event.currentTarget;
-        const width = node.clientWidth || 1;
-        setActiveIndex(Math.min(Math.round(node.scrollLeft / width), items.length - 1));
+        const children = Array.from(node.children) as HTMLElement[];
+        const nearest = children.reduce((best, child, index) => Math.abs(child.offsetLeft - node.offsetLeft - node.scrollLeft) < best.distance ? { index, distance: Math.abs(child.offsetLeft - node.offsetLeft - node.scrollLeft) } : best, { index: 0, distance: Number.POSITIVE_INFINITY });
+        setActiveIndex(nearest.index);
       }}>
         {items.map((item) => (
           <figure key={item.id} className="min-w-full snap-start overflow-hidden rounded-3xl border bg-white">

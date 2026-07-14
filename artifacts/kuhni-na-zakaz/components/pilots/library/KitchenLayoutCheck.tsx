@@ -1,16 +1,27 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-export function KitchenLayoutCheck() {
+interface KitchenLayoutSelection {
+  wallOneLength: number;
+  wallTwoLength: number;
+  windowPosition: string;
+  doorPosition: string;
+  communicationsPosition: string;
+}
+
+export function KitchenLayoutCheck({ onChange }: { onChange?: (selection: KitchenLayoutSelection) => void }) {
   const [firstWall, setFirstWall] = useState(240);
   const [secondWall, setSecondWall] = useState(180);
-  const [hasObstacle, setHasObstacle] = useState(false);
+  const [windowPosition, setWindowPosition] = useState("нет рядом");
+  const [doorPosition, setDoorPosition] = useState("нет рядом");
+  const [communicationsPosition, setCommunicationsPosition] = useState("уточнить на замере");
   const result = useMemo(() => {
     if (firstWall < 120 || secondWall < 120) return "Одна из стен короткая: сначала стоит проверить альтернативную планировку.";
-    if (hasObstacle) return "Г-образная схема возможна как направление, но препятствие нужно нанести на замере.";
+    if (windowPosition !== "нет рядом" || doorPosition !== "нет рядом") return "Г-образная схема возможна как направление, но окно или дверь нужно нанести на замере.";
     return "Две стены позволяют обсуждать Г-образную схему на замере.";
-  }, [firstWall, hasObstacle, secondWall]);
+  }, [doorPosition, firstWall, secondWall, windowPosition]);
+  useEffect(() => onChange?.({ wallOneLength: firstWall, wallTwoLength: secondWall, windowPosition, doorPosition, communicationsPosition }), [communicationsPosition, doorPosition, firstWall, onChange, secondWall, windowPosition]);
   return (
     <section data-component="KitchenLayoutCheck" className="rounded-3xl border p-4 sm:p-6">
       <h2 className="text-2xl font-black">Предварительно проверить две стены</h2>
@@ -19,7 +30,11 @@ export function KitchenLayoutCheck() {
         <label className="font-bold">Первая стена, см<input className="mt-2 min-h-11 w-full rounded-xl border px-3" type="number" min="60" max="1000" value={firstWall} onChange={(event) => setFirstWall(Number(event.target.value))} /></label>
         <label className="font-bold">Вторая стена, см<input className="mt-2 min-h-11 w-full rounded-xl border px-3" type="number" min="60" max="1000" value={secondWall} onChange={(event) => setSecondWall(Number(event.target.value))} /></label>
       </div>
-      <label className="mt-4 flex min-h-11 items-center gap-3 rounded-xl bg-stone-100 p-3"><input type="checkbox" checked={hasObstacle} onChange={(event) => setHasObstacle(event.target.checked)} className="h-5 w-5" /><span>Есть окно, дверь или коммуникации рядом с углом</span></label>
+      <div className="mt-4 grid gap-4 sm:grid-cols-3">
+        <label className="font-bold">Окно<select className="mt-2 min-h-11 w-full rounded-xl border bg-white px-3" value={windowPosition} onChange={(event) => setWindowPosition(event.target.value)}><option>нет рядом</option><option>на первой стене</option><option>на второй стене</option></select></label>
+        <label className="font-bold">Дверь<select className="mt-2 min-h-11 w-full rounded-xl border bg-white px-3" value={doorPosition} onChange={(event) => setDoorPosition(event.target.value)}><option>нет рядом</option><option>на первой стене</option><option>на второй стене</option></select></label>
+        <label className="font-bold">Коммуникации<select className="mt-2 min-h-11 w-full rounded-xl border bg-white px-3" value={communicationsPosition} onChange={(event) => setCommunicationsPosition(event.target.value)}><option>уточнить на замере</option><option>на первой стене</option><option>на второй стене</option><option>в углу</option></select></label>
+      </div>
       <p role="status" className="mt-4 rounded-xl bg-amber-50 p-4 font-semibold">{result}</p>
     </section>
   );

@@ -5,9 +5,9 @@ import { useState } from "react";
 import { MediaPicture } from "./MediaPicture";
 import type { LabeledOption, PilotMedia } from "./types";
 
-interface CornerStorageExplorerProps { frames: PilotMedia[]; mechanisms: LabeledOption[]; }
+interface CornerStorageExplorerProps { frames: PilotMedia[]; mechanisms: LabeledOption[]; onMechanismChange?: (id: string) => void; }
 
-export function CornerStorageExplorer({ frames, mechanisms }: CornerStorageExplorerProps) {
+export function CornerStorageExplorer({ frames, mechanisms, onMechanismChange }: CornerStorageExplorerProps) {
   const [hasIntent, setHasIntent] = useState(false);
   const [frameIndex, setFrameIndex] = useState(0);
   const [mechanismId, setMechanismId] = useState(mechanisms[0]?.id || "");
@@ -17,7 +17,7 @@ export function CornerStorageExplorer({ frames, mechanisms }: CornerStorageExplo
   return (
     <section data-component="CornerStorageExplorer" className="grid gap-5 rounded-3xl bg-[#f3eee7] p-4 sm:p-6 lg:grid-cols-2">
       <div>
-        {activeFrame ? <div className="aspect-[3/2] overflow-hidden rounded-2xl bg-stone-200"><MediaPicture media={activeFrame} eager={frameIndex === 0} /></div> : <div className="grid aspect-[3/2] place-items-center rounded-2xl bg-stone-200 p-6 text-center">Последовательность пока недоступна.</div>}
+        {activeFrame ? <div className="aspect-[3/2] overflow-hidden rounded-2xl bg-stone-200"><MediaPicture media={activeFrame} /></div> : <div className="grid aspect-[3/2] place-items-center rounded-2xl bg-stone-200 p-6 text-center">Последовательность пока недоступна.</div>}
         <div className="mt-3 flex items-center justify-between">
           <p aria-live="polite" className="text-sm font-bold">Кадр {frameIndex + 1} из {frames.length}</p>
           <div className="flex gap-2">
@@ -30,7 +30,7 @@ export function CornerStorageExplorer({ frames, mechanisms }: CornerStorageExplo
         <h2 className="text-2xl font-black">Доступ к угловому хранению</h2>
         <p className="mt-2 text-stone-700">Сравните принцип доступа. Иллюстрация не заменяет технический проект.</p>
         <div className="mt-4 grid gap-2" role="group" aria-label="Варианты углового хранения">
-          {mechanisms.map((item) => <button key={item.id} type="button" aria-pressed={item.id === activeMechanism?.id} onClick={() => setMechanismId(item.id)} className="min-h-11 rounded-xl border bg-white p-3 text-left aria-pressed:border-stone-900 aria-pressed:ring-2"><span className="block font-bold">{item.label}</span><span className="text-sm text-stone-600">{item.description}</span></button>)}
+          {mechanisms.map((item) => <button key={item.id} type="button" aria-pressed={item.id === activeMechanism?.id} onClick={() => { setMechanismId(item.id); onMechanismChange?.(item.id); }} className="min-h-11 rounded-xl border bg-white p-3 text-left aria-pressed:border-stone-900 aria-pressed:ring-2"><span className="block font-bold">{item.label}</span><span className="text-sm text-stone-600">{item.description}</span></button>)}
         </div>
       </div>
     </section>

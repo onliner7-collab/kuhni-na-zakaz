@@ -33,7 +33,7 @@ export function MobileHero({ eyebrow, title, description, media, disclosure, act
           {aside ? <div className="pt-2">{aside}</div> : null}
         </div>
         <figure className="order-1 lg:order-2">
-          <div className="aspect-[3/4] max-h-[42rem] overflow-hidden lg:aspect-[4/3]">
+          <div className={`${variant === "spatial" ? "aspect-[4/3] max-h-[42svh]" : "aspect-[3/4] max-h-[42rem]"} overflow-hidden lg:aspect-[4/3] lg:max-h-[42rem]`}>
             <MediaPicture media={media} eager />
           </div>
           <figcaption className="px-5 py-3 text-sm opacity-75 sm:px-8">{disclosure}</figcaption>

@@ -70,6 +70,8 @@ interface ContactFormProps {
   showRoomFile?: boolean;
   defaultKitchenType?: string;
   defaultComment?: string;
+  answersEventName?: string;
+  defaultAnswers?: Record<string, unknown>;
 }
 
 interface TrackingFields {
@@ -252,6 +254,8 @@ export function ContactForm({
   showRoomFile = false,
   defaultKitchenType = "",
   defaultComment = "",
+  answersEventName,
+  defaultAnswers,
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
@@ -269,6 +273,7 @@ export function ContactForm({
 
     return source === "home" ? readHomeKitchenComment(baseComment) : baseComment;
   });
+  const [contextAnswers, setContextAnswers] = useState<Record<string, unknown>>(defaultAnswers || {});
   const nameId = `${formId}-lead-name`;
   const phoneId = `${formId}-lead-phone`;
   const cityId = `${formId}-lead-city`;
@@ -292,6 +297,18 @@ export function ContactForm({
           : baseComment;
     setIdeaComment(sourceComment);
   }, [defaultComment, pathname, resolvedSourceType, source, sourcePage]);
+
+  useEffect(() => {
+    if (!answersEventName) return;
+    const onAnswers = (event: Event) => {
+      const detail = (event as CustomEvent<Record<string, unknown>>).detail;
+      if (detail && typeof detail === "object") setContextAnswers(detail);
+    };
+    window.addEventListener(answersEventName, onAnswers);
+    return () => window.removeEventListener(answersEventName, onAnswers);
+  }, [answersEventName]);
+
+  useEffect(() => setContextAnswers(defaultAnswers || {}), [defaultAnswers]);
 
   const defaultValues = useMemo<FormData>(() => ({
     name: "",
@@ -364,13 +381,12 @@ export function ContactForm({
       ...data,
       comment: currentComment,
       uploadNote: fileNote || data.uploadNote || "",
-      answers: designSelection || homeSelection
-        ? {
-            ...(data.answers || {}),
-            ...(designSelection ? { designProjectSelection: designSelection } : {}),
-            ...(homeSelection ? { homeKitchenSelection: homeSelection } : {}),
-          }
-        : data.answers,
+      answers: {
+        ...(data.answers || {}),
+        ...contextAnswers,
+        ...(designSelection ? { designProjectSelection: designSelection } : {}),
+        ...(homeSelection ? { homeKitchenSelection: homeSelection } : {}),
+      },
       source,
       formType,
       city: data.city || city || "",
@@ -463,7 +479,7 @@ export function ContactForm({
         <div className="mb-4 text-4xl" aria-hidden>✓</div>
         <h3 className="mb-2 font-serif text-2xl font-semibold">Заявка получена</h3>
         <p className="mb-6 text-muted-foreground">{successMessage}</p>
-        <Button variant="outline" onClick={() => setSent(false)}>Отправить ещё одну заявку</Button>
+        <Button variant="outline" className="min-h-11" onClick={() => setSent(false)}>Отправить ещё одну заявку</Button>
       </div>
     );
   }
@@ -507,7 +523,7 @@ export function ContactForm({
           id={nameId}
           {...register("name")}
           placeholder="Ваше имя"
-          className="mt-1"
+          className="mt-1 min-h-11"
           autoComplete="name"
           aria-invalid={Boolean(errors.name)}
           aria-describedby={errors.name ? `${nameId}-error` : undefined}
@@ -524,7 +540,7 @@ export function ContactForm({
           type="tel"
           inputMode="tel"
           placeholder="+375 (__) ___-__-__"
-          className="mt-1"
+          className="mt-1 min-h-11"
           autoComplete="tel"
           aria-invalid={Boolean(errors.phone)}
           aria-describedby={errors.phone ? `${phoneId}-error` : undefined}
@@ -536,7 +552,7 @@ export function ContactForm({
       {showCity && (
         <div>
           <Label htmlFor={cityId}>Город</Label>
-          <Input id={cityId} {...register("city")} placeholder="Минск" className="mt-1" autoComplete="address-level2" data-testid="form-city" />
+          <Input id={cityId} {...register("city")} placeholder="Минск" className="mt-1 min-h-11" autoComplete="address-level2" data-testid="form-city" />
         </div>
       )}
 
@@ -546,7 +562,7 @@ export function ContactForm({
           <select
             id={kitchenTypeId}
             {...register("kitchenType")}
-            className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="mt-1 flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             data-testid="form-kitchen-type"
           >
             {kitchenTypes.map((item) => (
@@ -562,7 +578,7 @@ export function ContactForm({
           <select
             id={messengerId}
             {...register("messenger")}
-            className="mt-1 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="mt-1 flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             data-testid="form-messenger"
           >
             <option value="">Как удобнее связаться</option>
@@ -596,7 +612,7 @@ export function ContactForm({
             id={roomFileId}
             type="file"
             accept="image/jpeg,image/png,image/webp,image/heic,application/pdf"
-            className="mt-1"
+            className="mt-1 min-h-11"
             data-testid="form-room-file"
             onChange={(event) => {
               const file = event.currentTarget.files?.[0] || null;
@@ -644,13 +660,13 @@ export function ContactForm({
           />
           <span>
             Согласен на обработку персональных данных и с{" "}
-            <a href="/privacy-policy" className="underline underline-offset-2">политикой обработки данных</a>.
+            <a href="/privacy-policy" className="inline-flex min-h-11 items-center underline underline-offset-2">политикой обработки данных</a>.
           </span>
         </label>
         {errors.agreement && <p id={`${agreementId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.agreement.message}</p>}
       </div>
 
-      <Button type="submit" className="w-full" disabled={loading} data-testid="form-submit">
+      <Button type="submit" className="min-h-11 w-full" disabled={loading} data-testid="form-submit">
         {loading ? "Отправляем..." : submitLabel}
       </Button>
     </form>

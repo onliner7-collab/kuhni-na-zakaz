@@ -41,7 +41,7 @@ for (const pilot of pilots) {
       for (const field of ["assetId","collectionId","pageUrl","componentName","sectionId","purpose","status","origin","assetType","aspectRatio","filename","alt","loadingPriority","rightsStatus"]) {
         if (asset[field] === undefined || asset[field] === null || asset[field] === "") errors.push(`${asset.assetId}: отсутствует ${field}`);
       }
-      if (forbiddenStatuses.has(asset.status)) errors.push(`${asset.assetId}: статус ${asset.status} запрещён на этапе 3`);
+      if (manifest.stage.includes("ЭТАП 3") && forbiddenStatuses.has(asset.status)) errors.push(`${asset.assetId}: статус ${asset.status} запрещён на этапе 3`);
       if (!/[А-Яа-яЁё]/.test(asset.alt)) errors.push(`${asset.assetId}: alt должен быть на русском языке`);
       if (["AI","TECHNICAL_RENDER"].includes(asset.origin)) {
         promptCount += 1;

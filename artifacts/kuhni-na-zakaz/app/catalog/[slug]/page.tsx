@@ -624,9 +624,7 @@ export default async function CatalogItemPage({ params }: Props) {
     return (
       <AngularKitchenPage
         priceFrom={data.priceFrom}
-        jsonLd={jsonLdFaq
-          ? [jsonLdBreadcrumb, jsonLdProduct, jsonLdFaq, jsonLdImage]
-          : [jsonLdBreadcrumb, jsonLdProduct, jsonLdImage]}
+        jsonLd={[jsonLdBreadcrumb, jsonLdProduct, jsonLdImage]}
       />
     );
   }
