@@ -2,9 +2,38 @@
 
 ## Current stage
 
-Этап 2 — reverse-audit и детальное проектирование трёх пилотов. Baseline этапа 1: `6f78fbb`. Отдельный commit этапа 2: `c0a97ca` (`docs: design three interactive pilot pages`).
+ЭТАП 3 — DIGITAL ASSET LIBRARY завершён в рабочем дереве 2026-07-14. Baseline этапа 2: `c0a97ca`; финальный handoff этапа 2: `450f57d`. Следующий этап: 4 — Component Library.
 
-## Completed
+## Stage 3 completed
+
+- Созданы `docs/assets/00_*`–`10_*`, manifests v2 и безопасные read-only/dry-run проверки.
+- 33 группы разложены на 137 asset-level записей; 131 AI/technical запись имеет полный prompt package.
+- Статусы: 26 `REGISTERED`, 10 `REVIEW_REQUIRED`, 95 `PROMPT_READY`, 6 `PLANNED`; `CONNECTED/VERIFIED/LIVE` отсутствуют.
+- Существующие 33 pilot candidates проверены по contact sheets. 23 зарегистрированы, 10 оставлены на re-crop/review.
+- Через встроенный `imagegen` создано 4 новых Angular hero revision: 3 выбраны и оптимизированы в AVIF/WebP, 1 отклонён и сохранён с причиной.
+- Hardware inventory содержит ровно 203 записи исходного DOM: 201 gallery + hero + initial hinge state. Удалено 0; точных дублей 0; у 203 source status остаётся `SOURCE_UNKNOWN`.
+- Production pages, components, CSS, routes, metadata, schema, forms, sitemap, robots, canonical и Prisma не изменялись. Новые assets не подключались.
+
+## Stage 3 paths
+
+- `content/media/pilots/<pilot>/manifest.json`
+- `content/media/pilots/hardware/existing-hardware-inventory.json`
+- `content/media/pilots/angular-kitchens/revisions.json`
+- `prepared-images/generated-sources/pilots/`
+- `artifacts/kuhni-na-zakaz/public/media/pilots/<pilot>/{hero,gallery,sequences,cutaways,comparisons,details,covers,posters}`
+- `scripts/assets/`
+
+## Stage 3 checks
+
+- `pnpm.cmd run assets:validate`: 33 groups, 137 assets, 131 prompts, 36 complete triplets; pass; 10 expected ratio warnings remain only on `REVIEW_REQUIRED` legacy candidates.
+- `pnpm.cmd run assets:duplicates`: 306 files, 0 exact duplicate groups.
+- Generated hero delivery: 900×1200; AVIF 13–34 KB; WebP 19–46 KB.
+
+## Stage 3 rollback
+
+Revert the dedicated stage-3 commit. No database migration or runtime code rollback is required. The three new unconnected delivery variants and their project-local masters may be removed only by that revert; legacy media must remain.
+
+## Stage 2 baseline completed
 
 - Фактически изучены `/catalog/uglovye-kuhni`, `/locations/borisov`, `/materials/furnitura`: routes, server/client boundaries, hooks, data/Prisma fallbacks, metadata, JSON-LD, links, forms, Dock, media and build scripts.
 - Локальный production-like DOM проверен во встроенном браузере на 360/390/412/768/1440 px.
@@ -24,7 +53,7 @@
 - `docs/pilots/07_PILOT_UNIQUENESS_MATRIX.md`
 - `docs/pilots/08_PILOT_ACCEPTANCE_CRITERIA.md`
 
-## Modified production files
+## Stage 2 modified production files
 
 Нет. `artifacts/kuhni-na-zakaz`, routes, metadata, schema, CSS, components, forms, Prisma, sitemap, robots и media не изменялись.
 
@@ -85,10 +114,10 @@ Revert the stage-2 docs commit with a new Git revert commit. No database/media/r
 
 ## Next required stage
 
-ЭТАП 3 — создание точной медиасистемы, генерационных prompts и медиакарт для трёх утверждённых пилотных страниц. Не генерировать assets до проверки всех 33 groups и approval consistency/provenance contract.
+ЭТАП 4 — COMPONENT LIBRARY. Использовать только target-stage assets со статусом `REGISTERED`. Для `PROMPT_READY`, `PLANNED` и `REVIEW_REQUIRED` применять текстовый/static fallback и не подключать файл как готовый.
 
 ## Exact starting instruction for next chat
 
 ```text
-Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md и все /docs/pilots/*.md. Проверь git status, ветку work, последние коммиты и baseline этапа 2, указанный в Handoff. Выполни ЭТАП 3 — создай точную медиасистему, asset-level медиакарты и генерационные prompts для 33 групп PILOT-AK-01..09, PILOT-BR-01..12, PILOT-HW-01..12. Не меняй production UI/routes/metadata/schema/forms/Prisma. Не генерируй изображения, пока не проверены storyboard, mobile/desktop crop, consistency, provenance, real/AI labels, AVIF/WebP/master contract, loading priority и sequence budget. Для новых фото кухонь используй только встроенный imagegen после чтения его SKILL.md; masters сохраняй в проекте, visible src — оптимизированный AVIF/WebP. Обнови Page/Component/Media Registry, Decision Log и Handoff; не отмечай MEDIA_READY без реальных файлов и QA.
+Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md, /docs/assets/*.md, /docs/pilots/*.md и manifests v2 в /content/media/pilots/*/manifest.json. Проверь git status, ветку work и baseline этапа 3 из Handoff. Выполни ЭТАП 4 — COMPONENT LIBRARY: создай и изолированно протестируй общие и уникальные компоненты пилотов, не подключая их массово к production-страницам. Используй только assets со статусом REGISTERED; для PROMPT_READY, PLANNED и REVIEW_REQUIRED оставляй static/text fallback. Не удаляй существующие 203 изображения фурнитуры и не меняй routes/metadata/schema/forms/Prisma без отдельного решения. Сохрани mobile-first 360–412 px, reduced motion, intent loading и русские тексты/alt.
 ```

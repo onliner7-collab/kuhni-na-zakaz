@@ -93,3 +93,38 @@
 - **Риск:** production deploy pipeline выполнит стандартную сборку без runtime diff.
 - **Rollback:** вернуть ветку `work` к предыдущему commit через отдельный revert docs commit; не использовать destructive reset.
 - **Статус:** принято как явно запрошенная операция передачи состояния.
+
+## 2026-07-14 — runtime media path и library path разделены
+
+- **Решение:** manifests и архитектурная структура живут в корне проекта, а реальные delivery-файлы Next.js — в `artifacts/kuhni-na-zakaz/public/media/pilots`; новые masters сохраняются вне public в `prepared-images/generated-sources/pilots`.
+- **Причина:** корневой `public` не является runtime public-dir приложения; дублировать тяжёлые binaries запрещено.
+- **Расхождение:** ТЗ перечисляет `/public/media`, а проверенный runtime находится глубже. Обе структуры созданы, но binaries размещаются только в фактическом runtime path.
+- **Rollback:** revert stage-3 commit.
+- **Статус:** принято.
+
+## 2026-07-14 — legacy pilot assets не получают ready автоматически
+
+- **Решение:** 33 существующих master/AVIF/WebP family прошли contact-sheet и dimension review; 23 зарегистрированы, 10 оставлены `REVIEW_REQUIRED` из-за ratio/crop.
+- **Причина:** документация этапа 2 прямо запрещает считать существующие файлы готовыми без asset-level QA.
+- **Контроль:** status history, hashes и точные paths находятся в manifests v2.
+- **Статус:** принято.
+
+## 2026-07-14 — scope 203 изображений фурнитуры
+
+- **Решение:** число 203 трактуется как подтверждённый исходный DOM: 201 legacy gallery records + hero + initial hinge state. Остальные pilot state files отдельно входят в target manifest, но не подменяют этот audit count.
+- **Результат:** 203 записи классифицированы; 0 удалений; 0 точных дублей; у 203 provenance `SOURCE_UNKNOWN` до доказательств.
+- **Статус:** принято.
+
+## 2026-07-14 — ограниченная генерация тестовых вариантов
+
+- **Решение:** после утверждения 33-group media map создано четыре новых revision только для critical Angular hero; три выбраны и оптимизированы, один отклонён из-за псевдомаркировки техники.
+- **Причина:** выполнить variant review без массовой генерации сотен файлов.
+- **Ограничение:** новые assets не подключены; target status не выше `REGISTERED`.
+- **Статус:** принято.
+
+## 2026-07-14 — deploy этапа 3
+
+- **Решение:** по прямому указанию пользователя выполнить стандартный deploy отдельного stage-3 commit.
+- **Scope:** docs, manifests, scripts, unconnected media variants; runtime pages/components/SEO/forms/Prisma не меняются.
+- **Rollback:** отдельный revert stage-3 commit и стандартный deploy ветки `work`.
+- **Статус:** принято.

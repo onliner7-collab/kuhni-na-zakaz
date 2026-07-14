@@ -6,7 +6,10 @@
     "preinstall": "node -e \"const fs=require('fs');['package-lock.json','yarn.lock'].forEach((f)=>{if(fs.existsSync(f))fs.rmSync(f,{force:true});});const ua=process.env.npm_config_user_agent||'';if(!ua.startsWith('pnpm/')){console.error('Use pnpm instead');process.exit(1)}\"",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
     "typecheck:libs": "tsc --build",
-    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
+    "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck",
+    "assets:build-stage3": "node scripts/assets/build-stage3-library.mjs",
+    "assets:validate": "node scripts/assets/validate-manifests.mjs && node scripts/assets/check-filenames.mjs && node scripts/assets/check-missing-files.mjs && node scripts/assets/check-dimensions.mjs",
+    "assets:duplicates": "node scripts/assets/find-duplicates.mjs"
   },
   "private": true,
   "devDependencies": {

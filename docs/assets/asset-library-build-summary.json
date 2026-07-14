@@ -1,0 +1,34 @@
+{
+  "generatedAt": "2026-07-14",
+  "manifests": [
+    {
+      "pilot": "angular-kitchens",
+      "groups": 9,
+      "assets": 51,
+      "promptReady": 51,
+      "existingCandidates": 24,
+      "connected": 0
+    },
+    {
+      "pilot": "borisov",
+      "groups": 12,
+      "assets": 43,
+      "promptReady": 40,
+      "existingCandidates": 6,
+      "connected": 0
+    },
+    {
+      "pilot": "hardware",
+      "groups": 12,
+      "assets": 43,
+      "promptReady": 40,
+      "existingCandidates": 6,
+      "connected": 0
+    }
+  ],
+  "hardwareInventory": {
+    "total": 203,
+    "duplicateGroups": 0,
+    "sourceUnknown": 203
+  }
+}

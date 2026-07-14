@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "collectionId": "PILOT-AK-01",
+  "generatedWith": "Встроенный генератор изображений Codex/OpenAI через imagegen",
+  "generatedAt": "2026-07-14",
+  "revisions": [
+    {
+      "revisionId": "PILOT-AK-01-002-R1",
+      "decision": "REJECTED",
+      "source": "prepared-images/generated-sources/pilots/angular-kitchens/rejected/PILOT-AK-01-002-R1-rejected-logo-artifact.png",
+      "reason": "На панели встроенной техники появилась случайная псевдомаркировка; нарушен запрет на текст и логотипы."
+    },
+    {
+      "revisionId": "PILOT-AK-01-002-R2",
+      "decision": "SELECTED",
+      "assetId": "PILOT-AK-01-002",
+      "source": "prepared-images/generated-sources/pilots/angular-kitchens/originals/angular-hero-mobile-two-walls-front-02-v1-source.png",
+      "reason": "Обе стороны угла читаются на mobile, фасады закрыты, нет текста и брендов."
+    },
+    {
+      "revisionId": "PILOT-AK-01-003-R1",
+      "decision": "SELECTED",
+      "assetId": "PILOT-AK-01-003",
+      "source": "prepared-images/generated-sources/pilots/angular-kitchens/originals/angular-kitchens-hero-green-accent-portrait-v1-source.png",
+      "reason": "Сдержанный зелёный акцент, чистая верхняя зона и правдоподобная закрытая геометрия."
+    },
+    {
+      "revisionId": "PILOT-AK-01-004-R1",
+      "decision": "SELECTED",
+      "assetId": "PILOT-AK-01-004",
+      "source": "prepared-images/generated-sources/pilots/angular-kitchens/originals/angular-kitchens-hero-lighting-portrait-v1-source.png",
+      "reason": "Угол читается, рабочая подсветка не превращает сцену в тёмный вечерний кадр, текст и логотипы отсутствуют."
+    }
+  ]
+}

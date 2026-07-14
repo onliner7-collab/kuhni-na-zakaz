@@ -35,3 +35,45 @@
 | `PILOT-HW-01..12` | `docs/pilots/05_PILOT_MEDIA_REQUIREMENTS.md` | `/materials/furnitura`   | Technical render; official sources required for specs                    | PLANNED |
 
 Итого: 33 planned media groups. Существующие assets не получают статус `MEDIA_READY` автоматически.
+
+## Digital Asset Library — этап 3
+
+Asset-level source of truth находится в manifests v2. Статусы ниже не означают подключение: на этапе 3 `CONNECTED`, `VERIFIED` и `LIVE` равны нулю.
+
+| Collection | Назначение | Assets | Текущие статусы | Origin | Component | Manifest |
+| --- | --- | ---: | --- | --- | --- | --- |
+| `PILOT-AK-01` | Mobile Hero | 4 | REGISTERED 4 | AI | `MobileHero` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-02` | Swipe Angles | 5 | PROMPT_READY 3, REGISTERED 2 | AI | `SwipeGallery` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-03` | Corner Types | 5 | PROMPT_READY 5 | AI | `CornerTypeSelector` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-04` | CornerStorageExplorer | 12 | REGISTERED 12 | AI | `CornerStorageExplorer` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-05` | Storage Use Cases | 6 | REVIEW_REQUIRED 4, PROMPT_READY 2 | AI | `StorageUseCases` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-06` | Mechanism Comparison | 3 | REVIEW_REQUIRED 1, PROMPT_READY 2 | AI | `MechanismComparison` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-07` | Technical Cutaways | 5 | REGISTERED 1, PROMPT_READY 4 | TECHNICAL_RENDER | `CornerStorageExplorer` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-08` | Materials | 5 | PROMPT_READY 5 | AI | `MaterialSwatches` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-AK-09` | Price Factors | 6 | PROMPT_READY 6 | AI | `CostFactors` | `content/media/pilots/angular-kitchens/manifest.json` |
+| `PILOT-BR-01` | Hero Journey | 4 | REGISTERED 1, PROMPT_READY 3 | AI | `MobileHero` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-02` | Production Journey | 7 | PROMPT_READY 3, REGISTERED 4 | AI | `ProductionJourney` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-03` | Kitchen Types | 6 | REVIEW_REQUIRED 1, PROMPT_READY 5 | AI | `KitchenChoiceDraft` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-04` | Styles | 3 | PROMPT_READY 3 | AI | `KitchenChoiceDraft` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-05` | Facade Selection | 4 | PROMPT_READY 4 | AI | `KitchenChoiceDraft` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-06` | Worktop Selection | 4 | PROMPT_READY 4 | AI | `KitchenChoiceDraft` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-07` | Hardware Levels | 3 | PROMPT_READY 3 | AI | `KitchenChoiceDraft` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-08` | Measurement | 2 | PROMPT_READY 2 | AI | `MeasureStep` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-09` | Production Illustration | 2 | PROMPT_READY 2 | AI | `ProductionStep` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-10` | Delivery and Installation | 2 | PROMPT_READY 2 | AI | `DeliveryInstallationStep` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-11` | Verified Projects Placeholder | 3 | PLANNED 3 | REAL | `VerifiedProjectLinks` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-BR-12` | AI Concepts | 3 | PROMPT_READY 3 | AI | `AiConcepts` | `content/media/pilots/borisov/manifest.json` |
+| `PILOT-HW-01` | Cabinet Hero | 4 | REGISTERED 1, PROMPT_READY 3 | AI | `MobileHero` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-02` | Hotspot States | 5 | REVIEW_REQUIRED 4, PROMPT_READY 1 | AI | `HardwareCabinetExplorer` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-03` | Drawer Sequence | 8 | PROMPT_READY 8 | AI | `DrawerMotionDemo` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-04` | Runner Cutaway | 2 | PROMPT_READY 1, REGISTERED 1 | TECHNICAL_RENDER | `RunnerCutaway` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-05` | Hinges | 3 | PROMPT_READY 3 | AI | `HingeExplorer` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-06` | Lift Systems | 3 | PROMPT_READY 3 | AI | `LiftMechanismExplorer` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-07` | Cargo Systems | 3 | PROMPT_READY 3 | AI | `CargoExplorer` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-08` | Corner Systems | 3 | PROMPT_READY 3 | AI | `CornerSystemLink` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-09` | Waste Sorting | 3 | PROMPT_READY 3 | AI | `WasteSortingOptions` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-10` | Package Levels | 3 | PROMPT_READY 3 | AI | `PackageLevelComparison` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-11` | Picker Results | 3 | PROMPT_READY 3 | TECHNICAL_RENDER | `HardwarePicker` | `content/media/pilots/hardware/manifest.json` |
+| `PILOT-HW-12` | Related Categories | 3 | PLANNED 3 | REAL | `RelatedLinks` | `content/media/pilots/hardware/manifest.json` |
+
+Итого: 137 asset-level записей; 26 `REGISTERED`, 10 `REVIEW_REQUIRED`, 95 `PROMPT_READY`, 6 `PLANNED`. Hardware archive: 203 records, 0 physical deletion, 0 exact SHA-256 duplicate groups, 203 `SOURCE_UNKNOWN`.
