@@ -77,3 +77,11 @@ Asset-level source of truth находится в manifests v2. Статусы �
 | `PILOT-HW-12` | Related Categories | 3 | PLANNED 3 | REAL | `RelatedLinks` | `content/media/pilots/hardware/manifest.json` |
 
 Итого: 137 asset-level записей; 26 `REGISTERED`, 10 `REVIEW_REQUIRED`, 95 `PROMPT_READY`, 6 `PLANNED`. Hardware archive: 203 records, 0 physical deletion, 0 exact SHA-256 duplicate groups, 203 `SOURCE_UNKNOWN`.
+
+## Stage 4 component consumption
+
+- Dev preview использует только 26 `REGISTERED` records; manifests остаются source of truth.
+- Preview не повышает lifecycle до `CONNECTED/VERIFIED/LIVE`, потому что production pilots ещё не импортируют библиотеку.
+- `PROMPT_READY`, `PLANNED`, `REVIEW_REQUIRED` представлены текстовым fallback без фиктивного src.
+- `DeferredMediaViewer`, `CornerStorageExplorer` и `HardwareCabinetExplorer` монтируют current/poster media по intent; 203-image archive не передаётся в props и не сериализуется.
+- Уточнение duplicate scope: stage 3 = 306 файлов двух pilot/furnitura roots, exact SHA-256; 47 групп из архитектурного аудита = весь runtime public (~1008 файлов).

@@ -128,3 +128,25 @@
 - **Scope:** docs, manifests, scripts, unconnected media variants; runtime pages/components/SEO/forms/Prisma не меняются.
 - **Rollback:** отдельный revert stage-3 commit и стандартный deploy ветки `work`.
 - **Статус:** принято.
+
+## 2026-07-14 — побочный content import в deploy baseline 19ac6ab
+
+- **Факт:** `minimalizm` и `skandinavskie` получили только новый `updatedAt`; URL, image, alt/caption, тексты и SEO не изменились. Дополнительно 36 опубликованных portfolio cases получили `order +36` и новый `updatedAt`; остальные поля не изменились.
+- **Причина:** два миграционных importer запускались при каждом deploy; первый делал безусловный update, второй назначал существующим cases новый order от текущего максимума.
+- **Решение:** обычный deploy пропускает imports. Они запускаются только с `RUN_CONTENT_IMPORTS=1`; importers сравнивают payload, сохраняют существующий order и не обновляют неизменную строку.
+- **Доказательство:** `docs/audit/2026-07-14-stage-4-content-import-audit.md` содержит backup/current comparison и полный список 36 cases.
+- **Rollback:** вернуть guard/importer commit отдельным revert; данные автоматически не откатывать без отдельного решения владельца.
+- **Статус:** принято; post-deploy zero-drift check обязателен.
+
+## 2026-07-14 — область duplicate check этапа 3
+
+- **Решение:** формулировка `0 exact duplicates` всегда сопровождается scope: 306 файлов `media/pilots` + furnitura v2, SHA-256.
+- **Причина:** site-wide audit проверял около 1008 public files и нашёл 47 exact groups; это другой набор.
+- **Статус:** принято; site-wide 47 groups остаются долгом этапа 9.
+
+## 2026-07-14 — Component Library изолирована от production pilots
+
+- **Решение:** shared/specialized components находятся в `components/pilots/library`; единственный consumer этапа 4 — dev preview, закрытый production 404.
+- **Причина:** сначала проверить API, mobile, a11y и intent-loading без замены работающих пилотных страниц.
+- **Media:** только `REGISTERED`; остальное — текстовый fallback. Hardware archive 203 не передаётся компонентам.
+- **Статус:** принято как `ISOLATED_TESTED`, не `IMPLEMENTED` на pilot pages.

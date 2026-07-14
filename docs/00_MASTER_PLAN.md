@@ -9,7 +9,7 @@
 1. **Архитектурный фундамент** — фактический аудит, правила, реестры и handoff; production-код не меняется.
 2. **Проектирование пилотов** — /catalog/uglovye-kuhni, /locations/borisov, /materials/furnitura; UX, SEO, Dock, CTA, media list; без реализации и финальных медиа.
 3. **Digital Asset Library** — 33 asset-level медиакарты, prompts, masters, AVIF/WebP, manifests, lifecycle и честный AI/real status. Этап выполнен отдельной библиотекой; target assets не подключены к страницам.
-4. **Component Library** — только подтверждённые потребностями компоненты, изолированные тесты и бюджет JS.
+4. **Component Library** — реализована изолированно: 5 shared + 6 specialized компонентов, dev-only preview, responsive/a11y/intent-loading tests; production pilots не подключены.
 5. **`/catalog/uglovye-kuhni`** — планировка угла и хранение.
 6. **`/locations/borisov`** — производство и путь заказа.
 7. **`/materials/furnitura`** — сохранить существующие 203 изображения фурнитуры, но перестроить способ их отображения: тематические коллекции, lazy mounting, lazy loading, виртуализированный или отложенный viewer.

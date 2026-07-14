@@ -125,3 +125,9 @@
 - `/materials/furnitura`: manifest 12 groups / 43 assets; 2 `REGISTERED`, 4 `REVIEW_REQUIRED`, 34 `PROMPT_READY`, 3 `PLANNED`; 203-image archive preserved and classified; production page unchanged.
 
 `DESIGNED` remains the page implementation status. Stage 3 asset records do not change pages to `IMPLEMENTED` or `VERIFIED`.
+
+## Stage 4 component isolation note
+
+- `/catalog/uglovye-kuhni`, `/locations/borisov` и `/materials/furnitura` остаются `AUDITED/DESIGNED`: их route/page/component imports не изменены.
+- Component Library проверяется на dev-only `/component-library-preview`; production отвечает 404 без отдельного env-разрешения, URL не добавлен в sitemap.
+- Статус пилотов не повышается до `IMPLEMENTED`: подключение выполняется только в этапах 5–7.
