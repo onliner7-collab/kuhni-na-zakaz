@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { isDeepStrictEqual } from "node:util";
 import { PrismaClient } from "@prisma/client";
 import * as XLSX from "xlsx";
 
@@ -139,6 +140,7 @@ function seoKeywords(row: PortfolioCsvRow, text: ReturnType<typeof safePortfolio
 async function importStyles() {
   const rows = readCsv<StyleCsvRow>("style-image-mapping.csv");
   const updated: string[] = [];
+  const unchanged: string[] = [];
   const skipped: Array<{ styleUrl: string; reason: string }> = [];
 
   for (const row of rows) {
@@ -161,6 +163,11 @@ async function importStyles() {
       continue;
     }
 
+    if (existing.image === image) {
+      unchanged.push(slug);
+      continue;
+    }
+
     await prisma.stylePage.update({
       where: { slug },
       data: { image },
@@ -168,13 +175,14 @@ async function importStyles() {
     updated.push(slug);
   }
 
-  return { updated, skipped };
+  return { updated, unchanged, skipped };
 }
 
 async function importPortfolioDrafts() {
   const rows = readCsv<PortfolioCsvRow>("portfolio-draft-mapping.csv");
   const created: string[] = [];
   const updated: string[] = [];
+  const unchanged: string[] = [];
   const skipped: Array<{ externalId: string; reason: string }> = [];
 
   for (const [index, row] of rows.entries()) {
@@ -192,28 +200,37 @@ async function importPortfolioDrafts() {
     const existingByExternalId = await prisma.portfolioCase.findUnique({ where: { externalId } });
 
     if (existingByExternalId) {
+      const nextData = {
+        title: existingByExternalId.title || text.title,
+        mainImage,
+        images,
+        layout: existingByExternalId.layout || text.layout,
+        style: existingByExternalId.style || text.style,
+        styleSlug: existingByExternalId.styleSlug || text.styleSlug,
+        material: existingByExternalId.material || text.material,
+        materialSlugs: existingByExternalId.materialSlugs.length > 0 ? existingByExternalId.materialSlugs : text.materialSlugs,
+        description: existingByExternalId.description || text.description,
+        task: existingByExternalId.task || text.task,
+        constraints: existingByExternalId.constraints || text.constraints,
+        solution: existingByExternalId.solution || text.solution,
+        result: existingByExternalId.result || text.result,
+        seoTitle: existingByExternalId.seoTitle || `${text.title} | портфолио кухонь`,
+        seoDescription: existingByExternalId.seoDescription || text.description,
+        seoKeywords: existingByExternalId.seoKeywords || seoKeywords(row, text),
+        featured: existingByExternalId.featured,
+        order: existingByExternalId.order,
+      };
+      const hasChanges = Object.entries(nextData).some(
+        ([key, value]) => !isDeepStrictEqual(existingByExternalId[key as keyof typeof existingByExternalId], value),
+      );
+      if (!hasChanges) {
+        unchanged.push(slug);
+        continue;
+      }
+
       await prisma.portfolioCase.update({
         where: { externalId },
-        data: {
-          title: existingByExternalId.title || text.title,
-          mainImage,
-          images,
-          layout: existingByExternalId.layout || text.layout,
-          style: existingByExternalId.style || text.style,
-          styleSlug: existingByExternalId.styleSlug || text.styleSlug,
-          material: existingByExternalId.material || text.material,
-          materialSlugs: existingByExternalId.materialSlugs.length > 0 ? existingByExternalId.materialSlugs : text.materialSlugs,
-          description: existingByExternalId.description || text.description,
-          task: existingByExternalId.task || text.task,
-          constraints: existingByExternalId.constraints || text.constraints,
-          solution: existingByExternalId.solution || text.solution,
-          result: existingByExternalId.result || text.result,
-          seoTitle: existingByExternalId.seoTitle || `${text.title} | портфолио кухонь`,
-          seoDescription: existingByExternalId.seoDescription || text.description,
-          seoKeywords: existingByExternalId.seoKeywords || seoKeywords(row, text),
-          featured: existingByExternalId.featured,
-          order: existingByExternalId.order || 400 + index,
-        },
+        data: nextData,
       });
       updated.push(slug);
       continue;
@@ -264,7 +281,7 @@ async function importPortfolioDrafts() {
     created.push(slug);
   }
 
-  return { created, updated, skipped };
+  return { created, updated, unchanged, skipped };
 }
 
 async function backupCurrentData() {

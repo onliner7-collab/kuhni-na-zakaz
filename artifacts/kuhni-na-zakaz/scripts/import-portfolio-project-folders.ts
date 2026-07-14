@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { isDeepStrictEqual } from "node:util";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -211,6 +212,9 @@ async function main() {
     .map((e) => path.join(PROJECTS_ROOT, e.name));
 
   const processed: string[] = [];
+  const created: string[] = [];
+  const updated: string[] = [];
+  const unchanged: string[] = [];
   const skipped: Array<{ dir: string; reason: string }> = [];
   const errors: Array<{ dir: string; error: string }> = [];
 
@@ -342,7 +346,7 @@ async function main() {
     const assignedOrder =
       typeof manifest.order === "number" && Number.isFinite(manifest.order)
         ? manifest.order
-        : ++orderCursor;
+        : existingExternal?.order ?? ++orderCursor;
 
     const payload = {
       title: manifest.title.trim(),
@@ -395,14 +399,20 @@ async function main() {
       published,
     };
 
-    await prisma.portfolioCase.upsert({
-      where: { externalId },
-      create: {
-        externalId,
-        ...payload,
-      },
-      update: payload,
-    });
+    if (existingExternal) {
+      const hasChanges = Object.entries(payload).some(
+        ([key, value]) => !isDeepStrictEqual(existingExternal[key as keyof typeof existingExternal], value),
+      );
+      if (hasChanges) {
+        await prisma.portfolioCase.update({ where: { externalId }, data: payload });
+        updated.push(slug);
+      } else {
+        unchanged.push(slug);
+      }
+    } else {
+      await prisma.portfolioCase.create({ data: { externalId, ...payload } });
+      created.push(slug);
+    }
 
     processed.push(slug);
   }
@@ -411,6 +421,9 @@ async function main() {
     generatedAt: new Date().toISOString(),
     projectsRoot: PROJECTS_ROOT,
     processed,
+    created,
+    updated,
+    unchanged,
     skipped,
     errors,
   };
