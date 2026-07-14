@@ -133,10 +133,10 @@
 
 - **Факт:** `minimalizm` и `skandinavskie` получили только новый `updatedAt`; URL, image, alt/caption, тексты и SEO не изменились. Дополнительно 36 опубликованных portfolio cases получили `order +36` и новый `updatedAt`; остальные поля не изменились.
 - **Причина:** два миграционных importer запускались при каждом deploy; первый делал безусловный update, второй назначал существующим cases новый order от текущего максимума.
-- **Решение:** обычный deploy пропускает imports. Они запускаются только с `RUN_CONTENT_IMPORTS=1`; importers сравнивают payload, сохраняют существующий order и не обновляют неизменную строку.
-- **Доказательство:** `docs/audit/2026-07-14-stage-4-content-import-audit.md` содержит backup/current comparison и полный список 36 cases.
+- **Решение:** обычный deploy пропускает imports. Они запускаются только с `RUN_CONTENT_IMPORTS=1`; importers сравнивают payload, сохраняют существующий order, а prepared-photo importer не заменяет непустую каноническую project-folder gallery.
+- **Доказательство:** `docs/audit/2026-07-14-stage-4-content-import-audit.md` содержит backup/current comparison, полный список 36 cases и production rerun: 0 updated, одинаковый SHA-256 до/после `5b5c9e…6b0`.
 - **Rollback:** вернуть guard/importer commit отдельным revert; данные автоматически не откатывать без отдельного решения владельца.
-- **Статус:** принято; post-deploy zero-drift check обязателен.
+- **Статус:** принято; post-deploy zero-drift check выполнен на `791f245`.
 
 ## 2026-07-14 — область duplicate check этапа 3
 

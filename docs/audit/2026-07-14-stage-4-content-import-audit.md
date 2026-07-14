@@ -68,9 +68,10 @@ MaterialPage: 5 до/после, различий нет.
 
 - обычный deploy по умолчанию пропускает content imports; для согласованной миграции нужен явный `RUN_CONTENT_IMPORTS=1`;
 - importers сравнивают payload и не вызывают Prisma update без фактической разницы;
-- существующий portfolio order сохраняется, если manifest не задаёт order явно.
+- существующий portfolio order сохраняется, если manifest не задаёт order явно;
+- prepared-photo importer не перезаписывает непустую каноническую галерею, которой управляет project-folder importer.
 
-После deploy исправления требуется контроль: в логе должна быть строка `content imports skipped`, а current `order` и `updatedAt` должны остаться неизменными.
+Production-контроль выполнен. Deploy `791f245` вывел `content imports skipped`. Затем оба importer были запущены намеренно: `minimalizm`, `skandinavskie` и все 36 portfolio cases попали в `unchanged`, массивы `updated` остались пустыми. Полный SHA-256 JSON-снимка `StylePage + PortfolioCase + MaterialPage`, включая `updatedAt`, до и после запуска совпал: `5b5c9eae89b10e55a33d4e848cc5de522820cfc365908f366ff57218ff7cd6b0`. Создание audit backup/report остаётся ожидаемым файловым следом ручной миграции, production content при повторе не меняется.
 
 ## Область проверки дублей
 

@@ -2,12 +2,13 @@
 
 ## Current stage
 
-ЭТАП 4 — COMPONENT LIBRARY реализован изолированно от production pilots. Production baseline начала этапа: `19ac6ab`; import guard: `994516a`; component baseline: `86eebe5`; asset baseline этапа 3: `c791346`. Следующий этап после приёмки: 5 — `/catalog/uglovye-kuhni`.
+ЭТАП 4 — COMPONENT LIBRARY реализован изолированно от production pilots. Production baseline начала этапа: `19ac6ab`; import guard: `994516a`; component baseline: `86eebe5`; canonical-media idempotency fix: `791f245`; asset baseline этапа 3: `c791346`. Следующий этап после приёмки: 5 — `/catalog/uglovye-kuhni`.
 
 ## Stage 4 completed
 
 - Проверен побочный import stage 3: style content не менялся, но два timestamp обновились; 36 published portfolio orders сдвинулись на +36.
 - Обычный deploy больше не запускает content migration автоматически; нужен `RUN_CONTENT_IMPORTS=1`.
+- Контрольный production rerun обоих importers дал 0 updated; полный content hash до/после совпал: `5b5c9e…6b0`.
 - Созданы shared `MobileHero`, `ContextDock`, `SwipeGallery`, `BottomSheet`, `DeferredMediaViewer`.
 - Созданы specialized `CornerStorageExplorer`, `ProductionJourney`, `HardwareCabinetExplorer`, `KitchenLayoutCheck`, `MechanismComparison`, `HardwarePicker`.
 - Компоненты имеют русский UI, 44 px targets, reduced-motion path, text fallback и intent media mount.
@@ -16,7 +17,7 @@
 
 ## Stage 4 rollback
 
-Revert `86eebe5` для component library и `994516a` для import/deploy guard отдельными Git revert commits. Не откатывать production database автоматически: order drift зафиксирован как фактическое состояние и требует отдельного бизнес-решения.
+Revert `86eebe5` для component library, `791f245` для media-authority fix и `994516a` для import/deploy guard отдельными Git revert commits. Не откатывать production database автоматически: order drift зафиксирован как фактическое состояние и требует отдельного бизнес-решения.
 
 ## Stage 4 media and duplicate scope
 
@@ -134,10 +135,10 @@ Revert the stage-2 docs commit with a new Git revert commit. No database/media/r
 
 ## Next required stage
 
-ЭТАП 4 — COMPONENT LIBRARY. Использовать только target-stage assets со статусом `REGISTERED`. Для `PROMPT_READY`, `PLANNED` и `REVIEW_REQUIRED` применять текстовый/static fallback и не подключать файл как готовый.
+ЭТАП 5 — пилот `/catalog/uglovye-kuhni`. Подключать библиотеку адресно только к этому пилоту по Master Plan и Angular specification; остальные production pilots не менять.
 
 ## Exact starting instruction for next chat
 
 ```text
-Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md, /docs/assets/*.md, /docs/pilots/*.md и manifests v2 в /content/media/pilots/*/manifest.json. Проверь git status, ветку work и baseline этапа 3 из Handoff. Выполни ЭТАП 4 — COMPONENT LIBRARY: создай и изолированно протестируй общие и уникальные компоненты пилотов, не подключая их массово к production-страницам. Используй только assets со статусом REGISTERED; для PROMPT_READY, PLANNED и REVIEW_REQUIRED оставляй static/text fallback. Не удаляй существующие 203 изображения фурнитуры и не меняй routes/metadata/schema/forms/Prisma без отдельного решения. Сохрани mobile-first 360–412 px, reduced motion, intent loading и русские тексты/alt.
+Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md, /docs/components/*.md, /docs/assets/*.md, /docs/pilots/01_ANGULAR_KITCHENS_SPEC.md и manifests v2. Проверь git status, ветку work и финальный baseline этапа 4 из Handoff. Выполни ЭТАП 5 только для /catalog/uglovye-kuhni, используя изолированно проверенную component library и только REGISTERED media. Не подключай библиотеку массово к Borisov или furnitura. Проверь 360/390/412/768/desktop, reduced motion, intent loading, schema/visible-content parity и production после deploy.
 ```
