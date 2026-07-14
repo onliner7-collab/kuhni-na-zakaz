@@ -1,12 +1,15 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 const PATH = "/catalog/uglovye-kuhni";
 const widths = [360, 390, 412, 768, 1440];
+const waitForInteractiveReady = (page: Page) =>
+  expect(page.locator('[data-component="SwipeGallery"]')).toHaveAttribute("data-ready", "true");
 
 test.describe("этап 5 — интерактивная страница угловых кухонь", () => {
   test("серверный HTML, SEO и зарегистрированные изображения корректны", async ({ page }) => {
     const response = await page.goto(PATH, { waitUntil: "domcontentloaded" });
     expect(response?.status()).toBe(200);
+    await waitForInteractiveReady(page);
     await expect(page.getByRole("heading", { level: 1, name: "Угловые кухни на заказ" })).toHaveCount(1);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/catalog\/uglovye-kuhni$/);
     await expect(page.getByRole("navigation", { name: "Хлебные крошки" })).toBeVisible();
@@ -28,6 +31,7 @@ test.describe("этап 5 — интерактивная страница угл
 
   test("gallery, explorer, comparison, layout and material selection work", async ({ page }) => {
     await page.goto(PATH, { waitUntil: "domcontentloaded" });
+    await waitForInteractiveReady(page);
     const gallery = page.locator('[data-component="SwipeGallery"]');
     await expect(gallery.getByText("1 / 5")).toBeVisible();
     await gallery.getByRole("button", { name: "Следующий ракурс" }).click();
