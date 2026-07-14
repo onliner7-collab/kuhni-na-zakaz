@@ -2,7 +2,27 @@
 
 ## Current stage
 
-ЭТАП 3 — DIGITAL ASSET LIBRARY завершён 2026-07-14. Asset baseline этапа 3: `c791346`; baseline этапа 2: `c0a97ca`; финальный handoff этапа 2: `450f57d`. Следующий этап: 4 — Component Library.
+ЭТАП 4 — COMPONENT LIBRARY реализован изолированно от production pilots. Production baseline начала этапа: `19ac6ab`; import guard: `994516a`; component baseline: `86eebe5`; asset baseline этапа 3: `c791346`. Следующий этап после приёмки: 5 — `/catalog/uglovye-kuhni`.
+
+## Stage 4 completed
+
+- Проверен побочный import stage 3: style content не менялся, но два timestamp обновились; 36 published portfolio orders сдвинулись на +36.
+- Обычный deploy больше не запускает content migration автоматически; нужен `RUN_CONTENT_IMPORTS=1`.
+- Созданы shared `MobileHero`, `ContextDock`, `SwipeGallery`, `BottomSheet`, `DeferredMediaViewer`.
+- Созданы specialized `CornerStorageExplorer`, `ProductionJourney`, `HardwareCabinetExplorer`, `KitchenLayoutCheck`, `MechanismComparison`, `HardwarePicker`.
+- Компоненты имеют русский UI, 44 px targets, reduced-motion path, text fallback и intent media mount.
+- Production pilot pages не импортируют library. Dev preview закрыт production 404.
+- Полный import audit: `docs/audit/2026-07-14-stage-4-content-import-audit.md`; component report: `docs/components/01_STAGE_4_REPORT.md`.
+
+## Stage 4 rollback
+
+Revert `86eebe5` для component library и `994516a` для import/deploy guard отдельными Git revert commits. Не откатывать production database автоматически: order drift зафиксирован как фактическое состояние и требует отдельного бизнес-решения.
+
+## Stage 4 media and duplicate scope
+
+- Только `REGISTERED` media используются в preview; lifecycle не повышен до production `CONNECTED`.
+- 203 legacy furnitura images сохранены и не монтируются library.
+- `0 duplicates` этапа 3 означает 306 scoped files/exact SHA-256; site-wide 47 groups остаются отдельным подтверждённым baseline.
 
 ## Stage 3 completed
 

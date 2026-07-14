@@ -13,4 +13,4 @@
 - Next.js 15.3.9 production build: pass; preview production response: 404.
 - Playwright: 4 tests pass; exact viewport matrix 360/390/412/768/1440 внутри responsive test.
 - In-app Browser mobile QA: 1 H1, 4 Dock items, 1 hardware image, 0 broken images, no horizontal overflow; sheet Escape/focus flow and intent viewer дополнительно проверены.
-- Финальный commit/deploy baseline заполняется после release gate.
+- Git baselines: import/deploy guard `994516a`; isolated component library `86eebe5`; финальный handoff публикуется отдельным commit.
