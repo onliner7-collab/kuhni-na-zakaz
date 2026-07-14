@@ -15,10 +15,11 @@ export function SwipeGallery({ items, label }: SwipeGalleryProps) {
   function show(index: number) {
     const next = Math.min(Math.max(index, 0), items.length - 1);
     setActiveIndex(next);
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const scroller = scrollerRef.current;
     const child = scroller?.children.item(next) as HTMLElement | null;
-    if (scroller && child) scroller.scrollTo({ left: child.offsetLeft - scroller.offsetLeft, behavior: prefersReducedMotion ? "auto" : "smooth" });
+    // Keep button navigation deterministic even while remote images are still loading.
+    // Native touch scrolling remains available and onScroll keeps the counter in sync.
+    if (scroller && child) scroller.scrollTo({ left: child.offsetLeft, behavior: "auto" });
   }
 
   if (items.length === 0) return <p>Изображения пока не подготовлены.</p>;
