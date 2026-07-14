@@ -2,7 +2,7 @@
 
 ## Current stage
 
-ЭТАП 3 — DIGITAL ASSET LIBRARY завершён в рабочем дереве 2026-07-14. Baseline этапа 2: `c0a97ca`; финальный handoff этапа 2: `450f57d`. Следующий этап: 4 — Component Library.
+ЭТАП 3 — DIGITAL ASSET LIBRARY завершён 2026-07-14. Asset baseline этапа 3: `c791346`; baseline этапа 2: `c0a97ca`; финальный handoff этапа 2: `450f57d`. Следующий этап: 4 — Component Library.
 
 ## Stage 3 completed
 
@@ -31,7 +31,7 @@
 
 ## Stage 3 rollback
 
-Revert the dedicated stage-3 commit. No database migration or runtime code rollback is required. The three new unconnected delivery variants and their project-local masters may be removed only by that revert; legacy media must remain.
+Revert commit `c791346` with a new Git revert commit. No database migration or runtime code rollback is required. The three new unconnected delivery variants and their project-local masters may be removed only by that revert; legacy media must remain.
 
 ## Stage 2 baseline completed
 

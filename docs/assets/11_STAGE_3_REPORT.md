@@ -14,7 +14,7 @@
 10. **Неподтверждённые источники:** 203 hardware inventory records имеют `SOURCE_UNKNOWN`; они не названы реальными или лицензированными без доказательств.
 11. **Production-код:** не менялся. Routes, pages, components, CSS, metadata, schema, forms, sitemap, robots, canonical и Prisma не изменены; новые assets не подключены.
 12. **Проверки:** manifest schema, required fields, Russian alt, prompt fields, lifecycle/status gate, filenames, missing files, dimensions/ratio, checksums, sequences, duplicates, UTF-8, diff scope, typecheck/build/sitemap и live URLs перед завершением.
-13. **Git:** stage-3 asset commit и финальный handoff commit фиксируются отдельными коммитами ветки `work`; destructive reset не используется.
+13. **Git:** asset baseline этапа 3 зафиксирован коммитом `c791346`; финальный handoff фиксируется отдельным коммитом ветки `work`; destructive reset не используется.
 14. **Готовность к этапу 4:** да. Component Library может начинаться без дополнительного объяснения, но использует только `REGISTERED` assets.
 15. **Точный текст следующему чату:**
 
