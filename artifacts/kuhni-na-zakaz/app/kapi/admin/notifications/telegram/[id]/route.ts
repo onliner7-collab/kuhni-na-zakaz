@@ -16,7 +16,7 @@ const chatIdSchema = z
 
 const recipientUpdateSchema = z.object({
   label: z.string().trim().max(100).optional(),
-  role: z.string().trim().max(50).optional(),
+  role: z.enum(["owner", "manager"]).optional(),
   chatId: chatIdSchema.optional(),
   active: z.boolean().optional(),
 });
@@ -87,7 +87,10 @@ export async function PATCH(req: NextRequest, { params }: Params) {
   try {
     const updated = await prisma.telegramRecipient.update({
       where: { id },
-      data,
+      data: {
+        ...data,
+        ...(data.chatId ? { telegramUserId: data.chatId.startsWith("-") ? null : data.chatId } : {}),
+      },
     });
     return NextResponse.json(updated);
   } catch (err) {

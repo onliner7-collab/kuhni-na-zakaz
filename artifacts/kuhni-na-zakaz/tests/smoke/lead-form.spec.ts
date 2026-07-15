@@ -31,25 +31,32 @@ test.describe("lead collection forms", () => {
 
     await page.route("**/kapi/leads", async (route) => {
       requestBody = route.request().postDataJSON();
-      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 101 }) });
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, id: 101, publicNumber: 1101 }) });
     });
 
     await gotoClientReady(page, "/?utm_source=playwright&utm_medium=test&utm_campaign=lead-form#form");
-    await page.locator("#form").scrollIntoViewIfNeeded();
     const form = page.getByTestId("contact-form").last();
+    await expect(form).toBeVisible();
 
     await form.getByTestId("form-name").fill("Тестовый клиент");
     await form.getByTestId("form-phone").fill("+375291112233");
     await form.getByTestId("form-city").fill("Минск");
     await form.getByTestId("form-kitchen-type").selectOption("Угловая");
+    await form.getByTestId("form-email").fill("client@example.com");
+    await form.getByTestId("form-preferred-contact").selectOption("email");
+    await form.getByTestId("form-dimensions").fill("3,2 × 2,4 м");
     await form.getByTestId("form-comment").fill("Размер 3,2 м, нужна техника и замер.");
+    await form.getByTestId("form-agreement").check();
     await form.getByTestId("form-submit").click();
 
     await expect(page.getByTestId("form-success")).toBeVisible();
     const submitted = requestBody as Record<string, unknown>;
     expect(submitted).toMatchObject({
       name: "Тестовый клиент",
-      phone: "+375291112233",
+      phone: "+375 (29) 111-22-33",
+      email: "client@example.com",
+      preferredContact: "email",
+      dimensions: "3,2 × 2,4 м",
       city: "Минск",
       kitchenType: "Угловая",
       source: "home",
@@ -60,6 +67,12 @@ test.describe("lead collection forms", () => {
       utmCampaign: "lead-form",
     });
     expect(String(submitted.sourcePage)).toContain("utm_source=playwright");
+    await expect(form.locator('input[type="file"]')).toHaveCount(0);
+    await expect(form.getByTestId("form-preferred-contact").locator("option")).toHaveText([
+      "Позвонить",
+      "Telegram",
+      "Email",
+    ]);
   });
 
   test("lead form shows client-side validation errors", async ({ page }) => {
@@ -85,12 +98,13 @@ test.describe("lead collection forms", () => {
     });
 
     await gotoClientReady(page, "/locations/brest?utm_source=city-test#form");
-    await page.locator("#form").scrollIntoViewIfNeeded();
     const form = page.getByTestId("contact-form").last();
+    await form.scrollIntoViewIfNeeded();
 
     await form.getByTestId("form-name").fill("Городской тест");
     await form.getByTestId("form-phone").fill("+375291234567");
     await form.getByTestId("form-comment").fill("Нужен расчет кухни в Бресте.");
+    await form.getByTestId("form-agreement").check();
     await form.getByTestId("form-submit").click();
 
     await expect(page.getByTestId("form-success")).toBeVisible();
@@ -117,12 +131,13 @@ test.describe("lead collection forms", () => {
       });
 
       await gotoClientReady(page, `/locations/${city}?utm_source=city-smoke#form`);
-      await page.locator("#form").scrollIntoViewIfNeeded();
       const form = page.getByTestId("contact-form").last();
+      await form.scrollIntoViewIfNeeded();
 
       await form.getByTestId("form-name").fill("Городской smoke");
       await form.getByTestId("form-phone").fill("+375291230000");
       await form.getByTestId("form-comment").fill(`Проверка формы для ${city}.`);
+      await form.getByTestId("form-agreement").check();
       await form.getByTestId("form-submit").click();
 
       await expect(page.getByTestId("form-success")).toBeVisible();
@@ -154,6 +169,7 @@ test.describe("lead collection forms", () => {
     await form.getByTestId("form-phone").fill("+375291230001");
     await form.getByTestId("form-city").fill("Минск");
     await form.getByTestId("form-comment").fill("Проверка формы контактов.");
+    await form.getByTestId("form-agreement").check();
     await form.getByTestId("form-submit").click();
 
     await expect(page.getByTestId("form-success")).toBeVisible();
@@ -186,6 +202,7 @@ test.describe("lead collection forms", () => {
     await form.getByTestId("form-kitchen-type").selectOption("Угловая");
     await form.getByTestId("form-has-measurements").check();
     await form.getByTestId("form-comment").fill("Нужен 3D-проект кухни, размеры помещения уже есть.");
+    await form.getByTestId("form-agreement").check();
     await form.getByTestId("form-submit").click();
 
     await expect(page.getByTestId("form-success")).toContainText(
@@ -235,8 +252,65 @@ test.describe("lead collection forms", () => {
     await form.getByTestId("form-name").fill("Мобильный тест");
     await form.getByTestId("form-phone").fill("+375291112244");
     await form.getByTestId("form-city").fill("Минск");
+    await form.getByTestId("form-agreement").check();
     await form.getByTestId("form-submit").click();
 
     await expect(page.getByTestId("form-success")).toBeVisible();
+  });
+
+  test("kitchen image action opens a short form and sends image context", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    let requestBody: Record<string, unknown> | null = null;
+    await page.route("**/kapi/leads", async (route) => {
+      requestBody = route.request().postDataJSON() as Record<string, unknown>;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, id: 130, publicNumber: 1130 }),
+      });
+    });
+
+    await gotoClientReady(page, "/");
+    const action = page.getByRole("button", { name: /Рассчитать эту кухню:/ }).first();
+    await expect(action).toBeVisible();
+    await action.click();
+
+    const dialog = page.getByRole("dialog", { name: "Рассчитать эту кухню" });
+    await expect(dialog.getByRole("checkbox")).not.toBeChecked();
+    await dialog.getByLabel("Имя *").fill("Клиент изображения");
+    await dialog.getByLabel("Телефон").fill("+375291112255");
+    await dialog.getByLabel("Город").fill("Минск");
+    await dialog.getByLabel("Примерные размеры").fill("3 × 2 м");
+    await dialog.getByRole("checkbox").check();
+    await dialog.getByRole("button", { name: "Отправить без Telegram" }).click();
+
+    await expect(dialog).toContainText("Заявка №1130 сохранена");
+    expect(requestBody).toMatchObject({
+      name: "Клиент изображения",
+      sourceType: "kitchen_gallery",
+      continueInTelegram: false,
+      preferredContact: "phone",
+      city: "Минск",
+      dimensions: "3 × 2 м",
+    });
+    const submittedImageLead = requestBody as Record<string, unknown> | null;
+    expect(String(submittedImageLead?.imageUrl)).toBeTruthy();
+    expect(String(submittedImageLead?.imageId)).toBeTruthy();
+  });
+
+  test("kitchen image can be shared through Telegram fallback", async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, "share", { value: undefined, configurable: true });
+    });
+    await gotoClientReady(page, "/");
+
+    const shareAction = page.getByRole("button", { name: /Поделиться:/ }).first();
+    await expect(shareAction).toBeVisible();
+    await shareAction.click();
+
+    const dialog = page.getByRole("dialog", { name: "Поделиться кухней" });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole("link", { name: "Отправить в Telegram" })).toHaveAttribute("href", /https:\/\/t\.me\/share\/url/);
+    await expect(dialog.getByRole("button", { name: "Скопировать ссылку" })).toBeVisible();
   });
 });

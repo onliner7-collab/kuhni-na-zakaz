@@ -2,7 +2,7 @@
 
 ## Current stage
 
-ЭТАП 5 — `/catalog/uglovye-kuhni` принят на production. Baseline был `4c15678`; implementation и gallery fixes завершены на `fd4287b5de413e1dc87f29fcf970654b32440ffc`, ветка `work`, service active. Следующий этап: 6 — `/locations/borisov` с `ProductionJourney`.
+Вне очереди пилотных этапов локально завершена единая система заявок сайта + Telegram; production rollout ожидает обязательную ротацию токена, backup и live QA. ЭТАП 5 `/catalog/uglovye-kuhni` по-прежнему принят на production на `fd4287b5de413e1dc87f29fcf970654b32440ffc`; этап 6 `/locations/borisov` не начинался.
 
 ## Stage 5 completed
 
@@ -160,3 +160,12 @@ Revert итоговый stage-5 commit отдельным Git revert и заде
 ```text
 Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md и /docs/pilots/09_ANGULAR_IMPLEMENTATION_REPORT.md. Проверь production commit и stage-5 live evidence. Выполни ЭТАП 6 только для /locations/borisov, используя ProductionJourney и временную модель из docs/pilots/02_BORISOV_SPEC.md. Не копируй spatial hero, CornerStorageExplorer, sequence, порядок блоков или material selector страницы угловых кухонь. Сохрани URL/canonical/forms/schema parity, используй только lifecycle-approved media и проверь 360/390/412/768/1440, reduced motion, intent loading, sitemap 112 URL и production после deploy.
 ```
+## 2026-07-15 — unified leads + Telegram handoff
+
+- Полный отчёт: `docs/audit/2026-07-15-unified-leads-telegram-implementation.md`.
+- Реализация локально готова: schema/migration, `/kapi/leads`, webhook, deep links, admin/client workflows, outbox worker/timer, read-only admin fallback, form redesign, image CTA/share, privacy additions.
+- Проверки: typecheck, Prisma validate, unit 3/3, image desktop 7/7 + mobile 7/7, формы desktop/mobile 22/22, production build 124 pages.
+- Локальный PostgreSQL `127.0.0.1:5434` недоступен; миграцию проверять на production только после backup.
+- Секрет из чата не используется и отсутствует в repo. До deploy владелец обязан отозвать его в BotFather и установить новый токен только в server environment.
+- После ротации: backup → deploy `work` → configure webhook → live lead from website → deep-link `/start` → cards to Dmitry/Alexander → reply/status/note/outbox checks.
+- До выполнения этого gate не заявлять Telegram как `LIVE` и не переводить компьютер в сон.

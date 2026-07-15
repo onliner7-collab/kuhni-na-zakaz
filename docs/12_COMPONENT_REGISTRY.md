@@ -123,3 +123,13 @@
 - Stage 4 may consume only `REGISTERED`; `PROMPT_READY`, `PLANNED` and `REVIEW_REQUIRED` require static/text fallback.
 - `MediaFigure` must select AVIF with WebP fallback, fixed dimensions, Russian alt/caption, provenance and explicit loading priority.
 - No component code or client boundary changed during stage 3.
+## 2026-07-15 — lead и Telegram components
+
+| Component/module | Scope | Status | Notes |
+| --- | --- | --- | --- |
+| `KitchenImageLeadLauncher` | public global | IMPLEMENTED_LOCAL | Responsive CTA/share, focus trap, Web Share fallback, image/source context |
+| `ContactForm` | shared forms | IMPLEMENTED_LOCAL | No files, phone mask, email/preferred channel/dimensions, explicit consent, optional Telegram continuation |
+| `lib/leads/telegram-bot.ts` | server | IMPLEMENTED_LOCAL | Client/admin state machine, allowlist, multi-lead choice, text-only replies/templates/notes/history |
+| `lib/leads/telegram-outbox.ts` | server/worker | IMPLEMENTED_LOCAL | DB retry queue, card upsert/edit, attempt log |
+| `lib/leads/telegram-cards.ts` | server | IMPLEMENTED_LOCAL | Russian cards, contact/image/page actions, owner/manager controls |
+| `/admin/leads` | admin fallback | IMPLEMENTED_LOCAL | Read-only operational fallback |

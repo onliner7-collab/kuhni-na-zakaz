@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
 import { testTelegramMessage } from "@/lib/telegram";
+import { getTelegramBotToken } from "@/lib/telegram-api";
 import { getEmailNotificationStatus, testEmailNotification } from "@/lib/email";
 
 const chatIdSchema = z
@@ -18,7 +19,7 @@ const chatIdSchema = z
 
 const recipientCreateSchema = z.object({
   label: z.string().trim().max(100).optional().default(""),
-  role: z.string().trim().max(50).optional().default("moderator"),
+  role: z.enum(["owner", "manager"]).optional().default("manager"),
   chatId: chatIdSchema,
 });
 
@@ -38,16 +39,9 @@ export async function GET() {
     orderBy: { createdAt: "asc" },
   });
 
-  // SECURITY TODO (отдельный этап): не отдавать полный токен в UI.
-  // Сейчас /admin/notifications читает botToken напрямую, чтобы показать в поле
-  // ввода, поэтому маскирование откладывается до рефакторинга страницы.
-  const settings = await prisma.siteSettings.findFirst({
-    select: { telegramBotToken: true },
-  });
-
   return NextResponse.json({
     recipients,
-    botToken: settings?.telegramBotToken ?? "",
+    botConfigured: Boolean(getTelegramBotToken()),
     email: getEmailNotificationStatus(),
   });
 }
@@ -67,13 +61,10 @@ export async function POST(req: NextRequest) {
   }
 
   if (body?._action === "saveBotToken") {
-    const token = typeof body.botToken === "string" ? body.botToken.trim() : "";
-    await prisma.siteSettings.upsert({
-      where: { id: 1 },
-      create: { id: 1, telegramBotToken: token },
-      update: { telegramBotToken: token },
-    });
-    return NextResponse.json({ ok: true });
+    return NextResponse.json(
+      { error: "Токен настраивается только в защищённом окружении сервера" },
+      { status: 400 },
+    );
   }
 
   const parsed = recipientCreateSchema.safeParse(body);
@@ -101,7 +92,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const recipient = await prisma.telegramRecipient.create({ data });
+    const recipient = await prisma.telegramRecipient.create({
+      data: {
+        ...data,
+        telegramUserId: data.chatId.startsWith("-") ? null : data.chatId,
+      },
+    });
     return NextResponse.json(recipient, { status: 201 });
   } catch (err) {
     if (
@@ -122,8 +118,7 @@ export async function POST(req: NextRequest) {
 }
 
 async function handleTestAction(body: Record<string, unknown>) {
-  const botToken =
-    typeof body.botToken === "string" ? body.botToken.trim() : "";
+  const botToken = getTelegramBotToken();
   const chatIdRaw =
     typeof body.chatId === "string" ? body.chatId.trim() : "";
 

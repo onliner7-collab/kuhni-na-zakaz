@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import {
   Bell, Plus, Trash2, ToggleLeft, ToggleRight,
-  Send, Bot, Info, Eye, EyeOff, CheckCircle2, XCircle,
+  Send, Bot, Info, CheckCircle2, XCircle,
   Pencil, X, Save, History, Mail,
 } from "lucide-react";
 
@@ -38,14 +38,12 @@ interface EmailStatus {
 
 // Подсказки ролей — задаются в требовании этапа.
 // Свободный ввод оставляем (через datalist), бэк ограничивает только длиной до 50 символов.
-const ROLE_OPTIONS = ["owner", "manager", "moderator", "client"] as const;
+const ROLE_OPTIONS = ["owner", "manager"] as const;
 const ROLE_LABELS: Record<string, string> = {
   owner: "Владелец",
   manager: "Менеджер",
-  moderator: "Модератор",
-  client: "Клиент",
 };
-const DEFAULT_ROLE = "moderator";
+const DEFAULT_ROLE = "manager";
 
 const CHAT_ID_PATTERN = /^-?\d+$/;
 const TELEGRAM_FAILURE_TEXT =
@@ -91,9 +89,7 @@ function formatDate(value?: string) {
 }
 
 export default function NotificationsPage() {
-  const [botToken, setBotToken] = useState("");
-  const [showToken, setShowToken] = useState(false);
-  const [tokenSaving, setTokenSaving] = useState(false);
+  const [botConfigured, setBotConfigured] = useState(false);
   const [recipients, setRecipients] = useState<Recipient[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -119,7 +115,7 @@ export default function NotificationsPage() {
       const res = await fetch("/kapi/admin/notifications/telegram");
       const data = await res.json();
       setRecipients(data.recipients ?? []);
-      setBotToken(data.botToken ?? "");
+      setBotConfigured(Boolean(data.botConfigured));
       setEmailStatus(data.email ?? null);
     } finally {
       setLoading(false);
@@ -127,19 +123,6 @@ export default function NotificationsPage() {
   }, []);
 
   useEffect(() => { load(); }, [load]);
-
-  async function saveBotToken() {
-    setTokenSaving(true);
-    try {
-      const res = await fetch("/kapi/admin/notifications/telegram", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ _action: "saveBotToken", botToken }),
-      });
-      if (res.ok) toast.success("Токен бота сохранён");
-      else toast.error("Ошибка сохранения токена");
-    } finally { setTokenSaving(false); }
-  }
 
   async function addRecipient() {
     const chatId = newChatId.trim();
@@ -267,8 +250,8 @@ export default function NotificationsPage() {
   }
 
   async function sendTestToChatId(chatId: string, options: { recipientId?: number; recipientLabel?: string } = {}) {
-    if (!botToken) {
-      toast.error("Сначала сохраните токен бота");
+    if (!botConfigured) {
+      toast.error("Токен бота не настроен на сервере");
       return;
     }
     const trimmed = chatId.trim();
@@ -290,7 +273,7 @@ export default function NotificationsPage() {
       const res = await fetch("/kapi/admin/notifications/telegram", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ _action: "test", botToken, chatId: trimmed }),
+        body: JSON.stringify({ _action: "test", chatId: trimmed }),
       });
       const data = await res.json().catch(() => ({}));
       if (data.ok) {
@@ -336,7 +319,7 @@ export default function NotificationsPage() {
   }
 
   const activeCount = recipients.filter(r => r.active).length;
-  const canTestGlobal = botToken.trim().length > 0;
+  const canTestGlobal = botConfigured;
   const newChatIdInvalid = newChatId.trim().length > 0 && !isValidChatId(newChatId);
 
   return (
@@ -368,17 +351,17 @@ export default function NotificationsPage() {
 
       {/* Статус */}
       <div
-        className={`rounded-2xl border p-4 flex items-center gap-3 ${botToken && activeCount > 0 ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"}`}
+        className={`rounded-2xl border p-4 flex items-center gap-3 ${botConfigured && activeCount > 0 ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"}`}
         role="status"
         aria-live="polite"
       >
-        {botToken && activeCount > 0
+        {botConfigured && activeCount > 0
           ? <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0" aria-hidden="true" />
           : <XCircle className="w-5 h-5 text-amber-500 shrink-0" aria-hidden="true" />
         }
-        <p className={`text-sm font-medium ${botToken && activeCount > 0 ? "text-green-800" : "text-amber-800"}`}>
-          {!botToken
-            ? "Бот не настроен — добавьте токен бота ниже"
+        <p className={`text-sm font-medium ${botConfigured && activeCount > 0 ? "text-green-800" : "text-amber-800"}`}>
+          {!botConfigured
+            ? "Бот не настроен в защищённом окружении сервера"
             : activeCount === 0
               ? "Токен настроен, но нет активных получателей"
               : `Уведомления активны · ${activeCount} ${activeCount === 1 ? "получатель" : activeCount < 5 ? "получателя" : "получателей"}`
@@ -394,10 +377,10 @@ export default function NotificationsPage() {
         </div>
         <ol className="text-sm text-blue-900 space-y-1.5 list-decimal list-inside">
           <li>Напишите <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded">@BotFather</span> в Telegram, создайте бота командой <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded">/newbot</span></li>
-          <li>Скопируйте токен вида <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded">1234567890:ABCdef...</span> и вставьте ниже</li>
-          <li>Напишите боту любое сообщение, затем откройте: <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded text-xs">api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</span></li>
-          <li>Найдите <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded">&quot;chat&quot;:{"{"}&quot;id&quot;:...</span> — это ваш Chat ID (цифры, может быть с минусом)</li>
-          <li>Или используйте бота <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded">@userinfobot</span> — он сразу даёт ваш ID</li>
+          <li>Перевыпустите токен в <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded">@BotFather</span>, если он когда-либо был опубликован.</li>
+          <li>Сохраните токен только в <span className="font-mono bg-blue-100 px-1.5 py-0.5 rounded">/etc/kuhni-na-zakaz.env</span> на сервере.</li>
+          <li>Владельцу и менеджеру достаточно один раз запустить бота; их Telegram ID задаются в серверном окружении.</li>
+          <li>Не вставляйте токены в админку, чат, код или журнал.</li>
         </ol>
       </div>
 
@@ -408,48 +391,16 @@ export default function NotificationsPage() {
         ))}
       </datalist>
 
-      {/* Токен бота */}
+      {/* Статус токена бота */}
       <section className="rounded-2xl border border-border bg-white p-6 space-y-4" aria-labelledby="tg-token-heading">
         <div className="flex items-center gap-2 pb-3 border-b border-border">
           <Bot className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
           <h2 id="tg-token-heading" className="font-bold text-base">Токен Telegram-бота</h2>
         </div>
-        <p className="text-sm text-muted-foreground">Токен получается у <strong>@BotFather</strong>. Один бот для всех получателей.</p>
-        <div className="flex gap-2">
-          <div className="relative flex-1">
-            <Label htmlFor="tg-bot-token" className="sr-only">Токен Telegram-бота</Label>
-            <Input
-              id="tg-bot-token"
-              type={showToken ? "text" : "password"}
-              value={botToken}
-              onChange={e => setBotToken(e.target.value)}
-              placeholder="1234567890:ABCdefGHIjklmNOPqrstUVwxyz"
-              className="font-mono text-sm pr-10"
-              autoComplete="off"
-            />
-            <button
-              type="button"
-              onClick={() => setShowToken(!showToken)}
-              className="absolute right-1 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-8 h-8 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded"
-              aria-label={showToken ? "Скрыть токен" : "Показать токен"}
-              aria-pressed={showToken}
-              title={showToken ? "Скрыть токен" : "Показать токен"}
-            >
-              {showToken
-                ? <EyeOff className="w-4 h-4" aria-hidden="true" />
-                : <Eye className="w-4 h-4" aria-hidden="true" />
-              }
-            </button>
-          </div>
-          <Button
-            onClick={saveBotToken}
-            disabled={tokenSaving}
-            style={{ background: "linear-gradient(135deg,#7C3AED,#4F46E5)" }}
-            className="text-white shrink-0"
-          >
-            {tokenSaving ? "Сохраняем..." : "Сохранить"}
-          </Button>
-        </div>
+        <p className="text-sm text-muted-foreground">Токен хранится только в защищённом окружении сервера и никогда не возвращается в браузер.</p>
+        <p className={`rounded-xl border p-3 text-sm font-medium ${botConfigured ? "border-green-200 bg-green-50 text-green-800" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
+          {botConfigured ? "Токен настроен на сервере" : "Токен на сервере не настроен"}
+        </p>
       </section>
 
       {/* Получатели */}

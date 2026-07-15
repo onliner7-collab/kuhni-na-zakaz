@@ -99,12 +99,9 @@ function escapeHtml(str: string): string {
 }
 
 export async function sendLeadNotifications(lead: LeadData): Promise<void> {
-  const [settings, dbRecipients] = await Promise.all([
-    prisma.siteSettings.findFirst().catch(() => null),
-    prisma.telegramRecipient.findMany({ where: { active: true } }).catch(() => []),
-  ]);
+  const dbRecipients = await prisma.telegramRecipient.findMany({ where: { active: true } }).catch(() => []);
 
-  const token = (process.env.TELEGRAM_BOT_TOKEN || settings?.telegramBotToken || "").trim();
+  const token = (process.env.TELEGRAM_BOT_TOKEN || "").trim();
   const recipients: TelegramRecipientConfig[] = dbRecipients
     .map((recipient) => ({
       id: `db:${recipient.id}`,

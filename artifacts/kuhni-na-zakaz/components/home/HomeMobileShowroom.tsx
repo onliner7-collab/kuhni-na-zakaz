@@ -1192,7 +1192,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                 Получить расчёт кухни в два шага
               </h2>
               <p className="mt-4 text-sm leading-6 text-white/64">
-                Пришлите фото помещения — подскажем, какая планировка и материалы подойдут именно вам.
+                Оставьте размеры и пожелания — подскажем, какая планировка и материалы подойдут именно вам.
               </p>
               <div className="mt-6 grid gap-3 text-sm">
                 <div className="rounded-lg border border-[#d5b078]/35 bg-[#d5b078]/10 p-4">
@@ -1201,7 +1201,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                 </div>
                 <div className="rounded-lg border border-white/12 bg-white/[0.04] p-4">
                   <p className="font-black text-white">Шаг 2</p>
-                  <p className="mt-1 text-white/64">Фото помещения, размеры, тип кухни и комментарий.</p>
+                  <p className="mt-1 text-white/64">Размеры, тип кухни и комментарий. Фото при необходимости можно отправить Дмитрию в личный Telegram.</p>
                 </div>
               </div>
             </div>

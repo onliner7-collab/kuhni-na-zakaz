@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
-import { LeadStatusControl } from "@/components/admin/LeadStatusControl";
 import { STATUS_OPTIONS } from "@/lib/lead-status";
-import { LeadNoteEditor } from "@/components/admin/LeadNoteEditor";
-import { LeadAssignedEditor } from "@/components/admin/LeadAssignedEditor";
 import { requireAdmin } from "@/lib/auth";
 import { Phone, User, MapPin, Calendar, Cpu, Palette, Package, Wallet, Route, FileText, Search } from "lucide-react";
 
@@ -188,7 +185,7 @@ export default async function AdminLeadsPage({
                     <Badge variant="outline" className="text-xs text-muted-foreground">
                       {lead.source}
                     </Badge>
-                    <span className="text-xs text-muted-foreground">#{lead.id}</span>
+                    <span className="text-xs text-muted-foreground">№{lead.publicNumber}</span>
                   </div>
 
                   {hasConfig(lead) && (
@@ -228,14 +225,18 @@ export default async function AdminLeadsPage({
                     </div>
                   )}
 
-                  <div className="pt-1 border-t border-border/50 space-y-1.5">
-                    <LeadAssignedEditor leadId={lead.id} assignedTo={lead.assignedTo} />
-                    <LeadNoteEditor leadId={lead.id} note={lead.managerNote} />
-                  </div>
+                  {(lead.assignedTo || lead.managerNote) && (
+                    <div className="space-y-1 border-t border-border/50 pt-2 text-xs text-muted-foreground">
+                      {lead.assignedTo && <p>Менеджер: {lead.assignedTo}</p>}
+                      {lead.managerNote && <p>Старая заметка: {lead.managerNote}</p>}
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex flex-col items-end gap-2">
-                  <LeadStatusControl leadId={lead.id} status={lead.status as any} />
+                  <Badge className={STATUS_OPTIONS.find((item) => item.value === lead.status)?.color || ""}>
+                    {STATUS_OPTIONS.find((item) => item.value === lead.status)?.label || lead.status}
+                  </Badge>
                   <a
                     href={`tel:${lead.phone}`}
                     className="text-xs px-3 py-1.5 rounded-xl border border-border text-muted-foreground hover:text-primary hover:border-primary/30 transition-colors flex items-center gap-1"

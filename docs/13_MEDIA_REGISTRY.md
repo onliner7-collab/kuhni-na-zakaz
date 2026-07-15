@@ -101,3 +101,8 @@ Asset-level source of truth находится в manifests v2. Статусы �
 | `PILOT-AK-09` | `PROMPT_READY 6` | price factors оставлены server text cards без лишних images |
 
 Итого Angular после production QA: 24 `LIVE`, 5 `REGISTERED`, 20 `PROMPT_READY`, 2 `REVIEW_REQUIRED`. Проверены 48 delivery URL (WebP + AVIF), все получили итоговый HTTP `200`; остальные статусы не повышались.
+## 2026-07-15 — media impact of unified leads
+
+- Новые media assets не создавались и lifecycle существующих изображений не менялся.
+- `KitchenImageLeadLauncher` использует фактически отрисованный `currentSrc` только как контекст заявки и текстовую ссылку для sharing/Telegram card.
+- Файлы клиентов не принимаются, не сохраняются и не добавляются в media registry.

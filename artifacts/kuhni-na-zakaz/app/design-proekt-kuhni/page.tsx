@@ -351,7 +351,7 @@ export default function DesignProektKuhniPage() {
               <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-white/70">Заявка на проект</p>
               <h2 className="text-3xl font-extrabold sm:text-5xl">Увидьте свою кухню до того, как она появится дома</h2>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-                Отправьте размеры, фото помещения или план. Мы предложим следующий шаг для вашего проекта.
+                Оставьте размеры и пожелания. Если понадобится фото или план, их можно отправить Дмитрию в личный Telegram.
               </p>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 {[
@@ -383,7 +383,7 @@ export default function DesignProektKuhniPage() {
                 formLocation="design-project-final-cta"
                 sourcePage={pagePath}
                 submitLabel="Получить проект кухни"
-                successMessage="Спасибо, заявка отправлена. Мы свяжемся с вами для уточнения размеров, фото помещения и пожеланий."
+                successMessage="Спасибо, заявка отправлена. Мы свяжемся с вами для уточнения размеров и пожеланий."
                 errorMessage="Не удалось отправить заявку. Попробуйте ещё раз или напишите в Telegram."
                 showCity={false}
                 showMessenger

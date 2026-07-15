@@ -10,7 +10,7 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 interface Settings {
   siteName: string; phone: string; phoneDisplay: string; email: string;
   address: string; workingHours: string; telegram: string; viber: string;
-  whatsapp: string; telegramBotToken: string; telegramChatId: string;
+  whatsapp: string;
   metaTitle: string; metaDescription: string;
 }
 
@@ -21,7 +21,7 @@ export function SettingsForm({ settings }: { settings: Settings | null }) {
     siteName: "КухниBY", phone: CONTACT_DEFAULTS.phone, phoneDisplay: CONTACT_DEFAULTS.phoneDisplay,
     email: CONTACT_DEFAULTS.email, address: CONTACT_DEFAULTS.address,
     workingHours: CONTACT_DEFAULTS.workingHours, telegram: "", viber: "",
-    whatsapp: "", telegramBotToken: "", telegramChatId: "",
+    whatsapp: "",
     metaTitle: "Кухни на заказ в Минске | КухниBY",
     metaDescription: "Кухни на заказ в Минске и Минской области. Собственное производство.",
   };
@@ -74,15 +74,6 @@ export function SettingsForm({ settings }: { settings: Settings | null }) {
           <Field name="viber" label="Viber" defaultValue={vals.viber} />
           <Field name="whatsapp" label="WhatsApp" defaultValue={vals.whatsapp} />
         </div>
-      </div>
-
-      <div className="card-base p-6">
-        <h2 className="font-semibold mb-4">Telegram уведомления</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Field name="telegramBotToken" label="Bot Token" defaultValue={vals.telegramBotToken} />
-          <Field name="telegramChatId" label="Chat ID" defaultValue={vals.telegramChatId} />
-        </div>
-        <p className="text-xs text-muted-foreground mt-2">Заявки с форм будут отправляться в этот Telegram-канал</p>
       </div>
 
       <div className="card-base p-6">

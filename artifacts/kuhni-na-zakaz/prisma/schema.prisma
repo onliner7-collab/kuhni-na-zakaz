@@ -21,12 +21,12 @@ enum ReviewStatus {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
   name         String
   passwordHash String
-  role         UserRole @default(MANAGER)
-  createdAt    DateTime @default(now())
+  role         UserRole  @default(MANAGER)
+  createdAt    DateTime  @default(now())
   lastLoginAt  DateTime?
 
   guestAccessCreated GuestAccess[]
@@ -88,58 +88,58 @@ model Kitchen {
 }
 
 model PortfolioCase {
-  id              Int      @id @default(autoincrement())
-  externalId      String?  @unique
-  title           String
-  shortTitle      String   @default("")
-  slug            String   @unique
-  city            String
-  cityKey         String   @default("")
-  region          String   @default("")
-  district        String   @default("")
-  kitchenType     String   @default("")
-  area            Int      @default(0)
-  layout          String   @default("")
-  style           String   @default("")
-  styleSlug       String   @default("")
-  color           String   @default("")
-  material        String   @default("")
-  materials       String[] @default([])
-  materialSlugs   String[]
-  scenarioSlugs   String[]
-  priceFrom       Int      @default(0)
-  priceTo         Int      @default(0)
-  priceNote       String   @default("Стоимость зависит от размеров, материалов и комплектации.")
-  size            String   @default("")
-  facades         String   @default("")
-  countertop      String   @default("")
-  fittings        String   @default("")
-  workDuration    String   @default("")
-  days            Int      @default(0)
-  completedAt     String   @default("")
-  description     String   @default("")
-  task            String   @default("")
-  constraints     String   @default("")
-  solution        String   @default("")
-  result          String   @default("")
-  features        String[] @default([])
+  id                   Int      @id @default(autoincrement())
+  externalId           String?  @unique
+  title                String
+  shortTitle           String   @default("")
+  slug                 String   @unique
+  city                 String
+  cityKey              String   @default("")
+  region               String   @default("")
+  district             String   @default("")
+  kitchenType          String   @default("")
+  area                 Int      @default(0)
+  layout               String   @default("")
+  style                String   @default("")
+  styleSlug            String   @default("")
+  color                String   @default("")
+  material             String   @default("")
+  materials            String[] @default([])
+  materialSlugs        String[]
+  scenarioSlugs        String[]
+  priceFrom            Int      @default(0)
+  priceTo              Int      @default(0)
+  priceNote            String   @default("Стоимость зависит от размеров, материалов и комплектации.")
+  size                 String   @default("")
+  facades              String   @default("")
+  countertop           String   @default("")
+  fittings             String   @default("")
+  workDuration         String   @default("")
+  days                 Int      @default(0)
+  completedAt          String   @default("")
+  description          String   @default("")
+  task                 String   @default("")
+  constraints          String   @default("")
+  solution             String   @default("")
+  result               String   @default("")
+  features             String[] @default([])
   relatedLocationSlugs String[] @default([])
-  mainImage       String   @default("")
-  images          String[]
-  imageAlts       String[] @default([])
-  imageCaptions   String[] @default([])
-  alt             String   @default("")
-  photosBefore    String[]
-  photosAfter     String[]
-  reviewIds       Int[]
-  featured        Boolean  @default(false)
-  order           Int      @default(0)
-  seoTitle        String   @default("")
-  seoDescription  String   @default("")
-  seoKeywords     String   @default("")
-  published       Boolean  @default(true)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  mainImage            String   @default("")
+  images               String[]
+  imageAlts            String[] @default([])
+  imageCaptions        String[] @default([])
+  alt                  String   @default("")
+  photosBefore         String[]
+  photosAfter          String[]
+  reviewIds            Int[]
+  featured             Boolean  @default(false)
+  order                Int      @default(0)
+  seoTitle             String   @default("")
+  seoDescription       String   @default("")
+  seoKeywords          String   @default("")
+  published            Boolean  @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 }
 
 model Review {
@@ -194,74 +194,110 @@ model FAQItem {
 }
 
 model LocationPage {
-  id              Int      @id @default(autoincrement())
-  externalId      String?   @unique
-  city            String
-  slug            String   @unique
-  region          String   @default("")
+  id         Int     @id @default(autoincrement())
+  externalId String? @unique
+  city       String
+  slug       String  @unique
+  region     String  @default("")
 
-  title           String
-  h1              String
-  intro           String   @default("")
-  description     String   @default("")
+  title       String
+  h1          String
+  intro       String @default("")
+  description String @default("")
 
-  priceFrom       Int      @default(900)
-  deliveryCost    String   @default("")
-  deliveryDays    Int      @default(1)
-  measureCost     String   @default("Условия замера — по заявке")
-  timelineText    String   @default("")
+  priceFrom    Int    @default(900)
+  deliveryCost String @default("")
+  deliveryDays Int    @default(1)
+  measureCost  String @default("Условия замера — по заявке")
+  timelineText String @default("")
 
-  visitDetails    String   @default("")
-  installDetails  String   @default("")
+  visitDetails   String @default("")
+  installDetails String @default("")
 
-  images          String[]
-  areas           String[]
-  workZone        String   @default("")
-  mapEmbed        String   @default("")
+  images   String[]
+  areas    String[]
+  workZone String   @default("")
+  mapEmbed String   @default("")
 
-  features        String[]
-  faq             Json     @default("[]")
+  features String[]
+  faq      Json     @default("[]")
 
-  localIntro      String   @default("")
-  uniquePoints    Json     @default("[]")
-  contentBlocks   Json     @default("[]")
-  caseSlugs       String[]
-  reviewIds       Int[]
-  ctaHeadline     String   @default("")
-  ctaSubtext      String   @default("")
+  localIntro    String   @default("")
+  uniquePoints  Json     @default("[]")
+  contentBlocks Json     @default("[]")
+  caseSlugs     String[]
+  reviewIds     Int[]
+  ctaHeadline   String   @default("")
+  ctaSubtext    String   @default("")
 
-  phone           String   @default("")
-  address         String   @default("")
+  phone   String @default("")
+  address String @default("")
 
-  seoTitle        String?
-  seoDescription  String?
-  published       Boolean  @default(true)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  seoTitle       String?
+  seoDescription String?
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model Lead {
-  id              Int      @id @default(autoincrement())
-  name            String
-  phone           String
-  city            String   @default("")
-  comment         String   @default("")
-  source          String   @default("website")
-  formType        String   @default("contact")
-  answers         Json     @default("{}")
+  id                  Int                @id @default(autoincrement())
+  publicNumber        Int                @unique @default(dbgenerated("nextval('lead_public_number_seq'::regclass)"))
+  name                String
+  phone               String
+  email               String             @default("")
+  preferredContact    String             @default("phone")
+  city                String             @default("")
+  kitchenType         String             @default("")
+  dimensions          String             @default("")
+  comment             String             @default("")
+  source              String             @default("website")
+  formType            String             @default("contact")
+  sourceType          String             @default("website_form")
+  sourcePage          String             @default("")
+  sourceBlock         String             @default("")
+  kitchenId           String             @default("")
+  imageId             String             @default("")
+  imageUrl            String             @default("")
+  utmSource           String             @default("")
+  utmMedium           String             @default("")
+  utmCampaign         String             @default("")
+  referrer            String             @default("")
+  answers             Json               @default("{}")
   // Этап 10: персонализация
-  configSessionId String?
-  scenarioSlug    String   @default("")
-  styleSlug       String   @default("")
-  materialSlug    String   @default("")
-  budgetLevel     String   @default("")
+  configSessionId     String?
+  scenarioSlug        String             @default("")
+  styleSlug           String             @default("")
+  materialSlug        String             @default("")
+  budgetLevel         String             @default("")
   // Менеджерский workflow
-  status          String   @default("new")      // new | contacted | working | done | lost
-  managerNote     String   @default("")
-  assignedTo      String   @default("")
-  createdAt       DateTime @default(now())
+  status              String             @default("new")
+  managerNote         String             @default("")
+  assignedTo          String             @default("")
+  assignedManagerId   Int?
+  assignedManager     TelegramRecipient? @relation("AssignedLeadManager", fields: [assignedManagerId], references: [id], onDelete: SetNull)
+  assignedAt          DateTime?
+  telegramUserId      String             @default("")
+  telegramChatId      String             @default("")
+  telegramUsername    String             @default("")
+  telegramConnected   Boolean            @default(false)
+  telegramConnectedAt DateTime?
+  closedAt            DateTime?
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @default(now()) @updatedAt
 
-  visualProject   VisualProject?
+  visualProject VisualProject?
+  messages      LeadMessage[]
+  notes         LeadNote[]
+  linkTokens    LeadTelegramLinkToken[]
+  telegramCards LeadTelegramCard[]
+  outboxItems   TelegramOutbox[]
+  auditLogs     LeadAuditLog[]
+
+  @@index([status, createdAt])
+  @@index([telegramUserId, status])
+  @@index([assignedManagerId, status])
+  @@index([sourceType, createdAt])
 }
 
 // Этап 10: сохранённые конфигурации (анонимные, по sessionId)
@@ -274,9 +310,9 @@ model SavedConfig {
   materialSlug String   @default("")
   scenarioSlug String   @default("")
   budgetLevel  String   @default("")
-  label        String   @default("")  // человекочитаемое резюме
-  phone        String   @default("")  // если пользователь оставил телефон
-  leadId       Int?                   // если конвертирован в заявку
+  label        String   @default("") // человекочитаемое резюме
+  phone        String   @default("") // если пользователь оставил телефон
+  leadId       Int? // если конвертирован в заявку
   createdAt    DateTime @default(now())
 }
 
@@ -291,93 +327,100 @@ model FavoriteCase {
 }
 
 model StylePage {
-  id                  Int      @id @default(autoincrement())
-  externalId          String?   @unique
-  slug                String   @unique
-  title               String
-  headline            String   @default("")
-  description         String   @default("")
-  intro               String   @default("")
-  content             String   @default("")
-  suitableFor         String[]
-  pros                String[]
-  cons                String[]
-  careGuide           String[]
-  pairsWith           String[]
-  budgetLevel         String   @default("")
-  priceFrom           Int      @default(0)
-  image               String   @default("")
-  relatedMaterials    String[]
-  relatedCaseSlugs    String[]
+  id                   Int      @id @default(autoincrement())
+  externalId           String?  @unique
+  slug                 String   @unique
+  title                String
+  headline             String   @default("")
+  description          String   @default("")
+  intro                String   @default("")
+  content              String   @default("")
+  suitableFor          String[]
+  pros                 String[]
+  cons                 String[]
+  careGuide            String[]
+  pairsWith            String[]
+  budgetLevel          String   @default("")
+  priceFrom            Int      @default(0)
+  image                String   @default("")
+  relatedMaterials     String[]
+  relatedCaseSlugs     String[]
   relatedScenarioSlugs String[]
-  seoTitle            String   @default("")
-  seoDescription      String   @default("")
-  seoKeywords         String   @default("")
-  order               Int      @default(0)
-  published           Boolean  @default(true)
-  updatedAt           DateTime @updatedAt
+  seoTitle             String   @default("")
+  seoDescription       String   @default("")
+  seoKeywords          String   @default("")
+  order                Int      @default(0)
+  published            Boolean  @default(true)
+  updatedAt            DateTime @updatedAt
 }
 
 model MaterialPage {
-  id                  Int      @id @default(autoincrement())
-  externalId          String?   @unique
-  slug                String   @unique
-  title               String
-  headline            String   @default("")
-  description         String   @default("")
-  intro               String   @default("")
-  content             String   @default("")
-  pros                String[]
-  cons                String[]
-  suitableFor         String[]
-  careGuide           String[]
-  budgetLevel         String   @default("")
-  pricePer            String   @default("")
-  priceFrom           Int      @default(0)
-  image               String   @default("")
-  relatedStyles       String[]
-  relatedCaseSlugs    String[]
+  id                   Int      @id @default(autoincrement())
+  externalId           String?  @unique
+  slug                 String   @unique
+  title                String
+  headline             String   @default("")
+  description          String   @default("")
+  intro                String   @default("")
+  content              String   @default("")
+  pros                 String[]
+  cons                 String[]
+  suitableFor          String[]
+  careGuide            String[]
+  budgetLevel          String   @default("")
+  pricePer             String   @default("")
+  priceFrom            Int      @default(0)
+  image                String   @default("")
+  relatedStyles        String[]
+  relatedCaseSlugs     String[]
   relatedScenarioSlugs String[]
-  seoTitle            String   @default("")
-  seoDescription      String   @default("")
-  seoKeywords         String   @default("")
-  order               Int      @default(0)
-  published           Boolean  @default(true)
-  updatedAt           DateTime @updatedAt
+  seoTitle             String   @default("")
+  seoDescription       String   @default("")
+  seoKeywords          String   @default("")
+  order                Int      @default(0)
+  published            Boolean  @default(true)
+  updatedAt            DateTime @updatedAt
 }
 
 model SiteSettings {
-  id              Int    @id @default(1)
-  siteName        String @default("КухниBY")
-  phone           String @default("+375293720674")
-  phoneDisplay    String @default("+375 (29) 372-06-74")
-  phone2          String @default("")
-  phoneDisplay2   String @default("")
-  email           String @default("onliner7@gmail.com")
-  address         String @default("222520, г. Борисов, ул. Дзержинского, д. 90, каб. 1а")
-  addressMap      String @default("")
-  workingHours    String @default("Пн–Сб 9:00–19:00, Вс 10:00–17:00")
-  telegram        String @default("")
-  viber           String @default("")
-  whatsapp        String @default("")
-  instagram       String @default("https://www.instagram.com/inside_home1983/")
-  vk              String @default("")
-  facebook        String @default("")
-  youtube         String @default("")
+  id               Int    @id @default(1)
+  siteName         String @default("КухниBY")
+  phone            String @default("+375293720674")
+  phoneDisplay     String @default("+375 (29) 372-06-74")
+  phone2           String @default("")
+  phoneDisplay2    String @default("")
+  email            String @default("onliner7@gmail.com")
+  address          String @default("222520, г. Борисов, ул. Дзержинского, д. 90, каб. 1а")
+  addressMap       String @default("")
+  workingHours     String @default("Пн–Сб 9:00–19:00, Вс 10:00–17:00")
+  telegram         String @default("")
+  viber            String @default("")
+  whatsapp         String @default("")
+  instagram        String @default("https://www.instagram.com/inside_home1983/")
+  vk               String @default("")
+  facebook         String @default("")
+  youtube          String @default("")
   telegramBotToken String @default("")
-  telegramChatId  String @default("")
-  metaTitle       String @default("Кухни на заказ по Беларуси | КухниBY")
-  metaDescription String @default("Кухни на заказ по всей Беларуси. Собственное производство. Гарантия фиксируется в договоре. Условия замера и 3D-проекта уточняются при заявке.")
+  telegramChatId   String @default("")
+  metaTitle        String @default("Кухни на заказ по Беларуси | КухниBY")
+  metaDescription  String @default("Кухни на заказ по всей Беларуси. Собственное производство. Гарантия фиксируется в договоре. Условия замера и 3D-проекта уточняются при заявке.")
 }
 
 model TelegramRecipient {
-  id        Int      @id @default(autoincrement())
-  label     String   @default("")
-  chatId    String   @unique
-  role      String   @default("moderator")
-  active    Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             Int      @id @default(autoincrement())
+  label          String   @default("")
+  chatId         String   @unique
+  telegramUserId String?  @unique
+  username       String   @default("")
+  role           String   @default("manager")
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  assignedLeads Lead[]             @relation("AssignedLeadManager")
+  notes         LeadNote[]
+  telegramCards LeadTelegramCard[]
+  outboxItems   TelegramOutbox[]
 }
 
 model TelegramNotificationLog {
@@ -399,6 +442,116 @@ model TelegramMessage {
   createdAt      DateTime @default(now())
 }
 
+model LeadMessage {
+  id                Int      @id @default(autoincrement())
+  leadId            Int
+  lead              Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  senderType        String
+  senderTelegramId  String   @default("")
+  messageType       String   @default("text")
+  text              String
+  telegramMessageId String   @default("")
+  createdAt         DateTime @default(now())
+
+  @@index([leadId, createdAt])
+}
+
+model LeadNote {
+  id        Int               @id @default(autoincrement())
+  leadId    Int
+  lead      Lead              @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  managerId Int
+  manager   TelegramRecipient @relation(fields: [managerId], references: [id], onDelete: Restrict)
+  text      String
+  createdAt DateTime          @default(now())
+
+  @@index([leadId, createdAt])
+  @@index([managerId, createdAt])
+}
+
+model LeadTelegramLinkToken {
+  id        Int       @id @default(autoincrement())
+  leadId    Int
+  lead      Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([leadId, expiresAt])
+}
+
+model LeadTelegramCard {
+  id                Int               @id @default(autoincrement())
+  leadId            Int
+  lead              Lead              @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  recipientId       Int
+  recipient         TelegramRecipient @relation(fields: [recipientId], references: [id], onDelete: Cascade)
+  chatId            String
+  telegramMessageId String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@unique([leadId, recipientId])
+  @@index([chatId, telegramMessageId])
+}
+
+model TelegramOutbox {
+  id            Int                @id @default(autoincrement())
+  leadId        Int?
+  lead          Lead?              @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  recipientId   Int?
+  recipient     TelegramRecipient? @relation(fields: [recipientId], references: [id], onDelete: SetNull)
+  chatId        String
+  kind          String
+  payload       Json
+  status        String             @default("pending")
+  attemptCount  Int                @default(0)
+  nextAttemptAt DateTime           @default(now())
+  lastError     String             @default("")
+  sentAt        DateTime?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  @@index([status, nextAttemptAt])
+  @@index([leadId, createdAt])
+}
+
+model TelegramSession {
+  id             Int      @id @default(autoincrement())
+  telegramUserId String   @unique
+  mode           String
+  leadId         Int?
+  draftText      String   @default("")
+  expiresAt      DateTime
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([expiresAt])
+}
+
+model TelegramProcessedUpdate {
+  id        Int      @id @default(autoincrement())
+  updateId  BigInt   @unique
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model LeadAuditLog {
+  id        Int      @id @default(autoincrement())
+  leadId    Int
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  actorType String
+  actorId   String   @default("")
+  action    String
+  payload   Json     @default("{}")
+  createdAt DateTime @default(now())
+
+  @@index([leadId, createdAt])
+  @@index([actorId, createdAt])
+}
+
 model StaticPage {
   id             Int      @id @default(autoincrement())
   slug           String   @unique
@@ -412,16 +565,16 @@ model StaticPage {
 }
 
 model HomepageBlock {
-  id          Int      @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   type        String
   title       String
-  subtitle    String   @default("")
-  description String   @default("")
-  icon        String   @default("")
-  href        String   @default("")
-  badge       String   @default("")
-  order       Int      @default(0)
-  published   Boolean  @default(true)
+  subtitle    String  @default("")
+  description String  @default("")
+  icon        String  @default("")
+  href        String  @default("")
+  badge       String  @default("")
+  order       Int     @default(0)
+  published   Boolean @default(true)
 }
 
 model PriceRule {
@@ -447,7 +600,7 @@ model ConfigStep {
   key       String         @unique
   question  String
   hint      String         @default("")
-  type      String         @default("choice")  // "choice" | "multichoice"
+  type      String         @default("choice") // "choice" | "multichoice"
   emoji     String         @default("")
   order     Int            @default(0)
   active    Boolean        @default(true)
@@ -464,7 +617,7 @@ model ConfigOption {
   label       String
   description String     @default("")
   emoji       String     @default("")
-  tags        String[]   // e.g. ["style:scandinavian", "budget:standard", "layout:corner"]
+  tags        String[] // e.g. ["style:scandinavian", "budget:standard", "layout:corner"]
   order       Int        @default(0)
   active      Boolean    @default(true)
 }
@@ -472,7 +625,7 @@ model ConfigOption {
 model ConfigResult {
   id        Int      @id @default(autoincrement())
   sessionId String   @default(cuid())
-  answers   Json     // {"layout":"corner","style":"scandinavian",...}
+  answers   Json // {"layout":"corner","style":"scandinavian",...}
   tags      String[] // агрегированные теги выбранных опций
   leadId    Int?
   createdAt DateTime @default(now())
@@ -518,21 +671,21 @@ enum CompatibilityRuleType {
 
 // Модули кухни — нижние, верхние, пеналы, угловые и т.д.
 model KitchenModule {
-  id            Int               @id @default(autoincrement())
-  name          String
-  slug          String            @unique
-  moduleType    KitchenModuleType
-  widthCm       Int
-  heightCm      Int
-  depthCm       Int
-  priceBase     Int               @default(0)
-  imageUrl      String            @default("")
-  description   String            @default("")
-  tags          String[]
-  isEnabled     Boolean           @default(true)
-  sortOrder     Int               @default(0)
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
+  id          Int               @id @default(autoincrement())
+  name        String
+  slug        String            @unique
+  moduleType  KitchenModuleType
+  widthCm     Int
+  heightCm    Int
+  depthCm     Int
+  priceBase   Int               @default(0)
+  imageUrl    String            @default("")
+  description String            @default("")
+  tags        String[]
+  isEnabled   Boolean           @default(true)
+  sortOrder   Int               @default(0)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 }
 
 // Шаблоны планировок кухни
@@ -652,26 +805,26 @@ model KitchenAppliance {
 
 // Пользовательский визуальный проект
 model VisualProject {
-  id               Int      @id @default(autoincrement())
-  sessionId        String?
-  name             String   @default("Мой проект")
-  roomConfig       Json     @default("{}") // размеры, стены, двери, окна, выступы
-  modulePlacement  Json     @default("[]") // позиции модулей на плане
-  materialsConfig  Json     @default("{}") // выбранные фасад, столешница и т.д.
-  priceEstimate    Int      @default(0)
-  isDraft          Boolean  @default(true)
-  isArchived       Boolean  @default(false)
-  leadId           Int?     @unique
-  lead             Lead?    @relation(fields: [leadId], references: [id])
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  sessionId       String?
+  name            String   @default("Мой проект")
+  roomConfig      Json     @default("{}") // размеры, стены, двери, окна, выступы
+  modulePlacement Json     @default("[]") // позиции модулей на плане
+  materialsConfig Json     @default("{}") // выбранные фасад, столешница и т.д.
+  priceEstimate   Int      @default(0)
+  isDraft         Boolean  @default(true)
+  isArchived      Boolean  @default(false)
+  leadId          Int?     @unique
+  lead            Lead?    @relation(fields: [leadId], references: [id])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 // Правила совместимости между компонентами
 model CompatibilityRule {
   id           Int                   @id @default(autoincrement())
   ruleType     CompatibilityRuleType
-  sourceEntity String                // "facade" | "mechanism" | "module" | "handle"
+  sourceEntity String // "facade" | "mechanism" | "module" | "handle"
   sourceSlug   String
   targetEntity String
   targetSlug   String
@@ -683,39 +836,39 @@ model CompatibilityRule {
 
 // Глобальные настройки конфигуратора (синглтон)
 model KitchenConfiguratorSettings {
-  id                   Int     @id @default(1)
-  isEnabled            Boolean @default(true)
-  defaultRoomWidthCm   Int     @default(300)
-  defaultRoomDepthCm   Int     @default(250)
-  defaultRoomHeightCm  Int     @default(250)
-  shareTextTemplate    String  @default("Смотри мой проект кухни!")
-  exportBrandingText   String  @default("Создано на kuhni.minsk.by")
-  updatedAt            DateTime @updatedAt
+  id                  Int      @id @default(1)
+  isEnabled           Boolean  @default(true)
+  defaultRoomWidthCm  Int      @default(300)
+  defaultRoomDepthCm  Int      @default(250)
+  defaultRoomHeightCm Int      @default(250)
+  shareTextTemplate   String   @default("Смотри мой проект кухни!")
+  exportBrandingText  String   @default("Создано на kuhni.minsk.by")
+  updatedAt           DateTime @updatedAt
 }
 
 model ScenarioPage {
-  id              Int      @id @default(autoincrement())
-  externalId      String?   @unique
-  slug            String   @unique
-  icon            String   @default("🏠")
-  badge           String   @default("")
-  title           String
-  headline        String   @default("")
-  intro           String   @default("")
-  seoTitle        String   @default("")
-  seoDescription  String   @default("")
-  seoKeywords     String   @default("")
-  needs           String[]
-  solutions       String[]
-  features        Json     @default("[]")
-  tips            String[]
-  relatedStyles   String[]
+  id               Int      @id @default(autoincrement())
+  externalId       String?  @unique
+  slug             String   @unique
+  icon             String   @default("🏠")
+  badge            String   @default("")
+  title            String
+  headline         String   @default("")
+  intro            String   @default("")
+  seoTitle         String   @default("")
+  seoDescription   String   @default("")
+  seoKeywords      String   @default("")
+  needs            String[]
+  solutions        String[]
+  features         Json     @default("[]")
+  tips             String[]
+  relatedStyles    String[]
   relatedMaterials String[]
   relatedCaseSlugs String[]
-  ctaText         String   @default("Заказать бесплатный замер")
-  ctaHref         String   @default("/contacts#form")
-  order           Int      @default(0)
-  published       Boolean  @default(true)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  ctaText          String   @default("Заказать бесплатный замер")
+  ctaHref          String   @default("/contacts#form")
+  order            Int      @default(0)
+  published        Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }

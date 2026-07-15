@@ -14,7 +14,10 @@ echo "[deploy] installing dependencies"
 sudo -u kuhni bash -lc "cd '$APP_DIR' && pnpm install --frozen-lockfile"
 
 echo "[deploy] applying prisma changes"
-sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm exec prisma generate && pnpm run db:push"
+sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm exec prisma generate && pnpm exec prisma db execute --schema prisma/schema.prisma --file prisma/migrations/20260715170000_unified_leads_telegram/migration.sql && pnpm run db:push"
+
+echo "[deploy] synchronizing Telegram recipients"
+sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run telegram:sync-recipients"
 
 if [[ "${RUN_CONTENT_IMPORTS:-0}" == "1" ]]; then
   echo "[deploy] importing prepared kitchen photos as an explicit migration"
@@ -36,5 +39,12 @@ echo "[deploy] building app"
 sudo -u kuhni bash -lc "cd '$APP_RUNTIME_DIR' && pnpm run build"
 
 echo "[deploy] restarting service"
+sed -e "s#__APP_USER__#kuhni#g" -e "s#__APP_DIR__#$APP_DIR#g" \
+  "$APP_DIR/deploy/systemd/kuhni-telegram-outbox.service" \
+  > /etc/systemd/system/kuhni-telegram-outbox.service
+install -m 0644 "$APP_DIR/deploy/systemd/kuhni-telegram-outbox.timer" \
+  /etc/systemd/system/kuhni-telegram-outbox.timer
+systemctl daemon-reload
+systemctl enable --now kuhni-telegram-outbox.timer
 systemctl restart kuhni-na-zakaz
 systemctl status --no-pager kuhni-na-zakaz | head -n 20

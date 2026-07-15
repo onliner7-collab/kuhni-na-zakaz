@@ -137,3 +137,9 @@
 - `/catalog/uglovye-kuhni` реализован адресно; Borisov и Furnitura не импортируют Angular island.
 - Local acceptance: 360/390/412/768/1440, 13 Playwright pass, typecheck/build/assets/sitemap pass.
 - `VERIFIED_LOCAL` меняется на `VERIFIED` только после production smoke и live asset check.
+## 2026-07-15 — единая система заявок
+
+- Все public routes внутри `PublicChrome`, где есть подходящие изображения кухонь, получили общий слой «Рассчитать эту кухню» + «Поделиться» без изменения URL и SEO ownership.
+- `/admin/leads` — read-only fallback; управление заявками выполняется в личных чатах Telegram владельца и менеджера.
+- `/privacy-policy` и `/personal-data` дополнены условиями Telegram-привязки и обработки сообщений.
+- Runtime routes `/kapi/leads` и `/kapi/telegram/webhook` переведены на единую модель Lead/outbox; статус до production rollout — `IMPLEMENTED_LOCAL`, live не заявлен.

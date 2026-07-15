@@ -4,6 +4,7 @@ import { renderContent } from "@/lib/render-content";
 import { cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, siteUrl } from "@/lib/schema-org";
 import { getStaticPage } from "@/lib/static-page";
+import { TELEGRAM_LEADS_PRIVACY_TEXT } from "@/lib/legal/telegram-leads-privacy";
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("privacy-policy");
@@ -45,7 +46,7 @@ export default async function PrivacyPage() {
         </nav>
         <h1 className="font-serif text-4xl font-bold mb-8">{title}</h1>
         <div className="space-y-4">
-          {renderContent(content)}
+          {renderContent(`${content}${TELEGRAM_LEADS_PRIVACY_TEXT}`)}
         </div>
         </div>
       </div>

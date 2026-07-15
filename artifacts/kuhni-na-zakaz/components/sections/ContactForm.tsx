@@ -26,15 +26,14 @@ const kitchenTypes = [
 const schema = z.object({
   name: z.string().trim().min(2, "Введите имя").max(100, "Слишком длинное имя"),
   phone: z.string().trim().min(7, "Введите корректный номер").max(30, "Слишком длинный номер"),
+  email: z.string().trim().email("Проверьте email").or(z.literal("")),
+  preferredContact: z.enum(["phone", "telegram", "email"]),
   city: z.string().trim().max(100, "Слишком длинный город").optional(),
   kitchenType: z.string().trim().max(80).optional(),
-  messenger: z.string().trim().max(80).optional(),
-  uploadNote: z.string().trim().max(300).optional(),
+  dimensions: z.string().trim().max(200, "Слишком длинное описание размеров").optional(),
   hasMeasurements: z.boolean().optional(),
   comment: z.string().trim().max(2000, "Комментарий слишком длинный").optional(),
-  agreement: z.literal(true, {
-    errorMap: () => ({ message: "Подтвердите согласие на обработку данных" }),
-  }),
+  agreement: z.boolean().refine((value) => value, "Подтвердите согласие на обработку данных"),
   sourcePage: z.string().optional(),
   sourceType: z.string().optional(),
   projectSlug: z.string().optional(),
@@ -251,7 +250,6 @@ export function ContactForm({
   showKitchenType = true,
   showMessenger = false,
   showHasMeasurements = false,
-  showRoomFile = false,
   defaultKitchenType = "",
   defaultComment = "",
   answersEventName,
@@ -259,7 +257,7 @@ export function ContactForm({
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const [roomFile, setRoomFile] = useState<File | null>(null);
+  const [telegramUrl, setTelegramUrl] = useState("");
   const pathname = usePathname() || "/";
   const formRef = useRef<HTMLFormElement | null>(null);
   const formOpenTracked = useRef(false);
@@ -276,11 +274,12 @@ export function ContactForm({
   const [contextAnswers, setContextAnswers] = useState<Record<string, unknown>>(defaultAnswers || {});
   const nameId = `${formId}-lead-name`;
   const phoneId = `${formId}-lead-phone`;
+  const emailId = `${formId}-lead-email`;
+  const preferredContactId = `${formId}-lead-preferred-contact`;
   const cityId = `${formId}-lead-city`;
   const kitchenTypeId = `${formId}-lead-kitchen-type`;
-  const messengerId = `${formId}-lead-messenger`;
+  const dimensionsId = `${formId}-lead-dimensions`;
   const hasMeasurementsId = `${formId}-lead-has-measurements`;
-  const roomFileId = `${formId}-lead-room-file`;
   const commentId = `${formId}-lead-comment`;
   const agreementId = `${formId}-lead-agreement`;
   const formErrorSummaryId = `${formId}-lead-errors`;
@@ -313,13 +312,14 @@ export function ContactForm({
   const defaultValues = useMemo<FormData>(() => ({
     name: "",
     phone: "",
+    email: "",
+    preferredContact: "phone",
     city: city || "",
     kitchenType: defaultKitchenType,
-    messenger: "",
-    uploadNote: "",
+    dimensions: "",
     comment: ideaComment,
     hasMeasurements: false,
-    agreement: true,
+    agreement: false,
     sourcePage: trackingFields.sourcePage,
     sourceType: effectiveSourceType,
     projectSlug: projectSlug || "",
@@ -374,13 +374,12 @@ export function ContactForm({
         : source === "home"
           ? readHomeKitchenComment(data.comment || defaultComment)
         : data.comment;
-    const fileNote = roomFile ? `${roomFile.name} (${Math.round(roomFile.size / 1024)} КБ)` : "";
     const designSelection = source === "design-proekt-kuhni" ? readDesignProjectSelection() : null;
     const homeSelection = source === "home" ? readHomeKitchenSelection() : null;
     const payload = {
       ...data,
       comment: currentComment,
-      uploadNote: fileNote || data.uploadNote || "",
+      continueInTelegram: data.preferredContact === "telegram",
       answers: {
         ...(data.answers || {}),
         ...contextAnswers,
@@ -415,20 +414,22 @@ export function ContactForm({
     });
 
     try {
-      const res = await fetch("/kapi/leads", createLeadRequestBody(payload, roomFile));
+      const res = await fetch("/kapi/leads", createLeadRequestBody(payload));
 
       if (res.ok) {
+        const result = await res.json().catch(() => ({}));
+        setTelegramUrl(typeof result.telegramUrl === "string" ? result.telegramUrl : "");
         setSent(true);
-        setRoomFile(null);
         reset({
           ...defaultValues,
           name: "",
           phone: "",
+          email: "",
           comment: "",
-          messenger: "",
-          uploadNote: "",
+          dimensions: "",
+          preferredContact: "phone",
           hasMeasurements: false,
-          agreement: true,
+          agreement: false,
         });
         trackAnalyticsEvent(ANALYTICS_EVENTS.LEAD_SUBMIT, {
           source,
@@ -479,7 +480,17 @@ export function ContactForm({
         <div className="mb-4 text-4xl" aria-hidden>✓</div>
         <h3 className="mb-2 font-serif text-2xl font-semibold">Заявка получена</h3>
         <p className="mb-6 text-muted-foreground">{successMessage}</p>
-        <Button variant="outline" className="min-h-11" onClick={() => setSent(false)}>Отправить ещё одну заявку</Button>
+        <div className="flex flex-col justify-center gap-3 sm:flex-row">
+          {telegramUrl && (
+            <a
+              href={telegramUrl}
+              className="inline-flex min-h-11 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              Подключить Telegram
+            </a>
+          )}
+          <Button variant="outline" className="min-h-11" onClick={() => { setSent(false); setTelegramUrl(""); }}>Отправить ещё одну заявку</Button>
+        </div>
       </div>
     );
   }
@@ -545,8 +556,42 @@ export function ContactForm({
           aria-invalid={Boolean(errors.phone)}
           aria-describedby={errors.phone ? `${phoneId}-error` : undefined}
           data-testid="form-phone"
+          maxLength={22}
+          onInput={(event) => {
+            event.currentTarget.value = formatPhoneInput(event.currentTarget.value);
+          }}
         />
         {errors.phone && <p id={`${phoneId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.phone.message}</p>}
+      </div>
+
+      <div>
+        <Label htmlFor={emailId}>Email</Label>
+        <Input
+          id={emailId}
+          {...register("email")}
+          type="email"
+          placeholder="name@example.com"
+          className="mt-1 min-h-11"
+          autoComplete="email"
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? `${emailId}-error` : undefined}
+          data-testid="form-email"
+        />
+        {errors.email && <p id={`${emailId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.email.message}</p>}
+      </div>
+
+      <div>
+        <Label htmlFor={preferredContactId}>Как удобнее связаться</Label>
+        <select
+          id={preferredContactId}
+          {...register("preferredContact")}
+          className="mt-1 flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          data-testid="form-preferred-contact"
+        >
+          <option value="phone">Позвонить</option>
+          <option value="telegram">Telegram</option>
+          <option value="email">Email</option>
+        </select>
       </div>
 
       {showCity && (
@@ -574,19 +619,7 @@ export function ContactForm({
 
       {showMessenger && (
         <div>
-          <Label htmlFor={messengerId}>Мессенджер</Label>
-          <select
-            id={messengerId}
-            {...register("messenger")}
-            className="mt-1 flex h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            data-testid="form-messenger"
-          >
-            <option value="">Как удобнее связаться</option>
-            <option value="Telegram">Telegram</option>
-            <option value="Viber">Viber</option>
-            <option value="WhatsApp">WhatsApp</option>
-            <option value="Телефонный звонок">Телефонный звонок</option>
-          </select>
+          <p className="text-xs leading-5 text-muted-foreground">Доступные каналы: телефон, Telegram и email.</p>
         </div>
       )}
 
@@ -605,36 +638,19 @@ export function ContactForm({
         </div>
       )}
 
-      {showRoomFile && (
-        <div>
-          <Label htmlFor={roomFileId}>Фото или план помещения</Label>
-          <Input
-            id={roomFileId}
-            type="file"
-            accept="image/jpeg,image/png,image/webp,image/heic,application/pdf"
-            className="mt-1 min-h-11"
-            data-testid="form-room-file"
-            onChange={(event) => {
-              const file = event.currentTarget.files?.[0] || null;
-              setRoomFile(file);
-              if (file) {
-                trackAnalyticsEvent(ANALYTICS_EVENTS.DESIGN_FILE_SELECT, {
-                  source,
-                  formLocation,
-                  fileType: file.type || "unknown",
-                  fileSizeKb: Math.round(file.size / 1024),
-                });
-              }
-            }}
-          />
-          <p className="mt-1 text-xs leading-5 text-muted-foreground">
-            Подойдут фото, план БТИ или PDF до 8 МБ. Если файл больше, отправьте его в Telegram.
-          </p>
-        </div>
-      )}
+      <div>
+        <Label htmlFor={dimensionsId}>Примерные размеры</Label>
+        <Input
+          id={dimensionsId}
+          {...register("dimensions")}
+          placeholder="Например: 3,2 × 2,4 м, высота 2,7 м"
+          className="mt-1 min-h-11"
+          data-testid="form-dimensions"
+        />
+      </div>
 
       <div>
-        <Label htmlFor={commentId}>Комментарий / размеры</Label>
+        <Label htmlFor={commentId}>Комментарий</Label>
         <Textarea
           id={commentId}
           {...register("comment")}
@@ -659,8 +675,8 @@ export function ContactForm({
             data-testid="form-agreement"
           />
           <span>
-            Согласен на обработку персональных данных и с{" "}
-            <a href="/privacy-policy" className="inline-flex min-h-11 items-center underline underline-offset-2">политикой обработки данных</a>.
+            Согласен на <a href="/personal-data" className="underline underline-offset-2">обработку персональных данных</a> и с{" "}
+            <a href="/privacy-policy" className="underline underline-offset-2">политикой обработки данных</a>.
           </span>
         </label>
         {errors.agreement && <p id={`${agreementId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.agreement.message}</p>}
@@ -673,28 +689,30 @@ export function ContactForm({
   );
 }
 
-function createLeadRequestBody(payload: FormData & Record<string, unknown>, roomFile: File | null): RequestInit {
-  if (!roomFile) {
-    return {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    };
-  }
-
-  const formData = new window.FormData();
-  Object.entries(payload).forEach(([key, value]) => {
-    if (value === undefined || value === null) return;
-    if (typeof value === "object") {
-      formData.append(key, JSON.stringify(value));
-      return;
-    }
-    formData.append(key, String(value));
-  });
-  formData.append("roomFile", roomFile);
-
+function createLeadRequestBody(payload: FormData & Record<string, unknown>): RequestInit {
   return {
     method: "POST",
-    body: formData,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
   };
+}
+
+function formatPhoneInput(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 15);
+  if (!digits) return "";
+  const normalized = digits.startsWith("375") ? digits : digits.startsWith("80") ? `375${digits.slice(2)}` : digits;
+  if (!normalized.startsWith("375")) return `+${normalized}`;
+  const local = normalized.slice(3, 12);
+  const parts = [
+    local.slice(0, 2),
+    local.slice(2, 5),
+    local.slice(5, 7),
+    local.slice(7, 9),
+  ];
+  let result = "+375";
+  if (parts[0]) result += ` (${parts[0]}${parts[0].length === 2 ? ")" : ""}`;
+  if (parts[1]) result += ` ${parts[1]}`;
+  if (parts[2]) result += `-${parts[2]}`;
+  if (parts[3]) result += `-${parts[3]}`;
+  return result;
 }

@@ -1,0 +1,15 @@
+[Unit]
+Description=kuhni-na-zakaz Telegram outbox worker
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=__APP_USER__
+WorkingDirectory=__APP_DIR__/artifacts/kuhni-na-zakaz
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/kuhni-na-zakaz.env
+ExecStart=/usr/bin/env pnpm run telegram:outbox
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true

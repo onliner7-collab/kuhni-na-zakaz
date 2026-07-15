@@ -160,3 +160,13 @@
 - **Media:** 10 новых imagegen masters сохранены в проекте; 24 connected assets прошли production QA и повышены до `LIVE`; 48 WebP/AVIF URL получили HTTP `200`.
 - **Rollback:** revert итогового stage-5 commit; content imports и Prisma migration отсутствуют.
 - **Статус:** принято и проверено на production `fd4287b`; service active, target Playwright 13 pass + 1 expected desktop skip.
+## 2026-07-15 — единая Lead-модель и Telegram как рабочее место
+
+- **Решение:** сайт и бот пишут в одну Lead-модель; `/admin/leads` остаётся read-only fallback.
+- **Получатели:** Дмитрий (`344649719`, owner) и Александр (`1349736681`, manager), каждый в личном чате.
+- **Коммуникация:** только текст и ссылки; файлы в формах и боте отключены, WhatsApp/Viber пока отсутствуют.
+- **Deep link:** одноразовый hash-only токен, TTL 24 часа; при нескольких активных заявках клиент выбирает нужную.
+- **Надёжность:** DB outbox + systemd timer; форма успешна после записи Lead независимо от Telegram API.
+- **Security:** Telegram token только в server environment; токен, опубликованный в чате, считается скомпрометированным и не используется.
+- **Legal:** сохраняется бренд «КухниBY» без публикации личного ФИО владельца; это зафиксированное бизнес-решение, не внешнее юридическое заключение.
+- **Status:** `IMPLEMENTED_LOCAL`; production/live возможны только после ротации токена, backup и миграционного QA.
