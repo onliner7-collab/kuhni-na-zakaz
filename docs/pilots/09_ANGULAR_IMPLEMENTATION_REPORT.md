@@ -32,7 +32,7 @@
 - 10 новых изображений сгенерированы встроенным `imagegen`; masters сохранены в `prepared-images/generated-sources/pilots/angular-kitchens`.
 - Delivery: 1200×800 AVIF/WebP, WebP 39–80 KB. Heavy PNG не используется как visible `src`.
 - Все подписи явно маркируют `AI-концепт`; русские alt и captions проверены.
-- Local lifecycle после browser QA: 24 `VERIFIED`, 5 `REGISTERED`, 20 `PROMPT_READY`, 2 `REVIEW_REQUIRED`. `LIVE` выставляется только после production QA.
+- После production QA: 24 `LIVE`, 5 `REGISTERED`, 20 `PROMPT_READY`, 2 `REVIEW_REQUIRED`; неподключённые записи не повышались.
 
 ## 5. Сохранено
 
@@ -89,6 +89,7 @@
 - `pnpm.cmd --dir artifacts/kuhni-na-zakaz run sitemap:check` — pass, 112 URLs.
 - `pnpm.cmd --dir artifacts/kuhni-na-zakaz run build` — pass; static fallback использован при недоступной local DB.
 - Target Playwright — 13 pass, 1 expected desktop skip.
+- Production target Playwright — 13 pass, 1 expected desktop skip; проверены оба профиля, интерактивы, форма с перехватом запроса, mobile Dock, responsive matrix и reduced motion.
 
 ## 13. Viewports
 
@@ -104,11 +105,15 @@
 ## 15. Production
 
 - До deploy: `4c15678`, service active, URL `200`.
-- После deploy: заполняется только после server hash, service, HTTP, HTML, assets и form smoke.
+- После deploy: server hash `fd4287b5de413e1dc87f29fcf970654b32440ffc`, service `active`, `/catalog/uglovye-kuhni`, `robots.txt` и `sitemap.xml` отвечают `200`.
+- Live DOM на 390 px: один H1 `Угловые кухни на заказ`, canonical сохранён, 0 horizontal overflow, 0 broken images, 0 visible PNG; schema types — `BreadcrumbList`, `Product`, `ImageObject`, без `FAQPage`.
+- Все 48 delivery URL для 24 подключённых assets (WebP + AVIF) получили итоговый HTTP `200`; lifecycle повышен `VERIFIED → LIVE` только после этой проверки.
+- Клиентский payload формы проверен Playwright с перехватом `/kapi/leads`, поэтому реальная тестовая заявка и Telegram-уведомление не создавались. Notification delivery отдельно не заявляется как live-tested.
 
 ## 16. Итоговый commit
 
-- Заполняется после commit/push.
+- Implementation: `f604003`; исправления gallery/hydration: `b88bc27`, `fd4287b`; ветка `work`, все три commit отправлены и развернуты.
+- Финальный registry/report commit создаётся после этой записи и не меняет production-код страницы.
 
 ## 17. Ограничения
 
@@ -118,7 +123,7 @@
 
 ## 18. Готовность к этапу 6
 
-- Решение принимается после production deploy и live QA. Этап 6 не должен копировать spatial Angular IA.
+- Этап 5 принят после production deploy и live QA. Этап 6 может начинаться, но не должен копировать spatial Angular IA.
 
 ## 19. Следующему чату
 

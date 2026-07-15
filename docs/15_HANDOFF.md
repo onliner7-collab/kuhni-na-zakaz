@@ -2,25 +2,25 @@
 
 ## Current stage
 
-ЭТАП 5 — `/catalog/uglovye-kuhni` реализован и проверен локально поверх production baseline `4c15678`. Commit/deploy/live verification ещё не записаны; до них этап имеет статус `IMPLEMENTED / VERIFIED_LOCAL`, не production `VERIFIED`. Следующий этап после live-приёмки: 6 — `/locations/borisov` с `ProductionJourney`.
+ЭТАП 5 — `/catalog/uglovye-kuhni` принят на production. Baseline был `4c15678`; implementation и gallery fixes завершены на `fd4287b5de413e1dc87f29fcf970654b32440ffc`, ветка `work`, service active. Следующий этап: 6 — `/locations/borisov` с `ProductionJourney`.
 
-## Stage 5 implemented locally
+## Stage 5 completed
 
 - Route сохранил Server Component shell, URL/canonical/BreadcrumbList/Product/ImageObject; hidden FAQPage удалён.
 - Подключены `MobileHero`, `SwipeGallery`, `CornerStorageExplorer`, `KitchenLayoutCheck`, `MechanismComparison`, `BottomSheet`; Angular orchestration находится в одном feature-local client island.
 - Global `MobileBottomNav` остаётся единственным Context Dock: `Планировка / Внутри / Цена / Рассчитать`; второй fixed Dock не создан.
-- 10 новых imagegen masters сохранены в проекте, созданы AVIF/WebP; 24 connected media прошли local browser QA до `VERIFIED`.
+- 10 новых imagegen masters сохранены в проекте, созданы AVIF/WebP; 24 connected media прошли production browser QA и имеют `LIVE`.
 - Форма передаёт structured answers по event bridge в существующий `/kapi/leads`; request body проверен Playwright.
-- Local: typecheck/build/assets/sitemap pass; target Playwright 13 pass + 1 expected desktop skip; browser 390 px — 1 H1, 0 overflow, 0 broken images, 0 visible PNG.
+- Local: typecheck/build/assets/sitemap pass. Production: target Playwright 13 pass + 1 expected desktop skip; 48 WebP/AVIF URL — HTTP `200`; browser 390 px — 1 H1, 0 overflow, 0 broken images, 0 visible PNG.
 - Полный отчёт: `docs/pilots/09_ANGULAR_IMPLEMENTATION_REPORT.md`.
 
-## Stage 5 pending before final acceptance
+## Stage 5 production evidence
 
-- commit/push;
-- Timeweb deploy без `RUN_CONTENT_IMPORTS=1`;
-- server hash/service check;
-- production HTTP/HTML/schema/media/Dock/form smoke;
-- lifecycle 24 assets `VERIFIED → LIVE`, registries/report/handoff final update.
+- server hash `fd4287b5de413e1dc87f29fcf970654b32440ffc`, service `active`;
+- URL, `robots.txt`, `sitemap.xml` — HTTP `200`; sitemap остаётся 112 URL;
+- schema: `BreadcrumbList`, `Product`, `ImageObject`, без hidden `FAQPage`;
+- форма проверена перехватом `/kapi/leads` без создания реальной заявки; Telegram delivery отдельно не заявляется;
+- lifecycle 24 assets `VERIFIED → LIVE`; неподключённые media не повышались.
 
 ## Stage 4 completed
 

@@ -36,7 +36,7 @@
           "componentName": "MobileHero",
           "sectionId": "hero",
           "purpose": "Mobile Hero",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -44,7 +44,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "hero",
@@ -316,7 +317,7 @@
           "componentName": "SwipeGallery",
           "sectionId": "angles",
           "purpose": "Swipe Angles",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -325,7 +326,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -386,7 +388,7 @@
           "componentName": "SwipeGallery",
           "sectionId": "angles",
           "purpose": "Swipe Angles",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -394,7 +396,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -455,7 +458,7 @@
           "componentName": "SwipeGallery",
           "sectionId": "angles",
           "purpose": "Swipe Angles",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -464,7 +467,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -665,7 +669,7 @@
           "componentName": "CornerTypeSelector",
           "sectionId": "corner-types",
           "purpose": "Corner Types",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -674,7 +678,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -798,7 +803,7 @@
           "componentName": "CornerTypeSelector",
           "sectionId": "corner-types",
           "purpose": "Corner Types",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -807,7 +812,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "gallery",
@@ -1004,7 +1010,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1012,7 +1018,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1073,7 +1080,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1081,7 +1088,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1142,7 +1150,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1150,7 +1158,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1211,7 +1220,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1219,7 +1228,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1280,7 +1290,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1288,7 +1298,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1349,7 +1360,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1357,7 +1368,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1418,7 +1430,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1426,7 +1438,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1487,7 +1500,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1495,7 +1508,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1556,7 +1570,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1564,7 +1578,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1625,7 +1640,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1633,7 +1648,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1694,7 +1710,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1702,7 +1718,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1763,7 +1780,7 @@
           "componentName": "CornerStorageExplorer",
           "sectionId": "inside",
           "purpose": "CornerStorageExplorer",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "GENERATED",
             "REVIEW_REQUIRED",
@@ -1771,7 +1788,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "sequence-frame",
@@ -1842,7 +1860,7 @@
           "componentName": "StorageUseCases",
           "sectionId": "storage",
           "purpose": "Storage Use Cases",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -1851,7 +1869,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -1912,7 +1931,7 @@
           "componentName": "StorageUseCases",
           "sectionId": "storage",
           "purpose": "Storage Use Cases",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -1921,7 +1940,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -1982,7 +2002,7 @@
           "componentName": "StorageUseCases",
           "sectionId": "storage",
           "purpose": "Storage Use Cases",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -1991,7 +2011,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -2844,7 +2865,7 @@
           "componentName": "MaterialSwatches",
           "sectionId": "materials",
           "purpose": "Materials",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -2853,7 +2874,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -2977,7 +2999,7 @@
           "componentName": "MaterialSwatches",
           "sectionId": "materials",
           "purpose": "Materials",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -2986,7 +3008,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "detail",
@@ -3047,7 +3070,7 @@
           "componentName": "MaterialSwatches",
           "sectionId": "materials",
           "purpose": "Materials",
-          "status": "VERIFIED",
+          "status": "LIVE",
           "lifecycleHistory": [
             "PROMPT_READY",
             "GENERATED",
@@ -3056,7 +3079,8 @@
             "OPTIMIZED",
             "REGISTERED",
             "CONNECTED",
-            "VERIFIED"
+            "VERIFIED",
+            "LIVE"
           ],
           "origin": "AI",
           "assetType": "detail",

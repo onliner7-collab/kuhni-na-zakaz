@@ -157,6 +157,6 @@
 - **Причина:** тип угла, механизм, материал и размеры должны передаваться в существующую форму согласованным structured state без превращения всей страницы в Client Component.
 - **SEO:** hidden FAQPage schema удалена, потому что видимого exact FAQ нет; canonical, BreadcrumbList, Product и ImageObject сохранены.
 - **Dock:** используется единственный существующий global `MobileBottomNav` с exact Angular config; второй fixed `ContextDock` запрещён как конфликтующая дублирующая навигация.
-- **Media:** 10 новых imagegen masters сохранены в проекте; 24 connected assets прошли local QA до `VERIFIED`; `LIVE` только после deploy.
+- **Media:** 10 новых imagegen masters сохранены в проекте; 24 connected assets прошли production QA и повышены до `LIVE`; 48 WebP/AVIF URL получили HTTP `200`.
 - **Rollback:** revert итогового stage-5 commit; content imports и Prisma migration отсутствуют.
-- **Статус:** реализовано и проверено локально; production pending.
+- **Статус:** принято и проверено на production `fd4287b`; service active, target Playwright 13 pass + 1 expected desktop skip.
