@@ -8,7 +8,7 @@ User=__APP_USER__
 WorkingDirectory=__APP_DIR__/artifacts/kuhni-na-zakaz
 Environment=NODE_ENV=production
 EnvironmentFile=/etc/kuhni-na-zakaz.env
-ExecStart=/usr/bin/env pnpm run telegram:outbox
+ExecStart=__APP_DIR__/artifacts/kuhni-na-zakaz/node_modules/.bin/tsx scripts/process-telegram-outbox.ts
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
