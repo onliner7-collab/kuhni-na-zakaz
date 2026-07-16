@@ -73,8 +73,8 @@ Production rollout выполнен: backup → migration → Prisma sync → re
 - Application deploy: `082b211`; systemd outbox fix: `1376c91`; production build — 173 pages.
 - Server HEAD после runtime fix: `1376c9149a8e12b45710495accd8ca62930f2d02`; приложение active.
 - Мигрированы 4 legacy Lead: публичные номера 1001–1004, дублей нет, `done` → `completed`.
-- Webhook: `https://kuhni.minsk.by/kapi/telegram/webhook`, pending `0`, last error отсутствует; без secret `403`, с secret `200`.
+- Webhook: `https://kuhni.minsk.by/kapi/telegram/webhook`, pending `0`; без secret `403`, с secret `200`. `getWebhookInfo` сохраняет исторический timeout времени restart, но последующие реальные admin callbacks обработаны: `lead_taken` и три `manager_assigned`, что подтверждает восстановленную доставку.
 - Live smoke leads: №1005 обычная и №1006 с deep link; 4/4 карточки доставлены Дмитрию и Александру, после QA обе помечены `spam`, deep link аннулирован, ещё 4/4 обновления карточек доставлены.
-- Outbox timer active/enabled; worker после исправления Corepack cache завершается `success`.
+- Outbox timer active/enabled; worker после исправления Corepack cache завершается `success`, pending/failed `0`; количество notification logs соответствует outbox items, повторной обработки одной записи нет.
 - HTTP `200`: `/`, `/portfolio`, `/privacy-policy`, `/personal-data`, `/robots.txt`, `/sitemap.xml`.
 - Production Playwright: page coverage 14/14 с отдельным повтором двух маршрутов после замены `networkidle` на `domcontentloaded`; form/share 4/4.

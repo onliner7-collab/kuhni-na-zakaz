@@ -167,5 +167,5 @@ Revert итоговый stage-5 commit отдельным Git revert и заде
 - Проверки: typecheck, Prisma validate, unit 3/3, image desktop 7/7 + mobile 7/7, формы desktop/mobile 22/22, production build 124 pages.
 - Production backup: `/var/backups/kuhni-na-zakaz/pre-unified-leads-20260716-040212.dump`, SHA-256 `7989747fa7b934cbf219bd2647041cf2c885ba4c2e54a0147fd81278f4431334`.
 - Старый токен временно используется по прямому указанию владельца, находится только в server env `640 root:kuhni` и отсутствует в repo. Будущая ротация всё ещё рекомендуется.
-- Live smoke: №1005 website form, №1006 deep link, 4/4 admin cards sent; после QA обе заявки помечены `spam`, ссылка аннулирована, 4/4 card updates sent. Webhook pending 0/no error; production Playwright page coverage 14/14 и form/share 4/4.
+- Live smoke: №1005 website form, №1006 deep link, обе admin cards delivered; реальные callbacks `lead_taken` и `manager_assigned` обработаны. После QA обе заявки помечены `spam`, ссылка аннулирована, card updates delivered. Webhook pending 0; сохранённый historical timeout относится к restart и опровергается последующими callback-аудитами. Production Playwright page coverage 14/14 и form/share 4/4.
 - Компьютер не переводить в сон: пользователь отменил это действие 2026-07-16.
