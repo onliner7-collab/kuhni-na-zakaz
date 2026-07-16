@@ -58,13 +58,13 @@ export function KitchenImageLeadLauncher() {
     if (contentRoot) {
       observer.observe(contentRoot, { childList: true, subtree: true, attributes: true, attributeFilter: ["src", "alt"] });
     }
-    window.addEventListener("scroll", scheduleScan, { passive: true });
+    document.addEventListener("scroll", scheduleScan, { passive: true, capture: true });
     window.addEventListener("resize", scheduleScan);
     document.addEventListener("load", scheduleScan, true);
     scheduleScan();
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", scheduleScan);
+      document.removeEventListener("scroll", scheduleScan, true);
       window.removeEventListener("resize", scheduleScan);
       document.removeEventListener("load", scheduleScan, true);
       window.cancelAnimationFrame(frame);
@@ -215,7 +215,7 @@ export function KitchenImageLeadLauncher() {
               aria-label={`Рассчитать эту кухню: ${target.alt}`}
             >
               <Calculator className="h-4 w-4 shrink-0" aria-hidden="true" />
-              Рассчитать эту кухню
+              Хочу такую кухню
             </button>
             <button
               type="button"
@@ -267,14 +267,27 @@ export function KitchenImageLeadLauncher() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">Заявка по изображению</p>
-                <h2 id={titleId} className="mt-1 font-serif text-2xl font-bold text-stone-950">Рассчитать эту кухню</h2>
-                <p className="mt-2 line-clamp-2 text-sm text-stone-600">{selected.alt}</p>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">Вы выбрали конкретную кухню</p>
+                <h2 id={titleId} className="mt-1 font-serif text-2xl font-bold text-stone-950">Рассчитать выбранную кухню</h2>
               </div>
               <button type="button" onClick={closeDialog} className="grid min-h-11 min-w-11 place-items-center rounded-full border border-stone-200" aria-label="Закрыть форму">
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
+
+            <figure className="mt-5 overflow-hidden rounded-2xl border border-stone-200 bg-stone-100">
+              <img
+                src={selected.src}
+                alt={selected.alt}
+                width="720"
+                height="480"
+                className="aspect-[3/2] w-full object-cover"
+              />
+              <figcaption className="p-3 text-sm leading-5 text-stone-700">
+                <span className="block font-bold text-stone-950">Именно эта кухня будет прикреплена к заявке</span>
+                <span className="mt-1 block line-clamp-2">{selected.alt}</span>
+              </figcaption>
+            </figure>
 
             {successNumber !== null ? (
               <div className="py-10 text-center" role="status">
@@ -355,6 +368,9 @@ function isEligibleKitchenImage(image: HTMLImageElement): boolean {
   if (image.closest("[data-no-kitchen-lead], header, footer, [role='dialog']")) return false;
   const rect = image.getBoundingClientRect();
   if (rect.width < 220 || rect.height < 150 || rect.bottom < 0 || rect.top > window.innerHeight) return false;
+  const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+  const horizontalVisibility = visibleWidth / Math.min(rect.width, window.innerWidth);
+  if (horizontalVisibility < 0.6) return false;
   const text = `${image.alt} ${image.currentSrc || image.src}`.toLowerCase();
   const excludes = ["logo", "логотип", "avatar", "аватар", "map", "карта", "icon", "икон", "review", "отзыв", "person", "человек"];
   if (excludes.some((word) => text.includes(word))) return false;

@@ -275,7 +275,10 @@ test.describe("lead collection forms", () => {
     await expect(action).toBeVisible();
     await action.click();
 
-    const dialog = page.getByRole("dialog", { name: "Рассчитать эту кухню" });
+    const dialog = page.getByRole("dialog", { name: "Рассчитать выбранную кухню" });
+    await expect(dialog).toContainText("Именно эта кухня будет прикреплена к заявке");
+    await expect(dialog.locator("figure img")).toBeVisible();
+    await expect(dialog.locator("figure img")).toHaveAttribute("alt", /кухн/i);
     await expect(dialog.getByRole("checkbox")).not.toBeChecked();
     await dialog.getByLabel("Имя *").fill("Клиент изображения");
     await dialog.getByLabel("Телефон").fill("+375291112255");

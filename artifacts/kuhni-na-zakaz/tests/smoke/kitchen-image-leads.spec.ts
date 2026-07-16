@@ -42,6 +42,9 @@ test.describe("расчёт по изображениям кухонь", () => {
             if (image.closest("[data-no-kitchen-lead], header, footer, [role='dialog']")) return false;
             const rect = image.getBoundingClientRect();
             if (rect.width < 220 || rect.height < 150 || rect.bottom < 0 || rect.top > window.innerHeight) return false;
+            const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+            const horizontalVisibility = visibleWidth / Math.min(rect.width, window.innerWidth);
+            if (horizontalVisibility < 0.6) return false;
             const text = `${image.alt} ${image.currentSrc || image.src}`.toLowerCase();
             if (excludes.some((word) => text.includes(word))) return false;
             return kitchenWords.some((word) => text.includes(word));
@@ -50,7 +53,7 @@ test.describe("расчёт по изображениям кухонь", () => {
         await expect.poll(
           () => page.getByRole("button", { name: /Рассчитать эту кухню:/ }).count(),
           { message: `Для ${eligibleCount} видимых изображений должны быть действия расчёта` },
-        ).toBeGreaterThanOrEqual(eligibleCount);
+        ).toBe(eligibleCount);
         matchedImages += eligibleCount;
       }
 
