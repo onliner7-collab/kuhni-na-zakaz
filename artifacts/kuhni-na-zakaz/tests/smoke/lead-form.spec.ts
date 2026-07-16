@@ -271,7 +271,7 @@ test.describe("lead collection forms", () => {
     });
 
     await gotoClientReady(page, "/");
-    await page.getByTestId("home-portfolio-photo-loop").getByRole("link").first().scrollIntoViewIfNeeded();
+    await page.getByTestId("home-portfolio-photo-loop").scrollIntoViewIfNeeded();
     const action = page.getByRole("button", { name: /Рассчитать эту кухню:/ }).first();
     await expect(action).toBeVisible();
     await action.click();
@@ -307,7 +307,7 @@ test.describe("lead collection forms", () => {
       Object.defineProperty(navigator, "share", { value: undefined, configurable: true });
     });
     await gotoClientReady(page, "/");
-    await page.getByTestId("home-portfolio-photo-loop").getByRole("link").first().scrollIntoViewIfNeeded();
+    await page.getByTestId("home-portfolio-photo-loop").scrollIntoViewIfNeeded();
 
     const shareAction = page.getByRole("button", { name: /Поделиться:/ }).first();
     await expect(shareAction).toBeVisible();

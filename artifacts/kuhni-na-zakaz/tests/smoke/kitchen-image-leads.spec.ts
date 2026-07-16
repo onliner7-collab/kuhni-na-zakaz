@@ -79,7 +79,7 @@ test.describe("расчёт по изображениям кухонь", () => {
   test("показывает компактное действие на реальной кухне главной страницы", async ({ page }) => {
     const response = await page.goto("/", { waitUntil: "domcontentloaded" });
     expect(response?.ok()).toBeTruthy();
-    await page.getByTestId("home-portfolio-photo-loop").getByRole("link").first().scrollIntoViewIfNeeded();
+    await page.getByTestId("home-portfolio-photo-loop").scrollIntoViewIfNeeded();
 
     const action = page.getByRole("button", { name: /Рассчитать эту кухню:/ }).first();
     await expect(action).toBeVisible();
