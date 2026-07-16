@@ -206,25 +206,26 @@ export function KitchenImageLeadLauncher() {
           <div
             key={target.key}
             className="pointer-events-auto fixed flex items-center gap-2"
+            data-testid="kitchen-image-action-group"
             style={{ top: target.top, left: target.left }}
           >
             <button
               type="button"
-              className="inline-flex min-h-11 max-w-[calc(100vw-4.75rem)] items-center gap-2 rounded-full bg-stone-950/92 px-3 py-2 text-xs font-bold text-white shadow-xl ring-1 ring-white/30 backdrop-blur hover:bg-stone-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 md:px-4 md:text-sm"
+              className="inline-flex min-h-10 max-w-[calc(100vw-4.5rem)] items-center gap-1.5 rounded-full bg-stone-950/92 px-2.5 py-1.5 text-[11px] font-bold text-white shadow-lg ring-1 ring-white/30 backdrop-blur hover:bg-stone-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 md:px-3 md:text-xs"
               onClick={() => openDialog(target)}
               aria-label={`Рассчитать эту кухню: ${target.alt}`}
             >
-              <Calculator className="h-4 w-4 shrink-0" aria-hidden="true" />
-              Хочу такую кухню
+              <Calculator className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+              Хочу такую
             </button>
             <button
               type="button"
-              className="grid min-h-11 min-w-11 place-items-center rounded-full bg-white/95 text-stone-950 shadow-xl ring-1 ring-stone-300 hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+              className="grid min-h-10 min-w-10 place-items-center rounded-full bg-white/95 text-stone-950 shadow-lg ring-1 ring-stone-300 hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
               onClick={() => shareKitchen(target)}
               aria-label={`Поделиться: ${target.alt}`}
               title="Поделиться"
             >
-              <Share2 className="h-4 w-4" aria-hidden="true" />
+              <Share2 className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
           </div>
         ))}
@@ -345,8 +346,8 @@ function scanKitchenImages(): ImageTarget[] {
         src,
         imageId,
         kitchenId: linkedPath || window.location.pathname,
-        top: Math.max(8, Math.min(window.innerHeight - 52, rect.bottom - 52)),
-        left: Math.max(8, Math.min(window.innerWidth - (window.innerWidth < 640 ? 238 : 285), rect.right - (window.innerWidth < 640 ? 238 : 285))),
+        top: Math.max(8, Math.min(window.innerHeight - 48, rect.top + rect.height / 2 - 20)),
+        left: Math.max(8, Math.min(window.innerWidth - (window.innerWidth < 640 ? 184 : 205), rect.right - (window.innerWidth < 640 ? 176 : 197))),
       };
     });
 }
@@ -365,17 +366,45 @@ function getTelegramShareUrl(target: ImageTarget): string {
 }
 
 function isEligibleKitchenImage(image: HTMLImageElement): boolean {
+  if (window.location.pathname.startsWith("/materials")) return false;
   if (image.closest("[data-no-kitchen-lead], header, footer, [role='dialog']")) return false;
+  if (isPrimaryPageVisual(image)) return false;
+  const alt = image.alt.trim().toLowerCase();
+  const source = (image.currentSrc || image.src).toLowerCase();
+  const kitchenWords = ["кухн", "гарнитур"];
+  const detailWords = ["материал", "фурнитур", "механизм", "петл", "направляющ", "ящик", "ручк", "образец", "текстур", "кромк", "профиль", "макро", "крупным планом", "фасад", "столешниц", "фартук", "хранен", "техник", "подсвет", "рабочая зон", "рабочая поверх", "мойк", "шкаф", "полк", "внутри", "компоновк", "детал"];
+  const detailSourceWords = ["/materials", "furnitur", "fasady-krupno", "facade-detail", "stolesh", "countertop", "yashch", "drawer", "tehnik", "podsvet", "lighting", "hranenie", "mechan", "hardware", "detail", "macro"];
+  const isVerifiedKitchenGallery = Boolean(image.closest("[data-kitchen-lead-gallery]"));
+  if (!kitchenWords.some((word) => alt.includes(word))) return false;
+  if (!isVerifiedKitchenGallery && (detailWords.some((word) => alt.includes(word)) || detailSourceWords.some((word) => source.includes(word)))) return false;
+  if (!isVisuallyDisplayed(image)) return false;
   const rect = image.getBoundingClientRect();
   if (rect.width < 220 || rect.height < 150 || rect.bottom < 0 || rect.top > window.innerHeight) return false;
   const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
   const horizontalVisibility = visibleWidth / Math.min(rect.width, window.innerWidth);
   if (horizontalVisibility < 0.6) return false;
-  const text = `${image.alt} ${image.currentSrc || image.src}`.toLowerCase();
   const excludes = ["logo", "логотип", "avatar", "аватар", "map", "карта", "icon", "икон", "review", "отзыв", "person", "человек"];
-  if (excludes.some((word) => text.includes(word))) return false;
-  const kitchenWords = ["кухн", "kitchen", "kuhn", "portfolio", "портфолио", "interior", "интерьер", "3d"];
-  return kitchenWords.some((word) => text.includes(word));
+  return !excludes.some((word) => alt.includes(word));
+}
+
+function isPrimaryPageVisual(image: HTMLImageElement): boolean {
+  const contentSection = image.closest("section, article");
+  if (contentSection?.querySelector("h1")) return true;
+
+  const source = (image.currentSrc || image.src).toLowerCase();
+  const documentTop = image.getBoundingClientRect().top + window.scrollY;
+  return source.includes("hero") && documentTop < Math.max(1200, window.innerHeight * 1.5);
+}
+
+function isVisuallyDisplayed(image: HTMLImageElement): boolean {
+  let element: HTMLElement | null = image;
+  while (element && element !== document.body) {
+    const style = window.getComputedStyle(element);
+    if (style.display === "none" || style.visibility === "hidden" || Number.parseFloat(style.opacity || "1") < 0.1) return false;
+    if (element.hidden || element.getAttribute("aria-hidden") === "true") return false;
+    element = element.parentElement;
+  }
+  return true;
 }
 
 function getImageId(src: string, index: number): string {

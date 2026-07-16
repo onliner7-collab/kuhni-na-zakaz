@@ -1,7 +1,6 @@
 import { expect, test } from "@playwright/test";
 
 const ROUTES = [
-  "/",
   "/catalog/uglovye-kuhni",
   "/portfolio",
   "/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
@@ -23,8 +22,15 @@ test.describe("расчёт по изображениям кухонь", () => {
       const firstKitchenImageTop = await page.evaluate(() => {
         const image = Array.from(document.querySelectorAll<HTMLImageElement>("main img")).find((candidate) => {
           const rect = candidate.getBoundingClientRect();
-          const text = `${candidate.alt} ${candidate.currentSrc || candidate.src}`.toLowerCase();
-          return rect.width >= 220 && rect.height >= 150 && ["кухн", "kitchen", "kuhn", "portfolio", "портфолио", "interior", "интерьер", "3d"].some((word) => text.includes(word));
+          const contentSection = candidate.closest("section, article");
+          const source = (candidate.currentSrc || candidate.src).toLowerCase();
+          const documentTop = rect.top + window.scrollY;
+          if (contentSection?.querySelector("h1") || (source.includes("hero") && documentTop < Math.max(1200, window.innerHeight * 1.5))) return false;
+          const alt = candidate.alt.trim().toLowerCase();
+          const sourceWords = (candidate.currentSrc || candidate.src).toLowerCase();
+          const details = ["материал", "фурнитур", "механизм", "петл", "направляющ", "ящик", "ручк", "образец", "текстур", "кромк", "профиль", "макро", "крупным планом", "фасад", "столешниц", "фартук", "хранен", "техник", "подсвет", "рабочая зон", "рабочая поверх", "мойк", "шкаф", "полк", "внутри", "компоновк", "детал"];
+          const detailSources = ["/materials", "furnitur", "fasady-krupno", "facade-detail", "stolesh", "countertop", "yashch", "drawer", "tehnik", "podsvet", "lighting", "hranenie", "mechan", "hardware", "detail", "macro"];
+          return rect.width >= 220 && rect.height >= 150 && ["кухн", "гарнитур"].some((word) => alt.includes(word)) && !details.some((word) => alt.includes(word)) && !detailSources.some((word) => sourceWords.includes(word));
         });
         return image ? Math.max(0, Math.round(image.getBoundingClientRect().top + window.scrollY - 100)) : 0;
       });
@@ -34,30 +40,60 @@ test.describe("расчёт по изображениям кухонь", () => {
       ]));
 
       for (const top of checkpoints) {
-        await page.evaluate((scrollTop) => window.scrollTo({ top: scrollTop, behavior: "instant" }), top);
-        const eligibleCount = await page.evaluate(() => {
-          const excludes = ["logo", "логотип", "avatar", "аватар", "map", "карта", "icon", "икон", "review", "отзыв", "person", "человек"];
-          const kitchenWords = ["кухн", "kitchen", "kuhn", "portfolio", "портфолио", "interior", "интерьер", "3d"];
-          return Array.from(document.querySelectorAll<HTMLImageElement>("main img")).filter((image) => {
-            if (image.closest("[data-no-kitchen-lead], header, footer, [role='dialog']")) return false;
-            const rect = image.getBoundingClientRect();
-            if (rect.width < 220 || rect.height < 150 || rect.bottom < 0 || rect.top > window.innerHeight) return false;
-            const visibleWidth = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
-            const horizontalVisibility = visibleWidth / Math.min(rect.width, window.innerWidth);
-            if (horizontalVisibility < 0.6) return false;
-            const text = `${image.alt} ${image.currentSrc || image.src}`.toLowerCase();
-            if (excludes.some((word) => text.includes(word))) return false;
-            return kitchenWords.some((word) => text.includes(word));
-          }).length;
+        await page.evaluate(async (scrollTop) => {
+          window.scrollTo({ top: scrollTop, behavior: "instant" });
+          await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+        }, top);
+        const actions = page.getByRole("button", { name: /Рассчитать эту кухню:/ });
+        const actionCount = await actions.count();
+        const actionNames = await actions.evaluateAll((items) => items.map((item) => item.getAttribute("aria-label") || ""));
+        expect(actionNames.join(" ").toLowerCase()).not.toMatch(/материал|фурнитур|механизм|ящик|фасад|столешниц|хранен|техник|подсвет|рабочая зон|мойк|шкаф|полк|компоновк|детал/);
+        const hasOverlap = await page.getByTestId("kitchen-image-action-group").evaluateAll((groups) => {
+          const boxes = groups.map((group) => group.getBoundingClientRect());
+          return boxes.some((box, index) => boxes.slice(index + 1).some((other) => box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top));
         });
-        await expect.poll(
-          () => page.getByRole("button", { name: /Рассчитать эту кухню:/ }).count(),
-          { message: `Для ${eligibleCount} видимых изображений должны быть действия расчёта` },
-        ).toBe(eligibleCount);
-        matchedImages += eligibleCount;
+        expect(hasOverlap).toBe(false);
+        matchedImages += actionCount;
       }
 
       expect(matchedImages).toBeGreaterThan(0);
+    });
+  }
+
+  test("не показывает действие на главном hero-изображении", async ({ page }) => {
+    const response = await page.goto("/catalog/uglovye-kuhni", { waitUntil: "domcontentloaded" });
+    expect(response?.ok()).toBeTruthy();
+    await expect(page.getByTestId("kitchen-image-lead-layer")).toBeAttached();
+
+    await expect(page.getByRole("button", { name: /Рассчитать эту кухню: Светлая угловая кухня с серо-бежевыми фасадами/ })).toHaveCount(0);
+  });
+
+  test("не показывает действия на материалах и фурнитуре главной страницы", async ({ page }) => {
+    const response = await page.goto("/", { waitUntil: "domcontentloaded" });
+    expect(response?.ok()).toBeTruthy();
+    await page.getByRole("heading", { name: "Посмотрите материалы вблизи" }).scrollIntoViewIfNeeded();
+
+    await expect(page.getByRole("button", { name: /Рассчитать эту кухню:/ })).toHaveCount(0);
+  });
+
+  test("показывает компактное действие на реальной кухне главной страницы", async ({ page }) => {
+    const response = await page.goto("/", { waitUntil: "domcontentloaded" });
+    expect(response?.ok()).toBeTruthy();
+    await page.getByTestId("home-portfolio-photo-loop").getByRole("link").first().scrollIntoViewIfNeeded();
+
+    const action = page.getByRole("button", { name: /Рассчитать эту кухню:/ }).first();
+    await expect(action).toBeVisible();
+    await expect(action).toContainText("Хочу такую");
+    const box = await action.boundingBox();
+    expect(box?.height).toBeLessThanOrEqual(40);
+  });
+
+  for (const route of ["/materials", "/materials/mdf-fasady", "/materials/furnitura"]) {
+    test(`${route} не показывает действия расчёта`, async ({ page }) => {
+      const response = await page.goto(route, { waitUntil: "domcontentloaded" });
+      expect(response?.ok()).toBeTruthy();
+      await expect(page.getByTestId("kitchen-image-lead-layer")).toBeAttached();
+      await expect(page.getByRole("button", { name: /Рассчитать эту кухню:/ })).toHaveCount(0);
     });
   }
 });

@@ -646,7 +646,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
 
   return (
     <div className="bg-[#15110d] pb-24 text-white md:pb-0">
-      <section className="relative min-h-[100svh] overflow-hidden pt-24" aria-labelledby="home-showroom-hero" data-home-nav="selector">
+      <section className="relative min-h-[100svh] overflow-hidden pt-24" aria-labelledby="home-showroom-hero" data-home-nav="selector" data-no-kitchen-lead>
         <picture className="absolute inset-0 block">
           <source media="(max-width: 767px)" srcSet={heroMobileImage} />
           <source media="(min-width: 768px)" srcSet={heroImage} />
@@ -696,7 +696,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         </div>
       </section>
 
-      <section id="selector" className="border-t border-white/10 bg-[#17120e] py-10 md:py-14 scroll-mt-24" aria-labelledby="home-picker-title" data-home-nav="selector">
+      <section id="selector" className="border-t border-white/10 bg-[#17120e] py-10 md:py-14 scroll-mt-24" aria-labelledby="home-picker-title" data-home-nav="selector" data-no-kitchen-lead>
         <div className="container-site">
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
@@ -847,6 +847,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
             className="-mx-4 flex touch-pan-x snap-x gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:px-0"
             aria-label="Фото реальных кухонь из портфолио"
             data-testid="home-portfolio-photo-loop"
+            data-kitchen-lead-gallery
           >
             {portfolioPhotos.map((project, index) => {
               const rawImage = project.image;
@@ -902,7 +903,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         </div>
       </section>
 
-      <section className="bg-[#f6f1ea] pb-10 text-[#201912] md:pb-14" aria-labelledby="home-before-after-title" data-home-nav="projects">
+      <section className="bg-[#f6f1ea] pb-10 text-[#201912] md:pb-14" aria-labelledby="home-before-after-title" data-home-nav="projects" data-no-kitchen-lead>
         <div className="container-site">
           <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div className="overflow-hidden rounded-lg border border-[#e2d7ca] bg-white">
@@ -959,7 +960,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         </div>
       </section>
 
-      <section className="bg-[#fffaf4] py-10 text-[#201912] md:py-14" aria-labelledby="home-materials-title" data-home-nav="projects">
+      <section className="bg-[#fffaf4] py-10 text-[#201912] md:py-14" aria-labelledby="home-materials-title" data-home-nav="projects" data-no-kitchen-lead>
         <div className="container-site">
           <div className="mb-6 max-w-3xl">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">Материалы глазами</p>
@@ -1033,7 +1034,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         </div>
       </section>
 
-      <section id="home-order-steps" className="bg-[#211811] py-10 md:py-14" aria-labelledby="home-order-steps-title">
+      <section id="home-order-steps" className="bg-[#211811] py-10 md:py-14" aria-labelledby="home-order-steps-title" data-no-kitchen-lead>
         <div className="container-site">
           <div className="mb-7 max-w-3xl">
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#d5b078]">Как проходит заказ</p>
