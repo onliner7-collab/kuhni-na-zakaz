@@ -28,7 +28,7 @@
 
 SQL: `artifacts/kuhni-na-zakaz/prisma/migrations/20260715170000_unified_leads_telegram/migration.sql`.
 
-Миграция аддитивная и повторяемая: создаёт sequence/поля/таблицы/индексы, нумерует только строки без `publicNumber`, переводит legacy-статусы и переносит старые `managerNote` в audit history. Скрипт синхронизации получателей связывает старое `assignedTo` с новой FK по имени.
+Миграция аддитивная и повторяемая: создаёт Prisma-совместимую sequence `Lead_publicNumber_seq`, поля/таблицы/индексы, нумерует только строки без `publicNumber`, переводит legacy-статусы и переносит старые `managerNote` в audit history. Скрипт синхронизации получателей связывает старое `assignedTo` с новой FK по имени.
 
 Локальная БД из `.env` на `127.0.0.1:5434` недоступна, поэтому SQL не применялся локально. Перед production применением обязательны backup и проверка количества/диапазона заявок; после применения — проверка constraints, sequence и recipient sync.
 

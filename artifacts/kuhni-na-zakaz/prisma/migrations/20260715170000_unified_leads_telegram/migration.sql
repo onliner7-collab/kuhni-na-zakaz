@@ -1,6 +1,6 @@
 BEGIN;
 
-CREATE SEQUENCE IF NOT EXISTS lead_public_number_seq START WITH 1001;
+CREATE SEQUENCE IF NOT EXISTS "Lead_publicNumber_seq" START WITH 1001;
 
 ALTER TABLE "Lead"
   ADD COLUMN IF NOT EXISTS "publicNumber" INTEGER,
@@ -41,14 +41,17 @@ FROM numbered
 WHERE lead.id = numbered.id;
 
 SELECT setval(
-  'lead_public_number_seq',
+  '"Lead_publicNumber_seq"',
   COALESCE((SELECT MAX("publicNumber") FROM "Lead"), 1000),
   true
 );
 
 ALTER TABLE "Lead"
   ALTER COLUMN "publicNumber" SET NOT NULL,
-  ALTER COLUMN "publicNumber" SET DEFAULT nextval('lead_public_number_seq'::regclass);
+  ALTER COLUMN "publicNumber" SET DEFAULT nextval('"Lead_publicNumber_seq"'::regclass);
+
+ALTER SEQUENCE "Lead_publicNumber_seq" OWNED BY "Lead"."publicNumber";
+DROP SEQUENCE IF EXISTS lead_public_number_seq;
 
 UPDATE "Lead"
 SET status = CASE status

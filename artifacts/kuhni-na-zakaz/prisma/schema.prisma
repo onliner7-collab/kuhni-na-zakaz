@@ -242,7 +242,7 @@ model LocationPage {
 
 model Lead {
   id                  Int                @id @default(autoincrement())
-  publicNumber        Int                @unique @default(dbgenerated("nextval('lead_public_number_seq'::regclass)"))
+  publicNumber        Int                @unique @default(autoincrement())
   name                String
   phone               String
   email               String             @default("")
