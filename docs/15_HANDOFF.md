@@ -2,7 +2,7 @@
 
 ## Current stage
 
-Вне очереди пилотных этапов локально завершена единая система заявок сайта + Telegram; production rollout ожидает обязательную ротацию токена, backup и live QA. ЭТАП 5 `/catalog/uglovye-kuhni` по-прежнему принят на production на `fd4287b5de413e1dc87f29fcf970654b32440ffc`; этап 6 `/locations/borisov` не начинался.
+Вне очереди пилотных этапов единая система заявок сайта + Telegram принята на production 2026-07-16. Runtime HEAD после deploy/fixes — `1376c9149a8e12b45710495accd8ca62930f2d02`; webhook, обе личные карточки и outbox timer проверены. ЭТАП 5 `/catalog/uglovye-kuhni` остаётся принят; этап 6 `/locations/borisov` не начинался.
 
 ## Stage 5 completed
 
@@ -163,9 +163,9 @@ Revert итоговый stage-5 commit отдельным Git revert и заде
 ## 2026-07-15 — unified leads + Telegram handoff
 
 - Полный отчёт: `docs/audit/2026-07-15-unified-leads-telegram-implementation.md`.
-- Реализация локально готова: schema/migration, `/kapi/leads`, webhook, deep links, admin/client workflows, outbox worker/timer, read-only admin fallback, form redesign, image CTA/share, privacy additions.
+- Реализация live: schema/migration, `/kapi/leads`, webhook, deep links, admin/client workflows, outbox worker/timer, read-only admin fallback, form redesign, image CTA/share, privacy additions.
 - Проверки: typecheck, Prisma validate, unit 3/3, image desktop 7/7 + mobile 7/7, формы desktop/mobile 22/22, production build 124 pages.
-- Локальный PostgreSQL `127.0.0.1:5434` недоступен; миграцию проверять на production только после backup.
-- Секрет из чата не используется и отсутствует в repo. До deploy владелец обязан отозвать его в BotFather и установить новый токен только в server environment.
-- После ротации: backup → deploy `work` → configure webhook → live lead from website → deep-link `/start` → cards to Dmitry/Alexander → reply/status/note/outbox checks.
-- До выполнения этого gate не заявлять Telegram как `LIVE` и не переводить компьютер в сон.
+- Production backup: `/var/backups/kuhni-na-zakaz/pre-unified-leads-20260716-040212.dump`, SHA-256 `7989747fa7b934cbf219bd2647041cf2c885ba4c2e54a0147fd81278f4431334`.
+- Старый токен временно используется по прямому указанию владельца, находится только в server env `640 root:kuhni` и отсутствует в repo. Будущая ротация всё ещё рекомендуется.
+- Live smoke: №1005 website form, №1006 deep link, 4/4 admin cards sent; после QA обе заявки помечены `spam`, ссылка аннулирована, 4/4 card updates sent. Webhook pending 0/no error; production Playwright page coverage 14/14 и form/share 4/4.
+- Компьютер не переводить в сон: пользователь отменил это действие 2026-07-16.

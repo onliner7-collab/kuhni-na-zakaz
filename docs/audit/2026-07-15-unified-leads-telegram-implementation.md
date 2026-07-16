@@ -1,7 +1,7 @@
 # Единая система заявок сайта и Telegram — отчёт реализации
 
 Дата: 2026-07-15
-Статус: локальная реализация и QA завершены; production rollout ожидает ротацию скомпрометированного токена.
+Статус: production rollout и live QA завершены 2026-07-16. По прямому решению владельца временно используется прежний токен; его последующая ротация остаётся обязательной рекомендацией.
 
 ## Что реализовано
 
@@ -30,7 +30,7 @@ SQL: `artifacts/kuhni-na-zakaz/prisma/migrations/20260715170000_unified_leads_te
 
 Миграция аддитивная и повторяемая: создаёт Prisma-совместимую sequence `Lead_publicNumber_seq`, поля/таблицы/индексы, нумерует только строки без `publicNumber`, переводит legacy-статусы и переносит старые `managerNote` в audit history. Скрипт синхронизации получателей связывает старое `assignedTo` с новой FK по имени.
 
-Локальная БД из `.env` на `127.0.0.1:5434` недоступна, поэтому SQL не применялся локально. Перед production применением обязательны backup и проверка количества/диапазона заявок; после применения — проверка constraints, sequence и recipient sync.
+Локальная БД из `.env` на `127.0.0.1:5434` недоступна, поэтому SQL не применялся локально. На production перед миграцией создан и проверен backup `/var/backups/kuhni-na-zakaz/pre-unified-leads-20260716-040212.dump`, SHA-256 `7989747fa7b934cbf219bd2647041cf2c885ba4c2e54a0147fd81278f4431334`.
 
 ## Переменные окружения
 
@@ -59,17 +59,22 @@ NEXT_PUBLIC_SITE_URL=https://kuhni.minsk.by
 
 ## Rollout и rollback
 
-1. Владелец отзывает токен из чата в BotFather и устанавливает новый только в server environment.
-2. Сделать PostgreSQL backup.
-3. Deploy ветки `work`; deploy script применяет SQL, `db push`, recipient sync и включает outbox timer.
-4. Настроить webhook новым токеном, проверить `getWebhookInfo`, создать тестовую заявку сайта и deep-link заявку.
-5. Проверить обе личные карточки, ответ клиенту, смену статуса, outbox и read-only `/admin/leads`.
-
-Rollback кода выполняется отдельным `git revert` и повторным deploy. Миграция аддитивная; удалять новые поля/таблицы автоматически нельзя. При необходимости восстановление данных выполняется из pre-deploy backup отдельным согласованным действием.
+Production rollout выполнен: backup → migration → Prisma sync → recipient sync → build → service restart → webhook → live leads → outbox/timer QA. Rollback кода выполняется отдельным `git revert` и повторным deploy. Миграция аддитивная; удалять новые поля/таблицы автоматически нельзя, а восстановление данных выполняется только из pre-deploy backup отдельным согласованным действием.
 
 ## Осознанные ограничения
 
 - Загрузка файлов отсутствует по решению владельца.
 - WhatsApp и Viber не показываются до появления реальных каналов.
 - Юридический текст использует бренд «КухниBY» и не является внешним юридическим заключением.
-- Полная live-проверка Telegram невозможна до ротации токена; старый токен намеренно не использовался.
+- Временное использование старого токена подтверждено владельцем. Токен перенесён из legacy DB-настройки в `/etc/kuhni-na-zakaz.env` без вывода значения; права env исправлены с `777` на `640 root:kuhni`.
+
+## Production evidence 2026-07-16
+
+- Application deploy: `082b211`; systemd outbox fix: `1376c91`; production build — 173 pages.
+- Server HEAD после runtime fix: `1376c9149a8e12b45710495accd8ca62930f2d02`; приложение active.
+- Мигрированы 4 legacy Lead: публичные номера 1001–1004, дублей нет, `done` → `completed`.
+- Webhook: `https://kuhni.minsk.by/kapi/telegram/webhook`, pending `0`, last error отсутствует; без secret `403`, с secret `200`.
+- Live smoke leads: №1005 обычная и №1006 с deep link; 4/4 карточки доставлены Дмитрию и Александру, после QA обе помечены `spam`, deep link аннулирован, ещё 4/4 обновления карточек доставлены.
+- Outbox timer active/enabled; worker после исправления Corepack cache завершается `success`.
+- HTTP `200`: `/`, `/portfolio`, `/privacy-policy`, `/personal-data`, `/robots.txt`, `/sitemap.xml`.
+- Production Playwright: page coverage 14/14 с отдельным повтором двух маршрутов после замены `networkidle` на `domcontentloaded`; form/share 4/4.

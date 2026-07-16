@@ -13,7 +13,7 @@ const ROUTES = [
 test.describe("расчёт по изображениям кухонь", () => {
   for (const route of ROUTES) {
     test(`${route} показывает действие на видимых изображениях кухонь`, async ({ page }) => {
-      const response = await page.goto(route, { waitUntil: "networkidle" });
+      const response = await page.goto(route, { waitUntil: "domcontentloaded" });
       expect(response?.ok()).toBeTruthy();
       await expect(page.getByTestId("kitchen-image-lead-layer")).toBeAttached();
 
