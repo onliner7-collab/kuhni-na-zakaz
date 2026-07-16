@@ -133,3 +133,26 @@
 | `lib/leads/telegram-outbox.ts` | server/worker | IMPLEMENTED_LOCAL | DB retry queue, card upsert/edit, attempt log |
 | `lib/leads/telegram-cards.ts` | server | IMPLEMENTED_LOCAL | Russian cards, contact/image/page actions, owner/manager controls |
 | `/admin/leads` | admin fallback | IMPLEMENTED_LOCAL | Read-only operational fallback |
+
+## 2026-07-16 — Product Architecture target components
+
+Компоненты ниже спроектированы, но production-код не создан и существующие shared components не изменены.
+
+| Component | Target path | Purpose | Boundary | Used on | Reusable | Risk | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `GlobalProductDock` | адаптация `components/layout/MobileBottomNav.tsx` | постоянные `Выбрать / Цены / Наши работы / Оставить заявку` | Client shared | все public UI routes кроме исключений | Да | all-route regression, overlap, active mapping | DESIGNED_PRODUCT |
+| `ProductMenuPanel` | `components/layout` | карточное меню «Выбрать кухню» | Server links + small Client disclosure | Header mobile/desktop | Да | hydration, focus, menu density | DESIGNED_PRODUCT |
+| `MenuCard` | `components/navigation` | изображение + заголовок + объяснение + crawlable link | Server/default | product menu и hubs | Да | media payload, duplicate cards | DESIGNED_PRODUCT |
+| `PageActionRail` | `components/navigation` | локальные anchors вместо page-specific fixed Dock | Server/default; optional Client scroll state | category/style/material/location/pilots | Да | duplicate navigation, target drift | DESIGNED_PRODUCT |
+| `ShortLeadFormSheet` | `components/leads` | короткий первый шаг заявки поверх действующей Lead-модели | Client wrapper + existing server API | global Dock/header/page CTA | Да | focus, validation, Telegram context | DESIGNED_PRODUCT |
+| `ProvenanceProjectList` | `components/portfolio` | допускает в «Наши работы» только подтверждённые cases | Server/data gate | `/portfolio`, home proof blocks, related projects | Да | missing provenance field, false proof | DESIGNED_PRODUCT |
+| `PageTransitionLinks` | `components/navigation` | обязательные полезные выходы route family | Server/default | public pages | Да | anchor spam, boilerplate | DESIGNED_PRODUCT |
+
+### Решение по существующим компонентам
+
+- `Header`: `ADAPT`, не переписывать полностью; сохранить phone/CTA/focus/reduced-motion contracts.
+- `MobileBottomNav`: `ADAPT`; текущую config-driven механику заменить global role mapping только в Product этапе 5.
+- `ContextDock`: не монтировать как второй fixed Dock; pattern переиспользовать только для нефиксированного `PageActionRail` после анализа.
+- `FloatingSocialButtons`: `KEEP` без изменения движения и поведения.
+- `ContactForm` и Lead/Telegram pipeline: `KEEP` как backend/extended form; короткий первый шаг проектируется wrapper-ом без потери действующих данных.
+- Pilot components: `KEEP/ADAPT` только после page-specific diff-аудита; Product этап 5 не переписывает pilot pages.

@@ -2,7 +2,64 @@
 
 ## Current stage
 
-Вне очереди пилотных этапов единая система заявок сайта + Telegram принята на production 2026-07-16. Runtime HEAD после deploy/fixes — `1376c9149a8e12b45710495accd8ca62930f2d02`; webhook, обе личные карточки и outbox timer проверены. ЭТАП 5 `/catalog/uglovye-kuhni` остаётся принят; этап 6 `/locations/borisov` не начинался.
+Product Architecture этапа 4.5 завершена как docs-only работа на ветке `work`. Созданы `docs/product/00_*`–`11_*`, обновлены master docs, Page/Component Registry, Decision Log и этот Handoff. Production-код, UI, routes, metadata, sitemap, robots, forms, Prisma и media не менялись; deploy сайта не требуется и не выполняется.
+
+Production runtime остаётся на проверенном baseline единой Lead/Telegram системы: commit после deploy/fixes `1376c9149a8e12b45710495accd8ca62930f2d02`; более поздние docs commits не означают runtime UI change. Исторический stage 5 `/catalog/uglovye-kuhni` остаётся live и принят.
+
+## Product Architecture 4.5 completed
+
+- Пользовательский путь: `форма → стиль → назначение → материалы и механизмы → наши работы → цена → заявка`.
+- «Выбрать кухню» — карточная группа меню, не новый URL.
+- `/catalog` получает пользовательское имя «Идеи кухонь» и допускает концепты/визуализации.
+- `/portfolio` получает имя «Наши работы» и допускает только подтверждённые реальные объекты.
+- Всё без подтверждённого происхождения считается идеей/визуализацией.
+- Глобальный mobile Dock: `Выбрать / Цены / Наши работы / Оставить заявку`, один порядок на всех public UI routes.
+- Dock включается на `/calculator` и legal. Исключения: `/admin`, `/kapi`, `/robots.txt`, `/sitemap.xml`, `/thanks`, API/route handlers и технические непользовательские поверхности.
+- Page-specific действия переводятся в нефиксированный `PageActionRail`; второй fixed Dock запрещён.
+- `FloatingSocialButtons` сохраняется без изменения поведения.
+- Первый шаг заявки: имя, телефон или способ связи, submit; дополнительные поля необязательны. Действующая Lead/Telegram/outbox модель сохраняется.
+
+## Verified current mismatches
+
+- Главная выводит запрещённую подпись «SEO-страница категории».
+- Главная называет смешанный набор «Реальные кухни, которые уже установлены», хотя внутри есть 3D-визуализации.
+- `/portfolio` добавляет `GENERATED_MINSK_PORTFOLIO_CASES`; текущая DB/path-классификация не является достаточным provenance gate.
+- Текущий `MobileBottomNav` меняет все четыре действия по маршруту и не соответствует новому постоянному global contract.
+- `/styles` и `/scenarios` hubs не закрывают полную контекстную цепочку выбора.
+
+Эти расхождения записаны как backlog. Stage 4.5 не исправляет production UI.
+
+## Stage 4.5 verification
+
+- Создано 12 обязательных файлов `docs/product/00_*`–`11_*`.
+- В commit этапа подготовлены 22 файла только из `AGENT.md` и `docs/**`; две появившиеся параллельно незастейдженные правки `artifacts/kuhni-na-zakaz/components/leads/KitchenImageLeadLauncher.tsx` и `artifacts/kuhni-na-zakaz/tests/smoke/kitchen-image-leads.spec.ts` не относятся к этапу, не изменялись в рамках Product Architecture и исключены из commit.
+- UTF-8 strict decode прошёл для всех изменённых файлов; BOM и подозрительная mojibake не найдены.
+- Локальные Markdown-ссылки и `git diff --check` прошли без ошибок.
+- `pnpm.cmd run sitemap:check` прошёл: 112 URL, с предусмотренным static fallback при недоступности dynamic URLs.
+- Typecheck/build не запускались, потому что этап является строго docs-only.
+
+## Stage 4.5 files
+
+Созданы:
+
+- `docs/product/00_PRODUCT_PRINCIPLES.md`
+- `docs/product/01_USER_JOURNEYS.md`
+- `docs/product/02_NAVIGATION_ARCHITECTURE.md`
+- `docs/product/03_GLOBAL_DOCK_SPEC.md`
+- `docs/product/04_MENU_CARD_SYSTEM.md`
+- `docs/product/05_PAGE_TRANSITION_MAP.md`
+- `docs/product/06_SCREEN_RULES.md`
+- `docs/product/07_UI_LANGUAGE_RULES.md`
+- `docs/product/08_CONTENT_AND_MEDIA_RULES.md`
+- `docs/product/09_PAGE_UNIQUENESS_MATRIX.md`
+- `docs/product/10_ROLLOUT_PLAN.md`
+- `docs/product/11_STAGE_REPORT.md`
+
+Обновлены: `AGENT.md`, `docs/00_MASTER_PLAN.md`, `docs/01_PROJECT_VISION.md`, `docs/05_INFORMATION_ARCHITECTURE.md`, `docs/06_DESIGN_SYSTEM.md`, `docs/07_UX_RULES.md`, `docs/11_PAGE_REGISTRY.md`, `docs/12_COMPONENT_REGISTRY.md`, `docs/14_DECISION_LOG.md`, `docs/15_HANDOFF.md`.
+
+## Numbering rule
+
+Исторически названный stage 5 Angular уже реализован. Следующий этап всегда называть `Product этап 5 — глобальная навигация`. Product этап 6 выполняет diff-аудит live Angular по новой архитектуре и не переписывает принятые блоки с нуля.
 
 ## Stage 5 completed
 
@@ -153,12 +210,12 @@ Revert итоговый stage-5 commit отдельным Git revert и заде
 
 ## Next required stage
 
-После успешной production-приёмки: ЭТАП 6 — пилот `/locations/borisov`. Использовать `ProductionJourney`; не копировать spatial Angular flow.
+`Product этап 5 — глобальная навигация`: Header/menu, постоянный global Dock, короткий LeadFormSheet и перенос page-specific fixed actions в нефиксированный PageActionRail. Shared scope сначала проходит usage/regression audit.
 
 ## Exact starting instruction for next chat
 
 ```text
-Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md и /docs/pilots/09_ANGULAR_IMPLEMENTATION_REPORT.md. Проверь production commit и stage-5 live evidence. Выполни ЭТАП 6 только для /locations/borisov, используя ProductionJourney и временную модель из docs/pilots/02_BORISOV_SPEC.md. Не копируй spatial hero, CornerStorageExplorer, sequence, порядок блоков или material selector страницы угловых кухонь. Сохрани URL/canonical/forms/schema parity, используй только lifecycle-approved media и проверь 360/390/412/768/1440, reduced motion, intent loading, sitemap 112 URL и production после deploy.
+Сначала прочитай /AGENT.md, /docs/00_MASTER_PLAN.md, /docs/15_HANDOFF.md и все /docs/product/*.md. Проверь git status, ветку work, текущий HEAD/origin и фактические Header.tsx, PublicChrome.tsx, MobileBottomNav.tsx, FloatingSocialButtons.tsx, lib/mobile-dock.config.js, ContactForm и Telegram Lead pipeline. Выполни PRODUCT ЭТАП 5 — ГЛОБАЛЬНАЯ НАВИГАЦИЯ. Сделай меню по пользовательской логике и постоянный мобильный Dock строго в порядке «Выбрать / Цены / Наши работы / Оставить заявку» на всех публичных UI-страницах, включая /calculator и legal; исключи /admin, /kapi, /robots.txt, /sitemap.xml, /thanks, API/route handlers и технические поверхности. Текущие page-specific Dock actions перенеси в нефиксированный PageActionRail, не создавай второй fixed Dock. «Оставить заявку» должна за одно действие открывать короткий LeadFormSheet с именем, телефоном/способом связи и submit, сохраняя действующую /kapi/leads и Telegram/outbox логику. FloatingSocialButtons не удаляй и не меняй его движение без отдельного решения. Не меняй URL, metadata, sitemap, robots, Prisma и страницы вне доказанного shared scope. Проверь 360/390/412/768/1440, safe-area, keyboard/focus/Escape, reduced motion, overlap, active states, server links, sitemap, typecheck/build и production после отдельного разрешённого deploy. Обнови registries, Decision Log и Handoff.
 ```
 ## 2026-07-15 — unified leads + Telegram handoff
 

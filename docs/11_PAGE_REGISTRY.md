@@ -143,3 +143,31 @@
 - `/admin/leads` — read-only fallback; управление заявками выполняется в личных чатах Telegram владельца и менеджера.
 - `/privacy-policy` и `/personal-data` дополнены условиями Telegram-привязки и обработки сообщений.
 - Runtime routes `/kapi/leads` и `/kapi/telegram/webhook` переведены на единую модель Lead/outbox; статус до production rollout — `IMPLEMENTED_LOCAL`, live не заявлен.
+
+## 2026-07-16 — Product Architecture overlay
+
+URL и поисковые роли не изменены. Для пользовательской навигации утверждены дополнительные product roles:
+
+| URL family | Пользовательское название | Product role | Обязательный следующий переход | Stage 4.5 status |
+| --- | --- | --- | --- | --- |
+| `/catalog`, `/catalog/*` | Идеи кухонь / конкретная форма | выбрать то, что можно заказать | стиль, назначение, материалы, работы, цена, заявка | DESIGNED_PRODUCT |
+| `/styles`, `/styles/*` | Стили кухонь | выбрать внешний вид | форма, материалы, работы, расчёт | DESIGNED_PRODUCT |
+| `/scenarios`, `/scenarios/*` | Кухня для вашей задачи | выбрать по бытовому сценарию | категория, материал, работа/идея, цена | DESIGNED_PRODUCT |
+| `/materials`, `/materials/*` | Из чего состоит кухня | выбрать материал/механизм | сравнение, кухни, работы, расчёт | DESIGNED_PRODUCT |
+| `/portfolio`, `/portfolio/*` | Наши работы | доказать реальный опыт | форма, стиль, материал, локация, похожий расчёт | PROVENANCE_REVIEW_REQUIRED |
+| `/prices`, `/calculator` | Цена и расчёт | понять бюджет | категория, материал, проект, заявка | DESIGNED_PRODUCT |
+| `/locations`, `/locations/*` | Где работаем | объяснить локальный путь | тип, замер, доставка, работа/идея, расчёт | DESIGNED_PRODUCT |
+| `/blog`, `/blog/*` | Полезные статьи | ответить на вопрос | категория, материал, работа/идея, расчёт | DESIGNED_PRODUCT |
+| trust/service/legal | О компании и условия | доверие/правила | работы, цены, контакты, заявка | DESIGNED_PRODUCT |
+
+Product Architecture не повышает route до `IMPLEMENTED` или `VERIFIED`: production UI не менялся.
+
+### Подтверждённые расхождения code/live
+
+- `/portfolio` фактически добавляет `GENERATED_MINSK_PORTFOLIO_CASES`; generated/unknown records запрещено считать «Нашими работами» до provenance gate.
+- Главная подписывает смешанный набор как «Реальные кухни, которые уже установлены», хотя в нём видны 3D-визуализации.
+- Главная выводит пользовательскую ссылку «SEO-страница категории».
+- `/styles` и `/scenarios` hubs имеют слабые контекстные выходы в полную цепочку выбора.
+- Текущий mobile Dock меняет четыре пункта по route. Целевой contract: `Выбрать / Цены / Наши работы / Оставить заявку` в постоянном порядке.
+
+Полная карта: `docs/product/05_PAGE_TRANSITION_MAP.md` и `docs/product/09_PAGE_UNIQUENESS_MATRIX.md`.
