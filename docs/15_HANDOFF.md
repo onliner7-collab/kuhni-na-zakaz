@@ -226,3 +226,6 @@ Revert итоговый stage-5 commit отдельным Git revert и заде
 - Старый токен временно используется по прямому указанию владельца, находится только в server env `640 root:kuhni` и отсутствует в repo. Будущая ротация всё ещё рекомендуется.
 - Live smoke: №1005 website form, №1006 deep link, обе admin cards delivered; реальные callbacks `lead_taken` и `manager_assigned` обработаны. После QA обе заявки помечены `spam`, ссылка аннулирована, card updates delivered. Webhook pending 0; сохранённый historical timeout относится к restart и опровергается последующими callback-аудитами. Production Playwright page coverage 14/14 и form/share 4/4.
 - Компьютер не переводить в сон: пользователь отменил это действие 2026-07-16.
+## Product этап 5 — текущий handoff
+
+Глобальный Dock реализован в существующем `MobileBottomNav`; добавлен `LeadFormSheet` поверх существующего `ContactForm`. Dock виден на публичных страницах до 767 px, исключения и служебные маршруты не получают PublicChrome. Typecheck, production build и responsive smoke-проверка пройдены. Следующий шаг — commit, push, отдельный deploy и production smoke; PageActionRail оставлен без подключения.

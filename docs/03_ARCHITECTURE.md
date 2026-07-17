@@ -1,5 +1,9 @@
 # Architecture
 
+## Этап 5
+
+Shared chrome сохраняет серверный HTML-контент страниц; client-логика ограничена Dock и LeadFormSheet.
+
 ## Фактическая модель
 
 pnpm monorepo содержит библиотеки в `lib/*`, вспомогательные artifacts и основное Next-приложение в `artifacts/kuhni-na-zakaz`. Публичные и admin routes находятся в App Router; API использует префикс `/kapi`. Данные приходят из Prisma/PostgreSQL с локальными fallback-модулями для публичных страниц и sitemap.

@@ -1,5 +1,9 @@
 # Component Registry
 
+## Этап 5 — глобальная навигация
+
+`MobileBottomNav` — четыре стабильных пункта до 767 px; `LeadFormSheet` — компактная заявка на базе `ContactForm`.
+
 Автоматически инвентаризированы 91 фактических TSX-компонентов в `components/`. Client определяется по directive, usages — по прямому alias import. Косвенные, dynamic и re-export usages требуют ручной проверки; отсутствие прямого импорта не даёт права удалить файл.
 
 | Component                       | Path                                                                                      | Purpose                                        | Server or Client | Used on                                                                                                                                                                                                                                                                                                                       | Reusable                       | Known risks                              | Status   |

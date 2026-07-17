@@ -71,6 +71,7 @@ interface ContactFormProps {
   defaultComment?: string;
   answersEventName?: string;
   defaultAnswers?: Record<string, unknown>;
+  compact?: boolean;
 }
 
 interface TrackingFields {
@@ -254,6 +255,7 @@ export function ContactForm({
   defaultComment = "",
   answersEventName,
   defaultAnswers,
+  compact = false,
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
@@ -564,7 +566,7 @@ export function ContactForm({
         {errors.phone && <p id={`${phoneId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.phone.message}</p>}
       </div>
 
-      <div>
+      {!compact && <div>
         <Label htmlFor={emailId}>Email</Label>
         <Input
           id={emailId}
@@ -578,9 +580,9 @@ export function ContactForm({
           data-testid="form-email"
         />
         {errors.email && <p id={`${emailId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.email.message}</p>}
-      </div>
+      </div>}
 
-      <div>
+      {!compact && <div>
         <Label htmlFor={preferredContactId}>Как удобнее связаться</Label>
         <select
           id={preferredContactId}
@@ -592,7 +594,7 @@ export function ContactForm({
           <option value="telegram">Telegram</option>
           <option value="email">Email</option>
         </select>
-      </div>
+      </div>}
 
       {showCity && (
         <div>
@@ -638,7 +640,7 @@ export function ContactForm({
         </div>
       )}
 
-      <div>
+      {!compact && <div>
         <Label htmlFor={dimensionsId}>Примерные размеры</Label>
         <Input
           id={dimensionsId}
@@ -647,9 +649,9 @@ export function ContactForm({
           className="mt-1 min-h-11"
           data-testid="form-dimensions"
         />
-      </div>
+      </div>}
 
-      <div>
+      {!compact && <div>
         <Label htmlFor={commentId}>Комментарий</Label>
         <Textarea
           id={commentId}
@@ -661,7 +663,7 @@ export function ContactForm({
           data-testid="form-comment"
         />
         {errors.comment && <p id={`${commentId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.comment.message}</p>}
-      </div>
+      </div>}
 
       <div>
         <label className="flex items-start gap-3 rounded-md border border-border bg-muted/20 p-3 text-xs leading-5 text-muted-foreground">

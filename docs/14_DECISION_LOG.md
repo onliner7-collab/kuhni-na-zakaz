@@ -207,3 +207,9 @@
 - **Scope gate:** разрешены только `AGENT.md`, перечисленные master/registry/log/handoff docs и `docs/product/*`.
 - **Rollback:** отдельный Git revert документационного commit; runtime/data rollback не требуется.
 - **Статус:** принято по прямому указанию пользователя.
+## 2026-07-17 — Product этап 5: глобальная навигация
+
+- Реализован единый mobile Dock на существующем `MobileBottomNav` в порядке «Выбрать / Цены / Наши работы / Оставить заявку».
+- Короткая заявка использует существующий `/kapi/leads` и обязательные имя, телефон и согласие; backend и Telegram/outbox не менялись.
+- Breakpoint Dock: до 767 px включительно; с 768 px используется desktop chrome.
+- PageActionRail не подключался к пилотным страницам по прямому решению владельца.

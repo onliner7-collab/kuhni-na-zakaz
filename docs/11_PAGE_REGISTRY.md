@@ -1,5 +1,9 @@
 # Page Registry
 
+## Этап 5 — shared-навигация
+
+Публичные маршруты получают общий Dock через `PublicChrome`; внутреннее содержимое страниц не изменялось.
+
 Источник: фактический `app/sitemap.ts` и согласованный `public/sitemap-static.xml`. На 2026-07-13: 112 canonical URL. Поля с TBD требуют отдельного проектирования; URL не удаляются и не перенаправляются этим реестром.
 
 | URL                                                               | Page type          | Parent       | Primary intent             | Primary query cluster                | Secondary cluster                     | Region                               | User question                                   | Future unique interaction | Primary CTA            | Related pages                                                                     | Current status | Redesign status | SEO risk                                                                 | Notes                                                                      |

@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 import {
   AnalyticsProvider,
@@ -16,15 +15,12 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 export function PublicChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-  const isAdmin = pathname.startsWith("/admin");
+  const isExcluded = ["/admin", "/kapi", "/thanks", "/robots.txt", "/sitemap.xml", "/component-library-preview", "/__component-library"].some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
   const isKitchenScrollPrototype = pathname === "/kitchen-scroll-3d";
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || isAdmin || isKitchenScrollPrototype) {
+  if (isExcluded || isKitchenScrollPrototype) {
     return <>{children}</>;
   }
 
