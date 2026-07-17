@@ -844,7 +844,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           </div>
           <div
             ref={projectTrackRef}
-            className="-mx-4 flex touch-pan-x snap-x gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:px-0"
+            className="-mx-4 flex touch-auto snap-x gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:px-0"
             aria-label="Фото реальных кухонь из портфолио"
             data-testid="home-portfolio-photo-loop"
             data-kitchen-lead-gallery
