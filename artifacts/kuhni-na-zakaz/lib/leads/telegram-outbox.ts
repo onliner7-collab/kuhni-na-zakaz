@@ -87,7 +87,7 @@ async function deliverOutboxItem(candidate: {
         chatId: existing.chatId,
         messageId: existing.telegramMessageId,
         text: payload.text,
-        replyMarkup: payload.replyMarkup,
+        replyMarkup: payload.removeReplyMarkup ? { inline_keyboard: [] } : payload.replyMarkup,
       });
       return;
     } catch (error) {
@@ -126,6 +126,7 @@ function parsePayload(value: unknown): TelegramOutboxPayload {
     ...(payload.replyMarkup && typeof payload.replyMarkup === "object"
       ? { replyMarkup: payload.replyMarkup as TelegramInlineKeyboard }
       : {}),
+    ...(payload.removeReplyMarkup === true ? { removeReplyMarkup: true } : {}),
   };
 }
 

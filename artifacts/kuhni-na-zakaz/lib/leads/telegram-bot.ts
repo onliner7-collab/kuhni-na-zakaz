@@ -9,7 +9,12 @@ import {
   type LeadStatus,
 } from "@/lib/leads/constants";
 import { hashTelegramLinkToken } from "@/lib/leads/telegram-link";
-import { enqueueLeadCardSync, enqueueTelegramText } from "@/lib/leads/telegram-cards";
+import {
+  enqueueLeadCardSync,
+  enqueueTelegramText,
+  formatPhoneContact,
+  formatTelegramContact,
+} from "@/lib/leads/telegram-cards";
 import {
   answerTelegramCallback,
   escapeTelegramHtml,
@@ -257,7 +262,7 @@ async function handleClientText(input: {
 }
 
 async function saveClientMessage(
-  lead: { id: number; publicNumber: number; name: string },
+  lead: { id: number; publicNumber: number; name: string; phone: string },
   input: { telegramUserId: string; chatId: string; username: string; text: string; telegramMessageId?: number },
 ) {
   await prisma.leadMessage.create({
@@ -279,6 +284,12 @@ async function saveClientMessage(
     "",
     `<b>Заявка №${lead.publicNumber}</b>`,
     `<b>Клиент:</b> ${escapeTelegramHtml(lead.name)}`,
+    `<b>Телефон:</b> ${formatPhoneContact(lead.phone)}`,
+    `<b>Telegram:</b> ${formatTelegramContact({
+      telegramConnected: true,
+      telegramUsername: input.username,
+      telegramUserId: input.telegramUserId,
+    })}`,
     "",
     escapeTelegramHtml(input.text),
   ].join("\n");
@@ -288,7 +299,6 @@ async function saveClientMessage(
     leadId: lead.id,
     text,
     kind: "client_message",
-    replyMarkup: { inline_keyboard: [[{ text: "✍️ Ответить", callback_data: `l:${lead.id}:reply` }]] },
   })));
   await safeSend(input.chatId, `Сообщение добавлено к заявке №${lead.publicNumber}.`);
 }
@@ -299,34 +309,8 @@ async function handleAdminText(
   telegramMessageId?: number,
 ) {
   const telegramUserId = admin.telegramUserId || admin.chatId;
-  const session = await prisma.telegramSession.findUnique({ where: { telegramUserId } });
-  if (!session || session.expiresAt <= new Date() || !session.leadId) {
-    await safeSend(admin.chatId, adminWelcome(admin.label));
-    return;
-  }
-
-  const lead = await prisma.lead.findUnique({ where: { id: session.leadId } });
-  if (!lead) {
-    await prisma.telegramSession.deleteMany({ where: { telegramUserId } });
-    await safeSend(admin.chatId, "Заявка не найдена.");
-    return;
-  }
-
-  if (session.mode === "reply") {
-    if (!lead.telegramConnected || !lead.telegramChatId) {
-      await safeSend(admin.chatId, "К этой заявке Telegram клиента не подключён.");
-      return;
-    }
-    await sendManagerReply({ lead, admin, text, telegramMessageId });
-  } else if (session.mode === "note") {
-    await prisma.leadNote.create({ data: { leadId: lead.id, managerId: admin.id, text } });
-    await prisma.leadAuditLog.create({
-      data: { leadId: lead.id, actorType: "manager", actorId: telegramUserId, action: "note_added" },
-    });
-    await enqueueLeadCardSync(lead.id);
-    await safeSend(admin.chatId, `Заметка добавлена к заявке №${lead.publicNumber}.`);
-  }
   await prisma.telegramSession.deleteMany({ where: { telegramUserId } });
+  await safeSend(admin.chatId, adminWelcome(admin.label));
 }
 
 async function handleCallback(callback: TelegramCallbackQuery) {
@@ -346,6 +330,10 @@ async function handleCallback(callback: TelegramCallbackQuery) {
     const admin = await findAdmin(telegramUserId, chatId);
     if (!admin) {
       await safeAnswerCallback(callbackId, "Нет доступа");
+      return;
+    }
+    if (data.startsWith("l:")) {
+      await safeAnswerCallback(callbackId, "Управление заявками отключено");
       return;
     }
     await handleAdminCallback(admin, data);
@@ -632,7 +620,11 @@ function clientWelcome() {
 }
 
 function adminWelcome(name: string) {
-  return `Здравствуйте, ${escapeTelegramHtml(name || "менеджер")}. Управляйте заявками кнопками под их карточками.`;
+  return [
+    `Здравствуйте, ${escapeTelegramHtml(name || "менеджер")}.`,
+    "",
+    "Новые заявки приходят готовыми сообщениями с телефоном, ссылкой на выбранную кухню и прямым контактом клиента в Telegram.",
+  ].join("\n");
 }
 
 function isUniqueConstraintError(error: unknown) {

@@ -2,9 +2,7 @@ import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import {
   LEAD_SOURCE_LABELS,
-  LEAD_STATUS_LABELS,
   type LeadSourceType,
-  type LeadStatus,
 } from "@/lib/leads/constants";
 import { escapeTelegramHtml, type TelegramInlineKeyboard } from "@/lib/telegram-api";
 
@@ -12,6 +10,7 @@ export interface TelegramOutboxPayload {
   action: "upsert_card" | "send_text";
   text: string;
   replyMarkup?: TelegramInlineKeyboard;
+  removeReplyMarkup?: boolean;
 }
 
 export async function enqueueLeadCardSync(leadId: number): Promise<void> {
@@ -33,7 +32,7 @@ export async function enqueueLeadCardSync(leadId: number): Promise<void> {
       payload: {
         action: "upsert_card",
         text: formatLeadCard(lead),
-        replyMarkup: buildLeadKeyboard(lead, recipient.role),
+        removeReplyMarkup: true,
       } as unknown as Prisma.InputJsonValue,
     })),
   });
@@ -71,7 +70,6 @@ async function getLeadCardShape() {
 export function formatLeadCard(lead: NonNullable<LeadCardData>): string {
   const sourceLabel =
     LEAD_SOURCE_LABELS[lead.sourceType as LeadSourceType] || lead.sourceType || "Форма сайта";
-  const statusLabel = LEAD_STATUS_LABELS[lead.status as LeadStatus] || lead.status;
   const date = new Intl.DateTimeFormat("ru-RU", {
     timeZone: "Europe/Minsk",
     day: "2-digit",
@@ -84,52 +82,60 @@ export function formatLeadCard(lead: NonNullable<LeadCardData>): string {
   const lines = [
     `<b>🟢 ЗАЯВКА №${lead.publicNumber}</b>`,
     "",
-    `<b>Статус:</b> ${escapeTelegramHtml(statusLabel)}`,
     `<b>Источник:</b> ${escapeTelegramHtml(sourceLabel)}`,
-    `<b>Telegram подключён:</b> ${lead.telegramConnected ? "да" : "нет"}`,
-    `<b>Ответ через бота:</b> ${lead.telegramConnected ? "доступен" : "недоступен"}`,
     "",
     `<b>Клиент:</b> ${escapeTelegramHtml(lead.name || "не указано")}`,
-    `<b>Телефон:</b> ${escapeTelegramHtml(lead.phone || "не указан")}`,
-    `<b>Email:</b> ${escapeTelegramHtml(lead.email || "не указан")}`,
+    `<b>Телефон:</b> ${formatPhoneContact(lead.phone)}`,
+    `<b>Telegram:</b> ${formatTelegramContact(lead)}`,
     `<b>Город:</b> ${escapeTelegramHtml(lead.city || "не указан")}`,
   ];
 
+  if (lead.email) lines.push(`<b>Email:</b> ${escapeTelegramHtml(lead.email)}`);
   if (lead.kitchenType) lines.push(`<b>Кухня:</b> ${escapeTelegramHtml(lead.kitchenType)}`);
   if (lead.dimensions) lines.push(`<b>Размеры:</b> ${escapeTelegramHtml(lead.dimensions)}`);
-  if (lead.kitchenId) lines.push(`<b>ID кухни:</b> ${escapeTelegramHtml(lead.kitchenId)}`);
-  if (lead.imageId) lines.push(`<b>Ракурс:</b> ${escapeTelegramHtml(lead.imageId)}`);
-  if (lead.imageUrl) lines.push(`<b>Изображение:</b> <a href="${escapeTelegramHtml(lead.imageUrl)}">открыть ссылку</a>`);
   lines.push("", `<b>Комментарий:</b> ${escapeTelegramHtml(lead.comment || "не указан")}`);
-  if (lead.sourcePage) lines.push("", `<b>Страница:</b> ${escapeTelegramHtml(lead.sourcePage)}`);
-  lines.push(
-    "",
-    `<b>Менеджер:</b> ${escapeTelegramHtml(lead.assignedManager?.label || "не назначен")}`,
-    `<b>Создана:</b> ${escapeTelegramHtml(date)}`,
-  );
+  const sourcePageUrl = normalizePublicUrl(lead.sourcePage);
+  const imageUrl = normalizePublicUrl(lead.imageUrl);
+  if (sourcePageUrl || imageUrl) lines.push("");
+  if (sourcePageUrl) lines.push(`<b>Страница:</b> <a href="${escapeTelegramHtml(sourcePageUrl)}">открыть ссылку</a>`);
+  if (imageUrl) lines.push(`<b>Выбранная кухня:</b> <a href="${escapeTelegramHtml(imageUrl)}">открыть изображение</a>`);
+  lines.push("", `<b>Создана:</b> ${escapeTelegramHtml(date)}`);
   return lines.join("\n");
 }
 
-function buildLeadKeyboard(
-  lead: NonNullable<LeadCardData>,
-  recipientRole: string,
-): TelegramInlineKeyboard {
-  const id = lead.id;
-  const rows: TelegramInlineKeyboard["inline_keyboard"] = [];
-  if (!lead.assignedManagerId) rows.push([{ text: "✅ Взять в работу", callback_data: `l:${id}:take` }]);
-  if (lead.telegramConnected) rows.push([{ text: "✍️ Ответить", callback_data: `l:${id}:reply` }]);
-  if (lead.phone || lead.email) rows.push([{ text: "📞 Контакты клиента", callback_data: `l:${id}:contacts` }]);
-  rows.push([
-    { text: "🔄 Статус", callback_data: `l:${id}:statuses` },
-    { text: "📝 Заметка", callback_data: `l:${id}:note` },
-  ]);
-  if (recipientRole === "owner") rows.push([{ text: "👤 Назначить менеджера", callback_data: `l:${id}:assign` }]);
-  rows.push([{ text: "📋 История", callback_data: `l:${id}:history` }]);
-  if (lead.sourcePage.startsWith("https://") || lead.sourcePage.startsWith("http://")) {
-    rows.push([{ text: "🔗 Открыть страницу", url: lead.sourcePage }]);
+export function formatTelegramContact(input: {
+  telegramConnected: boolean;
+  telegramUsername?: string | null;
+  telegramUserId?: string | null;
+}): string {
+  if (!input.telegramConnected) return "не подключён";
+  const username = String(input.telegramUsername || "").replace(/^@/, "").trim();
+  if (/^[A-Za-z0-9_]{5,32}$/.test(username)) {
+    return `<a href="https://t.me/${username}">@${escapeTelegramHtml(username)} — написать в ЛС</a>`;
   }
-  if (lead.imageUrl.startsWith("https://") || lead.imageUrl.startsWith("http://")) {
-    rows.push([{ text: "🖼 Открыть изображение", url: lead.imageUrl }]);
+  const userId = String(input.telegramUserId || "").trim();
+  if (/^\d{5,20}$/.test(userId)) {
+    return `<a href="tg://user?id=${userId}">написать клиенту в ЛС</a>`;
   }
-  return { inline_keyboard: rows };
+  return "подключён, но прямая ссылка недоступна";
+}
+
+export function formatPhoneContact(phone: string): string {
+  const label = escapeTelegramHtml(phone || "не указан");
+  const normalized = String(phone || "").replace(/[^+\d]/g, "");
+  if (!/^\+\d{7,15}$/.test(normalized)) return label;
+  return `<a href="tel:${normalized}">${label}</a>`;
+}
+
+function normalizePublicUrl(value: string): string {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  try {
+    const url = new URL(raw, "https://kuhni.minsk.by");
+    if (url.protocol !== "https:" && url.protocol !== "http:") return "";
+    if (url.hostname !== "kuhni.minsk.by" && url.hostname !== "www.kuhni.minsk.by") return "";
+    return url.href;
+  } catch {
+    return "";
+  }
 }
