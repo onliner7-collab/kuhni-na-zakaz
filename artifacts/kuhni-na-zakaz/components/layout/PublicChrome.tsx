@@ -10,7 +10,6 @@ import { FloatingSocialButtons } from "@/components/layout/FloatingSocialButtons
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
-import { KitchenImageLeadLauncher } from "@/components/leads/KitchenImageLeadLauncher";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 export function PublicChrome({ children }: { children: React.ReactNode }) {
@@ -41,7 +40,6 @@ export function PublicChrome({ children }: { children: React.ReactNode }) {
         phone={CONTACT_DEFAULTS.phoneDisplay}
         phoneHref={`tel:${CONTACT_DEFAULTS.phone}`}
       />
-      <KitchenImageLeadLauncher />
     </>
   );
 }
