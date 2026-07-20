@@ -36,7 +36,7 @@ export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
   return (
     <ExploreContextProvider sourceRoute="/catalog/uglovye-kuhni">
       <JsonLd data={jsonLd} />
-      <main className="overflow-x-clip bg-[#f7f5f0] pb-28 text-stone-950 md:pb-16">
+      <div className="overflow-x-clip bg-[#f7f5f0] pb-28 text-stone-950 md:pb-16">
         <div className="container-site pt-4 md:pt-8">
           <nav className="mb-4 flex min-h-11 items-center gap-2 text-sm text-stone-600" aria-label="Хлебные крошки">
             <Link href="/" className="inline-flex min-h-11 items-center hover:text-stone-950">Главная</Link><span aria-hidden="true">/</span><Link href="/catalog" className="inline-flex min-h-11 items-center hover:text-stone-950">Каталог</Link><span aria-hidden="true">/</span><span>Угловые кухни</span>
@@ -89,10 +89,10 @@ export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
 
           <section className="mt-16 grid gap-6 md:mt-24 md:grid-cols-2" aria-labelledby="projects-title">
             <div className="rounded-[2rem] border border-stone-200 bg-white p-6 md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.16em] text-amber-800">Реальные работы</p>
-              <h2 id="projects-title" className="mt-2 text-2xl font-black">Реализованные угловые кухни</h2>
-              <p className="mt-3 leading-7 text-stone-600">Отдельно показываем страницу подтверждённого проекта, не смешивая её с AI-концептами этой страницы.</p>
-              <Link href="/portfolio/uglovaya-kuhnya-sovremennaya-001" className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-full border border-stone-300 px-5 py-3 font-black">Открыть реализованный проект <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+              <p className="text-sm font-black uppercase tracking-[0.16em] text-amber-800">Проверка доказательств</p>
+              <h2 id="projects-title" className="mt-2 text-2xl font-black">Как проверить реальные работы</h2>
+              <p className="mt-3 leading-7 text-stone-600">Откройте общий раздел работ и проверяйте только карточки с подтверждённым происхождением. AI-концепты этой страницы не считаются выполненными кухнями.</p>
+              <Link href="/portfolio" className="mt-5 inline-flex min-h-12 items-center gap-2 rounded-full border border-stone-300 px-5 py-3 font-black">Проверить раздел работ <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
             </div>
             <div className="rounded-[2rem] border border-stone-200 bg-stone-950 p-6 text-white md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.16em] text-amber-300">Варианты для обсуждения</p>
@@ -122,7 +122,7 @@ export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
             </div>
           </section>
         </div>
-      </main>
+      </div>
     </ExploreContextProvider>
   );
 }

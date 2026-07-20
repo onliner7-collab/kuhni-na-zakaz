@@ -1,0 +1,78 @@
+{
+  "batchId": "layout-pages-2026-07-20",
+  "status": "records_ready",
+  "routes": [
+    {
+      "route": "/catalog/pryamye-kuhni",
+      "seriesId": "layout-line-2026-07-20",
+      "userQuestion": "Когда одной линии достаточно и как расставить зоны?",
+      "interactionRole": "line-layout-check",
+      "viewRole": "layout_logic",
+      "provenanceStatus": "ai_concept",
+      "media": [
+        { "mediaId": "line-overview", "seriesId": "layout-line-2026-07-20", "viewRole": "overview", "interactionRole": "line-layout-check", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация прямой кухни вдоль одной стены", "captionRu": "Идея планировки, не фотография реализованного объекта", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/pryamye-kuhni"], "forbiddenClaims": ["реальный проект", "выполненная кухня"], "lifecycleStatus": "connected" },
+        { "mediaId": "line-workzone", "seriesId": "layout-line-2026-07-20", "viewRole": "layout_logic", "interactionRole": "line-layout-check", "masterPath": null, "webpPath": "/uploads/kitchens/catalog/pryamaya-kuhnya-3d-proekt-rakurs-1-generated-20260517.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация рабочей зоны прямой кухни", "captionRu": "Идея последовательности зон", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/pryamye-kuhni"], "forbiddenClaims": ["реальный проект", "выполненная кухня"], "lifecycleStatus": "connected" }
+      ]
+    },
+    {
+      "route": "/catalog/p-obraznye-kuhni",
+      "seriesId": "layout-u-2026-07-20",
+      "userQuestion": "Хватит ли места для трёх сторон и безопасных проходов?",
+      "interactionRole": "clearance-comparison",
+      "viewRole": "layout_logic",
+      "provenanceStatus": "ai_concept",
+      "media": [
+        { "mediaId": "u-overview", "seriesId": "layout-u-2026-07-20", "viewRole": "overview", "interactionRole": "clearance-comparison", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация П-образной кухни с тремя рабочими сторонами", "captionRu": "Идея планировки, не фотография реализованного объекта", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/p-obraznye-kuhni"], "forbiddenClaims": ["реальный проект", "подтверждённый проход"], "lifecycleStatus": "connected" },
+        { "mediaId": "u-clearance", "seriesId": "layout-u-2026-07-20", "viewRole": "layout_logic", "interactionRole": "clearance-comparison", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya-rakurs-1.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация прохода между сторонами П-образной кухни", "captionRu": "Проверка прохода по сценарию", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/p-obraznye-kuhni"], "forbiddenClaims": ["реальный проект", "подтверждённый проход"], "lifecycleStatus": "connected" }
+      ]
+    },
+    {
+      "route": "/catalog/kuhni-s-ostrovom",
+      "seriesId": "layout-island-2026-07-20",
+      "userQuestion": "Поместится ли остров и какую функцию ему дать?",
+      "interactionRole": "island-clearance-planner",
+      "viewRole": "layout_logic",
+      "provenanceStatus": "ai_concept",
+      "media": [
+        { "mediaId": "island-overview", "seriesId": "layout-island-2026-07-20", "viewRole": "overview", "interactionRole": "island-clearance-planner", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация кухни с островом в просторном помещении", "captionRu": "Идея планировки, не фотография реализованного объекта", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/kuhni-s-ostrovom"], "forbiddenClaims": ["реальный проект", "подтверждённая совместимость"], "lifecycleStatus": "connected" },
+        { "mediaId": "island-zone", "seriesId": "layout-island-2026-07-20", "viewRole": "layout_logic", "interactionRole": "island-clearance-planner", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom-rakurs-1.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация рабочей зоны и прохода вокруг острова", "captionRu": "Сценарий проходов и функций", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/kuhni-s-ostrovom"], "forbiddenClaims": ["реальный проект", "подтверждённая совместимость"], "lifecycleStatus": "connected" }
+      ]
+    },
+    {
+      "route": "/catalog/malenkie-kuhni",
+      "seriesId": "layout-small-2026-07-20",
+      "userQuestion": "Как сохранить рабочую зону и хранение в маленькой кухне?",
+      "interactionRole": "small-space-trade-off-explorer",
+      "viewRole": "layout_logic",
+      "provenanceStatus": "ai_concept",
+      "media": [
+        { "mediaId": "small-overview", "seriesId": "layout-small-2026-07-20", "viewRole": "overview", "interactionRole": "small-space-trade-off-explorer", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация компактной кухни с рабочей зоной", "captionRu": "Идея компактной планировки, не фотография реализованного объекта", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/malenkie-kuhni"], "forbiddenClaims": ["реальный проект", "гарантированная вместимость"], "lifecycleStatus": "connected" },
+        { "mediaId": "small-storage", "seriesId": "layout-small-2026-07-20", "viewRole": "layout_logic", "interactionRole": "small-space-trade-off-explorer", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya-rakurs-1.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация хранения в маленькой кухне", "captionRu": "Компромисс между хранением и проходом", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/malenkie-kuhni"], "forbiddenClaims": ["реальный проект", "гарантированная вместимость"], "lifecycleStatus": "connected" }
+      ]
+    },
+    {
+      "route": "/catalog/kuhni-do-potolka",
+      "seriesId": "layout-ceiling-2026-07-20",
+      "userQuestion": "Стоит ли поднимать шкафы до потолка и как ими пользоваться?",
+      "interactionRole": "vertical-storage-explorer",
+      "viewRole": "storage_zone",
+      "provenanceStatus": "ai_concept",
+      "media": [
+        { "mediaId": "ceiling-overview", "seriesId": "layout-ceiling-2026-07-20", "viewRole": "overview", "interactionRole": "vertical-storage-explorer", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация кухни с фасадами до потолка", "captionRu": "Идея вертикального хранения, не фотография реализованного объекта", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/kuhni-do-potolka"], "forbiddenClaims": ["реальный проект", "подтверждённый объём"], "lifecycleStatus": "connected" },
+        { "mediaId": "ceiling-storage", "seriesId": "layout-ceiling-2026-07-20", "viewRole": "storage_zone", "interactionRole": "vertical-storage-explorer", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka-rakurs-1.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация верхних секций кухни до потолка", "captionRu": "Разделение ежедневного и сезонного доступа", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/kuhni-do-potolka"], "forbiddenClaims": ["реальный проект", "подтверждённый объём"], "lifecycleStatus": "connected" }
+      ]
+    },
+    {
+      "route": "/catalog/kuhni-bez-ruchek",
+      "seriesId": "layout-opening-2026-07-20",
+      "userQuestion": "Какой способ открывания без ручек подходит и какие у него ограничения?",
+      "interactionRole": "opening-mechanism-comparison",
+      "viewRole": "hardware_action",
+      "provenanceStatus": "ai_concept",
+      "media": [
+        { "mediaId": "opening-overview", "seriesId": "layout-opening-2026-07-20", "viewRole": "overview", "interactionRole": "opening-mechanism-comparison", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация кухни без ручек с гладкими фасадами", "captionRu": "Идея фасадов без ручек, не фотография реализованного объекта", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/kuhni-bez-ruchek"], "forbiddenClaims": ["реальный проект", "подтверждённая совместимость механизма"], "lifecycleStatus": "connected" },
+        { "mediaId": "opening-detail", "seriesId": "layout-opening-2026-07-20", "viewRole": "hardware_action", "interactionRole": "opening-mechanism-comparison", "masterPath": null, "webpPath": "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek-rakurs-1.webp", "avifPath": null, "width": 1200, "height": 800, "altRu": "Визуализация зоны открывания фасадов без ручек", "captionRu": "Сравнение сценариев открывания", "rightsStatus": "project_asset_existing", "realProjectId": null, "generationBriefId": null, "allowedRoutes": ["/catalog/kuhni-bez-ruchek"], "forbiddenClaims": ["реальный проект", "подтверждённая совместимость механизма"], "lifecycleStatus": "connected" }
+      ]
+    }
+  ]
+}

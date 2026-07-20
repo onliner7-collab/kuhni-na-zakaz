@@ -1,6 +1,6 @@
 import Link from "@/components/navigation/Link";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { ContextSummary, ExploreContextProvider } from "@/components/exploration";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import type { RegionalLocationData } from "@/data/locations";
 import { JsonLd, type JsonLdObject } from "@/lib/schema-org";
 import { ArrowRight, CheckCircle2, CircleAlert } from "lucide-react";
@@ -19,7 +19,7 @@ const links = [
 export function BorisovPilotPage({ location, cases, hasLocalCases, jsonLd }: Props) {
   return <ExploreContextProvider sourceRoute="/locations/borisov">
     <JsonLd data={jsonLd} />
-    <main className="overflow-x-clip bg-[#f5f4ef] pb-28 text-stone-950 md:pb-16">
+    <div className="overflow-x-clip bg-[#f5f4ef] pb-28 text-stone-950 md:pb-16">
       <section className="border-b border-stone-200 bg-emerald-950 text-white">
         <div className="container-site py-12 md:py-20">
           <nav className="flex flex-wrap items-center gap-2 text-sm text-emerald-100/80" aria-label="Хлебные крошки"><Link href="/" className="min-h-11 content-center">Главная</Link><span aria-hidden="true">/</span><Link href="/locations" className="min-h-11 content-center">Города</Link><span aria-hidden="true">/</span><span>Борисов</span></nav>
@@ -44,8 +44,10 @@ export function BorisovPilotPage({ location, cases, hasLocalCases, jsonLd }: Pro
 
         <section className="mt-16" aria-labelledby="next-title"><h2 id="next-title" className="text-3xl font-bold">Следующий шаг</h2><p className="mt-3 max-w-2xl leading-7 text-stone-600">Выберите ближайший вопрос или передайте исходные данные специалисту. Точная цена и сроки появляются только после проверки комплектации и помещения.</p><div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{links.map((link) => <Link key={link.href} href={link.href} className="rounded-2xl border border-stone-200 bg-white p-5 font-bold hover:border-emerald-700 focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-700">{link.label}<ArrowRight className="mt-4 h-4 w-4 text-emerald-800" aria-hidden /></Link>)}</div></section>
 
+        <section className="mt-8" aria-labelledby="borisov-transition-title"><h2 id="borisov-transition-title" className="sr-only">Переходы после изучения процесса</h2><RelatedExplorationRail route="/locations/borisov" /></section>
+
         <section id="measure" className="mt-16 scroll-mt-24 grid overflow-hidden rounded-[2rem] bg-emerald-950 text-white lg:grid-cols-[.8fr_1.2fr]" aria-labelledby="measure-title"><div className="p-6 md:p-10"><p className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-300">Заявка</p><h2 id="measure-title" className="mt-2 text-3xl font-bold md:text-4xl">Передайте вопрос и известные параметры</h2><p className="mt-4 leading-7 text-emerald-50/75">Укажите Борисов как город заявки. Адрес, формат выезда, стоимость и сроки уточняются после получения исходных данных.</p><div className="mt-6"><ContextSummary /></div></div><div className="bg-white p-5 text-stone-950 md:p-8"><ContactForm source="location-borisov-process" sourcePage="/locations/borisov" sourceType="location-region" city="Борисов" cityKey="borisov" submitLabel="Передать вопрос" answersEventName="borisov-journey-answers" showHasMeasurements={false} /></div></section>
       </div>
-    </main>
+    </div>
   </ExploreContextProvider>;
 }

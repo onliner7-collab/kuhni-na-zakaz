@@ -16,6 +16,7 @@ import {
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
 import { AngularKitchenPage } from "@/components/catalog/angular-kitchens/AngularKitchenPage";
+import { isLayoutBatchSlug, LayoutBatchPage } from "@/components/catalog/layout-batch/LayoutBatchPage";
 import { isPublicContentSlug } from "@/lib/public-content";
 
 type SeoLink = {
@@ -626,6 +627,15 @@ export default async function CatalogItemPage({ params }: Props) {
         priceFrom={data.priceFrom}
         jsonLd={[jsonLdBreadcrumb, jsonLdProduct, jsonLdImage]}
       />
+    );
+  }
+
+  if (isLayoutBatchSlug(slug)) {
+    return (
+      <>
+        <JsonLd data={jsonLdFaq ? [jsonLdBreadcrumb, jsonLdProduct, jsonLdFaq] : [jsonLdBreadcrumb, jsonLdProduct]} />
+        <LayoutBatchPage slug={slug} />
+      </>
     );
   }
 

@@ -214,6 +214,10 @@ Product Architecture не повышает route до `IMPLEMENTED` или `VERI
 
 Защищённый baseline: `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura`. Их page status и собственные блоки не меняются текущим rollout; integration допускается только через shared shell, ссылки, lead context, analytics и QA.
 
+## 2026-07-20 — чат 10, layout batch
+
+`IMPLEMENTED_VERIFIED_LOCAL`: `/catalog/pryamye-kuhni`, `/catalog/p-obraznye-kuhni`, `/catalog/kuhni-s-ostrovom`, `/catalog/malenkie-kuhni`, `/catalog/kuhni-do-potolka`, `/catalog/kuhni-bez-ruchek`. Каждый route получил собственный userQuestion, ограничения, interaction role, ExploreContext patch, 2–4 crawlable продолжения и Lead context. Canonical URL и sitemap сохранены; facet URL не добавлены. Подробная матрица и QA: `docs/audit/2026-07-20-chat-10-layout-batch.md`.
+
 Media slots, `ExploreContext`, Next Best Action и переходы между архетипами определены в `design/11-media-transition-production-map.md`. Каждая незакреплённая implementation-строка должна получить source/target/reason/fallback и media questions до генерации изображений.
 - Для каждой route family назначены целевые archetype, primary question, primary interaction и evidence gate.
 - Детализация каждого URL находится в `design/07-route-matrix.md`; отсутствие Search Console/SERP подтверждения помечается как рабочая гипотеза.

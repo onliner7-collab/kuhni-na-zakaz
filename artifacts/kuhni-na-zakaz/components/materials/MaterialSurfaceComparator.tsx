@@ -17,7 +17,9 @@ export function MaterialSurfaceComparator() {
   function toggle(id: (typeof surfaces)[number]["id"]) {
     setSelected((current) => {
       const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id].slice(-2);
-      updateContext({ materials: ["МДФ", ...next.map((item) => surfaces.find((surface) => surface.id === item)?.label || item)] }, "surface_compare");
+      const selectedSurfaces = next.map((item) => surfaces.find((surface) => surface.id === item)?.label || item);
+      updateContext({ materials: ["МДФ", ...selectedSurfaces] }, "surface_compare");
+      window.dispatchEvent(new CustomEvent("mdf-surface-answers", { detail: { material: "МДФ", selectedSurfaces, evidenceStatus: "requires-sample-confirmation" } }));
       return next;
     });
   }
@@ -32,12 +34,13 @@ export function MaterialSurfaceComparator() {
           const isSelected = selected.includes(surface.id);
           return <button key={surface.id} type="button" aria-pressed={isSelected} onClick={() => toggle(surface.id)} className={`min-h-44 rounded-2xl border p-4 text-left focus-visible:outline focus-visible:ring-2 focus-visible:ring-violet-700 ${isSelected ? "border-violet-800 bg-violet-50" : "border-stone-200 bg-white"}`}>
             <img src={`/media/pilots/mdf-fasady/webp/${surface.image}.webp`} alt={surface.alt} width="1200" height="800" loading="lazy" decoding="async" className="aspect-[3/2] h-auto w-full rounded-xl object-cover" />
+            <span className="mt-2 block text-xs text-stone-500">AI-концепт поверхности</span>
             <span className="mt-4 flex items-center gap-2 font-bold">{isSelected && <Check className="h-4 w-4" aria-hidden />}{surface.label}</span>
             <span className="mt-2 block text-sm leading-6 text-stone-600">{surface.note}</span>
           </button>;
         })}
       </div>
-      <div className="mt-5 rounded-2xl border border-stone-200 bg-white p-5" aria-live="polite"><div className="flex flex-wrap items-center justify-between gap-3"><p className="font-bold">В сравнении: {selected.length ? selected.map((id) => surfaces.find((surface) => surface.id === id)?.label).join(" и ") : "ничего не выбрано"}</p><button type="button" onClick={() => setSelected([])} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-stone-300 px-4 text-sm font-bold focus-visible:outline focus-visible:ring-2 focus-visible:ring-violet-700"><RotateCcw className="h-4 w-4" aria-hidden />Очистить</button></div><p className="mt-2 text-sm leading-6 text-stone-600">Сравнение фиксирует только визуальное направление. Оно не подтверждает уход, долговечность, цену или совместимость.</p></div>
+      <div className="mt-5 rounded-2xl border border-stone-200 bg-white p-5" aria-live="polite"><div className="flex flex-wrap items-center justify-between gap-3"><p className="font-bold">В сравнении: {selected.length ? selected.map((id) => surfaces.find((surface) => surface.id === id)?.label).join(" и ") : "ничего не выбрано"}</p><button type="button" onClick={() => { setSelected([]); updateContext({ materials: ["МДФ"] }, "surface_compare_clear"); window.dispatchEvent(new CustomEvent("mdf-surface-answers", { detail: { material: "МДФ", selectedSurfaces: [], evidenceStatus: "requires-sample-confirmation" } })); }} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-stone-300 px-4 text-sm font-bold focus-visible:outline focus-visible:ring-2 focus-visible:ring-violet-700"><RotateCcw className="h-4 w-4" aria-hidden />Очистить</button></div><p className="mt-2 text-sm leading-6 text-stone-600">Сравнение фиксирует только визуальное направление. Оно не подтверждает уход, долговечность, цену или совместимость.</p></div>
     </section>
   );
 }

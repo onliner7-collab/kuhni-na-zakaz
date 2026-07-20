@@ -293,3 +293,12 @@
 - **Media:** 11 masters созданы только встроенным Codex imagegen; UI использует WebP 11–49 КБ, русские alt/captions и AI disclosure. Изображения не считаются real project proof.
 - **Protected routes:** page-specific content `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura` не изменяется; furnitura получает только входящий crawlable deep-link с MDF.
 - **Rollback:** отдельный `git revert <pilot-commit>`, deploy standard script, smoke двух пилотов и пяти protected URL; Prisma/data rollback не требуется.
+
+## 2026-07-20 — чат 10: gate пилотов и layout batch
+
+- **Pilot gate:** PASS после устранения только блокирующих дефектов provenance, Transition Registry, Lead context и landmarks. Единый global Dock сохранён как нормативный fixed navigation; уникальность обеспечивают page-specific вопросы, интерактивы и server-rendered transitions.
+- **Batch:** шесть существующих canonical URL получают одну route-family реализацию, но шесть разных interaction roles и decision models. Angular pilot не копируется.
+- **Index policy:** query/facet URL не создаются; canonical и sitemap остаются неизменными.
+- **Evidence:** все подключённые batch visuals маркируются как `ai_concept`; ссылки на portfolio не доказывают реальность проекта сами по себе.
+- **Protected boundary:** page-specific runtime пяти protected URL не меняется.
+- **Scale gate:** следующий route-family чат разрешён только после production smoke текущего commit; массовое автоматическое масштабирование запрещено.

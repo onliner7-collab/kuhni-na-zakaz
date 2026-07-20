@@ -146,3 +146,10 @@ Production map новых визуальных серий, media slots, generati
 - `MF-SURFACE-2026-07-20`: 4 AI/technical surface illustrations, masters в `prepared-images/generated-sources/pilots/mdf-fasady`, WebP delivery 11–46 КБ. Hero eager, comparator/cutaway lazy.
 - Manifests: `content/media/pilots/borisov/implementation-series-2026-07-20.json` и `content/media/pilots/mdf-fasady/implementation-series-2026-07-20.json`.
 - Все captions и alt — русские. AI media не используется как локальный проект, подтверждение свойств, цены, бренда или совместимости.
+
+## 2026-07-20 — чат 10 media batch и pilot remediation
+
+- Batch registry: `content/media/layout-batch-2026-07-20.json`; 6 route-specific series, 12 intent-mounted WebP concept frames с русскими alt/caption и запретом real-project claims.
+- Borisov/MDF delivery дополнен 17 AVIF-файлами рядом с WebP; masters сохранены в ранее зарегистрированных project paths.
+- MDF получил видимый AI-disclosure для hero, comparator и cutaway. Angular больше не связывает concept portfolio case с утверждением «реализованный проект».
+- Lifecycle существующих legacy gallery assets не повышался до `verified_real`; media batch остаётся `ai_concept`.

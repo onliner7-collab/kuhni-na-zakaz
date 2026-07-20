@@ -44,7 +44,7 @@ export function BorisovJourney() {
         <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Этапы заказа кухни">
           {steps.map((step, index) => (
             <li key={step.id}>
-              <button type="button" role="tab" aria-selected={index === active} aria-controls={`borisov-step-${step.id}`} onClick={() => setActive(index)} className={`min-h-12 w-full rounded-xl border px-4 py-3 text-left text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 motion-reduce:transition-none ${index === active ? "border-emerald-900 bg-emerald-950 text-white" : "border-stone-200 bg-white hover:border-stone-400"}`}>
+              <button type="button" aria-pressed={index === active} onClick={() => setActive(index)} className={`min-h-12 w-full rounded-xl border px-4 py-3 text-left text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 motion-reduce:transition-none ${index === active ? "border-emerald-900 bg-emerald-950 text-white" : "border-stone-200 bg-white hover:border-stone-400"}`}>
                 <span className="mr-2 opacity-70">0{index + 1}</span>{step.label}
                 <span className={`mt-2 block text-xs font-normal leading-5 ${index === active ? "text-emerald-50/80" : "text-stone-600"}`}>{step.text}</span>
               </button>

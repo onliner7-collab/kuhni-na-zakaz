@@ -389,3 +389,13 @@ QA: `pnpm.cmd run typecheck` PASS; `pnpm.cmd run test:leads` PASS; foundation un
 - SEO: self canonical, один H1, BreadcrumbList only; Borisov не наследует общий FAQ/Service/Offer/address schema.
 - Lead: Borisov city/context and MDF material context передаются через существующий ContactForm answers contract; персональные данные не сохраняются в ExploreContext.
 - Rollback: `git revert <pilot-commit>`, push `work`, standard deploy, smoke пилотов + protected baseline; DB/schema/import rollback не нужен.
+
+## 2026-07-20 — Handoff для чата 10
+
+Совместная приёмка трёх пилотов и batch шести layout URL завершена локальным `PASS`. Блокирующие пилотные дефекты исправлены адресно: один main landmark; честный Angular provenance; Transition Registry rails на Borisov/MDF; выбранные MDF-поверхности в Lead answers; видимый AI-disclosure; корректная semantics кнопок этапов Borisov. Global Dock намеренно остался единым по master-ТЗ.
+
+Batch реализована только для `/catalog/pryamye-kuhni`, `/catalog/p-obraznye-kuhni`, `/catalog/kuhni-s-ostrovom`, `/catalog/malenkie-kuhni`, `/catalog/kuhni-do-potolka`, `/catalog/kuhni-bez-ruchek`. Data/media/transition records были созданы до runtime-кода. У страниц шесть разных вопросов и interaction roles; server HTML содержит ограничения, disclosure, ссылки и Lead fallback. Facet URL не созданы.
+
+Перед handoff выполнены typecheck, sitemap 112/112, production build и Browser/Playwright QA 360/390/412/768/1440. Локальная Prisma DB недоступна, поэтому production smoke должен подтвердить production data path. После успешного deploy записать commit, production HTTP/canonical/H1/images/interaction smoke и точную команду rollback в этот раздел.
+
+Следующий разрешённый шаг после production PASS — чат 11, только style family из `design/13-chat-execution-prompts.md`. Не расширять route scope, не менять protected URL и не создавать facet URL.
