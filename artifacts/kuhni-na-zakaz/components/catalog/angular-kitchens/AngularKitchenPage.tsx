@@ -62,7 +62,7 @@ export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
 
           <section className="mt-10" aria-labelledby="related-exploration-title">
             <h2 id="related-exploration-title" className="sr-only">Связанные шаги выбора</h2>
-            <RelatedExplorationRail route="/catalog/uglovye-kuhni" state="DECISION" />
+            <RelatedExplorationRail route="/catalog/uglovye-kuhni" />
           </section>
 
           <section id="catalog-prices" className="mt-16 scroll-mt-24 md:mt-24" aria-labelledby="price-title">
