@@ -398,4 +398,6 @@ Batch реализована только для `/catalog/pryamye-kuhni`, `/cat
 
 Перед handoff выполнены typecheck, sitemap 112/112, production build и Browser/Playwright QA 360/390/412/768/1440. Локальная Prisma DB недоступна, поэтому production smoke должен подтвердить production data path. После успешного deploy записать commit, production HTTP/canonical/H1/images/interaction smoke и точную команду rollback в этот раздел.
 
+Production deploy завершён для runtime commit `ed4dde9be4a27226e1ecbb0d42d99b01c92080e9`: `deploy/scripts/update-production.sh work`, production Prisma schema in sync, Next build PASS, service `kuhni-na-zakaz` active. Smoke `https://kuhni.minsk.by` для трёх пилотов, шести batch URL и пяти protected baseline: все HTTP 200, self-canonical, H1=1, overflow=0, broken images=0, missing alt=0; batch имеет шесть уникальных interaction roles и минимум три registry transition links. Rollback: `git revert ed4dde9`, push `work`, повторить стандартный deploy и тот же smoke. Этот follow-up меняет только Handoff: `NO RUNTIME DEPLOY — production artifact unchanged after verified ed4dde9`.
+
 Следующий разрешённый шаг после production PASS — чат 11, только style family из `design/13-chat-execution-prompts.md`. Не расширять route scope, не менять protected URL и не создавать facet URL.

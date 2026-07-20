@@ -43,3 +43,7 @@ Records созданы до runtime-кода: `content/media/layout-batch-2026-0
 Page-specific файлы `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura` не менялись. Разрешены только исходящие ссылки из batch и regression QA.
 
 Rollback: `git revert <chat-10-commit>`, push `work`, стандартный `deploy/scripts/update-production.sh work`, затем smoke девяти целевых и пяти protected URL. Prisma/schema/data migration отсутствует.
+
+## Production
+
+Runtime commit `ed4dde9be4a27226e1ecbb0d42d99b01c92080e9` развёрнут стандартным deploy script. Production Prisma schema in sync, Next build PASS, systemd service active. Smoke всех 14 URL при 390 px: HTTP 200, self-canonical, H1=1, overflow/broken images/missing alt=0; pilot/batch Transition Registry links присутствуют. Rollback: `git revert ed4dde9`, push `work`, стандартный deploy и повторный smoke.
