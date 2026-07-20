@@ -288,6 +288,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const regionalLocation = getRegionalLocation(city);
   if (regionalLocation) {
     const path = `/locations/${city}`;
+    const isBorisov = city === "borisov";
+    const title = isBorisov
+      ? "Как проходит заказ кухни для Борисова"
+      : regionalLocation.title;
+    const description = isBorisov
+      ? "Этапы обсуждения заказа кухни для Борисова, условия, которые нужно подтвердить, честный fallback локальных проектов и заявка с контекстом."
+      : regionalLocation.description;
     const regionalImage =
       city === "minsk"
         ? [
@@ -298,25 +305,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
               alt: "Светлая кухня на заказ в Минске",
             },
           ]
-        : city === "borisov"
-          ? [{
-              url: "/media/pilots/borisov/webp/borisov-hero-idea-to-kitchen-portrait.webp",
-              width: 900,
-              height: 1200,
-              alt: "Путь от идеи до готовой кухни в Борисове",
-            }]
-          : undefined;
+        : undefined;
 
     return {
-      title: regionalLocation.title,
-      description: regionalLocation.description,
+      title,
+      description,
       alternates: { canonical: path },
-      openGraph: buildOpenGraph(path, regionalLocation.title, regionalLocation.description, {
+      openGraph: buildOpenGraph(path, title, description, {
         images: regionalImage,
       }),
       twitter: buildTwitterMetadata(
-        regionalLocation.title,
-        regionalLocation.description,
+        title,
+        description,
         regionalImage?.[0]?.url,
       ),
     };

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "route": "/materials/mdf-fasady",
+  "seriesId": "MF-SURFACE-2026-07-20",
+  "status": "CONNECTED_LOCAL",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "generationTool": "Codex built-in imagegen",
+  "deliveryPolicy": "hero eager; comparator and cutaway lazy; WebP only in UI",
+  "assets": [
+    { "id": "MF-SURFACE-CLOSEUP", "role": "surface_closeup", "master": "prepared-images/generated-sources/pilots/mdf-fasady/mdf-surface-closeup.png", "webp": "/media/pilots/mdf-fasady/webp/mdf-surface-closeup.webp", "altRu": "Крупный план матовой поверхности фасада МДФ", "captionRu": "AI‑концепт фактуры; точный оттенок и поверхность проверяются по образцу." },
+    { "id": "MF-SURFACE-COMPARE", "role": "surface_compare", "master": "prepared-images/generated-sources/pilots/mdf-fasady/mdf-surface-compare.png", "webp": "/media/pilots/mdf-fasady/webp/mdf-surface-compare.webp", "altRu": "Матовая и глянцевая поверхности фасадов МДФ рядом", "captionRu": "AI‑концепт визуального сравнения, без технических характеристик." },
+    { "id": "MF-SURFACE-COMBINATION", "role": "style_combination", "master": "prepared-images/generated-sources/pilots/mdf-fasady/mdf-surface-combination.png", "webp": "/media/pilots/mdf-fasady/webp/mdf-surface-combination.webp", "altRu": "Фасад МДФ рядом с образцами дерева и светлого камня", "captionRu": "AI‑концепт сочетания, не подтверждение совместимости." },
+    { "id": "MF-SURFACE-CUTAWAY", "role": "technical_illustration", "master": "prepared-images/generated-sources/pilots/mdf-fasady/mdf-surface-cutaway.png", "webp": "/media/pilots/mdf-fasady/webp/mdf-surface-cutaway.webp", "altRu": "Условная схема основы, покрытия и торца фасада МДФ", "captionRu": "Техническая AI‑иллюстрация, не паспорт изделия." }
+  ],
+  "forbiddenClaims": ["durability", "technical specification", "price", "brand", "compatibility", "real project"]
+}

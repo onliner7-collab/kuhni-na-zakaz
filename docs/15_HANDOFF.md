@@ -370,3 +370,22 @@ Rollback runtime: выбрать последний проверенный runti
 ### Checks / rollback
 
 Перед commit: UTF-8 без BOM/mojibake, `git diff --check`, `pnpm.cmd run typecheck`, Prisma schema check, `pnpm.cmd run sitemap:check` (112/112), docs smoke и read-only regression пяти protected URL. В этом чате schema diff отсутствует, backup/migration/database rollback не требуются; rollback — Git revert docs-only commit.
+
+## 2026-07-20 — чат 5: shared foundation
+
+Реализованы `ExploreContext`, Transition Registry reader, `RelatedExplorationRail`, `MediaSequence` и `ContextSummary`. Runtime consumer ограничен `/catalog/uglovye-kuhni`; защищённые пять URL получили только regression smoke. `ExploreContext` использует sessionStorage и не создаёт facet URL; server HTML содержит обычные ссылки rail и текстовые fallback states. Existing Lead/Telegram/outbox и global Dock сохранены.
+
+QA: `pnpm.cmd run typecheck` PASS; `pnpm.cmd run test:leads` PASS; foundation unit tests PASS; `pnpm.cmd run sitemap:check` PASS (112 URL); `pnpm.cmd run build` PASS (ожидаемые Prisma fallback warnings при недоступной `127.0.0.1:5434`). Browser local: 360/390/412/768/1440 — 1 H1, overflow 0, broken images 0, rail/sequence present, Dock visible до 767 px; protected baseline 390 — H1 1, overflow 0, broken images 0, Dock present. Keyboard: Lead sheet открывается, Escape закрывает, focus возвращается на trigger.
+
+## Rollback для shared foundation
+
+Откатить отдельный runtime commit этого чата через `git revert <commit>`, push в `work`, затем выполнить `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work` и повторить smoke `/catalog/uglovye-kuhni` + пять baseline URL. Prisma, media lifecycle и sitemap rollback не нужны: schema/assets/URL не менялись.
+
+## 2026-07-20 — Borisov + MDF implementation handoff
+
+- `/locations/borisov`: server-first question/conditions/7-step process/local-proof fallback/next step; exact-city project proof отсутствует и явно `BLOCKED_BY_INPUT`.
+- `/materials/mdf-fasady`: surface close-up/comparator/questions/limitations/style-layout continuation/calculation; `/materials/furnitura` не изменён.
+- Media: 7 Borisov + 4 MDF imagegen masters сохранены в project `prepared-images`; WebP delivery 11–49 КБ, один eager hero на route, остальные lazy/intent-mounted, русские alt/captions.
+- SEO: self canonical, один H1, BreadcrumbList only; Borisov не наследует общий FAQ/Service/Offer/address schema.
+- Lead: Borisov city/context and MDF material context передаются через существующий ContactForm answers contract; персональные данные не сохраняются в ExploreContext.
+- Rollback: `git revert <pilot-commit>`, push `work`, standard deploy, smoke пилотов + protected baseline; DB/schema/import rollback не нужен.

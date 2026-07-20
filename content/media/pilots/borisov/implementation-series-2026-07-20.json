@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "route": "/locations/borisov",
+  "seriesId": "BR-PROCESS-2026-07-20",
+  "status": "CONNECTED_LOCAL",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "localProof": false,
+  "generationTool": "Codex built-in imagegen",
+  "deliveryPolicy": "hero eager; active process image lazy; WebP only in UI",
+  "assets": [
+    { "id": "BR-PROCESS-REQUEST", "role": "request", "master": "prepared-images/generated-sources/pilots/borisov/borisov-process-request.png", "webp": "/media/pilots/borisov/webp/borisov-process-request.webp", "altRu": "Эскиз кухни на столе как иллюстрация первого обращения", "captionRu": "AI‑иллюстрация этапа заказа, не фотография реального объекта." },
+    { "id": "BR-PROCESS-ESTIMATE", "role": "estimate", "master": "prepared-images/generated-sources/pilots/borisov/borisov-process-estimate.png", "webp": "/media/pilots/borisov/webp/borisov-process-estimate.webp", "altRu": "План помещения и список техники для предварительного расчёта кухни", "captionRu": "AI‑иллюстрация этапа заказа, не фотография реального объекта." },
+    { "id": "BR-PROCESS-MEASURE", "role": "measure", "master": "prepared-images/generated-sources/pilots/borisov/borisov-process-measure.png", "webp": "/media/pilots/borisov/webp/borisov-process-measure.webp", "altRu": "Измерительные инструменты и образцы в помещении кухни", "captionRu": "AI‑иллюстрация этапа заказа, не фотография реального объекта." },
+    { "id": "BR-PROCESS-PROJECT", "role": "project", "master": "prepared-images/generated-sources/pilots/borisov/borisov-process-project.png", "webp": "/media/pilots/borisov/webp/borisov-process-project.webp", "altRu": "Чертежи кухни и образцы материалов на столе", "captionRu": "AI‑иллюстрация этапа заказа, не фотография реального объекта." },
+    { "id": "BR-PROCESS-PRODUCTION", "role": "production", "master": "prepared-images/generated-sources/pilots/borisov/borisov-process-production.png", "webp": "/media/pilots/borisov/webp/borisov-process-production.webp", "altRu": "Подготовленные детали кухни как иллюстрация производственного этапа", "captionRu": "AI‑иллюстрация этапа заказа, не фотография реального цеха." },
+    { "id": "BR-PROCESS-DELIVERY", "role": "delivery", "master": "prepared-images/generated-sources/pilots/borisov/borisov-process-delivery.png", "webp": "/media/pilots/borisov/webp/borisov-process-delivery.webp", "altRu": "Упакованные детали кухни у дверного проёма перед доставкой", "captionRu": "AI‑иллюстрация этапа заказа, не подтверждение маршрута или зоны выезда." },
+    { "id": "BR-PROCESS-INSTALLATION", "role": "installation", "master": "prepared-images/generated-sources/pilots/borisov/borisov-process-installation.png", "webp": "/media/pilots/borisov/webp/borisov-process-installation.webp", "altRu": "Выравнивание кухонного фасада как иллюстрация монтажа", "captionRu": "AI‑иллюстрация этапа заказа, не фотография реального проекта." }
+  ],
+  "forbiddenClaims": ["local project", "address", "branch", "service area", "price", "deadline", "warranty"]
+}

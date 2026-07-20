@@ -1053,7 +1053,9 @@ export function RegionalLocationPage({
         location={location}
         cases={cases}
         hasLocalCases={hasLocalCases}
-        jsonLd={[jsonLdBreadcrumb, jsonLdFaq, jsonLdService].filter(isJsonLdObject)}
+        // Борисовский пилот не наследует общий Service/Offer/LocalBusiness schema:
+        // адрес, цена и локальные условия не подтверждены для этой страницы.
+        jsonLd={[jsonLdBreadcrumb].filter(isJsonLdObject)}
       />
     );
   }

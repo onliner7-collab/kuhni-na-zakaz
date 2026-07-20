@@ -275,3 +275,21 @@
 - **Защищённые страницы:** пять baseline URL не изменялись; `/materials/furnitura` и его hardware registry не входят в scope.
 - **Deploy:** `NO RUNTIME DEPLOY` — изменены только документация и реестры, runtime assets/contract/schema/UI не менялись.
 - **Rollback:** отдельный Git revert docs-only commit; DB backup/restore, imports, asset operations и service restart не требуются.
+
+## 2026-07-20 — shared foundation чат 5
+
+- **KEEP:** `PublicChrome`, `MobileBottomNav`, действующие `ContactForm`/`LeadFormSheet`, `FloatingSocialButtons`, существующие galleries и `SwipeGallery` вне Angular pilot.
+- **ADAPT:** только consumer `/catalog/uglovye-kuhni`: continuity gallery переведена на `MediaSequence`; Angular selections пишутся в sessionStorage-backed `ExploreContext` и продолжают передаваться через существующий answers event в Lead pipeline.
+- **REPLACE:** не выполнялась; page-specific blocks, metadata, canonical, schema и URL сохранены.
+- **MOVE/REMOVE:** не выполнялись; второй fixed Dock и facet URL не создавались.
+- **Решение:** shared foundation остаётся server-first: rail и registry reader серверные, client boundary ограничен контекстом/медиа/summary. Все transition anchors — обычные href с fallback.
+- **Проверки:** typecheck, unit tests, sitemap check, build, Browser QA 360/390/412/768/1440 и пяти protected URL прошли; build сохранил ожидаемые предупреждения недоступной локальной Prisma DB.
+- **Rollback:** отдельный revert runtime commit `chat-5-shared-foundation`; затем стандартный deploy script и production smoke. DB/assets/schema rollback не требуется.
+
+## 2026-07-20 — process pilot Borisov и material pilot MDF
+
+- **Решение:** `/locations/borisov` получает 7-step process journey, а `/materials/mdf-fasady` — surface comparator. Оба используют ExploreContext и существующий Lead pipeline.
+- **Evidence boundary:** Borisov local proof остаётся `BLOCKED_BY_INPUT`; city/address/zone/price/deadline schema не добавляется. MDF не заявляет technical properties, durability, prices, brands или compatibility.
+- **Media:** 11 masters созданы только встроенным Codex imagegen; UI использует WebP 11–49 КБ, русские alt/captions и AI disclosure. Изображения не считаются real project proof.
+- **Protected routes:** page-specific content `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura` не изменяется; furnitura получает только входящий crawlable deep-link с MDF.
+- **Rollback:** отдельный `git revert <pilot-commit>`, deploy standard script, smoke двух пилотов и пяти protected URL; Prisma/data rollback не требуется.

@@ -160,3 +160,38 @@
 - `FloatingSocialButtons`: `KEEP` без изменения движения и поведения.
 - `ContactForm` и Lead/Telegram pipeline: `KEEP` как backend/extended form; короткий первый шаг проектируется wrapper-ом без потери действующих данных.
 - Pilot components: `KEEP/ADAPT` только после page-specific diff-аудита; Product этап 5 не переписывает pilot pages.
+
+## 2026-07-19 — UX/interaction contract
+
+Контракты для мобильного интерактивного хаба, состояний, accessibility, performance и rollout находятся в `design/09-component-interaction-contract.md` и `design/10-implementation-qa-rollout.md`.
+
+Любое изменение shared-компонента должно проходить regression на защищённых baseline-маршрутах `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura`. Собственные page-specific компоненты и блоки этих страниц текущим rollout не переписываются.
+
+Новые `MediaSequence`, `ContextSummary` и расширенный `RelatedExplorationRail` создаются только при наличии принятого consumer route, Media Asset Registry и Transition Registry из `design/11-media-transition-production-map.md`.
+
+- Existing components не объявляются глобально подключёнными только из-за наличия файла.
+- Новые components создаются только при наличии consumer route и acceptance.
+- `PageTransitionLinks` и локальный `PageActionRail` не заменяют global Dock.
+- Повторяемость component API разрешена; повторяемость пользовательского сценария между разными route запрещена.
+
+## 2026-07-20 — shared foundation чат 5
+
+| Component/module | Path | Boundary | Consumer | Status |
+| --- | --- | --- | --- | --- |
+| `ExploreContext` | `artifacts/kuhni-na-zakaz/components/exploration/ExploreContext.tsx` | Client provider | `/catalog/uglovye-kuhni` | IMPLEMENTED_LOCAL |
+| `Transition Registry reader` | `artifacts/kuhni-na-zakaz/lib/transition-registry.ts` | Server utility | Angular pilot rail | IMPLEMENTED_LOCAL |
+| `RelatedExplorationRail` | `artifacts/kuhni-na-zakaz/components/exploration/RelatedExplorationRail.tsx` | Server | Angular pilot | IMPLEMENTED_LOCAL |
+| `MediaSequence` | `artifacts/kuhni-na-zakaz/components/exploration/MediaSequence.tsx` | Isolated Client | Angular continuity media | IMPLEMENTED_LOCAL |
+| `ContextSummary` | `artifacts/kuhni-na-zakaz/components/exploration/ContextSummary.tsx` | Isolated Client | Angular pilot | IMPLEMENTED_LOCAL |
+
+`PublicChrome`, `MobileBottomNav`, `LeadForm`, `SwipeGallery` and existing galleries remain KEEP; only the Angular gallery consumer was ADAPTed.
+
+## 2026-07-20 — Borisov и MDF consumers
+
+| Component/module | Path | Boundary | Consumer | Status |
+| --- | --- | --- | --- | --- |
+| `BorisovJourney` | `artifacts/kuhni-na-zakaz/components/locations/borisov/BorisovJourney.tsx` | Client island | `/locations/borisov` | IMPLEMENTED_LOCAL |
+| `BorisovPilotPage` | `artifacts/kuhni-na-zakaz/components/locations/borisov/BorisovPilotPage.tsx` | Server composition | `/locations/borisov` | IMPLEMENTED_LOCAL |
+| `MaterialSurfaceComparator` | `artifacts/kuhni-na-zakaz/components/materials/MaterialSurfaceComparator.tsx` | Client island | `/materials/mdf-fasady` | IMPLEMENTED_LOCAL |
+
+Оба consumer используют shared `ExploreContext`/`ContextSummary` и существующий `ContactForm`; protected `/materials/furnitura` не импортирует новые компоненты.

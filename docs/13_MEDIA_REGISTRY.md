@@ -135,3 +135,14 @@ Production map новых визуальных серий, media slots, generati
 - `SOURCE_UNKNOWN` не допускается в «Наши работы».
 - Не подключённые media не получают `LIVE` только потому, что они нужны будущему маршруту.
 - Полные galleries и 203-image archive не монтируются в initial DOM; используется intent mounting и текстовый fallback.
+
+## 2026-07-20 — shared foundation чат 5
+
+`MediaSequence` подключён только к `/catalog/uglovye-kuhni` и использует существующую принятую continuity-серию `PILOT-AK-02` (WebP/AVIF delivery, русские alt/caption, AI-концепт disclosure). Новые masters не создавались; lifecycle и provenance статусы медиа не повышались. Error state сохраняет текстовый вопрос и позволяет выбрать соседний кадр.
+
+## 2026-07-20 — Borisov и MDF pilot media
+
+- `BR-PROCESS-2026-07-20`: 7 AI process illustrations, masters в `prepared-images/generated-sources/pilots/borisov`, WebP delivery 23–49 КБ. Hero eager, активный этап lazy; `localProof=false`.
+- `MF-SURFACE-2026-07-20`: 4 AI/technical surface illustrations, masters в `prepared-images/generated-sources/pilots/mdf-fasady`, WebP delivery 11–46 КБ. Hero eager, comparator/cutaway lazy.
+- Manifests: `content/media/pilots/borisov/implementation-series-2026-07-20.json` и `content/media/pilots/mdf-fasady/implementation-series-2026-07-20.json`.
+- Все captions и alt — русские. AI media не используется как локальный проект, подтверждение свойств, цены, бренда или совместимости.
