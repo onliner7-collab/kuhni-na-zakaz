@@ -133,6 +133,18 @@
 ## Stage 4 component isolation note
 
 - `/catalog/uglovye-kuhni`, `/locations/borisov` и `/materials/furnitura` остаются `AUDITED/DESIGNED`: их route/page/component imports не изменены.
+
+## Data/provenance gate — 2026-07-20
+
+Статус реализации страницы не равен статусу доказательности данных. Для пилотов зафиксировано:
+
+| Route | Runtime/page status | Data/provenance status | Допуск |
+| --- | --- | --- | --- |
+| `/catalog/uglovye-kuhni` | `IMPLEMENTED / VERIFIED` (исторический pilot lifecycle) | `BRIEFS_READY / ai_concept+technical_illustration` | каталог идей; не portfolio |
+| `/locations/borisov` | `AUDITED / DESIGNED` | `BRIEFS_READY / evidence_required` | process illustration only; local proof blocked |
+| `/materials/mdf-fasady` | `EXISTING / TBD` | `BRIEFS_READY / material_evidence_required` | comparator/fallback; real project and product claims blocked |
+
+Подробный production package и transition plan: `docs/pilots/10_PILOT_PRODUCTION_PACKAGE.md`. `/materials/furnitura` остаётся protected baseline и не изменён.
 - Component Library проверяется на dev-only `/component-library-preview`; production отвечает 404 без отдельного env-разрешения, URL не добавлен в sitemap.
 - Статус пилотов не повышается до `IMPLEMENTED`: подключение выполняется только в этапах 5–7.
 

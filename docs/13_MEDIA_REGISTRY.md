@@ -36,6 +36,24 @@
 
 Итого: 33 planned media groups. Существующие assets не получают статус `MEDIA_READY` автоматически.
 
+## Data/provenance gate — 2026-07-20
+
+Статусы `LIVE`/`CONNECTED` ниже описывают только технический lifecycle существующих файлов. Они не означают `verified_real` и не допускают публикацию в «Наши работы» или local proof. До принятия generation scope новые masters не создаются, а runtime paths не подключаются.
+
+| Pilot / route | Planned slots | Допустимое происхождение | Текущий gate | Rights | Разрешённая роль сейчас |
+| --- | --- | --- | --- | --- | --- |
+| `PILOT-AK-01..06` — `/catalog/uglovye-kuhni` | overview, layout_logic, storage_zone, hardware_action | `ai_concept` или `technical_illustration` | `BRIEFS_READY`; existing AI assets требуют повторной проверки caption/forbidden claims | `internal_generation_pending` до фиксации владельца/лицензии | Идея/объяснение в каталоге; не real project |
+| `PILOT-BR-01..06` — `/locations/borisov` | process_step, overview, local_proof placeholder | process `technical_illustration`/`ai_concept`; local proof только `verified_real` | `BRIEFS_READY`; exact-city evidence отсутствует | process rights pending; local proof `blocked` | Нейтральный процесс и AI concept; без адреса, филиала, сроков и local claims |
+| `PILOT-MF-01..06` — `/materials/mdf-fasady` | material_surface, style_variants, technical_illustration, project_story placeholder | `ai_concept`/`technical_illustration`; project story только `verified_real` | `BRIEFS_READY`; material/product evidence отсутствует | pending; real case blocked | Material comparator и текстовый fallback |
+
+`PILOT-HW-01..12` для защищённого `/materials/furnitura` не входит в этот пакет и не изменяется. `PILOT-BR-11`/`PILOT-MF-05` и любые `project_story`/`local_proof` slots остаются `blocked`, пока evidence owner не предоставит exact source, media set и rights approval.
+
+### Canonical asset fields для пилотов
+
+Каждая будущая запись должна содержать `mediaId`, `seriesId`, `viewRole`, `interactionRole`, `masterPath`, `webpPath`, `avifPath` (если создан), dimensions, `altRu`, `captionRu`, `provenanceStatus`, `rightsStatus`, `realProjectId=null` для концептов, `generationBriefId`, `allowedRoutes[]`, `forbiddenClaims[]` и lifecycle status. WebP/AVIF — visible delivery; master PNG/JPEG — только исходник.
+
+Подробные slots, briefs, fallback и Transition Registry: `docs/pilots/10_PILOT_PRODUCTION_PACKAGE.md`.
+
 ## Digital Asset Library — этап 3
 
 Asset-level source of truth находится в manifests v2. Статусы ниже не означают подключение: на этапе 3 `CONNECTED`, `VERIFIED` и `LIVE` равны нулю.
@@ -106,3 +124,14 @@ Asset-level source of truth находится в manifests v2. Статусы �
 - Новые media assets не создавались и lifecycle существующих изображений не менялся.
 - `KitchenImageLeadLauncher` использует фактически отрисованный `currentSrc` только как контекст заявки и текстовую ссылку для sharing/Telegram card.
 - Файлы клиентов не принимаются, не сохраняются и не добавляются в media registry.
+
+## 2026-07-19 — media contract для mobile hub
+
+Production map новых визуальных серий, media slots, generation briefs, continuity, ExploreContext и переходов закреплён в `design/11-media-transition-production-map.md`. Новое изображение нельзя подключать без `seriesId`, пользовательского вопроса, interaction role, provenance/rights status, русского alt и WebP delivery.
+
+`design/08-content-data-media-contract.md` стал обязательным контентным и delivery-контрактом для новых страниц.
+
+- Новое медиа регистрируется с `provenanceStatus`, `rightsStatus`, `intendedQuestion`, русскими `altRu/captionRu`, dimensions и optimized WebP/AVIF.
+- `SOURCE_UNKNOWN` не допускается в «Наши работы».
+- Не подключённые media не получают `LIVE` только потому, что они нужны будущему маршруту.
+- Полные galleries и 203-image archive не монтируются в initial DOM; используется intent mounting и текстовый fallback.

@@ -263,3 +263,15 @@
 - **Deploy:** `NO RUNTIME DEPLOY`, потому что изменена только документация, production artifact идентичен текущему runtime и рискованный rebuild/restart не даёт пользовательской ценности.
 - **Rollback:** отдельный Git revert документационного commit; database, content imports, assets и service restart не требуются.
 - **Статус:** принято как PASS для route/sitemap parity и PASS_WITH_EVIDENCE_GAPS для semantic/evidence completeness.
+
+## 2026-07-20 — data/provenance gate и production-пакет трёх пилотов
+
+- **Канонические статусы:** `verified_real`, `ai_concept`, `technical_illustration`, `unknown`, `rejected`. `process_illustration` нормализуется как подтип technical illustration; старые `verified/ai/technical` — только legacy-алиасы.
+- **Evidence rule:** portfolio допускается только при owner-confirmed source, двух независимых evidence refs, exact characteristics/media set и approved rights. Location/local proof дополнительно требует exact-city source. Путь, slug, DB record, `published`, город в имени и реалистичность не считаются evidence.
+- **Evidence owners:** операции/продажи — зона работы, доставка, монтаж и сроки; коммерческий владелец — цены; юридический/сервисный владелец — гарантия; CRM-модератор — отзывы; закупки/технический владелец или официальный брендовый источник — бренды и характеристики; владелец проекта + редактор provenance — portfolio.
+- **Pilot package:** добавлен `docs/pilots/10_PILOT_PRODUCTION_PACKAGE.md` для `/catalog/uglovye-kuhni`, `/locations/borisov` и `/materials/mdf-fasady`: slots, continuity, briefs, русские alt/caption, rights/provenance, master/WebP/AVIF delivery, fallback и Transition Registry.
+- **Gate result:** `BRIEFS_READY / PASS_WITH_EVIDENCE_GAPS`. Angular существующие AI assets не становятся real projects из-за технического `LIVE`; Borisov local proof и MDF real project slots заблокированы до evidence. Новые claims не опубликованы.
+- **Prisma:** schema не изменялась. Поля provenance/evidence пока ведутся в contract/registry; опасная миграция не нужна без принятого runtime data model, backup, diff и rollback plan.
+- **Защищённые страницы:** пять baseline URL не изменялись; `/materials/furnitura` и его hardware registry не входят в scope.
+- **Deploy:** `NO RUNTIME DEPLOY` — изменены только документация и реестры, runtime assets/contract/schema/UI не менялись.
+- **Rollback:** отдельный Git revert docs-only commit; DB backup/restore, imports, asset operations и service restart не требуются.

@@ -344,3 +344,29 @@ Rollback runtime: выбрать последний проверенный runti
 
 Добавляй только безопасные data/provenance поля и реестры, предусмотренные ТЗ и существующей схемой. Миграция допустима только при реальной необходимости, с backup, diff, data-impact audit и точным rollback; иначе оставь documentation-only. Обнови Page/Media Registry, Decision Log и Handoff. Выполни typecheck, schema checks, sitemap parity 112/112 и regression smoke пяти protected URL. Deploy только если действительно изменился runtime data contract; иначе явно напиши NO RUNTIME DEPLOY и причину.
 ```
+
+## 2026-07-20 — чат 3: data/provenance gate
+
+### Результат
+
+`PASS_WITH_EVIDENCE_GAPS` для документационного scope. Канонические статусы и evidence-owner rules закреплены в `design/08-content-data-media-contract.md`; production-пакет трёх пилотов и Transition Registry находятся в `docs/pilots/10_PILOT_PRODUCTION_PACKAGE.md`. Новые claims, runtime assets, Prisma fields и пять protected pages не менялись.
+
+### Зафиксированные ограничения
+
+- `verified_real` требует owner-confirmed project source, два независимых evidence refs, exact characteristics/media set и approved rights.
+- `/locations/borisov` не получает local proof, адрес, филиал, срок, доставку или гарантию без operations evidence.
+- `/catalog/uglovye-kuhni` может использовать только честно маркированные AI concepts/technical illustrations; `LIVE` в manifest — технический lifecycle, не real-project proof.
+- `/materials/mdf-fasady` получает material concepts/technical fallbacks; brands, specs, care, prices, warranties и real project blocked до owner evidence.
+- `/materials/furnitura` остаётся защищённым и не изменён.
+
+### Следующий разрешённый шаг — чат 4 (Media Asset Registry + Transition Registry)
+
+Используй `docs/pilots/10_PILOT_PRODUCTION_PACKAGE.md` как production input. Проверь существующие manifests и Page Registry, нормализуй только registry-level поля (`mediaId`, `seriesId`, `viewRole`, `interactionRole`, `altRu`, `captionRu`, `provenanceStatus`, `rightsStatus`, delivery paths, forbidden claims). Не генерируй массово изображения и не подключай runtime. Для каждого transition сохраняй `fromRoute`, `fromState`, `userQuestion`, `DEEPEN/COMPARE/PROOF/CONVERT`, русский анкор, target, reason, contextPatch, fallback и analytics event. `/materials/furnitura` не менять. После docs-only проверки — `NO RUNTIME DEPLOY`.
+
+### Следующий разрешённый шаг — чат 5 (shared foundation)
+
+Только после приёмки чата 4 реализуй shared `ExploreContext`, reader Transition Registry, `RelatedExplorationRail`, `MediaSequence` и `ContextSummary` по `design/09-component-interaction-contract.md`. Не делай page-specific redesign и не подключай неapproved media. Сохрани server HTML, обычные ссылки, loading/empty/error fallback, keyboard/reduced-motion и regression matrix пяти protected URL. Deploy допускается только если runtime data contract/assets реально изменились и все QA PASS; иначе `NO RUNTIME DEPLOY`.
+
+### Checks / rollback
+
+Перед commit: UTF-8 без BOM/mojibake, `git diff --check`, `pnpm.cmd run typecheck`, Prisma schema check, `pnpm.cmd run sitemap:check` (112/112), docs smoke и read-only regression пяти protected URL. В этом чате schema diff отсутствует, backup/migration/database rollback не требуются; rollback — Git revert docs-only commit.
