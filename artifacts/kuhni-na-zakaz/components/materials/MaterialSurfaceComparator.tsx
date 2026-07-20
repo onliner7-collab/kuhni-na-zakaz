@@ -33,7 +33,7 @@ export function MaterialSurfaceComparator() {
           return <button key={surface.id} type="button" aria-pressed={isSelected} onClick={() => toggle(surface.id)} className={`min-h-44 rounded-2xl border p-4 text-left focus-visible:outline focus-visible:ring-2 focus-visible:ring-violet-700 ${isSelected ? "border-violet-800 bg-violet-50" : "border-stone-200 bg-white"}`}>
             <img src={`/media/pilots/mdf-fasady/webp/${surface.image}.webp`} alt={surface.alt} width="1200" height="800" loading="lazy" decoding="async" className="aspect-[3/2] h-auto w-full rounded-xl object-cover" />
             <span className="mt-4 flex items-center gap-2 font-bold">{isSelected && <Check className="h-4 w-4" aria-hidden />}{surface.label}</span>
-            <span className="mt-2 block text-sm leading-6 text-stone-600">{surface.note}</span><span className="mt-2 block text-xs text-stone-500">AI‑концепт поверхности; оттенок уточняется по образцу.</span>
+            <span className="mt-2 block text-sm leading-6 text-stone-600">{surface.note}</span>
           </button>;
         })}
       </div>
