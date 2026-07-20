@@ -6,9 +6,9 @@ import {
   CornerStorageExplorer,
   KitchenLayoutCheck,
   MechanismComparison,
-  SwipeGallery,
   type PilotMedia,
 } from "@/components/pilots/library";
+import { MediaSequence, useExploreContext } from "@/components/exploration";
 import { ArrowRight, Check, PackageOpen } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -63,6 +63,7 @@ function media(id: string, stem: string, alt: string, caption: string): PilotMed
 }
 
 export function AngularStage5Interactive() {
+  const { updateContext } = useExploreContext();
   const [cornerType, setCornerType] = useState("worktop");
   const [mechanism, setMechanism] = useState("shelf");
   const [material, setMaterial] = useState("warm-white");
@@ -85,8 +86,9 @@ export function AngularStage5Interactive() {
   }), [cornerType, layout, material, mechanism]);
 
   useEffect(() => {
+    updateContext({ layout: cornerType, hardware: [mechanisms.find((item) => item.id === mechanism)?.label || mechanism], materials: [activeMaterial.label], evidencePreference: "ideas" }, "выбор параметров угловой кухни");
     window.dispatchEvent(new CustomEvent(ANGULAR_ANSWERS_EVENT, { detail: answers }));
-  }, [answers]);
+  }, [activeMaterial.label, answers, cornerType, mechanism, updateContext]);
 
   return (
     <div className="space-y-16 md:space-y-24">
@@ -94,7 +96,7 @@ export function AngularStage5Interactive() {
         <p className="text-sm font-black uppercase tracking-[0.16em] text-amber-800">Планировка</p>
         <h2 id="planning-title" className="mt-2 text-3xl font-black tracking-tight md:text-4xl">Посмотрите на угол с разных сторон</h2>
         <p className="mt-3 max-w-3xl leading-7 text-stone-600">Листайте ракурсы пальцем или используйте кнопки. Все изображения ниже — AI-концепты, а не фотографии выполненных проектов.</p>
-        <div className="mt-6"><SwipeGallery items={gallery} label="Ракурсы угловой кухни" /></div>
+        <div className="mt-6"><MediaSequence items={gallery} label="Ракурсы угловой кухни" /></div>
 
         <div className="mt-10 rounded-3xl border border-stone-200 bg-white p-4 sm:p-6">
           <h3 className="text-2xl font-black">Как использовать сам угол</h3>

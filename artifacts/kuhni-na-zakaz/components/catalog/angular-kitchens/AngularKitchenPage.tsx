@@ -1,5 +1,6 @@
 import Link from "@/components/navigation/Link";
 import { MobileHero, type PilotMedia } from "@/components/pilots/library";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { JsonLd, type JsonLdObject } from "@/lib/schema-org";
 import { ArrowRight, CircleDollarSign, MapPin } from "lucide-react";
@@ -33,7 +34,7 @@ const defaultAnswers = {
 
 export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/catalog/uglovye-kuhni">
       <JsonLd data={jsonLd} />
       <main className="overflow-x-clip bg-[#f7f5f0] pb-28 text-stone-950 md:pb-16">
         <div className="container-site pt-4 md:pt-8">
@@ -53,6 +54,16 @@ export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
 
         <div className="container-site py-14 md:py-20">
           <AngularStage5Interactive />
+
+          <section className="mt-10" aria-labelledby="exploration-context-title">
+            <h2 id="exploration-context-title" className="sr-only">Сохранённый контекст выбора</h2>
+            <ContextSummary />
+          </section>
+
+          <section className="mt-10" aria-labelledby="related-exploration-title">
+            <h2 id="related-exploration-title" className="sr-only">Связанные шаги выбора</h2>
+            <RelatedExplorationRail route="/catalog/uglovye-kuhni" state="DECISION" />
+          </section>
 
           <section id="catalog-prices" className="mt-16 scroll-mt-24 md:mt-24" aria-labelledby="price-title">
             <div className="rounded-[2rem] bg-amber-200 p-5 sm:p-6 md:p-10">
@@ -112,6 +123,6 @@ export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
           </section>
         </div>
       </main>
-    </>
+    </ExploreContextProvider>
   );
 }
