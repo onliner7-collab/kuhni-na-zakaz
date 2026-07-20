@@ -31,14 +31,14 @@ export function BorisovPilotPage({ location, cases, hasLocalCases, jsonLd }: Pro
         </div>
       </section>
 
+      <div className="container-site pt-10 md:pt-16"><BorisovJourney /></div>
+
       <div className="container-site py-12 md:py-20">
         <section className="grid gap-4 md:grid-cols-3" aria-label="Подтверждённые границы страницы">
           <article className="rounded-2xl border border-emerald-200 bg-white p-5"><CheckCircle2 className="h-6 w-6 text-emerald-800" aria-hidden /><h2 className="mt-3 font-bold">Что подтверждено</h2><p className="mt-2 text-sm leading-6 text-stone-600">На странице описан порядок обсуждения заказа и передача контекста в заявку.</p></article>
           <article className="rounded-2xl border border-amber-200 bg-white p-5"><CircleAlert className="h-6 w-6 text-amber-700" aria-hidden /><h2 className="mt-3 font-bold">Что уточняется</h2><p className="mt-2 text-sm leading-6 text-stone-600">Адрес, зона выезда, логистика, сроки и стоимость зависят от исходных данных.</p></article>
           <article className="rounded-2xl border border-stone-200 bg-white p-5"><CircleAlert className="h-6 w-6 text-stone-600" aria-hidden /><h2 className="mt-3 font-bold">BLOCKED_BY_INPUT</h2><p className="mt-2 text-sm leading-6 text-stone-600">Локальный real proof для Борисова не подключён: exact-city evidence отсутствует.</p></article>
         </section>
-
-        <div className="mt-14"><BorisovJourney /></div>
 
         <section id="local-proof" className="mt-16 scroll-mt-24 rounded-[2rem] border border-dashed border-stone-300 bg-white p-6 md:p-9" aria-labelledby="local-proof-title"><p className="text-sm font-bold uppercase tracking-[0.16em] text-stone-500">Локальное доказательство</p><h2 id="local-proof-title" className="mt-2 text-3xl font-bold">Подтверждённых проектов в Борисове пока нет</h2><p className="mt-3 max-w-3xl leading-7 text-stone-600">AI-концепты и изображения без provenance не считаются локальным proof. Не подставляем Минск или Минскую область вместо Борисова.</p>{hasLocalCases && cases.length ? <p className="mt-4 text-sm text-amber-800">Данные найдены, но требуют отдельной проверки источника перед публикацией.</p> : <p className="mt-4 text-sm font-semibold text-stone-700">Статус: BLOCKED_BY_INPUT — добавление возможно после подтверждения владельцем проекта и media set.</p>}</section>
 

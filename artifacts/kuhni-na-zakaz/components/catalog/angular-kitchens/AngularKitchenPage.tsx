@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { JsonLd, type JsonLdObject } from "@/lib/schema-org";
 import { ArrowRight, CircleDollarSign, MapPin } from "lucide-react";
 import { AngularStage5Interactive } from "./AngularStage5Interactive";
+import { AngularQuickChoice } from "./AngularQuickChoice";
 
 type Props = { priceFrom: number; jsonLd: JsonLdObject[] };
 
@@ -50,6 +51,7 @@ export function AngularKitchenPage({ priceFrom, jsonLd }: Props) {
             disclosure="AI-концепт для выбора решения, не фотография выполненного проекта."
             actions={<><a href="#calculate" className="inline-flex min-h-12 items-center rounded-full bg-stone-950 px-5 py-3 font-black text-white">Рассчитать угловую кухню</a><a href="#inside" className="inline-flex min-h-12 items-center rounded-full border border-stone-400 px-5 py-3 font-black">Посмотреть внутри</a></>}
           />
+          <AngularQuickChoice />
         </div>
 
         <div className="container-site py-14 md:py-20">

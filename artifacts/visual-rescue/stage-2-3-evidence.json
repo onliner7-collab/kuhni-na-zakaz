@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-07-20T16:09:02.738Z",
+  "baseURL": "http://127.0.0.1:3001",
+  "results": [
+    {
+      "stage": "stage-2",
+      "route": "/catalog/uglovye-kuhni",
+      "first": "main [role=\"tab\"]",
+      "firstText": "Рабочая зона",
+      "resultImage": "#angular-quick-choice-panel img",
+      "before": "/media/pilots/angular-kitchens/gallery/angular-kitchens-angles-full-room-front-landscape-v1.webp",
+      "after": "/media/pilots/angular-kitchens/webp/angular-kitchens-angles-long-side-landscape.webp",
+      "changed": true,
+      "candidateCount": 1,
+      "imageRequests": [
+        {
+          "url": "http://127.0.0.1:3001/media/pilots/angular-kitchens/gallery/angular-kitchens-angles-full-room-front-landscape-v1.webp",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/pilots/angular-kitchens/avif/angular-kitchens-hero-corner-wide-portrait.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/pilots/angular-kitchens/avif/angular-kitchens-corner-mechanism-open-frame-01-landscape.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/pilots/angular-kitchens/gallery/angular-corner-types-straight-corner-front-01-v1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/pilots/angular-kitchens/webp/angular-kitchens-angles-long-side-landscape.webp",
+          "status": 200
+        }
+      ],
+      "metrics": {
+        "h1": 1,
+        "overflow": 0,
+        "brokenImages": 0,
+        "firstActionY": 342,
+        "jsResources": 4,
+        "initialImageRequests": 5,
+        "reducedMotion": true
+      }
+    },
+    {
+      "stage": "stage-3",
+      "route": "/locations/borisov",
+      "first": "main button",
+      "firstText": "Предварительный расчёт",
+      "resultImage": "#process article img",
+      "before": "/media/pilots/borisov/webp/borisov-process-request.webp",
+      "after": "/media/pilots/borisov/webp/borisov-process-estimate.webp",
+      "changed": true,
+      "candidateCount": 1,
+      "imageRequests": [
+        {
+          "url": "http://127.0.0.1:3001/media/pilots/borisov/webp/borisov-process-request.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/pilots/borisov/webp/borisov-process-estimate.webp",
+          "status": 200
+        }
+      ],
+      "metrics": {
+        "h1": 1,
+        "overflow": 0,
+        "brokenImages": 0,
+        "firstActionY": 269,
+        "jsResources": 4,
+        "initialImageRequests": 2,
+        "reducedMotion": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,1458 @@
+{
+  "generatedAt": "2026-07-20T15:59:55.425Z",
+  "baseURL": "https://kuhni.minsk.by",
+  "viewport": "390x844",
+  "results": [
+    {
+      "route": "/catalog/uglovye-kuhni",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/uglovye-kuhni",
+      "title": "Купить угловую кухню на заказ в Минске | КухниBY",
+      "imageCount": 6,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/angular-kitchens/avif/angular-kitchens-hero-corner-wide-portrait.avif",
+          "alt": "Светлая угловая кухня с серо-бежевыми фасадами и дубовыми деталями",
+          "y": 150,
+          "width": 900,
+          "height": 1200
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/angular-kitchens/gallery/angular-kitchens-angles-full-room-front-landscape-v1.webp",
+          "alt": "Общий вид светлой угловой кухни",
+          "y": 1105,
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/angular-kitchens/gallery/angular-corner-types-straight-corner-front-01-v1.webp",
+          "alt": "Свободная рабочая поверхность в углу кухни",
+          "y": 1794,
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/angular-kitchens/avif/angular-kitchens-corner-mechanism-open-frame-01-landscape.avif",
+          "alt": "Открытие углового механизма, кадр 1 из 12",
+          "y": 2587,
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/angular-kitchens/details/angular-storage-deep-shelf-landscape-v2.webp",
+          "alt": "Глубокие полки с кастрюлями в угловом шкафу",
+          "y": 4433,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/angular-kitchens/details/angular-materials-warm-white-detail-01-v1.webp",
+          "alt": "Угловая кухня с фасадами тёплого белого цвета",
+          "y": 5681,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/media/pilots/angular-kitchens/avif/angular-kitchens-hero-corner-wide-portrait.avif",
+        "https://kuhni.minsk.by/media/pilots/angular-kitchens/gallery/angular-kitchens-angles-full-room-front-landscape-v1.webp",
+        "https://kuhni.minsk.by/media/pilots/angular-kitchens/gallery/angular-corner-types-straight-corner-front-01-v1.webp",
+        "https://kuhni.minsk.by/media/pilots/angular-kitchens/avif/angular-kitchens-corner-mechanism-open-frame-01-landscape.avif",
+        "https://kuhni.minsk.by/media/pilots/angular-kitchens/details/angular-storage-deep-shelf-landscape-v2.webp",
+        "https://kuhni.minsk.by/media/pilots/angular-kitchens/details/angular-materials-warm-white-detail-01-v1.webp"
+      ],
+      "firstImageY": 150,
+      "firstActionY": 3122,
+      "firstActionText": "КарусельПолки поворачиваются к проёму; обзор проще, но круг использует не весь объём.",
+      "firstActionSelector": null,
+      "textOnlySections": 3,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/angular-kitchens/avif/angular-kitchens-hero-corner-wide-portrait.avif",
+          "status": 200
+        },
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/angular-kitchens/gallery/angular-kitchens-angles-full-room-front-landscape-v1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/angular-kitchens/gallery/angular-corner-types-straight-corner-front-01-v1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/angular-kitchens/avif/angular-kitchens-corner-mechanism-open-frame-01-landscape.avif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check?scid=4445b583-68a3-725c-4a5e-7035ab639af9&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=4445b583-68a3-725c-4a5e-7035ab639af9&token=11098.T92wtt7E2GurgtOtOTcN9kxBpqeBIV7z5yMVZ1q9Nhq5KjAVlBMjOoJQyIEG4AMu.cHk3deFpb_nEifvv8_I5roI9Wjs%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=4445b583-68a3-725c-4a5e-7035ab639af9&token=11098.PQNtK20avRhL1TrIqg_ZKO_L9u5pCUPbYAgkBwcw90iUrs3CSnCw_ZYdOi-VT2x__-ryMc256HxKlUYmELbj4VHkNL7zu-Dbe50qpqxX3H4%2C.4MVG52Emp4JYmwYMqDruwH_D1_U%2C",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=055847bf-636b-378e-5e09-63c0b1b925ce&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=055847bf-636b-378e-5e09-63c0b1b925ce&token=11098.Ru5-lYVtFISkOpKp2gkDtnoqGhC3WlkYmrcz-_m0TUC_PaDSsbjAWszrTytZxjXi.3-ir07ymqor0B02M3HuMSdnEXIo%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=055847bf-636b-378e-5e09-63c0b1b925ce&token=11098.11sWEpnTMZ-CTCb0yATU2up_pKUAyetbEsV29TSfvs8jupYUpxv8BJxBEWLkPvbOw6aNRUoc850ZupiU4_jh5EJdFIflMkU1OhhqUfop450%2C.nWvrjr0TBBwYYkeg0KCw_jJxjtE%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=055847bf-636b-378e-5e09-63c0b1b925ce&token=11098.GWt2HH02gmJ-w6vdFHx5BqQK4zbQgsJbMumbu5whW3puIrWgM3hcbCHIhiKN9RULXdydCMfGE4Id68cKKcDpAPjgxLwHjdXdZYU4IX0LU4tcYnj-teuKDT1aNaMwnzXSFvcFQ4IWipj-79pY6gTwmWp7-BV0qLE7VAW20hznDG8KANKg2f-ftLuVN1FY4RmJdr9x72lg2lWHYwLV8dFM9Q%2C%2C.8YLkHufZ8CH9d9CGnjnwxID5wEU%2C",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/catalog--uglovye-kuhni--initial.png",
+      "screenshotAfterFirstAction": "screenshots/catalog--uglovye-kuhni--after-first-action.png",
+      "screenshotVisualResult": "screenshots/catalog--uglovye-kuhni--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 6,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "REDESIGN_VISUAL_FLOW"
+    },
+    {
+      "route": "/locations/borisov",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/locations/borisov",
+      "title": "Как проходит заказ кухни для Борисова | КухниBY",
+      "imageCount": 2,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/borisov/webp/borisov-process-request.webp",
+          "alt": "Эскиз кухни на столе перед обсуждением заказа",
+          "y": 676,
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/borisov/webp/borisov-process-request.webp",
+          "alt": "Эскиз кухни на столе как иллюстрация первого обращения",
+          "y": 2733,
+          "width": 1200,
+          "height": 800
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/media/pilots/borisov/webp/borisov-process-request.webp"
+      ],
+      "firstImageY": 676,
+      "firstActionY": 2028,
+      "firstActionText": "02Предварительный расчётФото, примерные размеры и список техники помогают обсудить направление. Это не окончательная сме",
+      "firstActionSelector": null,
+      "textOnlySections": 3,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [
+        "https://kuhni.minsk.by/media/pilots/borisov/webp/borisov-process-measure.webp"
+      ],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/borisov/webp/borisov-process-request.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check?scid=f72de095-0576-fdcb-2728-299e6e571935&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=f72de095-0576-fdcb-2728-299e6e571935&token=11098.7lSBAmSWuoTqrrcn44GWVMkieWmc3VLs9Y8VJ4JPUt3ATqkgCteka7V1mB2QtXFz.E5nL3thwqBH0gyFFLDQIH6VCJIU%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=f72de095-0576-fdcb-2728-299e6e571935&token=11098.7PSUf3MuPCtPk5R2X2-6O-qjkDgadf_0uNPqviRZcyszoCNUxTnxMH9GtC5JRSRTGOmL4HgXEfBzk194TGetMD2H3RALtA33IiqCeBOjC7w%2C.3HSHs5wIVdLS4zMA1px4CwkMw_k%2C",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=8e578753-895c-b415-f43b-2932a9342549&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=8e578753-895c-b415-f43b-2932a9342549&token=11098.fpO-kSwpJR-SlCLk5vEPFU8KRxEV9Odf6Muq4oJVMLzC0f4knQtpk90hRj8eVf7a.3jjWv7XQF2UVMyya4KAMXldcBBI%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=8e578753-895c-b415-f43b-2932a9342549&token=11098.MQep-BLWuvgk6Uu8jmD1ptPQatVMZRq6biSGSrXzSUNYWIhT7Ey2Lk64C-om9iV4b__LymV6yrEoFHRcwqLtW7GPwL9yWmulw1LFxLZ92Io%2C.7gcb5WOJ-UNt4aay0oUTjPZRzH0%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=8e578753-895c-b415-f43b-2932a9342549&token=11098.uiUg3_2V86rdOlTXs-xuoMRahAZkSuKo3hhcfXwdbRxqvzoiLIDmvUer5FW6QS5Albi9VB7yAxwXVWHFz3tBy6IkG4H3jjQ5Wy_oGuvrdfJaYfTsIhCjRKhmAyGcbpfBDCEvsKuflTytwWVo6Zp8m9gJCrm_0cdePIEhji-Chujycfws4QNAwWCIq_IWCtSeHmuu1IHWg5bxZLi6CF7vtQ%2C%2C.u62ahFnC7CP0Jai8Zzt4nvF14AI%2C",
+          "status": 200
+        },
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/borisov/webp/borisov-process-estimate.webp",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/locations--borisov--initial.png",
+      "screenshotAfterFirstAction": "screenshots/locations--borisov--after-first-action.png",
+      "screenshotVisualResult": "screenshots/locations--borisov--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 1,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/materials/mdf-fasady",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/materials/mdf-fasady",
+      "title": "Фасады МДФ для кухни: поверхность и сравнение | КухниBY",
+      "imageCount": 5,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-closeup.webp",
+          "alt": "Крупный план матовой поверхности фасада МДФ",
+          "y": 598,
+          "width": 1200,
+          "height": 900
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-closeup.webp",
+          "alt": "Крупный план матовой поверхности фасада МДФ",
+          "y": 1270,
+          "width": 1200,
+          "height": 900
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-combination.webp",
+          "alt": "Фасад МДФ рядом с образцами дерева и светлого камня",
+          "y": 1656,
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-compare.webp",
+          "alt": "Матовая и глянцевая поверхности фасадов МДФ рядом",
+          "y": 2042,
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "src": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-cutaway.webp",
+          "alt": "Условная схема основы, покрытия и торца фасада МДФ",
+          "y": 3476,
+          "width": 1200,
+          "height": 675
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-closeup.webp",
+        "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-combination.webp",
+        "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-compare.webp",
+        "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-cutaway.webp"
+      ],
+      "firstImageY": 598,
+      "firstActionY": 1639,
+      "firstActionText": "AI-концепт поверхностиПолуматоваяСравните визуальный отклик рядом с выбранной столешницей.",
+      "firstActionSelector": null,
+      "textOnlySections": 3,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "",
+      "actionPerformed": true,
+      "secondActionPerformed": false,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-closeup.webp",
+          "status": 200
+        },
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-combination.webp",
+          "status": 200
+        },
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-cutaway.webp",
+          "status": 200
+        },
+        {
+          "url": "https://kuhni.minsk.by/media/pilots/mdf-fasady/webp/mdf-surface-compare.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/materials--mdf-fasady--initial.png",
+      "screenshotAfterFirstAction": "screenshots/materials--mdf-fasady--after-first-action.png",
+      "screenshotVisualResult": "screenshots/materials--mdf-fasady--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 4,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "REDESIGN_VISUAL_FLOW"
+    },
+    {
+      "route": "/catalog/pryamye-kuhni",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/pryamye-kuhni",
+      "title": "Купить прямую кухню на заказ в Минске | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
+          "alt": "Визуализация прямой кухни вдоль одной стены",
+          "y": 1065,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp"
+      ],
+      "firstImageY": 1065,
+      "firstActionY": 731,
+      "firstActionText": "Средняя линия",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Каталог / прямая ПРОВЕРКА ПЛАНИРОВКИ Прямая кухня: проверьте одну линию до заказа Когда одной линии достаточно и как расставить зоны? Начните не со стиля, а с последовательности: холодильник, мойка, свободная рабочая поверхность и варочная зона должны поместиться без лишних переходов. Интерактивная проверка Выберите длину рабочей линии Компактная линия",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/catalog--pryamye-kuhni--initial.png",
+      "screenshotAfterFirstAction": "screenshots/catalog--pryamye-kuhni--after-first-action.png",
+      "screenshotVisualResult": "screenshots/catalog--pryamye-kuhni--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/catalog/p-obraznye-kuhni",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/p-obraznye-kuhni",
+      "title": "Купить П-образную кухню на заказ в Минске | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp",
+          "alt": "Визуализация П-образной кухни с тремя рабочими сторонами",
+          "y": 1065,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp"
+      ],
+      "firstImageY": 1065,
+      "firstActionY": 731,
+      "firstActionText": "Готовят вдвоём",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Каталог / П-образная ПРОВЕРКА ПЛАНИРОВКИ П-образная кухня: сравните проходы и три стороны Хватит ли места для трёх сторон и безопасных проходов? П-образная форма полезна только тогда, когда техника и фасады открываются одновременно, а внутренний проход не превращается в узкий коридор. Интерактивная проверка Как будет использоваться внутренний проход Готовит один",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check?scid=adb165ed-9e76-6993-05e9-91d00c8b97a0&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=adb165ed-9e76-6993-05e9-91d00c8b97a0&token=11098.QzXjjFhx5axNN-j-ngc6MaEcni-2u1UALKCUFWq1sdJaTfnj8KGQaRMOTlLeZ7v4.wSTL-t09rdNsEbXuJ1a8xtol8kc%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=adb165ed-9e76-6993-05e9-91d00c8b97a0&token=11098.H97nRd5pr53n3n6WiIKxSVE1H0RIEf9KOXeIRNO0rwI4UjUuG6GjAVjpJdmMVq565rptla5WWGYf9gGJbzdvgEO-5CY4GO6_ErfG60mmJ4M%2C.xssyw3XH43L2MJjUbJsNhhkY-s0%2C",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=be3725e0-b1cc-bdee-3732-d5e558166f39&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=be3725e0-b1cc-bdee-3732-d5e558166f39&token=11098.i6BCoAfeLBjR8DyBclVoj07hlPIqCYuKjuYMDf808RLIOuXuF1MWjhleVsFy9eay.6aVNWHHZ8akXP2-R0pYWHAUnQsk%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=be3725e0-b1cc-bdee-3732-d5e558166f39&token=11098.3c94o-2IptY0558J65-J2klOVHIxbs1sYzpLIeo0r4y03f16oa8htjUCnYfHvX2dCez7LZi_N6ff3cpYaDTOaqsxmmDCrT8K5xe2EzUkm3E%2C.wZ1Jsrt1MLGc54capJY7DyZQuX0%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=be3725e0-b1cc-bdee-3732-d5e558166f39&token=11098.84utBD4dGAKObyqPhtuspsEdCCkJlH3oErksWlbzSACK-gk6NrzGvOrZSaodpmDjHTXJEB3cJRNn7lkVPwB9P3xQlb8J0b8XU-e2lvpV5cc1H87W7zS4KMOWjCyvocnu6kgRu9rnQj8rXUSrQy8WSIDI7O-7ktAjEBsCdKhdg-99tvZ-kWFGS0raFPab5MFt6nlScGI4T-gaUOrzLWkw4g%2C%2C.iunj4U-s2N1q2TQY7oXSqk7yPzM%2C",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/catalog--p-obraznye-kuhni--initial.png",
+      "screenshotAfterFirstAction": "screenshots/catalog--p-obraznye-kuhni--after-first-action.png",
+      "screenshotVisualResult": "screenshots/catalog--p-obraznye-kuhni--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/catalog/kuhni-s-ostrovom",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/kuhni-s-ostrovom",
+      "title": "Купить кухню с островом на заказ в Минске | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp",
+          "alt": "Визуализация кухни с островом",
+          "y": 1037,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp"
+      ],
+      "firstImageY": 1037,
+      "firstActionY": 703,
+      "firstActionText": "Хранение",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Каталог / с островом ПРОВЕРКА ПЛАНИРОВКИ Кухня с островом: сначала выберите его роль Поместится ли остров и какую функцию ему дать? Остров стоит проектировать от ежедневного действия: хранение, подготовка продуктов или посадка требуют разных проходов и коммуникаций. Интерактивная проверка Для чего нужен остров Подготовка",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/catalog--kuhni-s-ostrovom--initial.png",
+      "screenshotAfterFirstAction": "screenshots/catalog--kuhni-s-ostrovom--after-first-action.png",
+      "screenshotVisualResult": "screenshots/catalog--kuhni-s-ostrovom--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/catalog/malenkie-kuhni",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/malenkie-kuhni",
+      "title": "Купить маленькую кухню на заказ в Минске | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp",
+          "alt": "Визуализация компактной кухни",
+          "y": 1037,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp"
+      ],
+      "firstImageY": 1037,
+      "firstActionY": 703,
+      "firstActionText": "Хранение",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Каталог / маленькая кухня ПРОВЕРКА ПЛАНИРОВКИ Маленькая кухня: определите главный приоритет Как сохранить рабочую зону и хранение в маленькой кухне? На ограниченной площади нельзя максимизировать всё сразу. Выберите главную функцию, а остальные проверьте как честные компромиссы. Интерактивная проверка Что нельзя потерять Столешница",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/catalog--malenkie-kuhni--initial.png",
+      "screenshotAfterFirstAction": "screenshots/catalog--malenkie-kuhni--after-first-action.png",
+      "screenshotVisualResult": "screenshots/catalog--malenkie-kuhni--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/catalog/kuhni-do-potolka",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/kuhni-do-potolka",
+      "title": "Купить кухню до потолка на заказ в Минске | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp",
+          "alt": "Визуализация кухни до потолка",
+          "y": 1037,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp"
+      ],
+      "firstImageY": 1037,
+      "firstActionY": 703,
+      "firstActionText": "Запасы",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Каталог / до потолка ПРОВЕРКА ПЛАНИРОВКИ Кухня до потолка: распределите доступ по высоте Стоит ли поднимать шкафы до потолка и как ими пользоваться? Верхний ярус полезен для редких вещей. Ежедневные предметы должны оставаться в доступной зоне, а монтажный зазор и вентиляцию проверяют отдельно. Интерактивная проверка Что будет храниться наверху Сезонные вещи",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/catalog--kuhni-do-potolka--initial.png",
+      "screenshotAfterFirstAction": "screenshots/catalog--kuhni-do-potolka--after-first-action.png",
+      "screenshotVisualResult": "screenshots/catalog--kuhni-do-potolka--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/catalog/kuhni-bez-ruchek",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/kuhni-bez-ruchek",
+      "title": "Кухни без ручек на заказ в Минске | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp",
+          "alt": "Визуализация кухни без ручек",
+          "y": 1069,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp"
+      ],
+      "firstImageY": 1069,
+      "firstActionY": 735,
+      "firstActionText": "Нажатие",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Каталог / без ручек ПРОВЕРКА ПЛАНИРОВКИ Кухня без ручек: сравните способы открывания Какой способ открывания без ручек подходит и какие у него ограничения? Единого механизма для всей кухни нет: активные ящики, верхние шкафы и встроенная техника требуют разных сценариев хвата. Интерактивная проверка Как вы хотите открывать фасады Профиль",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check?scid=c60e5726-7f1f-6580-90d7-13efb8cd5496&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=c60e5726-7f1f-6580-90d7-13efb8cd5496&token=11098.VUjDPnzdKs0_qfcaDEY2aQwj4_7dbk3Xf1oznxmUWLZ-Q0jPi2rHNbiTo4zvN9vX._0KqbxmVvaRJfpBWMvnU9pMs0CY%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=c60e5726-7f1f-6580-90d7-13efb8cd5496&token=11098.HLJJq5bKb_x3kZqErLj8o5xLRhLmrL0lnH1pCWkisT3sr8_w4VBoHUNZDhCUaCZkSThWUxRgHBz4ORXyVU7pllY8XmHNFk94LADPj0TVmiM%2C.oM2aQIB8-h8LC7YxumC3zj8S9h4%2C",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=c4f22585-e993-d27e-0f65-9432de8ae07e&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=c4f22585-e993-d27e-0f65-9432de8ae07e&token=11098.iz2lOj0wJncPpPn-Ie1i94fr5YccMZTsUPxyhciuRWza6LnriJTs9cYbQY6FGVKb.9CJK6nXEOjF916KfIjMA-0mzqHU%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=c4f22585-e993-d27e-0f65-9432de8ae07e&token=11098.dA7Gz550a1E3XMkdBdD1LLZcOT1KTkIYWs_P4f3FvEvArRKy_oPKuuHBhksZdhMtk5lvfGi95GrxjqAQ-wsb7V7AkoRi2jwXe257RkIcBR0%2C.xrTr4WAp5q0DDh80ATrWXrn8kVU%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=c4f22585-e993-d27e-0f65-9432de8ae07e&token=11098.WvNAshJJEcud2_Af0xPyRtJOxhPGfhD9QEv_kA8IjjvKkW6VturKmkE-ED-WUNChddjZglBpGT86MOSm6b15i0R92Ks0O0kZjFP2_hUbKaeBj_YHyP9_Gc2jnXfKTpsG-PYs1xAfyS5W9foUp8tuTNwLxdNeM4SVB11lYn2l9C1ybqBj58EIWKeRvmMWhM9fKOXdqFVCO9QeKHynFEKr1A%2C%2C.RNoJ-kCouFtLhqWeeTsetkd6gtc%2C",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/catalog--kuhni-bez-ruchek--initial.png",
+      "screenshotAfterFirstAction": "screenshots/catalog--kuhni-bez-ruchek--after-first-action.png",
+      "screenshotVisualResult": "screenshots/catalog--kuhni-bez-ruchek--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/neoklassika",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/neoklassika",
+      "title": "Неоклассическая кухня: фасады и пропорции | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp",
+          "alt": "AI-концепт неоклассической кухни, общий вид",
+          "y": 789,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp"
+      ],
+      "firstImageY": 789,
+      "firstActionY": 1496,
+      "firstActionText": "светлая симметрия",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Кухня в стиле неоклассика: как сохранить лёгкость ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Кухня в стиле неоклассика: как сохранить лёгкость Разберём пропорции фасада, спокойные материалы и границу, после которой интерьер становится перегруженным. Главный вопрос Как получить выразительную рамку без тяжёлого классического декора? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-neoclassic-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоскост",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--neoklassika--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--neoklassika--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--neoklassika--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/hay-tek",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/hay-tek",
+      "title": "Кухня хай-тек: техника и точные линии | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
+          "alt": "AI-концепт кухни хай-тек, общий вид",
+          "y": 789,
+          "width": 1400,
+          "height": 1050
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp"
+      ],
+      "firstImageY": 789,
+      "firstActionY": 1496,
+      "firstActionText": "светлая техника",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Кухня в стиле хай-тек: техника без визуального шума ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Кухня в стиле хай-тек: техника без визуального шума Соберём порядок техники, профилей и света до выбора декоративных эффектов. Главный вопрос Как встроить технику и свет так, чтобы линии остались цельными? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-hightech-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоскости. 1 / 3 Происхождение: визуальная",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--hay-tek--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--hay-tek--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--hay-tek--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/provans",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/provans",
+      "title": "Кухня прованс: свет и тактильные детали | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp",
+          "alt": "AI-концепт кухни прованс, общий вид",
+          "y": 723,
+          "width": 1400,
+          "height": 788
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp"
+      ],
+      "firstImageY": 723,
+      "firstActionY": 1430,
+      "firstActionText": "приглушённый шалфей",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Кухня в стиле прованс: уют без перегруза ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Кухня в стиле прованс: уют без перегруза Отделим полезную фактуру от лишнего декора и выберем спокойную основу. Главный вопрос Какие детали дают тёплый характер, но не мешают уборке? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-provence-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоскости. 1 / 3 Происхождение: визуальная AI-концепция. Она помогает сравни",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--provans--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--provans--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--provans--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/loft",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/loft",
+      "title": "Кухня лофт: дерево, графит и металл | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-loft-temnaya-1.webp",
+          "alt": "AI-концепт кухни лофт, общий вид",
+          "y": 789,
+          "width": 1400,
+          "height": 788
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-loft-temnaya-1.webp"
+      ],
+      "firstImageY": 789,
+      "firstActionY": 1496,
+      "firstActionText": "светлый индустриальный",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Кухня в стиле лофт: выразительность без темноты ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Кухня в стиле лофт: выразительность без темноты Проверим долю тёмного цвета, рисунок дерева и свет до выбора металлических акцентов. Главный вопрос Как соединить тёмные плоскости и дерево, не утяжелив помещение? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-loft-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоскости. 1 / 3 Происхождение: визуальная A",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-loft-temnaya-1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check?scid=7d608879-a434-446d-401c-161895b2ed5b&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=7d608879-a434-446d-401c-161895b2ed5b&token=11098.HiB3YLkCzCfAFsEqCBlpb5I6Y5zB2PK-7Gs7TyrbOZ0iSxQZLJvBv4lhLXXKkTRs.pns7uOex1qjb3v4U0GUJPtpE7Rs%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=7d608879-a434-446d-401c-161895b2ed5b&token=11098.h2YEne7mlvWddcdKhW10CqFEIYnM5EsVuYz9QsUQ4E-CfqSq4Vqjz_ez4M1IN5Pjtk47cunFSzSvTq8415xqQ_bmi-VE9qjcsJCzrFPHLnU%2C.2ysKMfRwORiZVkN0zq8DuV3I0LA%2C",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=856a50bf-a5a1-2059-48af-b32e1036f708&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=856a50bf-a5a1-2059-48af-b32e1036f708&token=11098.fS67wyNTG2-Gv5UUDsjNLwIOYlIEyT8g9OahIqY1PC6cV-ivbeQ1CAvZpGpcnZn4.WtjHVuCCCZD0tsfLu-R_gr3okcs%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=856a50bf-a5a1-2059-48af-b32e1036f708&token=11098.Tc9GF0QNIH3s4brX_FMmJT-nuR9TJnh5Aip20D74A0cHKfWosYKt9zQuXQqSEah2Qr7J5CLdkO8aQfDkngLgv71lpJ-0us_FOhaU_fegAYM%2C.oXVqvTu0uttaWS-lLZILugXnQBI%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=856a50bf-a5a1-2059-48af-b32e1036f708&token=11098.9XW77GB-7YH1Hg_lNPIzYwCOO8sR0RPdmeWCgRDOUG8KFKFR511DfOffFEpFIjsd00_thooAcufU3UVNdBu974fAQCtlq_rzs9SflroTT3jDe_0WwAhgIBDR-luRgA-m60pfz2koNoFqxyym0sI_p8MJsT5Qvvrii4xjBmx7kodmDwHwc1XCd4M078lbmpeiM_89bb-KOBNTrOzNk5JkJg%2C%2C.ghZwfrAFju_Anrqg9CyHA46qa3w%2C",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--loft--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--loft--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--loft--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/sovremennye",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/sovremennye",
+      "title": "Современная кухня: гибкая визуальная система | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
+          "alt": "AI-концепт современной кухни, общий вид",
+          "y": 817,
+          "width": 1400,
+          "height": 788
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp"
+      ],
+      "firstImageY": 817,
+      "firstActionY": 1524,
+      "firstActionText": "дерево и цвет",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Современная кухня: как собрать цельный интерьер ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Современная кухня: как собрать цельный интерьер Выберем одну доминирующую плоскость, практичный материал и понятный ритм хранения. Главный вопрос Как сделать нейтральную кухню характерной, но не привязать её к модному приёму? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-modern-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоскости. 1 / 3 Происхожден",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--sovremennye--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--sovremennye--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--sovremennye--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/skandinavskie",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/skandinavskie",
+      "title": "Скандинавская кухня: свет и естественные фактуры | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-skandi-svetlaya-1.webp",
+          "alt": "AI-концепт скандинавской кухни, общий вид",
+          "y": 789,
+          "width": 1400,
+          "height": 788
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-skandi-svetlaya-1.webp"
+      ],
+      "firstImageY": 789,
+      "firstActionY": 1496,
+      "firstActionText": "серо-бежевый",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Скандинавская кухня: светлая, но практичная ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Скандинавская кухня: светлая, но практичная Соединим светлую основу, тёплую фактуру и хранение без ряда случайных полок. Главный вопрос Как сохранить визуальную лёгкость, если нужно много закрытого хранения? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-scandi-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоскости. 1 / 3 Происхождение: визуальная AI-конц",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-skandi-svetlaya-1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--skandinavskie--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--skandinavskie--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--skandinavskie--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/klassicheskie",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/klassicheskie",
+      "title": "Классическая кухня: симметрия и детали | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp",
+          "alt": "AI-концепт классической кухни, общий вид",
+          "y": 845,
+          "width": 1400,
+          "height": 788
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp"
+      ],
+      "firstImageY": 845,
+      "firstActionY": 1552,
+      "firstActionText": "дерево и витрины",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Классическая кухня: когда декору хватает места ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Классическая кухня: когда декору хватает места Разложим классический образ на масштаб, фасады и акценты, чтобы не обещать результат без проекта помещения. Главный вопрос Как проверить, выдержит ли помещение выраженную симметрию и декоративный ритм? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-classic-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоск",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check?scid=744731f1-d0f8-8f5b-d1c0-d3fd20a4112c&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=744731f1-d0f8-8f5b-d1c0-d3fd20a4112c&token=11098.aA_zgc5PU8ldXE6hWB9epoivkm6PeGbExPmWYXESVn5wBt8h6eCzFx-RCPS6Qtgo.ZENegjU1RD4avJ8k85lqndUWeXg%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=744731f1-d0f8-8f5b-d1c0-d3fd20a4112c&token=11098.mwQTcUnFxYaMO5gQtSceovCM7o140cKxyleeSBwbP3zjLernIWBan84IuahkRLvwD9j4U2TtvNkL-RiTiUf65SdwmBMspgcjIHT3LD9qNYE%2C.fA9HCOLSSEKHK4IEj0GVyIkq3zs%2C",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=e8fd99ed-b61b-4900-c7ac-cc63781de930&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=e8fd99ed-b61b-4900-c7ac-cc63781de930&token=11098.ihiJS0AigIxfAvbl5ljO3syrSV_0s2oRdJyxefVKbJR6t4l1VvxReMbm02SbtmBA.5Gztape5V75U9fiW4sVjJNEDHLE%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=e8fd99ed-b61b-4900-c7ac-cc63781de930&token=11098.eVqWXG2StiLk5VwcpshbHmGzbkVd4VUE3ixChgpds9TrH8cKsq33SreeNVQnGKPlM49cRxoVnusumZkaTiX359ffJIMT3--b2MQkuH19Hds%2C.nkZjb6cHWLR-SFRS-nncfkNvh8M%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=e8fd99ed-b61b-4900-c7ac-cc63781de930&token=11098.5QBxV0t35BM9ExAi-fYXubKhftsqzlM0SnhlWEUwy3fHVKW9F86cXXI9D8dnuUJNbYwsflDGXR-rzxt06Q1GhO6-3J4_edNjVpeDxOSpDlYQLhumoswEr2E8UeDidpyMn5FGztba7OyvxholIcBSdob3CCMDw4H_wkOnUCAKE3TS-1wtGg0BBGkCtG308_LXcKjhKgy09tJvjNuHKKlDCg%2C%2C.39kjPDraRNRKKCcr9pCV98E1GcI%2C",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--klassicheskie--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--klassicheskie--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--klassicheskie--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-neoklassika-1.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/styles/minimalizm",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/minimalizm",
+      "title": "Кухня минимализм: порядок плоскостей | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
+          "alt": "AI-концепт кухни в стиле минимализм, общий вид",
+          "y": 874,
+          "width": 1400,
+          "height": 1050
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp"
+      ],
+      "firstImageY": 874,
+      "firstActionY": 1581,
+      "firstActionText": "тёплый минимализм",
+      "firstActionSelector": null,
+      "textOnlySections": 4,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Стили / Кухня в стиле минимализм: меньше деталей, больше точности ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ · AI-КОНЦЕПТ Кухня в стиле минимализм: меньше деталей, больше точности Проверим хранение, открывание и технику до того, как выбирать чистый фасад. Главный вопрос Что действительно можно убрать из поля зрения, а что останется частью ежедневного быта? STYLE_VARIANTS CONTINUITY SERIES Один образ — три проверки style_variants-minimal-01 Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоско",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/styles--minimalizm--initial.png",
+      "screenshotAfterFirstAction": "screenshots/styles--minimalizm--after-first-action.png",
+      "screenshotVisualResult": "screenshots/styles--minimalizm--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/scenarios/s-ostrovom",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/s-ostrovom",
+      "title": "Кухня с островом: сценарий использования | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp",
+          "alt": "AI-концепт кухни с островом",
+          "y": 669,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp"
+      ],
+      "firstImageY": 669,
+      "firstActionY": 1242,
+      "firstActionText": "Хранить",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Сценарии / Кухня с островом: сначала роль, потом форма ЖИЗНЕННАЯ ЗАДАЧА · ВИЗУАЛЬНЫЙ СЦЕНАРИЙ Кухня с островом: сначала роль, потом форма Модель выбора не обещает, что остров поместится: она помогает сформулировать роль и перейти к проверке размеров. Вопрос страницы Остров нужен для готовки, хранения или общения? Визуальный сценарий, а не фотография выполненного проекта. Что нельзя потерять? Выберите один главный приоритет. Это подсказка для следующей проверки, а не обещание результата",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/scenarios--s-ostrovom--initial.png",
+      "screenshotAfterFirstAction": "screenshots/scenarios--s-ostrovom--after-first-action.png",
+      "screenshotVisualResult": "screenshots/scenarios--s-ostrovom--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/scenarios/do-potolka",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/do-potolka",
+      "title": "Кухня до потолка: доступ и хранение | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp",
+          "alt": "AI-концепт кухни до потолка",
+          "y": 689,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp"
+      ],
+      "firstImageY": 689,
+      "firstActionY": 1262,
+      "firstActionText": "Ежедневный доступ",
+      "firstActionSelector": null,
+      "textOnlySections": 3,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Сценарии / Кухня до потолка: что действительно хранить наверху ЖИЗНЕННАЯ ЗАДАЧА · ВИЗУАЛЬНЫЙ СЦЕНАРИЙ Кухня до потолка: что действительно хранить наверху Распределим доступ по частоте использования, не обещая вместимость до замера и списка вещей. Вопрос страницы Какие вещи нужны ежедневно, а какие можно убрать в верхний ярус? Высокие секции показаны как идея; высоту уточняют по помещению. Что нельзя потерять? Выберите один главный приоритет. Это подсказка для следующей проверки, а не о",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/scenarios--do-potolka--initial.png",
+      "screenshotAfterFirstAction": "screenshots/scenarios--do-potolka--after-first-action.png",
+      "screenshotVisualResult": "screenshots/scenarios--do-potolka--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/scenarios/dlya-semi",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/dlya-semi",
+      "title": "Семейная кухня: параллельные дела | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp",
+          "alt": "AI-концепт семейной кухни",
+          "y": 631,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp"
+      ],
+      "firstImageY": 631,
+      "firstActionY": 1205,
+      "firstActionText": "Больше хранения",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Сценарии / Кухня для семьи: как не мешать друг другу ЖИЗНЕННАЯ ЗАДАЧА · ВИЗУАЛЬНЫЙ СЦЕНАРИЙ Кухня для семьи: как не мешать друг другу Выделим приоритетный конфликт — готовка, хранение или пересечение маршрутов — и подберём направления проверки. Вопрос страницы Какие действия на кухне происходят одновременно? Сценарий зон показан условно; фактическая вместимость зависит от размеров. Что нельзя потерять? Выберите один главный приоритет. Это подсказка для следующей проверки, а не обещание",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/scenarios--dlya-semi--initial.png",
+      "screenshotAfterFirstAction": "screenshots/scenarios--dlya-semi--after-first-action.png",
+      "screenshotVisualResult": "screenshots/scenarios--dlya-semi--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/scenarios/dlya-studii",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/dlya-studii",
+      "title": "Кухня для студии: единое пространство | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-gostinaya-mobile.webp",
+          "alt": "AI-концепт кухни для студии",
+          "y": 717,
+          "width": 720,
+          "height": 960
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-gostinaya-mobile.webp"
+      ],
+      "firstImageY": 717,
+      "firstActionY": 1290,
+      "firstActionText": "Зонировать",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Сценарии / Кухня для студии: как сохранить цельное пространство ЖИЗНЕННАЯ ЗАДАЧА · ВИЗУАЛЬНЫЙ СЦЕНАРИЙ Кухня для студии: как сохранить цельное пространство Выберем роль кухни в общей комнате и проверим форму, поверхности и хранение без обещания результата по одной площади. Вопрос страницы Кухня должна раствориться в комнате или стать её акцентом? Идея единого пространства; пропорции уточняют по плану помещения. Что нельзя потерять? Выберите один главный приоритет. Это подсказка для сле",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-kuhnya-gostinaya-mobile.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/scenarios--dlya-studii--initial.png",
+      "screenshotAfterFirstAction": "screenshots/scenarios--dlya-studii--after-first-action.png",
+      "screenshotVisualResult": "screenshots/scenarios--dlya-studii--visual-result.png",
+      "genericReuse": [],
+      "routeSpecificMasters": 1,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/scenarios/dlya-malenkoy-kuhni",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/dlya-malenkoy-kuhni",
+      "title": "Маленькая кухня: приоритеты вместо обещаний | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp",
+          "alt": "AI-концепт маленькой кухни",
+          "y": 687,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp"
+      ],
+      "firstImageY": 687,
+      "firstActionY": 1261,
+      "firstActionText": "Хранение",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Сценарии / Маленькая кухня: что нельзя потерять ЖИЗНЕННАЯ ЗАДАЧА · ВИЗУАЛЬНЫЙ СЦЕНАРИЙ Маленькая кухня: что нельзя потерять Покажем компромисс каждого приоритета и отправим к подходящей форме, не обещая вместимость до обмеров. Вопрос страницы Что важнее сохранить: рабочую поверхность, хранение или свободный проход? Визуальная идея компактной компоновки, не доказательство вместимости. Что нельзя потерять? Выберите один главный приоритет. Это подсказка для следующей проверки, а не обещан",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check?scid=1d7c8691-8e23-b3fe-86ca-7cd289a5db11&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=1d7c8691-8e23-b3fe-86ca-7cd289a5db11&token=11098.n5Nmfj0qAfvzUSoE_Rw8z083YoDmM44otF4cDi8cIyO45ZWlyQB8NwdXNInLCx50.bPgvATGCO-sOmbWCi3jmY02236c%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/metrika/advert.gif",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=1d7c8691-8e23-b3fe-86ca-7cd289a5db11&token=11098.2jaQfbXJ-OU4n3S6jr6B5QOn_uau4QRaEl4sTIUwHo9uxZARw8Ixjt-AY_QzK4-mYW23GfC27IYmgNnzaDVZzoXcXHKgH6nY2PjCcpYqlYQ%2C.Rb5Ae6SPF2qKOVPff2CnpD4g1kQ%2C",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=dfa9f085-8573-0b71-34e3-ca1e4d82744e&cid=109329747",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=dfa9f085-8573-0b71-34e3-ca1e4d82744e&token=11098.qgbjmerKpJfUvho6vnJnpLlT5vyrKWgXKiJGN7JFkelB4g7YBwGwxgforykSj4i5.IJXK7dzXpPJnlUo55iwUAA7idvc%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=dfa9f085-8573-0b71-34e3-ca1e4d82744e&token=11098.VNhdmz_eoIZg6dCkTZxD8EjdNy1Usp2Vejodj0ll4LHVcVg_PzjwuLzYXVTT4MzayYra4O21EKaRjsBLkHY7b3cS7_dcEPbOAVtf4spef40%2C.O4Z3X8wb1tzPojCIwpZgefwmC3o%2C",
+          "status": 302
+        },
+        {
+          "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=dfa9f085-8573-0b71-34e3-ca1e4d82744e&token=11098.3jiUxLC54CpTdgfnwn96Qt0R_nxnx_vekELIvrUfi9PDgHgslmVURwlxqfbaZR4JsS4IqqRgMtkqQaBfuzbEkD9_rM3Jkg7ywAghikwc7u7Ln-BMlBhKGhU62nzazhFO-5fv3S3DGi8zrPiXKdbMvJsB-UPNKeTwd8glI_K4lN8g191NXJDJVOfXxcXLZCXr2xarfk1LUbzD0IFspbahgg%2C%2C.1s4itBPhEU6RNayepspXBopVBns%2C",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/scenarios--dlya-malenkoy-kuhni--initial.png",
+      "screenshotAfterFirstAction": "screenshots/scenarios--dlya-malenkoy-kuhni--after-first-action.png",
+      "screenshotVisualResult": "screenshots/scenarios--dlya-malenkoy-kuhni--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    },
+    {
+      "route": "/scenarios/byudzhetnaya-kuhnya",
+      "httpStatus": 200,
+      "status": "complete",
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/byudzhetnaya-kuhnya",
+      "title": "Бюджетная кухня: приоритет комплектации | КухниBY",
+      "imageCount": 1,
+      "images": [
+        {
+          "src": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
+          "alt": "AI-концепт кухни с приоритетной комплектацией",
+          "y": 631,
+          "width": 1200,
+          "height": 900
+        }
+      ],
+      "uniqueImageSources": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp"
+      ],
+      "firstImageY": 631,
+      "firstActionY": 1205,
+      "firstActionText": "Сохранить фасады",
+      "firstActionSelector": null,
+      "textOnlySections": 2,
+      "bodyScrollWidth": 390,
+      "viewportWidth": 390,
+      "visibleCopyBeforeAction": "Главная / Сценарии / Бюджетная кухня: где упрощать осознанно ЖИЗНЕННАЯ ЗАДАЧА · ВИЗУАЛЬНЫЙ СЦЕНАРИЙ Бюджетная кухня: где упрощать осознанно Разделим частые и редкие зоны, чтобы обсуждать состав проекта, а не обещать неподтверждённую цену. Вопрос страницы Что важнее сохранить в комплектации, если сумму ещё нельзя подтвердить? Идея рациональной комплектации; цена определяется только расчётом. Что нельзя потерять? Выберите один главный приоритет. Это подсказка для следующей проверки, а не обещание ",
+      "actionPerformed": true,
+      "secondActionPerformed": true,
+      "changedSources": [],
+      "initialMediaRequests": [
+        {
+          "url": "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
+          "status": 200
+        },
+        {
+          "url": "https://mc.yandex.ru/metrika/advert.gif",
+          "status": 200
+        }
+      ],
+      "screenshotInitial": "screenshots/scenarios--byudzhetnaya-kuhnya--initial.png",
+      "screenshotAfterFirstAction": "screenshots/scenarios--byudzhetnaya-kuhnya--after-first-action.png",
+      "screenshotVisualResult": "screenshots/scenarios--byudzhetnaya-kuhnya--visual-result.png",
+      "genericReuse": [
+        "https://kuhni.minsk.by/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp"
+      ],
+      "routeSpecificMasters": 0,
+      "meaningfulVisualChangesObserved": 0,
+      "auditStatus": "VISUAL_BACKFILL"
+    }
+  ]
+}
