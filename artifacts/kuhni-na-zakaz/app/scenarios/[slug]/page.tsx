@@ -9,6 +9,8 @@ import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescriptio
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { STATIC_SCENARIO_FALLBACKS, getStaticScenarioFallback } from "@/data/scenario-fallbacks";
+import { SCENARIO_FAMILY } from "@/data/exploration-families";
+import { ScenarioFamilyPage } from "@/components/exploration/ScenarioFamilyPage";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -284,13 +286,24 @@ async function getRelatedData(scenario: {
 export async function generateStaticParams() {
   try {
     const scenarios = await prisma.scenarioPage.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true } });
-    const slugs = new Set([...STATIC_SCENARIO_FALLBACKS.map((item) => item.slug), ...scenarios.map((item) => item.slug)]);
+    const slugs = new Set([...Object.keys(SCENARIO_FAMILY), ...STATIC_SCENARIO_FALLBACKS.map((item) => item.slug), ...scenarios.map((item) => item.slug)]);
     return Array.from(slugs).filter(isPublicContentSlug).map((slug) => ({ slug }));
-  } catch { return STATIC_SCENARIO_FALLBACKS.map((item) => ({ slug: item.slug })); }
+  } catch { return Array.from(new Set([...Object.keys(SCENARIO_FAMILY), ...STATIC_SCENARIO_FALLBACKS.map((item) => item.slug)])).map((slug) => ({ slug })); }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const family = SCENARIO_FAMILY[slug];
+  if (family) {
+    return {
+      title: family.title,
+      description: family.description,
+      alternates: { canonical: `/scenarios/${slug}` },
+      openGraph: buildOpenGraph(`/scenarios/${slug}`, family.title, family.description, { images: [{ url: family.visual.avif || family.visual.webp, alt: family.visual.alt }] }),
+      twitter: buildTwitterMetadata(family.title, family.description, family.visual.avif || family.visual.webp),
+      robots: { index: true, follow: true },
+    };
+  }
   const s = await getScenario(slug);
   if (!s) return { title: "Сценарий не найден" };
   const canonical = SECONDARY_SCENARIO_CANONICALS[s.slug] ?? `/scenarios/${s.slug}`;
@@ -318,6 +331,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ScenarioDetailPage({ params }: Props) {
   const { slug } = await params;
+  const family = SCENARIO_FAMILY[slug];
+  if (family) return <ScenarioFamilyPage config={family} />;
   const scenario = await getScenario(slug);
   if (!scenario) notFound();
 

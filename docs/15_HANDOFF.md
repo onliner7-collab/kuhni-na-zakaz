@@ -401,3 +401,11 @@ Batch реализована только для `/catalog/pryamye-kuhni`, `/cat
 Production deploy завершён для runtime commit `ed4dde9be4a27226e1ecbb0d42d99b01c92080e9`: `deploy/scripts/update-production.sh work`, production Prisma schema in sync, Next build PASS, service `kuhni-na-zakaz` active. Smoke `https://kuhni.minsk.by` для трёх пилотов, шести batch URL и пяти protected baseline: все HTTP 200, self-canonical, H1=1, overflow=0, broken images=0, missing alt=0; batch имеет шесть уникальных interaction roles и минимум три registry transition links. Rollback: `git revert ed4dde9`, push `work`, повторить стандартный deploy и тот же smoke. Этот follow-up меняет только Handoff: `NO RUNTIME DEPLOY — production artifact unchanged after verified ed4dde9`.
 
 Следующий разрешённый шаг после production PASS — чат 11, только style family из `design/13-chat-execution-prompts.md`. Не расширять route scope, не менять protected URL и не создавать facet URL.
+
+## 2026-07-20 — handoff style + scenario families
+
+Локальный статус: `PASS / IMPLEMENTED_VERIFIED_LOCAL`. Восемь style и шесть scenario URL реализованы на едином data contract, но имеют разные вопросы, visual/decision models, материалы, ограничения и следующие переходы. Style использует `style_variants-*` seriesId; scenario — приоритетный decision model. AI concept и portfolio proof разделены видимым disclosure и типом перехода.
+
+Проверено: `pnpm.cmd run typecheck`; foundation unit 3/3; `pnpm.cmd run sitemap:check` 112/112; `pnpm.cmd run build` PASS с ожидаемыми Prisma fallback warnings при недоступной локальной `127.0.0.1:5434`; Playwright style/scenario batch 40/40 на desktop/mobile, дополнительные 360/390/412/768, protected baseline 5/5. Route bundles: styles около 166 КБ First Load JS, scenarios около 160 КБ; один eager visual, остальные style sequence кадры lazy.
+
+После отдельного commit требуется push `work`, standard production deploy, production smoke всех 14 URL и пяти protected routes. Rollback: `git revert <commit>`, повторный deploy и тот же smoke; data/schema rollback отсутствует.

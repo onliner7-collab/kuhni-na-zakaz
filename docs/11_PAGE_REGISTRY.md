@@ -223,3 +223,10 @@ Media slots, `ExploreContext`, Next Best Action и переходы между �
 - Детализация каждого URL находится в `design/07-route-matrix.md`; отсутствие Search Console/SERP подтверждения помечается как рабочая гипотеза.
 - Новые URL нельзя создавать как комбинации `город × стиль × планировка × материал × цвет`; сначала проходит page gate.
 - Текущие статусы `EXISTING`/`AUDITED` не повышаются автоматически до `IMPLEMENTED`.
+
+## 2026-07-20 — style и scenario families
+
+- `IMPLEMENTED_VERIFIED_LOCAL`: `/styles/neoklassika`, `/styles/hay-tek`, `/styles/provans`, `/styles/loft`, `/styles/sovremennye`, `/styles/skandinavskie`, `/styles/klassicheskie`, `/styles/minimalizm`.
+- `IMPLEMENTED_VERIFIED_LOCAL`: `/scenarios/s-ostrovom`, `/scenarios/do-potolka`, `/scenarios/dlya-semi`, `/scenarios/dlya-studii`, `/scenarios/dlya-malenkoy-kuhni`, `/scenarios/byudzhetnaya-kuhnya`.
+- Все 14 URL сохраняют существующие canonical; новые city/style/material combination и facet URL не созданы. У каждой страницы уникальны metadata, H1, вопрос, ограничения, модель сравнения/решения и четыре перехода `DEEPEN/COMPARE/PROOF/CONVERT`.
+- AI-концепты отделены от `/portfolio`; бюджет, вместимость и результат не заявляются без замера/спецификации. Подробный локальный gate: `docs/audit/2026-07-20-style-scenario-families.md`.

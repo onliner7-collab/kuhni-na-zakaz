@@ -302,3 +302,13 @@
 - **Evidence:** все подключённые batch visuals маркируются как `ai_concept`; ссылки на portfolio не доказывают реальность проекта сами по себе.
 - **Protected boundary:** page-specific runtime пяти protected URL не меняется.
 - **Scale gate:** следующий route-family чат разрешён только после production smoke текущего commit; массовое автоматическое масштабирование запрещено.
+
+## 2026-07-20 — style и scenario families
+
+- **Scope:** изменены только восемь `/styles/*` и шесть `/scenarios/*` из постановки; protected baseline и комбинационные URL не менялись.
+- **Style uniqueness:** каждый style получает собственные visual language, материалы, ограничения, вопрос, сравнение, варианты и `style_variants-*` continuity `seriesId`; замена одного hero не считается реализацией.
+- **Scenario uniqueness:** каждый scenario отвечает на отдельное бытовое ограничение, предлагает три приоритета и ведёт к конкретным plan/layout, material и guide URL без обещаний бюджета или вместимости.
+- **Evidence:** видимые изображения маркируются как AI-концепты. `PROOF` всегда ведёт в отдельный `/portfolio`; ссылка не повышает provenance конкретного asset.
+- **Architecture:** важный текст и четыре перехода остаются server-rendered; клиент хранит только неперсональный ExploreContext в sessionStorage. Facet URL отсутствуют.
+- **QA gate:** typecheck, unit, sitemap 112/112, production build и последовательный Playwright 40/40 PASS; widths 360/390/412/768/1440, keyboard, touch targets, metadata/H1/canonical, images, overflow и protected regression проверены.
+- **Rollback:** `git revert <style-scenario-commit>`, push `work`, standard deploy, повторить 14-route smoke и пять protected URL. Prisma/schema/import rollback не требуется.

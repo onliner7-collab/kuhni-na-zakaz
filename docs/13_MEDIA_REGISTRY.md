@@ -153,3 +153,10 @@ Production map новых визуальных серий, media slots, generati
 - Borisov/MDF delivery дополнен 17 AVIF-файлами рядом с WebP; masters сохранены в ранее зарегистрированных project paths.
 - MDF получил видимый AI-disclosure для hero, comparator и cutaway. Angular больше не связывает concept portfolio case с утверждением «реализованный проект».
 - Lifecycle существующих legacy gallery assets не повышался до `verified_real`; media batch остаётся `ai_concept`.
+
+## 2026-07-20 — style/scenario delivery reuse
+
+- Style family регистрирует восемь `style_variants-*` continuity series в `data/exploration-families.ts`; каждая серия имеет русский alt/caption, `seriesId`, общий вид, условную проверку фасада и света.
+- Scenario family использует шесть существующих оптимизированных WebP visual slots. Для доступных style masters сохранён AVIF source; UI не подключает PNG/JPEG masters.
+- Новые изображения в этом этапе не генерировались: переиспользованы уже проектные WebP/AVIF assets. Их статус остаётся `ai_concept`; `/portfolio` используется только как отдельный evidence-gated переход.
+- Browser batch подтвердил `naturalWidth > 0` для hero/media всех 14 URL; отсутствующие media имеют текстовый fallback.

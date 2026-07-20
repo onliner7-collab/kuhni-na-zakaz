@@ -195,3 +195,14 @@
 | `MaterialSurfaceComparator` | `artifacts/kuhni-na-zakaz/components/materials/MaterialSurfaceComparator.tsx` | Client island | `/materials/mdf-fasady` | IMPLEMENTED_LOCAL |
 
 Оба consumer используют shared `ExploreContext`/`ContextSummary` и существующий `ContactForm`; protected `/materials/furnitura` не импортирует новые компоненты.
+
+## 2026-07-20 — style/scenario family consumers
+
+| Component/module | Path | Boundary | Consumer | Status |
+| --- | --- | --- | --- | --- |
+| `StyleFamilyPage` | `artifacts/kuhni-na-zakaz/components/exploration/StyleFamilyPage.tsx` | Server composition | 8 style URL | VERIFIED_LOCAL |
+| `ScenarioFamilyPage` | `artifacts/kuhni-na-zakaz/components/exploration/ScenarioFamilyPage.tsx` | Server composition | 6 scenario URL | VERIFIED_LOCAL |
+| `StyleVariantControls` | `artifacts/kuhni-na-zakaz/components/exploration/FamilyDecisionControls.tsx` | Client island | style family | VERIFIED_LOCAL |
+| `ScenarioDecisionControls` | `artifacts/kuhni-na-zakaz/components/exploration/FamilyDecisionControls.tsx` | Client island | scenario family | VERIFIED_LOCAL |
+
+Server compositions сохраняют H1, disclosure, ограничения, текстовый fallback и обычные ссылки в HTML. Client islands ограничены выбором и записью неперсонального `ExploreContext`; touch targets 44×44, keyboard/focus и live result проверены.

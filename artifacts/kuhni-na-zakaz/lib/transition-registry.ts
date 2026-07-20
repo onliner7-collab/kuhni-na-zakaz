@@ -19,7 +19,7 @@ export interface TransitionRecord {
 const registry: TransitionRecord[] = [
   { fromRoute: "/catalog/uglovye-kuhni", fromState: "SELECTED", userQuestion: "Как использовать пространство угла?", actionType: "DEEPEN", anchorRu: "Проверить хранение в углу", toRoute: "#inside", contextPatch: { layout: "угловая" }, reasonRu: "Показывает доступ к глубокой части шкафа.", priority: 1, requiresEvidence: false, fallbackRoute: "#inside", analyticsEvent: "next_action_click", status: "active" },
   { fromRoute: "/catalog/uglovye-kuhni", fromState: "COMPARE", userQuestion: "Из чего собрать выбранный образ?", actionType: "COMPARE", anchorRu: "Сравнить фасады и материалы", toRoute: "#materials", contextPatch: { layout: "угловая" }, reasonRu: "Связывает форму угла с поверхностью и цветом.", priority: 2, requiresEvidence: false, fallbackRoute: "#materials", analyticsEvent: "next_action_click", status: "active" },
-  { fromRoute: "/catalog/uglovye-kuhni", fromState: "PROOF", userQuestion: "Где проверить выполненные решения?", actionType: "PROOF", anchorRu: "Проверить подтверждённые работы", toRoute: "/portfolio", contextPatch: { layout: "угловая", evidencePreference: "real" }, reasonRu: "Ведёт в раздел работ без выдачи AI-концепта за выполненный объект.", priority: 3, requiresEvidence: false, fallbackRoute: "/portfolio", analyticsEvent: "proof_open", status: "active" },
+  { fromRoute: "/catalog/uglovye-kuhni", fromState: "PROOF", userQuestion: "Где проверить выполненные решения?", actionType: "PROOF", anchorRu: "Проверить подтверждённые работы", toRoute: "/portfolio", contextPatch: { layout: "угловая", evidencePreference: "real" }, reasonRu: "Ведёт в раздел работ без выдачи AI-концепта за выполненный объект.", priority: 3, requiresEvidence: true, fallbackRoute: "/portfolio", analyticsEvent: "proof_open", status: "active" },
   { fromRoute: "/catalog/uglovye-kuhni", fromState: "DECISION", userQuestion: "Что делать после выбора?", actionType: "CONVERT", anchorRu: "Перейти к расчёту", toRoute: "#calculate", contextPatch: { layout: "угловая", sourceRoute: "/catalog/uglovye-kuhni" }, reasonRu: "Передаёт выбранные параметры в существующую форму.", priority: 4, requiresEvidence: false, fallbackRoute: "/calculator", analyticsEvent: "lead_open_with_context", status: "active" },
   { fromRoute: "/locations/borisov", fromState: "SELECTED", userQuestion: "Какие условия нужно подтвердить?", actionType: "DEEPEN", anchorRu: "Проверить этапы заказа", toRoute: "/locations/borisov#process", contextPatch: { location: "borisov" }, reasonRu: "Показывает порядок без обещания локальных условий.", priority: 1, requiresEvidence: false, fallbackRoute: "/locations/borisov", analyticsEvent: "pilot_transition_click", status: "active" },
   { fromRoute: "/locations/borisov", fromState: "PROOF", userQuestion: "Есть ли локальный реальный проект?", actionType: "PROOF", anchorRu: "Проверить статус локального proof", toRoute: "/locations/borisov#local-proof", contextPatch: { location: "borisov", evidencePreference: "real" }, reasonRu: "Показывает честный fallback до появления exact-city evidence.", priority: 2, requiresEvidence: true, fallbackRoute: "/portfolio", analyticsEvent: "pilot_transition_click", status: "active" },
@@ -47,6 +47,26 @@ const registry: TransitionRecord[] = [
   { fromRoute: "/catalog/kuhni-bez-ruchek", fromState: "RESULT", userQuestion: "Как передать выбранный механизм?", actionType: "CONVERT", anchorRu: "Передать открывание в заявку", toRoute: "/calculator", contextPatch: { hardware: ["без ручек"], sourceRoute: "/catalog/kuhni-bez-ruchek" }, reasonRu: "Сохраняет выбранный сценарий без утверждения совместимости.", priority: 3, requiresEvidence: false, fallbackRoute: "/catalog", analyticsEvent: "lead_open_with_context", status: "active" },
 ];
 
+for (const config of [...Object.values(STYLE_FAMILY), ...Object.values(SCENARIO_FAMILY)]) {
+  const family = "visualLanguage" in config ? "styles" : "scenarios";
+  const fromRoute = `/${family}/${config.slug}`;
+  config.links.forEach((link, index) => registry.push({
+    fromRoute,
+    fromState: "RESULT",
+    userQuestion: config.question,
+    actionType: link.type,
+    anchorRu: link.label,
+    toRoute: link.href,
+    contextPatch: family === "styles" ? { style: config.h1, sourceRoute: fromRoute } : { scenario: config.h1, sourceRoute: fromRoute },
+    reasonRu: link.reason,
+    priority: index + 1,
+    requiresEvidence: link.type === "PROOF",
+    fallbackRoute: link.type === "CONVERT" ? "/calculator" : family === "styles" ? "/styles" : "/scenarios",
+    analyticsEvent: `${family.slice(0, -1)}_family_transition_click`,
+    status: "active",
+  }));
+}
+
 export function readTransitions(fromRoute: string, fromState?: string) {
   return registry
     .filter((item) => item.status === "active" && item.fromRoute === fromRoute && (!fromState || item.fromState === fromState))
@@ -56,3 +76,4 @@ export function readTransitions(fromRoute: string, fromState?: string) {
 export function getTransitionRegistry() {
   return registry.slice();
 }
+import { SCENARIO_FAMILY, STYLE_FAMILY } from "@/data/exploration-families";

@@ -11,6 +11,8 @@ import { renderContent } from "@/lib/render-content";
 import { getStyleEnrichment } from "@/lib/kitchen-page-enrichment";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import { STYLE_FAMILY } from "@/data/exploration-families";
+import { StyleFamilyPage } from "@/components/exploration/StyleFamilyPage";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -214,6 +216,17 @@ async function getOtherStyles(currentSlug: string) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const family = STYLE_FAMILY[slug];
+  if (family) {
+    const image = family.media[0];
+    return {
+      title: family.title,
+      description: family.description,
+      alternates: { canonical: `/styles/${slug}` },
+      openGraph: buildOpenGraph(`/styles/${slug}`, family.title, family.description, { images: [{ url: image.avif || image.webp, alt: image.alt }] }),
+      twitter: buildTwitterMetadata(family.title, family.description, image.avif || image.webp),
+    };
+  }
   const s = await getStyle(slug);
   if (!s) return { title: "Стиль кухни" };
   const title = cleanSeoTitle(s.seoTitle, s.title);
@@ -231,6 +244,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StylePage({ params }: Props) {
   const { slug } = await params;
+  const family = STYLE_FAMILY[slug];
+  if (family) return <StyleFamilyPage config={family} />;
   const s = await getStyle(slug);
   if (!s) notFound();
   const heroImage = slug === "neoklassika" ? "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp" : s.image;
