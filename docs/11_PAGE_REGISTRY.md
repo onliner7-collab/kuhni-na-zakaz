@@ -175,3 +175,35 @@ Product Architecture не повышает route до `IMPLEMENTED` или `VERI
 - Текущий mobile Dock меняет четыре пункта по route. Целевой contract: `Выбрать / Цены / Наши работы / Оставить заявку` в постоянном порядке.
 
 Полная карта: `docs/product/05_PAGE_TRANSITION_MAP.md` и `docs/product/09_PAGE_UNIQUENESS_MATRIX.md`.
+
+## 2026-07-19 — UX/SEO пакет мобильного интерактивного хаба
+
+Полный implementation contract вынесен в `design/00-TZ-INDEX.md`–`design/10-implementation-qa-rollout.md`.
+
+## 2026-07-20 — route/intent audit 112 canonical URL
+
+Построчная SEO/intent-карта находится в `design/07-route-matrix.md`, секция `Route/intent и SEO-карта — аудит 2026-07-20`. Для каждого из 112 canonical URL зафиксированы `primary intent`, `userQuestion`, `uniquePromise`, `archetype`, `primaryInteraction`, текущая index policy, evidence owner, 2–4 перехода и overlap/cannibalization risk.
+
+| Проверка реестра | Результат |
+| --- | --- |
+| static sitemap URL | 112 unique |
+| production `/sitemap.xml` | HTTP 200, 112 unique |
+| route/intent rows | 112 unique |
+| missing относительно sitemap | 0 |
+| extra относительно sitemap | 0 |
+| строки без 2–4 переходов | 0 |
+| новые facet URL | 0 |
+
+Статус всех URL на этом этапе остаётся runtime-неизменным. `INDEX_EXISTING` в route matrix означает сохранение текущего canonical/sitemap baseline, а не независимое подтверждение качества или индексирования. Для 31 location URL требуется operations evidence; для 13 portfolio detail URL — business/media provenance evidence; для pricing, warranty и technical claims — соответствующий business owner. Search Console и live SERP evidence не предоставлены, поэтому поисковые объёмы, позиции и окончательные keyword ownership decisions не заявляются.
+
+Защищённые `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura` получили только documentation/regression status; их runtime UI, URL, metadata, schema и media не менялись.
+
+- Фактический static sitemap baseline: 112 canonical URL.
+
+Защищённый baseline: `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura`. Их page status и собственные блоки не меняются текущим rollout; integration допускается только через shared shell, ссылки, lead context, analytics и QA.
+
+Media slots, `ExploreContext`, Next Best Action и переходы между архетипами определены в `design/11-media-transition-production-map.md`. Каждая незакреплённая implementation-строка должна получить source/target/reason/fallback и media questions до генерации изображений.
+- Для каждой route family назначены целевые archetype, primary question, primary interaction и evidence gate.
+- Детализация каждого URL находится в `design/07-route-matrix.md`; отсутствие Search Console/SERP подтверждения помечается как рабочая гипотеза.
+- Новые URL нельзя создавать как комбинации `город × стиль × планировка × материал × цвет`; сначала проходит page gate.
+- Текущие статусы `EXISTING`/`AUDITED` не повышаются автоматически до `IMPLEMENTED`.

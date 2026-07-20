@@ -1,5 +1,7 @@
 # Handoff
 
+> **Актуальное уточнение 2026-07-19:** исторические блоки ниже сохранены для audit trail. Текущий implementation contract и следующий шаг определяются секциями `2026-07-19 — полный пакет ТЗ интерактивного хаба` и `design/10-implementation-qa-rollout.md` в конце файла.
+
 ## Current stage
 
 Product Architecture этапа 4.5 завершена как docs-only работа на ветке `work`. Созданы `docs/product/00_*`–`11_*`, обновлены master docs, Page/Component Registry, Decision Log и этот Handoff. Production-код, UI, routes, metadata, sitemap, robots, forms, Prisma и media не менялись; deploy сайта не требуется и не выполняется.
@@ -228,4 +230,117 @@ Revert итоговый stage-5 commit отдельным Git revert и заде
 - Компьютер не переводить в сон: пользователь отменил это действие 2026-07-16.
 ## Product этап 5 — текущий handoff
 
-Глобальный Dock реализован в существующем `MobileBottomNav`; добавлен `LeadFormSheet` поверх существующего `ContactForm`. Dock виден на публичных страницах до 767 px, исключения и служебные маршруты не получают PublicChrome. Typecheck, production build и responsive smoke-проверка пройдены. Следующий шаг — commit, push, отдельный deploy и production smoke; PageActionRail оставлен без подключения.
+Глобальный Dock реализован в существующем `MobileBottomNav`; добавлен `LeadFormSheet` поверх существующего `ContactForm`. Dock виден на публичных страницах до 767 px, исключения и служебные маршруты не получают PublicChrome. Typecheck, production build и responsive smoke-проверка пройдены. Историческая формулировка о следующем commit/deploy сохранена для audit trail; актуальная последовательность работ указана ниже в implementation contract.
+
+## 2026-07-19 — полный пакет ТЗ интерактивного хаба
+
+### Защищённый baseline
+
+До отдельной приёмки не менять собственные страницы `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk` и `/materials/furnitura`. Все будущие shared-изменения и новые маршруты должны включать эти пять URL в regression matrix и связывать их только через разрешённую интеграцию из `design/00-TZ-INDEX.md` и `design/06-ux-spec.md`.
+
+### Новые изображения и логика переходов
+
+Обязательный production contract находится в `design/11-media-transition-production-map.md`: два реестра Media Asset/Transition, continuity-серии, media slots по архетипам, `ExploreContext`, машина состояний, Next Best Action и hybrid hub-and-spoke + silo. Следующий implementation этап сначала заполняет slots/briefs/transitions для трёх пилотов и только затем запускает генерацию изображений через встроенный `imagegen`.
+
+### Главное ТЗ
+
+Единая постановка для следующей разработки находится в `design/12-master-tz.md`. Начинать новую implementation-задачу следует с него, затем открывать соответствующие нормативные приложения `design/06-*`–`design/11-*` и registries.
+
+### План последовательных чатов
+
+Готовые промты для 25 этапов находятся в `design/13-chat-execution-prompts.md`. Следующий чат запускается только после PASS предыдущего, commit, production smoke/deploy evidence или честного `NO RUNTIME DEPLOY` для документационного этапа, а также обновления Handoff.
+
+Создан implementation contract для развития сайта как мобильного интерактивного хаба:
+
+- `design/00-TZ-INDEX.md` — source of truth и границы пакета;
+- `design/06-ux-spec.md` — UX, IA, flows, screen rules, archetypes и page acceptance;
+- `design/07-route-matrix.md` — 112/112 canonical URL из static sitemap;
+- `design/08-content-data-media-contract.md` — текущие Prisma entities, provenance, evidence, media delivery, metadata и index policy;
+- `design/09-component-interaction-contract.md` — shell, components, states, accessibility и performance;
+- `design/10-implementation-qa-rollout.md` — implementation phases, analytics, test matrix, gates и rollback.
+
+Production UI, routes, metadata, sitemap, robots, Prisma и media data этим docs-only изменением не менялись.
+
+### Следующее разрешённое действие
+
+Не начинать массовую реализацию новых стилей/планировок/локаций. Сначала выполнить Phase 0 source-of-truth sync, затем заполнить route/intent matrix фактическими Search Console/SERP данными, провести portfolio/business evidence review и закрыть три пилота (`/catalog/uglovye-kuhni`, `/locations/borisov`, `/materials/mdf-fasady`). `/materials/furnitura` остаётся защищённым regression-узлом.
+
+## 2026-07-20 — чат 2: route/intent и SEO-карта
+
+### Результат
+
+`PASS` по документационному scope и parity gate. `PASS_WITH_EVIDENCE_GAPS` по окончательной поисковой/бизнес-доказательности: Search Console/SERP export, operations facts и portfolio provenance не предоставлены и не были выдуманы.
+
+- В `design/07-route-matrix.md` добавлено 112/112 post-row records: primary intent, `userQuestion`, `uniquePromise`, archetype, `primaryInteraction`, current index policy, evidence owner, 2–4 перехода и overlap risk.
+- `public/sitemap-static.xml`, production `/sitemap.xml` и audit matrix совпадают: 112 unique, `missing = 0`, `extra = 0`, duplicates = 0.
+- Новые facet URL не создавались; runtime URL, canonical, robots, metadata, schema, sitemap и UI не менялись.
+- 31 location URL получили общий evidence gate: уникальность нельзя доказывать заменой топонима.
+- 13 portfolio detail URL получили `PROVENANCE_REVIEW_REQUIRED`: DB record, slug, path, city и `published` не являются proof реального проекта.
+- Пять защищённых URL проверены read-only и не изменены.
+
+### Git baseline и пользовательские изменения
+
+- Входной HEAD: `cc16b4a713e2a248a14caf5b9054ae13d8fa6544` (`work`, `origin/work`).
+- До чата 2 уже существовали незакоммиченные docs-only изменения чата 1: `AGENT.md`, master/registry/log/handoff/product docs и untracked `design/`; также была untracked `.playwright-mcp/`.
+- Эти пользовательские изменения не удалялись и не откатывались. Чат 2 адресно менял только `design/07-route-matrix.md`, `docs/11_PAGE_REGISTRY.md`, `docs/14_DECISION_LOG.md`, `docs/15_HANDOFF.md`.
+
+### Проверки
+
+| Проверка | Результат |
+| --- | --- |
+| `pnpm.cmd run typecheck` | PASS |
+| `pnpm.cmd run sitemap:check` | PASS, 112 URL; dynamic DB unavailable, static fallback used |
+| `pnpm.cmd run seo:check` | PASS |
+| `pnpm.cmd run build` | PASS, Next.js 15.3.9; 124 static pages; DB fallback warnings for unavailable `127.0.0.1:5434` |
+| production `/sitemap.xml` | HTTP 200, 112 unique |
+| production `robots.txt` | HTTP 200 |
+| audit route rows vs static sitemap | 112 unique, missing 0, extra 0, bad transition count 0 |
+| UTF-8 / BOM / mojibake | проверить финальным docs gate перед commit |
+| runtime deploy | `NO RUNTIME DEPLOY` |
+
+Build PASS не означает проверку dynamic DB content: локальная PostgreSQL на `127.0.0.1:5434` была недоступна, а код использовал предусмотренные fallback-данные. Это открытый evidence risk для чата 3, а не причина менять runtime на docs-only этапе.
+
+### Production baseline защищённых URL
+
+Дата проверки: 2026-07-20, встроенный browser/Playwright, fresh-load console check, 360/390/412 px.
+
+| URL | HTTP | canonical / robots | H1 | изображения | Dock / overflow / console |
+| --- | ---: | --- | --- | --- | --- |
+| `/` | 200 | self / `index, follow` | 1: «Купить кухню в Минске под размер, с проектом и монтажом» | 54, broken 0, missing alt 0 | global Dock visible/fixed; overflow 0; errors 0 |
+| `/design-proekt-kuhni` | 200 | self / `index, follow` | 1: «3D-проект кухни на заказ» | 52, broken 0, missing alt 0 | global Dock visible/fixed; overflow 0; errors 0 |
+| `/locations/minskaya-oblast` | 200 | self / `index, follow` | 1: «Купить кухню в Минской области под размер, с доставкой и монтажом» | 21, broken 0, missing alt 0 | global Dock visible/fixed; overflow 0; errors 0 |
+| `/locations/minsk` | 200 | self / `index, follow` | 1: «Купить кухню на заказ в Минске под размер» | 82, broken 0, missing alt 0 | global Dock visible/fixed; overflow 0; errors 0 |
+| `/materials/furnitura` | 200 | self / `index, follow` | 1: «Фурнитура для кухни на заказ» | 203, broken 0, missing alt 0 | global Dock visible/fixed; overflow 0; errors 0 |
+
+Сохраняется P1 performance/UX debt `/materials/furnitura`: 203 изображения и тяжёлый HTML response (около 819 КБ в HTTP smoke). В этом чате страница защищена и не изменялась.
+
+### Фактический deploy и rollback
+
+Deploy branch — `work`, repo на VPS — `/var/www/kuhni-na-zakaz`, app — `artifacts/kuhni-na-zakaz`, systemd service — `kuhni-na-zakaz`. Стандартный путь: push commit в `origin/work` → SSH `root@5.42.108.140` → `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work`. Скрипт выполняет fast-forward pull, frozen install, Prisma generate/migration/db push, recipient/contact sync, static sitemap write, Next build, timer install и restart service. Content imports по умолчанию отключены и разрешены только с `RUN_CONTENT_IMPORTS=1`.
+
+Rollback runtime: выбрать последний проверенный runtime commit, создать отдельный Git revert проблемного commit, push в `work`, запустить тот же update script и выполнить production smoke. Database нельзя автоматически откатывать Git revert; для migration/data нужен отдельный backup/restore decision. Для текущего docs-only commit rollback — только отдельный Git revert, без service restart, DB, imports или asset operations.
+
+### NO RUNTIME DEPLOY
+
+`NO RUNTIME DEPLOY`: изменены только route matrix и registries/log/handoff. Production artifact, UI, routes, metadata, sitemap, Prisma и assets не менялись. Запуск update script создал бы лишний риск Prisma/build/restart без изменения пользовательского результата.
+
+### Открытые риски
+
+1. Search Console и live SERP evidence отсутствуют; primary intent и overlap — редакционная гипотеза до data review.
+2. 31 location URL находятся в sitemap/index baseline без подтверждённого в этом чате city-specific evidence.
+3. 13 portfolio detail URL требуют provenance review; часть generated cases не может называться «Нашими работами» без owner approval.
+4. Две статьи о стоимости (`/blog/skolko-stoit-kuhnya-na-zakaz` и dated Minsk 2026 URL) имеют критический overlap; ownership решается после GSC/SERP evidence.
+5. Локальная DB недоступна во время build, поэтому dynamic content quality не проверена против production DB.
+6. `/materials/furnitura` сохраняет 203-image performance debt, но защищена от изменений текущим scope.
+
+### Точный handoff для чата 3
+
+```text
+Подготовь data/provenance gate без массового UI. До действий прочитай AGENT.md, design/12-master-tz.md, design/08-content-data-media-contract.md, design/11-media-transition-production-map.md, design/07-route-matrix.md (секцию аудита 2026-07-20), docs/11_PAGE_REGISTRY.md, docs/13_MEDIA_REGISTRY.md, docs/14_DECISION_LOG.md, docs/15_HANDOFF.md и фактические Prisma schema/seed/fallback data.
+
+Начни с git status/HEAD и сохрани пользовательские изменения. Проверь разделение real project, AI concept, technical illustration, process illustration, unknown и rejected. Проведи evidence review для 13 portfolio detail URL и 31 location URL; отдельно назначь/подтверди evidence owner для prices, guarantees, reviews и material/brand/product claims. DB record, published flag, путь, slug, город и реалистичность изображения не являются proof.
+
+Не придумывай адреса, филиалы, проекты, цены, сроки, гарантии, отзывы, specs или локальные условия. Не меняй runtime UI, URL, canonical, sitemap и пять защищённых страниц: /, /design-proekt-kuhni, /locations/minskaya-oblast, /locations/minsk, /materials/furnitura. Если Search Console/SERP/owner evidence отсутствует, фиксируй evidence required, а не выдумывай вывод.
+
+Добавляй только безопасные data/provenance поля и реестры, предусмотренные ТЗ и существующей схемой. Миграция допустима только при реальной необходимости, с backup, diff, data-impact audit и точным rollback; иначе оставь documentation-only. Обнови Page/Media Registry, Decision Log и Handoff. Выполни typecheck, schema checks, sitemap parity 112/112 и regression smoke пяти protected URL. Deploy только если действительно изменился runtime data contract; иначе явно напиши NO RUNTIME DEPLOY и причину.
+```

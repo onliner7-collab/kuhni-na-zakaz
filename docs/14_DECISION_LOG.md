@@ -213,3 +213,53 @@
 - Короткая заявка использует существующий `/kapi/leads` и обязательные имя, телефон и согласие; backend и Telegram/outbox не менялись.
 - Breakpoint Dock: до 767 px включительно; с 768 px используется desktop chrome.
 - PageActionRail не подключался к пилотным страницам по прямому решению владельца.
+
+## 2026-07-19 — единый пакет ТЗ мобильного интерактивного хаба
+
+- **Решение:** не создавать отдельный шаблон под каждый из 100+ URL. Все routes классифицируются по архетипам, а каждая индексируемая страница получает собственный вопрос, promise, primary interaction, proof и next step.
+- **Пакет:** `design/00-TZ-INDEX.md`, `design/06-ux-spec.md`, `design/07-route-matrix.md`, `design/08-content-data-media-contract.md`, `design/09-component-interaction-contract.md`, `design/10-implementation-qa-rollout.md`, `design/11-media-transition-production-map.md`.
+- **Факт:** static sitemap содержит 112 canonical URL; route matrix проверена на полное соответствие sitemap: 112/112, без missing/extra routes.
+- **SEO policy:** комбинации фильтров не становятся indexable URL по умолчанию; canonical/index/sitemap policy выбирается для каждой выделенной страницы после intent и quality gate.
+- **Provenance:** portfolio, отзывы, цены, сроки, гарантии, locations и media требуют подтверждённого evidence; заполненная DB record не считается доказательством.
+- **Mobile policy:** baseline 360/390/412 px; one thought/one answer/one action, Dock остаётся единственным fixed mobile navigation.
+
+## 2026-07-19 — защищённый baseline пяти существующих страниц
+
+- **Решение:** не менять пока собственные контент, layout, SEO-роли, медиа и основные интерактивные сценарии `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura`.
+- **Интеграция:** новые страницы и shared-компоненты связываются с ними через crawlable links, global shell/Dock, analytics, lead context и regression QA.
+- **Ограничение:** любое page-specific изменение этих маршрутов выносится в отдельное решение и не считается частью текущего rollout.
+
+## 2026-07-19 — медиа-серии и объяснимый граф переходов
+
+- **Решение:** новые изображения создаются не россыпью, а continuity-сериями под media slots, сущности и состояния интерактивности.
+- **Навигация:** применяется гибрид hub-and-spoke + silo; Next Best Action имеет тип `DEEPEN / COMPARE / PROOF / CONVERT`, причину, fallback и обычный crawlable URL.
+- **Контекст:** выбор пользователя хранится как `ExploreContext`, переносится между связанными страницами и в заявку, но не создаёт автоматически индексируемые facet URL.
+- **Пилот:** вместо защищённого `/materials/furnitura` новый material-сценарий проектируется на `/materials/mdf-fasady`.
+- **Документ:** `design/11-media-transition-production-map.md`.
+
+## 2026-07-19 — единое главное ТЗ
+
+- **Решение:** создать `design/12-master-tz.md` как основной вход для постановки задач, разработки и приёмки.
+- **Состав:** документ объединяет согласованные требования к мобильному интерактивному хабу, уникальности 112 URL, защищённым страницам, новым изображениям, переходам, SEO, этапам и Definition of Done.
+- **Приложения:** `design/06-ux-spec.md`–`design/11-media-transition-production-map.md` остаются нормативными и не заменяются кратким главным документом.
+
+## 2026-07-19 — разбиение реализации на 25 чатов
+
+- **Решение:** не выполнять всё ТЗ одним контекстом; использовать `design/13-chat-execution-prompts.md` с малыми route batches и отдельным deploy/production smoke после каждого implementation этапа.
+- **Безопасность:** пять защищённых URL входят в regression scope каждого чата; page-specific изменения на них запрещены.
+- **SEO-финиш:** отдельный финальный чат выполняет production audit, отправку актуального sitemap и приоритетных URL через Google Search Console и Яндекс Вебмастер только в браузере с ручной авторизацией пользователя.
+- **Следующий этап:** Phase 0 source-of-truth sync, затем route/intent audit и provenance review; массовое масштабирование запрещено до трёх эталонных пилотов.
+- **Статус:** принято как рабочий implementation contract; production UI и данные этим docs-only изменением не менялись.
+
+## 2026-07-20 — route/intent ownership для 112 canonical URL
+
+- **Решение:** для каждого URL production sitemap зафиксировать один primary intent, один user question, различимый promise, archetype/interaction, текущую index policy, evidence owner, 2–4 crawlable продолжения и overlap risk.
+- **Инвентарь:** production `/sitemap.xml` и `public/sitemap-static.xml` содержат по 112 уникальных URL; route/intent audit содержит 112 уникальные строки, `missing = 0`, `extra = 0`, facet URL не добавлены.
+- **Index policy:** docs-only этап не меняет runtime `index/follow`, canonical или sitemap. Маркер `EVIDENCE_GATE` означает обязательный следующий review, а не выполненный `noindex`.
+- **Location rule:** топоним не считается unique promise. Все 31 location URL требуют owner-reviewed зоны работ, логистики и фактических условий; до evidence локальная ценность остаётся незакрытым риском.
+- **Portfolio rule:** все 13 detail URL требуют business/media provenance review. DB record, `published`, путь, slug и город не являются доказательством «Нашей работы».
+- **Keyword evidence:** Search Console export и live SERP dataset не предоставлены; объёмы, позиции и окончательное keyword ownership не выдумываются и помечены `GSC/SERP evidence required`.
+- **Защищённый baseline:** `/`, `/design-proekt-kuhni`, `/locations/minskaya-oblast`, `/locations/minsk`, `/materials/furnitura` проверены read-only и не изменены.
+- **Deploy:** `NO RUNTIME DEPLOY`, потому что изменена только документация, production artifact идентичен текущему runtime и рискованный rebuild/restart не даёт пользовательской ценности.
+- **Rollback:** отдельный Git revert документационного commit; database, content imports, assets и service restart не требуются.
+- **Статус:** принято как PASS для route/sitemap parity и PASS_WITH_EVIDENCE_GAPS для semantic/evidence completeness.
