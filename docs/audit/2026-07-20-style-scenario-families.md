@@ -25,4 +25,9 @@
 
 ## Deploy и rollback
 
-После commit: push branch `work`, `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work`, production smoke 14 target + 5 protected URL. Rollback: revert отдельного commit, повторный deploy и smoke; Prisma/schema/data rollback не нужен.
+Runtime commit: `a243bddd8bac781575a4378aa18b8f0409d8ed9f`.
+
+- `work` запушен и задеплоен через `bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work`.
+- Production Prisma schema in sync; static sitemap 112 URL; Next build 173 pages; service active.
+- Production Playwright against `https://kuhni.minsk.by` — 40/40 PASS, включая 14 target и 5 protected URL.
+- Rollback: `git revert a243bdd`, push `work`, повторный deploy и тот же smoke; Prisma/schema/data rollback не нужен.

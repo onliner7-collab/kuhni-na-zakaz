@@ -312,3 +312,4 @@
 - **Architecture:** важный текст и четыре перехода остаются server-rendered; клиент хранит только неперсональный ExploreContext в sessionStorage. Facet URL отсутствуют.
 - **QA gate:** typecheck, unit, sitemap 112/112, production build и последовательный Playwright 40/40 PASS; widths 360/390/412/768/1440, keyboard, touch targets, metadata/H1/canonical, images, overflow и protected regression проверены.
 - **Rollback:** `git revert <style-scenario-commit>`, push `work`, standard deploy, повторить 14-route smoke и пять protected URL. Prisma/schema/import rollback не требуется.
+- **Production gate:** commit `a243bddd8bac781575a4378aa18b8f0409d8ed9f` задеплоен; server build 173 pages, service active, production Playwright 40/40 PASS. Точный rollback — `git revert a243bdd`, push `work`, standard deploy и повтор того же batch.

@@ -230,3 +230,5 @@ Media slots, `ExploreContext`, Next Best Action и переходы между �
 - `IMPLEMENTED_VERIFIED_LOCAL`: `/scenarios/s-ostrovom`, `/scenarios/do-potolka`, `/scenarios/dlya-semi`, `/scenarios/dlya-studii`, `/scenarios/dlya-malenkoy-kuhni`, `/scenarios/byudzhetnaya-kuhnya`.
 - Все 14 URL сохраняют существующие canonical; новые city/style/material combination и facet URL не созданы. У каждой страницы уникальны metadata, H1, вопрос, ограничения, модель сравнения/решения и четыре перехода `DEEPEN/COMPARE/PROOF/CONVERT`.
 - AI-концепты отделены от `/portfolio`; бюджет, вместимость и результат не заявляются без замера/спецификации. Подробный локальный gate: `docs/audit/2026-07-20-style-scenario-families.md`.
+
+Production статус повышен до `VERIFIED`: runtime commit `a243bddd8bac781575a4378aa18b8f0409d8ed9f` задеплоен штатным скриптом; production Playwright batch 40/40 подтвердил 14 target и 5 protected URL. Sitemap остаётся 112 URL.
