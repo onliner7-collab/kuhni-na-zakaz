@@ -44,5 +44,12 @@ Local evidence at 390×844: Angular first action Y=342, Borisov process controls
 | Typecheck / tests / build | PASS | PASS |
 | Browser widths | 360/390/412/768/1440 | 360/390/412/768/1440 |
 | Protected regression | 5/5 PASS | 5/5 PASS |
-| Deploy | Pending commit and production smoke | Pending commit and production smoke |
+| Deploy | `45546e4` pushed to `work`; production deploy PASS; mobile production smoke PASS | `45546e4` pushed to `work`; production deploy PASS; mobile production smoke PASS |
 | Rollback | `git revert <visual-rescue-commit>` + standard deploy | `git revert <visual-rescue-commit>` + standard deploy |
+
+## Production acceptance
+
+- Commit `45546e4` deployed with `deploy/scripts/update-production.sh work`; Prisma was in sync, static sitemap contained 112 URLs, Next production build generated 173 pages, and `kuhni-na-zakaz.service` remained active.
+- Playwright against `https://kuhni.minsk.by` at the mobile profile: 2/2 PASS. Angular tab `Угол` changed the frame to `angular-corner-types-straight-corner-front`; Borisov step `Предварительный расчёт` changed the frame to `borisov-process-estimate`.
+- The smoke waits for `networkidle` before the first interaction so the assertion covers hydrated production UI rather than server HTML alone.
+- Rollback: `git revert 45546e4`, push `work`, rerun the same deployment command and production smoke.
