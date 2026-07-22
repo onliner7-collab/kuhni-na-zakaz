@@ -411,3 +411,11 @@ Production deploy завершён для runtime commit `ed4dde9be4a27226e1ecbb
 После отдельного commit требуется push `work`, standard production deploy, production smoke всех 14 URL и пяти protected routes. Rollback: `git revert <commit>`, повторный deploy и тот же smoke; data/schema rollback отсутствует.
 
 Production PASS завершён для `a243bddd8bac781575a4378aa18b8f0409d8ed9f`: push `work`, `deploy/scripts/update-production.sh work`, Prisma schema in sync, static sitemap 112, Next build 173 pages, service `kuhni-na-zakaz` active. Playwright против `https://kuhni.minsk.by`: 40/40 PASS для desktop/mobile, 14 target, 360/390/412/768/1440 checks и пяти protected routes. Rollback: `git revert a243bdd`, push `work`, стандартный deploy и повтор того же smoke. Этот follow-up меняет только документацию: `NO RUNTIME DEPLOY — production artifact уже проверен`.
+
+## 2026-07-22 — Visual rescue stages 7–9 local PASS
+
+`VISUAL_ACCEPTED_LOCAL` для `/catalog/kuhni-s-ostrovom`, `/catalog/malenkie-kuhni`, `/catalog/kuhni-do-potolka`. Создано 18 route-specific imagegen masters, 18 WebP, 18 AVIF и три contact sheets. Legacy two-frame/text-result путь заменён шестью visual states на route; canonical, metadata/schema flow, ExploreContext, Lead pipeline, sitemap и protected page-specific UI сохранены.
+
+Local evidence: typecheck PASS; sitemap 112/112; production build PASS с ожидаемым Prisma static fallback; Playwright 4/4 на 360/390/412/768/1440; protected routes 5/5. На 390 px visual начинается Y=426, action controls Y=931; initial media = один active AVIF, `naturalWidth=1200`, overflow=0, CLS observation 0.0002. Screenshots/video/report: `artifacts/visual-rescue/stages-7-9/`; полный отчёт: `docs/visual-rescue/stages-7-9-2026-07-22.md`.
+
+До deploy статус production не заявляется. Требуется отдельный scope commit, push `work`, стандартный deploy и smoke трёх targets + пяти protected routes. Rollback: `git revert <stage-7-9-commit>`, push, standard deploy, повторный smoke; Prisma/schema/import rollback не нужен. Следующий разрешённый этап после production PASS — 10.

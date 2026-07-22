@@ -160,3 +160,13 @@ Production map новых визуальных серий, media slots, generati
 - Scenario family использует шесть существующих оптимизированных WebP visual slots. Для доступных style masters сохранён AVIF source; UI не подключает PNG/JPEG masters.
 - Новые изображения в этом этапе не генерировались: переиспользованы уже проектные WebP/AVIF assets. Их статус остаётся `ai_concept`; `/portfolio` используется только как отдельный evidence-gated переход.
 - Browser batch подтвердил `naturalWidth > 0` для hero/media всех 14 URL; отсутствующие media имеют текстовый fallback.
+
+## 2026-07-22 — Visual rescue stages 7–9 media
+
+| Series | Route | Masters | Visible delivery | Contact sheet | Status |
+| --- | --- | ---: | --- | --- | --- |
+| `LAYOUT-ISLAND-2026-07-22` | `/catalog/kuhni-s-ostrovom` | 6 | AVIF/WebP, one eager + intent states | `/media/visual-rescue/kuhni-s-ostrovom/contact-sheet.webp` | `CONNECTED_LOCAL` |
+| `LAYOUT-SMALL-2026-07-22` | `/catalog/malenkie-kuhni` | 6 | AVIF/WebP, one eager + intent states | `/media/visual-rescue/malenkie-kuhni/contact-sheet.webp` | `CONNECTED_LOCAL` |
+| `LAYOUT-CEILING-2026-07-22` | `/catalog/kuhni-do-potolka` | 6 | AVIF/WebP, one eager + intent states | `/media/visual-rescue/kuhni-do-potolka/contact-sheet.webp` | `CONNECTED_LOCAL` |
+
+Все 18 masters созданы встроенным Codex/OpenAI imagegen, сохранены в project public media root и не подключены как visible PNG. WebP: 20–55 КБ; AVIF: 12–39 КБ. Provenance `ai_concept`, rights `internal_generation`; русские alt/caption; запрещены claims о реальном проекте, точных размерах, применимости, цене и брендах. Canonical manifest: `content/media/visual-rescue-stages-7-9-2026-07-22.json`.

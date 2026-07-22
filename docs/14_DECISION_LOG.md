@@ -313,3 +313,13 @@
 - **QA gate:** typecheck, unit, sitemap 112/112, production build и последовательный Playwright 40/40 PASS; widths 360/390/412/768/1440, keyboard, touch targets, metadata/H1/canonical, images, overflow и protected regression проверены.
 - **Rollback:** `git revert <style-scenario-commit>`, push `work`, standard deploy, повторить 14-route smoke и пять protected URL. Prisma/schema/import rollback не требуется.
 - **Production gate:** commit `a243bddd8bac781575a4378aa18b8f0409d8ed9f` задеплоен; server build 173 pages, service active, production Playwright 40/40 PASS. Точный rollback — `git revert a243bdd`, push `work`, standard deploy и повтор того же batch.
+
+## 2026-07-22 — Visual rescue stages 7–9
+
+- `KEEP`: route shell, canonical/SEO pipeline, ExploreContext, form, transitions и global Dock.
+- `ADAPT`: существующий `LayoutVisualExplorer` используется как ограниченный Client island с тремя новыми route-specific series.
+- `REPLACE`: две generic media на route заменены шестью continuity states; текстовое переключение без смены изображения больше не считается результатом.
+- `MOVE`: длинное объяснение остаётся после visual journey в disclosure.
+- Performance decision: initial DOM получает один AVIF; другие состояния появляются только после выбора. PNG masters хранятся как source-only.
+- Evidence decision: изображения маркируются `ai_concept`; UI не обещает применимость острова, вместимость маленькой кухни или техническую возможность шкафов до потолка без замера.
+- Protected boundary: page-specific код пяти baseline routes не изменялся; shared change принят только после 5/5 regression smoke.

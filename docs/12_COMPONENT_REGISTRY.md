@@ -206,3 +206,7 @@
 | `ScenarioDecisionControls` | `artifacts/kuhni-na-zakaz/components/exploration/FamilyDecisionControls.tsx` | Client island | scenario family | VERIFIED_LOCAL |
 
 Server compositions сохраняют H1, disclosure, ограничения, текстовый fallback и обычные ссылки в HTML. Client islands ограничены выбором и записью неперсонального `ExploreContext`; touch targets 44×44, keyboard/focus и live result проверены.
+
+## 2026-07-22 — stages 7–9 consumer expansion
+
+`LayoutVisualExplorer` дополнительно принят для `/catalog/kuhni-s-ostrovom`, `/catalog/malenkie-kuhni`, `/catalog/kuhni-do-potolka`: у каждого consumer отдельная route-specific series и interaction role. Shared island сохраняет `aria-pressed`, русские alt/caption, 44 px controls, focus ring, один eager active image и intent-mounted state images. Protected routes компонент не импортируют.

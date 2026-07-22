@@ -232,3 +232,13 @@ Media slots, `ExploreContext`, Next Best Action и переходы между �
 - AI-концепты отделены от `/portfolio`; бюджет, вместимость и результат не заявляются без замера/спецификации. Подробный локальный gate: `docs/audit/2026-07-20-style-scenario-families.md`.
 
 Production статус повышен до `VERIFIED`: runtime commit `a243bddd8bac781575a4378aa18b8f0409d8ed9f` задеплоен штатным скриптом; production Playwright batch 40/40 подтвердил 14 target и 5 protected URL. Sitemap остаётся 112 URL.
+
+## 2026-07-22 — Visual rescue stages 7–9
+
+| Route | Visual status | Series | First action at 390×844 | Meaningful visual state |
+| --- | --- | --- | ---: | --- |
+| `/catalog/kuhni-s-ostrovom` | `VISUAL_ACCEPTED_LOCAL` | `LAYOUT-ISLAND-2026-07-22`, 6 masters | 931 px | роль острова меняет подготовку, хранение, посадку и ракурс |
+| `/catalog/malenkie-kuhni` | `VISUAL_ACCEPTED_LOCAL` | `LAYOUT-SMALL-2026-07-22`, 6 masters | 931 px | приоритет меняет столешницу, хранение, технику, проход и компромисс |
+| `/catalog/kuhni-do-potolka` | `VISUAL_ACCEPTED_LOCAL` | `LAYOUT-CEILING-2026-07-22`, 6 masters | 931 px | тип доступа меняет ежедневную зону, верхний ярус, сезонное хранение и техзазор |
+
+Canonical, H1, metadata/schema flow и sitemap policy сохранены. Production status повышается только после deploy и live smoke; пять protected routes — regression-only. Полный отчёт: `docs/visual-rescue/stages-7-9-2026-07-22.md`.

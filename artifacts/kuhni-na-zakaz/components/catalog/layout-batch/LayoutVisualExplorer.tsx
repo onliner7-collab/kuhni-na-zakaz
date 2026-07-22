@@ -58,7 +58,9 @@ export function LayoutVisualExplorer({
             alt={active.alt}
             width="1200"
             height="800"
-            fetchPriority="high"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) calc(100vw - 3rem), 1200px"
+            loading={active.id === frames[0]?.id ? "eager" : "lazy"}
+            fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
             className="aspect-[4/5] h-auto w-full object-cover motion-safe:animate-[fade-in_.22s_ease-out] sm:aspect-[3/2]"
           />
         </picture>

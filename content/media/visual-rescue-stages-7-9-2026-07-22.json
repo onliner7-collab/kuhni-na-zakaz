@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "batchId": "visual-rescue-stages-7-9-2026-07-22",
+  "status": "CONNECTED_LOCAL",
+  "generationTool": "Codex built-in imagegen",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "deliveryPolicy": "one eager active AVIF/WebP; remaining frames intent-mounted; PNG masters are source-only",
+  "series": [
+    {
+      "route": "/catalog/kuhni-s-ostrovom",
+      "seriesId": "LAYOUT-ISLAND-2026-07-22",
+      "userQuestion": "Какую главную роль должен выполнять остров и что она меняет?",
+      "fixedGeometry": "Одна кухня-гостиная, серо-бежевый остров, серая основная линия, дубовые пеналы, светлая каменная столешница",
+      "allowedChanges": ["ракурс", "открытые ящики", "подготовка", "посадочные места"],
+      "assets": [
+        { "mediaId": "island-overview", "role": "overview", "altRu": "Кухня-гостиная с закрытым центральным островом и свободными проходами" },
+        { "mediaId": "island-passage", "role": "passage", "altRu": "Кухня с островом с хорошо видимыми свободными проходами по сторонам" },
+        { "mediaId": "island-prep", "role": "preparation", "altRu": "Остров с рабочей доской и открытым ящиком для столовых приборов" },
+        { "mediaId": "island-storage", "role": "storage", "altRu": "Остров с двумя открытыми широкими ящиками для посуды и кастрюль" },
+        { "mediaId": "island-seating", "role": "seating", "altRu": "Остров с тремя деревянными стульями и местом для сервировки" },
+        { "mediaId": "island-roles-compare", "role": "role_compare", "altRu": "Второй ракурс той же кухни с закрытым островом без предметов" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/kuhni-s-ostrovom/masters",
+      "deliveryRoot": "/media/visual-rescue/kuhni-s-ostrovom",
+      "contactSheet": "/media/visual-rescue/kuhni-s-ostrovom/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "confirmed fit", "confirmed passage", "dimensions", "price", "brand"]
+    },
+    {
+      "route": "/catalog/malenkie-kuhni",
+      "seriesId": "LAYOUT-SMALL-2026-07-22",
+      "userQuestion": "Какой приоритет нельзя потерять в ограниченном пространстве?",
+      "fixedGeometry": "Одна узкая Г-образная кухня, окно в торце, светло-зелёные нижние и белые верхние фасады, дубовая столешница",
+      "allowedChanges": ["открытые системы хранения", "открытая техника", "ракурс", "техника на столешнице", "дополнительный верхний ярус"],
+      "assets": [
+        { "mediaId": "small-overview", "role": "overview", "altRu": "Компактная Г-образная кухня в узком помещении с окном" },
+        { "mediaId": "small-worktop", "role": "worktop", "altRu": "Компактная кухня со свободной столешницей и одной разделочной доской" },
+        { "mediaId": "small-storage", "role": "storage", "altRu": "Маленькая кухня с открытыми ящиками и верхним шкафом" },
+        { "mediaId": "small-appliances", "role": "appliances", "altRu": "Компактная кухня с открытыми духовкой и холодильником" },
+        { "mediaId": "small-passage", "role": "passage", "altRu": "Вид из дверного проёма на свободный проход компактной кухни" },
+        { "mediaId": "small-compromise", "role": "trade_off", "altRu": "Компактная кухня с дополнительным верхним хранением и техникой на столешнице" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/malenkie-kuhni/masters",
+      "deliveryRoot": "/media/visual-rescue/malenkie-kuhni",
+      "contactSheet": "/media/visual-rescue/malenkie-kuhni/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "confirmed dimensions", "confirmed capacity", "price", "brand"]
+    },
+    {
+      "route": "/catalog/kuhni-do-potolka",
+      "seriesId": "LAYOUT-CEILING-2026-07-22",
+      "userQuestion": "Как распределить хранение по высоте и сохранить безопасный доступ?",
+      "fixedGeometry": "Один бежево-тауповый фасад от пола до потолка, окно слева, чёрная встроенная техника, светлая столешница",
+      "allowedChanges": ["открытые ежедневные секции", "открытый верхний ярус", "сезонные вещи", "ступень", "крупность технического зазора"],
+      "assets": [
+        { "mediaId": "ceiling-overview", "role": "overview", "altRu": "Кухня с единым фасадом хранения от пола до потолка" },
+        { "mediaId": "ceiling-daily-zone", "role": "daily_access", "altRu": "Кухня до потолка с открытым ящиком и шкафом ежедневного доступа" },
+        { "mediaId": "ceiling-upper-tier", "role": "upper_tier", "altRu": "Кухня до потолка с открытыми пустыми секциями верхнего яруса" },
+        { "mediaId": "ceiling-seasonal", "role": "seasonal_storage", "altRu": "Верхние шкафы кухни с корзинами и редко используемой посудой" },
+        { "mediaId": "ceiling-access", "role": "access", "altRu": "Кухня до потолка с устойчивой ступенью перед открытым верхним шкафом" },
+        { "mediaId": "ceiling-technical-gap", "role": "technical_limit", "altRu": "Крупный план верхнего фасада кухни с зазором у потолка и вентиляционной решёткой" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/kuhni-do-potolka/masters",
+      "deliveryRoot": "/media/visual-rescue/kuhni-do-potolka",
+      "contactSheet": "/media/visual-rescue/kuhni-do-potolka/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "confirmed ceiling geometry", "confirmed accessibility", "technical specification", "price", "brand"]
+    }
+  ]
+}
