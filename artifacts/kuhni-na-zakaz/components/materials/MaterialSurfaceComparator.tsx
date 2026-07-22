@@ -1,46 +1,105 @@
 "use client";
 
 import { useState } from "react";
-import { Check, RotateCcw } from "lucide-react";
+import { Check, CircleAlert } from "lucide-react";
 import { useExploreContext } from "@/components/exploration/ExploreContext";
 
-const surfaces = [
-  { id: "matte", label: "Матовая", note: "Смотрите образец при разном освещении и под углом.", image: "mdf-surface-closeup", alt: "Крупный план матовой поверхности фасада МДФ" },
-  { id: "semi", label: "Полуматовая", note: "Сравните визуальный отклик рядом с выбранной столешницей.", image: "mdf-surface-combination", alt: "Фасад МДФ рядом с образцами дерева и светлого камня" },
-  { id: "gloss", label: "Глянцевая", note: "Проверьте отражение на реальном образце в помещении.", image: "mdf-surface-compare", alt: "Матовая и глянцевая поверхности фасадов МДФ рядом" },
+const frames = [
+  {
+    id: "closeup",
+    label: "Крупный план",
+    webp: "/media/pilots/mdf-fasady/webp/mdf-surface-closeup.webp",
+    avif: "/media/pilots/mdf-fasady/avif/mdf-surface-closeup.avif",
+    alt: "Крупный план матовой поверхности рамочного фасада МДФ",
+    note: "Начните с профиля и того, как поверхность выглядит вблизи.",
+  },
+  {
+    id: "finish",
+    label: "Матовая / глянцевая",
+    webp: "/media/pilots/mdf-fasady/webp/mdf-surface-compare.webp",
+    avif: "/media/pilots/mdf-fasady/avif/mdf-surface-compare.avif",
+    alt: "Матовая и глянцевая поверхности фасадов МДФ рядом",
+    note: "Экран показывает характер отражения, но не подтверждает точную степень блеска.",
+  },
+  {
+    id: "daylight",
+    label: "Дневной свет",
+    webp: "/media/visual-rescue/mdf-fasady/webp/mdf-surface-daylight.webp",
+    avif: "/media/visual-rescue/mdf-fasady/avif/mdf-surface-daylight.avif",
+    alt: "Поверхность фасада МДФ при боковом дневном свете",
+    note: "Холодный боковой свет подчёркивает микрофактуру и меняет восприятие оттенка.",
+  },
+  {
+    id: "warm-light",
+    label: "Тёплый свет",
+    webp: "/media/visual-rescue/mdf-fasady/webp/mdf-surface-warm-light.webp",
+    avif: "/media/visual-rescue/mdf-fasady/avif/mdf-surface-warm-light.avif",
+    alt: "Та же поверхность фасада МДФ при тёплом искусственном свете",
+    note: "Тёплое освещение визуально меняет один и тот же нейтральный фасад.",
+  },
+  {
+    id: "combination",
+    label: "В сочетании",
+    webp: "/media/pilots/mdf-fasady/webp/mdf-surface-combination.webp",
+    avif: "/media/pilots/mdf-fasady/avif/mdf-surface-combination.avif",
+    alt: "Фасад МДФ рядом с образцами светлого камня и натурального дерева",
+    note: "Сопоставляйте образец со столешницей и окружением проекта.",
+  },
+  {
+    id: "cutaway",
+    label: "Торец и разрез",
+    webp: "/media/pilots/mdf-fasady/webp/mdf-surface-cutaway.webp",
+    avif: "/media/pilots/mdf-fasady/avif/mdf-surface-cutaway.avif",
+    alt: "Условная схема основы, покрытия и торца фасада МДФ",
+    note: "Это условная иллюстрация: состав выбранного фасада подтверждается документацией.",
+  },
 ] as const;
 
 export function MaterialSurfaceComparator() {
-  const [selected, setSelected] = useState<(typeof surfaces)[number]["id"][]>(["matte", "gloss"]);
+  const [activeId, setActiveId] = useState<(typeof frames)[number]["id"]>("closeup");
   const { updateContext } = useExploreContext();
+  const active = frames.find((frame) => frame.id === activeId) ?? frames[0];
 
-  function toggle(id: (typeof surfaces)[number]["id"]) {
-    setSelected((current) => {
-      const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id].slice(-2);
-      const selectedSurfaces = next.map((item) => surfaces.find((surface) => surface.id === item)?.label || item);
-      updateContext({ materials: ["МДФ", ...selectedSurfaces] }, "surface_compare");
-      window.dispatchEvent(new CustomEvent("mdf-surface-answers", { detail: { material: "МДФ", selectedSurfaces, evidenceStatus: "requires-sample-confirmation" } }));
-      return next;
-    });
+  function select(frame: (typeof frames)[number]) {
+    setActiveId(frame.id);
+    updateContext({ materials: ["МДФ", frame.label] }, `surface_visual:${frame.id}`);
+    window.dispatchEvent(new CustomEvent("mdf-surface-answers", {
+      detail: {
+        material: "МДФ",
+        selectedSurfaces: [frame.label],
+        evidenceStatus: "requires-sample-confirmation",
+      },
+    }));
   }
 
   return (
-    <section id="surface" className="scroll-mt-24" aria-labelledby="surface-title">
-      <p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-800">Поверхность → крупный план</p>
-      <h2 id="surface-title" className="mt-2 text-3xl font-bold md:text-4xl">Сравните внешний вид поверхности</h2>
-      <p className="mt-3 max-w-3xl leading-7 text-stone-600">Выберите до двух визуальных направлений. Экранные образцы условны: цвет, блеск и фактура подтверждаются только физическим образцом.</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
-        {surfaces.map((surface) => {
-          const isSelected = selected.includes(surface.id);
-          return <button key={surface.id} type="button" aria-pressed={isSelected} onClick={() => toggle(surface.id)} className={`min-h-44 rounded-2xl border p-4 text-left focus-visible:outline focus-visible:ring-2 focus-visible:ring-violet-700 ${isSelected ? "border-violet-800 bg-violet-50" : "border-stone-200 bg-white"}`}>
-            <img src={`/media/pilots/mdf-fasady/webp/${surface.image}.webp`} alt={surface.alt} width="1200" height="800" loading="lazy" decoding="async" className="aspect-[3/2] h-auto w-full rounded-xl object-cover" />
-            <span className="mt-2 block text-xs text-stone-500">AI-концепт поверхности</span>
-            <span className="mt-4 flex items-center gap-2 font-bold">{isSelected && <Check className="h-4 w-4" aria-hidden />}{surface.label}</span>
-            <span className="mt-2 block text-sm leading-6 text-stone-600">{surface.note}</span>
-          </button>;
-        })}
+    <section id="surface" data-interaction-role="material-surface-compare" className="scroll-mt-24 overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm" aria-labelledby="surface-title">
+      <figure className="relative bg-stone-200">
+        <picture key={active.id}>
+          <source srcSet={active.avif} type="image/avif" />
+          <img src={active.webp} alt={active.alt} width="1200" height="800" fetchPriority="high" className="aspect-[4/5] h-auto w-full object-cover motion-safe:animate-[fade-in_.22s_ease-out] sm:aspect-[3/2]" />
+        </picture>
+        <span className="absolute left-3 top-3 rounded-full bg-violet-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">AI-визуализация</span>
+      </figure>
+
+      <div className="p-4 md:p-7">
+        <p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-800">Визуальное сравнение</p>
+        <h2 id="surface-title" className="mt-2 text-2xl font-bold md:text-4xl">Посмотрите на один фасад по-разному</h2>
+        <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3" aria-label="Состояния поверхности фасада МДФ">
+          {frames.map((frame) => {
+            const selected = frame.id === active.id;
+            return (
+              <button key={frame.id} type="button" data-frame-id={frame.id} aria-pressed={selected} onClick={() => select(frame)} className={`min-h-12 rounded-xl border px-3 py-2.5 text-left text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2 ${selected ? "border-violet-900 bg-violet-900 text-white" : "border-stone-300 bg-stone-50 text-stone-950 hover:border-violet-700"}`}>
+                <span className="flex items-center gap-2">{selected ? <Check className="h-4 w-4 shrink-0" aria-hidden /> : null}{frame.label}</span>
+              </button>
+            );
+          })}
+        </div>
+        <div role="status" aria-live="polite" className="mt-4 flex gap-3 rounded-2xl bg-violet-50 p-4 text-sm leading-6 text-stone-700">
+          <CircleAlert className="mt-1 h-4 w-4 shrink-0 text-violet-800" aria-hidden />
+          <p><strong>{active.label}.</strong> {active.note} Точный цвет и поверхность проверяются по физическому образцу.</p>
+        </div>
       </div>
-      <div className="mt-5 rounded-2xl border border-stone-200 bg-white p-5" aria-live="polite"><div className="flex flex-wrap items-center justify-between gap-3"><p className="font-bold">В сравнении: {selected.length ? selected.map((id) => surfaces.find((surface) => surface.id === id)?.label).join(" и ") : "ничего не выбрано"}</p><button type="button" onClick={() => { setSelected([]); updateContext({ materials: ["МДФ"] }, "surface_compare_clear"); window.dispatchEvent(new CustomEvent("mdf-surface-answers", { detail: { material: "МДФ", selectedSurfaces: [], evidenceStatus: "requires-sample-confirmation" } })); }} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-stone-300 px-4 text-sm font-bold focus-visible:outline focus-visible:ring-2 focus-visible:ring-violet-700"><RotateCcw className="h-4 w-4" aria-hidden />Очистить</button></div><p className="mt-2 text-sm leading-6 text-stone-600">Сравнение фиксирует только визуальное направление. Оно не подтверждает уход, долговечность, цену или совместимость.</p></div>
     </section>
   );
 }
