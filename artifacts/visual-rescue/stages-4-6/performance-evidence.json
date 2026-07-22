@@ -1,0 +1,42 @@
+{
+  "measuredAt": "2026-07-22T18:03:02.782Z",
+  "environment": "local Next dev 390x844; transfer sizes use response content-length when present",
+  "results": [
+    {
+      "route": "/materials/mdf-fasady",
+      "initialImageRequests": 3,
+      "initialRouteVisualRequests": 2,
+      "initialImageBytesFromHeaders": 38020,
+      "initialScriptRequests": 9,
+      "initialScriptBytesFromHeaders": 179365,
+      "lcpMsLocalDev": 304,
+      "clsLocalDev": 0.0002,
+      "interactionVisualSwapMs": 72,
+      "horizontalOverflowPx": 0
+    },
+    {
+      "route": "/catalog/pryamye-kuhni",
+      "initialImageRequests": 9,
+      "initialRouteVisualRequests": 1,
+      "initialImageBytesFromHeaders": 13032,
+      "initialScriptRequests": 8,
+      "initialScriptBytesFromHeaders": 166377,
+      "lcpMsLocalDev": 300,
+      "clsLocalDev": 0.0002,
+      "interactionVisualSwapMs": 65,
+      "horizontalOverflowPx": 0
+    },
+    {
+      "route": "/catalog/p-obraznye-kuhni",
+      "initialImageRequests": 2,
+      "initialRouteVisualRequests": 1,
+      "initialImageBytesFromHeaders": 24462,
+      "initialScriptRequests": 9,
+      "initialScriptBytesFromHeaders": 179371,
+      "lcpMsLocalDev": 284,
+      "clsLocalDev": 0.0002,
+      "interactionVisualSwapMs": 113,
+      "horizontalOverflowPx": 0
+    }
+  ]
+}

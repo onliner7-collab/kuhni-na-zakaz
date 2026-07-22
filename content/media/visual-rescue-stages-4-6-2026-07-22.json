@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "batchId": "visual-rescue-stages-4-6-2026-07-22",
+  "status": "CONNECTED_LOCAL",
+  "generationTool": "Codex built-in imagegen",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "deliveryPolicy": "one eager active AVIF/WebP; remaining frames intent-mounted; PNG masters are not visible src",
+  "series": [
+    {
+      "route": "/materials/mdf-fasady",
+      "seriesId": "MF-SURFACE-2026-07-22",
+      "userQuestion": "Как поверхность, свет и окружение меняют визуальное восприятие фасада МДФ?",
+      "fixedGeometry": "Одна рамочная панель тёплого серо-бежевого оттенка, одинаковый профиль и масштаб",
+      "allowedChanges": ["угол света", "характер отражения", "окружение", "условный технический разрез"],
+      "requiredFrames": ["closeup", "finish", "daylight", "warm-light", "combination", "cutaway"],
+      "assets": [
+        { "mediaId": "mdf-surface-daylight", "role": "lighting_state", "masterPath": "prepared-images/generated-sources/visual-rescue/mdf-fasady/mdf-surface-daylight.png", "webpPath": "/media/visual-rescue/mdf-fasady/webp/mdf-surface-daylight.webp", "avifPath": "/media/visual-rescue/mdf-fasady/avif/mdf-surface-daylight.avif", "altRu": "Поверхность фасада МДФ при боковом дневном свете", "captionRu": "AI-визуализация света; точный оттенок проверяется по образцу." },
+        { "mediaId": "mdf-surface-warm-light", "role": "lighting_state", "masterPath": "prepared-images/generated-sources/visual-rescue/mdf-fasady/mdf-surface-warm-light.png", "webpPath": "/media/visual-rescue/mdf-fasady/webp/mdf-surface-warm-light.webp", "avifPath": "/media/visual-rescue/mdf-fasady/avif/mdf-surface-warm-light.avif", "altRu": "Та же поверхность фасада МДФ при тёплом искусственном свете", "captionRu": "AI-визуализация света; точный оттенок проверяется по образцу." }
+      ],
+      "acceptedExistingMediaIds": ["MF-SURFACE-CLOSEUP", "MF-SURFACE-COMPARE", "MF-SURFACE-COMBINATION", "MF-SURFACE-CUTAWAY"],
+      "contactSheet": "artifacts/visual-rescue/stages-4-6/mdf-fasady-contact-sheet.webp",
+      "forbiddenClaims": ["durability", "technical specification", "price", "brand", "compatibility", "real project"]
+    },
+    {
+      "route": "/catalog/pryamye-kuhni",
+      "seriesId": "LAYOUT-LINE-2026-07-22",
+      "userQuestion": "Какая длина и последовательность зон подходят одной линии?",
+      "fixedGeometry": "Одна стена, окно справа, матовые тёпло-белые фасады, светлая каменная столешница, дубовый пол, чёрная техника",
+      "allowedChanges": ["длина линии", "ракурс", "крупность рабочей зоны", "L-форма только в сравнительном кадре"],
+      "assets": [
+        { "mediaId": "line-balanced", "role": "balanced", "altRu": "Прямая кухня средней длины с разделёнными зонами" },
+        { "mediaId": "line-compact", "role": "compact", "altRu": "Компактная прямая кухня с мойкой и короткой рабочей поверхностью" },
+        { "mediaId": "line-long", "role": "long", "altRu": "Длинная прямая кухня с увеличенной рабочей поверхностью и хранением" },
+        { "mediaId": "line-work-zone", "role": "work_zone", "altRu": "Крупный план последовательности варочной поверхности, столешницы и мойки" },
+        { "mediaId": "line-second-angle", "role": "second_angle", "altRu": "Прямая кухня под углом с видимой глубиной рабочей поверхности" },
+        { "mediaId": "line-l-compare", "role": "layout_compare", "altRu": "Та же кухня с добавленной короткой угловой стороной" }
+      ],
+      "masterRoot": "prepared-images/generated-sources/visual-rescue/pryamye-kuhni",
+      "deliveryRoot": "/media/visual-rescue/pryamye-kuhni",
+      "contactSheet": "artifacts/visual-rescue/stages-4-6/pryamye-kuhni-contact-sheet.webp",
+      "forbiddenClaims": ["real project", "confirmed dimensions", "price", "brand"]
+    },
+    {
+      "route": "/catalog/p-obraznye-kuhni",
+      "seriesId": "LAYOUT-U-2026-07-22",
+      "userQuestion": "Как проход и открытая техника меняют сценарий П-образной кухни?",
+      "fixedGeometry": "Три стороны, окно на дальней стене, песочные фасады, светлая каменная столешница, дубовый пол, чёрная техника",
+      "allowedChanges": ["открытая техника", "открытые ящики", "ракурс", "L-форма только в сравнительном кадре"],
+      "assets": [
+        { "mediaId": "u-overview", "role": "overview", "altRu": "П-образная кухня с тремя рабочими сторонами и центральным проходом" },
+        { "mediaId": "u-clear-passage", "role": "clear_passage", "altRu": "П-образная кухня с полностью свободным внутренним проходом" },
+        { "mediaId": "u-open-appliances", "role": "open_appliances", "altRu": "П-образная кухня с открытыми духовкой и посудомоечной машиной" },
+        { "mediaId": "u-solo", "role": "solo", "altRu": "П-образная кухня с одним открытым ящиком у варочной зоны" },
+        { "mediaId": "u-pair", "role": "pair", "altRu": "П-образная кухня с открытыми ящиками по обе стороны и посудомоечной машиной" },
+        { "mediaId": "u-l-compare", "role": "layout_compare", "altRu": "Та же кухня без правой стороны как угловая альтернатива" }
+      ],
+      "masterRoot": "prepared-images/generated-sources/visual-rescue/p-obraznye-kuhni",
+      "deliveryRoot": "/media/visual-rescue/p-obraznye-kuhni",
+      "contactSheet": "artifacts/visual-rescue/stages-4-6/p-obraznye-kuhni-contact-sheet.webp",
+      "forbiddenClaims": ["real project", "confirmed passage", "confirmed dimensions", "price", "brand"]
+    }
+  ]
+}
