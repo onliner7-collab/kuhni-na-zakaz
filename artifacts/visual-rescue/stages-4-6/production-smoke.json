@@ -1,0 +1,78 @@
+{
+  "measuredAt": "2026-07-22T18:10:35.197Z",
+  "baseURL": "https://kuhni.minsk.by",
+  "targets": [
+    {
+      "route": "/materials/mdf-fasady",
+      "http": 200,
+      "h1": 1,
+      "canonical": "https://kuhni.minsk.by/materials/mdf-fasady",
+      "initialImageHttp": 200,
+      "finalImageHttp": 200,
+      "naturalWidth": 1200,
+      "visualChanged": true,
+      "overflowPx": 0
+    },
+    {
+      "route": "/catalog/pryamye-kuhni",
+      "http": 200,
+      "h1": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/pryamye-kuhni",
+      "initialImageHttp": 200,
+      "finalImageHttp": 200,
+      "naturalWidth": 1200,
+      "visualChanged": true,
+      "overflowPx": 0
+    },
+    {
+      "route": "/catalog/p-obraznye-kuhni",
+      "http": 200,
+      "h1": 1,
+      "canonical": "https://kuhni.minsk.by/catalog/p-obraznye-kuhni",
+      "initialImageHttp": 200,
+      "finalImageHttp": 200,
+      "naturalWidth": 1200,
+      "visualChanged": true,
+      "overflowPx": 0
+    }
+  ],
+  "protected": [
+    {
+      "route": "/",
+      "http": 200,
+      "h1": 1,
+      "brokenImages": 0,
+      "overflowPx": 0
+    },
+    {
+      "route": "/design-proekt-kuhni",
+      "http": 200,
+      "h1": 1,
+      "brokenImages": 0,
+      "overflowPx": 0
+    },
+    {
+      "route": "/locations/minskaya-oblast",
+      "http": 200,
+      "h1": 1,
+      "brokenImages": 0,
+      "overflowPx": 0
+    },
+    {
+      "route": "/locations/minsk",
+      "http": 200,
+      "h1": 1,
+      "brokenImages": 0,
+      "overflowPx": 0
+    },
+    {
+      "route": "/materials/furnitura",
+      "http": 200,
+      "h1": 1,
+      "brokenImages": 0,
+      "overflowPx": 0
+    }
+  ],
+  "sitemapHttp": 200,
+  "robotsHttp": 200
+}
