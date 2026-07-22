@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { ContextSummary, ExploreContextProvider, MediaSequence, RelatedExplorationRail } from "@/components/exploration";
 import type { PilotMedia } from "@/components/pilots/library/types";
 import { LayoutDecisionModel, type DecisionOption } from "./LayoutDecisionModel";
+import { LayoutVisualExplorer, type LayoutVisualFrame } from "./LayoutVisualExplorer";
 
 type Config = {
   title: string;
@@ -14,6 +15,7 @@ type Config = {
   limitations: string[];
   options: DecisionOption[];
   media: PilotMedia[];
+  visualFrames?: LayoutVisualFrame[];
   links: Array<{ href: string; label: string }>;
 };
 
@@ -25,10 +27,11 @@ const configs: Record<string, Config> = {
     role: "line-layout-check", layout: "прямая", legend: "Выберите длину рабочей линии",
     limitations: ["Коммуникации должны совпасть с выбранной последовательностью зон.", "Короткая линия заставляет выбирать между техникой, хранением и столешницей."],
     options: [
-      { id: "compact", label: "Компактная линия", result: "Сначала закрепите мойку и один свободный участок столешницы.", caution: "габариты холодильника, мойки и варочной до выбора модулей" },
       { id: "balanced", label: "Средняя линия", result: "Зоны можно разделить без длинных переходов.", caution: "не разрывает ли пенал рабочую поверхность" },
+      { id: "compact", label: "Компактная линия", result: "Сначала закрепите мойку и один свободный участок столешницы.", caution: "габариты холодильника, мойки и варочной до выбора модулей" },
       { id: "long", label: "Длинная линия", result: "Хранения больше, но ежедневный маршрут становится длиннее.", caution: "расстояние между холодильником, мойкой и варочной" },
     ],
+    visualFrames: lineFrames(),
     media: media("line", "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp", "Визуализация прямой кухни вдоль одной стены", "/uploads/kitchens/catalog/pryamaya-kuhnya-3d-proekt-rakurs-1-generated-20260517.webp", "Визуализация рабочей зоны прямой кухни"),
     links: [{ href: "/catalog/uglovye-kuhni", label: "Сравнить с угловой кухней" }, { href: "/scenarios/dlya-studii", label: "Проверить сценарий студии" }, { href: "/materials/mdf-fasady", label: "Сравнить МДФ-фасады" }, { href: "/blog/uglovaya-kuhnya-ili-pryamaya-chto-vybrat", label: "Прочитать сравнение планировок" }],
   },
@@ -104,6 +107,31 @@ const configs: Record<string, Config> = {
   },
 };
 
+function lineFrames(): LayoutVisualFrame[] {
+  const base = "/media/visual-rescue/pryamye-kuhni";
+  return [
+    visualFrame(base, "line-balanced", "Средняя линия", "Прямая кухня средней длины с разделёнными зонами", "Зоны можно разделить без длинных переходов.", "не разрывает ли пенал рабочую поверхность"),
+    visualFrame(base, "line-compact", "Компактная", "Компактная прямая кухня с мойкой и короткой рабочей поверхностью", "На короткой линии сначала фиксируются обязательные зоны.", "габариты техники и непрерывный участок столешницы"),
+    visualFrame(base, "line-long", "Длинная", "Длинная прямая кухня с увеличенной рабочей поверхностью и хранением", "Длинная линия добавляет хранение и увеличивает маршрут.", "расстояние между холодильником, мойкой и варочной"),
+    visualFrame(base, "line-work-zone", "Рабочая зона", "Крупный план последовательности варочной поверхности, столешницы и мойки", "Непрерывная столешница связывает основные действия.", "где останется место для подготовки продуктов"),
+    visualFrame(base, "line-second-angle", "Второй ракурс", "Прямая кухня под углом с видимой глубиной рабочей поверхности", "Второй ракурс показывает глубину и свободное место перед линией.", "не мешают ли открытые фасады проходу"),
+    visualFrame(base, "line-l-compare", "Сравнить с угловой", "Та же кухня с добавленной короткой угловой стороной", "Вторая сторона добавляет столешницу, но занимает часть помещения.", "нужна ли дополнительная сторона ценой свободного прохода"),
+  ];
+}
+
+function visualFrame(base: string, id: string, label: string, alt: string, result: string, caution: string): LayoutVisualFrame {
+  return {
+    id,
+    label,
+    webp: `${base}/webp/${id}.webp`,
+    avif: `${base}/avif/${id}.avif`,
+    alt,
+    caption: "AI-визуализация для сравнения планировки, не фотография реализованного объекта.",
+    result,
+    caution,
+  };
+}
+
 function media(id: string, first: string, firstAlt: string, second: string, secondAlt: string): PilotMedia[] {
   return [
     { id: `${id}-overview`, webp: first, alt: firstAlt, caption: "Идея планировки, не фотография реализованного объекта", width: 1200, height: 800 },
@@ -127,14 +155,20 @@ export function LayoutBatchPage({ slug }: { slug: string }) {
           <header className="mt-5 max-w-4xl">
             <p className="text-sm font-black uppercase tracking-[0.14em] text-amber-700">Проверка планировки</p>
             <h1 className="mt-3 text-4xl font-black leading-tight md:text-6xl">{config.title}</h1>
-            <p className="mt-5 text-xl font-bold leading-8">{config.question}</p>
-            <p className="mt-3 max-w-3xl leading-7 text-stone-700">{config.answer}</p>
+            <p className="mt-4 max-w-2xl text-lg font-bold leading-7 md:text-xl md:leading-8">{config.question}</p>
+            {!config.visualFrames ? <p className="mt-3 max-w-3xl leading-7 text-stone-700">{config.answer}</p> : null}
           </header>
 
-          <section className="mt-8 grid gap-8 lg:grid-cols-[1.05fr_.95fr]" aria-labelledby="decision-heading">
-            <div><h2 id="decision-heading" className="sr-only">Интерактивная проверка</h2><LayoutDecisionModel route={route} layout={config.layout} role={config.role} legend={config.legend} options={config.options} /></div>
-            <MediaSequence items={config.media} label={`Визуальная серия: ${config.question}`} />
-          </section>
+          {config.visualFrames ? (
+            <div className="mt-6"><LayoutVisualExplorer route={route} layout={config.layout} role={config.role} legend={config.legend} frames={config.visualFrames} /></div>
+          ) : (
+            <section className="mt-8 grid gap-8 lg:grid-cols-[1.05fr_.95fr]" aria-labelledby="decision-heading">
+              <div><h2 id="decision-heading" className="sr-only">Интерактивная проверка</h2><LayoutDecisionModel route={route} layout={config.layout} role={config.role} legend={config.legend} options={config.options} /></div>
+              <MediaSequence items={config.media} label={`Визуальная серия: ${config.question}`} />
+            </section>
+          )}
+
+          {config.visualFrames ? <details className="mt-6 rounded-2xl border border-stone-200 bg-white p-5"><summary className="min-h-11 cursor-pointer content-center font-bold">Почему начинаем с планировки</summary><p className="mt-3 max-w-3xl leading-7 text-stone-700">{config.answer}</p></details> : null}
 
           <section className="mt-10 grid gap-6 md:grid-cols-2" aria-labelledby="limits-heading">
             <div className="rounded-3xl border border-stone-200 bg-white p-6"><h2 id="limits-heading" className="text-2xl font-black">Ограничения, которые нельзя пропустить</h2><ul className="mt-4 space-y-3">{config.limitations.map((item) => <li key={item} className="flex gap-3 leading-7"><span aria-hidden="true">—</span><span>{item}</span></li>)}</ul></div>
