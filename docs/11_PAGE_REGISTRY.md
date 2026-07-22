@@ -242,3 +242,7 @@ Production статус повышен до `VERIFIED`: runtime commit `a243bddd
 | `/catalog/kuhni-do-potolka` | `VISUAL_ACCEPTED_LOCAL` | `LAYOUT-CEILING-2026-07-22`, 6 masters | 931 px | тип доступа меняет ежедневную зону, верхний ярус, сезонное хранение и техзазор |
 
 Canonical, H1, metadata/schema flow и sitemap policy сохранены. Production status повышается только после deploy и live smoke; пять protected routes — regression-only. Полный отчёт: `docs/visual-rescue/stages-7-9-2026-07-22.md`.
+
+### Production gate stages 7–9
+
+Runtime commit `07d0e1c` задеплоен штатным Timeweb script. Все три route повышены до `VISUAL_ACCEPTED`: production 3/3 подтверждает HTTP 200, self canonical, H1=1, visual state change, `naturalWidth=1200`, overflow 0, missing alt 0 и отсутствие broken image responses. Protected regression 5/5 PASS; sitemap/robots HTTP 200.

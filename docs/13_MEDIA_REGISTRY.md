@@ -170,3 +170,5 @@ Production map новых визуальных серий, media slots, generati
 | `LAYOUT-CEILING-2026-07-22` | `/catalog/kuhni-do-potolka` | 6 | AVIF/WebP, one eager + intent states | `/media/visual-rescue/kuhni-do-potolka/contact-sheet.webp` | `CONNECTED_LOCAL` |
 
 Все 18 masters созданы встроенным Codex/OpenAI imagegen, сохранены в project public media root и не подключены как visible PNG. WebP: 20–55 КБ; AVIF: 12–39 КБ. Provenance `ai_concept`, rights `internal_generation`; русские alt/caption; запрещены claims о реальном проекте, точных размерах, применимости, цене и брендах. Canonical manifest: `content/media/visual-rescue-stages-7-9-2026-07-22.json`.
+
+Production gate: три series повышены до `LIVE` после deploy `07d0e1c`; active AVIF и выбранные state images отдают HTTP 200, `naturalWidth=1200`, bad image responses 0. PNG остаются source-only; provenance не повышается до real project.

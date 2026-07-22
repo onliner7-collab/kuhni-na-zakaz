@@ -419,3 +419,9 @@ Production PASS завершён для `a243bddd8bac781575a4378aa18b8f0409d8ed9
 Local evidence: typecheck PASS; sitemap 112/112; production build PASS с ожидаемым Prisma static fallback; Playwright 4/4 на 360/390/412/768/1440; protected routes 5/5. На 390 px visual начинается Y=426, action controls Y=931; initial media = один active AVIF, `naturalWidth=1200`, overflow=0, CLS observation 0.0002. Screenshots/video/report: `artifacts/visual-rescue/stages-7-9/`; полный отчёт: `docs/visual-rescue/stages-7-9-2026-07-22.md`.
 
 До deploy статус production не заявляется. Требуется отдельный scope commit, push `work`, стандартный deploy и smoke трёх targets + пяти protected routes. Rollback: `git revert <stage-7-9-commit>`, push, standard deploy, повторный smoke; Prisma/schema/import rollback не нужен. Следующий разрешённый этап после production PASS — 10.
+
+### Production PASS stages 7–9
+
+Runtime commit `07d0e1c` pushed и задеплоен стандартным Timeweb script с explicit identity `timeweb_kuhni_ed25519`; server build PASS, service active. Production targets 3/3 и protected routes 5/5: HTTP 200, H1=1, overflow 0, broken images 0; targets self-canonical, missing alt 0, image state changes, `naturalWidth=1200`, bad image responses 0. Sitemap и robots отвечают 200. Evidence: `artifacts/visual-rescue/stages-7-9/production-smoke.json`.
+
+Этапы 7–9: `VISUAL_ACCEPTED`. Rollback: `git revert 07d0e1c`, push `work`, стандартный deploy и повторный smoke; DB/schema/import rollback не требуется. Следующий разрешённый этап — 10.

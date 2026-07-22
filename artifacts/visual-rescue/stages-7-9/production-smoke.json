@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-07-22T18:51:08.434Z",
+  "commit": "07d0e1c",
+  "targets": [
+    { "route": "/catalog/kuhni-s-ostrovom", "http": 200, "h1": 1, "canonical": "https://kuhni.minsk.by/catalog/kuhni-s-ostrovom", "overflow": 0, "brokenImages": 0, "missingAlt": 0, "visualChanged": true, "naturalWidth": 1200, "badImageResponses": [] },
+    { "route": "/catalog/malenkie-kuhni", "http": 200, "h1": 1, "canonical": "https://kuhni.minsk.by/catalog/malenkie-kuhni", "overflow": 0, "brokenImages": 0, "missingAlt": 0, "visualChanged": true, "naturalWidth": 1200, "badImageResponses": [] },
+    { "route": "/catalog/kuhni-do-potolka", "http": 200, "h1": 1, "canonical": "https://kuhni.minsk.by/catalog/kuhni-do-potolka", "overflow": 0, "brokenImages": 0, "missingAlt": 0, "visualChanged": true, "naturalWidth": 1200, "badImageResponses": [] }
+  ],
+  "protected": [
+    { "route": "/", "http": 200, "h1": 1, "overflow": 0, "brokenImages": 0 },
+    { "route": "/design-proekt-kuhni", "http": 200, "h1": 1, "overflow": 0, "brokenImages": 0 },
+    { "route": "/locations/minskaya-oblast", "http": 200, "h1": 1, "overflow": 0, "brokenImages": 0 },
+    { "route": "/locations/minsk", "http": 200, "h1": 1, "overflow": 0, "brokenImages": 0 },
+    { "route": "/materials/furnitura", "http": 200, "h1": 1, "overflow": 0, "brokenImages": 0 }
+  ],
+  "system": [
+    { "route": "/sitemap.xml", "http": 200 },
+    { "route": "/robots.txt", "http": 200 }
+  ]
+}
