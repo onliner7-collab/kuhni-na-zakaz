@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-07-23T19:58:00Z",
+  "productionBaseUrl": "https://kuhni.minsk.by",
+  "runtimeCommit": "2213d56",
+  "deployCommand": "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work",
+  "deployResult": {
+    "exitCode": 0,
+    "build": "PASS",
+    "service": "active"
+  },
+  "targets": [
+    "/styles/skandinavskie",
+    "/styles/klassicheskie",
+    "/styles/minimalizm"
+  ],
+  "targetChecks": {
+    "http200": "3/3",
+    "selfCanonical": "3/3",
+    "h1One": "3/3",
+    "sixVisualStates": "3/3",
+    "naturalWidth1200": "3/3",
+    "overflowZero": "3/3",
+    "brokenImagesZero": "3/3",
+    "keyboardFocus": "PASS",
+    "reducedMotion": "PASS",
+    "dockDirectionAndInteraction": "PASS",
+    "playwright": "20/20 PASS; one transient networkidle timeout passed on immediate isolated retry"
+  },
+  "protectedRoutes": [
+    "/",
+    "/design-proekt-kuhni",
+    "/locations/minskaya-oblast",
+    "/locations/minsk",
+    "/materials/furnitura"
+  ],
+  "protectedChecks": {
+    "desktop": "5/5 PASS",
+    "mobile": "5/5 PASS"
+  },
+  "delivery": {
+    "webpAvifAndContactSheets": "39/39 HTTP 200",
+    "sitemap": 200,
+    "robots": 200
+  },
+  "status": "VISUAL_ACCEPTED"
+}
