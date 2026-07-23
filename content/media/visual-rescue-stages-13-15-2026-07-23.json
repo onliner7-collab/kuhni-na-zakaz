@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "batchId": "visual-rescue-stages-13-15-2026-07-23",
+  "status": "CONNECTED_LOCAL",
+  "generationTool": "Codex built-in imagegen",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "deliveryPolicy": "one eager active AVIF/WebP; remaining frames mounted after interaction; PNG masters are source-only",
+  "series": [
+    {
+      "route": "/styles/provans",
+      "seriesId": "STYLE-PROVENCE-2026-07-23",
+      "userQuestion": "Сколько декора и открытого хранения оставить на виду?",
+      "visualStory": "светлая база → витринный акцент → древесная фактура → рабочая зона → ограничение ухода → сравнение",
+      "fixedGeometry": "Одна Г-образная кухня с центральным окном и мойкой, варочной зоной слева и высокими секциями справа",
+      "fixedMaterials": "тёпло-белые матовые рамочные фасады, светлый камень, светлый дуб, малые бронзовые ручки",
+      "fixedAppliances": "чёрная встроенная духовка, скрытый холодильник, чёрная индукционная поверхность",
+      "fixedLighting": "мягкий дневной свет из центрального окна",
+      "allowedChanges": ["ракурс", "крупность", "доля витрин", "доля открытых полок", "сдержанная неоклассическая версия"],
+      "requiredFrames": ["overview", "glass", "wood", "workzone", "open_storage", "compare"],
+      "forbiddenChanges": ["планировка", "окно", "техника", "основная палитра", "ложные размеры", "люди", "бренды", "текст"],
+      "assets": [
+        { "mediaId": "prov-overview", "role": "overview", "altRu": "Светлая Г-образная кухня в стиле прованс с окном над мойкой" },
+        { "mediaId": "prov-glass", "role": "glass_accent", "altRu": "Витринный шкаф и одна открытая дубовая полка в светлой кухне прованс" },
+        { "mediaId": "prov-wood", "role": "wood_detail", "altRu": "Крупный план дубовой ниши, светлого камня и матового рамочного фасада" },
+        { "mediaId": "prov-workzone", "role": "workzone", "altRu": "Свободная рабочая поверхность той же кухни прованс у мойки и варочной зоны" },
+        { "mediaId": "prov-open-storage", "role": "care_limit", "altRu": "Та же кухня прованс с тремя открытыми дубовыми полками" },
+        { "mediaId": "prov-compare", "role": "neoclassic_compare", "altRu": "Та же светлая кухня с закрытым хранением и более строгой симметрией" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/provans/masters",
+      "deliveryRoot": "/media/visual-rescue/provans",
+      "contactSheet": "/media/visual-rescue/provans/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "verified material property", "confirmed care requirement", "price", "brand"]
+    },
+    {
+      "route": "/styles/loft",
+      "seriesId": "STYLE-LOFT-2026-07-23",
+      "userQuestion": "Что осветлить: фасады, рабочую зону или весь образ?",
+      "visualStory": "дерево и графит → металл → рабочая зона → свет → светлый вариант → сравнение",
+      "fixedGeometry": "Одна прямая кухня с оконной дверью слева, рабочей нишей по центру, высокими секциями справа и компактным полуостровом",
+      "fixedMaterials": "матовый графит, тёплый орех, светло-серый камень, дозированный чёрный металл, серый микроцемент",
+      "fixedAppliances": "чёрная встроенная духовка, скрытый холодильник, индукционная поверхность",
+      "fixedLighting": "дневной свет слева и тёплая линейная подсветка",
+      "allowedChanges": ["ракурс", "крупность", "вечерний свет", "светло-серые фасады", "закрытие открытого металлического хранения"],
+      "requiredFrames": ["overview", "metal", "workzone", "lighting", "light_variant", "modern_compare"],
+      "forbiddenChanges": ["планировка", "окно", "техника", "деревянная линия", "ложные размеры", "люди", "бренды", "текст"],
+      "assets": [
+        { "mediaId": "loft-overview", "role": "overview", "altRu": "Кухня лофт с графитовыми фасадами, орехом и компактным полуостровом" },
+        { "mediaId": "loft-metal", "role": "metal", "altRu": "Чёрный металлический каркас полок и полуострова в той же кухне лофт" },
+        { "mediaId": "loft-workzone", "role": "workzone", "altRu": "Фронтальный вид рабочей зоны кухни лофт с ореховыми верхними фасадами" },
+        { "mediaId": "loft-light", "role": "lighting", "altRu": "Та же кухня лофт вечером с тёплой рабочей подсветкой" },
+        { "mediaId": "loft-light-variant", "role": "light_variant", "altRu": "Светло-серая версия той же кухни лофт с орехом и чёрным металлом" },
+        { "mediaId": "loft-modern-compare", "role": "modern_compare", "altRu": "Та же графитово-ореховая кухня без открытого металлического хранения" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/loft/masters",
+      "deliveryRoot": "/media/visual-rescue/loft",
+      "contactSheet": "/media/visual-rescue/loft/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "verified material property", "confirmed lighting sufficiency", "price", "brand"]
+    },
+    {
+      "route": "/styles/sovremennye",
+      "seriesId": "STYLE-MODERN-2026-07-23",
+      "userQuestion": "Что станет главным акцентом: плоскость, материал или остров?",
+      "visualStory": "общий образ → доминирующая плоскость → техника → материал → storage rhythm → сравнение",
+      "fixedGeometry": "Одна прямая кухня с высокой стеной хранения, рабочей нишей по центру, параллельным островом и панорамным окном справа",
+      "fixedMaterials": "матовый greige, тёплый дуб, приглушённый серо-зелёный остров, светлый камень, минимум чёрного металла",
+      "fixedAppliances": "чёрная встроенная духовка, скрытый холодильник, индукционная поверхность в острове",
+      "fixedLighting": "мягкий дневной свет справа и тёплая подсветка рабочей ниши",
+      "allowedChanges": ["ракурс", "крупность", "открытые зоны хранения", "графитовый остров", "светло-серая рабочая ниша"],
+      "requiredFrames": ["overview", "plane", "appliances", "material", "storage", "accent_compare"],
+      "forbiddenChanges": ["планировка", "окно", "техника", "основная сетка фасадов", "ложные размеры", "люди", "бренды", "текст"],
+      "assets": [
+        { "mediaId": "modern-overview", "role": "overview", "altRu": "Современная кухня с greige фасадами, дубовой нишей и серо-зелёным островом" },
+        { "mediaId": "modern-plane", "role": "dominant_plane", "altRu": "Фронтальный вид цельной плоскости высоких фасадов современной кухни" },
+        { "mediaId": "modern-appliances", "role": "appliances", "altRu": "Встроенная духовка и индукционная поверхность в композиции современной кухни" },
+        { "mediaId": "modern-material", "role": "material", "altRu": "Крупный план greige фасадов, дубовой ниши, светлого камня и серо-зелёного острова" },
+        { "mediaId": "modern-storage", "role": "storage_rhythm", "altRu": "Открытые высокий шкаф, верхний модуль и ящик острова в современной кухне" },
+        { "mediaId": "modern-accent-compare", "role": "accent_compare", "altRu": "Та же современная кухня с графитовым островом и светло-серой рабочей нишей" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/sovremennye/masters",
+      "deliveryRoot": "/media/visual-rescue/sovremennye",
+      "contactSheet": "/media/visual-rescue/sovremennye/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "verified material property", "confirmed storage capacity", "price", "brand"]
+    }
+  ]
+}

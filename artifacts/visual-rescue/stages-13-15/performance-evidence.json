@@ -1,0 +1,230 @@
+[
+  {
+    "route": "/styles/provans",
+    "seriesId": "STYLE-PROVENCE-2026-07-23",
+    "heroHeight": 534,
+    "firstActionTop": 1069,
+    "seriesImageCount": 1,
+    "currentSrc": "http://127.0.0.1:3100/media/visual-rescue/provans/prov-overview.avif",
+    "naturalWidth": 1200,
+    "h1": "Кухня в стиле прованс: уют без перегруза",
+    "promise": "Меняйте долю витрин, дерева и открытых полок на одной светлой кухне.",
+    "clientJsTransferBytes": 260195,
+    "initialMediaRequests": [
+      {
+        "url": "http://127.0.0.1:3100/media/visual-rescue/provans/prov-overview.avif",
+        "status": 200,
+        "transferSize": 28720
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_check?scid=40f280a0-9206-f42b-55ae-ee6b75d9e19f&cid=109329747",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/metrika/advert.gif",
+        "status": 200,
+        "transferSize": 43
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=40f280a0-9206-f42b-55ae-ee6b75d9e19f&token=11101.DqKbATP9bdssyyugdk2LlerL_t_TW8MWOgSxbMBucgCQUJI5vq_JoLO66Ut8e3zC.gzqi8O_ajMhiQdx4Mib7oWeo8DA%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=40f280a0-9206-f42b-55ae-ee6b75d9e19f&token=11101.LDKUwr6I714RfH4357rSGT_bBhnnoa0wmfK_cIpS-dznUdydkswbGBYVnmBaT1H6G0MeKye9xyzSQ36qwNAoLYjlKwpl3gcm1sAhkW0NpdI%2C.Eh_gug07lqLjtOIN6Pp9RCx8_Fg%2C",
+        "status": 200,
+        "transferSize": 43
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=c4fc29fd-fa27-a33c-2271-94b188abf12e&cid=109329747",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=c4fc29fd-fa27-a33c-2271-94b188abf12e&token=11101.1MIhnvH8C0iUjcJBwcZUmCn5ayZZ98fpXvyjiI9W_LYqQRdE4JLETnBmPNaCHtga.vNMlNEwsbneac_mptxemlXI_DAI%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=c4fc29fd-fa27-a33c-2271-94b188abf12e&token=11101.GHjgCFPt-4iWdRVvK4di7Vj08tHnEg1TQd0DDZ5xCzU__53F8XHqV7j3USHsnI1LKuz7-AQrbTUoAWlDegnqTSOuFpxhJbWQaW0_vt8v9gY%2C.vqtjUpdmuDL23Gw3mIqnY_lCmkM%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=c4fc29fd-fa27-a33c-2271-94b188abf12e&token=11101.r8j3dLZJnauH8mCmxnqakA1XuzmKAFzaSbrQXljWEMKc1Cnp4RzHF5UIRUlAFg7rDBV4rZnmpXCxesgDHDzqodSHYqcb3B-vrjWWPrfuHUn7GOZHTEYMZA-BDapOjY_RhuVW6lloBLhEU5g8jGRHzTwyelmBdgf1kC1VTmKJ4gDh9tR6cNypVlAr2iJ_n4sf3hfsvamayjY2Wdl-i77gqg%2C%2C.jo3HlxGyu6OSQk-NagE-qQVS7zE%2C",
+        "status": 200,
+        "transferSize": 43
+      }
+    ],
+    "initialSeriesMediaRequests": [
+      {
+        "url": "http://127.0.0.1:3100/media/visual-rescue/provans/prov-overview.avif",
+        "status": 200,
+        "transferSize": 28720
+      }
+    ],
+    "focusIndicator": {
+      "outline": "none 1px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, oklch(0.147 0.004 49.25) 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    "reducedMotionAnimationName": "none",
+    "dockOverlap": 0,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "route": "/styles/loft",
+    "seriesId": "STYLE-LOFT-2026-07-23",
+    "heroHeight": 534,
+    "firstActionTop": 1106.5,
+    "seriesImageCount": 1,
+    "currentSrc": "http://127.0.0.1:3100/media/visual-rescue/loft/loft-overview.avif",
+    "naturalWidth": 1200,
+    "h1": "Кухня в стиле лофт: выразительность без темноты",
+    "promise": "Меняйте долю тёмных поверхностей, металл и свет на одной кухне.",
+    "clientJsTransferBytes": 260195,
+    "initialMediaRequests": [
+      {
+        "url": "http://127.0.0.1:3100/media/visual-rescue/loft/loft-overview.avif",
+        "status": 200,
+        "transferSize": 29647
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_check?scid=95c26447-3158-55b4-01f0-7d100588090d&cid=109329747",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/metrika/advert.gif",
+        "status": 200,
+        "transferSize": 43
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=95c26447-3158-55b4-01f0-7d100588090d&token=11101.zx_gAZiJGA525TV2Of_7pa0ugSKAN8QGMijtvq2vaX2HUPfBT7ag1kLbFBytwuoF.E2V-4LusZAxTGm7zXS5VMoK4_E0%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=95c26447-3158-55b4-01f0-7d100588090d&token=11101.uU5iaY6UJq2wiymbsCLS1YU_e-WXn2rVWiFZ4ft2Xm1CFR-jKTka5o7Ah6hczpxxLnAnKBli2MftfOjnqcPFEw3sXehzfDue1Nbk90O3kGs%2C.CfTdojEcl_bQVdo0YJhg7m6uHQo%2C",
+        "status": 200,
+        "transferSize": 43
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=e6e5327e-5673-aeda-c48e-b63e82c8e427&cid=109329747",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=e6e5327e-5673-aeda-c48e-b63e82c8e427&token=11101.Yk_Ts-xwR7L-RM4hLaMU8Maf3UOEACucBOnP5jOHxkf0lbm7SPukj4TuibnZSq3O.ir-MGjpfYxyx_6DVHCQEEgHEWdU%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=e6e5327e-5673-aeda-c48e-b63e82c8e427&token=11101.3fJCnnq-0VWpZaPOePZvj478sg8tIf29f2xOBXzUd9qY8o3G16nwSILV5E_niLqs1IOkAgBs7GktYlqZlT6DXZNYRkccT_MdTUGK4_HYN0I%2C.GOnSLZijNJpSB2qbAsgphq1IZQ8%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=e6e5327e-5673-aeda-c48e-b63e82c8e427&token=11101.lJwmYqxCehyGPmonstiTx-A5pEjmg2FiirOwfgU-zdkvwvKixhIhJmy9yRwwhnn3HWYgL_s_2cZnsD8RmHnaD_MHgXR-RXVJBvAQAtGsC7MVQwajDAcrbkJPvaAaQOgkXUdH_1o6VLULc9FteC4zdg3uBG6F0FljMJ3MTF9wsfoy1d00HV-hlH-LDg19TQZyz-Eohr7Qil4fHHk2LZCtBA%2C%2C.yOY7G1X5Q2ajhnuc9meW8OE5tLg%2C",
+        "status": 200,
+        "transferSize": 43
+      }
+    ],
+    "initialSeriesMediaRequests": [
+      {
+        "url": "http://127.0.0.1:3100/media/visual-rescue/loft/loft-overview.avif",
+        "status": 200,
+        "transferSize": 29647
+      }
+    ],
+    "focusIndicator": {
+      "outline": "none 1px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, oklch(0.147 0.004 49.25) 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    "reducedMotionAnimationName": "none",
+    "dockOverlap": 0,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  {
+    "route": "/styles/sovremennye",
+    "seriesId": "STYLE-MODERN-2026-07-23",
+    "heroHeight": 534,
+    "firstActionTop": 1134.5,
+    "seriesImageCount": 1,
+    "currentSrc": "http://127.0.0.1:3100/media/visual-rescue/sovremennye/modern-overview.avif",
+    "naturalWidth": 1200,
+    "h1": "Современная кухня: как собрать цельный интерьер",
+    "promise": "Переключайте главный акцент на одной современной кухне.",
+    "clientJsTransferBytes": 260195,
+    "initialMediaRequests": [
+      {
+        "url": "http://127.0.0.1:3100/media/visual-rescue/sovremennye/modern-overview.avif",
+        "status": 200,
+        "transferSize": 26335
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_check?scid=8c512d64-9144-fcf6-0220-4b6f74560e4d&cid=109329747",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/metrika/advert.gif",
+        "status": 200,
+        "transferSize": 43
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_start?cid=109329747&redirect_domain=mc.yandex.com&scid=8c512d64-9144-fcf6-0220-4b6f74560e4d&token=11101.tLWFokIdDgrM-WndysCCFy96vetzLSP7Mg8Ijbx8G0X0Uezmde__a2fMxBKH5rWi.w98-XghN4XmY33PvXa9UkU5-rRU%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_decide?cid=109329747&scid=8c512d64-9144-fcf6-0220-4b6f74560e4d&token=11101.kW86EVnFVCUhoTXE-PyRnUQ7c-0AupKuODuxtYw9mVPYg8bwKq6EGfy8ujVjD8lLMkjqPzZyI1-Y5S2HQDgvas2fkcHgN1-OKW6AE058OvA%2C.8Uex0djglVhFSPcEBA7CZZevrpg%2C",
+        "status": 200,
+        "transferSize": 43
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_check_secondary?scid=315618eb-01e2-e627-7f32-9d64ac21073f&cid=109329747",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_start_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=315618eb-01e2-e627-7f32-9d64ac21073f&token=11101.z5j3JZ0tzIFw83Y0rTqabbaO5LJhso3tVfkEAA20FypdjXyUT2kIhM1ROC4wIxAl.mKfVLQJjWzUXn4ixC4c9C4bImhM%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.com/sync_cookie_image_decide_secondary?cid=109329747&scid=315618eb-01e2-e627-7f32-9d64ac21073f&token=11101.ngYTwghoAVmWmXoN0Qtwq9Ilx-_inasrwJM6KTw6cD9OCPbg5-m_rMUQlLEuRne0DYxF5Ec8PoATEWcYcmCt8JaGHBURPUC1P2O9uGNO4gA%2C.-Y80bQReWFufePuDeP8vVocJ_VI%2C",
+        "status": 302,
+        "transferSize": 0
+      },
+      {
+        "url": "https://mc.yandex.ru/sync_cookie_image_finish_secondary?cid=109329747&redirect_domain=mc.yandex.com&scid=315618eb-01e2-e627-7f32-9d64ac21073f&token=11101.p3Z8lbzAGfxOl_FEgLWRf9i_F7IpIoZiuMMrDgQCjLk1ApUHF4UwYafKsBdda0OtSXCHxlaBnF-aI-X14KkpO2KyDqKp_ZEe06ej4ZP-BD1vsZjSYtWVDZV-kL3Y9gQCGUiecbdAjKItwWZ7sjG7JywO07xYqqFsDg39bZLwyUwglQkSAVGvCmiRyGRDn45oAb296pcPZrUyjS4YEMPsgQ%2C%2C.F3lMjFt3K_ZW5hR9wn6cc6q1O9A%2C",
+        "status": 200,
+        "transferSize": 43
+      }
+    ],
+    "initialSeriesMediaRequests": [
+      {
+        "url": "http://127.0.0.1:3100/media/visual-rescue/sovremennye/modern-overview.avif",
+        "status": 200,
+        "transferSize": 26335
+      }
+    ],
+    "focusIndicator": {
+      "outline": "none 1px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, oklch(0.147 0.004 49.25) 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    "reducedMotionAnimationName": "none",
+    "dockOverlap": 0,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    }
+  }
+]

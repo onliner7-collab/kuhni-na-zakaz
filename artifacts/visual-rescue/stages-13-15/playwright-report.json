@@ -1,0 +1,239 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.stages-13-15.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/visual-rescue",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/visual-rescue/stages-13-15/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/visual-rescue",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/visual-rescue/stages-13-15/playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "stages-13-15.spec.ts",
+      "file": "stages-13-15.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "/styles/provans: visual journey and responsive matrix",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1816,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T18:25:50.359Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-13-15\\playwright-results\\stages-13-15--styles-prova-211e2-urney-and-responsive-matrix\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b3ca37d05b9106cfb7b-340807dd802558392545",
+          "file": "stages-13-15.spec.ts",
+          "line": 31,
+          "column": 7
+        },
+        {
+          "title": "/styles/loft: visual journey and responsive matrix",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1720,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T18:25:52.239Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-13-15\\playwright-results\\stages-13-15--styles-loft--36c64-urney-and-responsive-matrix\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b3ca37d05b9106cfb7b-1bf248c769553bd83e1c",
+          "file": "stages-13-15.spec.ts",
+          "line": 31,
+          "column": 7
+        },
+        {
+          "title": "/styles/sovremennye: visual journey and responsive matrix",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1768,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T18:25:53.971Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-13-15\\playwright-results\\stages-13-15--styles-sovre-7d270-urney-and-responsive-matrix\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b3ca37d05b9106cfb7b-151272367bc8f2403b6a",
+          "file": "stages-13-15.spec.ts",
+          "line": 31,
+          "column": 7
+        },
+        {
+          "title": "protected production baseline routes keep core shell",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6227,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T18:25:55.751Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-13-15\\playwright-results\\stages-13-15-protected-pro-35965-line-routes-keep-core-shell\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8b3ca37d05b9106cfb7b-05f64d36e3b6798ca95b",
+          "file": "stages-13-15.spec.ts",
+          "line": 79,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-07-23T18:25:49.711Z",
+    "duration": 12369.472,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
