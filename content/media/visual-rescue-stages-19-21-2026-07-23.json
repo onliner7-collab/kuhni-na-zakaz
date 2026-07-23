@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "batchId": "visual-rescue-stages-19-21-2026-07-23",
+  "status": "VERIFIED_LOCAL",
+  "generationTool": "Codex built-in imagegen",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "deliveryPolicy": "one eager active AVIF/WebP; remaining frames mounted after interaction; PNG masters are source-only",
+  "series": [
+    {
+      "route": "/scenarios/s-ostrovom",
+      "seriesId": "SCENARIO-ISLAND-2026-07-23",
+      "userQuestion": "Остров нужен для готовки, хранения или общения?",
+      "visualStory": "исходная кухня → подготовка → хранение → посадка → проход",
+      "fixedGeometry": "Одна кухня-гостиная с центральным островом, высоким фронтом и окном слева",
+      "fixedMaterials": "матовые greige фасады, дубовая ниша, светлый камень, деревянный пол",
+      "fixedAppliances": "чёрная встроенная техника",
+      "fixedLighting": "мягкий дневной свет слева",
+      "allowedChanges": ["варочная поверхность и подготовка", "открытые ящики", "посадка", "одновременное открывание"],
+      "requiredFrames": ["island-base", "island-prep", "island-storage", "island-seating", "island-passage"],
+      "forbiddenChanges": ["помещение", "основная геометрия", "ложные размеры", "люди", "бренды", "текст"],
+      "assets": ["island-base", "island-prep", "island-storage", "island-seating", "island-passage"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/s-ostrovom",
+      "deliveryRoot": "/media/visual-rescue/s-ostrovom",
+      "contactSheet": "/media/visual-rescue/s-ostrovom/contact-sheet.webp"
+    },
+    {
+      "route": "/scenarios/do-potolka",
+      "seriesId": "SCENARIO-CEILING-2026-07-23",
+      "userQuestion": "Какие вещи нужны ежедневно, а какие можно убрать в верхний ярус?",
+      "visualStory": "вся высота → ежедневный доступ → верхний ярус → сезонные вещи → техническое ограничение",
+      "fixedGeometry": "Одна прямая кухня с двумя рядами верхних шкафов до потолка",
+      "fixedMaterials": "матовый светло-серый фасад, дубовая ниша, светлый камень",
+      "fixedAppliances": "чёрная встроенная духовка и индукционная поверхность",
+      "fixedLighting": "мягкий дневной свет слева",
+      "allowedChanges": ["ежедневные ящики", "верхние шкафы", "сезонное хранение", "технический доступ"],
+      "requiredFrames": ["ceiling-height", "ceiling-daily", "ceiling-upper", "ceiling-seasonal", "ceiling-technical"],
+      "forbiddenChanges": ["комната", "сетка фасадов", "ложная вместимость", "ложные размеры", "люди", "бренды", "текст"],
+      "assets": ["ceiling-height", "ceiling-daily", "ceiling-upper", "ceiling-seasonal", "ceiling-technical"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/do-potolka",
+      "deliveryRoot": "/media/visual-rescue/do-potolka",
+      "contactSheet": "/media/visual-rescue/do-potolka/contact-sheet.webp"
+    },
+    {
+      "route": "/scenarios/dlya-semi",
+      "seriesId": "SCENARIO-FAMILY-2026-07-23",
+      "userQuestion": "Какие действия на кухне происходят одновременно?",
+      "visualStory": "совместная готовка → хранение → проходы → техника → общение",
+      "fixedGeometry": "Одна П-образная кухня с окном, дверным проходом и круглым столом",
+      "fixedMaterials": "шалфейные нижние фасады, светлые верхние фасады, дуб и светлый камень",
+      "fixedAppliances": "чёрные встроенные духовки, холодильник и посудомоечная машина",
+      "fixedLighting": "мягкий дневной свет из центрального окна",
+      "allowedChanges": ["две зоны подготовки", "открытое хранение", "открытая техника", "сервировка стола"],
+      "requiredFrames": ["family-cooking", "family-storage", "family-passage", "family-appliances", "family-communication"],
+      "forbiddenChanges": ["комната", "П-образная геометрия", "ложная вместимость", "люди", "бренды", "текст"],
+      "assets": ["family-cooking", "family-storage", "family-passage", "family-appliances", "family-communication"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/dlya-semi",
+      "deliveryRoot": "/media/visual-rescue/dlya-semi",
+      "contactSheet": "/media/visual-rescue/dlya-semi/contact-sheet.webp"
+    }
+  ],
+  "forbiddenClaims": ["real project", "confirmed applicability", "confirmed storage capacity", "confirmed passage size", "price", "brand"]
+}

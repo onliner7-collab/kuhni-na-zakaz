@@ -1,0 +1,328 @@
+{
+  "generatedAt": "2026-07-23T21:13:31.064Z",
+  "baseURL": "http://127.0.0.1:3011",
+  "routes": [
+    {
+      "slug": "s-ostrovom",
+      "path": "/scenarios/s-ostrovom",
+      "series": "SCENARIO-ISLAND-2026-07-23",
+      "status": 200,
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/s-ostrovom",
+      "overflow": false,
+      "cls": 0,
+      "initialMediaRequests": [
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/s-ostrovom/island-base.avif",
+          "status": 200,
+          "beforeInteraction": true
+        }
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/s-ostrovom/island-base.avif",
+          "status": 200,
+          "beforeInteraction": true
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/s-ostrovom/island-prep.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/s-ostrovom/island-storage.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/s-ostrovom/island-seating.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/s-ostrovom/island-passage.avif",
+          "status": 200,
+          "beforeInteraction": false
+        }
+      ],
+      "reducedMotionAnimation": "none",
+      "dockHiddenDown": true,
+      "dockHiddenDuringSelection": true,
+      "dockReturnsUp": true,
+      "states": [
+        {
+          "index": 0,
+          "label": "Исходный вид",
+          "src": "/media/visual-rescue/s-ostrovom/island-base.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 342.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 1,
+          "label": "Подготовка",
+          "src": "/media/visual-rescue/s-ostrovom/island-prep.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 342.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 2,
+          "label": "Хранение",
+          "src": "/media/visual-rescue/s-ostrovom/island-storage.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 342.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 3,
+          "label": "Посадка",
+          "src": "/media/visual-rescue/s-ostrovom/island-seating.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 342.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 4,
+          "label": "Проход",
+          "src": "/media/visual-rescue/s-ostrovom/island-passage.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 342.5,
+          "scrollY": 0,
+          "panelVisible": true
+        }
+      ]
+    },
+    {
+      "slug": "do-potolka",
+      "path": "/scenarios/do-potolka",
+      "series": "SCENARIO-CEILING-2026-07-23",
+      "status": 200,
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/do-potolka",
+      "overflow": false,
+      "cls": 0,
+      "initialMediaRequests": [
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/do-potolka/ceiling-height.avif",
+          "status": 200,
+          "beforeInteraction": true
+        }
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/do-potolka/ceiling-height.avif",
+          "status": 200,
+          "beforeInteraction": true
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/do-potolka/ceiling-daily.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/do-potolka/ceiling-upper.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/do-potolka/ceiling-seasonal.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/do-potolka/ceiling-technical.avif",
+          "status": 200,
+          "beforeInteraction": false
+        }
+      ],
+      "reducedMotionAnimation": "none",
+      "dockHiddenDown": true,
+      "dockHiddenDuringSelection": true,
+      "dockReturnsUp": true,
+      "states": [
+        {
+          "index": 0,
+          "label": "Вся высота",
+          "src": "/media/visual-rescue/do-potolka/ceiling-height.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 314.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 1,
+          "label": "Каждый день",
+          "src": "/media/visual-rescue/do-potolka/ceiling-daily.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 314.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 2,
+          "label": "Верхний ярус",
+          "src": "/media/visual-rescue/do-potolka/ceiling-upper.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 314.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 3,
+          "label": "Сезонные вещи",
+          "src": "/media/visual-rescue/do-potolka/ceiling-seasonal.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 314.5,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 4,
+          "label": "Техзона",
+          "src": "/media/visual-rescue/do-potolka/ceiling-technical.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 314.5,
+          "scrollY": 0,
+          "panelVisible": true
+        }
+      ]
+    },
+    {
+      "slug": "dlya-semi",
+      "path": "/scenarios/dlya-semi",
+      "series": "SCENARIO-FAMILY-2026-07-23",
+      "status": 200,
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/scenarios/dlya-semi",
+      "overflow": false,
+      "cls": 0,
+      "initialMediaRequests": [
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/dlya-semi/family-cooking.avif",
+          "status": 200,
+          "beforeInteraction": true
+        }
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/dlya-semi/family-cooking.avif",
+          "status": 200,
+          "beforeInteraction": true
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/dlya-semi/family-storage.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/dlya-semi/family-passage.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/dlya-semi/family-appliances.avif",
+          "status": 200,
+          "beforeInteraction": false
+        },
+        {
+          "url": "http://127.0.0.1:3011/media/visual-rescue/dlya-semi/family-communication.avif",
+          "status": 200,
+          "beforeInteraction": false
+        }
+      ],
+      "reducedMotionAnimation": "none",
+      "dockHiddenDown": true,
+      "dockHiddenDuringSelection": true,
+      "dockReturnsUp": true,
+      "states": [
+        {
+          "index": 0,
+          "label": "Готовить вместе",
+          "src": "/media/visual-rescue/dlya-semi/family-cooking.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 380,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 1,
+          "label": "Хранение",
+          "src": "/media/visual-rescue/dlya-semi/family-storage.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 380,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 2,
+          "label": "Проходы",
+          "src": "/media/visual-rescue/dlya-semi/family-passage.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 380,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 3,
+          "label": "Техника",
+          "src": "/media/visual-rescue/dlya-semi/family-appliances.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 380,
+          "scrollY": 0,
+          "panelVisible": true
+        },
+        {
+          "index": 4,
+          "label": "Общение",
+          "src": "/media/visual-rescue/dlya-semi/family-communication.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 438.875,
+          "frameHeightStable": true,
+          "visiblePixelsAfterSelection": 380,
+          "scrollY": 0,
+          "panelVisible": true
+        }
+      ]
+    }
+  ],
+  "widths": [
+    360,
+    390,
+    412,
+    768,
+    1440
+  ]
+}

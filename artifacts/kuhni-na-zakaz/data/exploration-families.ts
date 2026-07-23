@@ -6,6 +6,7 @@ export type StyleVisualFrame = FamilyMedia & {
   result: string;
   caution: string;
 };
+export type ScenarioVisualFrame = StyleVisualFrame & { objectPosition?: string };
 
 export interface StyleFamilyConfig {
   slug: string; title: string; description: string; h1: string; question: string;
@@ -19,6 +20,7 @@ export interface ScenarioFamilyConfig {
   slug: string; title: string; description: string; h1: string; question: string; promise: string;
   visual: FamilyMedia; priorities: { label: string; result: string; layouts: { label: string; href: string }[]; materials: { label: string; href: string }[] }[];
   constraints: string[]; article: { label: string; href: string }; links: FamilyLink[];
+  seriesId?: string; visualFrames?: ScenarioVisualFrame[];
 }
 
 const media = (webp: string, alt: string, caption: string, avif?: string): FamilyMedia => ({ webp, avif, alt, caption, width: 1200, height: 800 });
@@ -49,6 +51,63 @@ function styleFrame(
     width: 1200,
     height: 800,
   };
+}
+
+function scenarioFrame(
+  base: string,
+  id: string,
+  label: string,
+  alt: string,
+  result: string,
+  caution: string,
+  objectPosition = "center",
+): ScenarioVisualFrame {
+  return {
+    id,
+    label,
+    webp: `${base}/${id}.webp`,
+    avif: `${base}/${id}.avif`,
+    alt,
+    caption: "AI-концепция сценария кухни; не фотография выполненного проекта.",
+    result,
+    caution,
+    objectPosition,
+    width: 1200,
+    height: 800,
+  };
+}
+
+function islandScenarioFrames(): ScenarioVisualFrame[] {
+  const base = "/media/visual-rescue/s-ostrovom";
+  return [
+    scenarioFrame(base, "island-base", "Исходный вид", "Светлая кухня-гостиная с закрытым островом и свободной столешницей", "Нейтральный остров пока не закреплён за одной функцией.", "какая задача нужна ежедневно и не конфликтует с проходами"),
+    scenarioFrame(base, "island-prep", "Подготовка", "Остров с варочной поверхностью и зоной подготовки продуктов", "Рабочая роль переносит подготовку и варочную поверхность на остров.", "коммуникации, вытяжку и непрерывную свободную поверхность"),
+    scenarioFrame(base, "island-storage", "Хранение", "Открытые широкие ящики хранения со стороны острова", "Глубокие ящики делают содержимое острова видимым и доступным.", "сторону открывания и свободное место перед полностью выдвинутыми ящиками"),
+    scenarioFrame(base, "island-seating", "Посадка", "Остров с тремя деревянными стульями и чашками", "Посадка связывает кухню с гостиной и меняет рабочую сторону острова.", "место для ног, число мест и проход за отодвинутыми стульями"),
+    scenarioFrame(base, "island-passage", "Проход", "Кухня с открытой духовкой и выдвинутым ящиком в проходе у острова", "Одновременное открывание показывает, где проход становится рабочей зоной.", "реальные створки, ящики и траектории движения после обмера"),
+  ];
+}
+
+function ceilingScenarioFrames(): ScenarioVisualFrame[] {
+  const base = "/media/visual-rescue/do-potolka";
+  return [
+    scenarioFrame(base, "ceiling-height", "Вся высота", "Прямая кухня с двумя рядами верхних шкафов до потолка", "Закрытый фасад показывает полную вертикальную сетку без обещания вместимости.", "реальную высоту, доборы и ровность потолка"),
+    scenarioFrame(base, "ceiling-daily", "Каждый день", "Открытые нижние ящики и шкаф с кружками в ежедневной зоне кухни", "Ежедневные предметы остаются на уровне удобного доступа.", "частоту использования и отсутствие конфликтов открывания"),
+    scenarioFrame(base, "ceiling-upper", "Верхний ярус", "Открытые верхние шкафы с коробками, посудой и ступенью для доступа", "Верхний ярус добавляет место, но требует отдельного способа доступа.", "устойчивую ступень и безопасное положение открытых фасадов"),
+    scenarioFrame(base, "ceiling-seasonal", "Сезонные вещи", "Открытый верхний пенал с редко используемой посудой и корзиной", "Редкие вещи собраны отдельно и не занимают ежедневную зону.", "вес предметов и удобство их безопасно доставать", "65% center"),
+    scenarioFrame(base, "ceiling-technical", "Техзона", "Открытый верхний шкаф с вентиляционным каналом и сервисным доступом", "Технический объём уменьшает полезное хранение и должен оставаться доступным.", "вентиляцию, коммуникации и сервисные люки до производства"),
+  ];
+}
+
+function familyScenarioFrames(): ScenarioVisualFrame[] {
+  const base = "/media/visual-rescue/dlya-semi";
+  return [
+    scenarioFrame(base, "family-cooking", "Готовить вместе", "Семейная П-образная кухня с двумя отдельными зонами подготовки", "Две рабочие поверхности позволяют разделить параллельные действия.", "не пересекаются ли мойка, горячая зона и подход к холодильнику"),
+    scenarioFrame(base, "family-storage", "Хранение", "Открытая кладовая и широкие ящики с посудой в семейной кухне", "Категории хранения видны отдельно от рабочей поверхности.", "какие вещи нужны ежедневно и какие можно убрать дальше"),
+    scenarioFrame(base, "family-passage", "Проходы", "Открытые духовка и посудомоечная машина рядом с обеденным столом", "Открытая техника показывает пересечение маршрутов внутри П-образной кухни.", "проход от двери, положение стульев и одновременное открывание"),
+    scenarioFrame(base, "family-appliances", "Техника", "Открытые холодильник и духовка с противнем на рабочей поверхности", "Связка холодильника, рабочей поверхности и духовки становится видимой.", "розетки, вентиляцию, высоту установки и направление дверей", "72% center"),
+    scenarioFrame(base, "family-communication", "Общение", "Семейная кухня с накрытым круглым столом и мягким светом", "Стол остаётся рядом с кухней, но не занимает рабочий проход.", "достаточно ли места за стульями при ежедневном движении", "65% center"),
+  ];
 }
 
 function neoclassicFrames(): StyleVisualFrame[] {
@@ -182,7 +241,22 @@ const scenarioRows: Omit<ScenarioFamilyConfig,"links">[] = [
   {slug:"byudzhetnaya-kuhnya",title:"Бюджетная кухня: приоритет комплектации",description:"Бюджетная кухня без ложной цены: расставьте приоритеты фасадов, фурнитуры и планировки, затем перейдите к проверяемому расчёту.",h1:"Бюджетная кухня: где упрощать осознанно",question:"Что важнее сохранить в комплектации, если сумму ещё нельзя подтвердить?",promise:"Разделим частые и редкие зоны, чтобы обсуждать состав проекта, а не обещать неподтверждённую цену.",visual:media("/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp","AI-концепт кухни с приоритетной комплектацией","Идея рациональной комплектации; цена определяется только расчётом."),constraints:["метраж не определяет итоговую цену","экономию нельзя обещать без спецификации","часто используемую фурнитуру и рабочую поверхность оценивают отдельно"],priorities:[{label:"Сохранить фурнитуру",result:"Оставьте качественное открывание в самых частых ящиках.",layouts:[{label:"Прямая кухня",href:"/catalog/pryamye-kuhni"}],materials:[{label:"Фурнитура",href:"/materials/furnitura"}]},{label:"Сохранить фасады",result:"Упростите внутреннюю комплектацию редких зон.",layouts:[{label:"Угловая кухня",href:"/catalog/uglovye-kuhni"}],materials:[{label:"МДФ",href:"/materials/mdf-fasady"}]},{label:"Сохранить столешницу",result:"Сравните корпус и фасады без смешивания с рабочей поверхностью.",layouts:[{label:"Маленькие кухни",href:"/catalog/malenkie-kuhni"}],materials:[{label:"ЛДСП",href:"/materials/ldsp"}]}],article:{label:"Из чего складывается цена",href:"/blog/stoimost-kuhni-na-zakaz"}},
 ];
 
-export const SCENARIO_FAMILY = Object.fromEntries(scenarioRows.map(row => [row.slug,{...row,links:[
+const scenarioVisualConfigs: Record<string, Pick<ScenarioFamilyConfig, "seriesId" | "visualFrames">> = {
+  "s-ostrovom": {
+    seriesId: "SCENARIO-ISLAND-2026-07-23",
+    visualFrames: islandScenarioFrames(),
+  },
+  "do-potolka": {
+    seriesId: "SCENARIO-CEILING-2026-07-23",
+    visualFrames: ceilingScenarioFrames(),
+  },
+  "dlya-semi": {
+    seriesId: "SCENARIO-FAMILY-2026-07-23",
+    visualFrames: familyScenarioFrames(),
+  },
+};
+
+export const SCENARIO_FAMILY = Object.fromEntries(scenarioRows.map(row => [row.slug,{...row,...scenarioVisualConfigs[row.slug],links:[
   {type:"DEEPEN",label:row.article.label,href:row.article.href,reason:"Статья раскрывает измерения и ошибки подробнее."},
   {type:"COMPARE",label:row.priorities[1].layouts[0].label,href:row.priorities[1].layouts[0].href,reason:"Альтернатива помогает проверить компромисс выбранного сценария."},
   {type:"PROOF",label:"Проверить подтверждённые работы",href:"/portfolio",reason:"Раздел работ отделён от AI-концепта сценария."},
