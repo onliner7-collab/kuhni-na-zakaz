@@ -1,0 +1,239 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.stages-10-12.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/visual-rescue",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/visual-rescue/stages-10-12/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/visual-rescue",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/visual-rescue/stages-10-12/playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "stages-10-12.spec.ts",
+      "file": "stages-10-12.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "/catalog/kuhni-bez-ruchek: visual journey and responsive matrix",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2328,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T06:04:27.316Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-10-12\\playwright-results\\stages-10-12--catalog-kuhn-5c12a-urney-and-responsive-matrix\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d7cc6120ecf2bee2a885-7bb1dc1ab9c36d504974",
+          "file": "stages-10-12.spec.ts",
+          "line": 31,
+          "column": 7
+        },
+        {
+          "title": "/styles/neoklassika: visual journey and responsive matrix",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1822,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T06:04:29.731Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-10-12\\playwright-results\\stages-10-12--styles-neokl-a12ba-urney-and-responsive-matrix\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d7cc6120ecf2bee2a885-aedad202a70b40900274",
+          "file": "stages-10-12.spec.ts",
+          "line": 31,
+          "column": 7
+        },
+        {
+          "title": "/styles/hay-tek: visual journey and responsive matrix",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1774,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T06:04:31.565Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-10-12\\playwright-results\\stages-10-12--styles-hay-t-e6771-urney-and-responsive-matrix\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d7cc6120ecf2bee2a885-b24d646eea164eeaf8a8",
+          "file": "stages-10-12.spec.ts",
+          "line": 31,
+          "column": 7
+        },
+        {
+          "title": "protected production baseline routes keep core shell",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6373,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-07-23T06:04:33.352Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stages-10-12\\playwright-results\\stages-10-12-protected-pro-47a99-line-routes-keep-core-shell\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d7cc6120ecf2bee2a885-7541b2ed8f1836f0481f",
+          "file": "stages-10-12.spec.ts",
+          "line": 75,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-07-23T06:04:26.426Z",
+    "duration": 13392.731000000002,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

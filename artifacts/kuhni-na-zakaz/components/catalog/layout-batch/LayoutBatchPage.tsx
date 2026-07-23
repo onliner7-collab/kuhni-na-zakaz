@@ -106,6 +106,7 @@ const configs: Record<string, Config> = {
       { id: "push", label: "Нажатие", result: "Гладкая поверхность сохраняется, но фасад открывается от нажатия.", caution: "случайные срабатывания и усилие на тяжёлых фасадах" },
       { id: "integrated", label: "Фрезерованный хват", result: "Хват становится частью фасада без отдельной ручки.", caution: "материал фасада и удобство для верхних и высоких секций" },
     ],
+    visualFrames: handlelessFrames(),
     media: media("opening", "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp", "Визуализация кухни без ручек", "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek-rakurs-1.webp", "Визуализация зоны открывания фасадов"),
     links: [{ href: "/materials/furnitura", label: "Сравнить механизмы и фурнитуру" }, { href: "/styles/minimalizm", label: "Проверить минималистичный стиль" }, { href: "/materials/mdf-fasady", label: "Сравнить поверхности МДФ" }, { href: "/blog/kuhnya-bez-ruchek-plyusy-minusy", label: "Разобрать плюсы и ограничения" }],
   },
@@ -169,6 +170,40 @@ function ceilingFrames(): LayoutVisualFrame[] {
     visualFrame(base, "ceiling-access", "Доступ", "Кухня до потолка с устойчивой ступенью перед открытым верхним шкафом", "Даже редкий доступ требует устойчивой опоры и свободного пола.", "где хранится ступень и можно ли безопасно её поставить"),
     visualFrame(base, "ceiling-technical-gap", "Технический зазор", "Крупный план верхнего фасада кухни с зазором у потолка и вентиляционной решёткой", "Зазор и вентиляция могут изменить сетку верхних фасадов.", "неровность потолка, вентиляцию и сервисный доступ до проекта"),
   ];
+}
+
+function handlelessFrames(): LayoutVisualFrame[] {
+  const base = "/media/visual-rescue/kuhni-bez-ruchek";
+  const caption = "AI-концепция одной кухни без ручек; не фотография выполненного проекта.";
+  return [
+    handlelessFrame(base, "handleless-overview", "Общий вид", "Светлая кухня без ручек с графитовым профильным хватом", "Общий вид показывает чистую линию фасадов и расположение техники.", "совместимость открывания со встроенной техникой", caption),
+    handlelessFrame(base, "handleless-profile", "Профиль", "Крупный план графитового профильного хвата на светлых фасадах", "Непрерывный профиль даёт постоянную зону хвата для нижних модулей.", "удобство пальцев и очистку углубления", caption),
+    handlelessFrame(base, "handleless-push", "Push-to-open", "Нижний фасад кухни открыт нажатием без отдельной ручки", "Нажимное открывание сохраняет цельную поверхность фасада.", "случайные срабатывания и усилие тяжёлого фасада", caption),
+    handlelessFrame(base, "handleless-integrated", "Интегрированный хват", "Крупный план интегрированного хвата в кромке светлого фасада", "Хват становится частью фасада и не выступает над плоскостью.", "реальный профиль кромки и удобство на разной высоте", caption),
+    handlelessFrame(base, "handleless-lower-drawers", "Нижние ящики", "Два открытых широких нижних ящика кухни без ручек", "Открытые ящики показывают ежедневный сценарий доступа к тяжёлой посуде.", "не пересекаются ли ящики с проходом и соседними фасадами", caption),
+    handlelessFrame(base, "handleless-upper-cabinet", "Верхний фасад", "Открытые верхние шкафы той же кухни без ручек", "Для верхних фасадов нужен отдельный удобный нижний хват.", "высоту открывания и доступ без лишнего усилия", caption),
+  ];
+}
+
+function handlelessFrame(
+  base: string,
+  id: string,
+  label: string,
+  alt: string,
+  result: string,
+  caution: string,
+  caption: string,
+): LayoutVisualFrame {
+  return {
+    id,
+    label,
+    webp: `${base}/${id}.webp`,
+    avif: `${base}/${id}.avif`,
+    alt,
+    caption,
+    result,
+    caution,
+  };
 }
 
 function visualFrame(base: string, id: string, label: string, alt: string, result: string, caution: string): LayoutVisualFrame {

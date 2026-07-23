@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "batchId": "visual-rescue-stages-10-12-2026-07-23",
+  "status": "CONNECTED_LOCAL",
+  "generationTool": "Codex built-in imagegen",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "deliveryPolicy": "one eager active AVIF/WebP; remaining frames mounted after interaction; PNG masters are source-only",
+  "series": [
+    {
+      "route": "/catalog/kuhni-bez-ruchek",
+      "seriesId": "HANDLELESS-OPENING-2026-07-23",
+      "userQuestion": "Какой способ открывания подходит для разных зон кухни без ручек?",
+      "visualStory": "общий вид → профиль → push-to-open → интегрированный хват → нижний ящик → верхний фасад",
+      "fixedGeometry": "Одна светлая прямая кухня с коротким возвратом справа, окном слева, графитовым профилем, светлой каменной столешницей и чёрной встроенной техникой",
+      "fixedMaterials": "матовые тёпло-белые фасады, светлый камень, графитовый алюминий, светлый дуб",
+      "fixedAppliances": "чёрная встроенная духовка, скрытый холодильник, индукционная поверхность",
+      "fixedLighting": "мягкий дневной свет слева и тёплая рабочая подсветка",
+      "allowedChanges": ["крупность", "способ хвата", "открытый нижний ящик", "открытый верхний фасад"],
+      "assets": [
+        { "mediaId": "handleless-overview", "role": "overview", "altRu": "Светлая кухня без ручек с графитовым профильным хватом" },
+        { "mediaId": "handleless-profile", "role": "profile", "altRu": "Крупный план графитового профильного хвата на светлых фасадах" },
+        { "mediaId": "handleless-push", "role": "push_to_open", "altRu": "Нижний фасад кухни открыт нажатием без отдельной ручки" },
+        { "mediaId": "handleless-integrated", "role": "integrated_grip", "altRu": "Крупный план интегрированного хвата в кромке светлого фасада" },
+        { "mediaId": "handleless-lower-drawers", "role": "lower_drawer", "altRu": "Два открытых широких нижних ящика кухни без ручек" },
+        { "mediaId": "handleless-upper-cabinet", "role": "upper_facade", "altRu": "Открытые верхние шкафы той же кухни без ручек" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/kuhni-bez-ruchek/masters",
+      "deliveryRoot": "/media/visual-rescue/kuhni-bez-ruchek",
+      "contactSheet": "/media/visual-rescue/kuhni-bez-ruchek/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "confirmed compatibility", "mechanism specification", "price", "brand"]
+    },
+    {
+      "route": "/styles/neoklassika",
+      "seriesId": "STYLE-NEOCLASSIC-2026-07-23",
+      "userQuestion": "Как меняется одна неоклассическая кухня при разной выраженности декора?",
+      "visualStory": "общий образ → рамка → пропорции → материал → свет → сравнение с классикой",
+      "fixedGeometry": "Одна П-образная неоклассическая кухня с центральным окном и высокими секциями справа",
+      "fixedMaterials": "матовые молочные рамочные фасады, светлый камень, латунные ручки, светлый дуб",
+      "fixedAppliances": "чёрная встроенная духовка и скрытый холодильник",
+      "fixedLighting": "дневной свет из центрального окна и тёплая рабочая подсветка",
+      "allowedChanges": ["ракурс", "крупность", "вечерний свет", "умеренное усиление рамки, витрин и карниза"],
+      "assets": [
+        { "mediaId": "neo-overview", "role": "overview", "altRu": "Светлая неоклассическая кухня с тонкими рамочными фасадами и центральным окном" },
+        { "mediaId": "neo-frame", "role": "frame_detail", "altRu": "Крупный план тонких рамочных фасадов неоклассической кухни" },
+        { "mediaId": "neo-proportions", "role": "proportions", "altRu": "Второй ракурс той же неоклассической кухни с симметричными фасадами" },
+        { "mediaId": "neo-material", "role": "material_detail", "altRu": "Крупный план матового фасада, каменной столешницы и латунной ручки" },
+        { "mediaId": "neo-light", "role": "lighting", "altRu": "Та же неоклассическая кухня вечером с тёплой рабочей подсветкой" },
+        { "mediaId": "neo-classic-compare", "role": "classic_compare", "altRu": "Та же кухня с умеренно усиленными рамками, витринами и простым карнизом" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/neoklassika/masters",
+      "deliveryRoot": "/media/visual-rescue/neoklassika",
+      "contactSheet": "/media/visual-rescue/neoklassika/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "verified material property", "confirmed fit", "price", "brand"]
+    },
+    {
+      "route": "/styles/hay-tek",
+      "seriesId": "STYLE-HIGHTECH-2026-07-23",
+      "userQuestion": "Что должно быть в фокусе одной кухни хай-тек: техника, линии, поверхность или свет?",
+      "visualStory": "общий образ → техника → линии → поверхность → подсветка → сравнение с минимализмом",
+      "fixedGeometry": "Одна графитовая прямая кухня с центральным светлым островом и остеклением слева",
+      "fixedMaterials": "матовые графитовые фасады, сатиновая светлая поверхность, тёмный алюминий, микроцемент",
+      "fixedAppliances": "чёрная встроенная техника справа и индукционная поверхность в острове",
+      "fixedLighting": "дневной свет слева и линейная рабочая подсветка",
+      "allowedChanges": ["ракурс", "крупность", "открытая духовка", "вечерний свет", "скрытие техники для сравнения"],
+      "assets": [
+        { "mediaId": "hightech-overview", "role": "overview", "altRu": "Графитовая кухня хай-тек со светлым островом и встроенной техникой" },
+        { "mediaId": "hightech-appliances", "role": "appliances", "altRu": "Зона встроенной чёрной техники в графитовой кухне хай-тек" },
+        { "mediaId": "hightech-lines", "role": "lines", "altRu": "Фронтальный ракурс кухни хай-тек с точной сеткой фасадов и островом" },
+        { "mediaId": "hightech-surface", "role": "surface", "altRu": "Крупный план светлой поверхности острова и встроенной варочной панели" },
+        { "mediaId": "hightech-lighting", "role": "lighting", "altRu": "Та же кухня хай-тек вечером с линейной рабочей подсветкой" },
+        { "mediaId": "hightech-minimal-compare", "role": "minimalism_compare", "altRu": "Та же графитовая кухня с визуально скрытой техникой и выключенной подсветкой" }
+      ],
+      "masterRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/hay-tek/masters",
+      "deliveryRoot": "/media/visual-rescue/hay-tek",
+      "contactSheet": "/media/visual-rescue/hay-tek/contact-sheet.webp",
+      "forbiddenClaims": ["real project", "technology specification", "confirmed ventilation", "price", "brand"]
+    }
+  ]
+}

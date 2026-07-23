@@ -61,7 +61,7 @@ export function LayoutVisualExplorer({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) calc(100vw - 3rem), 1200px"
             loading={active.id === frames[0]?.id ? "eager" : "lazy"}
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
-            className="aspect-[4/5] h-auto w-full object-cover motion-safe:animate-[fade-in_.22s_ease-out] sm:aspect-[3/2]"
+            className="aspect-[2/3] h-auto w-full object-cover motion-safe:animate-[fade-in_.22s_ease-out] sm:aspect-[3/2]"
           />
         </picture>
         <span className="absolute left-3 top-3 rounded-full bg-stone-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">AI-визуализация</span>
@@ -79,6 +79,12 @@ export function LayoutVisualExplorer({
                 data-frame-id={frame.id}
                 aria-pressed={selected}
                 onClick={() => choose(frame)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    choose(frame);
+                  }
+                }}
                 className={`min-h-12 rounded-xl border px-3 py-2.5 text-left text-sm font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 ${selected ? "border-stone-950 bg-stone-950 text-white" : "border-stone-300 bg-stone-50 text-stone-950 hover:border-stone-600"}`}
               >
                 <span className="flex items-center gap-2">{selected ? <Check className="h-4 w-4 shrink-0" aria-hidden /> : null}{frame.label}</span>

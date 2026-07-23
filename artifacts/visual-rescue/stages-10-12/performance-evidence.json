@@ -1,0 +1,59 @@
+{
+  "measuredAt": "2026-07-23",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "build": {
+    "/catalog/[slug]": {
+      "routeSize": "21.8 kB",
+      "firstLoadJs": "191 kB"
+    },
+    "/styles/[slug]": {
+      "routeSize": "3.92 kB",
+      "firstLoadJs": "167 kB"
+    },
+    "sharedFirstLoadJs": "102 kB"
+  },
+  "routes": [
+    {
+      "route": "/catalog/kuhni-bez-ruchek",
+      "heroTop": 454,
+      "heroHeight": 511.5,
+      "heroViewportShare": 0.606,
+      "firstActionTop": 1053.5,
+      "firstActionBeforeSecondViewport": true,
+      "seriesImagesInInitialDom": 1,
+      "naturalWidth": 1200,
+      "horizontalOverflow": 0
+    },
+    {
+      "route": "/styles/neoklassika",
+      "heroTop": 484.5,
+      "heroHeight": 511.5,
+      "heroViewportShare": 0.606,
+      "firstActionTop": 1112,
+      "firstActionBeforeSecondViewport": true,
+      "seriesImagesInInitialDom": 1,
+      "naturalWidth": 1200,
+      "horizontalOverflow": 0
+    },
+    {
+      "route": "/styles/hay-tek",
+      "heroTop": 504.5,
+      "heroHeight": 511.5,
+      "heroViewportShare": 0.606,
+      "firstActionTop": 1132,
+      "firstActionBeforeSecondViewport": true,
+      "seriesImagesInInitialDom": 1,
+      "naturalWidth": 1200,
+      "horizontalOverflow": 0
+    }
+  ],
+  "observations": {
+    "lcp": "One eager AVIF per route; all alternate states are absent from the initial DOM.",
+    "cls": "The image container keeps a fixed aspect ratio while currentSrc changes.",
+    "inp": "State changes are local button handlers with one image swap and no expensive computation.",
+    "reducedMotion": "Image transition uses motion-safe and is therefore disabled when reduced motion is requested."
+  }
+}
