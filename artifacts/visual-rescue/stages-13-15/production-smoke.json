@@ -1,0 +1,282 @@
+{
+  "commit": "4486482",
+  "checkedAt": "2026-07-23T18:33:57.742Z",
+  "targetResults": [
+    {
+      "route": "/styles/provans",
+      "status": 200,
+      "canonical": "https://kuhni.minsk.by/styles/provans",
+      "h1Count": 1,
+      "frameCount": 6,
+      "currentSrc": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-compare.avif",
+      "naturalWidth": 1200,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    },
+    {
+      "route": "/styles/loft",
+      "status": 200,
+      "canonical": "https://kuhni.minsk.by/styles/loft",
+      "h1Count": 1,
+      "frameCount": 6,
+      "currentSrc": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-modern-compare.avif",
+      "naturalWidth": 1200,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    },
+    {
+      "route": "/styles/sovremennye",
+      "status": 200,
+      "canonical": "https://kuhni.minsk.by/styles/sovremennye",
+      "h1Count": 1,
+      "frameCount": 6,
+      "currentSrc": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-accent-compare.avif",
+      "naturalWidth": 1200,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    }
+  ],
+  "protectedResults": [
+    {
+      "route": "/",
+      "status": 200,
+      "h1Count": 1,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    },
+    {
+      "route": "/design-proekt-kuhni",
+      "status": 200,
+      "h1Count": 1,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    },
+    {
+      "route": "/locations/minskaya-oblast",
+      "status": 200,
+      "h1Count": 1,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    },
+    {
+      "route": "/locations/minsk",
+      "status": 200,
+      "h1Count": 1,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    },
+    {
+      "route": "/materials/furnitura",
+      "status": 200,
+      "h1Count": 1,
+      "overflow": 0,
+      "brokenImages": 0,
+      "missingAlt": 0
+    }
+  ],
+  "deliveryResults": [
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-overview.webp",
+      "status": 200,
+      "bytes": 39194
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-overview.avif",
+      "status": 200,
+      "bytes": 28720
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-glass.webp",
+      "status": 200,
+      "bytes": 39742
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-glass.avif",
+      "status": 200,
+      "bytes": 29581
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-wood.webp",
+      "status": 200,
+      "bytes": 43544
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-wood.avif",
+      "status": 200,
+      "bytes": 29907
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-workzone.webp",
+      "status": 200,
+      "bytes": 37546
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-workzone.avif",
+      "status": 200,
+      "bytes": 27433
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-open-storage.webp",
+      "status": 200,
+      "bytes": 39770
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-open-storage.avif",
+      "status": 200,
+      "bytes": 29035
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-compare.webp",
+      "status": 200,
+      "bytes": 36974
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/prov-compare.avif",
+      "status": 200,
+      "bytes": 27282
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/provans/contact-sheet.webp",
+      "status": 200,
+      "bytes": 64722
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-overview.webp",
+      "status": 200,
+      "bytes": 43112
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-overview.avif",
+      "status": 200,
+      "bytes": 29647
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-metal.webp",
+      "status": 200,
+      "bytes": 49556
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-metal.avif",
+      "status": 200,
+      "bytes": 34686
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-workzone.webp",
+      "status": 200,
+      "bytes": 41572
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-workzone.avif",
+      "status": 200,
+      "bytes": 27768
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-light.webp",
+      "status": 200,
+      "bytes": 37366
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-light.avif",
+      "status": 200,
+      "bytes": 25707
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-light-variant.webp",
+      "status": 200,
+      "bytes": 42428
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-light-variant.avif",
+      "status": 200,
+      "bytes": 30015
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-modern-compare.webp",
+      "status": 200,
+      "bytes": 36492
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/loft-modern-compare.avif",
+      "status": 200,
+      "bytes": 24093
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/loft/contact-sheet.webp",
+      "status": 200,
+      "bytes": 65988
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-overview.webp",
+      "status": 200,
+      "bytes": 37540
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-overview.avif",
+      "status": 200,
+      "bytes": 26335
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-plane.webp",
+      "status": 200,
+      "bytes": 29236
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-plane.avif",
+      "status": 200,
+      "bytes": 20642
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-appliances.webp",
+      "status": 200,
+      "bytes": 32844
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-appliances.avif",
+      "status": 200,
+      "bytes": 21007
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-material.webp",
+      "status": 200,
+      "bytes": 28214
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-material.avif",
+      "status": 200,
+      "bytes": 17820
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-storage.webp",
+      "status": 200,
+      "bytes": 41232
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-storage.avif",
+      "status": 200,
+      "bytes": 28880
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-accent-compare.webp",
+      "status": 200,
+      "bytes": 36770
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/modern-accent-compare.avif",
+      "status": 200,
+      "bytes": 25153
+    },
+    {
+      "url": "https://kuhni.minsk.by/media/visual-rescue/sovremennye/contact-sheet.webp",
+      "status": 200,
+      "bytes": 57952
+    }
+  ],
+  "pass": true
+}
