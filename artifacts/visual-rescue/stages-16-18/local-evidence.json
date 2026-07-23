@@ -1,0 +1,341 @@
+{
+  "generatedAt": "2026-07-23T19:37:04.900Z",
+  "baseURL": "http://127.0.0.1:3001",
+  "routes": [
+    {
+      "slug": "skandinavskie",
+      "path": "/styles/skandinavskie",
+      "series": "STYLE-SCANDINAVIAN-2026-07-23",
+      "status": 200,
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/skandinavskie",
+      "overflow": false,
+      "cls": 0,
+      "initialMediaRequests": [
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/skandinavskie/scandi-overview.avif",
+          "status": 200
+        }
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/skandinavskie/scandi-overview.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/skandinavskie/scandi-wood.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/skandinavskie/scandi-storage.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/skandinavskie/scandi-color.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/skandinavskie/scandi-evening.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/skandinavskie/scandi-minimal-compare.avif",
+          "status": 200
+        }
+      ],
+      "reducedMotionAnimation": "none",
+      "dockHiddenDown": true,
+      "dockHiddenDuringSelection": true,
+      "dockReturnsUp": true,
+      "states": [
+        {
+          "index": 0,
+          "label": "Светлая база",
+          "src": "/media/visual-rescue/skandinavskie/scandi-overview.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 1,
+          "label": "Больше дерева",
+          "src": "/media/visual-rescue/skandinavskie/scandi-wood.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 2,
+          "label": "Открыть хранение",
+          "src": "/media/visual-rescue/skandinavskie/scandi-storage.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 3,
+          "label": "Локальный цвет",
+          "src": "/media/visual-rescue/skandinavskie/scandi-color.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 4,
+          "label": "Вечерний свет",
+          "src": "/media/visual-rescue/skandinavskie/scandi-evening.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 5,
+          "label": "Сравнить",
+          "src": "/media/visual-rescue/skandinavskie/scandi-minimal-compare.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        }
+      ]
+    },
+    {
+      "slug": "klassicheskie",
+      "path": "/styles/klassicheskie",
+      "series": "STYLE-CLASSIC-2026-07-23",
+      "status": 200,
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/klassicheskie",
+      "overflow": false,
+      "cls": 0,
+      "initialMediaRequests": [
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/klassicheskie/classic-symmetry.avif",
+          "status": 200
+        }
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/klassicheskie/classic-symmetry.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/klassicheskie/classic-frame.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/klassicheskie/classic-glass.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/klassicheskie/classic-cornice.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/klassicheskie/classic-scale.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/klassicheskie/classic-neo-compare.avif",
+          "status": 200
+        }
+      ],
+      "reducedMotionAnimation": "none",
+      "dockHiddenDown": true,
+      "dockHiddenDuringSelection": true,
+      "dockReturnsUp": true,
+      "states": [
+        {
+          "index": 0,
+          "label": "Симметрия",
+          "src": "/media/visual-rescue/klassicheskie/classic-symmetry.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 1,
+          "label": "Глубже рамка",
+          "src": "/media/visual-rescue/klassicheskie/classic-frame.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 2,
+          "label": "Добавить витрины",
+          "src": "/media/visual-rescue/klassicheskie/classic-glass.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 3,
+          "label": "Выше карниз",
+          "src": "/media/visual-rescue/klassicheskie/classic-cornice.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 4,
+          "label": "Проверить масштаб",
+          "src": "/media/visual-rescue/klassicheskie/classic-scale.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 5,
+          "label": "Сравнить",
+          "src": "/media/visual-rescue/klassicheskie/classic-neo-compare.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        }
+      ]
+    },
+    {
+      "slug": "minimalizm",
+      "path": "/styles/minimalizm",
+      "series": "STYLE-MINIMAL-2026-07-23",
+      "status": 200,
+      "h1Count": 1,
+      "canonical": "https://kuhni.minsk.by/styles/minimalizm",
+      "overflow": false,
+      "cls": 0,
+      "initialMediaRequests": [
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-overview.avif",
+          "status": 200
+        }
+      ],
+      "mediaResponses": [
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-overview.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-storage.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-opening.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-appliances.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-warm.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-hightech-compare.avif",
+          "status": 200
+        },
+        {
+          "url": "http://127.0.0.1:3001/media/visual-rescue/minimalizm/minimal-opening.avif",
+          "status": 200
+        }
+      ],
+      "reducedMotionAnimation": "none",
+      "dockHiddenDown": true,
+      "dockHiddenDuringSelection": true,
+      "dockReturnsUp": true,
+      "states": [
+        {
+          "index": 0,
+          "label": "Цельные плоскости",
+          "src": "/media/visual-rescue/minimalizm/minimal-overview.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 1,
+          "label": "Открыть хранение",
+          "src": "/media/visual-rescue/minimalizm/minimal-storage.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 2,
+          "label": "Показать хват",
+          "src": "/media/visual-rescue/minimalizm/minimal-opening.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 3,
+          "label": "Открыть технику",
+          "src": "/media/visual-rescue/minimalizm/minimal-appliances.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 4,
+          "label": "Тёплый вариант",
+          "src": "/media/visual-rescue/minimalizm/minimal-warm.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        },
+        {
+          "index": 5,
+          "label": "Сравнить",
+          "src": "/media/visual-rescue/minimalizm/minimal-hightech-compare.webp",
+          "naturalWidth": 1200,
+          "frameHeight": 534,
+          "frameHeightStable": true,
+          "visualVisibleAfterSelection": true,
+          "panelVisible": true
+        }
+      ]
+    }
+  ],
+  "widths": [
+    360,
+    390,
+    412,
+    768,
+    1440
+  ]
+}

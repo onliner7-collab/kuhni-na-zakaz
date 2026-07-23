@@ -30,7 +30,10 @@ function isExcludedPath(pathname: string) {
 export function MobileBottomNav() {
   const pathname = usePathname() || "/";
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrollHidden, setIsScrollHidden] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const lastScrollY = useRef(0);
+  const interactionUntil = useRef(0);
   const close = useCallback(() => setIsOpen(false), []);
 
   useEffect(() => {
@@ -39,11 +42,43 @@ export function MobileBottomNav() {
     return () => { delete document.body.dataset.mobileDock; };
   }, [pathname]);
 
+  useEffect(() => {
+    if (isExcludedPath(pathname)) return;
+    lastScrollY.current = window.scrollY;
+
+    const suppressForInteraction = (event: Event) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest("[data-dock-suppress]")) return;
+      interactionUntil.current = performance.now() + 900;
+      setIsScrollHidden(true);
+    };
+
+    const onScroll = () => {
+      const nextY = window.scrollY;
+      const delta = nextY - lastScrollY.current;
+      lastScrollY.current = nextY;
+      const activeElement = document.activeElement;
+      const isVisualControlFocused = activeElement instanceof Element && Boolean(activeElement.closest("[data-dock-suppress]"));
+      if (performance.now() < interactionUntil.current && (delta >= 0 || isVisualControlFocused)) return;
+      if (nextY < 32 || delta < -8) setIsScrollHidden(false);
+      else if (delta > 8) setIsScrollHidden(true);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("pointerdown", suppressForInteraction, true);
+    document.addEventListener("focusin", suppressForInteraction, true);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("pointerdown", suppressForInteraction, true);
+      document.removeEventListener("focusin", suppressForInteraction, true);
+    };
+  }, [pathname]);
+
   if (isExcludedPath(pathname)) return null;
 
   return (
     <>
-      <nav className={cn("mobile-page-dock", isOpen && "mobile-page-dock--hidden")} aria-label="Основная навигация" data-testid="mobile-bottom-nav">
+      <nav className={cn("mobile-page-dock", (isOpen || isScrollHidden) && "mobile-page-dock--hidden")} aria-label="Основная навигация" data-testid="mobile-bottom-nav">
         {DOCK_ITEMS.map(({ label, href, icon: Icon, testId }) => {
           const active = isActivePath(pathname, href);
           return (

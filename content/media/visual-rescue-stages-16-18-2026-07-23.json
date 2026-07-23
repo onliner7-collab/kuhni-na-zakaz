@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "batchId": "visual-rescue-stages-16-18-2026-07-23",
+  "status": "CONNECTED_LOCAL",
+  "generationTool": "Codex built-in imagegen",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "deliveryPolicy": "one eager active AVIF/WebP; remaining frames mounted after interaction; PNG masters are source-only",
+  "series": [
+    {
+      "route": "/styles/skandinavskie",
+      "seriesId": "STYLE-SCANDINAVIAN-2026-07-23",
+      "userQuestion": "Как сохранить лёгкость и добавить закрытое хранение?",
+      "visualStory": "светлая база → дерево → закрытое хранение → локальный цвет → вечерний свет → сравнение",
+      "fixedGeometry": "Одна компактная кухня с окном над мойкой, рабочей линией слева и высокой зоной справа",
+      "fixedMaterials": "матовые светлые фасады, светлый дуб, светло-серый камень, малые латунные ручки",
+      "fixedAppliances": "чёрная встроенная духовка, индукционная поверхность, скрытый холодильник",
+      "fixedLighting": "мягкий северный дневной свет; отдельное разрешённое вечернее состояние",
+      "allowedChanges": ["дубовая высокая зона", "открывание кладовой и ящика", "локальный зелёный цвет", "вечерний свет", "минималистичная версия"],
+      "requiredFrames": ["overview", "wood", "storage", "color", "evening", "minimal_compare"],
+      "forbiddenChanges": ["планировка", "окно", "основная техника", "ложные размеры", "люди", "бренды", "текст"],
+      "assets": ["scandi-overview", "scandi-wood", "scandi-storage", "scandi-color", "scandi-evening", "scandi-minimal-compare"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/skandinavskie",
+      "deliveryRoot": "/media/visual-rescue/skandinavskie",
+      "contactSheet": "/media/visual-rescue/skandinavskie/contact-sheet.webp"
+    },
+    {
+      "route": "/styles/klassicheskie",
+      "seriesId": "STYLE-CLASSIC-2026-07-23",
+      "userQuestion": "Сколько декора выдержит эта симметрия?",
+      "visualStory": "симметрия → рамочные фасады → витрины → карниз → масштаб → сравнение",
+      "fixedGeometry": "Одна симметричная П-образная кухня с центральной зоной готовки и окном слева",
+      "fixedMaterials": "тёплые фасады цвета слоновой кости, светлый камень, дубовый пол, латунные ручки",
+      "fixedAppliances": "центральная чёрная духовка и варочная поверхность",
+      "fixedLighting": "ровный нейтральный дневной свет",
+      "allowedChanges": ["глубина рамки", "парные витрины", "высота карниза", "второй ракурс", "облегчённая неоклассическая версия"],
+      "requiredFrames": ["symmetry", "frame", "glass", "cornice", "scale", "neo_compare"],
+      "forbiddenChanges": ["комната", "основная геометрия", "техника", "ложный масштаб", "люди", "бренды", "текст"],
+      "assets": ["classic-symmetry", "classic-frame", "classic-glass", "classic-cornice", "classic-scale", "classic-neo-compare"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/klassicheskie",
+      "deliveryRoot": "/media/visual-rescue/klassicheskie",
+      "contactSheet": "/media/visual-rescue/klassicheskie/contact-sheet.webp"
+    },
+    {
+      "route": "/styles/minimalizm",
+      "seriesId": "STYLE-MINIMAL-2026-07-23",
+      "userQuestion": "Что скрыть за цельными фасадами?",
+      "visualStory": "цельные плоскости → скрытое хранение → открывание → техника → тёплый вариант → сравнение",
+      "fixedGeometry": "Одна прямая стена хранения с рабочей нишей, левым окном и параллельным островом",
+      "fixedMaterials": "матовый greige, светлый камень, микроцемент; дуб и графит только в разрешённых состояниях",
+      "fixedAppliances": "чёрная встроенная духовка, скрытый холодильник, индукционная поверхность",
+      "fixedLighting": "мягкий нейтральный дневной свет; контурный свет только в high-tech сравнении",
+      "allowedChanges": ["открытое скрытое хранение", "интегрированный хват", "открытая ниша техники", "светлый дуб", "графит и контурный свет"],
+      "requiredFrames": ["overview", "storage", "opening", "appliances", "warm", "hightech_compare"],
+      "forbiddenChanges": ["комната", "основная геометрия", "окно", "ложные свойства механизмов", "люди", "бренды", "текст"],
+      "assets": ["minimal-overview", "minimal-storage", "minimal-opening", "minimal-appliances", "minimal-warm", "minimal-hightech-compare"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/minimalizm",
+      "deliveryRoot": "/media/visual-rescue/minimalizm",
+      "contactSheet": "/media/visual-rescue/minimalizm/contact-sheet.webp"
+    }
+  ],
+  "forbiddenClaims": ["real project", "verified material property", "confirmed storage capacity", "confirmed mechanism property", "price", "brand"]
+}
