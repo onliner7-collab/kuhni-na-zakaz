@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-07-23",
+  "commit": "51ee82f",
+  "deploy": {
+    "command": "bash /var/www/kuhni-na-zakaz/deploy/scripts/update-production.sh work",
+    "result": "PASS",
+    "service": "kuhni-na-zakaz.service active"
+  },
+  "targets": [
+    {
+      "route": "/catalog/kuhni-bez-ruchek",
+      "http": 200,
+      "h1": 1,
+      "selfCanonical": true,
+      "selectedState": "Верхний фасад",
+      "naturalWidth": 1200,
+      "brokenImages": 0,
+      "horizontalOverflow": 0
+    },
+    {
+      "route": "/styles/neoklassika",
+      "http": 200,
+      "h1": 1,
+      "selfCanonical": true,
+      "selectedState": "Сравнить с классикой",
+      "naturalWidth": 1200,
+      "brokenImages": 0,
+      "horizontalOverflow": 0
+    },
+    {
+      "route": "/styles/hay-tek",
+      "http": 200,
+      "h1": 1,
+      "selfCanonical": true,
+      "selectedState": "Сравнить с минимализмом",
+      "naturalWidth": 1200,
+      "brokenImages": 0,
+      "horizontalOverflow": 0
+    }
+  ],
+  "deliveryAssets": {
+    "requested": 39,
+    "http200": 39,
+    "includes": "36 WebP/AVIF state assets and 3 contact sheets"
+  },
+  "protectedRoutes": [
+    { "route": "/", "http": 200, "h1": 1, "brokenImages": 0, "missingAlt": 0, "horizontalOverflow": 0 },
+    { "route": "/design-proekt-kuhni", "http": 200, "h1": 1, "brokenImages": 0, "missingAlt": 0, "horizontalOverflow": 0 },
+    { "route": "/locations/minskaya-oblast", "http": 200, "h1": 1, "brokenImages": 0, "missingAlt": 0, "horizontalOverflow": 0 },
+    { "route": "/locations/minsk", "http": 200, "h1": 1, "brokenImages": 0, "missingAlt": 0, "horizontalOverflow": 0 },
+    { "route": "/materials/furnitura", "http": 200, "h1": 1, "brokenImages": 0, "missingAlt": 0, "horizontalOverflow": 0 }
+  ]
+}
