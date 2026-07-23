@@ -65,11 +65,11 @@ export function AngularQuickChoice() {
       </div>
 
       <div id="angular-quick-choice-panel" role="tabpanel" aria-live="polite" className="mt-5 grid overflow-hidden rounded-2xl bg-stone-100 md:grid-cols-[1.1fr_.9fr] md:items-center">
-        <figure>
-          <img src={active.image} alt={active.alt} width="1200" height="800" loading="lazy" decoding="async" className="aspect-[3/2] h-full w-full object-cover" />
-          <figcaption className="px-4 py-3 text-xs text-stone-600">AI-концепт для сравнения зон, не фотография выполненного проекта.</figcaption>
+        <figure className="min-w-0">
+          <img src={active.image} alt={active.alt} width="1200" height="800" loading="lazy" decoding="async" className="block aspect-[3/2] h-auto w-full object-cover" />
+          <figcaption className="border-t border-stone-200 px-4 py-3 text-xs leading-5 text-stone-600">Сгенерированная визуализация — не фотография готовой кухни.</figcaption>
         </figure>
-        <div className="p-5 sm:p-6">
+        <div className="min-w-0 border-t border-stone-200 p-5 sm:p-6 md:border-l md:border-t-0">
           <h3 className="text-xl font-black">{active.title}</h3>
           <p className="mt-2 text-sm leading-6 text-stone-700">{active.description}</p>
           <a href="#planning" className="mt-4 inline-flex min-h-11 items-center rounded-full border border-stone-300 px-4 py-2 text-sm font-black focus-visible:outline focus-visible:ring-2 focus-visible:ring-stone-950">Продолжить выбор</a>

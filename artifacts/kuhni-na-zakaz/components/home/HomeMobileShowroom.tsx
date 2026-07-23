@@ -784,7 +784,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     Эти параметры сохраняются и попадут в заявку на расчёт.
                   </p>
                   <Link href={layout.href} className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#d5b078]/60 px-4 py-2 text-sm font-black text-[#f1d0a3]">
-                    SEO-страница категории
+                    Посмотреть такие кухни
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
                 </div>
