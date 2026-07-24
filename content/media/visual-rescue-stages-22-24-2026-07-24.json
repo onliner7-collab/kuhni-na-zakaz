@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "batchId": "visual-rescue-stages-22-24-2026-07-24",
+  "status": "CONNECTED_LOCAL",
+  "generationTool": "Codex built-in imagegen",
+  "provenanceStatus": "ai_concept",
+  "rightsStatus": "internal_generation",
+  "deliveryPolicy": "one eager active AVIF/WebP; remaining frames mounted after interaction; PNG masters are source-only",
+  "series": [
+    {
+      "route": "/scenarios/dlya-studii",
+      "seriesId": "SCENARIO-STUDIO-2026-07-24",
+      "userQuestion": "Кухня должна раствориться в комнате или стать её акцентом?",
+      "visualStory": "единое пространство → лёгкая граница → скрытое хранение → проход → цветовая альтернатива",
+      "fixedGeometry": "Одна студия с прямой кухней, окном слева, круглым столом и диваном",
+      "fixedMaterials": "матовые фасады, светлый камень, светлый дуб и нейтральный текстиль",
+      "fixedAppliances": "чёрная встроенная духовка и индукционная поверхность",
+      "fixedLighting": "мягкий дневной свет из левого окна",
+      "allowedChanges": ["свет и рейка границы", "открытое хранение", "открытые фасады и стулья", "цвет фасадов"],
+      "requiredFrames": ["studio-base", "studio-zone", "studio-storage", "studio-passage", "studio-accent"],
+      "forbiddenChanges": ["помещение", "сетка кухни", "ложные размеры", "люди", "бренды", "текст"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/dlya-studii",
+      "deliveryRoot": "/media/visual-rescue/dlya-studii",
+      "contactSheet": "/media/visual-rescue/dlya-studii/contact-sheet.webp"
+    },
+    {
+      "route": "/scenarios/dlya-malenkoy-kuhni",
+      "seriesId": "SCENARIO-SMALL-KITCHEN-2026-07-24",
+      "userQuestion": "Что важнее сохранить: рабочую поверхность, хранение или свободный проход?",
+      "visualStory": "ограничение → рабочая поверхность → хранение → техника → проход",
+      "fixedGeometry": "Одна узкая Г-образная кухня с окном в торце и проходом по центру",
+      "fixedMaterials": "матовые бежевые фасады, светло-серая столешница и светлый дуб",
+      "fixedAppliances": "духовка, узкая посудомоечная машина и отдельный холодильник",
+      "fixedLighting": "мягкий дневной свет из торцевого окна",
+      "allowedChanges": ["выдвижная поверхность", "открытые шкафы", "открытая техника", "компактный холодильник и сложенная полка"],
+      "requiredFrames": ["small-limit", "small-worktop", "small-storage", "small-appliances", "small-passage"],
+      "forbiddenChanges": ["комната", "основная геометрия", "ложная вместимость", "ложные размеры", "люди", "бренды", "текст"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/dlya-malenkoy-kuhni",
+      "deliveryRoot": "/media/visual-rescue/dlya-malenkoy-kuhni",
+      "contactSheet": "/media/visual-rescue/dlya-malenkoy-kuhni/contact-sheet.webp"
+    },
+    {
+      "route": "/scenarios/byudzhetnaya-kuhnya",
+      "seriesId": "SCENARIO-BUDGET-2026-07-24",
+      "userQuestion": "Что важнее сохранить в комплектации, если сумму ещё нельзя подтвердить?",
+      "visualStory": "базовый состав → рабочая зона → частое хранение → материал → проверка состава",
+      "fixedGeometry": "Одна простая прямая кухня с боковым окном и столом слева",
+      "fixedMaterials": "тёплые белые фасады, обычная столешница и простой фартук",
+      "fixedAppliances": "чёрная духовка, индукционная поверхность и отдельный холодильник",
+      "fixedLighting": "ровный дневной и рабочий свет",
+      "allowedChanges": ["рабочий свет", "открытое хранение", "столешница и фартук", "открытые модули и техника"],
+      "requiredFrames": ["budget-base", "budget-workzone", "budget-storage", "budget-material", "budget-spec"],
+      "forbiddenChanges": ["комната", "сетка кухни", "цена", "экономия", "люди", "бренды", "текст"],
+      "sourceRoot": "artifacts/kuhni-na-zakaz/public/media/visual-rescue/byudzhetnaya-kuhnya",
+      "deliveryRoot": "/media/visual-rescue/byudzhetnaya-kuhnya",
+      "contactSheet": "/media/visual-rescue/byudzhetnaya-kuhnya/contact-sheet.webp"
+    }
+  ],
+  "forbiddenClaims": ["real project", "confirmed applicability", "confirmed storage capacity", "confirmed passage size", "price", "savings", "brand"]
+}
