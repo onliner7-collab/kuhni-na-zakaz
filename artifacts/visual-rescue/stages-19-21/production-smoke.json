@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-07-24T08:29:53+03:00",
+  "baseUrl": "https://kuhni.minsk.by",
+  "runtimeCommit": "d8d51d6d6657c9384d8ec80fd27950f9aa1b4b6a",
+  "status": "PASS",
+  "playwright": {
+    "passed": 11,
+    "failed": 0,
+    "routes": [
+      "/scenarios/s-ostrovom",
+      "/scenarios/do-potolka",
+      "/scenarios/dlya-semi"
+    ],
+    "widths": [360, 390, 412, 768, 1440],
+    "checks": [
+      "пять заметных визуальных состояний на каждом маршруте",
+      "результат выбора остаётся видимым без прокрутки вверх",
+      "стабильная высота visual frame и отсутствие CLS",
+      "keyboard navigation и видимый focus",
+      "prefers-reduced-motion",
+      "Dock скрывается вниз, не появляется при выборе и возвращается вверх",
+      "пять защищённых маршрутов без регрессий"
+    ]
+  },
+  "delivery": {
+    "checked": 35,
+    "failed": 0,
+    "httpStatus": 200,
+    "breakdown": {
+      "avif": 15,
+      "webp": 15,
+      "contactSheets": 3,
+      "seoEndpoints": 2
+    },
+    "seoEndpoints": ["/sitemap.xml", "/robots.txt"]
+  }
+}
