@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-07-24",
+  "baseUrl": "https://kuhni.minsk.by",
+  "runtimeCommit": "60eabd16ca86cc43bab9506e2e3ca762d9be5749",
+  "service": {
+    "name": "kuhni-na-zakaz.service",
+    "status": "active"
+  },
+  "targetProbe": {
+    "route": "/scenarios/dlya-studii",
+    "status": 200
+  },
+  "stages22To24": {
+    "passed": 11,
+    "failed": 0,
+    "checks": [
+      "visible meaningful changes",
+      "stable frame and scroll position",
+      "keyboard and visible focus",
+      "Dock direction and interaction suppression",
+      "360/390/412/768/1440 responsive regression",
+      "protected routes"
+    ]
+  },
+  "stage25": {
+    "meaningfulVisualRoutes": {
+      "passed": 23,
+      "failed": 0
+    },
+    "responsiveMatrix": {
+      "routes": 23,
+      "widths": [360, 390, 412, 768, 1440],
+      "passedOnRepeat": true
+    },
+    "protectedRoutes": {
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "observations": [
+    "Первый responsive-прогон получил единичный HTTP 503 на /locations/borisov при 390 px.",
+    "Маршрут восстановился сразу; повторная полная responsive-матрица прошла.",
+    "Повторная запись существующего screenshot-файла была заблокирована Windows после ранее успешного полного evidence-прогона."
+  ]
+}
