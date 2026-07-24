@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import {
@@ -17,6 +17,10 @@ const gaId =
   "G-2135HXQLTN";
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 const isYandexMetrikaEnabled = /^\d+$/.test(YANDEX_METRIKA_ID);
+type QueuedYandexMetrika = ((...args: unknown[]) => void) & {
+  a: unknown[][];
+  l: number;
+};
 
 const MESSENGER_PATTERNS = [
   "t.me",
@@ -29,8 +33,67 @@ const MESSENGER_PATTERNS = [
 
 export function AnalyticsProvider() {
   const pathname = usePathname();
+  const [analyticsReady, setAnalyticsReady] = useState(false);
   const lastTrackedCalculatorPath = useRef<string | null>(null);
   const lastTrackedPagePath = useRef<string | null>(null);
+
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    if (!window.gtag) {
+      window.gtag = (...args: unknown[]) => {
+        window.dataLayer?.push(args);
+      };
+      window.gtag("js", new Date());
+      window.gtag("config", gaId, {
+        debug_mode:
+          location.hostname === "localhost" ||
+          location.hostname === "127.0.0.1" ||
+          new URLSearchParams(location.search).has("ga_debug"),
+      });
+    }
+
+    if (isYandexMetrikaEnabled && !window.ym) {
+      const queuedYm = ((...args: unknown[]) => {
+        queuedYm.a = queuedYm.a || [];
+        queuedYm.a.push(args);
+      }) as QueuedYandexMetrika;
+      queuedYm.a = [] as unknown[][];
+      queuedYm.l = Date.now();
+      window.ym = queuedYm as NonNullable<Window["ym"]>;
+      queuedYm(Number(YANDEX_METRIKA_ID), "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true,
+      });
+    }
+
+    let activated = false;
+    const activate = () => {
+      if (activated) return;
+      activated = true;
+      setAnalyticsReady(true);
+      for (const eventName of activationEvents) {
+        window.removeEventListener(eventName, activate);
+      }
+    };
+    const activationEvents = ["pointerdown", "keydown", "touchstart", "scroll"] as const;
+    for (const eventName of activationEvents) {
+      window.addEventListener(eventName, activate, { passive: true, once: true });
+    }
+    const timerId = window.setTimeout(activate, 8000);
+
+    return () => {
+      window.clearTimeout(timerId);
+      for (const eventName of activationEvents) {
+        window.removeEventListener(eventName, activate);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const path = `${window.location.pathname}${window.location.search}`;
@@ -134,7 +197,7 @@ export function AnalyticsProvider() {
 
   return (
     <>
-      {gtmId && (
+      {analyticsReady && gtmId && (
         <Script id="gtm-init" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -146,48 +209,19 @@ export function AnalyticsProvider() {
         </Script>
       )}
 
-      {gaId && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="lazyOnload"
-          />
-          <Script id="ga-init" strategy="lazyOnload">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gaId}', {
-                debug_mode: location.hostname === 'localhost' || location.hostname === '127.0.0.1' || new URLSearchParams(location.search).has('ga_debug')
-              });
-            `}
-          </Script>
-        </>
+      {analyticsReady && gaId && (
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          strategy="lazyOnload"
+        />
       )}
 
-      {isYandexMetrikaEnabled && (
+      {analyticsReady && isYandexMetrikaEnabled && (
         <>
-          <Script id="yandex-metrika-init" strategy="lazyOnload">
-            {`
-              (function(m,e,t,r,i,k,a){
-                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                m[i].l=1*new Date();
-                for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-                k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-              })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=${YANDEX_METRIKA_ID}', 'ym');
-
-              ym(${YANDEX_METRIKA_ID}, 'init', {
-                ssr: true,
-                webvisor: true,
-                clickmap: true,
-                ecommerce: 'dataLayer',
-                referrer: document.referrer,
-                url: location.href,
-                accurateTrackBounce: true,
-                trackLinks: true
-              });
-            `}
-          </Script>
+          <Script
+            src={`https://mc.yandex.ru/metrika/tag.js?id=${YANDEX_METRIKA_ID}`}
+            strategy="lazyOnload"
+          />
           <noscript>
             <div>
               <img

@@ -44,7 +44,11 @@ export function StyleVisualExplorer({ config }: { config: StyleFamilyConfig }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) calc(100vw - 3rem), 1200px"
             loading={active.id === frames[0]?.id ? "eager" : "lazy"}
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
-            className="aspect-[2/3] h-auto w-full object-cover motion-safe:animate-[fade-in_.22s_ease-out] sm:aspect-[3/2]"
+            className={`aspect-[2/3] h-auto w-full object-cover sm:aspect-[3/2] ${
+              active.id === frames[0]?.id
+                ? ""
+                : "motion-safe:animate-[fade-in_.22s_ease-out]"
+            }`}
           />
         </picture>
         <span className="absolute left-3 top-3 rounded-full bg-stone-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">
@@ -68,8 +72,8 @@ export function StyleVisualExplorer({ config }: { config: StyleFamilyConfig }) {
                 id={`${config.slug}-tab-${frame.id}`}
                 aria-controls={`${config.slug}-panel`}
                 aria-selected={selected}
+                tabIndex={selected ? 0 : -1}
                 data-frame-id={frame.id}
-                aria-pressed={selected}
                 onClick={() => choose(frame)}
                 onKeyDown={(event) => {
                   if (event.key === "ArrowRight" || event.key === "ArrowDown") {

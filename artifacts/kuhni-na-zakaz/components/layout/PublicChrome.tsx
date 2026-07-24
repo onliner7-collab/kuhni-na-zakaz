@@ -1,16 +1,24 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 
 import {
   AnalyticsProvider,
   GoogleTagManagerNoScript,
 } from "@/components/analytics/AnalyticsProvider";
-import { FloatingSocialButtons } from "@/components/layout/FloatingSocialButtons";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
+
+const FloatingSocialButtons = dynamic(
+  () =>
+    import("@/components/layout/FloatingSocialButtons").then(
+      (module) => module.FloatingSocialButtons,
+    ),
+  { ssr: false },
+);
 
 export function PublicChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

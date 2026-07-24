@@ -57,7 +57,7 @@ export function ScenarioVisualExplorer({ config }: { config: ScenarioFamilyConfi
                 id={`${config.slug}-tab-${frame.id}`}
                 aria-controls={`${config.slug}-panel`}
                 aria-selected={selected}
-                aria-pressed={selected}
+                tabIndex={selected ? 0 : -1}
                 data-frame-id={frame.id}
                 onClick={() => choose(frame)}
                 onKeyDown={(event) => {
@@ -104,7 +104,11 @@ export function ScenarioVisualExplorer({ config }: { config: ScenarioFamilyConfi
             loading={active.id === frames[0]?.id ? "eager" : "lazy"}
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
             style={{ objectPosition: active.objectPosition }}
-            className="block h-full w-full object-cover motion-safe:animate-[fade-in_.2s_ease-out]"
+            className={`block h-full w-full object-cover ${
+              active.id === frames[0]?.id
+                ? ""
+                : "motion-safe:animate-[fade-in_.2s_ease-out]"
+            }`}
           />
         </picture>
         <span className="absolute left-3 top-3 rounded-full bg-stone-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">

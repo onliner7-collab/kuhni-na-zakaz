@@ -332,7 +332,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ScenarioDetailPage({ params }: Props) {
   const { slug } = await params;
   const family = SCENARIO_FAMILY[slug];
-  if (family) return <ScenarioFamilyPage config={family} />;
+  if (family) {
+    const articleJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: family.h1,
+      name: family.title,
+      description: family.description,
+      url: siteUrl(`/scenarios/${slug}`),
+      inLanguage: "ru-BY",
+      publisher: { "@type": "Organization", name: "КухниBY" },
+    };
+    const familyBreadcrumbJsonLd = breadcrumbJsonLd([
+      { name: "Главная", path: "/" },
+      { name: "Сценарии", path: "/scenarios" },
+      { name: family.h1, path: `/scenarios/${slug}` },
+    ]);
+
+    return (
+      <>
+        {family.visualFrames?.[0]?.avif ? (
+          <link
+            rel="preload"
+            as="image"
+            href={family.visualFrames[0].avif}
+            type="image/avif"
+            fetchPriority="high"
+          />
+        ) : null}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(familyBreadcrumbJsonLd) }} />
+        <ScenarioFamilyPage config={family} />
+      </>
+    );
+  }
   const scenario = await getScenario(slug);
   if (!scenario) notFound();
 
@@ -351,12 +384,12 @@ export default async function ScenarioDetailPage({ params }: Props) {
     description: scenario.seoDescription || scenario.intro,
     url: siteUrl(`/scenarios/${scenario.slug}`),
     publisher: { "@type": "Organization", name: "КухниBY" },
-    breadcrumb: breadcrumbJsonLd([
-      { name: "Главная", path: "/" },
-      { name: "Как выбрать кухню", path: "/scenarios" },
-      { name: scenario.title, path: `/scenarios/${scenario.slug}` },
-    ]),
   };
+  const scenarioBreadcrumbJsonLd = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Как выбрать кухню", path: "/scenarios" },
+    { name: scenario.title, path: `/scenarios/${scenario.slug}` },
+  ]);
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -370,6 +403,7 @@ export default async function ScenarioDetailPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(scenarioBreadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* HERO */}

@@ -31,6 +31,7 @@ export function MobileBottomNav() {
   const pathname = usePathname() || "/";
   const [isOpen, setIsOpen] = useState(false);
   const [isScrollHidden, setIsScrollHidden] = useState(false);
+  const [isVisualExplorerVisible, setIsVisualExplorerVisible] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const lastScrollY = useRef(0);
   const interactionUntil = useRef(0);
@@ -40,6 +41,30 @@ export function MobileBottomNav() {
     if (isExcludedPath(pathname)) return;
     document.body.dataset.mobileDock = "global";
     return () => { delete document.body.dataset.mobileDock; };
+  }, [pathname]);
+
+  useEffect(() => {
+    if (isExcludedPath(pathname)) return;
+    const explorers = Array.from(document.querySelectorAll("[data-dock-suppress]"));
+    if (explorers.length === 0) {
+      setIsVisualExplorerVisible(false);
+      return;
+    }
+
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) visible.add(entry.target);
+          else visible.delete(entry.target);
+        }
+        setIsVisualExplorerVisible(visible.size > 0);
+      },
+      { rootMargin: "0px 0px -80px 0px", threshold: 0.08 },
+    );
+
+    explorers.forEach((explorer) => observer.observe(explorer));
+    return () => observer.disconnect();
   }, [pathname]);
 
   useEffect(() => {
@@ -86,7 +111,7 @@ export function MobileBottomNav() {
 
   return (
     <>
-      <nav className={cn("mobile-page-dock", (isOpen || isScrollHidden) && "mobile-page-dock--hidden")} aria-label="Основная навигация" data-testid="mobile-bottom-nav">
+      <nav className={cn("mobile-page-dock", (isOpen || isScrollHidden || isVisualExplorerVisible) && "mobile-page-dock--hidden")} aria-label="Основная навигация" data-testid="mobile-bottom-nav">
         {DOCK_ITEMS.map(({ label, href, icon: Icon, testId }) => {
           const active = isActivePath(pathname, href);
           return (

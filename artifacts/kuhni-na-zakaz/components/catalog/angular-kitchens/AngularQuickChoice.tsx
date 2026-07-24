@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type Choice = {
   id: string;
@@ -40,7 +40,14 @@ const choices: Choice[] = [
 
 export function AngularQuickChoice() {
   const [activeId, setActiveId] = useState(choices[0].id);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const active = choices.find((choice) => choice.id === activeId) ?? choices[0];
+
+  function moveSelection(index: number) {
+    const nextIndex = (index + choices.length) % choices.length;
+    setActiveId(choices[nextIndex].id);
+    tabRefs.current[nextIndex]?.focus();
+  }
 
   return (
     <section className="mt-8 rounded-[2rem] border border-stone-200 bg-white p-4 shadow-sm sm:p-6" aria-labelledby="angular-quick-choice-title">
@@ -49,14 +56,34 @@ export function AngularQuickChoice() {
       <p className="mt-2 max-w-2xl text-sm leading-6 text-stone-600">Нажмите один вариант — изображение покажет соответствующую зону. Остальные параметры пока не меняются.</p>
 
       <div className="mt-5 grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Первый визуальный выбор">
-        {choices.map((choice) => (
+        {choices.map((choice, index) => (
           <button
             key={choice.id}
+            ref={(node) => {
+              tabRefs.current[index] = node;
+            }}
             type="button"
             role="tab"
+            id={`angular-quick-choice-tab-${choice.id}`}
             aria-selected={activeId === choice.id}
             aria-controls="angular-quick-choice-panel"
+            tabIndex={activeId === choice.id ? 0 : -1}
             onClick={() => setActiveId(choice.id)}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+                event.preventDefault();
+                moveSelection(index + 1);
+              } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+                event.preventDefault();
+                moveSelection(index - 1);
+              } else if (event.key === "Home") {
+                event.preventDefault();
+                moveSelection(0);
+              } else if (event.key === "End") {
+                event.preventDefault();
+                moveSelection(choices.length - 1);
+              }
+            }}
             className="min-h-12 rounded-xl border border-stone-300 px-4 py-3 text-left text-sm font-black transition aria-selected:border-stone-950 aria-selected:bg-stone-950 aria-selected:text-white motion-reduce:transition-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-950"
           >
             {choice.label}
@@ -64,7 +91,7 @@ export function AngularQuickChoice() {
         ))}
       </div>
 
-      <div id="angular-quick-choice-panel" role="tabpanel" aria-live="polite" className="mt-5 grid overflow-hidden rounded-2xl bg-stone-100 md:grid-cols-[1.1fr_.9fr] md:items-center">
+      <div id="angular-quick-choice-panel" role="tabpanel" aria-labelledby={`angular-quick-choice-tab-${active.id}`} aria-live="polite" className="mt-5 grid overflow-hidden rounded-2xl bg-stone-100 md:grid-cols-[1.1fr_.9fr] md:items-center">
         <figure className="min-w-0">
           <img src={active.image} alt={active.alt} width="1200" height="800" loading="lazy" decoding="async" className="block aspect-[3/2] h-auto w-full object-cover" />
           <figcaption className="border-t border-stone-200 px-4 py-3 text-xs leading-5 text-stone-600">Сгенерированная визуализация — не фотография готовой кухни.</figcaption>

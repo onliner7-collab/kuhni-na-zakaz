@@ -37,7 +37,9 @@ const targets: Target[] = [
 ];
 
 const protectedRoutes = ["/", "/design-proekt-kuhni", "/locations/minskaya-oblast", "/locations/minsk", "/materials/furnitura"];
-const evidenceRoot = path.resolve(process.cwd(), "..", "..", "artifacts", "visual-rescue", "stage-25");
+const evidenceRoot = process.env.FINAL_ACCEPTANCE_EVIDENCE_ROOT
+  ? path.resolve(process.env.FINAL_ACCEPTANCE_EVIDENCE_ROOT)
+  : path.resolve(process.cwd(), "..", "..", "artifacts", "visual-rescue", "stage-25");
 const screenshotRoot = path.join(evidenceRoot, "screenshots");
 
 test.beforeAll(() => {
@@ -78,6 +80,33 @@ test("23 routes keep a meaningful visible visual change", async ({ page }) => {
     expect(Math.max(0, Math.min(844, (box?.y ?? 0) + (box?.height ?? 0)) - Math.max(0, box?.y ?? 0)), target.route).toBeGreaterThan(120);
     await page.screenshot({ path: path.join(screenshotRoot, `${target.slug}-after-first.png`) });
 
+    if (target.actionRole === "tab") {
+      const tabs = explorer.getByRole("tab");
+      expect(await tabs.count(), target.route).toBeGreaterThan(1);
+      expect(await tabs.evaluateAll((nodes) => nodes.some((node) => node.hasAttribute("aria-pressed"))), target.route).toBe(false);
+      await expect(action, target.route).toHaveAttribute("aria-selected", "true");
+      await expect(action, target.route).toHaveAttribute("aria-controls", /.+/);
+      expect(await tabs.evaluateAll((nodes) => nodes.filter((node) => (node as HTMLElement).tabIndex === 0).length), target.route).toBe(1);
+
+      await action.press("ArrowRight");
+      const selectedAfterArrow = explorer.locator('[role="tab"][aria-selected="true"]');
+      await expect(selectedAfterArrow, target.route).toBeFocused();
+      const focusStyle = await selectedAfterArrow.evaluate((node) => {
+        const style = getComputedStyle(node);
+        return { outline: style.outlineStyle, shadow: style.boxShadow };
+      });
+      expect(focusStyle.outline !== "none" || focusStyle.shadow !== "none", target.route).toBe(true);
+
+      await selectedAfterArrow.press("Home");
+      await expect(tabs.first(), target.route).toBeFocused();
+      await expect(tabs.first(), target.route).toHaveAttribute("aria-selected", "true");
+      await tabs.first().press("End");
+      await expect(tabs.last(), target.route).toBeFocused();
+      await expect(tabs.last(), target.route).toHaveAttribute("aria-selected", "true");
+    }
+
+    await expect(page.getByTestId("mobile-bottom-nav"), target.route).toHaveClass(/mobile-page-dock--hidden/);
+
     const entries = await page.evaluate(() => performance.getEntriesByType("resource").map((entry) => {
       const resource = entry as PerformanceResourceTiming;
       return { name: resource.name, initiatorType: resource.initiatorType, transferSize: resource.transferSize };
@@ -104,7 +133,39 @@ test("responsive and protected regression matrix", async ({ page }) => {
     for (const target of targets) {
       const response = await page.goto(target.route, { waitUntil: "domcontentloaded" });
       expect(response?.status(), `${target.route} @ ${width}`).toBe(200);
+      await expect(page.locator("h1"), `${target.route} @ ${width}`).toHaveCount(1);
+      await expect(page.locator('link[rel="canonical"]'), `${target.route} @ ${width}`).toHaveAttribute(
+        "href",
+        new RegExp(`${target.route.replaceAll("/", "\\/")}$`),
+      );
       expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1), `${target.route} @ ${width}`).toBe(false);
+      expect(
+        await page.locator("main img").evaluateAll((images: HTMLImageElement[]) =>
+          images.filter((image) => !image.hasAttribute("alt")).length
+        ),
+        `${target.route} @ ${width}`,
+      ).toBe(0);
+      expect(
+        await page.locator("main img").evaluateAll((images: HTMLImageElement[]) =>
+          images.filter((image) => image.complete && image.naturalWidth === 0).length
+        ),
+        `${target.route} @ ${width}`,
+      ).toBe(0);
+
+      if (target.route.startsWith("/styles/") || target.route.startsWith("/scenarios/")) {
+        expect(
+          await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+            scripts.some((script) => {
+              try {
+                return JSON.parse(script.textContent || "{}")["@type"] === "BreadcrumbList";
+              } catch {
+                return false;
+              }
+            })
+          ),
+          `${target.route} @ ${width}`,
+        ).toBe(true);
+      }
     }
   }
 
@@ -114,5 +175,11 @@ test("responsive and protected regression matrix", async ({ page }) => {
     expect(response?.status(), route).toBe(200);
     await expect(page.locator("h1"), route).toHaveCount(1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1), route).toBe(false);
+    expect(
+      await page.locator("main img").evaluateAll((images: HTMLImageElement[]) =>
+        images.filter((image) => image.complete && image.naturalWidth === 0).length
+      ),
+      route,
+    ).toBe(0);
   }
 });

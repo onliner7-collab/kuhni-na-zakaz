@@ -10,6 +10,7 @@ import { CANONICAL_SITE_URL } from "@/lib/seo";
 
 const BASE_URL = CANONICAL_SITE_URL;
 const STATIC_LAST_MODIFIED = new Date("2026-05-11T00:00:00.000Z");
+const FINAL_POLISH_LAST_MODIFIED = new Date("2026-07-24T19:30:00.000Z");
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -89,6 +90,14 @@ const STATIC_BLOG_SLUGS = [
   "kak-vybrat-materialy-dlya-kuhni",
   "kuhnya-pod-scenarij-semi-studii-doma",
 ] as const;
+
+export const FINAL_POLISH_PATHS = new Set<string>([
+  ...STATIC_CATALOG_SLUGS.map((slug) => `/catalog/${slug}`),
+  ...STATIC_STYLE_SLUGS.map((slug) => `/styles/${slug}`),
+  ...STATIC_SCENARIO_SLUGS.map((slug) => `/scenarios/${slug}`),
+  "/locations/borisov",
+  "/materials/mdf-fasady",
+]);
 
 const NON_CANONICAL_DYNAMIC_PATHS = new Set([
   "/locations/zhodzina",
@@ -252,8 +261,12 @@ function sitemapEntry(
     priority,
   };
 
-  if (lastModified) {
-    entry.lastModified = lastModified;
+  const effectiveLastModified = FINAL_POLISH_PATHS.has(path)
+    ? FINAL_POLISH_LAST_MODIFIED
+    : lastModified;
+
+  if (effectiveLastModified) {
+    entry.lastModified = effectiveLastModified;
   }
 
   return entry;

@@ -1,6 +1,6 @@
 {
   "config": {
-    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.stage-25.config.ts",
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.final-acceptance.config.ts",
     "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/visual-rescue",
     "forbidOnly": false,
     "fullyParallel": false,
@@ -16,7 +16,7 @@
     "preserveOutput": "always",
     "projects": [
       {
-        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/visual-rescue/stage-25/playwright-results",
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/final-acceptance/playwright-results",
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
@@ -41,7 +41,7 @@
       [
         "json",
         {
-          "outputFile": "../../artifacts/visual-rescue/stage-25/playwright-report.json"
+          "outputFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\final-acceptance\\playwright-report.json"
         }
       ]
     ],
@@ -80,20 +80,14 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 45829,
+                  "duration": 26472,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-24T18:53:43.888Z",
+                  "startTime": "2026-07-24T20:02:55.180Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stage-25\\playwright-results\\stage-25-23-routes-keep-a-meaningful-visible-visual-change\\video.webm"
-                    }
-                  ]
+                  "attachments": []
                 }
               ],
               "status": "expected"
@@ -101,7 +95,7 @@
           ],
           "id": "6962e71502ee58e2a34a-f4931ee33ddecb913a37",
           "file": "stage-25.spec.ts",
-          "line": 47,
+          "line": 49,
           "column": 5
         },
         {
@@ -120,20 +114,14 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 66020,
+                  "duration": 17001,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-24T18:54:29.848Z",
+                  "startTime": "2026-07-24T20:03:21.774Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\visual-rescue\\stage-25\\playwright-results\\stage-25-responsive-and-protected-regression-matrix\\video.webm"
-                    }
-                  ]
+                  "attachments": []
                 }
               ],
               "status": "expected"
@@ -141,7 +129,7 @@
           ],
           "id": "6962e71502ee58e2a34a-0a046d4767771373de67",
           "file": "stage-25.spec.ts",
-          "line": 101,
+          "line": 130,
           "column": 5
         }
       ]
@@ -149,8 +137,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-24T18:53:43.318Z",
-    "duration": 113588.02,
+    "startTime": "2026-07-24T20:02:54.517Z",
+    "duration": 44511.919,
     "expected": 2,
     "skipped": 0,
     "unexpected": 0,

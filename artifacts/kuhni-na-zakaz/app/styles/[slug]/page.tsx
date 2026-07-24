@@ -245,7 +245,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function StylePage({ params }: Props) {
   const { slug } = await params;
   const family = STYLE_FAMILY[slug];
-  if (family) return <StyleFamilyPage config={family} />;
+  if (family) {
+    const articleJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: family.h1,
+      name: family.title,
+      description: family.description,
+      url: siteUrl(`/styles/${slug}`),
+      inLanguage: "ru-BY",
+    };
+    const familyBreadcrumbJsonLd = breadcrumbJsonLd([
+      { name: "Главная", path: "/" },
+      { name: "Стили", path: "/styles" },
+      { name: family.h1, path: `/styles/${slug}` },
+    ]);
+
+    return (
+      <>
+        {family.visualFrames?.[0]?.avif ? (
+          <link
+            rel="preload"
+            as="image"
+            href={family.visualFrames[0].avif}
+            type="image/avif"
+            fetchPriority="high"
+          />
+        ) : null}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(familyBreadcrumbJsonLd) }} />
+        <StyleFamilyPage config={family} />
+      </>
+    );
+  }
   const s = await getStyle(slug);
   if (!s) notFound();
   const heroImage = slug === "neoklassika" ? "/images/design-proekt-kuhni/3d-proekt-neoklassicheskaya-kuhnya.webp" : s.image;
@@ -286,15 +318,16 @@ export default async function StylePage({ params }: Props) {
     description: s.seoDescription || s.description,
     name: s.title,
     url: siteUrl(`/styles/${slug}`),
-    breadcrumb: breadcrumbJsonLd([
-      { name: "Главная", path: "/" },
-      { name: "Стили", path: "/styles" },
-      { name: s.title, path: `/styles/${slug}` },
-    ]),
   };
+  const styleBreadcrumbJsonLd = breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Стили", path: "/styles" },
+    { name: s.title, path: `/styles/${slug}` },
+  ]);
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(styleBreadcrumbJsonLd) }} />
 
       <div className="section-padding">
         <div className="container-site">

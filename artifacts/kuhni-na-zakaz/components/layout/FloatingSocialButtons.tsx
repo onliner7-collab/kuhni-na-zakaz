@@ -97,11 +97,21 @@ export function FloatingSocialButtons({
   const reducedMotionRef = useRef(false);
   const telegramHref = buildTelegramHref(telegram);
   const instagramHref = buildInstagramHref(instagram);
-  const hasPilotMobileDock = [
-    "/catalog/uglovye-kuhni",
-    "/locations/borisov",
-    "/materials/furnitura",
-  ].includes(pathname);
+  const hasPrimaryVisualExplorer =
+    pathname.startsWith("/styles/") ||
+    pathname.startsWith("/scenarios/") ||
+    [
+      "/catalog/uglovye-kuhni",
+      "/catalog/pryamye-kuhni",
+      "/catalog/p-obraznye-kuhni",
+      "/catalog/kuhni-s-ostrovom",
+      "/catalog/malenkie-kuhni",
+      "/catalog/kuhni-do-potolka",
+      "/catalog/kuhni-bez-ruchek",
+      "/locations/borisov",
+      "/materials/mdf-fasady",
+      "/materials/furnitura",
+    ].includes(pathname);
 
   const visibleOptions = ([
     telegramHref ? { id: "telegram", label: "Telegram", href: telegramHref, icon: TelegramIcon } : null,
@@ -267,7 +277,7 @@ export function FloatingSocialButtons({
       style={rootStyle}
       className={cn(
         "fixed max-w-[calc(100vw-2rem)] motion-reduce:transition-none",
-        hasPilotMobileDock && "max-md:hidden",
+        hasPrimaryVisualExplorer && "max-md:hidden",
         isDocked && isWideHeaderDock
           ? "top-3 bottom-auto right-auto z-[60] w-[min(19rem,calc(100vw-2rem))] lg:top-4"
           : isDocked

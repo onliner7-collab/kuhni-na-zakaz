@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import sitemap from "../app/sitemap";
+import sitemap, { FINAL_POLISH_PATHS } from "../app/sitemap";
 import robots from "../app/robots";
 
 const BASE_URL = "https://kuhni.minsk.by";
@@ -53,6 +53,8 @@ async function main() {
   const uniqueUrls = new Set(urls);
 
   assert.equal(urls.length, uniqueUrls.size, "sitemap must not contain duplicate URLs");
+  assert.equal(urls.length, 112, "sitemap must contain exactly 112 canonical URLs");
+  assert.equal(FINAL_POLISH_PATHS.size, 23, "final polish release must track exactly 23 URLs");
 
   for (const path of requiredPaths) {
     assert.ok(uniqueUrls.has(`${BASE_URL}${path === "/" ? "/" : path}`), `missing required URL: ${path}`);
@@ -76,6 +78,16 @@ async function main() {
     assert.ok(
       !forbiddenExactPaths.includes(parsed.pathname as (typeof forbiddenExactPaths)[number]),
       `sitemap must not include non-canonical or low-value URL: ${url}`,
+    );
+  }
+
+  for (const path of FINAL_POLISH_PATHS) {
+    const entry = entries.find((item) => new URL(String(item.url)).pathname === path);
+    assert.ok(entry, `missing final polish URL: ${path}`);
+    assert.equal(
+      new Date(String(entry.lastModified)).toISOString(),
+      "2026-07-24T19:30:00.000Z",
+      `incorrect final polish lastmod: ${path}`,
     );
   }
 
