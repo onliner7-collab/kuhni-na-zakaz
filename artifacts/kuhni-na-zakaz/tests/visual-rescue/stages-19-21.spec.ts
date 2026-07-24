@@ -119,8 +119,12 @@ test.describe("visual rescue stages 19–21", () => {
     await expect(dock).toHaveClass(/mobile-page-dock--hidden/);
 
     await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
-    await page.mouse.wheel(0, -350);
-    if (await page.evaluate(() => window.scrollY > 450)) await page.keyboard.press("PageUp");
+    await page.mouse.move(20, 200);
+    for (let attempt = 0; attempt < 4; attempt += 1) {
+      await page.mouse.wheel(0, -300);
+      await page.waitForTimeout(150);
+      if (!(await dock.getAttribute("class"))?.includes("mobile-page-dock--hidden")) break;
+    }
     await expect(dock).not.toHaveClass(/mobile-page-dock--hidden/);
   });
 

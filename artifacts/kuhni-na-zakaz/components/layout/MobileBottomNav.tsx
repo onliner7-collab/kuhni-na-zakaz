@@ -64,11 +64,19 @@ export function MobileBottomNav() {
       else if (delta > 8) setIsScrollHidden(true);
     };
 
+    const onWheel = (event: WheelEvent) => {
+      const activeElement = document.activeElement;
+      const isVisualControlFocused = activeElement instanceof Element && Boolean(activeElement.closest("[data-dock-suppress]"));
+      if (event.deltaY < -8 && !isVisualControlFocused) setIsScrollHidden(false);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: true });
     document.addEventListener("pointerdown", suppressForInteraction, true);
     document.addEventListener("focusin", suppressForInteraction, true);
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onWheel);
       document.removeEventListener("pointerdown", suppressForInteraction, true);
       document.removeEventListener("focusin", suppressForInteraction, true);
     };
