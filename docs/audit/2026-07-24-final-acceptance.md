@@ -1,6 +1,8 @@
-# Финальная приёмка — 24 июля 2026
+# Финальная приёмка — 24–29 июля 2026
 
-Статус до production-проверки: `RELEASE_CANDIDATE`.
+Статус после production-проверки: `FINAL_ACCEPTED`.
+
+Production-коммит: `437a4f0` (`work`), развёрнут на `https://kuhni.minsk.by`.
 
 ## Реализовано
 
@@ -29,9 +31,22 @@
   - `/styles/neoklassika`, DevTools throttling: Performance 97, LCP 2,0 с, CLS 0, TBT 90 мс.
   - `/styles/neoklassika`, simulated: Performance 92, Accessibility 100, Best Practices 100, SEO 100, CLS 0, TBT 0 мс.
   - `/scenarios/dlya-studii`, simulated: Performance 93, Accessibility 100, Best Practices 100, SEO 100, CLS 0, TBT 0 мс.
+  - production `/styles/neoklassika`: Performance 95, Accessibility 100, SEO 100, LCP 2,3 с, CLS 0, TBT 20 мс.
+  - production Best Practices 79 объясняется диагностикой сторонних cookies Google/Яндекса и Chrome Issues; обязательные HSTS, CSP с `frame-ancestors`, HTTPS redirect, Referrer-Policy, Permissions-Policy и `nosniff` присутствуют.
 
 Успешный машинный отчёт: `artifacts/final-acceptance/playwright-report.json`.
 Устаревший failed-run `artifacts/visual-rescue/stage-25/playwright-report.json` и его `playwright-results` удалены; восстановление возможно повторным запуском теста.
+
+## Production-проверка и выпуск
+
+- Production отвечает с коммита `437a4f0`; systemd-сервис активен.
+- `sitemap.xml`: 112 уникальных URL, все 112 отвечают `200`; у всех 23 доработанных страниц подтверждён новый `lastmod`.
+- Production image audit: 112 HTML-страниц, 536 уникальных `/uploads` и `/images`, все отвечают `200/304`; `/kapi/watermarked-image` отвечает `200`.
+- Production Playwright final acceptance: 2/2 теста, включая 23 интерактивные страницы, 115 адаптивных комбинаций и 5 защищённых страниц.
+- Production analytics smoke: страница `200`, 1 запрос Google Analytics и 7 запросов Яндекс Метрики после первого взаимодействия, без CSP и page errors.
+- Google Search Console: `https://kuhni.minsk.by/sitemap.xml` повторно отправлен 29 июля 2026; интерфейс подтвердил отправку, таблица содержит 112 URL.
+- Яндекс Вебмастер: существующий sitemap со статусом «ок» и 112 URL отправлен на переобход 29 июля 2026; доступный лимит переобхода уменьшился с 10 до 9.
+- Отправка sitemap не означает гарантированную индексацию: дальнейшую обработку выполняют поисковые системы.
 
 ## Отдельный технический долг
 
@@ -53,4 +68,4 @@
 
 Для реализации использована официальная документация Next.js через Context7: Next.js 15.1.8 (ближайшая доступная стабильная документация к установленной версии 15.3.9) по `headers()`, CSP, `next/script` и App Router sitemap. Использованные API совместимы с локальной сборкой Next.js 15.3.9, что подтверждено typecheck и production build.
 
-После deploy отчёт должен быть дополнен SHA, production-проверкой всех 112 URL, security headers, sitemap и отправкой sitemap в Google Search Console и Яндекс Вебмастер.
+Production-проверка, публикация и отправка sitemap завершены. Итоговый статус: `FINAL_ACCEPTED`.

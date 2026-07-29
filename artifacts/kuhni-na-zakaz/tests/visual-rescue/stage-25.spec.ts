@@ -46,6 +46,15 @@ test.beforeAll(() => {
   fs.mkdirSync(screenshotRoot, { recursive: true });
 });
 
+test.beforeEach(async ({ page }) => {
+  // The matrix performs 138 explicit document navigations. Short-circuit speculative
+  // Next.js RSC prefetches so the QA client exercises pages without tripping the
+  // production per-IP rate limiter on unrelated background requests.
+  await page.route(/(?:\?|&)_rsc=/, (route) =>
+    route.fulfill({ status: 204, contentType: "text/plain", body: "" }),
+  );
+});
+
 test("23 routes keep a meaningful visible visual change", async ({ page }) => {
   const evidence: Array<Record<string, unknown>> = [];
   await page.setViewportSize({ width: 390, height: 844 });

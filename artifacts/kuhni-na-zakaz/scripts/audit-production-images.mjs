@@ -70,21 +70,25 @@ function extractUploadImageUrls(html) {
 }
 
 async function headStatus(url) {
-  try {
-    const c = new AbortController();
-    const t = setTimeout(() => c.abort(), 12000);
-    let r = await fetch(url, { method: "HEAD", signal: c.signal });
-    clearTimeout(t);
-    if (r.status === 405 || r.status === 501) {
-      const c2 = new AbortController();
-      const t2 = setTimeout(() => c2.abort(), 12000);
-      r = await fetch(url, { method: "GET", headers: { Range: "bytes=0-0" }, signal: c2.signal });
-      clearTimeout(t2);
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      const c = new AbortController();
+      const t = setTimeout(() => c.abort(), 20000);
+      let r = await fetch(url, { method: "HEAD", signal: c.signal });
+      clearTimeout(t);
+      if (r.status === 405 || r.status === 501) {
+        const c2 = new AbortController();
+        const t2 = setTimeout(() => c2.abort(), 20000);
+        r = await fetch(url, { method: "GET", headers: { Range: "bytes=0-0" }, signal: c2.signal });
+        clearTimeout(t2);
+      }
+      if (r.status < 500 || attempt === 3) return r.status;
+    } catch {
+      if (attempt === 3) return 0;
     }
-    return r.status;
-  } catch {
-    return 0;
+    await new Promise((resolve) => setTimeout(resolve, attempt * 500));
   }
+  return 0;
 }
 
 async function pool(items, limit, fn) {
@@ -128,7 +132,9 @@ async function main() {
   console.log("unique asset URLs:", uniqueImages.size);
 
   const imgList = [...uniqueImages];
-  const statuses = await pool(imgList, 16, async (url) => ({ url, status: await headStatus(url) }));
+  // Production is deliberately checked at a bounded rate: a large HEAD burst can
+  // overload the image proxy and turn healthy assets into false timeout failures.
+  const statuses = await pool(imgList, 4, async (url) => ({ url, status: await headStatus(url) }));
 
   const badImages = statuses.filter((x) => x.status !== 200 && x.status !== 304);
   if (badImages.length) {
