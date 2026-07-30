@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { emptyExploreContext, readExploreContext, writeExploreContext, type ExploreContextValue } from "@/lib/explore-context";
+import { trackExplorationEvent } from "@/lib/analytics";
 
 interface ExploreContextApi {
   context: ExploreContextValue;
@@ -27,6 +28,10 @@ export function ExploreContextProvider({ sourceRoute, children }: { sourceRoute:
       writeExploreContext(next);
       return next;
     });
+    trackExplorationEvent("exploration_context_clear", {
+      source_route: sourceRoute,
+      selected_dimension: key || "all",
+    });
   }, [sourceRoute]);
   const value = useMemo(() => ({ context, updateContext, clearContext }), [clearContext, context, updateContext]);
   return <Context.Provider value={value}>{children}</Context.Provider>;
@@ -36,4 +41,8 @@ export function useExploreContext() {
   const value = useContext(Context);
   if (!value) throw new Error("useExploreContext должен использоваться внутри ExploreContextProvider");
   return value;
+}
+
+export function useOptionalExploreContext() {
+  return useContext(Context);
 }

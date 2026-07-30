@@ -1,0 +1,808 @@
+{
+  "version": 2,
+  "generatedAt": "2026-07-30",
+  "baseline": {
+    "orphanRoutes": 0,
+    "maxDepth": 3
+  },
+  "routes": [
+    {
+      "targetRoute": "/styles/provans",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: как использовать мягкие детали и не перегрузить кухню декором",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/styles",
+          "anchorRu": "Открыть связанное решение — provans",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/styles/neoklassika",
+          "anchorRu": "Открыть связанное решение — provans",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/styles/hay-tek",
+          "anchorRu": "Открыть связанное решение — provans",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/scenarios/s-ostrovom",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: для каких ежедневных действий нужен остров",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/scenarios",
+          "anchorRu": "Открыть связанное решение — s ostrovom",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/scenarios/do-potolka",
+          "anchorRu": "Открыть связанное решение — s ostrovom",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/scenarios/dlya-semi",
+          "anchorRu": "Открыть связанное решение — s ostrovom",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/portfolio/neoklassicheskaya-kuhnya-vitebsk",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: что определило неоклассическое решение этого объекта",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/portfolio",
+          "anchorRu": "Открыть связанное решение — neoklassicheskaya kuhnya vitebsk",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+          "anchorRu": "Открыть связанное решение — neoklassicheskaya kuhnya vitebsk",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/portfolio/loft-kuhnya-oreh-poluostrov-minsk",
+          "anchorRu": "Открыть связанное решение — neoklassicheskaya kuhnya vitebsk",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/portfolio/malenkaya-kuhnya-gomel",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие приоритеты помогли решить маленькое пространство объекта",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/portfolio",
+          "anchorRu": "Открыть связанное решение — malenkaya kuhnya gomel",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+          "anchorRu": "Открыть связанное решение — malenkaya kuhnya gomel",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/portfolio/loft-kuhnya-oreh-poluostrov-minsk",
+          "anchorRu": "Открыть связанное решение — malenkaya kuhnya gomel",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие факторы формируют цену кухни в минске в 2026 году",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — skolko stoit kuhnya na zakaz minsk 2026",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — skolko stoit kuhnya na zakaz minsk 2026",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+          "anchorRu": "Открыть связанное решение — skolko stoit kuhnya na zakaz minsk 2026",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие размеры и зоны проверить перед выбором угловой схемы",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — uglovaya kuhnya razmery planirovka",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — uglovaya kuhnya razmery planirovka",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+          "anchorRu": "Открыть связанное решение — uglovaya kuhnya razmery planirovka",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: кому подходит кухня до потолка и какие компромиссы учитывать",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kuhnya do potolka plyusy minusy cena",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kuhnya do potolka plyusy minusy cena",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kuhnya do potolka plyusy minusy cena",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kuhnya-na-zakaz-ili-gotovaya-chto-vygodnee",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: как сравнить два подхода по fit, срокам, рискам и бюджету",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kuhnya na zakaz ili gotovaya chto vygodnee",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kuhnya na zakaz ili gotovaya chto vygodnee",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kuhnya na zakaz ili gotovaya chto vygodnee",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kuhnya-dlya-novostroyki-v-minske-do-zamera",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: что проверить в новостройке до замера кухни",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kuhnya dlya novostroyki v minske do zamera",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kuhnya dlya novostroyki v minske do zamera",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kuhnya dlya novostroyki v minske do zamera",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: как разложить бюджет на материалы, фурнитуру и монтаж",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kak rasschitat byudzhet kuhni materialy furnitura montazh",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kak rasschitat byudzhet kuhni materialy furnitura montazh",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kak rasschitat byudzhet kuhni materialy furnitura montazh",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/oshibki-pri-zakaze-kuhni-15-punktov-pered-dogovorom",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие риски проверить до подписания договора",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — oshibki pri zakaze kuhni 15 punktov pered dogovorom",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — oshibki pri zakaze kuhni 15 punktov pered dogovorom",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — oshibki pri zakaze kuhni 15 punktov pered dogovorom",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kak-podgotovitsya-k-zameru-kuhni",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие данные и условия подготовить перед приездом замерщика",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kak podgotovitsya k zameru kuhni",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kak podgotovitsya k zameru kuhni",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kak podgotovitsya k zameru kuhni",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kuhnya-dlya-chastnogo-doma-planirovka-hranenie-tehnika",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие особенности дома влияют на layout, хранение и технику",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kuhnya dlya chastnogo doma planirovka hranenie tehnika",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kuhnya dlya chastnogo doma planirovka hranenie tehnika",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kuhnya dlya chastnogo doma planirovka hranenie tehnika",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kuhnya-6-kv-m-v-hruschevke",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие решения реально помещаются на 6 м² и какие компромиссы неизбежны",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kuhnya 6 kv m v hruschevke",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kuhnya 6 kv m v hruschevke",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kuhnya 6 kv m v hruschevke",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/chto-vhodit-v-stoimost-kuhni-na-zakaz",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие работы и элементы входят или не входят в стоимость",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — chto vhodit v stoimost kuhni na zakaz",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — chto vhodit v stoimost kuhni na zakaz",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — chto vhodit v stoimost kuhni na zakaz",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kuhnya-pod-vstroennuyu-tehniku",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие размеры, вентиляцию и сервисный доступ учесть",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kuhnya pod vstroennuyu tehniku",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kuhnya pod vstroennuyu tehniku",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kuhnya pod vstroennuyu tehniku",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/p-obraznaya-kuhnya-razmery-prohody-cena",
+      "currentInboundCount": 2,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: какие размеры, проходы и price factors проверить",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — p obraznaya kuhnya razmery prohody cena",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — p obraznaya kuhnya razmery prohody cena",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — p obraznaya kuhnya razmery prohody cena",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kak-vybrat-materialy-dlya-kuhni",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: в какой последовательности выбирать корпус, фасады, столешницу и фурнитуру",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kak vybrat materialy dlya kuhni",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kak vybrat materialy dlya kuhni",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kak vybrat materialy dlya kuhni",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "targetRoute": "/blog/kuhnya-pod-scenarij-semi-studii-doma",
+      "currentInboundCount": 1,
+      "plannedInbound": [
+        {
+          "sourceRoute": "/",
+          "anchorRu": "Проверить вопрос: чем различаются требования семьи, студии и частного дома",
+          "placement": "основной список тематического hub",
+          "priority": 1,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog",
+          "anchorRu": "Открыть связанное решение — kuhnya pod scenarij semi studii doma",
+          "placement": "контекстный блок следующего шага",
+          "priority": 2,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+          "anchorRu": "Открыть связанное решение — kuhnya pod scenarij semi studii doma",
+          "placement": "контекстный блок следующего шага",
+          "priority": 3,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        },
+        {
+          "sourceRoute": "/blog/uglovaya-kuhnya-razmery-planirovka",
+          "anchorRu": "Открыть связанное решение — kuhnya pod scenarij semi studii doma",
+          "placement": "контекстный блок следующего шага",
+          "priority": 4,
+          "userBenefit": "Даёт релевантное продолжение текущего вопроса, а не ссылку ради счётчика.",
+          "cannibalizationRisk": "low; target сохраняет собственный intent owner, source остаётся supporting page",
+          "status": "planned"
+        }
+      ]
+    }
+  ]
+}

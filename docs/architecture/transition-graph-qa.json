@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-07-30",
+  "status": "PASS",
+  "severity": {
+    "P0": 0,
+    "P1": 0
+  },
+  "checks": {
+    "canonicalRoutesCovered": 112,
+    "expectedCanonicalRoutes": 112,
+    "utilityRoutesSeparated": 6,
+    "missingFromRoutes": [],
+    "missingTargets": [],
+    "missingFallbacks": [],
+    "duplicateTransitions": [],
+    "priorityConflicts": [],
+    "maxPrimaryTransitionsPerState": 2,
+    "uselessSelfLoops": [],
+    "tierABMissingParent": [],
+    "baselineOrphans": 0,
+    "baselineMaxDepth": 3,
+    "underLinkedRoutesPlanned": 19,
+    "proofGate": "Новые PROOF не активированы; будущий PROOF требует verified evidence либо честный fallback."
+  }
+}

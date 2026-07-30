@@ -28,6 +28,7 @@
     "telegram:outbox": "tsx scripts/process-telegram-outbox.ts",
     "telegram:configure-webhook": "tsx scripts/configure-telegram-webhook.ts",
     "test:leads": "tsx --test tests/unit/lead-system.test.ts",
+    "test:exploration": "tsx --test tests/unit/exploration-foundation.test.ts tests/unit/exploration-registry-v2.test.ts",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
     "db:seed-static": "tsx prisma/seed-static-pages.ts",

@@ -1,5 +1,10 @@
 "use client";
 
+import type {
+  ExplorationAnalyticsEvent,
+  ExplorationAnalyticsPayload,
+} from "./exploration-types";
+
 export const ANALYTICS_EVENTS = {
   FORM_SUBMIT: "form_submit",
   LEAD_FORM_SUBMIT: "lead_form_submit",
@@ -34,6 +39,13 @@ export const ANALYTICS_EVENTS = {
   CALCULATOR_OPEN: "calculator_start",
   LEAD_SUCCESS: "lead_success",
   LEAD_SUBMIT: "lead_submit",
+  EXPLORATION_ENTRY: "exploration_entry",
+  EXPLORATION_SELECT: "exploration_select",
+  EXPLORATION_COMPARE: "exploration_compare",
+  EXPLORATION_PROOF_OPEN: "exploration_proof_open",
+  EXPLORATION_TRANSITION_CLICK: "exploration_transition_click",
+  EXPLORATION_CONTEXT_CLEAR: "exploration_context_clear",
+  LEAD_OPEN_WITH_CONTEXT: "lead_open_with_context",
 } as const;
 
 export type AnalyticsEvent =
@@ -107,6 +119,13 @@ export function trackPageView(path: string) {
   window.gtag?.("event", "page_view", {
     page_path: path,
   });
+}
+
+export function trackExplorationEvent(
+  event: ExplorationAnalyticsEvent,
+  payload: ExplorationAnalyticsPayload,
+) {
+  trackAnalyticsEvent(event, { ...payload });
 }
 
 function pruneEmptyParams(params: AnalyticsParams) {

@@ -10,6 +10,8 @@ const evidenceRoot = path.resolve(
 );
 
 process.env.FINAL_ACCEPTANCE_EVIDENCE_ROOT = evidenceRoot;
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3011";
+const serverUrl = new URL(baseURL);
 
 export default defineConfig({
   testDir: "./tests/visual-rescue",
@@ -22,8 +24,18 @@ export default defineConfig({
     ["list"],
     ["json", { outputFile: path.join(evidenceRoot, "playwright-report.json") }],
   ],
+  webServer: {
+    command: "pnpm run start",
+    url: baseURL,
+    timeout: 120_000,
+    reuseExistingServer: true,
+    env: {
+      PORT: serverUrl.port || "3011",
+      HOST: serverUrl.hostname,
+    },
+  },
   use: {
-    baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3011",
+    baseURL,
     launchOptions: {
       executablePath:
         process.env.PLAYWRIGHT_CHROME_PATH ??

@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
+import { readExploreContext, serializeExploreContextForLead } from "@/lib/explore-context";
 import { getKitchenIdea3DById } from "@/data/kitchen-ideas-3d";
 
 const kitchenTypes = [
@@ -378,6 +379,7 @@ export function ContactForm({
         : data.comment;
     const designSelection = source === "design-proekt-kuhni" ? readDesignProjectSelection() : null;
     const homeSelection = source === "home" ? readHomeKitchenSelection() : null;
+    const exploreContext = serializeExploreContextForLead(readExploreContext(fallbackSourcePage));
     const payload = {
       ...data,
       comment: currentComment,
@@ -387,6 +389,7 @@ export function ContactForm({
         ...contextAnswers,
         ...(designSelection ? { designProjectSelection: designSelection } : {}),
         ...(homeSelection ? { homeKitchenSelection: homeSelection } : {}),
+        ...(exploreContext ? { exploreContext } : {}),
       },
       source,
       formType,

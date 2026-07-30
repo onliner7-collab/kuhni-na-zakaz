@@ -1,10 +1,18 @@
-export type TransitionActionType = "DEEPEN" | "COMPARE" | "PROOF" | "CONVERT";
+import { z } from "zod";
+import { SCENARIO_FAMILY, STYLE_FAMILY } from "@/data/exploration-families";
+import type {
+  EvidenceStatus,
+  ExplorationAnalyticsEvent,
+  TransitionAction,
+  TransitionEntryV2,
+  TransitionStatus,
+} from "@/lib/exploration-types";
 
-export interface TransitionRecord {
+interface LegacyTransitionRecord {
   fromRoute: string;
   fromState: string;
   userQuestion: string;
-  actionType: TransitionActionType;
+  actionType: Extract<TransitionAction, "DEEPEN" | "COMPARE" | "PROOF" | "CONVERT">;
   anchorRu: string;
   toRoute: string;
   contextPatch?: Record<string, string | string[]>;
@@ -16,7 +24,7 @@ export interface TransitionRecord {
   status: "active" | "draft";
 }
 
-const registry: TransitionRecord[] = [
+const legacyRegistry: LegacyTransitionRecord[] = [
   { fromRoute: "/catalog/uglovye-kuhni", fromState: "SELECTED", userQuestion: "Как использовать пространство угла?", actionType: "DEEPEN", anchorRu: "Проверить хранение в углу", toRoute: "#inside", contextPatch: { layout: "угловая" }, reasonRu: "Показывает доступ к глубокой части шкафа.", priority: 1, requiresEvidence: false, fallbackRoute: "#inside", analyticsEvent: "next_action_click", status: "active" },
   { fromRoute: "/catalog/uglovye-kuhni", fromState: "COMPARE", userQuestion: "Из чего собрать выбранный образ?", actionType: "COMPARE", anchorRu: "Сравнить фасады и материалы", toRoute: "#materials", contextPatch: { layout: "угловая" }, reasonRu: "Связывает форму угла с поверхностью и цветом.", priority: 2, requiresEvidence: false, fallbackRoute: "#materials", analyticsEvent: "next_action_click", status: "active" },
   { fromRoute: "/catalog/uglovye-kuhni", fromState: "PROOF", userQuestion: "Где проверить выполненные решения?", actionType: "PROOF", anchorRu: "Проверить подтверждённые работы", toRoute: "/portfolio", contextPatch: { layout: "угловая", evidencePreference: "real" }, reasonRu: "Ведёт в раздел работ без выдачи AI-концепта за выполненный объект.", priority: 3, requiresEvidence: true, fallbackRoute: "/portfolio", analyticsEvent: "proof_open", status: "active" },
@@ -50,7 +58,7 @@ const registry: TransitionRecord[] = [
 for (const config of [...Object.values(STYLE_FAMILY), ...Object.values(SCENARIO_FAMILY)]) {
   const family = "visualLanguage" in config ? "styles" : "scenarios";
   const fromRoute = `/${family}/${config.slug}`;
-  config.links.forEach((link, index) => registry.push({
+  config.links.forEach((link, index) => legacyRegistry.push({
     fromRoute,
     fromState: "RESULT",
     userQuestion: config.question,
@@ -67,13 +75,92 @@ for (const config of [...Object.values(STYLE_FAMILY), ...Object.values(SCENARIO_
   }));
 }
 
+const routeTargetSchema = z.string().min(1).refine(
+  (value) => value.startsWith("#") || /^\/(?:[^?#\s]+\/?)*(?:#[^#\s]+)?$/.test(value),
+  "Target должен быть внутренним route или fragment.",
+);
+const contextPatchSchema = z.object({
+  layout: z.string().max(160).optional(),
+  style: z.string().max(160).optional(),
+  materials: z.array(z.string().max(160)).max(12).optional(),
+  hardware: z.array(z.string().max(160)).max(12).optional(),
+  scenario: z.string().max(160).optional(),
+  location: z.string().max(160).optional(),
+  budgetIntent: z.string().max(160).optional(),
+  evidencePreference: z.enum(["ideas", "real"]).optional(),
+  sourceRoute: z.string().max(200).optional(),
+  lastMeaningfulAction: z.string().max(160).optional(),
+}).strict();
+const transitionSchema: z.ZodType<TransitionEntryV2> = z.object({
+  id: z.string().min(1),
+  fromRoute: routeTargetSchema,
+  fromState: z.string().min(1),
+  userQuestion: z.string().min(1),
+  actionType: z.enum(["PARENT", "DEEPEN", "COMPARE", "PROOF", "CROSS_FAMILY", "CONVERT", "SUPPORT"]),
+  anchorRu: z.string().min(1),
+  toRoute: routeTargetSchema,
+  contextPatch: contextPatchSchema.optional(),
+  reasonRu: z.string().min(1),
+  priority: z.number().int().positive(),
+  requiresEvidence: z.boolean(),
+  evidenceStatus: z.enum(["verified", "ai_concept", "technical_illustration", "process_illustration", "unknown", "evidence_required", "not_applicable"]),
+  fallbackRoute: routeTargetSchema,
+  analyticsEvent: z.enum(["exploration_entry", "exploration_select", "exploration_compare", "exploration_proof_open", "exploration_transition_click", "exploration_context_clear", "lead_open_with_context"]),
+  status: z.enum(["active", "planned", "blocked_evidence", "disabled"]),
+});
+
+function stableTransitionId(item: LegacyTransitionRecord) {
+  return [
+    item.fromRoute === "/" ? "home" : item.fromRoute.slice(1),
+    item.fromState,
+    item.actionType,
+    item.toRoute,
+  ]
+    .join("-")
+    .toLowerCase()
+    .replace(/[^a-zа-яё0-9]+/giu, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function normalizeAnalyticsEvent(item: LegacyTransitionRecord): ExplorationAnalyticsEvent {
+  if (item.analyticsEvent === "lead_open_with_context") return "lead_open_with_context";
+  if (item.actionType === "COMPARE") return "exploration_compare";
+  if (item.actionType === "PROOF") return "exploration_proof_open";
+  return "exploration_transition_click";
+}
+
+function evidenceStatusFor(item: LegacyTransitionRecord): EvidenceStatus {
+  if (!item.requiresEvidence) return "not_applicable";
+  if (item.toRoute === "/portfolio") return "verified";
+  return "evidence_required";
+}
+
+function statusFor(item: LegacyTransitionRecord): TransitionStatus {
+  if (item.status !== "active") return "disabled";
+  if (item.actionType === "PROOF" && evidenceStatusFor(item) !== "verified") return "blocked_evidence";
+  return "active";
+}
+
+const registry = legacyRegistry.map((item) => transitionSchema.parse({
+  ...item,
+  id: stableTransitionId(item),
+  evidenceStatus: evidenceStatusFor(item),
+  analyticsEvent: normalizeAnalyticsEvent(item),
+  status: statusFor(item),
+}));
+
+const duplicateIds = registry
+  .map((item) => item.id)
+  .filter((id, index, ids) => ids.indexOf(id) !== index);
+if (duplicateIds.length) throw new Error(`Повторяющиеся transition IDs: ${duplicateIds.join(", ")}`);
+
 export function readTransitions(fromRoute: string, fromState?: string) {
   return registry
     .filter((item) => item.status === "active" && item.fromRoute === fromRoute && (!fromState || item.fromState === fromState))
-    .sort((a, b) => a.priority - b.priority);
+    .sort((a, b) => a.priority - b.priority)
+    .slice(0, 4);
 }
 
 export function getTransitionRegistry() {
   return registry.slice();
 }
-import { SCENARIO_FAMILY, STYLE_FAMILY } from "@/data/exploration-families";

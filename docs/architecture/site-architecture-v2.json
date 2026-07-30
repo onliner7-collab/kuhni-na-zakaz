@@ -1,0 +1,4293 @@
+{
+  "version": 2,
+  "generatedAt": "2026-07-30",
+  "status": "STAGE_2_ACCEPTED",
+  "facts": {
+    "canonicalInventory": 112,
+    "utilityInventory": 6,
+    "familyInventory": 19,
+    "protectedRoutes": 5,
+    "acceptedVisualRescueRoutes": 23
+  },
+  "hypothesesBoundary": "Intent ownership — архитектурная гипотеза до проверки GSC/SERP; каннибализация не объявляется доказанной.",
+  "architectureEntries": [
+    {
+      "route": "/",
+      "family": "home",
+      "tier": "A",
+      "parentHub": null,
+      "ownedIntent": "выбрать путь к кухне на заказ",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "С чего начать выбор кухни?",
+        "Собрать единый вход к форме, стилю, сценарию, материалам, работам и цене без смешения идей с реальными объектами."
+      ],
+      "mustNotOwn": [
+        "конкретная планировка",
+        "точная цена",
+        "неподтверждённое локальное доказательство"
+      ],
+      "primaryUserQuestion": "С чего начать выбор кухни?",
+      "entryContexts": [
+        "выбрать путь к кухне на заказ",
+        "широкий вход"
+      ],
+      "decisionPoint": "Выбрать слой решения: форма, стиль, материал, сценарий, работы или расчёт.",
+      "visualRole": "Навигационный visual hub без смешения идей и реальных объектов.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 1,
+      "status": "approved"
+    },
+    {
+      "route": "/about",
+      "family": "trust",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "проверить компанию и ответственность",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Кто отвечает за проект, производство и результат?",
+        "Дать проверяемые сведения о компании и ролях без неподтверждённых регалий."
+      ],
+      "mustNotOwn": [
+        "неподтверждённые регалии",
+        "выдуманный отзыв",
+        "точная цена"
+      ],
+      "primaryUserQuestion": "Кто отвечает за проект, производство и результат?",
+      "entryContexts": [
+        "проверить компанию и ответственность",
+        "переход из /"
+      ],
+      "decisionPoint": "Проверить ответственность и перейти к условиям или заявке.",
+      "visualRole": "Проверяемые факты и условия без декоративного proof.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 9,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog",
+      "family": "catalog listing",
+      "tier": "A",
+      "parentHub": "/",
+      "ownedIntent": "выбрать форму кухни",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие варианты кухни можно изучить и заказать?",
+        "Развести идеи по планировкам и задачам, не выдавая визуализации за работы."
+      ],
+      "mustNotOwn": [
+        "конкретный стиль",
+        "характеристика материала",
+        "история реализованного объекта"
+      ],
+      "primaryUserQuestion": "Какие варианты кухни можно изучить и заказать?",
+      "entryContexts": [
+        "выбрать форму кухни",
+        "переход из /"
+      ],
+      "decisionPoint": "Выбрать планировку для дальнейшей проверки.",
+      "visualRole": "Сравнение форм и ограничений планировки.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/calculator",
+      "family": "calculator/tool",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "получить предварительный ориентир бюджета",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какой ориентир стоимости даёт выбранная конфигурация?",
+        "Объяснить предварительный расчёт и ограничения без обещания финальной сметы."
+      ],
+      "mustNotOwn": [
+        "гарантированная итоговая цена",
+        "detail-интент формы или стиля",
+        "локальное доказательство"
+      ],
+      "primaryUserQuestion": "Какой ориентир стоимости даёт выбранная конфигурация?",
+      "entryContexts": [
+        "получить предварительный ориентир бюджета",
+        "переход из /"
+      ],
+      "decisionPoint": "Передать допустимые исходные параметры для расчёта.",
+      "visualRole": "Пошаговый ввод без создания facet URL.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/contacts",
+      "fallbackHub": "/",
+      "recommendedWave": 9,
+      "status": "approved"
+    },
+    {
+      "route": "/design-proekt-kuhni",
+      "family": "service",
+      "tier": "A",
+      "parentHub": "/",
+      "ownedIntent": "подготовить дизайн-проект",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как подготовить планировку и данные для проекта кухни?",
+        "Провести через фактический brief и следующий шаг без подмены проекта калькулятором."
+      ],
+      "mustNotOwn": [
+        "чужой detail-интент",
+        "неподтверждённое доказательство",
+        "обещание результата"
+      ],
+      "primaryUserQuestion": "Как подготовить планировку и данные для проекта кухни?",
+      "entryContexts": [
+        "подготовить дизайн-проект",
+        "переход из /"
+      ],
+      "decisionPoint": "Проверить условие и перейти к проекту, расчёту или заявке.",
+      "visualRole": "Процессный или сервисный visual без ложных гарантий.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 2,
+      "status": "approved"
+    },
+    {
+      "route": "/prices",
+      "family": "service",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "понять структуру цены",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Из чего складывается стоимость кухни?",
+        "Показать состав и границы комплектаций только по актуальным правилам расчёта."
+      ],
+      "mustNotOwn": [
+        "чужой detail-интент",
+        "неподтверждённое доказательство",
+        "обещание результата"
+      ],
+      "primaryUserQuestion": "Из чего складывается стоимость кухни?",
+      "entryContexts": [
+        "понять структуру цены",
+        "переход из /"
+      ],
+      "decisionPoint": "Проверить условие и перейти к проекту, расчёту или заявке.",
+      "visualRole": "Процессный или сервисный visual без ложных гарантий.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 9,
+      "status": "approved"
+    },
+    {
+      "route": "/contacts",
+      "family": "service",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "выбрать канал связи",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как связаться и передать контекст задачи?",
+        "Показать только подтверждённые контакты и безопасный следующий шаг."
+      ],
+      "mustNotOwn": [
+        "чужой detail-интент",
+        "неподтверждённое доказательство",
+        "обещание результата"
+      ],
+      "primaryUserQuestion": "Как связаться и передать контекст задачи?",
+      "entryContexts": [
+        "выбрать канал связи",
+        "переход из /"
+      ],
+      "decisionPoint": "Проверить условие и перейти к проекту, расчёту или заявке.",
+      "visualRole": "Процессный или сервисный visual без ложных гарантий.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 9,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio",
+      "family": "portfolio listing",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "проверить реальные работы",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие подтверждённые кухни действительно выполнены компанией?",
+        "Показывать как «Наши работы» только объекты, прошедшие provenance gate."
+      ],
+      "mustNotOwn": [
+        "AI-концепт как реализованный объект",
+        "выбор материала как основной интент",
+        "точная цена"
+      ],
+      "primaryUserQuestion": "Какие подтверждённые кухни действительно выполнены компанией?",
+      "entryContexts": [
+        "проверить реальные работы",
+        "переход из /"
+      ],
+      "decisionPoint": "Выбрать подтверждённый объект для подробной проверки.",
+      "visualRole": "Галерея только evidence-approved работ.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/reviews",
+      "family": "trust",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "проверить опыт клиентов",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие отзывы имеют подтверждённый источник?",
+        "Отделить подтверждённые отзывы от неподтверждённых заявлений и не создавать fake rating."
+      ],
+      "mustNotOwn": [
+        "неподтверждённые регалии",
+        "выдуманный отзыв",
+        "точная цена"
+      ],
+      "primaryUserQuestion": "Какие отзывы имеют подтверждённый источник?",
+      "entryContexts": [
+        "проверить опыт клиентов",
+        "переход из /"
+      ],
+      "decisionPoint": "Проверить ответственность и перейти к условиям или заявке.",
+      "visualRole": "Проверяемые факты и условия без декоративного proof.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 9,
+      "status": "approved"
+    },
+    {
+      "route": "/blog",
+      "family": "blog listing",
+      "tier": "C",
+      "parentHub": "/",
+      "ownedIntent": "выбрать практический вопрос",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Что изучить до заказа кухни?",
+        "Развести 24 статьи по одному вопросу и вести к релевантному коммерческому шагу."
+      ],
+      "mustNotOwn": [
+        "коммерческий detail-интент",
+        "точная цена",
+        "локальное доказательство"
+      ],
+      "primaryUserQuestion": "Что изучить до заказа кухни?",
+      "entryContexts": [
+        "выбрать практический вопрос",
+        "переход из /"
+      ],
+      "decisionPoint": "Выбрать один информационный вопрос.",
+      "visualRole": "Спокойная навигация по вопросам без принудительной галереи.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/delivery-installation",
+      "family": "service",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "понять доставку и монтаж",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как фактически проходят доставка и установка?",
+        "Показать подтверждённые этапы, границы ответственности и подготовку помещения."
+      ],
+      "mustNotOwn": [
+        "чужой detail-интент",
+        "неподтверждённое доказательство",
+        "обещание результата"
+      ],
+      "primaryUserQuestion": "Как фактически проходят доставка и установка?",
+      "entryContexts": [
+        "понять доставку и монтаж",
+        "переход из /"
+      ],
+      "decisionPoint": "Проверить условие и перейти к проекту, расчёту или заявке.",
+      "visualRole": "Процессный или сервисный visual без ложных гарантий.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 9,
+      "status": "approved"
+    },
+    {
+      "route": "/styles",
+      "family": "hub",
+      "tier": "A",
+      "parentHub": "/",
+      "ownedIntent": "выбрать визуальное направление",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какой стиль подходит по признакам и ограничениям?",
+        "Сравнить стили по композиции и материалам, а не только по цвету."
+      ],
+      "mustNotOwn": [
+        "интент конкретной detail-страницы",
+        "точная стоимость",
+        "неподтверждённый proof"
+      ],
+      "primaryUserQuestion": "Какой стиль подходит по признакам и ограничениям?",
+      "entryContexts": [
+        "выбрать визуальное направление",
+        "переход из /"
+      ],
+      "decisionPoint": "Выбрать один тематический detail-маршрут.",
+      "visualRole": "Обзор вариантов внутри тематического семейства.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/materials",
+      "family": "material listing",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "выбрать материал или механизм",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Из чего собрать кухню под свои условия?",
+        "Развести фасады, поверхности и фурнитуру по эксплуатационным решениям."
+      ],
+      "mustNotOwn": [
+        "точная характеристика без образца",
+        "стиль",
+        "реальный проект"
+      ],
+      "primaryUserQuestion": "Из чего собрать кухню под свои условия?",
+      "entryContexts": [
+        "выбрать материал или механизм",
+        "переход из /"
+      ],
+      "decisionPoint": "Выбрать группу поверхности или конструкции для проверки.",
+      "visualRole": "Сравнение групп материалов без неподтверждённых claims.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/materials/furnitura",
+      "family": "hardware",
+      "tier": "B",
+      "parentHub": "/materials",
+      "ownedIntent": "выбрать механизмы кухни",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как работают механизмы и где оправдана комплектация?",
+        "Объяснить функции фурнитуры и компромиссы без неподтверждённых brand/spec claims."
+      ],
+      "mustNotOwn": [
+        "гарантированная совместимость",
+        "точная комплектация",
+        "точная цена"
+      ],
+      "primaryUserQuestion": "Как работают механизмы и где оправдана комплектация?",
+      "entryContexts": [
+        "выбрать механизмы кухни",
+        "переход из /materials"
+      ],
+      "decisionPoint": "Выбрать механизм и сформировать вопросы к проекту.",
+      "visualRole": "Техническая иллюстрация механизма с evidence boundary.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/materials",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/materials/ldsp",
+      "family": "material detail",
+      "tier": "B",
+      "parentHub": "/materials",
+      "ownedIntent": "оценить ЛДСП для кухни",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Когда ЛДСП достаточно по нагрузке, уходу и бюджету?",
+        "Дать decision model применимости ЛДСП, а не общий каталог фасадов."
+      ],
+      "mustNotOwn": [
+        "точная характеристика без evidence",
+        "стиль",
+        "гарантированная совместимость"
+      ],
+      "primaryUserQuestion": "Когда ЛДСП достаточно по нагрузке, уходу и бюджету?",
+      "entryContexts": [
+        "оценить ЛДСП для кухни",
+        "переход из /materials"
+      ],
+      "decisionPoint": "Определить, что проверить на образце и куда перейти дальше.",
+      "visualRole": "Наблюдаемая поверхность и честные вопросы к образцу.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/materials",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/materials/mdf-fasady",
+      "family": "material detail",
+      "tier": "B",
+      "parentHub": "/materials",
+      "ownedIntent": "выбрать основу и покрытие МДФ",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какой вариант МДФ подходит по виду, уходу и ограничениям?",
+        "Сравнить покрытия МДФ и показать применимость без смешения с отдельной эмалью."
+      ],
+      "mustNotOwn": [
+        "точная характеристика без evidence",
+        "стиль",
+        "гарантированная совместимость"
+      ],
+      "primaryUserQuestion": "Какой вариант МДФ подходит по виду, уходу и ограничениям?",
+      "entryContexts": [
+        "выбрать основу и покрытие МДФ",
+        "переход из /materials"
+      ],
+      "decisionPoint": "Определить, что проверить на образце и куда перейти дальше.",
+      "visualRole": "Наблюдаемая поверхность и честные вопросы к образцу.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/materials",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/materials/plastik-hpl",
+      "family": "material detail",
+      "tier": "B",
+      "parentHub": "/materials",
+      "ownedIntent": "оценить HPL-поверхность",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Где HPL оправдан по эксплуатации и уходу?",
+        "Разобрать свойства HPL как поверхности и сравнить с альтернативами."
+      ],
+      "mustNotOwn": [
+        "точная характеристика без evidence",
+        "стиль",
+        "гарантированная совместимость"
+      ],
+      "primaryUserQuestion": "Где HPL оправдан по эксплуатации и уходу?",
+      "entryContexts": [
+        "оценить HPL-поверхность",
+        "переход из /materials"
+      ],
+      "decisionPoint": "Определить, что проверить на образце и куда перейти дальше.",
+      "visualRole": "Наблюдаемая поверхность и честные вопросы к образцу.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/materials",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/materials/shpon",
+      "family": "material detail",
+      "tier": "B",
+      "parentHub": "/materials",
+      "ownedIntent": "оценить натуральную фактуру шпона",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Когда шпон подходит и какие ограничения ухода учитывать?",
+        "Сфокусироваться на натуральной фактуре, вариативности и эксплуатации."
+      ],
+      "mustNotOwn": [
+        "точная характеристика без evidence",
+        "стиль",
+        "гарантированная совместимость"
+      ],
+      "primaryUserQuestion": "Когда шпон подходит и какие ограничения ухода учитывать?",
+      "entryContexts": [
+        "оценить натуральную фактуру шпона",
+        "переход из /materials"
+      ],
+      "decisionPoint": "Определить, что проверить на образце и куда перейти дальше.",
+      "visualRole": "Наблюдаемая поверхность и честные вопросы к образцу.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/materials",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/scenarios",
+      "family": "hub",
+      "tier": "A",
+      "parentHub": "/",
+      "ownedIntent": "выбрать кухню по бытовой задаче",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какая кухня подходит моему образу жизни и помещению?",
+        "Начать с задачи пользователя и вывести к форме, материалу и бюджету."
+      ],
+      "mustNotOwn": [
+        "интент конкретной detail-страницы",
+        "точная стоимость",
+        "неподтверждённый proof"
+      ],
+      "primaryUserQuestion": "Какая кухня подходит моему образу жизни и помещению?",
+      "entryContexts": [
+        "выбрать кухню по бытовой задаче",
+        "переход из /"
+      ],
+      "decisionPoint": "Выбрать один тематический detail-маршрут.",
+      "visualRole": "Обзор вариантов внутри тематического семейства.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/locations",
+      "family": "location hub",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "проверить географию работ",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Где компания подтверждённо выполняет заказы?",
+        "Показать зоны работы и evidence gaps без выдуманных филиалов."
+      ],
+      "mustNotOwn": [
+        "локальное доказательство конкретного города",
+        "точные условия выезда",
+        "точная цена"
+      ],
+      "primaryUserQuestion": "Где компания подтверждённо выполняет заказы?",
+      "entryContexts": [
+        "проверить географию работ",
+        "переход из /"
+      ],
+      "decisionPoint": "Выбрать город и открыть подтверждённый путь заказа.",
+      "visualRole": "Карта доступных направлений без выдуманного local proof.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/warranty",
+      "family": "service",
+      "tier": "B",
+      "parentHub": "/",
+      "ownedIntent": "понять гарантийные условия",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие подтверждённые условия действуют после монтажа?",
+        "Изложить только договорные случаи, исключения и канал обращения."
+      ],
+      "mustNotOwn": [
+        "чужой detail-интент",
+        "неподтверждённое доказательство",
+        "обещание результата"
+      ],
+      "primaryUserQuestion": "Какие подтверждённые условия действуют после монтажа?",
+      "entryContexts": [
+        "понять гарантийные условия",
+        "переход из /"
+      ],
+      "decisionPoint": "Проверить условие и перейти к проекту, расчёту или заявке.",
+      "visualRole": "Процессный или сервисный visual без ложных гарантий.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/",
+      "recommendedWave": 9,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog/uglovye-kuhni",
+      "family": "catalog detail",
+      "tier": "A",
+      "parentHub": "/catalog",
+      "ownedIntent": "выбрать угловую планировку",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Подойдёт ли две стены и как использовать угол?",
+        "Проверить угол, хранение, рабочие зоны и ограничения проходов."
+      ],
+      "mustNotOwn": [
+        "владение стилевым интентом",
+        "точная стоимость",
+        "доказательство реализации без evidence"
+      ],
+      "primaryUserQuestion": "Подойдёт ли две стены и как использовать угол?",
+      "entryContexts": [
+        "выбрать угловую планировку",
+        "переход из /catalog"
+      ],
+      "decisionPoint": "Проверить форму и сравнить ближайшую альтернативу.",
+      "visualRole": "Route-specific проверка геометрии и бытового использования.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/catalog",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog/pryamye-kuhni",
+      "family": "catalog detail",
+      "tier": "A",
+      "parentHub": "/catalog",
+      "ownedIntent": "выбрать прямую планировку",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Когда одной линии достаточно и как расставить зоны?",
+        "Показать ограничения длины и последовательность рабочих зон."
+      ],
+      "mustNotOwn": [
+        "владение стилевым интентом",
+        "точная стоимость",
+        "доказательство реализации без evidence"
+      ],
+      "primaryUserQuestion": "Когда одной линии достаточно и как расставить зоны?",
+      "entryContexts": [
+        "выбрать прямую планировку",
+        "переход из /catalog"
+      ],
+      "decisionPoint": "Проверить форму и сравнить ближайшую альтернативу.",
+      "visualRole": "Route-specific проверка геометрии и бытового использования.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/catalog",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog/p-obraznye-kuhni",
+      "family": "catalog detail",
+      "tier": "A",
+      "parentHub": "/catalog",
+      "ownedIntent": "выбрать П-образную планировку",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Хватит ли места для трёх сторон и безопасных проходов?",
+        "Проверить проходы, углы и распределение трёх рабочих сторон."
+      ],
+      "mustNotOwn": [
+        "владение стилевым интентом",
+        "точная стоимость",
+        "доказательство реализации без evidence"
+      ],
+      "primaryUserQuestion": "Хватит ли места для трёх сторон и безопасных проходов?",
+      "entryContexts": [
+        "выбрать П-образную планировку",
+        "переход из /catalog"
+      ],
+      "decisionPoint": "Проверить форму и сравнить ближайшую альтернативу.",
+      "visualRole": "Route-specific проверка геометрии и бытового использования.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/catalog",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog/kuhni-s-ostrovom",
+      "family": "catalog detail",
+      "tier": "A",
+      "parentHub": "/catalog",
+      "ownedIntent": "выбрать кухню с островом",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Поместится ли остров и какую функцию ему дать?",
+        "Проверить проходы, коммуникации и роли острова в конкретной схеме."
+      ],
+      "mustNotOwn": [
+        "владение стилевым интентом",
+        "точная стоимость",
+        "доказательство реализации без evidence"
+      ],
+      "primaryUserQuestion": "Поместится ли остров и какую функцию ему дать?",
+      "entryContexts": [
+        "выбрать кухню с островом",
+        "переход из /catalog"
+      ],
+      "decisionPoint": "Проверить форму и сравнить ближайшую альтернативу.",
+      "visualRole": "Route-specific проверка геометрии и бытового использования.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/catalog",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog/malenkie-kuhni",
+      "family": "catalog detail",
+      "tier": "A",
+      "parentHub": "/catalog",
+      "ownedIntent": "выбрать решение для малой площади",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как сохранить рабочую зону и хранение в маленькой кухне?",
+        "Сопоставить компактные layout-приёмы и реальные ограничения помещения."
+      ],
+      "mustNotOwn": [
+        "владение стилевым интентом",
+        "точная стоимость",
+        "доказательство реализации без evidence"
+      ],
+      "primaryUserQuestion": "Как сохранить рабочую зону и хранение в маленькой кухне?",
+      "entryContexts": [
+        "выбрать решение для малой площади",
+        "переход из /catalog"
+      ],
+      "decisionPoint": "Проверить форму и сравнить ближайшую альтернативу.",
+      "visualRole": "Route-specific проверка геометрии и бытового использования.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/catalog",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog/kuhni-do-potolka",
+      "family": "catalog detail",
+      "tier": "A",
+      "parentHub": "/catalog",
+      "ownedIntent": "выбрать вертикальное хранение",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Стоит ли поднимать шкафы до потолка и как ими пользоваться?",
+        "Проверить доступ, объём хранения, вентиляцию и ограничения верхних секций."
+      ],
+      "mustNotOwn": [
+        "владение стилевым интентом",
+        "точная стоимость",
+        "доказательство реализации без evidence"
+      ],
+      "primaryUserQuestion": "Стоит ли поднимать шкафы до потолка и как ими пользоваться?",
+      "entryContexts": [
+        "выбрать вертикальное хранение",
+        "переход из /catalog"
+      ],
+      "decisionPoint": "Проверить форму и сравнить ближайшую альтернативу.",
+      "visualRole": "Route-specific проверка геометрии и бытового использования.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/catalog",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/catalog/kuhni-bez-ruchek",
+      "family": "catalog detail",
+      "tier": "A",
+      "parentHub": "/catalog",
+      "ownedIntent": "выбрать способ открывания без ручек",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какой механизм без ручек подходит и какие у него ограничения?",
+        "Сравнить способы открывания как планировочное и эксплуатационное решение."
+      ],
+      "mustNotOwn": [
+        "владение стилевым интентом",
+        "точная стоимость",
+        "доказательство реализации без evidence"
+      ],
+      "primaryUserQuestion": "Какой механизм без ручек подходит и какие у него ограничения?",
+      "entryContexts": [
+        "выбрать способ открывания без ручек",
+        "переход из /catalog"
+      ],
+      "decisionPoint": "Проверить форму и сравнить ближайшую альтернативу.",
+      "visualRole": "Route-specific проверка геометрии и бытового использования.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/catalog",
+      "recommendedWave": 3,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/neoklassika",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать неоклассический стиль",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как получить классическую выразительность без перегруза?",
+        "Разобрать пропорции, фасады, детали и ограничения неоклассики."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Как получить классическую выразительность без перегруза?",
+      "entryContexts": [
+        "выбрать неоклассический стиль",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/hay-tek",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать хай-тек",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как устроить технологичный интерьер без декоративного шума?",
+        "Связать гладкие поверхности, интеграцию техники и функциональные детали."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Как устроить технологичный интерьер без декоративного шума?",
+      "entryContexts": [
+        "выбрать хай-тек",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/provans",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать прованс",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как использовать мягкие детали и не перегрузить кухню декором?",
+        "Показать характерные детали, материалы и границы декоративности."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Как использовать мягкие детали и не перегрузить кухню декором?",
+      "entryContexts": [
+        "выбрать прованс",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/loft",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать лофт",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как сочетать индустриальные материалы с удобной кухней?",
+        "Сопоставить фактуры, открытые элементы и практические ограничения."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Как сочетать индустриальные материалы с удобной кухней?",
+      "entryContexts": [
+        "выбрать лофт",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/sovremennye",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать современный стиль",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие решения делают кухню современной, но не привязывают к одному подстилю?",
+        "Дать базовую рамку актуальной функциональной композиции и направить к более узким стилям."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Какие решения делают кухню современной, но не привязывают к одному подстилю?",
+      "entryContexts": [
+        "выбрать современный стиль",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/skandinavskie",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать скандинавский стиль",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как совместить светлый образ, тепло и практичность?",
+        "Разобрать свет, натуральные фактуры, простоту и эксплуатационные компромиссы."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Как совместить светлый образ, тепло и практичность?",
+      "entryContexts": [
+        "выбрать скандинавский стиль",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/klassicheskie",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать классический стиль",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие пропорции и детали создают классическую кухню?",
+        "Показать классическую композицию и её требования к пространству и уходу."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Какие пропорции и детали создают классическую кухню?",
+      "entryContexts": [
+        "выбрать классический стиль",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/styles/minimalizm",
+      "family": "style",
+      "tier": "A",
+      "parentHub": "/styles",
+      "ownedIntent": "выбрать минимализм",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как убрать визуальный шум без потери удобства?",
+        "Связать скрытое хранение, чистые линии и требования к дисциплине поверхности."
+      ],
+      "mustNotOwn": [
+        "владение планировкой",
+        "характеристика материала",
+        "реальный проект без evidence"
+      ],
+      "primaryUserQuestion": "Как убрать визуальный шум без потери удобства?",
+      "entryContexts": [
+        "выбрать минимализм",
+        "переход из /styles"
+      ],
+      "decisionPoint": "Выбрать выраженность стиля и следующий материал или форму.",
+      "visualRole": "Route-specific визуальный язык стиля.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/styles",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/materials/akril",
+      "family": "material detail",
+      "tier": "B",
+      "parentHub": "/materials",
+      "ownedIntent": "оценить акриловые фасады",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Когда акрил оправдан по виду и эксплуатации?",
+        "Сравнить глянец, уход и ограничения акрила без недоказанных характеристик."
+      ],
+      "mustNotOwn": [
+        "точная характеристика без evidence",
+        "стиль",
+        "гарантированная совместимость"
+      ],
+      "primaryUserQuestion": "Когда акрил оправдан по виду и эксплуатации?",
+      "entryContexts": [
+        "оценить акриловые фасады",
+        "переход из /materials"
+      ],
+      "decisionPoint": "Определить, что проверить на образце и куда перейти дальше.",
+      "visualRole": "Наблюдаемая поверхность и честные вопросы к образцу.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/materials",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/materials/mdf-emal",
+      "family": "material detail",
+      "tier": "B",
+      "parentHub": "/materials",
+      "ownedIntent": "оценить окрашенный МДФ",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Когда эмаль на МДФ подходит по цвету, ремонту и уходу?",
+        "Владеть вопросом окрашенного покрытия, не дублируя общий МДФ."
+      ],
+      "mustNotOwn": [
+        "точная характеристика без evidence",
+        "стиль",
+        "гарантированная совместимость"
+      ],
+      "primaryUserQuestion": "Когда эмаль на МДФ подходит по цвету, ремонту и уходу?",
+      "entryContexts": [
+        "оценить окрашенный МДФ",
+        "переход из /materials"
+      ],
+      "decisionPoint": "Определить, что проверить на образце и куда перейти дальше.",
+      "visualRole": "Наблюдаемая поверхность и честные вопросы к образцу.",
+      "proofRequirement": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/materials",
+      "recommendedWave": 4,
+      "status": "approved"
+    },
+    {
+      "route": "/scenarios/s-ostrovom",
+      "family": "scenario",
+      "tier": "A",
+      "parentHub": "/scenarios",
+      "ownedIntent": "решить бытовую задачу с островом",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Для каких ежедневных действий нужен остров?",
+        "Начать с сценария готовки, общения и хранения, затем проверить layout."
+      ],
+      "mustNotOwn": [
+        "владение формой",
+        "характеристика материала",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Для каких ежедневных действий нужен остров?",
+      "entryContexts": [
+        "решить бытовую задачу с островом",
+        "переход из /scenarios"
+      ],
+      "decisionPoint": "Выбрать приоритет и допустимый компромисс.",
+      "visualRole": "Route-specific изменение бытового сценария.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/scenarios",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/scenarios/do-potolka",
+      "family": "scenario",
+      "tier": "A",
+      "parentHub": "/scenarios",
+      "ownedIntent": "увеличить вертикальное хранение",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие вещи и как хранить в верхних секциях?",
+        "Оценить частоту доступа и организацию хранения до выбора конфигурации."
+      ],
+      "mustNotOwn": [
+        "владение формой",
+        "характеристика материала",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие вещи и как хранить в верхних секциях?",
+      "entryContexts": [
+        "увеличить вертикальное хранение",
+        "переход из /scenarios"
+      ],
+      "decisionPoint": "Выбрать приоритет и допустимый компромисс.",
+      "visualRole": "Route-specific изменение бытового сценария.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/scenarios",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/scenarios/dlya-semi",
+      "family": "scenario",
+      "tier": "A",
+      "parentHub": "/scenarios",
+      "ownedIntent": "выбрать кухню для семьи",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как организовать совместную готовку, хранение и безопасность?",
+        "Сформировать требования семьи к зонам, доступу и повседневной нагрузке."
+      ],
+      "mustNotOwn": [
+        "владение формой",
+        "характеристика материала",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как организовать совместную готовку, хранение и безопасность?",
+      "entryContexts": [
+        "выбрать кухню для семьи",
+        "переход из /scenarios"
+      ],
+      "decisionPoint": "Выбрать приоритет и допустимый компромисс.",
+      "visualRole": "Route-specific изменение бытового сценария.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/scenarios",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/scenarios/dlya-studii",
+      "family": "scenario",
+      "tier": "A",
+      "parentHub": "/scenarios",
+      "ownedIntent": "выбрать кухню для студии",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как вписать кухню в общее пространство и контролировать визуальный шум?",
+        "Свести зонирование, хранение, технику и внешний вид для студии."
+      ],
+      "mustNotOwn": [
+        "владение формой",
+        "характеристика материала",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как вписать кухню в общее пространство и контролировать визуальный шум?",
+      "entryContexts": [
+        "выбрать кухню для студии",
+        "переход из /scenarios"
+      ],
+      "decisionPoint": "Выбрать приоритет и допустимый компромисс.",
+      "visualRole": "Route-specific изменение бытового сценария.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/scenarios",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/scenarios/dlya-malenkoy-kuhni",
+      "family": "scenario",
+      "tier": "A",
+      "parentHub": "/scenarios",
+      "ownedIntent": "решить ограничения маленькой кухни",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие приоритеты сохранить при дефиците площади?",
+        "Помочь ранжировать рабочую поверхность, хранение, технику и проходы."
+      ],
+      "mustNotOwn": [
+        "владение формой",
+        "характеристика материала",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие приоритеты сохранить при дефиците площади?",
+      "entryContexts": [
+        "решить ограничения маленькой кухни",
+        "переход из /scenarios"
+      ],
+      "decisionPoint": "Выбрать приоритет и допустимый компромисс.",
+      "visualRole": "Route-specific изменение бытового сценария.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/scenarios",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/scenarios/byudzhetnaya-kuhnya",
+      "family": "scenario",
+      "tier": "A",
+      "parentHub": "/scenarios",
+      "ownedIntent": "распределить ограниченный бюджет",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "На чём экономить без ущерба ключевым функциям?",
+        "Разделить обязательное, опциональное и рискованную экономию без выдуманной цены."
+      ],
+      "mustNotOwn": [
+        "владение формой",
+        "характеристика материала",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "На чём экономить без ущерба ключевым функциям?",
+      "entryContexts": [
+        "распределить ограниченный бюджет",
+        "переход из /scenarios"
+      ],
+      "decisionPoint": "Выбрать приоритет и допустимый компромисс.",
+      "visualRole": "Route-specific изменение бытового сценария.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/scenarios",
+      "recommendedWave": 5,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить подтверждённый проект japandi",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как в одном объекте сочетаются japandi и зелёные фасады?",
+        "После provenance gate разобрать задачу, ограничения и решения конкретного объекта, а не только mood."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как в одном объекте сочетаются japandi и зелёные фасады?",
+      "entryContexts": [
+        "изучить подтверждённый проект japandi",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/loft-kuhnya-oreh-poluostrov-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить проект loft с полуостровом",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как ореховая фактура и полуостров решают задачу объекта?",
+        "После gate показать причинную связь планировки, материала и результата."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как ореховая фактура и полуостров решают задачу объекта?",
+      "entryContexts": [
+        "изучить проект loft с полуостровом",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить неоклассический проект",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как синие фасады работают в неоклассической композиции объекта?",
+        "После gate показать фактические ограничения, выбор фасадов и реализованный результат."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как синие фасады работают в неоклассической композиции объекта?",
+      "entryContexts": [
+        "изучить неоклассический проект",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/belaya-kuhnya-do-potolka-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить проект до потолка",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как верхние секции и белые фасады решают хранение конкретного объекта?",
+        "После gate связать замеры, доступ, хранение и фактический результат."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как верхние секции и белые фасады решают хранение конкретного объекта?",
+      "entryContexts": [
+        "изучить проект до потолка",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-zelenyj-akcent-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить проект кухни с островом",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как остров и зелёный акцент работают в конкретном объекте?",
+        "После gate показать функции острова, проходы и подтверждённый итог."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как остров и зелёный акцент работают в конкретном объекте?",
+      "entryContexts": [
+        "изучить проект кухни с островом",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-studiya-dubovaya-nisha-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить прямую кухню для студии",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как прямая линия и дубовая ниша решают задачу студии?",
+        "После gate объяснить зонирование и хранение на фактических ограничениях объекта."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как прямая линия и дубовая ниша решают задачу студии?",
+      "entryContexts": [
+        "изучить прямую кухню для студии",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/seraya-uglovaya-kuhnya-novostrojka-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить угловой проект новостройки",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как угловая схема адаптирована к ограничениям новостройки?",
+        "После gate показать замер, угол, инженерные ограничения и результат."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как угловая схема адаптирована к ограничениям новостройки?",
+      "entryContexts": [
+        "изучить угловой проект новостройки",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-dlya-studii-brest",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить проект студии в Бресте",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие ограничения студии решены прямой кухней в этом объекте?",
+        "После gate показать объект, логистику и решение без выдуманного локального присутствия."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Какие ограничения студии решены прямой кухней в этом объекте?",
+      "entryContexts": [
+        "изучить проект студии в Бресте",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-grodno",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить островной проект в Гродно",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как остров реализован в подтверждённом объекте Гродно?",
+        "После gate раскрыть геометрию, функции острова и фактическую логистику."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как остров реализован в подтверждённом объекте Гродно?",
+      "entryContexts": [
+        "изучить островной проект в Гродно",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/neoklassicheskaya-kuhnya-vitebsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить неоклассический проект в Витебске",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Что определило неоклассическое решение этого объекта?",
+        "После gate показать реальные ограничения, материал и подтверждённый региональный процесс."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Что определило неоклассическое решение этого объекта?",
+      "entryContexts": [
+        "изучить неоклассический проект в Витебске",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/malenkaya-kuhnya-gomel",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить малую кухню в Гомеле",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие приоритеты помогли решить маленькое пространство объекта?",
+        "После gate показать измеримые ограничения и реализованный trade-off."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Какие приоритеты помогли решить маленькое пространство объекта?",
+      "entryContexts": [
+        "изучить малую кухню в Гомеле",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/kuhnya-do-potolka-mogilev",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить проект до потолка в Могилёве",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как вертикальное хранение реализовано в подтверждённом объекте?",
+        "После gate связать размеры, доступ и региональный процесс с доказанным результатом."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как вертикальное хранение реализовано в подтверждённом объекте?",
+      "entryContexts": [
+        "изучить проект до потолка в Могилёве",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk",
+      "family": "portfolio detail",
+      "tier": "B",
+      "parentHub": "/portfolio",
+      "ownedIntent": "изучить угловой проект новостройки",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как угловая планировка решает ограничения конкретной новостройки?",
+        "После gate раскрыть исходные данные, решение угла и фактический результат."
+      ],
+      "mustNotOwn": [
+        "обобщённый каталог",
+        "неподтверждённые характеристики",
+        "точная цена другого проекта"
+      ],
+      "primaryUserQuestion": "Как угловая планировка решает ограничения конкретной новостройки?",
+      "entryContexts": [
+        "изучить угловой проект новостройки",
+        "переход из /portfolio"
+      ],
+      "decisionPoint": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "visualRole": "Доказательная последовательность одного объекта.",
+      "proofRequirement": "Только verified project evidence из принятого источника.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/portfolio",
+      "recommendedWave": 7,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "узнать актуальный ориентир цены в Минске",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие факторы формируют цену кухни в Минске в 2026 году?",
+        "Дать датированный разбор только по подтверждённым pricing rules и явно ограничить срок актуальности."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие факторы формируют цену кухни в Минске в 2026 году?",
+      "entryContexts": [
+        "узнать актуальный ориентир цены в Минске",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/uglovaya-kuhnya-razmery-planirovka",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "изучить размеры угловой кухни",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие размеры и зоны проверить перед выбором угловой схемы?",
+        "Объяснить измерения и типовые ошибки, не заменяя commercial layout page."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие размеры и зоны проверить перед выбором угловой схемы?",
+      "entryContexts": [
+        "изучить размеры угловой кухни",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "оценить плюсы, минусы и цену кухни до потолка",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Кому подходит кухня до потолка и какие компромиссы учитывать?",
+        "Свести преимущества, ограничения и price factors без дублирования configurator."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Кому подходит кухня до потолка и какие компромиссы учитывать?",
+      "entryContexts": [
+        "оценить плюсы, минусы и цену кухни до потолка",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-na-zakaz-ili-gotovaya-chto-vygodnee",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "сравнить заказную и готовую кухню",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как сравнить два подхода по fit, срокам, рискам и бюджету?",
+        "Дать нейтральную decision table без недоказанных цен и сроков."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Как сравнить два подхода по fit, срокам, рискам и бюджету?",
+      "entryContexts": [
+        "сравнить заказную и готовую кухню",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-dlya-novostroyki-v-minske-do-zamera",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "подготовить новостройку к замеру",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Что проверить в новостройке до замера кухни?",
+        "Дать локально релевантный checklist только на подтверждённых процессах, без выдуманных норм."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Что проверить в новостройке до замера кухни?",
+      "entryContexts": [
+        "подготовить новостройку к замеру",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "распределить бюджет по составляющим",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как разложить бюджет на материалы, фурнитуру и монтаж?",
+        "Дать структуру сметы и evidence gaps, не выдавая формулу за оферту."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Как разложить бюджет на материалы, фурнитуру и монтаж?",
+      "entryContexts": [
+        "распределить бюджет по составляющим",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/oshibki-pri-zakaze-kuhni-15-punktov-pered-dogovorom",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "проверить заказ перед договором",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие риски проверить до подписания договора?",
+        "Дать 15 проверяемых пунктов без юридических гарантий и неподтверждённых claims."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие риски проверить до подписания договора?",
+      "entryContexts": [
+        "проверить заказ перед договором",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/materialy-dlya-kuhni-ldsp-mdf-emal-hpl-shpon",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "сравнить основные материалы",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Чем отличаются ЛДСП, МДФ, эмаль, HPL и шпон для разных задач?",
+        "Дать верхнеуровневую сравнительную рамку и вести на detail pages."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Чем отличаются ЛДСП, МДФ, эмаль, HPL и шпон для разных задач?",
+      "entryContexts": [
+        "сравнить основные материалы",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/uglovaya-kuhnya-ili-pryamaya-chto-vybrat",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "сравнить угловую и прямую формы",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какая из двух планировок лучше подходит ограничениям помещения?",
+        "Дать decision tree между двумя формами, не продавать обе на одной странице."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какая из двух планировок лучше подходит ограничениям помещения?",
+      "entryContexts": [
+        "сравнить угловую и прямую формы",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kak-podgotovitsya-k-zameru-kuhni",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "подготовиться к замеру",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие данные и условия подготовить перед приездом замерщика?",
+        "Дать универсальный operational checklist и границы ответственности."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие данные и условия подготовить перед приездом замерщика?",
+      "entryContexts": [
+        "подготовиться к замеру",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-dlya-chastnogo-doma-planirovka-hranenie-tehnika",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "спланировать кухню в частном доме",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие особенности дома влияют на layout, хранение и технику?",
+        "Свести автономные коммуникации, масштабы и бытовые сценарии без фиктивных норм."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие особенности дома влияют на layout, хранение и технику?",
+      "entryContexts": [
+        "спланировать кухню в частном доме",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-6-kv-m-v-hruschevke",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "решить кухню 6 м² в хрущёвке",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие решения реально помещаются на 6 м² и какие компромиссы неизбежны?",
+        "Дать размерно-ограниченный кейс, не обобщая его на все маленькие кухни."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие решения реально помещаются на 6 м² и какие компромиссы неизбежны?",
+      "entryContexts": [
+        "решить кухню 6 м² в хрущёвке",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/chto-vhodit-v-stoimost-kuhni-na-zakaz",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "понять состав стоимости",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие работы и элементы входят или не входят в стоимость?",
+        "Дать checklist состава цены, не публикуя неподтверждённый прайс."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие работы и элементы входят или не входят в стоимость?",
+      "entryContexts": [
+        "понять состав стоимости",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-pod-vstroennuyu-tehniku",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "подготовить кухню под встроенную технику",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие размеры, вентиляцию и сервисный доступ учесть?",
+        "Дать технический preparation map без выдуманных характеристик конкретных моделей."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие размеры, вентиляцию и сервисный доступ учесть?",
+      "entryContexts": [
+        "подготовить кухню под встроенную технику",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/p-obraznaya-kuhnya-razmery-prohody-cena",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "оценить П-образную планировку",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие размеры, проходы и price factors проверить?",
+        "Дать предварительную проверку применимости и вести к commercial page."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие размеры, проходы и price factors проверить?",
+      "entryContexts": [
+        "оценить П-образную планировку",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kak-vybrat-kuhnyu",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "пройти общий путь выбора",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "В какой последовательности выбрать форму, стиль, материалы и бюджет?",
+        "Дать evergreen roadmap и распределить пользователя по узким hubs."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "В какой последовательности выбрать форму, стиль, материалы и бюджет?",
+      "entryContexts": [
+        "пройти общий путь выбора",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/skolko-stoit-kuhnya-na-zakaz",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "понять evergreen price factors",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "От каких факторов обычно зависит стоимость кухни на заказ?",
+        "Объяснить стабильные факторы без года, города и недоказанных цифр."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "От каких факторов обычно зависит стоимость кухни на заказ?",
+      "entryContexts": [
+        "понять evergreen price factors",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-dlya-malenkoy-kvartiry",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "выбрать кухню для маленькой квартиры",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как учесть не только площадь кухни, но и сценарий всей квартиры?",
+        "Сфокусироваться на квартире, хранении вне кухни и визуальной интеграции."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Как учесть не только площадь кухни, но и сценарий всей квартиры?",
+      "entryContexts": [
+        "выбрать кухню для маленькой квартиры",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kakie-fasady-luchshe",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "выбрать фасады по условиям",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие фасады лучше именно для моих приоритетов?",
+        "Дать criteria-based decision tree и вести к material details."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие фасады лучше именно для моих приоритетов?",
+      "entryContexts": [
+        "выбрать фасады по условиям",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhni-blum-hettich-gtv",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "сравнить бренды фурнитуры по функции",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как сравнивать Blum, Hettich и GTV без выбора только по бренду?",
+        "Сравнить подтверждённые функции и классы механизмов, не публикуя неподтверждённые specs."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Как сравнивать Blum, Hettich и GTV без выбора только по бренду?",
+      "entryContexts": [
+        "сравнить бренды фурнитуры по функции",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-s-ostrovom",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "изучить требования к острову",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие проходы, функции и коммуникации нужны кухне с островом?",
+        "Дать обучающий checklist до выбора коммерческой конфигурации."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Какие проходы, функции и коммуникации нужны кухне с островом?",
+      "entryContexts": [
+        "изучить требования к острову",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kakuyu-planirovku-kuhni-vybrat",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "сравнить все базовые планировки",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как выбрать между прямой, угловой, П-образной и островной схемой?",
+        "Дать верхнеуровневое дерево выбора и вести на detail layout pages."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Как выбрать между прямой, угловой, П-образной и островной схемой?",
+      "entryContexts": [
+        "сравнить все базовые планировки",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kak-vybrat-materialy-dlya-kuhni",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "построить процесс выбора материалов",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "В какой последовательности выбирать корпус, фасады, столешницу и фурнитуру?",
+        "Дать workflow выбора, отличный от сравнительной таблицы конкретных материалов."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "В какой последовательности выбирать корпус, фасады, столешницу и фурнитуру?",
+      "entryContexts": [
+        "построить процесс выбора материалов",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/blog/kuhnya-pod-scenarij-semi-studii-doma",
+      "family": "blog article",
+      "tier": "C",
+      "parentHub": "/blog",
+      "ownedIntent": "сравнить бытовые сценарии",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Чем различаются требования семьи, студии и частного дома?",
+        "Дать cross-scenario comparison и вести на отдельные scenario/detail pages."
+      ],
+      "mustNotOwn": [
+        "основной коммерческий интент detail-страницы",
+        "неподтверждённый proof",
+        "точная персональная цена"
+      ],
+      "primaryUserQuestion": "Чем различаются требования семьи, студии и частного дома?",
+      "entryContexts": [
+        "сравнить бытовые сценарии",
+        "переход из /blog"
+      ],
+      "decisionPoint": "Получить ответ и открыть профильный hub или detail.",
+      "visualRole": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "proofRequirement": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/blog",
+      "recommendedWave": 8,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/vitebsk",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить дальний заказ в Витебске",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Возможны ли замер и монтаж и на каких подтверждённых условиях?",
+        "Дать verified remote path, не обещая филиал, сроки или цену без источника."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Возможны ли замер и монтаж и на каких подтверждённых условиях?",
+      "entryContexts": [
+        "проверить дальний заказ в Витебске",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/gomel",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить дальний заказ в Гомеле",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Возможен ли подтверждённый заказ и как устроена межрегиональная логистика?",
+        "Владеть только доказанным remote-order path; не создавать впечатление филиала."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Возможен ли подтверждённый заказ и как устроена межрегиональная логистика?",
+      "entryContexts": [
+        "проверить дальний заказ в Гомеле",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/grodno",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить дальний заказ в Гродно",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие подтверждённые условия действуют для межрегионального заказа?",
+        "Показать доказанный service path и ограничения без фиктивного локального присутствия."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие подтверждённые условия действуют для межрегионального заказа?",
+      "entryContexts": [
+        "проверить дальний заказ в Гродно",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/molodechno",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Молодечно",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие подтверждённые условия замера и монтажа действуют для адреса?",
+        "Отличаться фактической зоной, графиком/логистикой и evidence, не названием города."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие подтверждённые условия замера и монтажа действуют для адреса?",
+      "entryContexts": [
+        "проверить работу в Молодечно",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/minsk",
+      "family": "location detail",
+      "tier": "A",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить заказ кухни в Минске",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие подтверждённые этапы и условия действуют для заказа в Минске?",
+        "Владеть только доказанным городским путём: замер, проект, доставка, монтаж и локальные примеры."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие подтверждённые этапы и условия действуют для заказа в Минске?",
+      "entryContexts": [
+        "проверить заказ кухни в Минске",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 2,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/brest",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить дальний заказ в Бресте",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как проходит подтверждённый заказ между Минском и Брестом?",
+        "Владеть фактической межрегиональной логистикой и owner-reviewed границами."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как проходит подтверждённый заказ между Минском и Брестом?",
+      "entryContexts": [
+        "проверить дальний заказ в Бресте",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/minskaya-oblast",
+      "family": "location detail",
+      "tier": "A",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить заказ по Минской области",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Чем путь заказа по области отличается от Минска?",
+        "Владеть подтверждёнными зоной выезда и региональной логистикой, а не копией Минска."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Чем путь заказа по области отличается от Минска?",
+      "entryContexts": [
+        "проверить заказ по Минской области",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 2,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/mogilev",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить дальний заказ в Могилёве",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как подтверждается возможность межрегионального заказа?",
+        "Показать только owner-verified service route и ограничения."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как подтверждается возможность межрегионального заказа?",
+      "entryContexts": [
+        "проверить дальний заказ в Могилёве",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/borisov",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить процесс заказа в Борисове",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как проходит заказ для подтверждённой зоны Борисова?",
+        "Process-led pilot: показать фактическую последовательность и local proof только после owner review."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как проходит заказ для подтверждённой зоны Борисова?",
+      "entryContexts": [
+        "проверить процесс заказа в Борисове",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/zhodino",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Жодино",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Входит ли адрес в подтверждённую зону и как проходит заказ?",
+        "Публиковать только city-specific зону, логистику и проверенный пример; иначе фиксировать evidence gap."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Входит ли адрес в подтверждённую зону и как проходит заказ?",
+      "entryContexts": [
+        "проверить работу в Жодино",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/soligorsk",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Солигорске",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как подтверждается возможность дальнего замера, доставки и монтажа?",
+        "Владеть только доказанным remote-order path и границами обслуживания."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как подтверждается возможность дальнего замера, доставки и монтажа?",
+      "entryContexts": [
+        "проверить работу в Солигорске",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/slutsk",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Слуцке",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие этапы и ограничения действуют для заказа из Слуцка?",
+        "Показать подтверждённый маршрут заказа и ограничения зоны, не общий шаблон."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие этапы и ограничения действуют для заказа из Слуцка?",
+      "entryContexts": [
+        "проверить работу в Слуцке",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/fanipol",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Фаниполе",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Входит ли адрес в зону и как организованы замер и монтаж?",
+        "Зафиксировать только подтверждённые условия близкой к Минску зоны и реальную логистику."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Входит ли адрес в зону и как организованы замер и монтаж?",
+      "entryContexts": [
+        "проверить работу в Фаниполе",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/smolevichi",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Смолевичах",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как проверить зону и следующий шаг для адреса в Смолевичах?",
+        "Дать city-specific eligibility и process evidence либо честно оставить gap."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как проверить зону и следующий шаг для адреса в Смолевичах?",
+      "entryContexts": [
+        "проверить работу в Смолевичах",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/dzerzhinsk",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Дзержинске",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие подтверждённые условия заказа действуют по этому направлению?",
+        "Владеть проверенной зоной выезда и фактическим order path."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие подтверждённые условия заказа действуют по этому направлению?",
+      "entryContexts": [
+        "проверить работу в Дзержинске",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/zaslavl",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Заславле",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Чем процесс для адреса в Заславле отличается от Минска?",
+        "Показать подтверждённые границы зоны и логистику, если различие реально существует."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Чем процесс для адреса в Заславле отличается от Минска?",
+      "entryContexts": [
+        "проверить работу в Заславле",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/logoisk",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Логойске",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Входит ли адрес в подтверждённую зону и как устроен выезд?",
+        "Владеть проверяемой зоной и ограничениями выезда, а не универсальным текстом."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Входит ли адрес в подтверждённую зону и как устроен выезд?",
+      "entryContexts": [
+        "проверить работу в Логойске",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/vileyka",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Вилейке",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как подтверждается возможность замера и монтажа в Вилейке?",
+        "Описать только доказанный маршрут выезда и региональные ограничения."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как подтверждается возможность замера и монтажа в Вилейке?",
+      "entryContexts": [
+        "проверить работу в Вилейке",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/nesvizh",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Несвиже",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие фактические этапы доступны для заказа из Несвижа?",
+        "Дать подтверждённую схему удалённого заказа либо явно отметить отсутствие evidence."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие фактические этапы доступны для заказа из Несвижа?",
+      "entryContexts": [
+        "проверить работу в Несвиже",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/berezino",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Березино",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как проверить возможность выезда и монтажа по адресу?",
+        "Владеть только подтверждёнными условиями зоны и процесса."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как проверить возможность выезда и монтажа по адресу?",
+      "entryContexts": [
+        "проверить работу в Березино",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/volozhin",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Воложине",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие ограничения и этапы действуют для адреса в Воложине?",
+        "Показать реальный service path и ограничения без топонимической подстановки."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие ограничения и этапы действуют для адреса в Воложине?",
+      "entryContexts": [
+        "проверить работу в Воложине",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/stolbtsy",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Столбцах",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как организован подтверждённый заказ по этому направлению?",
+        "Владеть проверенной логистикой и зоной, если они подтверждены владельцем."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как организован подтверждённый заказ по этому направлению?",
+      "entryContexts": [
+        "проверить работу в Столбцах",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/uzda",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Узде",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Входит ли адрес в зону и как проходит заказ?",
+        "Публиковать only verified zone/order facts; отсутствие фактов остаётся явным gap."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Входит ли адрес в зону и как проходит заказ?",
+      "entryContexts": [
+        "проверить работу в Узде",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/cherven",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Червене",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие подтверждённые этапы доступны для адреса в Червене?",
+        "Отличаться фактическим маршрутом и ограничениями, а не названием города."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие подтверждённые этапы доступны для адреса в Червене?",
+      "entryContexts": [
+        "проверить работу в Червене",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/maryina-gorka",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Марьиной Горке",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как проверить зону выезда и условия монтажа?",
+        "Зафиксировать подтверждённую зону, логистику и owner-reviewed next step."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как проверить зону выезда и условия монтажа?",
+      "entryContexts": [
+        "проверить работу в Марьиной Горке",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/kletsk",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Клецке",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как подтверждается возможность заказа из Клецка?",
+        "Владеть только доказанным remote-order process и ограничениями."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как подтверждается возможность заказа из Клецка?",
+      "entryContexts": [
+        "проверить работу в Клецке",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/kopyl",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Копыле",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие фактические условия действуют для заказа из Копыля?",
+        "Показать owner-reviewed service path или честно зафиксировать gap."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие фактические условия действуют для заказа из Копыля?",
+      "entryContexts": [
+        "проверить работу в Копыле",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/krupki",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Крупках",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Входит ли адрес в рабочую зону и каков следующий шаг?",
+        "Дать проверяемый eligibility answer и реальный процесс, не generic city copy."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Входит ли адрес в рабочую зону и каков следующий шаг?",
+      "entryContexts": [
+        "проверить работу в Крупках",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/lyuban",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Любани",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как подтверждается возможность замера, доставки и монтажа?",
+        "Владеть доказанной удалённой логистикой и ограничениями."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как подтверждается возможность замера, доставки и монтажа?",
+      "entryContexts": [
+        "проверить работу в Любани",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/myadel",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Мяделе",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Какие этапы доступны для удалённого заказа из Мяделя?",
+        "Показать подтверждённый процесс и service boundaries без выдуманного офиса."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Какие этапы доступны для удалённого заказа из Мяделя?",
+      "entryContexts": [
+        "проверить работу в Мяделе",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    },
+    {
+      "route": "/locations/starye-dorogi",
+      "family": "location detail",
+      "tier": "B",
+      "parentHub": "/locations",
+      "ownedIntent": "проверить работу в Старых Дорогах",
+      "ownershipStatus": "ownership_hypothesis",
+      "supportingIntents": [
+        "Как проверить возможность выезда и монтажа по адресу?",
+        "Дать city-specific verified eligibility и ограничения или evidence gap."
+      ],
+      "mustNotOwn": [
+        "неподтверждённый local proof",
+        "точные сроки",
+        "точная стоимость"
+      ],
+      "primaryUserQuestion": "Как проверить возможность выезда и монтажа по адресу?",
+      "entryContexts": [
+        "проверить работу в Старых Дорогах",
+        "переход из /locations"
+      ],
+      "decisionPoint": "Проверить процесс и передать город в проект или заявку.",
+      "visualRole": "Процесс заказа с честным fallback к общему портфолио.",
+      "proofRequirement": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "conversionPath": "/calculator",
+      "fallbackHub": "/locations",
+      "recommendedWave": 6,
+      "status": "approved"
+    }
+  ],
+  "utilityRoutes": [
+    {
+      "route": "/component-library-preview",
+      "family": "legal/utility",
+      "indexability": "non-indexable",
+      "httpStatus": 404,
+      "intentOwnership": "not_applicable",
+      "fallback": "/"
+    },
+    {
+      "route": "/kitchen-configurator",
+      "family": "redirect utility",
+      "indexability": "non-indexable",
+      "httpStatus": 200,
+      "intentOwnership": "not_applicable",
+      "fallback": "/design-proekt-kuhni"
+    },
+    {
+      "route": "/personal-data",
+      "family": "legal/utility",
+      "indexability": "non-indexable",
+      "httpStatus": 200,
+      "intentOwnership": "not_applicable",
+      "fallback": "/"
+    },
+    {
+      "route": "/privacy-policy",
+      "family": "legal/utility",
+      "indexability": "non-indexable",
+      "httpStatus": 200,
+      "intentOwnership": "not_applicable",
+      "fallback": "/"
+    },
+    {
+      "route": "/terms",
+      "family": "legal/utility",
+      "indexability": "non-indexable",
+      "httpStatus": 200,
+      "intentOwnership": "not_applicable",
+      "fallback": "/"
+    },
+    {
+      "route": "/thanks",
+      "family": "legal/utility",
+      "indexability": "non-indexable",
+      "httpStatus": 200,
+      "intentOwnership": "not_applicable",
+      "fallback": "/"
+    }
+  ],
+  "archetypes": [
+    {
+      "family": "blog article",
+      "routeCount": 24,
+      "purpose": "один информационный вопрос",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Поддерживающая иллюстрация только при смысловой необходимости.",
+      "firstMeaningfulAction": "Получить ответ и открыть профильный hub или detail.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/blog",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "blog listing",
+      "routeCount": 1,
+      "purpose": "информационный hub",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Спокойная навигация по вопросам без принудительной галереи.",
+      "firstMeaningfulAction": "Выбрать один информационный вопрос.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "calculator/tool",
+      "routeCount": 1,
+      "purpose": "ввод исходных параметров",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Пошаговый ввод без создания facet URL.",
+      "firstMeaningfulAction": "Передать допустимые исходные параметры для расчёта.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Передать исходные параметры",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "catalog detail",
+      "routeCount": 7,
+      "purpose": "конкретная планировка и её ограничения",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Route-specific проверка геометрии и бытового использования.",
+      "firstMeaningfulAction": "Проверить форму и сравнить ближайшую альтернативу.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/catalog",
+      "routeSpecificDeviations": [
+        "/catalog/uglovye-kuhni",
+        "/catalog/pryamye-kuhni",
+        "/catalog/p-obraznye-kuhni",
+        "/catalog/kuhni-s-ostrovom",
+        "/catalog/malenkie-kuhni",
+        "/catalog/kuhni-do-potolka",
+        "/catalog/kuhni-bez-ruchek"
+      ]
+    },
+    {
+      "family": "catalog listing",
+      "routeCount": 1,
+      "purpose": "выбор формы и типа кухни",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Сравнение форм и ограничений планировки.",
+      "firstMeaningfulAction": "Выбрать планировку для дальнейшей проверки.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "hardware",
+      "routeCount": 1,
+      "purpose": "механизмы и сценарии использования фурнитуры",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Техническая иллюстрация механизма с evidence boundary.",
+      "firstMeaningfulAction": "Выбрать механизм и сформировать вопросы к проекту.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/materials",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "home",
+      "routeCount": 1,
+      "purpose": "широкий вход и выбор направления",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Навигационный visual hub без смешения идей и реальных объектов.",
+      "firstMeaningfulAction": "Выбрать слой решения: форма, стиль, материал, сценарий, работы или расчёт.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/catalog",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "hub",
+      "routeCount": 2,
+      "purpose": "выбор тематического направления",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Обзор вариантов внутри тематического семейства.",
+      "firstMeaningfulAction": "Выбрать один тематический detail-маршрут.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "location detail",
+      "routeCount": 31,
+      "purpose": "подтверждённый путь заказа в городе",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Процесс заказа с честным fallback к общему портфолио.",
+      "firstMeaningfulAction": "Проверить процесс и передать город в проект или заявку.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/locations",
+      "routeSpecificDeviations": [
+        "/locations/borisov"
+      ]
+    },
+    {
+      "family": "location hub",
+      "routeCount": 1,
+      "purpose": "выбор региона или города",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Карта доступных направлений без выдуманного local proof.",
+      "firstMeaningfulAction": "Выбрать город и открыть подтверждённый путь заказа.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Local proof только при подтверждении exact-city; иначе честный fallback к /portfolio.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "material detail",
+      "routeCount": 6,
+      "purpose": "поверхность, конструкция и вопросы проверки материала",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Наблюдаемая поверхность и честные вопросы к образцу.",
+      "firstMeaningfulAction": "Определить, что проверить на образце и куда перейти дальше.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/materials",
+      "routeSpecificDeviations": [
+        "/materials/mdf-fasady"
+      ]
+    },
+    {
+      "family": "material listing",
+      "routeCount": 1,
+      "purpose": "выбор группы материалов",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Сравнение групп материалов без неподтверждённых claims.",
+      "firstMeaningfulAction": "Выбрать группу поверхности или конструкции для проверки.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Точные свойства и совместимость требуют образца или технического evidence.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "portfolio detail",
+      "routeCount": 13,
+      "purpose": "история одного подтверждённого объекта",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Доказательная последовательность одного объекта.",
+      "firstMeaningfulAction": "Проверить решения объекта и перейти к похожему слою выбора.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Только verified project evidence из принятого источника.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/portfolio",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "portfolio listing",
+      "routeCount": 1,
+      "purpose": "проверка evidence-approved проектов",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Галерея только evidence-approved работ.",
+      "firstMeaningfulAction": "Выбрать подтверждённый объект для подробной проверки.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Только verified project evidence из принятого источника.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "scenario",
+      "routeCount": 6,
+      "purpose": "конкретный жизненный компромисс",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Route-specific изменение бытового сценария.",
+      "firstMeaningfulAction": "Выбрать приоритет и допустимый компромисс.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/scenarios",
+      "routeSpecificDeviations": [
+        "/scenarios/s-ostrovom",
+        "/scenarios/do-potolka",
+        "/scenarios/dlya-semi",
+        "/scenarios/dlya-studii",
+        "/scenarios/dlya-malenkoy-kuhni",
+        "/scenarios/byudzhetnaya-kuhnya"
+      ]
+    },
+    {
+      "family": "service",
+      "routeCount": 5,
+      "purpose": "условия, процесс или коммерческий ориентир страницы",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Процессный или сервисный visual без ложных гарантий.",
+      "firstMeaningfulAction": "Проверить условие и перейти к проекту, расчёту или заявке.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "style",
+      "routeCount": 8,
+      "purpose": "выраженность конкретного стиля",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Route-specific визуальный язык стиля.",
+      "firstMeaningfulAction": "Выбрать выраженность стиля и следующий материал или форму.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/styles",
+      "routeSpecificDeviations": [
+        "/styles/neoklassika",
+        "/styles/hay-tek",
+        "/styles/provans",
+        "/styles/loft",
+        "/styles/sovremennye",
+        "/styles/skandinavskie",
+        "/styles/klassicheskie",
+        "/styles/minimalizm"
+      ]
+    },
+    {
+      "family": "trust",
+      "routeCount": 2,
+      "purpose": "доверие и проверяемые сведения",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Проверяемые факты и условия без декоративного proof.",
+      "firstMeaningfulAction": "Проверить ответственность и перейти к условиям или заявке.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    },
+    {
+      "family": "utility",
+      "routeCount": 6,
+      "purpose": "служебная, юридическая или redirect-функция без SEO intent ownership",
+      "requiredServerContent": [
+        "один H1",
+        "основной смысл",
+        "breadcrumbs при наличии",
+        "обычная ссылка parent/next"
+      ],
+      "firstMeaningfulVisual": "Простой server-rendered текст и обычная ссылка возврата.",
+      "firstMeaningfulAction": "Вернуться к основному сайту или завершить служебное действие.",
+      "allowedInteraction": "Route-specific выбор как progressive enhancement; обычные href сохраняются.",
+      "forbiddenInteraction": "Client-only навигация, facet URL, недоказанный proof, второй fixed Dock.",
+      "states": "Текстовый loading/error/empty fallback без технических терминов.",
+      "mobile": "Вопрос → выбор → стабильный visual → объяснение → обычные ссылки → CTA.",
+      "desktop": "Основной смысл и visual слева; context/next step справа только при достаточной ширине.",
+      "evidenceBoundary": "Не выдавать ai_concept или illustration за выполненный проект.",
+      "cta": "Перейти к расчёту",
+      "nextStep": "/",
+      "routeSpecificDeviations": []
+    }
+  ],
+  "protectedRoutes": [
+    {
+      "route": "/",
+      "existingIntent": "выбрать путь к кухне на заказ",
+      "keep": "KEEP",
+      "futureRole": "hub",
+      "risks": "Высокий: широкий коммерческий интент пересекается с `/locations/minsk`, `/catalog` и `/prices`.",
+      "evidenceRequired": "GSC/SERP и page-specific evidence до снятия protection.",
+      "separateWave": 1
+    },
+    {
+      "route": "/design-proekt-kuhni",
+      "existingIntent": "подготовить дизайн-проект",
+      "keep": "KEEP",
+      "futureRole": "service",
+      "risks": "Средний: пересечение с `/calculator`; владелец — проектирование и исходные данные.",
+      "evidenceRequired": "GSC/SERP и page-specific evidence до снятия protection.",
+      "separateWave": 2
+    },
+    {
+      "route": "/materials/furnitura",
+      "existingIntent": "выбрать механизмы кухни",
+      "keep": "KEEP",
+      "futureRole": "hardware",
+      "risks": "Высокий: пересечение с брендовой статьёй и P1 performance debt из 203 изображений.",
+      "evidenceRequired": "GSC/SERP и page-specific evidence до снятия protection.",
+      "separateWave": 4
+    },
+    {
+      "route": "/locations/minsk",
+      "existingIntent": "проверить заказ кухни в Минске",
+      "keep": "KEEP",
+      "futureRole": "location",
+      "risks": "Критический: пересечение с главной по «кухни в Минске»; GSC/SERP ownership required.",
+      "evidenceRequired": "GSC/SERP и page-specific evidence до снятия protection.",
+      "separateWave": 2
+    },
+    {
+      "route": "/locations/minskaya-oblast",
+      "existingIntent": "проверить заказ по Минской области",
+      "keep": "KEEP",
+      "futureRole": "regional location",
+      "risks": "Критический: overlap с Минском и всеми городами области; нужны реальные regional rules.",
+      "evidenceRequired": "GSC/SERP и page-specific evidence до снятия protection.",
+      "separateWave": 2
+    }
+  ],
+  "acceptedVisualRescueRoutes": [
+    {
+      "route": "/materials/mdf-fasady",
+      "status": "accepted",
+      "seriesId": "MF-SURFACE-2026-07-22",
+      "firstQuestion": "Какой вариант МДФ подходит по виду, уходу и ограничениям?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/materials",
+      "outgoingDirections": [
+        "/materials/mdf-emal",
+        "/materials/plastik-hpl",
+        "/styles",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/catalog/uglovye-kuhni",
+      "status": "accepted",
+      "seriesId": "PILOT-AK-01..06",
+      "firstQuestion": "Подойдёт ли две стены и как использовать угол?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/catalog",
+      "outgoingDirections": [
+        "/catalog/pryamye-kuhni",
+        "/materials/furnitura",
+        "/blog/uglovaya-kuhnya-razmery-planirovka",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/catalog/pryamye-kuhni",
+      "status": "accepted",
+      "seriesId": "LAYOUT-LINE-2026-07-22",
+      "firstQuestion": "Когда одной линии достаточно и как расставить зоны?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/catalog",
+      "outgoingDirections": [
+        "/catalog/uglovye-kuhni",
+        "/catalog/malenkie-kuhni",
+        "/blog/uglovaya-kuhnya-ili-pryamaya-chto-vybrat",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/catalog/p-obraznye-kuhni",
+      "status": "accepted",
+      "seriesId": "LAYOUT-U-2026-07-22",
+      "firstQuestion": "Хватит ли места для трёх сторон и безопасных проходов?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/catalog",
+      "outgoingDirections": [
+        "/catalog/uglovye-kuhni",
+        "/blog/p-obraznaya-kuhnya-razmery-prohody-cena",
+        "/materials/furnitura",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/catalog/kuhni-s-ostrovom",
+      "status": "accepted",
+      "seriesId": "LAYOUT-ISLAND-2026-07-22",
+      "firstQuestion": "Поместится ли остров и какую функцию ему дать?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/catalog",
+      "outgoingDirections": [
+        "/scenarios/s-ostrovom",
+        "/blog/kuhnya-s-ostrovom",
+        "/catalog/p-obraznye-kuhni",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/catalog/malenkie-kuhni",
+      "status": "accepted",
+      "seriesId": "LAYOUT-SMALL-2026-07-22",
+      "firstQuestion": "Как сохранить рабочую зону и хранение в маленькой кухне?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/catalog",
+      "outgoingDirections": [
+        "/scenarios/dlya-malenkoy-kuhni",
+        "/catalog/pryamye-kuhni",
+        "/blog/kuhnya-6-kv-m-v-hruschevke",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/catalog/kuhni-do-potolka",
+      "status": "accepted",
+      "seriesId": "LAYOUT-CEILING-2026-07-22",
+      "firstQuestion": "Стоит ли поднимать шкафы до потолка и как ими пользоваться?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/catalog",
+      "outgoingDirections": [
+        "/scenarios/do-potolka",
+        "/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+        "/materials/furnitura",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/catalog/kuhni-bez-ruchek",
+      "status": "accepted",
+      "seriesId": "HANDLELESS-OPENING-2026-07-23",
+      "firstQuestion": "Какой механизм без ручек подходит и какие у него ограничения?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/catalog",
+      "outgoingDirections": [
+        "/materials/furnitura",
+        "/styles/minimalizm",
+        "/styles/hay-tek",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/neoklassika",
+      "status": "accepted",
+      "seriesId": "STYLE-NEOCLASSIC-2026-07-23",
+      "firstQuestion": "Как получить классическую выразительность без перегруза?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/materials/mdf-emal",
+        "/styles/klassicheskie",
+        "/catalog",
+        "/portfolio"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/hay-tek",
+      "status": "accepted",
+      "seriesId": "STYLE-HIGHTECH-2026-07-23",
+      "firstQuestion": "Как устроить технологичный интерьер без декоративного шума?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/materials/akril",
+        "/catalog/kuhni-bez-ruchek",
+        "/styles/minimalizm",
+        "/portfolio"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/provans",
+      "status": "accepted",
+      "seriesId": "STYLE-PROVENCE-2026-07-23",
+      "firstQuestion": "Как использовать мягкие детали и не перегрузить кухню декором?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/styles/klassicheskie",
+        "/materials/shpon",
+        "/catalog",
+        "/portfolio"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/loft",
+      "status": "accepted",
+      "seriesId": "STYLE-LOFT-2026-07-23",
+      "firstQuestion": "Как сочетать индустриальные материалы с удобной кухней?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/materials/ldsp",
+        "/materials/shpon",
+        "/styles/sovremennye",
+        "/portfolio"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/sovremennye",
+      "status": "accepted",
+      "seriesId": "STYLE-MODERN-2026-07-23",
+      "firstQuestion": "Какие решения делают кухню современной, но не привязывают к одному подстилю?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/styles/minimalizm",
+        "/styles/hay-tek",
+        "/materials",
+        "/catalog"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/skandinavskie",
+      "status": "accepted",
+      "seriesId": "STYLE-SCANDINAVIAN-2026-07-23",
+      "firstQuestion": "Как совместить светлый образ, тепло и практичность?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/materials/shpon",
+        "/styles/minimalizm",
+        "/catalog/malenkie-kuhni",
+        "/portfolio"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/klassicheskie",
+      "status": "accepted",
+      "seriesId": "STYLE-CLASSIC-2026-07-23",
+      "firstQuestion": "Какие пропорции и детали создают классическую кухню?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/styles/neoklassika",
+        "/styles/provans",
+        "/materials/mdf-emal",
+        "/portfolio"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/styles/minimalizm",
+      "status": "accepted",
+      "seriesId": "STYLE-MINIMAL-2026-07-23",
+      "firstQuestion": "Как убрать визуальный шум без потери удобства?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/styles",
+      "outgoingDirections": [
+        "/catalog/kuhni-bez-ruchek",
+        "/styles/sovremennye",
+        "/materials/furnitura",
+        "/portfolio"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/scenarios/s-ostrovom",
+      "status": "accepted",
+      "seriesId": "SCENARIO-ISLAND-2026-07-23",
+      "firstQuestion": "Для каких ежедневных действий нужен остров?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/scenarios",
+      "outgoingDirections": [
+        "/catalog/kuhni-s-ostrovom",
+        "/blog/kuhnya-s-ostrovom",
+        "/materials",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/scenarios/do-potolka",
+      "status": "accepted",
+      "seriesId": "SCENARIO-CEILING-2026-07-23",
+      "firstQuestion": "Какие вещи и как хранить в верхних секциях?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/scenarios",
+      "outgoingDirections": [
+        "/catalog/kuhni-do-potolka",
+        "/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+        "/materials/furnitura",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/scenarios/dlya-semi",
+      "status": "accepted",
+      "seriesId": "SCENARIO-FAMILY-2026-07-23",
+      "firstQuestion": "Как организовать совместную готовку, хранение и безопасность?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/scenarios",
+      "outgoingDirections": [
+        "/catalog/uglovye-kuhni",
+        "/materials",
+        "/blog/kuhnya-pod-scenarij-semi-studii-doma",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/scenarios/dlya-studii",
+      "status": "accepted",
+      "seriesId": "SCENARIO-STUDIO-2026-07-24",
+      "firstQuestion": "Как вписать кухню в общее пространство и контролировать визуальный шум?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/scenarios",
+      "outgoingDirections": [
+        "/catalog/pryamye-kuhni",
+        "/catalog/malenkie-kuhni",
+        "/styles/minimalizm",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/scenarios/dlya-malenkoy-kuhni",
+      "status": "accepted",
+      "seriesId": "SCENARIO-SMALL-KITCHEN-2026-07-24",
+      "firstQuestion": "Какие приоритеты сохранить при дефиците площади?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/scenarios",
+      "outgoingDirections": [
+        "/catalog/malenkie-kuhni",
+        "/blog/kuhnya-6-kv-m-v-hruschevke",
+        "/blog/kuhnya-dlya-malenkoy-kvartiry",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/scenarios/byudzhetnaya-kuhnya",
+      "status": "accepted",
+      "seriesId": "SCENARIO-BUDGET-2026-07-24",
+      "firstQuestion": "На чём экономить без ущерба ключевым функциям?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/scenarios",
+      "outgoingDirections": [
+        "/prices",
+        "/calculator",
+        "/materials/ldsp",
+        "/materials/furnitura"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    },
+    {
+      "route": "/locations/borisov",
+      "status": "accepted",
+      "seriesId": "BR-PROCESS-2026-07-20",
+      "firstQuestion": "Как проходит заказ для подтверждённой зоны Борисова?",
+      "supportedStates": [
+        "ENTRY",
+        "EXPLORE",
+        "SELECTED",
+        "COMPARE",
+        "DECISION"
+      ],
+      "incomingDirection": "/locations",
+      "outgoingDirections": [
+        "/locations/minskaya-oblast",
+        "/delivery-installation",
+        "/design-proekt-kuhni",
+        "/calculator"
+      ],
+      "regenerationPolicy": "forbidden_without_proven_need"
+    }
+  ]
+}

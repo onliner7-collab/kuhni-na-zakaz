@@ -1,5 +1,8 @@
 import { defineConfig } from "@playwright/test";
 
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3011";
+const serverUrl = new URL(baseURL);
+
 export default defineConfig({
   testDir: "./tests/visual-rescue",
   testMatch: "stage-25.spec.ts",
@@ -11,8 +14,18 @@ export default defineConfig({
     ["list"],
     ["json", { outputFile: "../../artifacts/visual-rescue/stage-25/playwright-report.json" }],
   ],
+  webServer: {
+    command: "pnpm run start",
+    url: baseURL,
+    timeout: 120_000,
+    reuseExistingServer: true,
+    env: {
+      PORT: serverUrl.port || "3011",
+      HOST: serverUrl.hostname,
+    },
+  },
   use: {
-    baseURL: process.env.PLAYWRIGHT_BASE_URL ?? "http://127.0.0.1:3011",
+    baseURL,
     launchOptions: {
       executablePath: process.env.PLAYWRIGHT_CHROME_PATH ?? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     },
