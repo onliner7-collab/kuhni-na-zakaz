@@ -1,6 +1,6 @@
 # Shared exploration platform v2
 
-Статус: реализовано локально
+Статус: `STAGE_4_ACCEPTED`
 Дата: 2026-07-30
 Scope: общая foundation для будущих волн без массового подключения planned transitions.
 
@@ -75,3 +75,13 @@ Scope: общая foundation для будущих волн без массов�
 4. Повторить smoke, visual-rescue 23, protected five, Lead/Telegram и analytics checks.
 
 DB/schema/data rollback не требуется.
+
+## Production acceptance
+
+- Runtime commit: `2b140a9`.
+- Push: `origin/work` PASS.
+- Timeweb production build: 173 pages PASS.
+- Service: `kuhni-na-zakaz` active.
+- Representative HTTP, protected five, sitemap и robots: HTTP 200.
+- Production visual-rescue 23 + responsive/protected matrix: 2/2 PASS.
+- Production Lighthouse provided: Performance/Accessibility/SEO 100; LCP 516–692 ms; CLS 0; TBT 0.

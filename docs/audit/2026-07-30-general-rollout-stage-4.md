@@ -1,7 +1,7 @@
 # General rollout stage 4 — shared exploration platform v2
 
 Stage: 4
-Status: `LOCAL_PASS`, production pending
+Status: `STAGE_4_ACCEPTED`
 Date: 2026-07-30
 
 ## Scope
@@ -72,3 +72,25 @@ Provided-network gate проходит строгие пороги ТЗ. Product
 ## Rollback
 
 `git revert <stage-4-runtime-commit>`, push `work`, стандартный deploy, повторить production smoke + 23 visual + protected five + Lead/analytics checks. DB rollback не нужен.
+
+## Production acceptance
+
+| Check | Result |
+| --- | --- |
+| Runtime commit | `2b140a9` |
+| Push `origin/work` | PASS |
+| Production DB | Already in sync; новых migrations нет |
+| Content imports | Skipped |
+| Production build | 173 pages PASS |
+| Service | `kuhni-na-zakaz` active |
+| Representative + protected five | HTTP 200 |
+| Sitemap / robots | HTTP 200 |
+| Production visual-rescue regression | 23/23 routes, 2/2 suites PASS |
+| Production widths | 360/390/412/768/1440 PASS |
+| Production Lighthouse | Performance/Accessibility/SEO 100 |
+| Production LCP | 516–692 ms |
+| Production CLS / TBT | 0 / 0 ms |
+
+Production формы не отправлялись, чтобы не создавать реальные заявки. Lead contract покрыт unit tests 6/6 и безопасным payload adapter.
+
+`STAGE_4_ACCEPTED`.
