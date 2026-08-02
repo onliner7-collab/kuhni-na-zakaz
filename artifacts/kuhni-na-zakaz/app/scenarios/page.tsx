@@ -4,6 +4,9 @@ import { ArrowRight } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { STATIC_SCENARIO_FALLBACKS } from "@/data/scenario-fallbacks";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { FamilyHubExplorer } from "@/components/exploration/FamilyHubExplorer";
+import { SCENARIO_FAMILY } from "@/data/exploration-families";
 
 export const metadata: Metadata = {
   title: "Сценарии кухни: семья, студия, бюджет",
@@ -51,6 +54,11 @@ async function getScenarios() {
 
 export default async function ScenariosPage() {
   const scenarios = (await getScenarios()).filter((item) => isPublicContentSlug(item.slug));
+  const explorerOptions = scenarios.flatMap((scenario) => {
+    const config = SCENARIO_FAMILY[scenario.slug];
+    const visual = config?.visualFrames?.[0] ?? config?.visual;
+    return config && visual ? [{ slug: scenario.slug, label: scenario.title, href: `/scenarios/${scenario.slug}`, image: visual.webp, alt: visual.alt, result: config.promise, caution: `${config.constraints[0]} Концепция помогает задать вопросы, но не подтверждает размеры и комплектацию.` }] : [];
+  });
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -65,7 +73,7 @@ export default async function ScenariosPage() {
   };
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/scenarios">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <section className="py-14 bg-gradient-to-br from-primary/5 via-violet-50 to-blue-50">
@@ -88,6 +96,18 @@ export default async function ScenariosPage() {
           </div>
         </div>
       </section>
+
+      {explorerOptions.length ? (
+        <section className="bg-background pb-4">
+          <div className="container-site space-y-4">
+            <FamilyHubExplorer family="scenario" title="Какая жизненная задача для вас главная?" intro="Выберите приоритет: изображение и вывод меняются сразу, а подробная страница помогает проверить ограничения." options={explorerOptions} />
+            <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+              <ContextSummary />
+              <RelatedExplorationRail route="/scenarios" state="RESULT" />
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section className="section-padding bg-background">
         <div className="container-site">
@@ -142,6 +162,6 @@ export default async function ScenariosPage() {
           </Link>
         </div>
       </section>
-    </>
+    </ExploreContextProvider>
   );
 }

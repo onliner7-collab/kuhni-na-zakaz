@@ -5,6 +5,9 @@ import { prisma } from "@/lib/db";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { FamilyHubExplorer } from "@/components/exploration/FamilyHubExplorer";
+import { STYLE_FAMILY } from "@/data/exploration-families";
 
 const title = "Стили кухонь: модерн, классика, лофт";
 const description =
@@ -116,6 +119,11 @@ async function getStyles() {
 
 export default async function StylesPage() {
   const styles = (await getStyles()).filter((item) => isPublicContentSlug(item.slug));
+  const explorerOptions = styles.flatMap((style) => {
+    const config = STYLE_FAMILY[style.slug];
+    const visual = config?.visualFrames?.[0] ?? config?.media[0];
+    return config && visual ? [{ slug: style.slug, label: style.title, href: `/styles/${style.slug}`, image: visual.webp, alt: visual.alt, result: config.promise, caution: `${config.constraints[0]} Изображение задаёт направление и не является фотографией выполненного объекта.` }] : [];
+  });
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -130,7 +138,7 @@ export default async function StylesPage() {
   };
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/styles">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="section-padding">
@@ -148,9 +156,19 @@ export default async function StylesPage() {
             </p>
           </div>
 
+          {explorerOptions.length ? (
+            <div className="mb-12 space-y-4">
+              <FamilyHubExplorer family="style" title="Какой визуальный язык подходит интерьеру?" intro="Сравните крупные плоскости, детали, фактуры и свет — затем откройте отдельный разбор выбранного направления." options={explorerOptions} />
+              <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+                <ContextSummary />
+                <RelatedExplorationRail route="/styles" state="RESULT" />
+              </div>
+            </div>
+          ) : null}
+
           {styles.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-              {styles.map((s, index) => (
+              {styles.map((s) => (
                 <Link key={s.slug} href={`/styles/${s.slug}`}
                   className="card-base hover:shadow-lg transition-all duration-200 group overflow-hidden">
                   <div className="h-52 bg-gradient-to-br from-stone-200 to-amber-100 flex items-center justify-center relative overflow-hidden">
@@ -159,8 +177,7 @@ export default async function StylesPage() {
                         src={s.image}
                         alt={s.title}
                         fill
-                        loading={index === 0 ? "eager" : "lazy"}
-                        fetchPriority={index === 0 ? "high" : "auto"}
+                        loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-contain object-center"
                       />
@@ -231,6 +248,6 @@ export default async function StylesPage() {
           </div>
         </div>
       </div>
-    </>
+    </ExploreContextProvider>
   );
 }
