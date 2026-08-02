@@ -210,3 +210,11 @@ Server compositions сохраняют H1, disclosure, ограничения, �
 ## 2026-07-22 — stages 7–9 consumer expansion
 
 `LayoutVisualExplorer` дополнительно принят для `/catalog/kuhni-s-ostrovom`, `/catalog/malenkie-kuhni`, `/catalog/kuhni-do-potolka`: у каждого consumer отдельная route-specific series и interaction role. Shared island сохраняет `aria-pressed`, русские alt/caption, 44 px controls, focus ring, один eager active image и intent-mounted state images. Protected routes компонент не импортируют.
+
+# 2026-08-02 — Stage 4 corrective и LCP final
+
+- `DeferredPublicEnhancements`: deferred client island для необязательных global enhancements; server-rendered header/navigation сохранены.
+- `MobileBottomNav`: при deferred mount синхронизирует начальное scroll-hidden состояние, поэтому Dock не появляется поверх действий после прокрутки.
+- `StyleVisualExplorer`, `ScenarioVisualExplorer`, `MediaPicture`: первый eager LCP frame без forced async decode; последующие intent-mounted frames сохраняют async decode.
+- `ProgressiveFurnitureGallery`: первоначальная порция 15, раскрытие по 15, lightbox работает с полной серией 200; заголовки доступны до раскрытия.
+- Ручные дублирующие `react-dom preload()` удалены; LCP assets остаются discoverable/eager/high.

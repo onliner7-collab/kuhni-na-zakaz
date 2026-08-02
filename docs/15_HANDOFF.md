@@ -425,3 +425,13 @@ Local evidence: typecheck PASS; sitemap 112/112; production build PASS с ожи
 Runtime commit `07d0e1c` pushed и задеплоен стандартным Timeweb script с explicit identity `timeweb_kuhni_ed25519`; server build PASS, service active. Production targets 3/3 и protected routes 5/5: HTTP 200, H1=1, overflow 0, broken images 0; targets self-canonical, missing alt 0, image state changes, `naturalWidth=1200`, bad image responses 0. Sitemap и robots отвечают 200. Evidence: `artifacts/visual-rescue/stages-7-9/production-smoke.json`.
 
 Этапы 7–9: `VISUAL_ACCEPTED`. Rollback: `git revert 07d0e1c`, push `work`, стандартный deploy и повторный smoke; DB/schema/import rollback не требуется. Следующий разрешённый этап — 10.
+
+## 2026-08-02 — LCP final handoff
+
+- Итог: `STAGE_4_ACCEPTED`, `GENERAL_ROLLOUT_FOUNDATION_ACCEPTED`.
+- Runtime commit: `30fc9388a78493becb1ec344e236e88752fb6b22`; push/deploy PASS; service active.
+- Production Lighthouse simulated mobile: 12/12 PASS; LCP 1446–1774 мс; Performance 99–100; CLS 0; TBT 0–10 мс; Accessibility 96–100; SEO 100.
+- Production Browser: 23/23 routes, H1/canonical/overflow/broken images PASS; responsive/protected/interaction checks PASS.
+- Local environment delta задокументирован: final local LCP 2855–3095 мс при observed trace 83–130 мс; production-control до deploy прошёл 12/12.
+- Evidence: `artifacts/general-rollout/stage-4-lcp-final/`; audit: `docs/audit/2026-08-02-general-rollout-stage-4-lcp-final.md`.
+- Rollback: `git revert 30fc9388a78493becb1ec344e236e88752fb6b22`, push `work`, стандартный Timeweb deploy и повторный smoke.

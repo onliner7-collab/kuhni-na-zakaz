@@ -94,3 +94,7 @@ Provided-network gate проходит строгие пороги ТЗ. Product
 Production формы не отправлялись, чтобы не создавать реальные заявки. Lead contract покрыт unit tests 6/6 и безопасным payload adapter.
 
 `STAGE_4_ACCEPTED`.
+
+## Финальная LCP-перепроверка 2026-08-02
+
+Corrective runtime `30fc9388a78493becb1ec344e236e88752fb6b22` развёрнут после доказанного environment delta. Production Lighthouse 12.6.1 simulated mobile прошёл 12/12: LCP 1446–1774 мс, Performance 99–100, CLS 0, TBT 0–10 мс, Accessibility 96–100, SEO 100. Полный отчёт: `docs/audit/2026-08-02-general-rollout-stage-4-lcp-final.md`.

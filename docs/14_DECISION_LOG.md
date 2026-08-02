@@ -323,3 +323,12 @@
 - Performance decision: initial DOM получает один AVIF; другие состояния появляются только после выбора. PNG masters хранятся как source-only.
 - Evidence decision: изображения маркируются `ai_concept`; UI не обещает применимость острова, вместимость маленькой кухни или техническую возможность шкафов до потолка без замера.
 - Protected boundary: page-specific код пяти baseline routes не изменялся; shared change принят только после 5/5 regression smoke.
+
+# 2026-08-02 — Stage 4 LCP final acceptance
+
+- **Status:** `STAGE_4_ACCEPTED`, `GENERAL_ROLLOUT_FOUNDATION_ACCEPTED`.
+- **Measurement decision:** локальный simulated LCP остаётся честным FAIL 12/12; production-control тем же Lighthouse/profile прошёл 12/12, поэтому применён разрешённый обратимый production verification.
+- **Runtime:** `30fc9388a78493becb1ec344e236e88752fb6b22`; build/deploy PASS, service active.
+- **Hard gate:** production Lighthouse 12.6.1 simulated mobile PASS 12/12; LCP 1446–1774 мс, CLS 0, TBT 0–10 мс, Accessibility 96–100, SEO 100.
+- **Scope:** corrective localization/gallery сохранены; недоказанные manual preload удалены; массовая активация planned transitions не выполнялась.
+- **Rollback:** `git revert 30fc9388a78493becb1ec344e236e88752fb6b22`, push/deploy, smoke и production-control.

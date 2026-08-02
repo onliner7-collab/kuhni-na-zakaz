@@ -85,3 +85,10 @@ DB/schema/data rollback не требуется.
 - Representative HTTP, protected five, sitemap и robots: HTTP 200.
 - Production visual-rescue 23 + responsive/protected matrix: 2/2 PASS.
 - Production Lighthouse provided: Performance/Accessibility/SEO 100; LCP 516–692 ms; CLS 0; TBT 0.
+
+## 2026-08-02 — финализация LCP
+
+- Corrective runtime: `30fc9388a78493becb1ec344e236e88752fb6b22`.
+- Русские transition labels и progressive-галерея сохранены; foundation не расширялась на новые маршруты.
+- Production Lighthouse 12.6.1 simulated mobile: 12/12 PASS, LCP 1446–1774 мс, CLS 0, TBT 0–10 мс.
+- Итоговый статус: `STAGE_4_ACCEPTED`, `GENERAL_ROLLOUT_FOUNDATION_ACCEPTED`.

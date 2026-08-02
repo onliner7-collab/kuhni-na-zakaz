@@ -1,0 +1,146 @@
+[
+  {
+    "url": "https://kuhni.minsk.by/catalog/uglovye-kuhni",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\catalog_uglovye_kuhni-2026_08_02_11_20_23-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\catalog_uglovye_kuhni-2026_08_02_11_20_23-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/catalog/uglovye-kuhni",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\catalog_uglovye_kuhni-2026_08_02_11_23_05-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\catalog_uglovye_kuhni-2026_08_02_11_23_05-report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/styles/minimalizm",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\styles_minimalizm-2026_08_02_11_23_43-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\styles_minimalizm-2026_08_02_11_23_43-report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/styles/minimalizm",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\styles_minimalizm-2026_08_02_11_25_53-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\styles_minimalizm-2026_08_02_11_25_53-report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/scenarios/dlya-malenkoy-kuhni",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\scenarios_dlya_malenkoy_kuhni-2026_08_02_11_26_42-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\scenarios_dlya_malenkoy_kuhni-2026_08_02_11_26_42-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/scenarios/dlya-malenkoy-kuhni",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\scenarios_dlya_malenkoy_kuhni-2026_08_02_11_28_04-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\scenarios_dlya_malenkoy_kuhni-2026_08_02_11_28_04-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/materials/furnitura",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\materials_furnitura-2026_08_02_11_28_35-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\materials_furnitura-2026_08_02_11_28_35-report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/materials/furnitura",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\materials_furnitura-2026_08_02_11_29_15-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\materials_furnitura-2026_08_02_11_29_15-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/catalog/uglovye-kuhni",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\catalog_uglovye_kuhni-2026_08_02_11_21_48-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\catalog_uglovye_kuhni-2026_08_02_11_21_48-report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/styles/minimalizm",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\styles_minimalizm-2026_08_02_11_24_30-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\styles_minimalizm-2026_08_02_11_24_30-report.json",
+    "summary": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/scenarios/dlya-malenkoy-kuhni",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\scenarios_dlya_malenkoy_kuhni-2026_08_02_11_27_17-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\scenarios_dlya_malenkoy_kuhni-2026_08_02_11_27_17-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://kuhni.minsk.by/materials/furnitura",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\materials_furnitura-2026_08_02_11_28_18-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\production-after\\materials_furnitura-2026_08_02_11_28_18-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]

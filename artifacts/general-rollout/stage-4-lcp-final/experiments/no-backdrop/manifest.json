@@ -1,0 +1,38 @@
+[
+  {
+    "url": "http://127.0.0.1:3015/styles/minimalizm",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\experiments\\no-backdrop\\styles_minimalizm-2026_08_02_10_45_35-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\experiments\\no-backdrop\\styles_minimalizm-2026_08_02_10_45_35-report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:3015/styles/minimalizm",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\experiments\\no-backdrop\\styles_minimalizm-2026_08_02_10_45_48-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\experiments\\no-backdrop\\styles_minimalizm-2026_08_02_10_45_48-report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:3015/styles/minimalizm",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\experiments\\no-backdrop\\styles_minimalizm-2026_08_02_10_46_00-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-4-lcp-final\\experiments\\no-backdrop\\styles_minimalizm-2026_08_02_10_46_00-report.json",
+    "summary": {
+      "performance": 0.95,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]
