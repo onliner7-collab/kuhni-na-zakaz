@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-08-02T13:12:00Z",
+  "wave": "7A",
+  "status": "PASS",
+  "severity": { "P0": 0, "P1": 0 },
+  "scopeRoutes": 8,
+  "activeTransitions": 25,
+  "byRoute": {
+    "/catalog": 3,
+    "/catalog/uglovye-kuhni": 4,
+    "/catalog/pryamye-kuhni": 3,
+    "/catalog/p-obraznye-kuhni": 3,
+    "/catalog/kuhni-s-ostrovom": 3,
+    "/catalog/malenkie-kuhni": 3,
+    "/catalog/kuhni-do-potolka": 3,
+    "/catalog/kuhni-bez-ruchek": 3
+  },
+  "missingRussianLabels": [],
+  "missingRussianReasons": [],
+  "missingFallbacks": [],
+  "duplicateIds": [],
+  "proofTransitions": [
+    {
+      "id": "catalog-uglovye-kuhni-proof-proof-portfolio",
+      "evidenceStatus": "verified"
+    }
+  ],
+  "underLinkedTargetsInScope": [],
+  "note": "В baseline internal-linking plan нет under-linked targets из scope 7A; каталог сохраняет обычные crawlable ссылки на все семь detail routes."
+}
