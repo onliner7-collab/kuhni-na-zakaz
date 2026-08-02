@@ -11,6 +11,7 @@ import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { CANONICAL_SITE_URL, SITE_ALTERNATE_NAMES, SITE_NAME, canonicalSiteUrl } from "@/lib/seo";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
+import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import { HomeMobileShowroom } from "@/components/home/HomeMobileShowroom";
 
 type HomeAdvantage = {
@@ -375,6 +376,7 @@ export default async function HomePage() {
     <>
       <JsonLd data={jsonLdItems} />
 
+      <ExploreContextProvider sourceRoute="/">
       <HomeMobileShowroom
         projects={cases.map((item) => ({
           id: item.id,
@@ -411,6 +413,8 @@ export default async function HomePage() {
           priceFrom: item.priceFrom,
         }))}
       />
+      <section className="bg-[#f6f1ea] py-8 text-[#201912]"><div className="container-site"><RelatedExplorationRail route="/" state="RESULT" /></div></section>
+      </ExploreContextProvider>
 
       <HomeKitchenIdeas3DSection limit={4} />
 

@@ -27,6 +27,7 @@ import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { formatByn, kitchenStyles, priceKitchenModels, type KitchenStyleId } from "@/data/price-catalog";
+import { ContextSummary, useExploreContext } from "@/components/exploration";
 
 interface HomeProjectCard {
   id: number | string;
@@ -225,6 +226,13 @@ const budgetOptions = [
     level: "Премиальная комплектация",
     materials: "Остров, шпон, сложная фурнитура, индивидуальные узлы и расширенный монтаж.",
   },
+];
+
+const scenarioOptions = [
+  { id: "family", title: "Для семьи", image: "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp", alt: "Семейная кухня с рабочими зонами и хранением", href: "/scenarios/dlya-semi" },
+  { id: "small", title: "Для маленькой кухни", image: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp", alt: "Компактная кухня с рациональным хранением", href: "/scenarios/dlya-malenkoy-kuhni" },
+  { id: "studio", title: "Для студии", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-gostinaya-mobile.webp", alt: "Кухня для студии и объединённого пространства", href: "/scenarios/dlya-studii" },
+  { id: "storage", title: "Больше хранения", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp", alt: "Кухня до потолка с дополнительным хранением", href: "/scenarios/do-potolka" },
 ];
 
 const materialCards = [
@@ -553,6 +561,7 @@ function saveSelection(style: string, layout: string, budget: string) {
 }
 
 export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeMobileShowroomProps) {
+  const { updateContext } = useExploreContext();
   const projectTrackRef = useRef<HTMLDivElement>(null);
   const portfolioPhotos = useMemo(() => normalizeProjectPhotos(projects), [projects]);
   const visibleReviews = reviews.slice(0, 4);
@@ -567,6 +576,8 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const [selectedStyle, setSelectedStyle] = useState(styleOptions[0].id);
   const [selectedLayout, setSelectedLayout] = useState(layoutOptions[1].id);
   const [selectedBudget, setSelectedBudget] = useState(budgetOptions[1].id);
+  const [selectedScenario, setSelectedScenario] = useState(scenarioOptions[0].id);
+  const [activeVisual, setActiveVisual] = useState({ image: layoutOptions[1].image, alt: layoutOptions[1].alt });
   const [selectedPriceStyle, setSelectedPriceStyle] = useState<KitchenStyleId>("minimalism");
   const [beforeAfter, setBeforeAfter] = useState(100);
   const [activeNav, setActiveNav] = useState<HomeNavId>("selector");
@@ -586,11 +597,28 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
     setSelectedStyle(style);
     setSelectedLayout(layoutValue);
     setSelectedBudget(budgetValue);
+    const styleOption = styleOptions.find((item) => item.id === style);
+    const layoutOption = layoutOptions.find((item) => item.id === layoutValue);
+    const budgetOption = budgetOptions.find((item) => item.id === budgetValue);
+    if (next.style && styleOption) setActiveVisual({ image: styleOption.image, alt: styleOption.alt });
+    if (next.layout && layoutOption) setActiveVisual({ image: layoutOption.image, alt: layoutOption.alt });
+    updateContext({
+      style: styleOption?.title || style,
+      layout: layoutOption?.title || layoutValue,
+      budgetIntent: budgetOption?.title || budgetValue,
+    }, "Быстрый подбор на главной");
     saveSelection(
       styleOptions.find((item) => item.id === style)?.title || style,
       layoutOptions.find((item) => item.id === layoutValue)?.title || layoutValue,
       budgetOptions.find((item) => item.id === budgetValue)?.title || budgetValue,
     );
+  }
+
+  function handleScenario(id: string) {
+    const scenario = scenarioOptions.find((item) => item.id === id) || scenarioOptions[0];
+    setSelectedScenario(id);
+    setActiveVisual({ image: scenario.image, alt: scenario.alt });
+    updateContext({ scenario: scenario.title }, "Выбран жизненный сценарий");
   }
 
   const scrollToHomeSection = useCallback((id: HomeNavId) => {
@@ -761,10 +789,10 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                 ))}
               </div>
               <div className="mt-4 grid overflow-hidden rounded-lg border border-white/12 bg-[#211a14] md:grid-cols-[0.95fr_1.05fr]">
-                <div className="relative aspect-[4/3] md:aspect-auto">
+                <div className="relative aspect-[4/3] md:aspect-auto" data-stage6-home-result>
                   <Image
-                    src={layout.image}
-                    alt={layout.alt}
+                    src={activeVisual.image}
+                    alt={activeVisual.alt}
                     fill
                     loading="lazy"
                     sizes="(max-width: 768px) 100vw, 48vw"
@@ -824,6 +852,26 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                   <Calculator className="h-4 w-4" aria-hidden />
                 </Link>
               </div>
+            </div>
+
+            <div>
+              <div className="mb-3 flex items-center gap-2 text-sm font-black text-white">
+                <span className="text-[#d5b078]">04</span> Жизненный сценарий
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {scenarioOptions.map((item) => (
+                  <button key={item.id} type="button" data-stage6-scenario-id={item.id} onClick={() => handleScenario(item.id)} aria-pressed={selectedScenario === item.id} className={`min-h-12 rounded-lg border px-4 py-3 text-left text-sm font-black transition ${selectedScenario === item.id ? "border-[#d5b078] bg-white/10 text-white" : "border-white/12 bg-white/[0.04] text-white/75"}`}>
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+              <Link href={scenarioOptions.find((item) => item.id === selectedScenario)?.href || "/scenarios"} className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#d5b078]/60 px-4 py-2 text-sm font-black text-[#f1d0a3]">
+                Разобрать выбранный сценарий <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+
+            <div className="rounded-lg border border-white/12 bg-white/[0.04] p-4 text-stone-900 [&_*]:text-inherit">
+              <ContextSummary />
             </div>
           </div>
         </div>
