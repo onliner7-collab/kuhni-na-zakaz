@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Check, CircleHelp, CornerDownRight, DoorOpen, PanelTopOpen, SlidersHorizontal } from "lucide-react";
+import { ContextSummary, useExploreContext } from "@/components/exploration";
 
 const MEDIA_BASE = "/media/pilots/hardware";
 
@@ -60,6 +61,7 @@ function HardwarePicture({ stem, alt }: { stem: string; alt: string }) {
 }
 
 export function HardwareShowroom() {
+  const { updateContext } = useExploreContext();
   const [mechanismId, setMechanismId] = useState<(typeof mechanisms)[number]["id"]>("hinge");
   const [level, setLevel] = useState<(typeof levels)[number]["id"]>("daily");
   const [answers, setAnswers] = useState({ drawers: true, uppers: false, corner: false });
@@ -84,7 +86,7 @@ export function HardwareShowroom() {
             {mechanisms.map((item) => {
               const Icon = item.icon;
               const selected = item.id === mechanismId;
-              return <button key={item.id} type="button" onClick={() => setMechanismId(item.id)} aria-pressed={selected} className={`w-full rounded-2xl border p-4 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 ${selected ? "border-blue-700 bg-blue-50" : "border-slate-200 bg-white hover:border-slate-400"}`}><span className="flex items-center gap-3 font-bold"><span className={`grid h-11 w-11 place-items-center rounded-full ${selected ? "bg-blue-800 text-white" : "bg-slate-100 text-slate-700"}`}><Icon className="h-5 w-5" aria-hidden /></span>{item.label}</span>{selected && <span className="mt-3 block"><strong className="block text-lg">{item.title}</strong><span className="mt-1 block text-sm leading-6 text-slate-600">{item.text}</span></span>}</button>;
+              return <button key={item.id} type="button" data-stage6-mechanism-id={item.id} onClick={() => { setMechanismId(item.id); updateContext({ hardware: [item.label], scenario: item.title }, "Выбран тип кухонного механизма"); }} aria-pressed={selected} className={`w-full rounded-2xl border p-4 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 ${selected ? "border-blue-700 bg-blue-50" : "border-slate-200 bg-white hover:border-slate-400"}`}><span className="flex items-center gap-3 font-bold"><span className={`grid h-11 w-11 place-items-center rounded-full ${selected ? "bg-blue-800 text-white" : "bg-slate-100 text-slate-700"}`}><Icon className="h-5 w-5" aria-hidden /></span>{item.label}</span>{selected && <span className="mt-3 block"><strong className="block text-lg">{item.title}</strong><span className="mt-1 block text-sm leading-6 text-slate-600">{item.text}</span></span>}</button>;
             })}
           </div>
         </div>
@@ -102,7 +104,7 @@ export function HardwareShowroom() {
       <section id="package" className="scroll-mt-24" aria-labelledby="hardware-package-title">
         <p className="text-sm font-bold uppercase tracking-[0.16em] text-blue-800">Уровень комплектации</p>
         <h2 id="hardware-package-title" className="mt-2 font-serif text-3xl font-bold md:text-4xl">Где удобство действительно заметно</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">{levels.map((item) => <button key={item.id} type="button" onClick={() => setLevel(item.id)} aria-pressed={level === item.id} className={`min-h-40 rounded-2xl border p-5 text-left ${level === item.id ? "border-blue-800 bg-blue-50 shadow-sm" : "border-slate-200 bg-white"}`}><span className="flex items-center gap-2 text-lg font-bold">{level === item.id && <Check className="h-5 w-5 text-blue-800" aria-hidden />}{item.title}</span><span className="mt-3 block text-sm leading-6 text-slate-600">{item.text}</span></button>)}</div>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">{levels.map((item) => <button key={item.id} type="button" onClick={() => { setLevel(item.id); updateContext({ budgetIntent: `Комплектация: ${item.title}` }, "Выбран уровень комплектации фурнитуры"); }} aria-pressed={level === item.id} className={`min-h-40 rounded-2xl border p-5 text-left ${level === item.id ? "border-blue-800 bg-blue-50 shadow-sm" : "border-slate-200 bg-white"}`}><span className="flex items-center gap-2 text-lg font-bold">{level === item.id && <Check className="h-5 w-5 text-blue-800" aria-hidden />}{item.title}</span><span className="mt-3 block text-sm leading-6 text-slate-600">{item.text}</span></button>)}</div>
         <div className="mt-6 rounded-2xl border-l-4 border-amber-500 bg-amber-50 p-5"><h3 className="font-bold">Где нежелательно экономить вслепую</h3><p className="mt-2 leading-7 text-slate-700">Сначала обсуждают петли часто используемых фасадов, направляющие основных ящиков и крепёж. Экономию безопаснее искать в количестве специальных механизмов, а не в неподтверждённых обещаниях бренда.</p></div>
       </section>
 
@@ -115,6 +117,7 @@ export function HardwareShowroom() {
           { key: "corner" as const, label: "Нужно регулярно пользоваться дальним углом" },
         ].map((item) => <button key={item.key} type="button" onClick={() => setAnswers((current) => ({ ...current, [item.key]: !current[item.key] }))} aria-pressed={answers[item.key]} className={`min-h-24 rounded-2xl border p-4 text-left font-semibold ${answers[item.key] ? "border-blue-800 bg-blue-50" : "border-slate-200"}`}>{answers[item.key] && <Check className="mr-2 inline h-5 w-5 text-blue-800" aria-hidden />}{item.label}</button>)}</div>
         <div className="mt-6 rounded-2xl bg-slate-100 p-5" aria-live="polite"><p className="text-sm font-bold uppercase tracking-[0.14em] text-blue-800">Обсудить в первую очередь</p><p className="mt-2 text-lg font-bold">{recommendation}</p><p className="mt-2 text-sm leading-6 text-slate-600">Это ориентир для разговора, а не техническая спецификация. Совместимость подтверждается после проекта.</p></div>
+        <div className="mt-6"><ContextSummary /></div>
       </section>
     </div>
   );

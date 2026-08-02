@@ -33,6 +33,7 @@ import {
 } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 import { HardwareShowroom } from "@/components/materials/hardware/HardwareShowroom";
+import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 
 const pageTitle = "Фурнитура для кухни на заказ";
 const pageDescription =
@@ -339,6 +340,7 @@ export default function FurnituraMaterialsPage() {
 
   return (
     <>
+      <ExploreContextProvider sourceRoute={pagePath}>
       <div className="section-padding">
         <main className="container-site">
           <nav
@@ -436,6 +438,7 @@ export default function FurnituraMaterialsPage() {
           </section>
 
           <HardwareShowroom />
+          <section className="mt-16"><RelatedExplorationRail route={pagePath} state="RESULT" /></section>
 
           <section
             className="mt-16 grid gap-5 md:grid-cols-3"
@@ -688,6 +691,7 @@ export default function FurnituraMaterialsPage() {
           </section>
         </main>
       </div>
+      </ExploreContextProvider>
       <JsonLd data={jsonLdItems} />
     </>
   );
