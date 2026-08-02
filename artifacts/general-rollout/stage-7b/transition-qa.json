@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-08-02T13:35:00Z",
+  "scope": "stage-7b",
+  "routes": 8,
+  "activeTransitions": 24,
+  "duplicateIds": 0,
+  "invalidFallbacks": 0,
+  "selfLoops": 0,
+  "unapprovedProofTransitions": 0,
+  "stepsPerRoute": { "minimum": 3, "maximum": 3 },
+  "result": "PASS"
+}
