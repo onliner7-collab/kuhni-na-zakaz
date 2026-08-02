@@ -30,6 +30,8 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
 import { RegionalVisualStoryGallery } from "@/components/locations/RegionalVisualStoryGallery";
+import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { Stage6LocationDecision } from "@/components/locations/Stage6LocationDecision";
 import { BorisovPilotPage } from "@/components/locations/borisov/BorisovPilotPage";
 
 export interface PortfolioCasePreview {
@@ -1061,7 +1063,7 @@ export function RegionalLocationPage({
   }
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute={`/locations/${location.slug}`}>
       <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq, jsonLdService].filter(isJsonLdObject)} />
 
       <section id="location-prices" className="relative overflow-hidden bg-stone-950 text-white">
@@ -1189,6 +1191,13 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+
+      {(isMinsk || isMinskRegionHub) && (
+        <Stage6LocationDecision mode={isMinsk ? "minsk" : "minskaya-oblast"} />
+      )}
+      {(isMinsk || isMinskRegionHub) && (
+        <section className="bg-white py-8"><div className="container-site"><RelatedExplorationRail route={`/locations/${location.slug}`} state="RESULT" /></div></section>
+      )}
 
       {isMinskRegionHub && (
         <section className="bg-white py-10 md:py-14">
@@ -2117,6 +2126,6 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
-    </>
+    </ExploreContextProvider>
   );
 }
