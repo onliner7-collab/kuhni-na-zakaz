@@ -1,0 +1,26 @@
+[
+  {
+    "url": "http://127.0.0.1:3044/styles",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-7c\\lighthouse-production\\styles-2026_08_02_13_51_27-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-7c\\lighthouse-production\\styles-2026_08_02_13_51_27-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:3044/scenarios",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-7c\\lighthouse-production\\scenarios-2026_08_02_13_51_43-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-7c\\lighthouse-production\\scenarios-2026_08_02_13_51_43-report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]
