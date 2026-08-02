@@ -15,6 +15,9 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { MaterialDecisionExplorer } from "@/components/materials/MaterialDecisionExplorer";
+import { MATERIAL_EXPLORATION } from "@/data/material-exploration";
 
 const pageTitle = "Кухни из ЛДСП: корпуса, фасады, цена";
 const pageDescription =
@@ -171,7 +174,7 @@ export default function LdspMaterialsPage() {
   });
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/materials/ldsp">
       <JsonLd data={jsonLdFaq ? [jsonLdBreadcrumb, jsonLdService, jsonLdFaq] : [jsonLdBreadcrumb, jsonLdService]} />
       <div className="section-padding">
         <main className="container-site">
@@ -222,6 +225,14 @@ export default function LdspMaterialsPage() {
               />
             </div>
           </section>
+
+          <div className="mt-12 space-y-4">
+            <MaterialDecisionExplorer config={MATERIAL_EXPLORATION.ldsp} />
+            <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+              <ContextSummary />
+              <RelatedExplorationRail route="/materials/ldsp" state="RESULT" />
+            </div>
+          </div>
 
           <MaterialDetailGallery slug="ldsp" title="ЛДСП для кухни" />
 
@@ -392,6 +403,6 @@ export default function LdspMaterialsPage() {
           </section>
         </main>
       </div>
-    </>
+    </ExploreContextProvider>
   );
 }

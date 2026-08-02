@@ -15,6 +15,9 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { MaterialDecisionExplorer } from "@/components/materials/MaterialDecisionExplorer";
+import { MATERIAL_EXPLORATION } from "@/data/material-exploration";
 
 const pageTitle = "Кухни с пластиковыми фасадами HPL";
 const pageDescription =
@@ -178,7 +181,7 @@ export default function PlastikHplPage() {
   });
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/materials/plastik-hpl">
       <JsonLd data={jsonLdFaq ? [jsonLdBreadcrumb, jsonLdService, jsonLdFaq] : [jsonLdBreadcrumb, jsonLdService]} />
       <div className="section-padding">
         <main className="container-site">
@@ -229,6 +232,14 @@ export default function PlastikHplPage() {
               />
             </div>
           </section>
+
+          <div className="mt-12 space-y-4">
+            <MaterialDecisionExplorer config={MATERIAL_EXPLORATION["plastik-hpl"]} />
+            <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+              <ContextSummary />
+              <RelatedExplorationRail route="/materials/plastik-hpl" state="RESULT" />
+            </div>
+          </div>
 
           <MaterialDetailGallery slug="plastik-hpl" title="пластик HPL для кухни" />
 
@@ -400,6 +411,6 @@ export default function PlastikHplPage() {
           </section>
         </main>
       </div>
-    </>
+    </ExploreContextProvider>
   );
 }

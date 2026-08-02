@@ -12,6 +12,9 @@ import { getMaterialEnrichment } from "@/lib/kitchen-page-enrichment";
 import { breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { STATIC_MATERIAL_BY_SLUG, STATIC_MATERIAL_PAGES } from "@/data/material-fallbacks";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { MaterialDecisionExplorer } from "@/components/materials/MaterialDecisionExplorer";
+import { MATERIAL_EXPLORATION } from "@/data/material-exploration";
 
 interface Props { params: Promise<{ slug: string }> }
 
@@ -116,6 +119,7 @@ export default async function MaterialPage({ params }: Props) {
   ]);
   const enrichment = getMaterialEnrichment(slug, m.title, m.priceFrom);
   const heroImage = m.image || MATERIAL_HERO_IMAGES[slug] || "";
+  const exploration = MATERIAL_EXPLORATION[slug];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -131,7 +135,7 @@ export default async function MaterialPage({ params }: Props) {
     ]),
   };
   return (
-    <>
+    <ExploreContextProvider sourceRoute={`/materials/${slug}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="section-padding">
@@ -179,6 +183,15 @@ export default async function MaterialPage({ params }: Props) {
                   <p className="text-muted-foreground leading-relaxed">{m.content}</p>
                 )}
               </div>
+
+              {exploration ? <MaterialDecisionExplorer config={exploration} /> : null}
+
+              {exploration ? (
+                <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+                  <ContextSummary />
+                  <RelatedExplorationRail route={`/materials/${slug}`} state="RESULT" />
+                </div>
+              ) : null}
 
               <MaterialDetailGallery slug={slug} title={m.title} />
 
@@ -525,6 +538,6 @@ export default async function MaterialPage({ params }: Props) {
           </div>
         </div>
       </div>
-    </>
+    </ExploreContextProvider>
   );
 }

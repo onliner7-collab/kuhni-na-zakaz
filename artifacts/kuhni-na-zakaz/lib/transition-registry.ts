@@ -76,6 +76,26 @@ legacyRegistry.push(
   { fromRoute: "/materials/furnitura", fromState: "RESULT", userQuestion: "Как передать выбранную задачу?", actionType: "CONVERT", anchorRu: "Передать фурнитуру в расчёт", toRoute: "/materials/furnitura#calculation", contextPatch: { sourceRoute: "/materials/furnitura" }, reasonRu: "Форма получает whitelisted контекст без неподтверждённых характеристик и цены.", priority: 3, requiresEvidence: false, fallbackRoute: "/calculator", analyticsEvent: "lead_open_with_context", status: "active" },
 );
 
+legacyRegistry.push(
+  { fromRoute: "/materials", fromState: "RESULT", userQuestion: "Как проверить выбранную поверхность?", actionType: "DEEPEN", anchorRu: "Открыть подробный гид по МДФ", toRoute: "/materials/mdf-fasady", contextPatch: { sourceRoute: "/materials" }, reasonRu: "Подробная страница показывает ракурсы поверхности и вопросы к образцу.", priority: 1, requiresEvidence: false, fallbackRoute: "/materials", analyticsEvent: "exploration_transition_click", status: "active" },
+  { fromRoute: "/materials", fromState: "RESULT", userQuestion: "С чем связать материал?", actionType: "COMPARE", anchorRu: "Проверить материал в дизайн-проекте", toRoute: "/design-proekt-kuhni", contextPatch: { sourceRoute: "/materials" }, reasonRu: "Проект связывает фасад с планировкой, светом и соседними поверхностями.", priority: 2, requiresEvidence: false, fallbackRoute: "/materials", analyticsEvent: "exploration_compare", status: "active" },
+  { fromRoute: "/materials", fromState: "RESULT", userQuestion: "Как узнать стоимость решения?", actionType: "CONVERT", anchorRu: "Передать выбранный материал в расчёт", toRoute: "/materials#form", contextPatch: { sourceRoute: "/materials" }, reasonRu: "Форма принимает контекст выбора без обещания точной цены.", priority: 3, requiresEvidence: false, fallbackRoute: "/calculator", analyticsEvent: "lead_open_with_context", status: "active" },
+);
+
+for (const material of [
+  { route: "/materials/ldsp", name: "ЛДСП", compare: "/materials/mdf-fasady", compareLabel: "Сравнить ЛДСП с МДФ" },
+  { route: "/materials/plastik-hpl", name: "Пластик HPL", compare: "/materials/mdf-fasady", compareLabel: "Сравнить HPL с МДФ" },
+  { route: "/materials/shpon", name: "Шпон", compare: "/materials/mdf-emal", compareLabel: "Сравнить шпон с эмалью" },
+  { route: "/materials/akril", name: "Акрил", compare: "/materials/plastik-hpl", compareLabel: "Сравнить акрил с HPL" },
+  { route: "/materials/mdf-emal", name: "МДФ с эмалью", compare: "/materials/shpon", compareLabel: "Сравнить эмаль со шпоном" },
+]) {
+  legacyRegistry.push(
+    { fromRoute: material.route, fromState: "RESULT", userQuestion: "Как проверить материал в композиции?", actionType: "DEEPEN", anchorRu: "Проверить сочетания в дизайн-проекте", toRoute: "/design-proekt-kuhni", contextPatch: { materials: [material.name], sourceRoute: material.route }, reasonRu: "Проект помогает сопоставить поверхность со светом, столешницей и планировкой.", priority: 1, requiresEvidence: false, fallbackRoute: "/materials", analyticsEvent: "exploration_transition_click", status: "active" },
+    { fromRoute: material.route, fromState: "RESULT", userQuestion: "Какой материал посмотреть рядом?", actionType: "COMPARE", anchorRu: material.compareLabel, toRoute: material.compare, contextPatch: { materials: [material.name], sourceRoute: material.route }, reasonRu: "Соседний материал раскрывает другой характер поверхности и ограничения выбора.", priority: 2, requiresEvidence: false, fallbackRoute: "/materials", analyticsEvent: "exploration_compare", status: "active" },
+    { fromRoute: material.route, fromState: "RESULT", userQuestion: "Как передать выбор для расчёта?", actionType: "CONVERT", anchorRu: `Передать ${material.name} в заявку`, toRoute: `${material.route}#calculation`, contextPatch: { materials: [material.name], sourceRoute: material.route }, reasonRu: "Форма сохраняет выбранный материал без неподтверждённой цены и характеристик.", priority: 3, requiresEvidence: false, fallbackRoute: "/calculator", analyticsEvent: "lead_open_with_context", status: "active" },
+  );
+}
+
 for (const config of [...Object.values(STYLE_FAMILY), ...Object.values(SCENARIO_FAMILY)]) {
   const family = "visualLanguage" in config ? "styles" : "scenarios";
   const fromRoute = `/${family}/${config.slug}`;

@@ -9,6 +9,8 @@ import { MaterialsCardsGrid } from "@/components/sections/MaterialsCardsGrid";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 import { STATIC_MATERIAL_PAGES } from "@/data/material-fallbacks";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { MaterialsHubExplorer } from "@/components/materials/MaterialsHubExplorer";
 
 const title = "Материалы для кухонных фасадов";
 const description =
@@ -83,7 +85,7 @@ export default async function MaterialsPage() {
   };
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/materials">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="section-padding">
@@ -106,6 +108,13 @@ export default async function MaterialsPage() {
             </p>
           </div>
 
+          <MaterialsHubExplorer />
+
+          <div className="mb-12 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
+            <ContextSummary />
+            <RelatedExplorationRail route="/materials" state="RESULT" />
+          </div>
+
           <section className="mb-12" aria-labelledby="featured-material-pages-heading">
             <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
@@ -114,7 +123,7 @@ export default async function MaterialsPage() {
               </div>
             </div>
             <div className="grid gap-5 md:grid-cols-3">
-              {featuredMaterialPages.map((item, index) => (
+              {featuredMaterialPages.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -125,8 +134,7 @@ export default async function MaterialsPage() {
                     alt={item.alt}
                     width={720}
                     height={480}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchPriority={index === 0 ? "high" : "auto"}
+                    loading="lazy"
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="aspect-[3/2] h-auto w-full object-cover"
                   />
@@ -195,6 +203,6 @@ export default async function MaterialsPage() {
           </div>
         </div>
       </div>
-    </>
+    </ExploreContextProvider>
   );
 }

@@ -21,7 +21,7 @@ async function assertRoute(page: import("@playwright/test").Page, route: string)
   expect(new URL(canonical || "", "https://kuhni.minsk.by").pathname).toBe(route);
   expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)).toBe(false);
   expect(await page.locator("img:not([alt])").count()).toBe(0);
-  expect(await page.locator("img").evaluateAll((images) => images.filter((image) => image.complete && (image as HTMLImageElement).naturalWidth === 0).length)).toBe(0);
+  expect(await page.locator("img").evaluateAll((images) => images.filter((image) => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth === 0).length)).toBe(0);
 }
 
 test.describe("stage 7A production smoke", () => {
