@@ -9,21 +9,27 @@ async function currentSource(page: Page, selector: string) {
 test.describe("general rollout stage 6", () => {
   for (const route of routes) {
     for (const width of [360, 390, 412, 768, 1440]) {
-    test(`${route}: SEO, links, media and layout stay healthy at ${width}px`, async ({ page }) => {
-      await page.setViewportSize({ width, height: width >= 768 ? 960 : 844 });
-      const response = await page.goto(route, { waitUntil: "domcontentloaded" });
-      expect(response?.status()).toBe(200);
-      await expect(page.locator("h1")).toHaveCount(1);
-      const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
-      expect(new URL(canonical || "", "https://kuhni.minsk.by").pathname).toBe(route);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)).toBe(false);
-      await expect(page.locator('[data-component="RelatedExplorationRail"] [data-transition]')).toHaveCount(3);
-      expect(await page.locator('[data-component="RelatedExplorationRail"] a[href]').count()).toBe(3);
-      const broken = await page.locator("img").evaluateAll((images) => images.filter((item) => item.complete && item.naturalWidth === 0).map((item) => item.getAttribute("src")));
-      expect(broken).toEqual([]);
-      const missingAlt = await page.locator("img").evaluateAll((images) => images.filter((item) => !item.hasAttribute("alt")).length);
-      expect(missingAlt).toBe(0);
-    });
+      test(`${route}: SEO, links, media and layout stay healthy at ${width}px`, async ({ page }) => {
+        await page.setViewportSize({ width, height: width >= 768 ? 960 : 844 });
+        const response = await page.goto(route, { waitUntil: "domcontentloaded" });
+        expect(response?.status()).toBe(200);
+        await expect(page.locator("h1")).toHaveCount(1);
+        const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+        expect(new URL(canonical || "", "https://kuhni.minsk.by").pathname).toBe(route);
+        expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)).toBe(false);
+        await expect(page.locator('[data-component="RelatedExplorationRail"] [data-transition]')).toHaveCount(3);
+        expect(await page.locator('[data-component="RelatedExplorationRail"] a[href]').count()).toBe(3);
+        const broken = await page.locator("img").evaluateAll((images) =>
+          (images as HTMLImageElement[])
+            .filter((item) => item.complete && item.naturalWidth === 0)
+            .map((item) => item.getAttribute("src")),
+        );
+        expect(broken).toEqual([]);
+        const missingAlt = await page
+          .locator("img")
+          .evaluateAll((images) => images.filter((item) => !item.hasAttribute("alt")).length);
+        expect(missingAlt).toBe(0);
+      });
     }
   }
 

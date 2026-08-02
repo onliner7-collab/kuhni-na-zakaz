@@ -1,0 +1,303 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.stage6.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/general-rollout/stage-6/playwright-production-journey-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "general-rollout-stage6.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/general-rollout/stage-6/playwright-production-journey.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "general-rollout-stage6.spec.ts",
+      "file": "general-rollout-stage6.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "general rollout stage 6",
+          "file": "general-rollout-stage6.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "главная меняет visual и сохраняет жизненный сценарий",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2652,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:39:52.000Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f0b68747465e1619690a-ef3d5bc515b0759d3de3",
+              "file": "general-rollout-stage6.spec.ts",
+              "line": 30,
+              "column": 7
+            },
+            {
+              "title": "дизайн-проект меняет preview и сохраняет форму, стиль и ограничения",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3087,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:39:54.723Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f0b68747465e1619690a-36484fc4ccd5a2f404e0",
+              "file": "general-rollout-stage6.spec.ts",
+              "line": 41,
+              "column": 7
+            },
+            {
+              "title": "/locations/minsk: route-specific choice changes visual and location context",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1525,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:39:57.819Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f0b68747465e1619690a-dfabcc807bf50437b269",
+              "file": "general-rollout-stage6.spec.ts",
+              "line": 57,
+              "column": 9
+            },
+            {
+              "title": "/locations/minskaya-oblast: route-specific choice changes visual and location context",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 31309,
+                      "error": {
+                        "message": "Error: page.goto: net::ERR_TIMED_OUT at https://kuhni.minsk.by/locations/minskaya-oblast\nCall log:\n\u001b[2m  - navigating to \"https://kuhni.minsk.by/locations/minskaya-oblast\", waiting until \"domcontentloaded\"\u001b[22m\n",
+                        "stack": "Error: page.goto: net::ERR_TIMED_OUT at https://kuhni.minsk.by/locations/minskaya-oblast\nCall log:\n\u001b[2m  - navigating to \"https://kuhni.minsk.by/locations/minskaya-oblast\", waiting until \"domcontentloaded\"\u001b[22m\n\n    at C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\general-rollout-stage6.spec.ts:58:18",
+                        "location": {
+                          "file": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\general-rollout-stage6.spec.ts",
+                          "column": 18,
+                          "line": 58
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 56 |\u001b[39m   \u001b[36mfor\u001b[39m (\u001b[36mconst\u001b[39m [route\u001b[33m,\u001b[39m button\u001b[33m,\u001b[39m id] \u001b[36mof\u001b[39m [[\u001b[32m\"/locations/minsk\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"Новостройка\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"newbuild\"\u001b[39m]\u001b[33m,\u001b[39m [\u001b[32m\"/locations/minskaya-oblast\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"Молодечно\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"molodechno\"\u001b[39m]] \u001b[36mas\u001b[39m \u001b[36mconst\u001b[39m) {\n \u001b[90m 57 |\u001b[39m     test(\u001b[32m`${route}: route-specific choice changes visual and location context`\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 58 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(route\u001b[33m,\u001b[39m { waitUntil\u001b[33m:\u001b[39m \u001b[32m\"domcontentloaded\"\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 59 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m\"networkidle\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 60 |\u001b[39m       \u001b[36mconst\u001b[39m selector \u001b[33m=\u001b[39m \u001b[32m\"[data-stage6-location-result] img\"\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m       \u001b[36mconst\u001b[39m before \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m currentSource(page\u001b[33m,\u001b[39m selector)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\general-rollout-stage6.spec.ts",
+                            "column": 18,
+                            "line": 58
+                          },
+                          "message": "Error: page.goto: net::ERR_TIMED_OUT at https://kuhni.minsk.by/locations/minskaya-oblast\nCall log:\n\u001b[2m  - navigating to \"https://kuhni.minsk.by/locations/minskaya-oblast\", waiting until \"domcontentloaded\"\u001b[22m\n\n\n  56 |   for (const [route, button, id] of [[\"/locations/minsk\", \"Новостройка\", \"newbuild\"], [\"/locations/minskaya-oblast\", \"Молодечно\", \"molodechno\"]] as const) {\n  57 |     test(`${route}: route-specific choice changes visual and location context`, async ({ page }) => {\n> 58 |       await page.goto(route, { waitUntil: \"domcontentloaded\" });\n     |                  ^\n  59 |       await page.waitForLoadState(\"networkidle\");\n  60 |       const selector = \"[data-stage6-location-result] img\";\n  61 |       const before = await currentSource(page, selector);\n    at C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\general-rollout-stage6.spec.ts:58:18"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:39:59.354Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-6\\playwright-production-journey-results\\general-rollout-stage6-gen-e0671-visual-and-location-context\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-6\\playwright-production-journey-results\\general-rollout-stage6-gen-e0671-visual-and-location-context\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-6\\playwright-production-journey-results\\general-rollout-stage6-gen-e0671-visual-and-location-context\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-6\\playwright-production-journey-results\\general-rollout-stage6-gen-e0671-visual-and-location-context\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\general-rollout-stage6.spec.ts",
+                        "column": 18,
+                        "line": 58
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "f0b68747465e1619690a-7cb01e2d18aa5f12d375",
+              "file": "general-rollout-stage6.spec.ts",
+              "line": 57,
+              "column": 9
+            },
+            {
+              "title": "фурнитура меняет механизм, сохраняет context и оставляет 15 изображений",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1742,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:40:31.270Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f0b68747465e1619690a-4495e659ce02f4f536b9",
+              "file": "general-rollout-stage6.spec.ts",
+              "line": 69,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-02T12:39:51.408Z",
+    "duration": 41693.62699999999,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
