@@ -21,7 +21,7 @@ export function MediaPicture({ media, eager = false, className = "h-full w-full 
         height={media.height}
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
-        decoding="async"
+        decoding={eager ? undefined : "async"}
         className={className}
       />
     </picture>

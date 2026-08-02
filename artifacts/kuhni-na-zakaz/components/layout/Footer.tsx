@@ -1,13 +1,10 @@
-"use client";
-
 import Link from "@/components/navigation/Link";
-import { Clock, Instagram, Mail, MapPin } from "lucide-react";
+import { Clock, Instagram, Mail, MapPin, Phone } from "lucide-react";
 
 import { regionalLocations } from "@/data/locations";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { resolveContactInfo } from "@/lib/contact-info";
 import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
-import { PhoneReveal } from "@/components/layout/PhoneReveal";
 
 function FooterTelegramIcon({ className }: { className?: string }) {
   return (
@@ -78,23 +75,27 @@ export function Footer() {
               Кухни на заказ по Минску и Беларуси: проектирование, производство, доставка и монтаж. Производственный и юридический адрес — Борисов.
             </p>
             <div className="mt-4 space-y-2.5">
-              <PhoneReveal
-                phone={c.phoneDisplay}
-                phoneHref={`tel:${c.phone}`}
-                source="footer"
-                compact
-                dark
-                className="w-full"
-              />
+              <a
+                href={`tel:${c.phone}`}
+                className="flex min-h-11 w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-white transition-colors hover:border-primary/40 hover:bg-white/10"
+                data-analytics-source="footer"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                  <Phone className="h-4 w-4" aria-hidden />
+                </span>
+                <span className="font-bold">{c.phoneDisplay}</span>
+              </a>
               {c.phone2 && c.phoneDisplay2 && (
-                <PhoneReveal
-                  phone={c.phoneDisplay2}
-                  phoneHref={`tel:${c.phone2}`}
-                  source="footer-secondary"
-                  compact
-                  dark
-                  className="w-full"
-                />
+                <a
+                  href={`tel:${c.phone2}`}
+                  className="flex min-h-11 w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-white transition-colors hover:border-primary/40 hover:bg-white/10"
+                  data-analytics-source="footer-secondary"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                    <Phone className="h-4 w-4" aria-hidden />
+                  </span>
+                  <span className="font-bold">{c.phoneDisplay2}</span>
+                </a>
               )}
               <a href={`mailto:${c.email}`} className="flex items-center gap-2 text-sm text-white/65 transition-colors hover:text-white">
                 <Mail className="h-4 w-4 shrink-0 text-primary" aria-hidden />

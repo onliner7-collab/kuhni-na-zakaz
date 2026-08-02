@@ -14,7 +14,7 @@ test.describe("style and scenario families", () => {
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp(`${path}$`));
     await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /.+/);
-    await expect(page.getByText("Текстовый fallback", { exact: true })).toBeVisible();
+    await expect(page.getByText("Если интерактив недоступен", { exact: true })).toBeVisible();
     await expect(page.locator("[data-transition]")).toHaveCount(4);
     await expect(page.locator('[data-transition="PROOF"]')).toHaveAttribute("href", "/portfolio");
     await expect(page.locator("main img").first()).toHaveAttribute("alt", /[А-Яа-яЁё]/);

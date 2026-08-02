@@ -21,16 +21,24 @@ import {
   Wrench,
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { FurnituraHardwareGallery } from "@/components/sections/FurnituraHardwareGallery";
+import { DeferredFurnituraHardwareGallery } from "@/components/sections/DeferredFurnituraHardwareGallery";
 import { furnituraGalleryRegistry } from "@/lib/furnitura-gallery-registry";
-import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl, type JsonLdObject } from "@/lib/schema-org";
+import {
+  JsonLd,
+  breadcrumbJsonLd,
+  compactJsonLd,
+  faqJsonLd,
+  siteUrl,
+  type JsonLdObject,
+} from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 import { HardwareShowroom } from "@/components/materials/hardware/HardwareShowroom";
 
 const pageTitle = "Фурнитура для кухни на заказ";
 const pageDescription =
   "Фурнитура для кухни на заказ: петли, направляющие, доводчики, подъемники, ручки и системы хранения. Подбор под проект в Минске.";
-const heroImage = "/media/pilots/hardware/webp/hardware-hero-open-cabinet-portrait.webp";
+const heroImage =
+  "/media/pilots/hardware/webp/hardware-hero-open-cabinet-portrait.webp";
 const pagePath = "/materials/furnitura";
 const imageBasePath = "/images/materials-gallery-v2/furnitura";
 
@@ -41,7 +49,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   openGraph: buildOpenGraph(pagePath, pageTitle, pageDescription, {
     type: "article",
-    images: [{ url: heroImage, width: 1600, height: 900, alt: "Фурнитура для кухни на заказ" }],
+    images: [
+      {
+        url: heroImage,
+        width: 1600,
+        height: 900,
+        alt: "Фурнитура для кухни на заказ",
+      },
+    ],
   }),
   twitter: buildTwitterMetadata(pageTitle, pageDescription, heroImage),
 };
@@ -213,7 +228,8 @@ const advancedHardwareSections = [
   },
   {
     eyebrow: "Детали, электрика и защита",
-    title: "Что планируют заранее для подсветки, столешницы и тихой эксплуатации",
+    title:
+      "Что планируют заранее для подсветки, столешницы и тихой эксплуатации",
     text: "LED-подсветка, розетки, планки для столешниц и небольшие защитные детали лучше учитывать до производства кухни. Так проще скрыть проводку, аккуратно закрыть торцы и снизить шум от ежедневного открывания фасадов.",
     items: [
       "LED-профиль, LED-лента и сенсорный выключатель закладываются вместе с электрикой, чтобы подсветка была удобной, безопасной и без видимых проводов.",
@@ -294,7 +310,8 @@ export default function FurnituraMaterialsPage() {
     primaryImageOfPage: {
       "@type": "ImageObject",
       contentUrl: siteUrl(heroImage),
-      caption: "Фурнитура для кухни на заказ в открытом ящике с направляющими и органайзером",
+      caption:
+        "Фурнитура для кухни на заказ в открытом ящике с направляющими и органайзером",
     },
     about: "Кухонная фурнитура для кухонь на заказ",
   });
@@ -322,34 +339,41 @@ export default function FurnituraMaterialsPage() {
 
   return (
     <>
-      <JsonLd data={jsonLdItems} />
       <div className="section-padding">
         <main className="container-site">
-          <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground" aria-label="Хлебные крошки">
-            <Link href="/" className="hover:text-primary">Главная</Link>
+          <nav
+            className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground"
+            aria-label="Хлебные крошки"
+          >
+            <Link href="/" className="hover:text-primary">
+              Главная
+            </Link>
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
-            <Link href="/materials" className="hover:text-primary">Материалы</Link>
+            <Link href="/materials" className="hover:text-primary">
+              Материалы
+            </Link>
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
             <span className="text-foreground">Фурнитура</span>
           </nav>
 
           <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-center">
             <div>
-              <p className="mb-3 text-sm font-semibold uppercase text-primary">Комплектация кухни</p>
+              <p className="mb-3 text-sm font-semibold uppercase text-primary">
+                Комплектация кухни
+              </p>
               <h1 className="mb-5 font-serif text-4xl font-bold leading-tight md:text-5xl">
                 Фурнитура для кухни на заказ
               </h1>
               <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
-                Петли, направляющие, доводчики, подъемные механизмы, ручки и системы хранения влияют на то,
-                насколько удобно пользоваться кухней каждый день. Разбираем, что стоит заложить
-                в проект сразу, а где можно выбрать более спокойное решение без потери надежности.
+                Разбираем надёжную фурнитуру для кухни.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="#calculation"
                   className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
-                  Рассчитать кухню <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  Рассчитать кухню{" "}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
                 <Link
                   href="#faq"
@@ -359,60 +383,121 @@ export default function FurnituraMaterialsPage() {
                 </Link>
               </div>
             </div>
-            <aside className="rounded-2xl border border-border bg-white p-6 shadow-sm" aria-labelledby="hardware-summary">
+            <aside
+              className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+              aria-labelledby="hardware-summary"
+            >
               <div className="relative -mx-2 -mt-2 mb-5 aspect-[3/4] overflow-hidden rounded-xl bg-muted">
                 <picture>
-                  <source type="image/avif" srcSet="/media/pilots/hardware/avif/hardware-hero-open-cabinet-portrait.avif" />
-                  <img src={heroImage} alt="Открытый кухонный шкаф с видимыми механизмами" width="900" height="1200" fetchPriority="high" className="h-full w-full object-cover" />
+                  <source
+                    type="image/avif"
+                    srcSet="/media/pilots/hardware/avif/hardware-hero-open-cabinet-portrait.avif"
+                  />
+                  <img
+                    src={heroImage}
+                    alt="Открытый кухонный шкаф с видимыми механизмами"
+                    width="900"
+                    height="1200"
+                    fetchPriority="high"
+                    className="h-full w-full object-cover"
+                  />
                 </picture>
               </div>
-              <Sparkles className="mb-4 h-8 w-8 text-primary" aria-hidden="true" />
-              <h2 id="hardware-summary" className="font-serif text-2xl font-bold">Что обсуждаем на замере</h2>
+              <Sparkles
+                className="mb-4 h-8 w-8 text-primary"
+                aria-hidden="true"
+              />
+              <h2
+                id="hardware-summary"
+                className="font-serif text-2xl font-bold"
+              >
+                Что обсуждаем на замере
+              </h2>
               <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
-                <li>Какие ящики будут самыми частыми в использовании и что в них планируют хранить.</li>
-                <li>Где нужны доводчики, полное выдвижение и подъемные механизмы.</li>
-                <li>Подходит ли кухня без ручек под планировку и привычки семьи.</li>
-                <li>Какие системы хранения действительно окупятся в вашем проекте.</li>
+                <li>
+                  Какие ящики будут самыми частыми в использовании и что в них
+                  планируют хранить.
+                </li>
+                <li>
+                  Где нужны доводчики, полное выдвижение и подъемные механизмы.
+                </li>
+                <li>
+                  Подходит ли кухня без ручек под планировку и привычки семьи.
+                </li>
+                <li>
+                  Какие системы хранения действительно окупятся в вашем проекте.
+                </li>
               </ul>
               <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                AI-концепт: демонстрационные изображения не являются фотографиями выполненных проектов.
+                Визуальная концепция создана нейросетью и не является
+                фотографией выполненного проекта.
               </p>
             </aside>
           </section>
 
           <HardwareShowroom />
 
-          <section className="mt-16 grid gap-5 md:grid-cols-3" aria-labelledby="importance-heading">
+          <section
+            className="mt-16 grid gap-5 md:grid-cols-3"
+            aria-labelledby="importance-heading"
+          >
             <div className="md:col-span-3">
-              <h2 id="importance-heading" className="font-serif text-3xl font-bold">Почему фурнитура важна при заказе кухни</h2>
+              <h2
+                id="importance-heading"
+                className="font-serif text-3xl font-bold"
+              >
+                Почему фурнитура важна при заказе кухни
+              </h2>
               <p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">
-                Фасады и столешница задают внешний вид, но именно кухонная фурнитура отвечает за движение, доступ,
-                шум, нагрузку и ежедневную эргономику.
+                Фасады и столешница задают внешний вид, но именно кухонная
+                фурнитура отвечает за движение, доступ, шум, нагрузку и
+                ежедневную эргономику.
               </p>
             </div>
             {importanceItems.map((item) => (
               <article key={item.title} className="card-base p-6">
-                <item.icon className="mb-3 h-6 w-6 text-primary" aria-hidden="true" />
-                <h3 className="font-serif text-xl font-semibold">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                <item.icon
+                  className="mb-3 h-6 w-6 text-primary"
+                  aria-hidden="true"
+                />
+                <h3 className="font-serif text-xl font-semibold">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {item.text}
+                </p>
               </article>
             ))}
           </section>
 
           <section className="mt-16" aria-labelledby="categories-heading">
             <div className="mb-6 max-w-3xl">
-              <h2 id="categories-heading" className="font-serif text-3xl font-bold">Виды фурнитуры для кухни</h2>
+              <h2
+                id="categories-heading"
+                className="font-serif text-3xl font-bold"
+              >
+                Виды фурнитуры для кухни
+              </h2>
               <p className="mt-3 leading-relaxed text-muted-foreground">
-                При проектировании кухни на заказ мы смотрим не на отдельную деталь, а на связку: корпус, фасад,
-                вес, сценарий открывания, влажные зоны и бюджет.
+                При проектировании кухни на заказ мы смотрим не на отдельную
+                деталь, а на связку: корпус, фасад, вес, сценарий открывания,
+                влажные зоны и бюджет.
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {hardwareCategories.map((item) => (
-                <article key={item.title} className="rounded-2xl border border-border bg-white p-5">
-                  <item.icon className="mb-3 h-6 w-6 text-primary" aria-hidden="true" />
+                <article
+                  key={item.title}
+                  className="rounded-2xl border border-border bg-white p-5"
+                >
+                  <item.icon
+                    className="mb-3 h-6 w-6 text-primary"
+                    aria-hidden="true"
+                  />
                   <h3 className="font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {item.text}
+                  </p>
                 </article>
               ))}
             </div>
@@ -420,8 +505,16 @@ export default function FurnituraMaterialsPage() {
 
           <section className="mt-16" aria-labelledby="comparison-heading">
             <div className="mb-6 flex items-center gap-3">
-              <TableProperties className="h-6 w-6 text-primary" aria-hidden="true" />
-              <h2 id="comparison-heading" className="font-serif text-3xl font-bold">Какая фурнитура нужна для кухни</h2>
+              <TableProperties
+                className="h-6 w-6 text-primary"
+                aria-hidden="true"
+              />
+              <h2
+                id="comparison-heading"
+                className="font-serif text-3xl font-bold"
+              >
+                Какая фурнитура нужна для кухни
+              </h2>
             </div>
             <div className="overflow-x-auto rounded-2xl border border-border bg-white">
               <table className="w-full min-w-[760px] text-left text-sm">
@@ -435,8 +528,15 @@ export default function FurnituraMaterialsPage() {
                 <tbody>
                   {comparisonRows.map((row) => (
                     <tr key={row.task} className="border-t border-border">
-                      <th scope="row" className="p-4 font-semibold text-foreground">{row.task}</th>
-                      <td className="p-4 text-muted-foreground">{row.hardware}</td>
+                      <th
+                        scope="row"
+                        className="p-4 font-semibold text-foreground"
+                      >
+                        {row.task}
+                      </th>
+                      <td className="p-4 text-muted-foreground">
+                        {row.hardware}
+                      </td>
                       <td className="p-4 text-muted-foreground">{row.why}</td>
                     </tr>
                   ))}
@@ -445,25 +545,44 @@ export default function FurnituraMaterialsPage() {
             </div>
           </section>
 
-          <section className="mt-16 grid gap-6 lg:grid-cols-3" aria-labelledby="advanced-hardware-heading">
+          <section
+            className="mt-16 grid gap-6 lg:grid-cols-3"
+            aria-labelledby="advanced-hardware-heading"
+          >
             <div className="lg:col-span-2">
-              <h2 id="advanced-hardware-heading" className="font-serif text-3xl font-bold">
+              <h2
+                id="advanced-hardware-heading"
+                className="font-serif text-3xl font-bold"
+              >
                 Продвинутая фурнитура, угловые системы и решения для техники
               </h2>
               <p className="mt-3 max-w-3xl leading-relaxed text-muted-foreground">
-                Эти позиции не обязательно нужны в каждой кухне, но именно они часто решают сложные задачи хранения,
-                открывания фасадов и встройки техники без компромиссов по удобству.
+                Эти позиции не обязательно нужны в каждой кухне, но именно они
+                часто решают сложные задачи хранения, открывания фасадов и
+                встройки техники без компромиссов по удобству.
               </p>
             </div>
             {advancedHardwareSections.map((section) => (
-              <article key={section.title} className="rounded-2xl border border-border bg-white p-6 shadow-sm">
-                <p className="text-sm font-semibold uppercase text-primary">{section.eyebrow}</p>
-                <h3 className="mt-2 font-serif text-2xl font-semibold">{section.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{section.text}</p>
+              <article
+                key={section.title}
+                className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+              >
+                <p className="text-sm font-semibold uppercase text-primary">
+                  {section.eyebrow}
+                </p>
+                <h3 className="mt-2 font-serif text-2xl font-semibold">
+                  {section.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {section.text}
+                </p>
                 <ul className="mt-5 space-y-3 text-sm leading-relaxed text-muted-foreground">
                   {section.items.map((item) => (
                     <li key={item} className="flex gap-3">
-                      <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
+                      <BadgeCheck
+                        className="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                        aria-hidden="true"
+                      />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -472,25 +591,40 @@ export default function FurnituraMaterialsPage() {
             ))}
           </section>
 
-          <FurnituraHardwareGallery />
+          <DeferredFurnituraHardwareGallery />
 
-          <section id="hardware-levels" className="mt-16 scroll-mt-24" aria-labelledby="budget-heading">
+          <section
+            id="hardware-levels"
+            className="mt-16 scroll-mt-24"
+            aria-labelledby="budget-heading"
+          >
             <div className="mb-6 flex items-center gap-3">
-              <CircleDollarSign className="h-6 w-6 text-primary" aria-hidden="true" />
-              <h2 id="budget-heading" className="font-serif text-3xl font-bold">Как выбрать фурнитуру по бюджету</h2>
+              <CircleDollarSign
+                className="h-6 w-6 text-primary"
+                aria-hidden="true"
+              />
+              <h2 id="budget-heading" className="font-serif text-3xl font-bold">
+                Как выбрать фурнитуру по бюджету
+              </h2>
             </div>
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
               {budgetLevels.map((item) => (
                 <article key={item.title} className="card-base p-6">
-                  <h3 className="font-serif text-xl font-semibold">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                  <h3 className="font-serif text-xl font-semibold">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {item.text}
+                  </p>
                 </article>
               ))}
             </div>
           </section>
 
           <section className="mt-16" aria-labelledby="links-heading">
-            <h2 id="links-heading" className="font-serif text-3xl font-bold">Куда перейти дальше</h2>
+            <h2 id="links-heading" className="font-serif text-3xl font-bold">
+              Куда перейти дальше
+            </h2>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {internalLinks.map((item) => (
                 <Link
@@ -504,16 +638,31 @@ export default function FurnituraMaterialsPage() {
             </div>
           </section>
 
-          <section id="faq" className="mt-16 scroll-mt-24" aria-labelledby="faq-heading">
-            <h2 id="faq-heading" className="font-serif text-3xl font-bold">FAQ</h2>
+          <section
+            id="faq"
+            className="mt-16 scroll-mt-24"
+            aria-labelledby="faq-heading"
+          >
+            <h2 id="faq-heading" className="font-serif text-3xl font-bold">
+              FAQ
+            </h2>
             <div className="mt-6 space-y-3">
               {faqItems.map((item, index) => (
-                <details key={item.question} className="group card-base p-5" open={index === 0}>
+                <details
+                  key={item.question}
+                  className="group card-base p-5"
+                  open={index === 0}
+                >
                   <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold">
                     <span>{item.question}</span>
-                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <ArrowRight
+                      className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90"
+                      aria-hidden="true"
+                    />
                   </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {item.answer}
+                  </p>
                 </details>
               ))}
             </div>
@@ -521,18 +670,25 @@ export default function FurnituraMaterialsPage() {
 
           <section id="calculation" className="mt-16 scroll-mt-24">
             <div className="mx-auto max-w-2xl">
-              <h2 className="text-center font-serif text-3xl font-bold">Подобрать фурнитуру под проект кухни</h2>
+              <h2 className="text-center font-serif text-3xl font-bold">
+                Подобрать фурнитуру под проект кухни
+              </h2>
               <p className="mx-auto mt-3 max-w-xl text-center leading-relaxed text-muted-foreground">
-                Оставьте заявку: уточним планировку, вес фасадов, количество ящиков, желаемый уровень фурнитуры
-                и подготовим расчет кухни без обещаний точной цены до замера.
+                Оставьте заявку: уточним планировку, вес фасадов, количество
+                ящиков, желаемый уровень фурнитуры и подготовим расчет кухни без
+                обещаний точной цены до замера.
               </p>
               <div className="mt-8">
-                <ContactForm source="materials/furnitura" sourceType="materials" />
+                <ContactForm
+                  source="materials/furnitura"
+                  sourceType="materials"
+                />
               </div>
             </div>
           </section>
         </main>
       </div>
+      <JsonLd data={jsonLdItems} />
     </>
   );
 }

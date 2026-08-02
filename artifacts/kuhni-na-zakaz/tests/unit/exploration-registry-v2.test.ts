@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { RelatedExplorationRail } from "@/components/exploration/RelatedExplorationRail";
+import { SCENARIO_FAMILY, STYLE_FAMILY } from "@/data/exploration-families";
 import {
   emptyExploreContext,
   migrateExploreContext,
@@ -9,6 +11,10 @@ import {
   serializeExploreContextForLead,
 } from "@/lib/explore-context";
 import { getTransitionRegistry, readTransitions } from "@/lib/transition-registry";
+import {
+  getTransitionActionLabel,
+  TRANSITION_ACTION_LABELS,
+} from "@/lib/transition-action-labels";
 
 test("registry v2 has stable unique IDs and valid active fallbacks", () => {
   const registry = getTransitionRegistry();
@@ -39,6 +45,50 @@ test("server HTML keeps crawlable href and Russian reason", () => {
   assert.match(html, /href="\/portfolio"/);
   assert.match(html, /Проверить подтверждённые работы/);
   assert.doesNotMatch(html, /planned/);
+});
+
+test("every transition action has a Russian UI label and unknown values stay hidden", () => {
+  assert.deepEqual(Object.keys(TRANSITION_ACTION_LABELS).sort(), [
+    "COMPARE",
+    "CONVERT",
+    "CROSS_FAMILY",
+    "DEEPEN",
+    "PARENT",
+    "PROOF",
+    "SUPPORT",
+  ]);
+  assert.ok(Object.values(TRANSITION_ACTION_LABELS).every((label) => /[А-Яа-яЁё]/.test(label)));
+  assert.equal(getTransitionActionLabel("UNKNOWN_ACTION"), null);
+});
+
+test("style and scenario server HTML has Russian action labels without raw UI enums", () => {
+  const links = [
+    ...STYLE_FAMILY.minimalizm.links,
+    ...SCENARIO_FAMILY["dlya-malenkoy-kuhni"].links,
+  ];
+  const html = renderToStaticMarkup(
+    React.createElement(
+      "nav",
+      null,
+      links.map((link) =>
+        React.createElement(
+          "a",
+          { key: `${link.type}-${link.href}`, href: link.href, "data-transition": link.type },
+          React.createElement("span", null, getTransitionActionLabel(link.type)),
+          React.createElement("span", null, link.label),
+          React.createElement("span", null, link.reason),
+        ),
+      ),
+    ),
+  );
+  const visibleText = html.replace(/<[^>]+>/g, " ");
+
+  for (const action of Object.keys(TRANSITION_ACTION_LABELS)) {
+    assert.doesNotMatch(visibleText, new RegExp(`\\b${action}\\b`));
+  }
+  assert.doesNotMatch(visibleText, /\bAI\b|fallback|style_variants/i);
+  assert.match(visibleText, /Изучить подробнее/);
+  assert.match(visibleText, /Перейти к расчёту/);
 });
 
 test("context v2 migrates legacy data and removes unknown or PII fields", () => {

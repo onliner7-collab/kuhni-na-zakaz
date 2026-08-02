@@ -44,6 +44,7 @@ export function StyleVisualExplorer({ config }: { config: StyleFamilyConfig }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) calc(100vw - 3rem), 1200px"
             loading={active.id === frames[0]?.id ? "eager" : "lazy"}
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
+            decoding={active.id === frames[0]?.id ? undefined : "async"}
             className={`aspect-[2/3] h-auto w-full object-cover sm:aspect-[3/2] ${
               active.id === frames[0]?.id
                 ? ""
@@ -52,7 +53,7 @@ export function StyleVisualExplorer({ config }: { config: StyleFamilyConfig }) {
           />
         </picture>
         <span className="absolute left-3 top-3 rounded-full bg-stone-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">
-          AI-визуализация
+          Визуализация, созданная нейросетью
         </span>
       </div>
 

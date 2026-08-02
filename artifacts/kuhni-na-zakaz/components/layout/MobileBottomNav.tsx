@@ -70,6 +70,7 @@ export function MobileBottomNav() {
   useEffect(() => {
     if (isExcludedPath(pathname)) return;
     lastScrollY.current = window.scrollY;
+    setIsScrollHidden(window.scrollY >= 32);
 
     const suppressForInteraction = (event: Event) => {
       const target = event.target;

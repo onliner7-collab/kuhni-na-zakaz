@@ -16,11 +16,13 @@ const contentSecurityPolicy = [
 
 const finalPageLcpImages: Record<string, string> = {
   "/catalog/uglovye-kuhni":
-    "/media/pilots/angular-kitchens/gallery/angular-kitchens-angles-full-room-front-landscape-v1.webp",
+    "/media/pilots/angular-kitchens/avif/angular-kitchens-hero-corner-wide-portrait.avif",
   "/locations/borisov":
     "/media/pilots/borisov/webp/borisov-process-request.webp",
   "/materials/mdf-fasady":
     "/media/pilots/mdf-fasady/avif/mdf-surface-closeup.avif",
+  "/materials/furnitura":
+    "/media/pilots/hardware/avif/hardware-hero-open-cabinet-portrait.avif",
   "/catalog/pryamye-kuhni":
     "/media/visual-rescue/pryamye-kuhni/avif/line-balanced.avif",
   "/catalog/p-obraznye-kuhni":
@@ -157,8 +159,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/\\+375293720674",
+        source: "/:legacyPhone(%20375293720674|375293720674|\\+375293720674)",
         destination: "/contacts",
+        statusCode: 301,
+      },
+      {
+        source: "/locations/nesvizh-:legacySuffix",
+        destination: "/locations/nesvizh",
         statusCode: 301,
       },
       {
@@ -169,6 +176,16 @@ const nextConfig: NextConfig = {
       {
         source: "/scenarios/kuhnya-dlya-studii",
         destination: "/scenarios/dlya-studii",
+        statusCode: 301,
+      },
+      {
+        source: "/scenarios/kuhnya-do-potolka",
+        destination: "/scenarios/do-potolka",
+        statusCode: 301,
+      },
+      {
+        source: "/scenarios/kuhnya-bez-ruchek",
+        destination: "/catalog/kuhni-bez-ruchek",
         statusCode: 301,
       },
       {

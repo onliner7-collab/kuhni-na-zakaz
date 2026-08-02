@@ -41,6 +41,7 @@ export function HorizontalScrollStepperMotion() {
   useEffect(() => {
     const cleanups = new Map<HTMLElement, () => void>();
     let syncFrame = 0;
+    let startTimer = 0;
 
     const setupScroller = (element: HTMLElement) => {
       if (cleanups.has(element)) {
@@ -108,10 +109,15 @@ export function HorizontalScrollStepperMotion() {
     };
 
     const mutationObserver = new MutationObserver(requestSync);
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
-    requestSync();
+    const start = () => {
+      mutationObserver.observe(document.body, { childList: true, subtree: true });
+      requestSync();
+    };
+
+    startTimer = window.setTimeout(start, 1500);
 
     return () => {
+      window.clearTimeout(startTimer);
       mutationObserver.disconnect();
       if (syncFrame) {
         window.cancelAnimationFrame(syncFrame);

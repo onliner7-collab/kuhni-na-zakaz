@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
 import Script from "next/script";
 
-import { PublicChrome } from "@/components/layout/PublicChrome";
+import {
+  PublicChromeBottom,
+  PublicChromeTop,
+} from "@/components/layout/PublicChrome";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { HorizontalScrollStepperMotion } from "@/components/layout/HorizontalScrollStepperMotion";
 import { Toaster } from "@/components/ui/toaster";
+import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { getSiteUrl } from "@/lib/site-url";
 import { CANONICAL_SITE_URL, SITE_NAME } from "@/lib/seo";
 
 import "./globals.css";
-
-const manrope = Manrope({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-manrope",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-  adjustFontFallback: true,
-});
 
 const preferredSiteUrl = CANONICAL_SITE_URL;
 const siteUrl = getSiteUrl(preferredSiteUrl);
@@ -103,7 +100,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={manrope.variable}>
+    <html lang="ru">
       <head>
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <Script id="recover-stale-next-chunks" strategy="beforeInteractive">
@@ -112,7 +109,16 @@ export default async function RootLayout({
       </head>
       <body>
         <HorizontalScrollStepperMotion />
-        <PublicChrome>{children}</PublicChrome>
+        <PublicChromeTop
+          header={
+            <Header
+              phone={CONTACT_DEFAULTS.phoneDisplay}
+              phoneHref={`tel:${CONTACT_DEFAULTS.phone}`}
+            />
+          }
+        />
+        {children}
+        <PublicChromeBottom footer={<Footer />} />
         <Toaster />
       </body>
     </html>

@@ -360,9 +360,9 @@ export default async function ScenarioDetailPage({ params }: Props) {
             fetchPriority="high"
           />
         ) : null}
+        <ScenarioFamilyPage config={family} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(familyBreadcrumbJsonLd) }} />
-        <ScenarioFamilyPage config={family} />
       </>
     );
   }

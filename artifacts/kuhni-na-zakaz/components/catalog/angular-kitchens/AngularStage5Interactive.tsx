@@ -16,34 +16,34 @@ export const ANGULAR_ANSWERS_EVENT = "angular-kitchen-answers";
 const MEDIA_BASE = "/media/pilots/angular-kitchens";
 
 const gallery: PilotMedia[] = [
-  media("angle-front", "gallery/angular-kitchens-angles-full-room-front-landscape-v1", "Общий вид светлой угловой кухни", "AI-концепт: общий вид обеих стен угловой кухни."),
-  media("angle-long", "webp/angular-kitchens-angles-long-side-landscape", "Длинное плечо угловой кухни", "AI-концепт: длинное плечо с рабочей зоной."),
-  media("angle-short", "gallery/angular-kitchens-angles-short-side-landscape-v1", "Короткое плечо угловой кухни", "AI-концепт: короткое плечо и связь двух стен."),
-  media("angle-worktop", "gallery/angular-corner-types-straight-corner-front-01-v1", "Свободная рабочая поверхность в углу кухни", "AI-концепт: угол оставлен для подготовки продуктов."),
-  media("angle-sink", "gallery/angular-corner-types-sink-corner-front-01-v1", "Мойка в угловой части кухни", "AI-концепт: мойка расположена в угловой зоне."),
+  media("angle-front", "gallery/angular-kitchens-angles-full-room-front-landscape-v1", "Общий вид светлой угловой кухни", "Визуальная концепция: общий вид обеих стен угловой кухни."),
+  media("angle-long", "webp/angular-kitchens-angles-long-side-landscape", "Длинное плечо угловой кухни", "Визуальная концепция: длинное плечо с рабочей зоной."),
+  media("angle-short", "gallery/angular-kitchens-angles-short-side-landscape-v1", "Короткое плечо угловой кухни", "Визуальная концепция: короткое плечо и связь двух стен."),
+  media("angle-worktop", "gallery/angular-corner-types-straight-corner-front-01-v1", "Свободная рабочая поверхность в углу кухни", "Визуальная концепция: угол оставлен для подготовки продуктов."),
+  media("angle-sink", "gallery/angular-corner-types-sink-corner-front-01-v1", "Мойка в угловой части кухни", "Визуальная концепция: мойка расположена в угловой зоне."),
 ];
 
 const cornerTypes = [
   { id: "worktop", label: "Рабочий угол", title: "Непрерывная рабочая поверхность", description: "Мойка и варочная остаются на прямых участках, а угол используется для подготовки.", media: gallery[3] },
   { id: "sink", label: "Мойка в углу", title: "Коммуникации в одной зоне", description: "На замере нужно проверить трубы, сифон, соседние фасады и удобство подхода.", media: gallery[4] },
-  { id: "storage", label: "Угол для хранения", title: "Доступ зависит от механизма", description: "Полка, карусель и выдвижная система используют глубину шкафа по-разному.", media: media("corner-storage", "details/angular-storage-pullout-landscape-v2", "Выдвижной механизм в угловом шкафу", "AI-концепт: полностью открытая выдвижная система.") },
+  { id: "storage", label: "Угол для хранения", title: "Доступ зависит от механизма", description: "Полка, карусель и выдвижная система используют глубину шкафа по-разному.", media: media("corner-storage", "details/angular-storage-pullout-landscape-v2", "Выдвижной механизм в угловом шкафу", "Визуальная концепция: полностью открытая выдвижная система.") },
 ];
 
 const mechanisms = [
-  { id: "shelf", label: "Глубокая полка", description: "Для крупной и редко используемой посуды; дальняя зона доступна хуже.", media: media("mechanism-shelf", "details/angular-storage-deep-shelf-landscape-v2", "Глубокие полки с кастрюлями в угловом шкафу", "AI-концепт: простые глубокие полки без сложного механизма.") },
-  { id: "carousel", label: "Карусель", description: "Полки поворачиваются к проёму; обзор проще, но круг использует не весь объём.", media: media("mechanism-carousel", "details/angular-storage-carousel-landscape-v2", "Поворотная карусель с посудой в угловом шкафу", "AI-концепт: двухуровневая поворотная карусель.") },
+  { id: "shelf", label: "Глубокая полка", description: "Для крупной и редко используемой посуды; дальняя зона доступна хуже.", media: media("mechanism-shelf", "details/angular-storage-deep-shelf-landscape-v2", "Глубокие полки с кастрюлями в угловом шкафу", "Визуальная концепция: простые глубокие полки без сложного механизма.") },
+  { id: "carousel", label: "Карусель", description: "Полки поворачиваются к проёму; обзор проще, но круг использует не весь объём.", media: media("mechanism-carousel", "details/angular-storage-carousel-landscape-v2", "Поворотная карусель с посудой в угловом шкафу", "Визуальная концепция: двухуровневая поворотная карусель.") },
   { id: "pullout", label: "Выдвижная система", description: "Корзины выходят к пользователю; влияние на смету считают по комплектации.", media: cornerTypes[2].media },
 ];
 
 const frames: PilotMedia[] = Array.from({ length: 12 }, (_, index) => {
   const number = String(index + 1).padStart(2, "0");
-  return media(`corner-frame-${number}`, `webp/angular-kitchens-corner-mechanism-open-frame-${number}-landscape`, `Открытие углового механизма, кадр ${index + 1} из 12`, `AI-концепт: положение механизма ${index + 1} из 12.`);
+  return media(`corner-frame-${number}`, `webp/angular-kitchens-corner-mechanism-open-frame-${number}-landscape`, `Открытие углового механизма, кадр ${index + 1} из 12`, `Визуальная концепция: положение механизма ${index + 1} из 12.`);
 });
 
 const materials = [
-  { id: "warm-white", label: "Тёплый белый", href: "/materials/mdf-fasady", description: "Спокойная светлая база; покрытие и кромки подбирают под нагрузку.", media: media("material-white", "details/angular-materials-warm-white-detail-01-v1", "Угловая кухня с фасадами тёплого белого цвета", "AI-концепт: тёплый белый и натуральный дуб.") },
-  { id: "green", label: "Приглушённый зелёный", href: "/styles/zelenye-kuhni", description: "Цветовой акцент без изменения планировки и механики угла.", media: media("material-green", "details/angular-materials-green-detail-01-v1", "Угловая кухня с приглушёнными зелёными фасадами", "AI-концепт: зелёные фасады и натуральный дуб.") },
-  { id: "graphite", label: "Графитовый", href: "/styles/temnye-kuhni", description: "Контрастный низ и тёплый дуб; освещение проверяют в реальном помещении.", media: media("material-graphite", "details/angular-materials-graphite-detail-01-v1", "Угловая кухня с графитовыми фасадами", "AI-концепт: графитовые фасады и натуральный дуб.") },
+  { id: "warm-white", label: "Тёплый белый", href: "/materials/mdf-fasady", description: "Спокойная светлая база; покрытие и кромки подбирают под нагрузку.", media: media("material-white", "details/angular-materials-warm-white-detail-01-v1", "Угловая кухня с фасадами тёплого белого цвета", "Визуальная концепция: тёплый белый и натуральный дуб.") },
+  { id: "green", label: "Приглушённый зелёный", href: "/styles/zelenye-kuhni", description: "Цветовой акцент без изменения планировки и механики угла.", media: media("material-green", "details/angular-materials-green-detail-01-v1", "Угловая кухня с приглушёнными зелёными фасадами", "Визуальная концепция: зелёные фасады и натуральный дуб.") },
+  { id: "graphite", label: "Графитовый", href: "/styles/temnye-kuhni", description: "Контрастный низ и тёплый дуб; освещение проверяют в реальном помещении.", media: media("material-graphite", "details/angular-materials-graphite-detail-01-v1", "Угловая кухня с графитовыми фасадами", "Визуальная концепция: графитовые фасады и натуральный дуб.") },
 ];
 
 type LayoutSelection = {
@@ -95,8 +95,8 @@ export function AngularStage5Interactive() {
       <section id="planning" className="scroll-mt-24" aria-labelledby="planning-title">
         <p className="text-sm font-black uppercase tracking-[0.16em] text-amber-800">Планировка</p>
         <h2 id="planning-title" className="mt-2 text-3xl font-black tracking-tight md:text-4xl">Посмотрите на угол с разных сторон</h2>
-        <p className="mt-3 max-w-3xl leading-7 text-stone-600">Листайте ракурсы пальцем или используйте кнопки. Все изображения ниже — AI-концепты, а не фотографии выполненных проектов.</p>
-        <div className="mt-6"><MediaSequence items={gallery} label="Ракурсы угловой кухни" /></div>
+        <p className="mt-3 max-w-3xl leading-7 text-stone-600">Листайте ракурсы пальцем или используйте кнопки. Все изображения ниже — визуальные концепции, созданные нейросетью, а не фотографии выполненных проектов.</p>
+        <div className="mt-6"><MediaSequence items={gallery} label="Ракурсы угловой кухни" eagerInitial={false} /></div>
 
         <div className="mt-10 rounded-3xl border border-stone-200 bg-white p-4 sm:p-6">
           <h3 className="text-2xl font-black">Как использовать сам угол</h3>

@@ -272,9 +272,9 @@ export default async function StylePage({ params }: Props) {
             fetchPriority="high"
           />
         ) : null}
+        <StyleFamilyPage config={family} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(familyBreadcrumbJsonLd) }} />
-        <StyleFamilyPage config={family} />
       </>
     );
   }

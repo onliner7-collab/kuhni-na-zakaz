@@ -23,7 +23,22 @@ export interface ScenarioFamilyConfig {
   seriesId?: string; visualFrames?: ScenarioVisualFrame[];
 }
 
-const media = (webp: string, alt: string, caption: string, avif?: string): FamilyMedia => ({ webp, avif, alt, caption, width: 1200, height: 800 });
+const replaceAiMarker = (value: string) =>
+  value
+    .replaceAll("AI-концепты", "Концепции, созданные нейросетью")
+    .replaceAll("AI-концепта", "концепции, созданной нейросетью")
+    .replaceAll("AI-концепцией", "концепцией, созданной нейросетью")
+    .replaceAll("AI-концепция", "Концепция, созданная нейросетью")
+    .replaceAll("AI-концепт", "Концепция, созданная нейросетью");
+
+const media = (webp: string, alt: string, caption: string, avif?: string): FamilyMedia => ({
+  webp,
+  avif,
+  alt: replaceAiMarker(alt),
+  caption: replaceAiMarker(caption),
+  width: 1200,
+  height: 800,
+});
 const styleMedia = (base: string, alt: string, avif?: string) => [
   media(base, `${alt}, общий вид`, "Общий вид AI-концепта: оценивайте пропорции, свет и крупные плоскости.", avif),
   media("/images/design-proekt-kuhni/config-facade-matte.webp", `${alt}, условный крупный план фасада`, "Условный крупный план материала из той же линии выбора."),
@@ -44,8 +59,8 @@ function styleFrame(
     label,
     webp: `${base}/${id}.webp`,
     avif: `${base}/${id}.avif`,
-    alt,
-    caption,
+    alt: replaceAiMarker(alt),
+    caption: replaceAiMarker(caption),
     result,
     caution,
     width: 1200,
@@ -67,8 +82,8 @@ function scenarioFrame(
     label,
     webp: `${base}/${id}.webp`,
     avif: `${base}/${id}.avif`,
-    alt,
-    caption: "AI-концепция сценария кухни; не фотография выполненного проекта.",
+    alt: replaceAiMarker(alt),
+    caption: "Концепция сценария кухни, созданная нейросетью; не фотография выполненного проекта.",
     result,
     caution,
     objectPosition,
@@ -261,7 +276,7 @@ const styleRows: Omit<StyleFamilyConfig, "links">[] = [
 export const STYLE_FAMILY = Object.fromEntries(styleRows.map((row, index) => [row.slug, { ...row, links: [
   { type:"DEEPEN", label:"Сравнить подходящие материалы", href: row.materials[0].includes("ЛДСП") ? "/materials/ldsp" : row.materials[0].includes("HPL") ? "/materials/plastik-hpl" : "/materials/mdf-fasady", reason:"Материал уточняет внешний вид и бытовые ограничения." },
   { type:"COMPARE", label:`Сравнить: ${row.comparison.title.toLowerCase()}`, href:`/styles/${styleRows[(index+1)%styleRows.length].slug}`, reason:"Соседний стиль показывает реальную визуальную альтернативу." },
-  { type:"PROOF", label:"Открыть подтверждённые работы", href:"/portfolio", reason:"AI-концепты не выдаются за реализованные проекты." },
+  { type:"PROOF", label:"Открыть подтверждённые работы", href:"/portfolio", reason:"Концепции, созданные нейросетью, не выдаются за реализованные проекты." },
   { type:"CONVERT", label:"Передать стиль в дизайн-проект", href:"/design-proekt-kuhni", reason:"Контекст выбора можно уточнить по размерам помещения." },
 ] }])) as Record<string, StyleFamilyConfig>;
 
@@ -304,6 +319,6 @@ const scenarioVisualConfigs: Record<string, Pick<ScenarioFamilyConfig, "seriesId
 export const SCENARIO_FAMILY = Object.fromEntries(scenarioRows.map(row => [row.slug,{...row,...scenarioVisualConfigs[row.slug],links:[
   {type:"DEEPEN",label:row.article.label,href:row.article.href,reason:"Статья раскрывает измерения и ошибки подробнее."},
   {type:"COMPARE",label:row.priorities[1].layouts[0].label,href:row.priorities[1].layouts[0].href,reason:"Альтернатива помогает проверить компромисс выбранного сценария."},
-  {type:"PROOF",label:"Проверить подтверждённые работы",href:"/portfolio",reason:"Раздел работ отделён от AI-концепта сценария."},
+  {type:"PROOF",label:"Проверить подтверждённые работы",href:"/portfolio",reason:"Раздел работ отделён от концепции сценария, созданной нейросетью."},
   {type:"CONVERT",label:"Передать ограничения в расчёт",href:"/calculator",reason:"Расчёт начинается с размеров и выбранных приоритетов."},
 ]}])) as Record<string,ScenarioFamilyConfig>;

@@ -103,6 +103,7 @@ export function ScenarioVisualExplorer({ config }: { config: ScenarioFamilyConfi
             sizes="(max-width: 767px) calc(100vw - 2rem), (max-width: 1200px) 62vw, 820px"
             loading={active.id === frames[0]?.id ? "eager" : "lazy"}
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
+            decoding={active.id === frames[0]?.id ? undefined : "async"}
             style={{ objectPosition: active.objectPosition }}
             className={`block h-full w-full object-cover ${
               active.id === frames[0]?.id
@@ -112,7 +113,7 @@ export function ScenarioVisualExplorer({ config }: { config: ScenarioFamilyConfi
           />
         </picture>
         <span className="absolute left-3 top-3 rounded-full bg-stone-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">
-          AI-визуализация
+          Визуализация, созданная нейросетью
         </span>
       </div>
 
