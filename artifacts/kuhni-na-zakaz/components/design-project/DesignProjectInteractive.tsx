@@ -7,6 +7,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import type { TouchEvent as ReactTouchEvent } from "react";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Maximize2, MessageCircle, X } from "lucide-react";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
+import { ContextSummary, useExploreContext } from "@/components/exploration";
 
 const imageBase = "/images/design-proekt-kuhni";
 const minskProjectBase = "/uploads/locations/minsk-stage34";
@@ -430,6 +431,7 @@ type ConfigVisualSource = {
 };
 
 export function DesignProjectInteractive() {
+  const { updateContext } = useExploreContext();
   const [heroStage, setHeroStage] = useState(0);
   const [selection, setSelection] = useState<SelectionState>({
     shape: choices.shape[1],
@@ -633,17 +635,25 @@ export function DesignProjectInteractive() {
       setActiveConfigSource({ type: key, value });
     }
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: key, value });
+    if (key === "shape") updateContext({ layout: value }, "Выбрана форма дизайн-проекта");
+    if (key === "size") updateContext({ scenario: `Помещение ${value}` }, "Уточнено помещение");
+    if (key === "style") updateContext({ style: value }, "Выбран стиль дизайн-проекта");
+    if (key === "facade") updateContext({ materials: [value] }, "Выбран тип фасадов");
   }
 
   function toggleExtra(value: string) {
     trackConfigStart();
+    const extras = selection.extras.includes(value)
+      ? selection.extras.filter((item) => item !== value)
+      : [...selection.extras, value];
     setSelection((current) => {
-      const extras = current.extras.includes(value)
-        ? current.extras.filter((item) => item !== value)
-        : [...current.extras, value];
       return { ...current, extras };
     });
     setActiveConfigSource({ type: "extras", value });
+    updateContext({
+      scenario: extras.length ? `Ограничения: ${extras.join(", ")}` : "Ограничения не выбраны",
+      hardware: extras.filter((item) => /хран|техник|остров|потол/i.test(item)),
+    }, "Уточнены ограничения проекта");
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: "extras", value });
   }
 
@@ -670,6 +680,7 @@ export function DesignProjectInteractive() {
   function chooseMaterial(material: (typeof materials)[number]) {
     setActiveMaterial(material[1]);
     setSelection((current) => ({ ...current, material: material[1] }));
+    updateContext({ materials: [material[1]] }, "Выбран материал проекта");
     track(ANALYTICS_EVENTS.DESIGN_MATERIAL_OPEN, { category: material[0], material: material[1] });
   }
 
@@ -859,6 +870,7 @@ export function DesignProjectInteractive() {
                   <button
                     key={shape.name}
                     type="button"
+                    data-stage6-shape={shape.name}
                     onClick={() => choose("shape", shape.name)}
                     className={`w-[82vw] shrink-0 snap-start overflow-hidden rounded-lg border text-left transition-colors sm:w-auto ${selection.shape === shape.name ? "border-primary bg-primary text-primary-foreground shadow-lg shadow-primary/15" : "border-border bg-white hover:border-primary/40"}`}
                   >
@@ -894,6 +906,7 @@ export function DesignProjectInteractive() {
                   ))}
                 </div>
               </div>
+              <ContextSummary />
             </div>
             </div>
             <div className="sticky top-4 overflow-hidden rounded-lg border border-border bg-stone-950 text-white">

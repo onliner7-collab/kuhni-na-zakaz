@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { DesignProjectInteractive } from "@/components/design-project/DesignProjectInteractive";
+import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { buildTelegramHref } from "@/lib/social-links";
@@ -220,8 +221,10 @@ export default function DesignProektKuhniPage() {
   return (
     <>
       <JsonLd data={jsonLdItems} />
+      <ExploreContextProvider sourceRoute={pagePath}>
       <main className="bg-background">
         <DesignProjectInteractive />
+        <section className="section-padding bg-muted/30"><div className="container-site"><RelatedExplorationRail route={pagePath} state="RESULT" /></div></section>
 
         <section className="section-padding bg-white" id="seo-content">
           <div className="container-site">
@@ -395,6 +398,7 @@ export default function DesignProektKuhniPage() {
           </div>
         </section>
       </main>
+      </ExploreContextProvider>
     </>
   );
 }
