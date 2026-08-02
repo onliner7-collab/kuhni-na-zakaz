@@ -5,6 +5,8 @@ import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage"
 import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
 import { regionalLocations } from "@/data/locations";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { CatalogShapeExplorer, type CatalogShapeOption } from "@/components/catalog/CatalogShapeExplorer";
+import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 
 const title = "Каталог кухонь на заказ: виды, формы и гарнитуры";
 const description =
@@ -28,6 +30,16 @@ const DEFAULT_CATEGORIES = [
   { slug: "p-obraznye-kuhni", title: "П-образные кухни", description: "Максимум рабочего пространства. Идеальны для кухонь от 4 п.м.", priceFrom: 3500, features: ["Максимум хранения", "Большая рабочая зона", "Разделение зон"] },
   { slug: "pryamye-kuhni", title: "Прямые кухни", description: "Классика кухонного дизайна. Подходят для узких помещений и студий.", priceFrom: 1200, features: ["Простой монтаж", "Лаконичность", "Узкие кухни"] },
   { slug: "uglovye-kuhni", title: "Угловые кухни", description: "Оптимальное использование угловых зон. Подходят для кухонь от 2 п.м.", priceFrom: 1800, features: ["Эффективный угол", "Вместительность", "Зонирование"] },
+];
+
+const CATALOG_SHAPE_OPTIONS: CatalogShapeOption[] = [
+  { id: "corner", label: "Две стены", question: "Нужно использовать угол?", result: "Угловая форма связывает две рабочие стороны и требует отдельного решения для доступа в угол.", limitation: "проход, открывание соседних фасадов и доступ к глубокой зоне", href: "/catalog/uglovye-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp", alt: "Концепция угловой кухни с двумя рабочими сторонами" },
+  { id: "line", label: "Одна стена", question: "Все зоны должны поместиться в одну линию?", result: "Прямая форма освобождает проход, но длину делят между техникой, мойкой, хранением и столешницей.", limitation: "последовательность зон и непрерывный участок рабочей поверхности", href: "/catalog/pryamye-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp", alt: "Концепция прямой кухни вдоль одной стены" },
+  { id: "u-shape", label: "Три стороны", question: "Нужны три рабочие стороны?", result: "П-образная форма добавляет столешницу, если центральный проход остаётся безопасным при открытой технике.", limitation: "ширину прохода и два угловых узла по точным размерам", href: "/catalog/p-obraznye-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp", alt: "Концепция П-образной кухни с центральным проходом" },
+  { id: "island", label: "Остров", question: "Остров нужен для готовки, хранения или общения?", result: "Сначала выбирают функцию острова, затем проверяют проходы и необходимость коммуникаций.", limitation: "маршруты вокруг острова, открывание ящиков, воду, электрику и вытяжку", href: "/catalog/kuhni-s-ostrovom", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp", alt: "Концепция кухни с отдельным островом" },
+  { id: "small", label: "Мало места", question: "Что нельзя потерять на маленькой площади?", result: "Выберите приоритет: столешницу, хранение или технику — максимизировать всё одновременно обычно не получается.", limitation: "габариты техники и свободный проход до выбора модулей", href: "/catalog/malenkie-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp", alt: "Концепция компактной кухни для небольшого помещения" },
+  { id: "ceiling", label: "Больше хранения", question: "Что действительно будет храниться наверху?", result: "Высокие секции подходят для редкого доступа, а ежедневные вещи лучше оставить в средней зоне.", limitation: "перепад высоты, вентиляцию, монтажный зазор и безопасный доступ", href: "/catalog/kuhni-do-potolka", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp", alt: "Концепция кухни с высокими секциями до потолка" },
+  { id: "handleless", label: "Чистый фасад", question: "Как открывать активные фасады без обычных ручек?", result: "Профиль, нажатие и фрезерованный хват подходят разным зонам — одного решения для всей кухни может не быть.", limitation: "хват, вес фасада, посудомойку и встроенный холодильник", href: "/catalog/kuhni-bez-ruchek", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp", alt: "Концепция кухни с гладкими фасадами без накладных ручек" },
 ];
 
 const BUYING_GUIDE_ROWS = [
@@ -121,6 +133,7 @@ export default async function CatalogPage() {
   return (
     <>
       <JsonLd data={faqJsonLdData ? [jsonLd, faqJsonLdData] : jsonLd} />
+      <ExploreContextProvider sourceRoute="/catalog">
       <div className="section-padding">
         <div className="container-site">
           <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
@@ -133,6 +146,11 @@ export default async function CatalogPage() {
             Выберите формат будущей кухни: угловую, прямую, П-образную, маленькую, до потолка, с островом или без ручек.
             Эта страница помогает сравнить виды кухонь перед расчетом, а не заменяет главную страницу покупки.
           </p>
+          <CatalogShapeExplorer options={CATALOG_SHAPE_OPTIONS} />
+          <div className="mb-12 grid gap-5 lg:grid-cols-[1fr_1.2fr]">
+            <ContextSummary />
+            <RelatedExplorationRail route="/catalog" />
+          </div>
           <section className="mb-12 border-y border-border py-8">
             <div className="max-w-4xl space-y-4 text-sm leading-relaxed text-muted-foreground">
               <h2 className="font-serif text-2xl font-bold text-foreground">Как выбрать тип кухни под помещение</h2>
@@ -219,12 +237,12 @@ export default async function CatalogPage() {
             </div>
           </section>
           <div id="catalog-types" className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 scroll-mt-24 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3">
-            {DEFAULT_CATEGORIES.map((cat, index) => {
+            {DEFAULT_CATEGORIES.map((cat) => {
               const image = resolveCatalogCategoryImage(cat);
 
               return (
                 <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base group w-[84vw] max-w-[22rem] shrink-0 snap-start transition-shadow hover:shadow-md sm:w-auto sm:max-w-none">
-                  <CatalogCategoryImage src={image.src} alt={image.alt} priority={index === 0} />
+                  <CatalogCategoryImage src={image.src} alt={image.alt} />
                   <div className="p-5">
                     <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{cat.title}</h2>
                     <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{cat.description}</p>
@@ -325,6 +343,7 @@ export default async function CatalogPage() {
           </section>
         </div>
       </div>
+      </ExploreContextProvider>
     </>
   );
 }

@@ -1,0 +1,1559 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.stage7a.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/general-rollout/stage-7a/playwright-report-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "general-rollout-stage7a.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/general-rollout/stage-7a/playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm run start",
+      "url": "http://127.0.0.1:3031",
+      "timeout": 120000,
+      "reuseExistingServer": false,
+      "env": {
+        "PORT": "3031",
+        "HOST": "127.0.0.1"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "general-rollout-stage7a.spec.ts",
+      "file": "general-rollout-stage7a.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "general rollout stage 7A",
+          "file": "general-rollout-stage7a.spec.ts",
+          "line": 18,
+          "column": 6,
+          "specs": [
+            {
+              "title": "/catalog: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 509,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:21.111Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-04d41625b48863c5eae5",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 464,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:21.679Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-f89fdc4630ccccc5a843",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 452,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:22.160Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-0d9bae9276a014570e67",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 702,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:22.625Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-a81f5b8c9e63ef6f0978",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1306,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:23.336Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-92fb304237622f2715d9",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/uglovye-kuhni: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 622,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:24.653Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-29ffe0c361caa40a5ad2",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/uglovye-kuhni: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 521,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:25.286Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-fd16e8875ac9013b15d7",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/uglovye-kuhni: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 569,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:25.816Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-6f5191010a67eea0d194",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/uglovye-kuhni: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 738,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:26.395Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-3e7b31c0aaa931492cf0",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/uglovye-kuhni: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 903,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:27.143Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-ff3f81906722af25866b",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/pryamye-kuhni: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 473,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:28.054Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-661fcb4da9c6c23872fd",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/pryamye-kuhni: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 467,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:28.536Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-38543f94efdd0919891e",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/pryamye-kuhni: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 400,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:29.016Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-0b748b3ae66fd7afd689",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/pryamye-kuhni: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 592,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:29.424Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-ed5b210a003fd13137b0",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/pryamye-kuhni: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 724,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:30.024Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-85d3cfc477b0a05e5772",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/p-obraznye-kuhni: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 541,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:30.757Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-46d830de81ed24f5c885",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/p-obraznye-kuhni: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 472,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:31.306Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-46daa5d70d52eee330a1",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/p-obraznye-kuhni: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 518,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:31.787Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-2782099b341629f5757e",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/p-obraznye-kuhni: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 636,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:32.314Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-9e4cb65bc12844708a84",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/p-obraznye-kuhni: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 857,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:32.961Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-32c1c66435ae3cdee658",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-s-ostrovom: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 451,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:33.831Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-9ec2b8a9994ac0fa9d9b",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-s-ostrovom: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 440,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:34.291Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-b5a8fd065f1fa4175022",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-s-ostrovom: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 445,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:34.740Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-c0cdb63e8185e1f9d18b",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-s-ostrovom: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 692,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:35.192Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-b9f38ca39cabde880d7d",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-s-ostrovom: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 831,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:35.893Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-da8a8d6f4ae33afb1f4d",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/malenkie-kuhni: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 469,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:36.732Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-1a8bb6b3eb161eb50d4a",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/malenkie-kuhni: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 506,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:37.209Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-179f72068e1d0103d3f8",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/malenkie-kuhni: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 487,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:37.724Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-b47d8feeca22bda38819",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/malenkie-kuhni: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 637,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:38.220Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-c8baf12f48e912b27b80",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/malenkie-kuhni: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 797,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:38.865Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-f4ad0ba620aeaaf406bc",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-do-potolka: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 509,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:39.672Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-b4c9188f0794cb4e7b24",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-do-potolka: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 415,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:40.190Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-c7acfa3df481a58f051d",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-do-potolka: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 453,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:40.612Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-24e15c7ee2f4fbaca9a6",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-do-potolka: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 576,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:41.074Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-3be3a8236870ac12b5ad",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-do-potolka: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 738,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:41.658Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-c12d075faf847e54c250",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-bez-ruchek: SEO, media and mobile layout at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 501,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:42.404Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-02a4d56e9de7f88a7295",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-bez-ruchek: SEO, media and mobile layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 458,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:42.916Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-467f8ff4bb096fcbd6aa",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-bez-ruchek: SEO, media and mobile layout at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 440,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:43.385Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-fa5c4637f3b43ba7bcf8",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-bez-ruchek: SEO, media and mobile layout at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 605,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:43.833Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-9c607bf5a98d269aea17",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "/catalog/kuhni-bez-ruchek: SEO, media and mobile layout at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 802,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:44.446Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-3153cf9591b881cd89bf",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 21,
+              "column": 11
+            },
+            {
+              "title": "каталог меняет визуальный результат и сохраняет форму",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 533,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:45.257Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-e8feadb804519e7c37cc",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 38,
+              "column": 7
+            },
+            {
+              "title": "переключатель каталога поддерживает Arrow, Home и End",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 586,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:45.798Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-c65a06fee4a5cd9c2813",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 51,
+              "column": 7
+            },
+            {
+              "title": "восемь маршрутов имеют осмысленные crawlable следующие шаги",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1127,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-02T12:48:46.392Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d8ce016848c28e86f31a-58ff3c07bc51c573f6d0",
+              "file": "general-rollout-stage7a.spec.ts",
+              "line": 63,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-02T12:48:18.611Z",
+    "duration": 29122.683,
+    "expected": 43,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
