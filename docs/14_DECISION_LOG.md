@@ -332,3 +332,13 @@
 - **Hard gate:** production Lighthouse 12.6.1 simulated mobile PASS 12/12; LCP 1446–1774 мс, CLS 0, TBT 0–10 мс, Accessibility 96–100, SEO 100.
 - **Scope:** corrective localization/gallery сохранены; недоказанные manual preload удалены; массовая активация planned transitions не выполнялась.
 - **Rollback:** `git revert 30fc9388a78493becb1ec344e236e88752fb6b22`, push/deploy, smoke и production-control.
+
+# 2026-08-09 — Global Dock initial visibility fix
+
+- **Root cause:** `DeferredPublicEnhancements` возвращал `null` до event/3.5 s timer, а `MobileBottomNav` загружался с `ssr:false`. Первый scroll одновременно монтировал Dock и инициализировал `isScrollHidden=true` при `scrollY >= 32`.
+- **Decision:** сохранить существующий `MobileBottomNav`, но рендерить его непосредственно из `PublicChromeBottom`; analytics и floating contact остаются deferred.
+- **Visibility:** initial state всегда visible; hide начинается после накопленного downward travel более 48 px, upward delta более 8 px или возврат к top возвращают Dock.
+- **CLS:** initial bottom compensation определяется server-rendered DOM через `body:has(.mobile-page-dock)`; поздний body dataset остаётся совместимым fallback.
+- **Scope:** labels, order, URLs, active mapping, LeadFormSheet, Telegram/backend, page content, SEO и protected routes не менялись.
+- **Local gate:** typecheck PASS; production build PASS; Playwright 12/12 PASS, включая raw HTML, 360/390/412, route matrix, scroll, back, lead focus, technical exclusions, CLS=0, floating contact и 18 screenshots.
+- **Rollback:** revert отдельного Dock-fix commit, push `work`, standard deploy и повтор той же Playwright matrix.

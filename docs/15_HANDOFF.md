@@ -435,3 +435,15 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 - Local environment delta задокументирован: final local LCP 2855–3095 мс при observed trace 83–130 мс; production-control до deploy прошёл 12/12.
 - Evidence: `artifacts/general-rollout/stage-4-lcp-final/`; audit: `docs/audit/2026-08-02-general-rollout-stage-4-lcp-final.md`.
 - Rollback: `git revert 30fc9388a78493becb1ec344e236e88752fb6b22`, push `work`, стандартный Timeweb deploy и повторный smoke.
+
+# 2026-08-09 — Global Dock fix: local PASS
+
+Статус: `LOCAL_PASS`, production deploy/smoke pending.
+
+- Baseline: production `434467f9858c0a54e856f771ddaaf36b4abf6094`; local/origin `d25a7d9b93fb67da7a4bb74dd14446b470c84d9e` до исправления.
+- Root cause: activation gate + `dynamic(..., { ssr: false })` исключали Dock из initial HTML; первый scroll монтировал компонент уже со скрытым state из `window.scrollY >= 32`.
+- Fix: существующий `MobileBottomNav` рендерится из `PublicChromeBottom`; deferred analytics/floating contact сохранены; scroll hysteresis 48 px; upward/top restore; stable initial content padding через `:has`.
+- PublicChrome не превращался в новый shell; новый Dock и новые зависимости не создавались. Eager client boundary расширился только на уже существующий Dock, необходимый для его hydration; Lead/Telegram код не менялся.
+- Local QA: typecheck PASS; build PASS (127 pages, ожидаемый DB fallback); Playwright 12/12 PASS. Initial raw HTML, 360/390/412, 768/1440, required public routes, exclusions, client navigation/back, lead open/Escape/focus restore, floating contact/no overlap, no horizontal overflow, CLS=0 и hydration errors=0 подтверждены.
+- Evidence: `artifacts/global-dock-fix/playwright-report.json` и 18 screenshots initial/down/up для home, catalog, prices, portfolio, Borisov и furnitura.
+- Следующий шаг только текущего этапа: exact-path commit → push `work` → standard production deploy → production Playwright smoke. Не начинать Borisov/furnitura/SEO fixes.

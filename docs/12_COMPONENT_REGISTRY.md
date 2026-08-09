@@ -218,3 +218,10 @@ Server compositions сохраняют H1, disclosure, ограничения, �
 - `StyleVisualExplorer`, `ScenarioVisualExplorer`, `MediaPicture`: первый eager LCP frame без forced async decode; последующие intent-mounted frames сохраняют async decode.
 - `ProgressiveFurnitureGallery`: первоначальная порция 15, раскрытие по 15, lightbox работает с полной серией 200; заголовки доступны до раскрытия.
 - Ручные дублирующие `react-dom preload()` удалены; LCP assets остаются discoverable/eager/high.
+
+# 2026-08-09 — Global Dock initial visibility fix
+
+- `MobileBottomNav` остаётся единственным global Dock и теперь server-rendered через `PublicChromeBottom`; deferred activation используется только для analytics и `FloatingSocialButtons`.
+- Initial visibility не зависит от mount/scroll/timer. Небольшая прокрутка до 48 px не скрывает Dock; устойчивое движение вниз скрывает, движение вверх и возврат к началу возвращают.
+- `data-dock-suppress` скрывает Dock только при реальном pointer/focus interaction, а не из-за самого присутствия explorer в viewport.
+- Mobile-компенсация контента применяется на initial render через `body:has(.mobile-page-dock)`; safe-area и reduced-motion contract сохранены.

@@ -11,14 +11,6 @@ const AnalyticsProvider = dynamic(
   { ssr: false },
 );
 
-const MobileBottomNav = dynamic(
-  () =>
-    import("@/components/layout/MobileBottomNav").then(
-      (module) => module.MobileBottomNav,
-    ),
-  { ssr: false },
-);
-
 const FloatingSocialButtons = dynamic(
   () =>
     import("@/components/layout/FloatingSocialButtons").then(
@@ -62,7 +54,6 @@ export function DeferredPublicEnhancements({
   return (
     <>
       <AnalyticsProvider />
-      <MobileBottomNav />
       <FloatingSocialButtons
         instagram={instagram}
         telegram={telegram}

@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 
 import { DeferredPublicEnhancements } from "@/components/layout/DeferredPublicEnhancements";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 
 function usePublicChromeEnabled() {
@@ -29,6 +30,7 @@ export function PublicChromeBottom({ footer }: { footer: React.ReactNode }) {
   return (
     <>
       {footer}
+      <MobileBottomNav />
       <DeferredPublicEnhancements
         instagram={CONTACT_DEFAULTS.instagram}
         telegram={CONTACT_DEFAULTS.telegram}

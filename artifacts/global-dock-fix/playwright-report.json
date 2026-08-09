@@ -1,0 +1,496 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.global-dock.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/global-dock-fix/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "global-dock-visibility.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/global-dock-fix/playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm run start",
+      "url": "http://127.0.0.1:3041",
+      "timeout": 120000,
+      "reuseExistingServer": false,
+      "env": {
+        "PORT": "3041",
+        "HOST": "127.0.0.1"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "global-dock-visibility.spec.ts",
+      "file": "global-dock-visibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Dock присутствует уже в серверном HTML",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 42,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:25.039Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-bb8b75da22e7e880bce4",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 104,
+          "column": 5
+        },
+        {
+          "title": "Dock виден без scroll при ширине 360px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1093,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:25.097Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-3ac7e2bb0475094d606a",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 111,
+          "column": 7
+        },
+        {
+          "title": "Dock виден без scroll при ширине 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1049,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:26.246Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-7eaf8cab4d24653d66b6",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 111,
+          "column": 7
+        },
+        {
+          "title": "Dock виден без scroll при ширине 412px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1126,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:27.314Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-72b37206a3c7bc9f8a97",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 111,
+          "column": 7
+        },
+        {
+          "title": "Dock использует порог скрытия и возвращается при прокрутке вверх",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:28.454Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-61917a27f73295008326",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 119,
+          "column": 5
+        },
+        {
+          "title": "active state сохраняется при client navigation и browser back",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4223,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:30.283Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-cb42db7d4203513953a3",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 138,
+          "column": 5
+        },
+        {
+          "title": "кнопка заявки работает сразу и возвращает focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1435,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:34.515Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-6107081ecb6ee887484c",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 160,
+          "column": 5
+        },
+        {
+          "title": "публичная route matrix сохраняет initial Dock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9399,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:35.961Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-5d2118be88c723d904a7",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 176,
+          "column": 5
+        },
+        {
+          "title": "Dock не появляется на desktop и служебной странице",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1131,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:45.373Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-ed5679acaca5486d4e65",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 185,
+          "column": 5
+        },
+        {
+          "title": "hydration не создаёт ошибок или layout shift",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2026,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:46.514Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-cf192bb468b6c988c0d8",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 204,
+          "column": 5
+        },
+        {
+          "title": "плавающая связь и Dock не перекрываются",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1506,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:48.547Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-2ab2b3edb8ac10932268",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 233,
+          "column": 5
+        },
+        {
+          "title": "создаёт visual evidence initial/down/up на 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10578,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-09T18:31:50.063Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5b31ebe2964f2c9ed45b-5b2a5458a1fe5277a293",
+          "file": "global-dock-visibility.spec.ts",
+          "line": 250,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-09T18:31:22.628Z",
+    "duration": 38305.099,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

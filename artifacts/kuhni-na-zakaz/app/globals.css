@@ -213,6 +213,8 @@
 }
 
 @media (max-width: 767px) {
+  body:has(.mobile-page-dock) main,
+  body:has(.mobile-page-dock) .site-footer,
   body[data-mobile-dock] main,
   body[data-mobile-dock] .site-footer {
     padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px));
@@ -237,7 +239,7 @@
   bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
   z-index: 70;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 0.78fr 0.68fr 1.04fr 1.6fr;
   gap: 0.25rem;
   max-width: 25rem;
   min-height: 4.25rem;
