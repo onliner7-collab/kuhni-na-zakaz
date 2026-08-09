@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ServiceExplorationRail } from "@/components/exploration";
 import { Suspense } from "react";
 import Link from "@/components/navigation/Link";
 import { ArrowRight, CheckCircle } from "lucide-react";
@@ -406,7 +407,7 @@ export default function PricesPage() {
             ))}
           </div>
         </section>
-
+        <ServiceExplorationRail route="/prices" />
         </div>
       </div>
     </>

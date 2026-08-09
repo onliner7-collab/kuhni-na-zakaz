@@ -44,7 +44,7 @@ export default async function TermsPage() {
           <span className="text-foreground">{title}</span>
         </nav>
         <h1 className="font-serif text-4xl font-bold mb-8">{title}</h1>
-        <div className="space-y-4">
+        <div className="space-y-4 break-words [overflow-wrap:anywhere]">
           {renderContent(content)}
         </div>
         </div>

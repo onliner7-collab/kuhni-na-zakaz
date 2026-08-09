@@ -1195,9 +1195,7 @@ export function RegionalLocationPage({
       {(isMinsk || isMinskRegionHub) && (
         <Stage6LocationDecision mode={isMinsk ? "minsk" : "minskaya-oblast"} />
       )}
-      {(isMinsk || isMinskRegionHub) && (
-        <section className="bg-white py-8"><div className="container-site"><RelatedExplorationRail route={`/locations/${location.slug}`} state="RESULT" /></div></section>
-      )}
+      <section className="bg-white py-8"><div className="container-site"><RelatedExplorationRail route={`/locations/${location.slug}`} state="RESULT" /></div></section>
 
       {isMinskRegionHub && (
         <section className="bg-white py-10 md:py-14">

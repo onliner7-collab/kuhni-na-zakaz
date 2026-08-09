@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ServiceExplorationRail } from "@/components/exploration";
 import Link from "@/components/navigation/Link";
 import { Calculator, CheckCircle } from "lucide-react";
 import { CalculatorWizard } from "@/components/calculator/CalculatorWizard";
@@ -175,6 +176,7 @@ export default function CalculatorPage() {
             </Link>
           ))}
         </section>
+        <ServiceExplorationRail route="/calculator" />
         </div>
       </div>
     </>

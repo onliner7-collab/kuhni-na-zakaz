@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { regionalLocations } from "@/data/locations";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 
 const title = "Купить кухню по городам Беларуси | Кухни на заказ";
 const description =
@@ -39,7 +40,7 @@ export default function LocationsPage() {
       : `Условия расчета, замера, доставки и монтажа для ${location.cityGenitive}. Перед сметой уточняем размеры, технику, адрес и готовность помещения.`;
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/locations">
       <JsonLd data={[jsonLdBreadcrumb, jsonLdCollection]} />
 
       <main className="section-padding">
@@ -61,6 +62,10 @@ export default function LocationsPage() {
               монтажа. Для Минской области сделан отдельный хаб, а для основных направлений
               подготовлены самостоятельные страницы с деталями по объектам, логистике и смете.
             </p>
+          </div>
+
+          <div className="mb-12">
+            <RelatedExplorationRail route="/locations" state="RESULT" />
           </div>
 
           <div className="mb-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -112,6 +117,6 @@ export default function LocationsPage() {
           </div>
         </div>
       </main>
-    </>
+    </ExploreContextProvider>
   );
 }

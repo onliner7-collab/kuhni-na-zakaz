@@ -145,3 +145,17 @@ test("lead context contains only meaningful whitelisted exploration fields", () 
     },
   );
 });
+
+test("general rollout stage 8 routes expose three safe next actions", () => {
+  const representativeRoutes = [
+    "/locations", "/locations/vitebsk", "/portfolio", "/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+    "/blog", "/blog/kak-vybrat-kuhnyu", "/about", "/calculator", "/prices", "/contacts", "/reviews",
+    "/delivery-installation", "/warranty",
+  ];
+
+  for (const route of representativeRoutes) {
+    const transitions = readTransitions(route, "RESULT");
+    assert.equal(transitions.length, 3, `${route} должен иметь три активных продолжения`);
+    assert.ok(transitions.every((item) => item.anchorRu && item.reasonRu));
+  }
+});

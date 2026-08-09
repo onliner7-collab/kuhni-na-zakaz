@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ServiceExplorationRail } from "@/components/exploration";
 import Link from "@/components/navigation/Link";
 import { Shield } from "lucide-react";
 import { renderContent } from "@/lib/render-content";
@@ -139,6 +140,7 @@ export default async function WarrantyPage() {
             Если вопрос связан с регулировкой петель, доводчиков или ящиков, часто достаточно сервисного выезда. Если подтверждается заводской дефект, подбираем замену и согласуем срок работ.
           </p>
         </section>
+        <ServiceExplorationRail route="/warranty" />
         </div>
       </div>
     </>

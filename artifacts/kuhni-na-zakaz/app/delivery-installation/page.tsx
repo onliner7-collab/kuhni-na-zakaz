@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ServiceExplorationRail } from "@/components/exploration";
 import Link from "@/components/navigation/Link";
 import { renderContent } from "@/lib/render-content";
 import { buildOpenGraph, buildTwitterMetadata, cleanSeoTitle, trimMetaDescription } from "@/lib/seo";
@@ -140,6 +141,7 @@ export default async function DeliveryPage() {
             </Link>
           ))}
         </section>
+        <ServiceExplorationRail route="/delivery-installation" />
         </div>
       </div>
     </>

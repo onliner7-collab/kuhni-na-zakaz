@@ -10,6 +10,8 @@ import { mergeBlogCover } from "@/lib/blog-cover-meta";
 import { isPreoptimizedRasterSrc, optimizedImageSrc } from "@/lib/image-optimization";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { ExploreContextProvider } from "@/components/exploration";
+import { RelatedExplorationRail } from "@/components/exploration/RelatedExplorationRail";
 
 function publishedTime(p: { publishedAt?: Date | null }) {
   return p.publishedAt ? new Date(p.publishedAt).getTime() : 0;
@@ -78,7 +80,7 @@ export default async function BlogPage() {
   };
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/blog">
       <JsonLd data={[jsonLdBreadcrumb, jsonLdCollection]} />
       <div className="section-padding">
         <div className="container-site">
@@ -171,8 +173,9 @@ export default async function BlogPage() {
               );
             })}
           </div>
+          <RelatedExplorationRail route="/blog" state="RESULT" />
         </div>
       </div>
-    </>
+    </ExploreContextProvider>
   );
 }

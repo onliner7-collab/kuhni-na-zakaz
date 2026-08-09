@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { SCENARIO_FAMILY, STYLE_FAMILY } from "@/data/exploration-families";
+import { regionalLocations } from "@/data/locations";
 import type {
   EvidenceStatus,
   ExplorationAnalyticsEvent,
@@ -86,7 +87,80 @@ legacyRegistry.push(
   { fromRoute: "/scenarios", fromState: "RESULT", userQuestion: "Как проверить выбранную жизненную задачу?", actionType: "DEEPEN", anchorRu: "Разобрать сценарий семейной кухни", toRoute: "/scenarios/dlya-semi", contextPatch: { sourceRoute: "/scenarios" }, reasonRu: "Detail page показывает хранение, проходы, технику и ограничения семейного быта.", priority: 1, requiresEvidence: false, fallbackRoute: "/scenarios", analyticsEvent: "exploration_transition_click", status: "active" },
   { fromRoute: "/scenarios", fromState: "RESULT", userQuestion: "Какая форма поддержит сценарий?", actionType: "COMPARE", anchorRu: "Сравнить подходящие планировки", toRoute: "/catalog", contextPatch: { sourceRoute: "/scenarios" }, reasonRu: "Каталог помогает перевести бытовой приоритет в форму гарнитура.", priority: 2, requiresEvidence: false, fallbackRoute: "/scenarios", analyticsEvent: "exploration_compare", status: "active" },
   { fromRoute: "/scenarios", fromState: "RESULT", userQuestion: "Как передать ограничения?", actionType: "CONVERT", anchorRu: "Передать сценарий в расчёт", toRoute: "/calculator", contextPatch: { sourceRoute: "/scenarios" }, reasonRu: "Калькулятор принимает исходные ограничения без обещания точной цены.", priority: 3, requiresEvidence: false, fallbackRoute: "/calculator", analyticsEvent: "lead_open_with_context", status: "active" },
+  { fromRoute: "/locations", fromState: "RESULT", userQuestion: "С какого города начать?", actionType: "DEEPEN", anchorRu: "Проверить условия для Минска", toRoute: "/locations/minsk", contextPatch: { sourceRoute: "/locations" }, reasonRu: "Городская страница связывает задачу с адресом, замером и подготовкой помещения.", priority: 1, requiresEvidence: false, fallbackRoute: "/locations", analyticsEvent: "exploration_transition_click", status: "active" },
+  { fromRoute: "/locations", fromState: "RESULT", userQuestion: "Что уточнить по адресу?", actionType: "COMPARE", anchorRu: "Проверить доставку и монтаж", toRoute: "/delivery-installation", contextPatch: { sourceRoute: "/locations" }, reasonRu: "Условия логистики подтверждаются по конкретному адресу и составу заказа.", priority: 2, requiresEvidence: false, fallbackRoute: "/locations", analyticsEvent: "exploration_compare", status: "active" },
+  { fromRoute: "/locations", fromState: "RESULT", userQuestion: "Как сообщить свой город?", actionType: "CONVERT", anchorRu: "Передать адрес для консультации", toRoute: "/locations#form", contextPatch: { sourceRoute: "/locations" }, reasonRu: "Форма принимает город без обещания одинаковых сроков выезда.", priority: 3, requiresEvidence: false, fallbackRoute: "/contacts", analyticsEvent: "lead_open_with_context", status: "active" },
 );
+
+for (const location of regionalLocations.filter((item) => !["minsk", "minskaya-oblast", "borisov"].includes(item.slug))) {
+  const route = `/locations/${location.slug}`;
+  legacyRegistry.push(
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Как подготовить объект к проекту?", actionType: "DEEPEN", anchorRu: "Проверить подготовку к замеру и проекту", toRoute: "/design-proekt-kuhni", contextPatch: { location: location.cityName, sourceRoute: route }, reasonRu: "Размеры, техника и коммуникации уточняются до расчёта и производства.", priority: 1, requiresEvidence: false, fallbackRoute: "/locations", analyticsEvent: "location_transition_click", status: "active" },
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Какая форма подойдёт помещению?", actionType: "COMPARE", anchorRu: "Сравнить планировки кухни", toRoute: "/catalog", contextPatch: { location: location.cityName, sourceRoute: route }, reasonRu: "Каталог сравнивает формы без выдуманных локальных проектов и условий.", priority: 2, requiresEvidence: false, fallbackRoute: "/locations", analyticsEvent: "location_transition_click", status: "active" },
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Как согласовать следующий шаг?", actionType: "CONVERT", anchorRu: `Передать заявку для ${location.cityGenitive}`, toRoute: `${route}#form`, contextPatch: { location: location.cityName, sourceRoute: route }, reasonRu: "Адрес, выезд и срок подтверждаются менеджером после уточнения задачи.", priority: 3, requiresEvidence: false, fallbackRoute: "/contacts", analyticsEvent: "lead_open_with_context", status: "active" },
+  );
+}
+
+const portfolioRoutes = [
+  "/portfolio",
+  "/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+  "/portfolio/loft-kuhnya-oreh-poluostrov-minsk",
+  "/portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk",
+  "/portfolio/belaya-kuhnya-do-potolka-minsk",
+  "/portfolio/kuhnya-s-ostrovom-zelenyj-akcent-minsk",
+  "/portfolio/pryamaya-kuhnya-studiya-dubovaya-nisha-minsk",
+  "/portfolio/seraya-uglovaya-kuhnya-novostrojka-minsk",
+  "/portfolio/pryamaya-kuhnya-dlya-studii-brest",
+  "/portfolio/kuhnya-s-ostrovom-grodno",
+  "/portfolio/neoklassicheskaya-kuhnya-vitebsk",
+  "/portfolio/malenkaya-kuhnya-gomel",
+  "/portfolio/kuhnya-do-potolka-mogilev",
+  "/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk",
+] as const;
+
+for (const route of portfolioRoutes) {
+  legacyRegistry.push(
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Как применить идею к своему помещению?", actionType: "DEEPEN", anchorRu: "Проверить идею в дизайн-проекте", toRoute: "/design-proekt-kuhni", contextPatch: { evidencePreference: "real", sourceRoute: route }, reasonRu: "Проект связывает понравившееся решение с точными размерами, техникой и ограничениями помещения.", priority: 1, requiresEvidence: false, fallbackRoute: "/portfolio", analyticsEvent: "exploration_transition_click", status: "active" },
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Какие варианты посмотреть рядом?", actionType: "COMPARE", anchorRu: "Сравнить формы и планировки", toRoute: "/catalog", contextPatch: { evidencePreference: "real", sourceRoute: route }, reasonRu: "Каталог помогает сравнить геометрию отдельно от визуального впечатления проекта.", priority: 2, requiresEvidence: false, fallbackRoute: "/portfolio", analyticsEvent: "exploration_compare", status: "active" },
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Как рассчитать похожее решение?", actionType: "CONVERT", anchorRu: "Передать идею для расчёта", toRoute: "/calculator", contextPatch: { evidencePreference: "real", sourceRoute: route }, reasonRu: "Расчёт начинается с размеров и комплектации, а не переносит цену другого проекта.", priority: 3, requiresEvidence: false, fallbackRoute: "/portfolio", analyticsEvent: "lead_open_with_context", status: "active" },
+  );
+}
+
+const blogRoutes = [
+  "/blog",
+  "skolko-stoit-kuhnya-na-zakaz-minsk-2026", "uglovaya-kuhnya-razmery-planirovka", "kuhnya-do-potolka-plyusy-minusy-cena",
+  "kuhnya-na-zakaz-ili-gotovaya-chto-vygodnee", "kuhnya-dlya-novostroyki-v-minske-do-zamera",
+  "kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh", "oshibki-pri-zakaze-kuhni-15-punktov-pered-dogovorom",
+  "materialy-dlya-kuhni-ldsp-mdf-emal-hpl-shpon", "uglovaya-kuhnya-ili-pryamaya-chto-vybrat", "kak-podgotovitsya-k-zameru-kuhni",
+  "kuhnya-dlya-chastnogo-doma-planirovka-hranenie-tehnika", "kuhnya-6-kv-m-v-hruschevke", "chto-vhodit-v-stoimost-kuhni-na-zakaz",
+  "kuhnya-pod-vstroennuyu-tehniku", "p-obraznaya-kuhnya-razmery-prohody-cena", "kak-vybrat-kuhnyu",
+  "skolko-stoit-kuhnya-na-zakaz", "kuhnya-dlya-malenkoy-kvartiry", "kakie-fasady-luchshe", "kuhni-blum-hettich-gtv",
+  "kuhnya-s-ostrovom", "kakuyu-planirovku-kuhni-vybrat", "kak-vybrat-materialy-dlya-kuhni", "kuhnya-pod-scenarij-semi-studii-doma",
+].map((route) => route === "/blog" ? route : `/blog/${route}`);
+
+for (const route of blogRoutes) {
+  legacyRegistry.push(
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Как применить рекомендации?", actionType: "DEEPEN", anchorRu: "Перейти к дизайн-проекту", toRoute: "/design-proekt-kuhni", contextPatch: { sourceRoute: route }, reasonRu: "Проект переводит общие рекомендации статьи в размеры, технику и ограничения конкретного помещения.", priority: 1, requiresEvidence: false, fallbackRoute: "/blog", analyticsEvent: "exploration_transition_click", status: "active" },
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Что сравнить перед выбором?", actionType: "COMPARE", anchorRu: "Сравнить формы кухонь", toRoute: "/catalog", contextPatch: { sourceRoute: route }, reasonRu: "Каталог отделяет выбор планировки от справочного содержания статьи.", priority: 2, requiresEvidence: false, fallbackRoute: "/blog", analyticsEvent: "exploration_compare", status: "active" },
+    { fromRoute: route, fromState: "RESULT", userQuestion: "Как получить ориентир по своему проекту?", actionType: "CONVERT", anchorRu: "Перейти к расчёту кухни", toRoute: "/calculator", contextPatch: { sourceRoute: route }, reasonRu: "Калькулятор принимает исходные параметры без обещания точной цены из статьи.", priority: 3, requiresEvidence: false, fallbackRoute: "/blog", analyticsEvent: "lead_open_with_context", status: "active" },
+  );
+}
+
+for (const service of [
+  { route: "/about", deepen: "/warranty", deepenLabel: "Проверить гарантии и документы", compare: "/portfolio", compareLabel: "Посмотреть подтверждённые работы" },
+  { route: "/calculator", deepen: "/prices", deepenLabel: "Разобрать состав стоимости", compare: "/catalog", compareLabel: "Сравнить формы кухни" },
+  { route: "/prices", deepen: "/calculator", deepenLabel: "Рассчитать свою комплектацию", compare: "/materials", compareLabel: "Сравнить материалы" },
+  { route: "/contacts", deepen: "/delivery-installation", deepenLabel: "Проверить доставку и монтаж", compare: "/locations", compareLabel: "Выбрать город" },
+  { route: "/reviews", deepen: "/portfolio", deepenLabel: "Открыть связанные проекты", compare: "/about", compareLabel: "Узнать о производстве" },
+  { route: "/delivery-installation", deepen: "/warranty", deepenLabel: "Проверить гарантии после монтажа", compare: "/locations", compareLabel: "Уточнить условия по городу" },
+  { route: "/warranty", deepen: "/delivery-installation", deepenLabel: "Проверить порядок монтажа", compare: "/about", compareLabel: "Узнать о компании" },
+] as const) {
+  legacyRegistry.push(
+    { fromRoute: service.route, fromState: "RESULT", userQuestion: "Что уточнить дальше?", actionType: "DEEPEN", anchorRu: service.deepenLabel, toRoute: service.deepen, contextPatch: { sourceRoute: service.route }, reasonRu: "Связанная страница раскрывает следующий практический вопрос без повторения текущего раздела.", priority: 1, requiresEvidence: false, fallbackRoute: service.route, analyticsEvent: "exploration_transition_click", status: "active" },
+    { fromRoute: service.route, fromState: "RESULT", userQuestion: "С чем сверить решение?", actionType: "COMPARE", anchorRu: service.compareLabel, toRoute: service.compare, contextPatch: { sourceRoute: service.route }, reasonRu: "Переход помогает проверить решение по отдельному критерию до заявки.", priority: 2, requiresEvidence: false, fallbackRoute: service.route, analyticsEvent: "exploration_compare", status: "active" },
+    { fromRoute: service.route, fromState: "RESULT", userQuestion: "Как согласовать следующий шаг?", actionType: "CONVERT", anchorRu: "Связаться по своему проекту", toRoute: "/contacts", contextPatch: { sourceRoute: service.route }, reasonRu: "Контакты позволяют уточнить условия для конкретного адреса и комплектации.", priority: 3, requiresEvidence: false, fallbackRoute: "/contacts", analyticsEvent: "lead_open_with_context", status: "active" },
+  );
+}
 
 for (const material of [
   { route: "/materials/ldsp", name: "ЛДСП", compare: "/materials/mdf-fasady", compareLabel: "Сравнить ЛДСП с МДФ" },

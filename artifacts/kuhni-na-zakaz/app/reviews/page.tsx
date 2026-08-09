@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ServiceExplorationRail } from "@/components/exploration";
 import Link from "@/components/navigation/Link";
 import { Star } from "lucide-react";
 import { prisma } from "@/lib/db";
@@ -186,7 +187,7 @@ export default async function ReviewsPage() {
             </p>
             <ReviewForm />
           </div>
-
+          <ServiceExplorationRail route="/reviews" />
         </div>
       </div>
     </>

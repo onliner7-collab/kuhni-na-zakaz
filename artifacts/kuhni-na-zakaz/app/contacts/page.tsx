@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ServiceExplorationRail } from "@/components/exploration";
 import Link from "@/components/navigation/Link";
 import { Clock, FileText, Handshake, Instagram, Mail, MapPin, Phone, Ruler, ShieldCheck } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -261,6 +262,7 @@ export default async function ContactsPage() {
             ))}
           </div>
         </section>
+        <ServiceExplorationRail route="/contacts" />
         </div>
       </div>
     </>

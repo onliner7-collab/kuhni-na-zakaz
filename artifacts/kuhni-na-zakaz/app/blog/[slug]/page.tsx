@@ -20,6 +20,8 @@ import { getMergedPublishedBlogPost } from "@/lib/blog-resolve";
 import { isPublicContentSlug } from "@/lib/public-content";
 import { regionalLocations } from "@/data/locations";
 import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
+import { ExploreContextProvider } from "@/components/exploration";
+import { RelatedExplorationRail } from "@/components/exploration/RelatedExplorationRail";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -204,7 +206,7 @@ export default async function BlogPostPage({ params }: Props) {
     .filter((location): location is (typeof regionalLocations)[number] => Boolean(location));
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute={`/blog/${slug}`}>
       <JsonLd data={[jsonLdBreadcrumb, jsonLdArticle]} />
       <div className="section-padding">
         <div className="container-site">
@@ -514,8 +516,9 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
             </aside>
           </div>
+          <RelatedExplorationRail route={`/blog/${slug}`} state="RESULT" />
         </div>
       </div>
-    </>
+    </ExploreContextProvider>
   );
 }

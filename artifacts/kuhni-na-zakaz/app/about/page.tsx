@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ServiceExplorationRail } from "@/components/exploration";
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { renderContent } from "@/lib/render-content";
@@ -188,6 +189,7 @@ export default async function AboutPage() {
             <h2 className="font-serif text-3xl font-bold text-center mb-8">Свяжитесь с нами</h2>
             <ContactForm source="about" />
           </div>
+          <ServiceExplorationRail route="/about" />
         </div>
       </div>
     </>

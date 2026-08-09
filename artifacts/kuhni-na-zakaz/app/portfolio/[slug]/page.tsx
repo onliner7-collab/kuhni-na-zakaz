@@ -24,6 +24,8 @@ import { ReviewStatus } from "@prisma/client";
 import { regionalLocations } from "@/data/locations";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import type { PortfolioCase } from "@prisma/client";
+import { ExploreContextProvider } from "@/components/exploration";
+import { RelatedExplorationRail } from "@/components/exploration/RelatedExplorationRail";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -466,7 +468,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
   ];
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute={`/portfolio/${project.slug}`}>
       <PortfolioProjectOpenTracker projectSlug={project.slug} cityKey={cityKey || undefined} />
       <JsonLd data={jsonLd} />
       <main className="section-padding">
@@ -925,8 +927,9 @@ export default async function PortfolioProjectPage({ params }: Props) {
               )}
             </aside>
           </section>
+          <RelatedExplorationRail route={`/portfolio/${project.slug}`} state="RESULT" />
         </div>
       </main>
-    </>
+    </ExploreContextProvider>
   );
 }

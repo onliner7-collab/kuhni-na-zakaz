@@ -8,6 +8,8 @@ import { GENERATED_MINSK_PORTFOLIO_CASES, toPortfolioProject } from "@/data/port
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
+import { ExploreContextProvider } from "@/components/exploration";
+import { RelatedExplorationRail } from "@/components/exploration/RelatedExplorationRail";
 
 export const dynamic = "force-dynamic";
 
@@ -64,7 +66,7 @@ export default async function PortfolioPage() {
   };
 
   return (
-    <>
+    <ExploreContextProvider sourceRoute="/portfolio">
       <JsonLd data={[jsonLdBreadcrumb, jsonLdCollection]} />
       <main className="section-padding">
         <div className="container-site">
@@ -180,8 +182,9 @@ export default async function PortfolioPage() {
               </p>
             </div>
           </section>
+          <RelatedExplorationRail route="/portfolio" state="RESULT" />
         </div>
       </main>
-    </>
+    </ExploreContextProvider>
   );
 }
