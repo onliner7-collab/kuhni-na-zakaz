@@ -447,3 +447,16 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 - Local QA: typecheck PASS; build PASS (127 pages, ожидаемый DB fallback); Playwright 12/12 PASS. Initial raw HTML, 360/390/412, 768/1440, required public routes, exclusions, client navigation/back, lead open/Escape/focus restore, floating contact/no overlap, no horizontal overflow, CLS=0 и hydration errors=0 подтверждены.
 - Evidence: `artifacts/global-dock-fix/playwright-report.json` и 18 screenshots initial/down/up для home, catalog, prices, portfolio, Borisov и furnitura.
 - Следующий шаг только текущего этапа: exact-path commit → push `work` → standard production deploy → production Playwright smoke. Не начинать Borisov/furnitura/SEO fixes.
+
+## Production completion
+
+Статус: `GLOBAL_DOCK_FIX_ACCEPTED`, production PASS.
+
+- Runtime/test/docs commit: `4646391f8977199623296ac4d226b419816a5376`; push `work` PASS.
+- Standard Timeweb deploy PASS: Prisma schema already in sync, static sitemap 112, Next build 173 pages, `kuhni-na-zakaz` active.
+- Production HEAD: `4646391f8977199623296ac4d226b419816a5376`; `/`, `/robots.txt`, `/sitemap.xml` отвечают 200.
+- Production Playwright: warm-up 8/11 из-за тестов, инициировавших interaction до hydration на медленной сети; после явного hydration readiness — retry 3/3 и final 11/11 PASS. Initial SSR visibility при этом проходила во всех прогонах.
+- 360/390/412 initial visibility, labels, targets и overflow PASS; 768/1440 hidden PASS; public route matrix, exclusions, scroll, navigation/back, lead dialog/focus, floating contact, CLS=0 и hydration errors=0 PASS.
+- Bundle comparison: home First Load JS `239 kB` до/после; raw initial chunk set 1 066 544 → 1 065 954 bytes. Новая animation/library dependency не добавлялась.
+- Rollback: `git revert 4646391`, push `work`, standard deploy и повтор production smoke. DB/schema/content rollback не требуется.
+- Связанные, но отдельные проблемы Borisov и furnitura остаются без изменений; текущий этап остановлен.

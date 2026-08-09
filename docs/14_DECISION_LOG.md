@@ -342,3 +342,10 @@
 - **Scope:** labels, order, URLs, active mapping, LeadFormSheet, Telegram/backend, page content, SEO и protected routes не менялись.
 - **Local gate:** typecheck PASS; production build PASS; Playwright 12/12 PASS, включая raw HTML, 360/390/412, route matrix, scroll, back, lead focus, technical exclusions, CLS=0, floating contact и 18 screenshots.
 - **Rollback:** revert отдельного Dock-fix commit, push `work`, standard deploy и повтор той же Playwright matrix.
+
+## Production acceptance
+
+- **Runtime:** commit `4646391f8977199623296ac4d226b419816a5376` pushed to `origin/work`, standard deploy PASS, server build 173 pages, service active, production HEAD подтверждён.
+- **Live gate:** HTTP 200 для `/`, `/robots.txt`, `/sitemap.xml`; production Playwright final 11/11 PASS. Первый warm-up прогон выявил только отсутствие ожидания hydration в interaction-тестах; после явного разделения SSR availability и hydrated behavior изолированный retry 3/3 и полный final run прошли.
+- **Client JS:** сопоставимый build baseline `434467f` и fix build оба показывают home First Load JS `239 kB`; сумма raw initial home chunks изменилась с 1 066 544 до 1 065 954 bytes (-590 bytes), тяжёлые библиотеки не добавлены.
+- **Status:** `GLOBAL_DOCK_FIX_ACCEPTED`; следующий product scope автоматически не начинается.

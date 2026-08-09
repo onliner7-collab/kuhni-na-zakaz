@@ -11,4 +11,6 @@ Production Reality Audit обнаружил, что Dock был исключён
 
 Initial state теперь visible. Малое движение до 48 px не скрывает Dock, устойчивая прокрутка вниз скрывает, прокрутка вверх и возврат к top возвращают. Контентная компенсация применяется сразу по наличию server-rendered Dock, safe-area и reduced-motion сохранены. Порядок, URL, active mapping, LeadFormSheet и floating contact не изменялись.
 
-Локально: typecheck и production build PASS; Playwright 12/12 PASS, включая raw server HTML, 360/390/412, desktop, public/exclusion routes, scroll, navigation/back, lead focus, floating contact, CLS=0 и screenshots. Production deploy фиксируется отдельным acceptance follow-up после live smoke.
+Локально: typecheck и production build PASS; Playwright 12/12 PASS, включая raw server HTML, 360/390/412, desktop, public/exclusion routes, scroll, navigation/back, lead focus, floating contact, CLS=0 и screenshots.
+
+Production: commit `4646391` pushed/deployed, server HEAD подтверждён, service active, build 173 pages. Final live Playwright 11/11 PASS; главная, robots и sitemap отвечают 200. Home First Load JS сохранился на уровне 239 kB, raw initial chunk set уменьшился на 590 bytes. Статус исправления: `GLOBAL_DOCK_FIX_ACCEPTED`.

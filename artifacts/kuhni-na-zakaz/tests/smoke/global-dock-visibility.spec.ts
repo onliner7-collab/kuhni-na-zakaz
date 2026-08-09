@@ -40,6 +40,10 @@ function getDock(page: Page) {
   return page.getByTestId("mobile-bottom-nav");
 }
 
+async function expectDockHydrated(page: Page) {
+  await expect(page.locator("body")).toHaveAttribute("data-mobile-dock", "global", { timeout: 20_000 });
+}
+
 async function expectDockVisible(page: Page, dock: Locator = getDock(page)) {
   await expect(dock).toBeVisible();
   await expect(dock).not.toHaveClass(/mobile-page-dock--hidden/);
@@ -121,6 +125,7 @@ test("Dock использует порог скрытия и возвращае�
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const dock = getDock(page);
   await expectDockVisible(page, dock);
+  await expectDockHydrated(page);
 
   await page.evaluate(() => window.scrollTo(0, 24));
   await expectDockVisible(page, dock);
@@ -138,6 +143,7 @@ test("Dock использует порог скрытия и возвращае�
 test("active state сохраняется при client navigation и browser back", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expectDockHydrated(page);
 
   await getDock(page).getByRole("link", { name: "Выбрать" }).click();
   await expect(page).toHaveURL(/\/catalog$/);
@@ -160,6 +166,7 @@ test("active state сохраняется при client navigation и browser ba
 test("кнопка заявки работает сразу и возвращает focus", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expectDockHydrated(page);
   const trigger = page.getByTestId("dock-lead");
   await trigger.click();
 
@@ -222,6 +229,7 @@ test("hydration не создаёт ошибок или layout shift", async ({ 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/", { waitUntil: "networkidle" });
   await expectDockVisible(page);
+  await expectDockHydrated(page);
   await page.dispatchEvent("body", "pointerdown");
   await expect(page.getByTestId("floating-social-buttons")).toBeVisible();
 
@@ -233,6 +241,7 @@ test("hydration не создаёт ошибок или layout shift", async ({ 
 test("плавающая связь и Dock не перекрываются", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expectDockHydrated(page);
   await page.dispatchEvent("body", "pointerdown");
   const floating = page.getByTestId("floating-social-buttons");
   await expect(floating).toBeVisible();
@@ -252,6 +261,7 @@ test("создаёт visual evidence initial/down/up на 390px", async ({ page 
   for (const target of SCREENSHOT_ROUTES) {
     await page.goto(target.route, { waitUntil: "domcontentloaded" });
     await expectDockVisible(page);
+    await expectDockHydrated(page);
     await page.screenshot({ path: `../../artifacts/global-dock-fix/screenshots/${target.name}-initial.png`, fullPage: false });
 
     await page.evaluate(() => window.scrollTo(0, 240));

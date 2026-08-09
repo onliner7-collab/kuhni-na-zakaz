@@ -50,4 +50,12 @@ Revert отдельного Dock-fix commit, push `work`, standard deploy и п�
 
 ## Production
 
-Pending exact-path commit, push, deploy и live smoke.
+- commit: `4646391f8977199623296ac4d226b419816a5376`;
+- push `origin/work`: PASS;
+- standard deploy: PASS; Prisma sync, sitemap 112, build 173 pages, service active;
+- production HEAD: `4646391f8977199623296ac4d226b419816a5376`;
+- `/`, `/robots.txt`, `/sitemap.xml`: HTTP 200;
+- production Playwright final: 11/11 PASS after explicit hydration-readiness in interaction-only tests;
+- SSR initial Dock checks passed before hydration waits and on all 360/390/412 runs;
+- home First Load JS: 239 kB before and after; raw initial chunk bytes: 1 066 544 → 1 065 954;
+- result: `GLOBAL_DOCK_FIX_ACCEPTED`.
