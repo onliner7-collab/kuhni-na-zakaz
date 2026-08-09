@@ -55,11 +55,16 @@ export async function GET(request: NextRequest) {
 
   try {
     const input = await readFile(imagePath);
+    const requestedWidth = Number(request.nextUrl.searchParams.get("w"));
+    const maxWidth = Number.isFinite(requestedWidth) ? Math.max(320, Math.min(1600, Math.round(requestedWidth))) : undefined;
     const image = sharp(input).rotate();
     const metadata = await image.metadata();
-    const width = metadata.width ?? 1200;
-    const height = metadata.height ?? 900;
+    const sourceWidth = metadata.width ?? 1200;
+    const sourceHeight = metadata.height ?? 900;
+    const width = maxWidth && sourceWidth > maxWidth ? maxWidth : sourceWidth;
+    const height = Math.round(sourceHeight * (width / sourceWidth));
     const output = await image
+      .resize({ width, withoutEnlargement: true })
       .composite([{ input: watermarkSvg(width, height), blend: "over" }])
       // The watermark is applied on the request path used by article LCP images.
       // A low WebP effort keeps the same visual quality while avoiding multi-second cold renders.

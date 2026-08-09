@@ -7,7 +7,7 @@ const WEBP_REWRITE_PREFIXES = [
   "/images/",
 ] as const;
 
-export function optimizedImageSrc(src: string | null | undefined) {
+export function optimizedImageSrc(src: string | null | undefined, maxWidth?: number) {
   if (!src) return src;
 
   const lower = src.toLowerCase();
@@ -21,7 +21,7 @@ export function optimizedImageSrc(src: string | null | undefined) {
     : src;
 
   return getImageDisclosure(optimizedSrc).kind === "generated" && optimizedSrc.startsWith("/")
-    ? `/kapi/watermarked-image?src=${encodeURIComponent(optimizedSrc)}`
+    ? `/kapi/watermarked-image?src=${encodeURIComponent(optimizedSrc)}${maxWidth ? `&w=${Math.max(320, Math.min(1600, Math.round(maxWidth)))}` : ""}`
     : optimizedSrc;
 }
 

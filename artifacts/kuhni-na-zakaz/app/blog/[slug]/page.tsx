@@ -236,12 +236,12 @@ export default async function BlogPostPage({ params }: Props) {
                 <div className="relative h-64 overflow-hidden rounded-xl bg-gradient-to-br from-stone-200 to-amber-50">
                   {data.coverImage ? (
                     <Image
-                      src={optimizedImageSrc(data.coverImage) || data.coverImage}
+                      src={optimizedImageSrc(data.coverImage, 800) || data.coverImage}
                       alt={coverAlt}
                       width={coverW}
                       height={coverH}
                       unoptimized={isPreoptimizedRasterSrc(
-                        optimizedImageSrc(data.coverImage),
+                        optimizedImageSrc(data.coverImage, 800),
                       )}
                       priority
                       fetchPriority="high"
