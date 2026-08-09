@@ -61,7 +61,9 @@ export async function GET(request: NextRequest) {
     const height = metadata.height ?? 900;
     const output = await image
       .composite([{ input: watermarkSvg(width, height), blend: "over" }])
-      .webp({ quality: 84, effort: 4 })
+      // The watermark is applied on the request path used by article LCP images.
+      // A low WebP effort keeps the same visual quality while avoiding multi-second cold renders.
+      .webp({ quality: 84, effort: 1 })
       .toBuffer();
 
     return new NextResponse(new Uint8Array(output), {
