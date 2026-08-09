@@ -1,0 +1,14 @@
+[
+  {
+    "url": "http://127.0.0.1:3046/blog/kak-vybrat-kuhnyu",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-8\\lighthouse-production\\blog_kak_vybrat_kuhnyu-2026_08_09_17_44_46-report.html",
+    "jsonPath": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\general-rollout\\stage-8\\lighthouse-production\\blog_kak_vybrat_kuhnyu-2026_08_09_17_44_46-report.json",
+    "summary": {
+      "performance": 0.98,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1
+    }
+  }
+]
