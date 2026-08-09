@@ -28,5 +28,5 @@ export function optimizedImageSrc(src: string | null | undefined) {
 export function isPreoptimizedRasterSrc(src: string | null | undefined) {
   if (!src) return false;
 
-  return /\.(webp|avif)$/i.test(src);
+  return src.startsWith("/kapi/watermarked-image?") || /\.(webp|avif)$/i.test(src);
 }
