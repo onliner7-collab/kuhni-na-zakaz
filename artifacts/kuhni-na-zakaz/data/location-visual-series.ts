@@ -1,0 +1,83 @@
+import type { LocationVisualContract, LocationVisualSeries } from "@/types/location-visual";
+
+const contract = (
+  route: LocationVisualContract["route"],
+  city: string,
+  archetype: LocationVisualContract["archetype"],
+  userQuestion: string,
+  uniquePromise: string,
+  visualLogic: LocationVisualContract["visualLogic"],
+  primaryRoute: string,
+): LocationVisualContract => ({ route, city, archetype, userQuestion, uniquePromise, visualLogic, primaryRoute });
+
+export const locationVisualContracts = [
+  contract("/locations/vitebsk", "Витебск", "regional-center", "Как организовать кухню для городской квартиры с выраженной сезонной нагрузкой?", "Сравните хранение, рабочий свет и подготовку монтажа в одном коротком пути.", ["Квартира", "До потолка", "Рабочий свет", "Монтаж"], "/catalog/kuhni-do-potolka"),
+  contract("/locations/gomel", "Гомель", "regional-center", "Как собрать семейную кухню с большой рабочей зоной?", "Сравните прямую и угловую планировку, затем проверьте технику, ящики и этап монтажа.", ["Семейная прямая", "Угловая", "Техника и ящики", "Монтаж"], "/scenarios/dlya-semi"),
+  contract("/locations/grodno", "Гродно", "regional-center", "Как совместить спокойный интерьер и практичную комплектацию?", "Посмотрите, как фактура, техника и подготовка к замеру меняют спокойный интерьер.", ["Светлая", "Древесная", "Скрытая техника", "Замер"], "/styles/sovremennyy"),
+  contract("/locations/brest", "Брест", "regional-center", "Как спланировать кухню для активной семейной квартиры или дома?", "Сравните квартирный и домашний сценарии до выбора хранения и монтажа.", ["Квартира", "Дом", "Хранение", "Монтаж"], "/catalog/uglovye-kuhni"),
+  contract("/locations/mogilev", "Могилёв", "regional-center", "Как выбрать практичную планировку и не потерять рабочую поверхность?", "Проверьте форму, полезную столешницу и готовность исходных данных для проекта.", ["Прямая", "Угловая", "Рабочая зона", "Проект"], "/design-proekt-kuhni"),
+  contract("/locations/molodechno", "Молодечно", "family-center", "Что выбрать для семейной квартиры: больше хранения или больше рабочей зоны?", "Увидьте компромисс между хранением, столешницей и встроенной техникой.", ["Хранение", "Рабочая зона", "Техника", "Замер"], "/scenarios/dlya-semi"),
+  contract("/locations/zhodino", "Жодино", "compact-industrial", "Как сделать компактную кухню устойчивой к ежедневной нагрузке?", "Сравните две компактные формы и проверьте самую нагруженную рабочую зону.", ["Угловая", "Прямая", "Ящики", "Монтаж"], "/catalog/malenkie-kuhni"),
+  contract("/locations/soligorsk", "Солигорск", "compact-industrial", "Как получить больше хранения в типовой городской кухне?", "Четыре состояния показывают, где добавить хранение и как подготовить компактную кухню к монтажу.", ["Компактная", "До потолка", "Внутри ящиков", "Подготовка монтажа"], "/catalog/malenkie-kuhni"),
+  contract("/locations/slutsk", "Слуцк", "family-center", "Как собрать понятную семейную кухню без лишней площади?", "Сравните прямую и угловую форму, не теряя место под технику и хранение.", ["Прямая", "Угловая", "Техника", "Замер"], "/catalog/pryamye-kuhni"),
+  contract("/locations/fanipol", "Фаниполь", "minsk-satellite", "Что предусмотреть в кухне для новостройки рядом с Минском?", "От готовой планировки до коммуникаций: проверьте решения до заказа кухни в новостройку.", ["Новостройка", "До потолка", "Встроенная техника", "Коммуникации"], "/catalog/kuhni-do-potolka"),
+  contract("/locations/smolevichi", "Смолевичи", "minsk-satellite", "Как подготовить кухню для квартиры или дома до чистовой отделки?", "Сравните тип объекта и заранее проверьте коммуникации до точного замера.", ["Квартира", "Дом", "Коммуникации", "Замер"], "/design-proekt-kuhni"),
+  contract("/locations/dzerzhinsk", "Дзержинск", "minsk-satellite", "Как выбрать между компактной квартирной и семейной кухней?", "Сравните масштаб кухни, полезные ящики и подготовку к монтажу.", ["Квартира", "Семейная", "Ящики", "Монтаж"], "/catalog/uglovye-kuhni"),
+  contract("/locations/zaslavl", "Заславль", "house-and-apartment", "Как совместить кухню для дома с удобством городской квартиры?", "Проверьте два масштаба кухни, технику и требования к логистике.", ["Квартира", "Дом", "Техника", "Логистика"], "/catalog/kuhni-s-ostrovom"),
+  contract("/locations/logoisk", "Логойск", "house-and-dacha", "Что меняется в кухне для дома или дачи?", "Сравните постоянный и сезонный сценарии, инженерные зоны и монтаж.", ["Дом", "Дача", "Инженерные зоны", "Монтаж"], "/scenarios/dlya-doma"),
+  contract("/locations/vileyka", "Вилейка", "house-and-dacha", "Как спланировать спокойную кухню для дома, квартиры или дачи?", "Три типа объекта помогают выбрать масштаб кухни до выезда на замер.", ["Квартира", "Дом", "Дача", "Замер"], "/scenarios/dlya-doma"),
+  contract("/locations/nesvizh", "Несвиж", "house-and-apartment", "Как выбрать выразительную, но практичную кухню для дома или квартиры?", "Сравните светлую и древесную подачу, сохраняя практичное хранение.", ["Светлая", "Древесная", "Хранение", "Проект"], "/styles/neoklassika"),
+  contract("/locations/berezino", "Березино", "route-planning", "Как подготовить проект до дальнего выезда на точный замер?", "Соберите исходные данные и технику до планирования точного маршрута замера.", ["Исходные данные", "Планировка", "Техника", "Маршрут"], "/design-proekt-kuhni"),
+  contract("/locations/volozhin", "Воложин", "house-and-dacha", "Как учесть дом, дачу, котёл, вентиляцию и условия заноса?", "Сравните объекты и проверьте инженерную зону до подготовки монтажа.", ["Дом", "Дача", "Инженерная зона", "Монтаж"], "/scenarios/dlya-doma"),
+  contract("/locations/stolbtsy", "Столбцы", "route-planning", "Что согласовать дистанционно, а что проверить на объекте?", "От фото и размеров перейдите к форме, технике и точному замеру.", ["Фото и размеры", "Планировка", "Техника", "Замер"], "/design-proekt-kuhni"),
+  contract("/locations/uzda", "Узда", "compact-kitchen", "Как сохранить проходы и получить достаточно хранения?", "Сравните компактные формы и увидьте, где хранение не мешает проходу.", ["Маленькая прямая", "Угловая", "Хранение", "Замер"], "/catalog/malenkie-kuhni"),
+  contract("/locations/cherven", "Червень", "route-planning", "Как заранее подготовить кухню к замеру и отдельной доставке?", "Пройдите от короткого брифа до комплектации и понятной логистики.", ["Бриф", "Планировка", "Комплектация", "Логистика"], "/design-proekt-kuhni"),
+  contract("/locations/maryina-gorka", "Марьина Горка", "family-center", "Как выбрать семейную планировку с понятной комплектацией?", "Сравните формы и проверьте технику с ящиками до монтажного этапа.", ["Прямая", "Угловая", "Техника и ящики", "Монтаж"], "/scenarios/dlya-semi"),
+  contract("/locations/kletsk", "Клецк", "compact-kitchen", "Как использовать небольшую площадь без перегруженных шкафов?", "Сравните две формы и откройте внутреннее хранение до замера.", ["Компактная прямая", "Угловая", "Внутри шкафов", "Замер"], "/catalog/malenkie-kuhni"),
+  contract("/locations/kopyl", "Копыль", "compact-kitchen", "Как собрать практичную кухню для квартиры или небольшого дома?", "Сравните тип объекта, рабочую поверхность и подготовку монтажа.", ["Квартира", "Дом", "Рабочая зона", "Монтаж"], "/catalog/pryamye-kuhni"),
+  contract("/locations/krupki", "Крупки", "route-planning", "Как сократить неопределённость до выезда и доставки?", "Размеры, форма и техника складываются в понятный маршрут монтажа.", ["Размеры", "Форма", "Техника", "Маршрут"], "/design-proekt-kuhni"),
+  contract("/locations/lyuban", "Любань", "compact-kitchen", "Что важнее в небольшой семейной кухне: проходы, техника или хранение?", "Сравните три приоритета и сохраните выбранный сценарий до замера.", ["Проходы", "Техника", "Хранение", "Замер"], "/catalog/malenkie-kuhni"),
+  contract("/locations/myadel", "Мядель", "house-and-dacha", "Как различается кухня для постоянного дома и сезонной дачи?", "Сравните режим использования, материалы рабочей зоны и монтаж.", ["Дом", "Дача", "Материалы", "Монтаж"], "/scenarios/dlya-doma"),
+  contract("/locations/starye-dorogi", "Старые Дороги", "family-center", "Как собрать надёжную семейную кухню с понятным хранением?", "Проверьте форму, верхнее хранение, ящики и готовность к доставке.", ["Угловая", "До потолка", "Ящики и фартук", "Доставка"], "/scenarios/dlya-semi"),
+] as const satisfies readonly LocationVisualContract[];
+
+const contractsByRoute = Object.fromEntries(locationVisualContracts.map((item) => [item.route, item]));
+
+const series = (
+  route: keyof typeof contractsByRoute,
+  seriesId: string,
+  states: LocationVisualSeries["states"],
+): LocationVisualSeries => ({ ...contractsByRoute[route], seriesId, initialStateId: states[0].id, states });
+
+const disclosure = "AI-концепция, не фото выполненной работы.";
+
+export const locationVisualSeries = [
+  series("/locations/soligorsk", "location-soligorsk-compact-storage-l0", [
+    { id: "compact-base", controlLabelRu: "Компактная кухня", titleRu: "Сохраняем свободный проход", consequenceRu: "Угловая компоновка собирает мойку, готовку и технику по периметру, не занимая центр комнаты.", image: "/uploads/locations/soligorsk-visual-l0/soligorsk-compact-base.webp", avifImage: "/uploads/locations/soligorsk-visual-l0/soligorsk-compact-base.avif", altRu: "Компактная угловая кухня со свободным проходом для квартиры в Солигорске", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/catalog/malenkie-kuhni", "/catalog/uglovye-kuhni"] },
+    { id: "storage-to-ceiling", controlLabelRu: "Хранение до потолка", titleRu: "Добавляем верхний объём", consequenceRu: "Антресольный ряд использует высоту комнаты для редко нужных запасов и сохраняет рабочую поверхность свободной.", image: "/uploads/locations/soligorsk-visual-l0/soligorsk-storage-to-ceiling-v2.webp", avifImage: "/uploads/locations/soligorsk-visual-l0/soligorsk-storage-to-ceiling-v2.avif", altRu: "Та же компактная кухня со шкафами хранения до потолка", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/catalog/kuhni-do-potolka", "/design-proekt-kuhni"] },
+    { id: "inner-drawers", controlLabelRu: "Внутри ящиков", titleRu: "Проверяем доступное хранение", consequenceRu: "Глубокие выдвижные ящики дают обзор содержимого и не требуют освобождать проход для распашных дверей.", image: "/uploads/locations/soligorsk-visual-l0/soligorsk-inner-drawers.webp", avifImage: "/uploads/locations/soligorsk-visual-l0/soligorsk-inner-drawers.avif", altRu: "Выдвижные ящики и внутреннее хранение в компактной кухне", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/materials/furnitura", "/calculator"] },
+    { id: "installation-ready", controlLabelRu: "Подготовка монтажа", titleRu: "Готовим объект к установке", consequenceRu: "До монтажного дня важно освободить помещение, защитить пол и подтвердить готовность коммуникаций и заноса.", image: "/uploads/locations/soligorsk-visual-l0/soligorsk-installation-ready.webp", avifImage: "/uploads/locations/soligorsk-visual-l0/soligorsk-installation-ready.avif", altRu: "Подготовленные к монтажу модули компактной кухни", sourceType: "process-illustration", disclosureRu: disclosure, nextRoutes: ["/delivery-installation", "/calculator"] },
+  ]),
+  series("/locations/fanipol", "location-fanipol-new-build-l0", [
+    { id: "new-build-base", controlLabelRu: "Базовая планировка", titleRu: "Сначала проверяем проходы", consequenceRu: "Прямая линия с коротким полуостровом разделяет кухню и гостиную, не перекрывая маршрут к окну.", image: "/uploads/locations/fanipol-visual-l0/fanipol-new-build-base.webp", avifImage: "/uploads/locations/fanipol-visual-l0/fanipol-new-build-base.avif", altRu: "Светлая кухня для новостройки в Фаниполе с удобным проходом", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/catalog/pryamye-kuhni", "/design-proekt-kuhni"] },
+    { id: "storage-to-ceiling", controlLabelRu: "Шкафы до потолка", titleRu: "Собираем цельную стену хранения", consequenceRu: "Высокая композиция уменьшает открытые пылесборники и добавляет место для сезонных вещей.", image: "/uploads/locations/fanipol-visual-l0/fanipol-storage-to-ceiling.webp", avifImage: "/uploads/locations/fanipol-visual-l0/fanipol-storage-to-ceiling.avif", altRu: "Кухня в новостройке со шкафами до потолка", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/catalog/kuhni-do-potolka", "/calculator"] },
+    { id: "built-in-appliances", controlLabelRu: "Встроенная техника", titleRu: "Фиксируем технику до проекта", consequenceRu: "Пеналы удобнее считать вместе с моделями техники, вентиляционными зазорами и направлениями открывания.", image: "/uploads/locations/fanipol-visual-l0/fanipol-built-in-appliances.webp", avifImage: "/uploads/locations/fanipol-visual-l0/fanipol-built-in-appliances.avif", altRu: "Пеналы со встроенной техникой в кухне для новостройки", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/design-proekt-kuhni", "/materials/furnitura"] },
+    { id: "communications-ready", controlLabelRu: "Коммуникации", titleRu: "Сверяем выводы до установки", consequenceRu: "Вода, розетки и вентиляция должны совпасть с планом кухни до чистовой фиксации модулей.", image: "/uploads/locations/fanipol-visual-l0/fanipol-communications-ready.webp", avifImage: "/uploads/locations/fanipol-visual-l0/fanipol-communications-ready.avif", altRu: "Подготовленные коммуникации для установки кухни в новостройке", sourceType: "process-illustration", disclosureRu: disclosure, nextRoutes: ["/design-proekt-kuhni", "/delivery-installation"] },
+  ]),
+  series("/locations/gomel", "location-gomel-family-worktop-l0", [
+    { id: "family-straight", controlLabelRu: "Длинная рабочая зона", titleRu: "Сохраняем непрерывную столешницу", consequenceRu: "Прямая рабочая линия упрощает последовательность готовки и оставляет центр кухни свободным.", image: "/uploads/locations/gomel-visual-l0/gomel-family-straight.webp", avifImage: "/uploads/locations/gomel-visual-l0/gomel-family-straight.avif", altRu: "Семейная прямая кухня с большой рабочей поверхностью в Гомеле", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/catalog/pryamye-kuhni", "/scenarios/dlya-semi"] },
+    { id: "family-corner", controlLabelRu: "Угловая планировка", titleRu: "Добавляем второе рабочее плечо", consequenceRu: "Угол увеличивает полезную поверхность, но требует заранее проверить открывание фасадов и доступ к мойке.", image: "/uploads/locations/gomel-visual-l0/gomel-family-corner.webp", avifImage: "/uploads/locations/gomel-visual-l0/gomel-family-corner.avif", altRu: "Угловая семейная кухня с увеличенной рабочей зоной", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/catalog/uglovye-kuhni", "/design-proekt-kuhni"] },
+    { id: "appliances-drawers", controlLabelRu: "Техника и ящики", titleRu: "Распределяем ежедневные зоны", consequenceRu: "Глубокие ящики рядом с подготовкой и единый блок техники сокращают лишние перемещения во время готовки.", image: "/uploads/locations/gomel-visual-l0/gomel-appliances-drawers.webp", avifImage: "/uploads/locations/gomel-visual-l0/gomel-appliances-drawers.avif", altRu: "Встроенная техника и глубокие ящики семейной кухни", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/materials/furnitura", "/scenarios/dlya-semi"] },
+    { id: "installation-stage", controlLabelRu: "Этап монтажа", titleRu: "Проверяем финальную сборку", consequenceRu: "На завершающем этапе регулируют фасады и механизмы, затем проверяют стыки, рабочую поверхность и доступ к технике.", image: "/uploads/locations/gomel-visual-l0/gomel-installation-stage.webp", avifImage: "/uploads/locations/gomel-visual-l0/gomel-installation-stage.avif", altRu: "Завершающий этап монтажа семейной кухни", sourceType: "process-illustration", disclosureRu: disclosure, nextRoutes: ["/delivery-installation", "/calculator"] },
+  ]),
+] satisfies LocationVisualSeries[];
+
+const seriesByRoute = Object.fromEntries(locationVisualSeries.map((item) => [item.route, item]));
+
+export function getLocationVisualSeries(route: string) {
+  return seriesByRoute[route] ?? null;
+}
+
+export function getLocationVisualContract(route: string) {
+  return contractsByRoute[route] ?? null;
+}

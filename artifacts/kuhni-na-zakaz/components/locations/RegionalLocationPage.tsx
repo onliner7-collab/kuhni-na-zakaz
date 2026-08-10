@@ -31,6 +31,8 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/l
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
 import { RegionalVisualStoryGallery } from "@/components/locations/RegionalVisualStoryGallery";
 import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { LocationVisualExplorer } from "@/components/locations/LocationVisualExplorer";
+import { getLocationVisualSeries } from "@/data/location-visual-series";
 import { Stage6LocationDecision } from "@/components/locations/Stage6LocationDecision";
 import { BorisovPilotPage } from "@/components/locations/borisov/BorisovPilotPage";
 
@@ -970,6 +972,7 @@ export function RegionalLocationPage({
   const heroIdea = cityIdeas[0];
   const isMinsk = location.slug === "minsk";
   const isBorisov = location.slug === "borisov";
+  const visualSeries = getLocationVisualSeries(`/locations/${location.slug}`);
   const minskHeroImage = "/uploads/locations/minsk-3d/minsk-hero-light-20260619-desktop.webp";
   const minskHeroMobileImage = "/uploads/locations/minsk-3d/minsk-hero-mobile-background-20260620.webp";
   const minskHeroMobileSmallImage = "/uploads/locations/minsk-3d/minsk-hero-mobile-background-20260620-480.webp";
@@ -1066,6 +1069,25 @@ export function RegionalLocationPage({
     <ExploreContextProvider sourceRoute={`/locations/${location.slug}`}>
       <JsonLd data={[jsonLdBreadcrumb, jsonLdFaq, jsonLdService].filter(isJsonLdObject)} />
 
+      {visualSeries ? (
+        <section id="location-prices" className="bg-stone-950 py-5 text-white md:py-8">
+          <div className="container-site">
+            <nav className="mb-4 flex flex-wrap items-center gap-2 text-sm text-white/72" aria-label="Хлебные крошки">
+              <Link href="/" className="hover:text-white">Главная</Link>
+              <span>/</span>
+              <Link href="/locations" className="hover:text-white">Города</Link>
+              <span>/</span>
+              <span className="text-white">{location.cityName}</span>
+            </nav>
+            <div className="mb-5 max-w-3xl">
+              <p className="mb-2 text-sm font-bold uppercase tracking-[0.14em] text-violet-200">{location.regionName}</p>
+              <h1 className="font-serif text-3xl font-bold leading-tight md:text-5xl">{location.h1}</h1>
+              <p className="mt-3 max-w-2xl text-base leading-7 text-white/78 md:text-lg">{visualSeries.uniquePromise}</p>
+            </div>
+            <LocationVisualExplorer config={visualSeries} />
+          </div>
+        </section>
+      ) : (
       <section id="location-prices" className="relative overflow-hidden bg-stone-950 text-white">
         {isMinskRegionHub ? (
           <div className="absolute inset-0">
@@ -1191,6 +1213,7 @@ export function RegionalLocationPage({
           </div>
         </div>
       </section>
+      )}
 
       {(isMinsk || isMinskRegionHub) && (
         <Stage6LocationDecision mode={isMinsk ? "minsk" : "minskaya-oblast"} />

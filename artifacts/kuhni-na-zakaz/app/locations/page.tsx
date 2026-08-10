@@ -7,6 +7,7 @@ import { regionalLocations } from "@/data/locations";
 import { JsonLd, breadcrumbJsonLd, siteUrl } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { LocationHubExplorer } from "@/components/locations/LocationHubExplorer";
 
 const title = "Купить кухню по городам Беларуси | Кухни на заказ";
 const description =
@@ -53,23 +54,28 @@ export default function LocationsPage() {
             <span className="text-foreground">Города</span>
           </nav>
 
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-6 max-w-3xl">
             <h1 className="mb-4 font-serif text-4xl font-bold text-foreground">
               Купить кухню по городам Беларуси
             </h1>
-            <p className="text-lg leading-relaxed text-muted-foreground">
-              Выберите город или регион, чтобы посмотреть условия расчета, замера, доставки и
-              монтажа. Для Минской области сделан отдельный хаб, а для основных направлений
-              подготовлены самостоятельные страницы с деталями по объектам, логистике и смете.
+            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Сначала выберите тип помещения и посмотрите, как меняются кухня, хранение и подготовка к монтажу.
             </p>
           </div>
 
-          <div className="mb-12">
-            <RelatedExplorationRail route="/locations" state="RESULT" />
+          <div className="mb-10 max-w-5xl">
+            <LocationHubExplorer />
           </div>
 
-          <div className="mb-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {regionalLocations.map((location) => (
+          <details className="mb-10 rounded-2xl border border-border bg-muted/20 p-4 md:p-6">
+            <summary className="min-h-11 cursor-pointer text-lg font-bold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+              Все города и регионы
+            </summary>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+              Список остаётся доступным поисковым системам и открывается по вашему запросу, не создавая длинную стену карточек в первом экране.
+            </p>
+            <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {regionalLocations.map((location) => (
               <Link
                 key={location.slug}
                 href={`/locations/${location.slug}`}
@@ -101,7 +107,12 @@ export default function LocationsPage() {
                   </span>
                 </div>
               </Link>
-            ))}
+              ))}
+            </div>
+          </details>
+
+          <div className="mb-12">
+            <RelatedExplorationRail route="/locations" state="RESULT" />
           </div>
 
           <div className="mx-auto max-w-xl">
