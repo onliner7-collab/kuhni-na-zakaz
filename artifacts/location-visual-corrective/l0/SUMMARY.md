@@ -1,7 +1,7 @@
 # L0 location visual corrective — local summary
 
 Дата: 2026-08-10
-Текущий статус: `IMPLEMENTED_NOT_ACCEPTED` до production deploy и smoke.
+Текущий статус: `L0_VISUAL_ACCEPTED`.
 
 ## Scope
 
@@ -30,4 +30,6 @@
 
 ## Rollback
 
-После commit: `git revert <L0-runtime-commit>`, push рабочей ветки, стандартный production deploy, повторный smoke четырёх изменённых и шести protected URL.
+Runtime `1fedd22e26ebd55c1b2aa2ad2de8393af3ff9e9a` задеплоен штатным Timeweb script: server build PASS, service active. Финальный production Playwright 26/26 и встроенный Browser QA прошли. Подробности: `PRODUCTION-ACCEPTANCE.md`.
+
+Rollback: `git revert 1fedd22e26ebd55c1b2aa2ad2de8393af3ff9e9a`, push рабочей ветки, стандартный production deploy, повторный smoke четырёх изменённых и шести protected URL.

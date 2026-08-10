@@ -46,7 +46,9 @@ test.describe("location visual corrective L0", () => {
         await expect(tab).toHaveAttribute("aria-selected", "true");
         await expect.poll(() => currentSource(page, image)).not.toBe(previous);
         previous = await currentSource(page, image);
-        expect(await page.locator(image).evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
+        await expect
+          .poll(() => page.locator(image).evaluate((node: HTMLImageElement) => node.naturalWidth))
+          .toBeGreaterThan(0);
         expect(Math.abs((await page.evaluate(() => window.scrollY)) - scrollBefore)).toBeLessThanOrEqual(2);
       }
 
@@ -76,6 +78,7 @@ test.describe("location visual corrective L0", () => {
   test("keyboard and reduced motion keep all states usable", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/locations/soligorsk", { waitUntil: "domcontentloaded" });
+    await page.waitForLoadState("networkidle");
     const tabs = page.locator("[data-location-visual-explorer]").getByRole("tab");
     await tabs.first().focus();
     await page.keyboard.press("ArrowRight");

@@ -1,0 +1,1253 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\playwright.location-visual-l0.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/location-visual-corrective/l0/playwright-production-accepted-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "location-visual-l0.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/location-visual-corrective/l0/playwright-production-accepted.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "location-visual-l0.spec.ts",
+      "file": "location-visual-l0.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "location visual corrective L0",
+          "file": "location-visual-l0.spec.ts",
+          "line": 20,
+          "column": 6,
+          "specs": [
+            {
+              "title": "/locations/soligorsk: three actions change a loaded visual and preserve scroll",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2105,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:49:35.812Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-49341--visual-and-preserve-scroll\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-49341--visual-and-preserve-scroll\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-e48dfeaf99f6808e8443",
+              "file": "location-visual-l0.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "/locations/fanipol: three actions change a loaded visual and preserve scroll",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2086,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:49:37.981Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-bda85--visual-and-preserve-scroll\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-bda85--visual-and-preserve-scroll\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-a4483f03d92ad711247a",
+              "file": "location-visual-l0.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "/locations/gomel: three actions change a loaded visual and preserve scroll",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2033,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:49:40.077Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-f0790--visual-and-preserve-scroll\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-f0790--visual-and-preserve-scroll\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-25ccfb6c9a84d85f7e97",
+              "file": "location-visual-l0.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "/locations/soligorsk: responsive visual-first contract at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1044,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:49:42.119Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-b6a78-ual-first-contract-at-360px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-b6a78-ual-first-contract-at-360px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-331a0d1dff6cdb5f9d0d",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/soligorsk: responsive visual-first contract at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1057,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:49:43.173Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-2ea9c-ual-first-contract-at-390px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-2ea9c-ual-first-contract-at-390px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-fa8dcb8bf4a554d8a164",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/soligorsk: responsive visual-first contract at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 83065,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:49:44.242Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-192b5-ual-first-contract-at-412px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-f23bc228cf5165bb5375",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/soligorsk: responsive visual-first contract at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1204,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:07.316Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-d1a65-ual-first-contract-at-768px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-d1a65-ual-first-contract-at-768px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-51442760da6ff5a06cbd",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/soligorsk: responsive visual-first contract at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1390,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:08.534Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-730e6-al-first-contract-at-1440px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-730e6-al-first-contract-at-1440px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-2a8ae32be47556fa3bc3",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/fanipol: responsive visual-first contract at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1105,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:09.935Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-f84d2-ual-first-contract-at-360px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-f84d2-ual-first-contract-at-360px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-d170310dbef5b642c466",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/fanipol: responsive visual-first contract at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1156,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:11.049Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-c286a-ual-first-contract-at-390px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-c286a-ual-first-contract-at-390px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-19b2eabe5b10cfd49222",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/fanipol: responsive visual-first contract at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1239,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:12.214Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-c42a3-ual-first-contract-at-412px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-c42a3-ual-first-contract-at-412px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-826592fabd226bb40465",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/fanipol: responsive visual-first contract at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1207,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:13.462Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-4ffbd-ual-first-contract-at-768px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-4ffbd-ual-first-contract-at-768px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-e717d0a6518a2c7330c7",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/fanipol: responsive visual-first contract at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1349,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:14.678Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-1c879-al-first-contract-at-1440px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-1c879-al-first-contract-at-1440px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-31e5f559fc1125d2ee4e",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/gomel: responsive visual-first contract at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1213,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:16.035Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-ecbb1-ual-first-contract-at-360px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-ecbb1-ual-first-contract-at-360px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-b53a5ac15d153d17a150",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/gomel: responsive visual-first contract at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1043,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:17.258Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-df461-ual-first-contract-at-390px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-df461-ual-first-contract-at-390px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-6b5128ba3cf593246cbb",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/gomel: responsive visual-first contract at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1042,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:18.311Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-c3724-ual-first-contract-at-412px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-c3724-ual-first-contract-at-412px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-19739d73b5567233d84d",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/gomel: responsive visual-first contract at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1284,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:19.362Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-5af83-ual-first-contract-at-768px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-5af83-ual-first-contract-at-768px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-2e1094acf32e33a86749",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "/locations/gomel: responsive visual-first contract at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1432,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:20.656Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-3a6a9-al-first-contract-at-1440px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-3a6a9-al-first-contract-at-1440px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-aded30410bd890e4f2fe",
+              "file": "location-visual-l0.spec.ts",
+              "line": 63,
+              "column": 11
+            },
+            {
+              "title": "keyboard and reduced motion keep all states usable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2032,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:22.097Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-b51eb-tion-keep-all-states-usable\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-b51eb-tion-keep-all-states-usable\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-7cefe5ffb70e0a673270",
+              "file": "location-visual-l0.spec.ts",
+              "line": 78,
+              "column": 7
+            },
+            {
+              "title": "/locations hub changes image and keeps city directory crawlable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1212,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:24.136Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-6dc12-ps-city-directory-crawlable\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-6dc12-ps-city-directory-crawlable\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-eb47e17cb4ed7ea22262",
+              "file": "location-visual-l0.spec.ts",
+              "line": 92,
+              "column": 7
+            },
+            {
+              "title": "protected /: regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1421,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:25.357Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-1d677-ive-L0-protected-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-1d677-ive-L0-protected-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-3282ae24f884c50f616f",
+              "file": "location-visual-l0.spec.ts",
+              "line": 103,
+              "column": 9
+            },
+            {
+              "title": "protected /design-proekt-kuhni: regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1454,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:26.786Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-db6e0-ign-proekt-kuhni-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-db6e0-ign-proekt-kuhni-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-409f75b4db3753ff9af2",
+              "file": "location-visual-l0.spec.ts",
+              "line": 103,
+              "column": 9
+            },
+            {
+              "title": "protected /locations/minsk: regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1190,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:28.249Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-f1e2e--locations-minsk-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-f1e2e--locations-minsk-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-c27b24fba786b4db7cff",
+              "file": "location-visual-l0.spec.ts",
+              "line": 103,
+              "column": 9
+            },
+            {
+              "title": "protected /locations/minskaya-oblast: regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1065,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:29.447Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-8c618--minskaya-oblast-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-8c618--minskaya-oblast-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-7cd86019c718d2bf4293",
+              "file": "location-visual-l0.spec.ts",
+              "line": 103,
+              "column": 9
+            },
+            {
+              "title": "protected /locations/borisov: regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1063,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:30.522Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-d095f-ocations-borisov-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-d095f-ocations-borisov-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-6823d9fb6608b28c703f",
+              "file": "location-visual-l0.spec.ts",
+              "line": 103,
+              "column": 9
+            },
+            {
+              "title": "protected /materials/furnitura: regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 950,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-10T06:51:31.595Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-4a1da-erials-furnitura-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\location-visual-corrective\\l0\\playwright-production-accepted-results\\location-visual-l0-locatio-4a1da-erials-furnitura-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f750080f48593c36e775-9e72a6d0651f739922c9",
+              "file": "location-visual-l0.spec.ts",
+              "line": 103,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-10T06:49:35.206Z",
+    "duration": 117439.046,
+    "expected": 26,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
