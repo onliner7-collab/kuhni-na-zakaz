@@ -73,16 +73,18 @@ export function LocationVisualExplorer({
       data-dock-suppress
       className="overflow-hidden rounded-[1.75rem] border border-white/15 bg-white text-stone-950 shadow-2xl shadow-black/15"
     >
-      {active.id === config.initialStateId ? (
-        initialStage
-      ) : (
-        <LocationVisualStage
-          state={active}
-          eager={false}
-          onError={() => setImageError(true)}
-          onLoad={() => setImageError(false)}
-        />
-      )}
+      <div className="aspect-[3/2] overflow-hidden rounded-[1.5rem] bg-stone-200">
+        {active.id === config.initialStateId ? (
+          initialStage
+        ) : (
+          <LocationVisualStage
+            state={active}
+            eager={false}
+            onError={() => setImageError(true)}
+            onLoad={() => setImageError(false)}
+          />
+        )}
+      </div>
 
       <div className="p-4 md:p-6">
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-violet-800">Выберите сценарий</p>
