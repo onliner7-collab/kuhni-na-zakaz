@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Check, CircleAlert } from "lucide-react";
 
 import Link from "@/components/navigation/Link";
@@ -36,9 +36,12 @@ export function LocationVisualExplorer({
   const initial = config.states.find((state) => state.id === config.initialStateId) ?? config.states[0];
   const [activeId, setActiveId] = useState(initial.id);
   const [imageError, setImageError] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const { updateContext } = useExploreContext();
   const active = config.states.find((state) => state.id === activeId) ?? initial;
+
+  useEffect(() => setIsHydrated(true), []);
 
   function choose(state: LocationVisualState) {
     setActiveId(state.id);
@@ -95,6 +98,7 @@ export function LocationVisualExplorer({
                 key={state.id}
                 ref={(node) => { tabRefs.current[index] = node; }}
                 type="button"
+                disabled={!isHydrated}
                 role="tab"
                 id={`${config.seriesId}-tab-${state.id}`}
                 aria-controls={`${config.seriesId}-panel`}
@@ -117,7 +121,7 @@ export function LocationVisualExplorer({
                     moveSelection(config.states.length - 1);
                   }
                 }}
-                className={`min-h-12 rounded-xl border px-3 py-2.5 text-left text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2 ${
+                className={`min-h-12 rounded-xl border px-3 py-2.5 text-left text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-700 focus-visible:ring-offset-2 disabled:cursor-wait disabled:opacity-80 ${
                   selected
                     ? "border-stone-950 bg-stone-950 text-white"
                     : "border-stone-300 bg-stone-50 text-stone-950 hover:border-stone-600"
