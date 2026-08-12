@@ -22,10 +22,18 @@ test("location corrective registry has 28 unique route contracts", () => {
   assert.ok(locationVisualContracts.every((item) => !protectedRoutes.has(item.route)));
 });
 
-test("L0 activates only three pilot series with four distinct states", () => {
+test("L1A activates L0 pilots and four regional centers with four distinct states", () => {
   assert.deepEqual(
     locationVisualSeries.map((item) => item.route).sort(),
-    ["/locations/fanipol", "/locations/gomel", "/locations/soligorsk"],
+    [
+      "/locations/brest",
+      "/locations/fanipol",
+      "/locations/gomel",
+      "/locations/grodno",
+      "/locations/mogilev",
+      "/locations/soligorsk",
+      "/locations/vitebsk",
+    ],
   );
 
   for (const item of locationVisualSeries) {
@@ -36,7 +44,7 @@ test("L0 activates only three pilot series with four distinct states", () => {
   }
 });
 
-test("pilot files and WebP/AVIF parity exist in public", () => {
+test("active files and WebP/AVIF parity exist in public", () => {
   for (const item of locationVisualSeries) {
     for (const state of item.states) {
       for (const publicPath of [state.image, state.avifImage]) {
@@ -47,7 +55,22 @@ test("pilot files and WebP/AVIF parity exist in public", () => {
   }
 });
 
-test("pilot labels, alt and disclosure are Russian and meaningful", () => {
+test("L1A states have lightweight mobile WebP derivatives", () => {
+  const l1aSeries = locationVisualSeries.filter((item) =>
+    ["vitebsk", "grodno", "brest", "mogilev"].some((city) => item.route.endsWith(`/${city}`)),
+  );
+
+  for (const item of l1aSeries) {
+    for (const state of item.states) {
+      const mobilePath = state.image.replace(/\.webp$/, "-mobile.webp");
+      const absolutePath = path.join(process.cwd(), "public", mobilePath);
+      assert.equal(fs.existsSync(absolutePath), true, mobilePath);
+      assert.ok(fs.statSync(absolutePath).size < 25_000, mobilePath);
+    }
+  }
+});
+
+test("active labels, alt and disclosure are Russian and meaningful", () => {
   const cyrillic = /[А-Яа-яЁё]/;
   for (const item of locationVisualSeries) {
     assert.match(item.userQuestion, cyrillic);
@@ -62,12 +85,23 @@ test("pilot labels, alt and disclosure are Russian and meaningful", () => {
   }
 });
 
-test("protected and not-yet-deployed routes receive no active generic config", () => {
-  for (const route of protectedRoutes) assert.equal(getLocationVisualSeries(route), null);
-  assert.equal(getLocationVisualSeries("/locations/vitebsk"), null);
+test("active next routes exist in the canonical sitemap", () => {
+  const sitemap = fs.readFileSync(path.join(process.cwd(), "public", "sitemap-static.xml"), "utf8");
+  for (const item of locationVisualSeries) {
+    for (const state of item.states) {
+      for (const route of state.nextRoutes) {
+        assert.match(sitemap, new RegExp(`<loc>https://kuhni\\.minsk\\.by${route.replaceAll("/", "\\/")}</loc>`), route);
+      }
+    }
+  }
 });
 
-test("different pilot routes do not share complete image series", () => {
+test("protected and not-yet-deployed routes receive no active generic config", () => {
+  for (const route of protectedRoutes) assert.equal(getLocationVisualSeries(route), null);
+  assert.equal(getLocationVisualSeries("/locations/molodechno"), null);
+});
+
+test("different active routes do not share complete image series", () => {
   const signatures = locationVisualSeries.map((item) => item.states.map((state) => state.image).join("|"));
   assert.equal(new Set(signatures).size, signatures.length);
 });

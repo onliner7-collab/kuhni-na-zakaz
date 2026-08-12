@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Check, CircleAlert } from "lucide-react";
 
 import Link from "@/components/navigation/Link";
@@ -16,13 +16,23 @@ const routeLabels: Record<string, string> = {
   "/catalog/pryamye-kuhni": "Сравнить прямые кухни",
   "/catalog/kuhni-do-potolka": "Посмотреть кухни до потолка",
   "/scenarios/dlya-semi": "Открыть решения для семьи",
+  "/scenarios": "Сравнить сценарии кухни",
+  "/styles/sovremennye": "Сравнить современные кухни",
+  "/catalog/kuhni-s-ostrovom": "Посмотреть кухни с островом",
+  "/materials/mdf-fasady": "Сравнить фасады МДФ",
   "/design-proekt-kuhni": "Подготовить дизайн-проект",
   "/materials/furnitura": "Выбрать механизмы и ящики",
   "/delivery-installation": "Узнать о доставке и монтаже",
   "/calculator": "Рассчитать ориентир",
 };
 
-export function LocationVisualExplorer({ config }: { config: LocationVisualSeries }) {
+export function LocationVisualExplorer({
+  config,
+  initialStage,
+}: {
+  config: LocationVisualSeries;
+  initialStage: ReactNode;
+}) {
   const initial = config.states.find((state) => state.id === config.initialStateId) ?? config.states[0];
   const [activeId, setActiveId] = useState(initial.id);
   const [imageError, setImageError] = useState(false);
@@ -60,12 +70,16 @@ export function LocationVisualExplorer({ config }: { config: LocationVisualSerie
       data-dock-suppress
       className="overflow-hidden rounded-[1.75rem] border border-white/15 bg-white text-stone-950 shadow-2xl shadow-black/15"
     >
-      <LocationVisualStage
-        state={active}
-        eager={active.id === config.initialStateId}
-        onError={() => setImageError(true)}
-        onLoad={() => setImageError(false)}
-      />
+      {active.id === config.initialStateId ? (
+        initialStage
+      ) : (
+        <LocationVisualStage
+          state={active}
+          eager={false}
+          onError={() => setImageError(true)}
+          onLoad={() => setImageError(false)}
+        />
+      )}
 
       <div className="p-4 md:p-6">
         <p className="text-xs font-bold uppercase tracking-[0.14em] text-violet-800">Выберите сценарий</p>

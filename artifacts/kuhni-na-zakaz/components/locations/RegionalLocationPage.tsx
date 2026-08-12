@@ -32,6 +32,7 @@ import { PhoneReveal } from "@/components/layout/PhoneReveal";
 import { RegionalVisualStoryGallery } from "@/components/locations/RegionalVisualStoryGallery";
 import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import { LocationVisualExplorer } from "@/components/locations/LocationVisualExplorer";
+import { LocationVisualInitialStage } from "@/components/locations/LocationVisualInitialStage";
 import { getLocationVisualSeries } from "@/data/location-visual-series";
 import { Stage6LocationDecision } from "@/components/locations/Stage6LocationDecision";
 import { BorisovPilotPage } from "@/components/locations/borisov/BorisovPilotPage";
@@ -1084,7 +1085,14 @@ export function RegionalLocationPage({
               <h1 className="font-serif text-3xl font-bold leading-tight md:text-5xl">{location.h1}</h1>
               <p className="mt-3 max-w-2xl text-base leading-7 text-white/78 md:text-lg">{visualSeries.uniquePromise}</p>
             </div>
-            <LocationVisualExplorer config={visualSeries} />
+            <LocationVisualExplorer
+              config={visualSeries}
+              initialStage={
+                <LocationVisualInitialStage
+                  state={visualSeries.states.find((state) => state.id === visualSeries.initialStateId) ?? visualSeries.states[0]}
+                />
+              }
+            />
           </div>
         </section>
       ) : (
