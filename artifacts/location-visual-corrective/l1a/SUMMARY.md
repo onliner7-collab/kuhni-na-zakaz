@@ -1,7 +1,7 @@
 # L1A location visual corrective — local summary
 
 Дата: 2026-08-12
-Статус: `L1A_LOCAL_ACCEPTANCE_PASS`
+Статус: `VISUAL_ACCEPTED`
 
 ## Реализовано
 
@@ -16,8 +16,8 @@
 
 Media, unit, build, sitemap, SEO, images, responsive, keyboard, reduced motion, protected regression и Browser QA — PASS. Подробности: `MEDIA-ACCEPTANCE.md` и `SEO-UX-QA.md`.
 
-Hard gates пройдены. Четыре фактических mobile Lighthouse-прогона с DevTools-троттлингом дали Performance 97, Accessibility 97, SEO 100, LCP 1718–1758 мс, CLS 0 и TBT 139–149 мс. Добавлены 480×320 WebP-производные 6–12 КБ и серверный initial visual, чтобы LCP-кандидат не зависел от клиентского переключателя. Следующий шаг — scope commit, push, стандартный deploy и production smoke.
+Hard gates пройдены локально и на production. Production final Playwright 19/19 PASS; фактические mobile Lighthouse-прогоны дали Performance 93–95, Accessibility 97, SEO 100, LCP 1948–2168 мс, CLS 0 и TBT 156–200 мс. Добавлены 480×320 WebP-производные, server initial visual, hydration guard и постоянный 3:2-контейнер без scroll jump. Production HEAD `b0da6eaa2a801de4e376f45a4d1b56c40a4840ef`, service active.
 
 ## Rollback
 
-До deploy локальный rollback — удалить только L1A series/tests/media/evidence и вернуть точечные L1A additions в runtime-файлах; DB/schema/data не менялись. После deploy — Git revert runtime commit, push и стандартный deploy.
+Rollback: `git revert b0da6ea cc04bd7 89285ea`, push `work`, стандартный deploy и повтор smoke. DB/schema/content rollback не требуется.
