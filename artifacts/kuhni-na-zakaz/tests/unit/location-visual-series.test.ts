@@ -22,20 +22,24 @@ test("location corrective registry has 28 unique route contracts", () => {
   assert.ok(locationVisualContracts.every((item) => !protectedRoutes.has(item.route)));
 });
 
-test("L1B activates pilots, L1A and four family/compact centers with four distinct states", () => {
+test("L2A activates pilots, L1 and four satellite/house routes with four distinct states", () => {
   assert.deepEqual(
     locationVisualSeries.map((item) => item.route).sort(),
     [
       "/locations/brest",
+      "/locations/dzerzhinsk",
       "/locations/fanipol",
       "/locations/gomel",
       "/locations/grodno",
+      "/locations/logoisk",
       "/locations/maryina-gorka",
       "/locations/mogilev",
       "/locations/molodechno",
       "/locations/slutsk",
+      "/locations/smolevichi",
       "/locations/soligorsk",
       "/locations/vitebsk",
+      "/locations/zaslavl",
       "/locations/zhodino",
     ],
   );
@@ -59,9 +63,9 @@ test("active files and WebP/AVIF parity exist in public", () => {
   }
 });
 
-test("L1A and L1B states have lightweight mobile WebP derivatives", () => {
+test("L1A, L1B and L2A states have lightweight mobile WebP derivatives", () => {
   const waveSeries = locationVisualSeries.filter((item) =>
-    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka"].some((city) => item.route.endsWith(`/${city}`)),
+    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka", "smolevichi", "dzerzhinsk", "zaslavl", "logoisk"].some((city) => item.route.endsWith(`/${city}`)),
   );
 
   for (const item of waveSeries) {
@@ -102,7 +106,7 @@ test("active next routes exist in the canonical sitemap", () => {
 
 test("protected and not-yet-deployed routes receive no active generic config", () => {
   for (const route of protectedRoutes) assert.equal(getLocationVisualSeries(route), null);
-  assert.equal(getLocationVisualSeries("/locations/smolevichi"), null);
+  assert.equal(getLocationVisualSeries("/locations/vileyka"), null);
 });
 
 test("different active routes do not share complete image series", () => {

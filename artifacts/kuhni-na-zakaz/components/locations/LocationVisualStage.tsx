@@ -8,7 +8,7 @@ interface LocationVisualStageProps {
 }
 
 export function LocationVisualStage({ state, eager, onError, onLoad }: LocationVisualStageProps) {
-  const mobileImage = state.image.includes("-visual-l1a/")
+  const mobileImage = /-visual-l(?:1[ab]|2a)\//.test(state.image)
     ? state.image.replace(/\.webp$/, "-mobile.webp")
     : null;
 
