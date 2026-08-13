@@ -1,9 +1,19 @@
+import { preload } from "react-dom";
+
 import type { LocationVisualState } from "@/types/location-visual";
 
 export function LocationVisualInitialStage({ state }: { state: LocationVisualState }) {
-  const mobileImage = state.image.includes("-visual-l1a/")
+  const mobileImage = /-visual-l1[ab]\//.test(state.image)
     ? state.image.replace(/\.webp$/, "-mobile.webp")
     : null;
+  const sizes = "(max-width: 767px) 100vw, (max-width: 1279px) calc(100vw - 3rem), 1080px";
+
+  preload(state.image, {
+    as: "image",
+    fetchPriority: "high",
+    imageSrcSet: mobileImage ? `${mobileImage} 480w, ${state.image} 1200w` : undefined,
+    imageSizes: sizes,
+  });
 
   return (
     <div className="relative overflow-hidden rounded-[1.5rem] bg-stone-200" data-location-visual-stage>
@@ -15,7 +25,7 @@ export function LocationVisualInitialStage({ state }: { state: LocationVisualSta
           alt={state.altRu}
           width={1200}
           height={800}
-          sizes="(max-width: 767px) 100vw, (max-width: 1279px) calc(100vw - 3rem), 1080px"
+          sizes={sizes}
           loading="eager"
           fetchPriority="high"
           decoding="sync"

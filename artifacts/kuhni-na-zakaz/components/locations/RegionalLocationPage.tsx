@@ -237,13 +237,11 @@ function getHubDeliveryText(city: RegionalLocationData) {
 }
 
 function getLocalProofItems(location: RegionalLocationData, hasLocalCases: boolean) {
-  const mainArea = location.areas[1] ?? location.regionName;
-
   return [
     {
       title: "Маршрут и выезд",
       text: location.isMinskRegionCity
-        ? `${mainArea}: дату замера и доставки согласуем по адресу, готовности ремонта и составу кухни.`
+        ? `${location.cityName}: дату замера и доставки согласуем по адресу, готовности ремонта и составу кухни.`
         : "Для удаленных городов сначала собираем размеры, фото и список техники, затем согласуем замер и логистику.",
     },
     {
