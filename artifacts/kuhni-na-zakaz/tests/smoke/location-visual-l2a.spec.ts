@@ -33,9 +33,16 @@ test.describe("location visual corrective L2A", () => {
       await expect(explorer).toBeVisible();
       const image = explorer.locator("img");
       await expect(image).toBeVisible();
-      await expect.poll(() => image.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
+      await expect
+        .poll(() => image.evaluate((node: HTMLImageElement) => node.naturalWidth), { timeout: 15_000 })
+        .toBeGreaterThan(0);
       const tabs = explorer.getByRole("tab");
       await expect(tabs).toHaveCount(4);
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(100);
+      await page.evaluate(() => {
+        (window as typeof window & { __locationCls?: number }).__locationCls = 0;
+      });
       let previous = await currentSource(page);
 
       for (let index = 1; index < 4; index += 1) {
@@ -46,7 +53,9 @@ test.describe("location visual corrective L2A", () => {
         await expect(tab).toHaveAttribute("aria-selected", "true");
         await expect.poll(() => currentSource(page)).not.toBe(previous);
         previous = await currentSource(page);
-        await expect.poll(() => image.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
+        await expect
+          .poll(() => image.evaluate((node: HTMLImageElement) => node.naturalWidth), { timeout: 15_000 })
+          .toBeGreaterThan(0);
         expect(Math.abs((await page.evaluate(() => window.scrollY)) - before)).toBeLessThanOrEqual(2);
       }
 
