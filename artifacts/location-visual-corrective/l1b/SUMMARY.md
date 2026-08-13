@@ -1,7 +1,7 @@
 # L1B location visual corrective — local summary
 
 Дата: 2026-08-13
-Статус: `LOCAL_ACCEPTED`
+Статус: `PRODUCTION_ACCEPTED`
 
 ## Реализовано
 
@@ -16,7 +16,9 @@
 
 Media, unit, typecheck, build, sitemap, SEO, images, responsive, keyboard, reduced motion, protected regression, Browser и mobile Lighthouse — PASS. Подробности: `MEDIA-ACCEPTANCE.md` и `SEO-UX-QA.md`.
 
-До production deploy и live interaction smoke нельзя использовать общий статус `LOCATION_VISUAL_CORRECTIVE_ACCEPTED`.
+Runtime commit `54d3d6e` отправлен и задеплоен. Production Playwright 19/19, media 48/48, sitemap/robots и representative Lighthouse прошли; подробности в `PRODUCTION-ACCEPTANCE.md`.
+
+Общий финальный статус `LOCATION_VISUAL_CORRECTIVE_ACCEPTED` всё ещё нельзя использовать: он относится ко всем 28 generic city routes, а не к одному batch L1B.
 
 ## Rollback
 
