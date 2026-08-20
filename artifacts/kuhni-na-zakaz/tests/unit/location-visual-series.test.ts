@@ -22,7 +22,7 @@ test("location corrective registry has 28 unique route contracts", () => {
   assert.ok(locationVisualContracts.every((item) => !protectedRoutes.has(item.route)));
 });
 
-test("L2A activates pilots, L1 and four satellite/house routes with four distinct states", () => {
+test("L2B activates corrective location waves through four satellite routes with four distinct states", () => {
   assert.deepEqual(
     locationVisualSeries.map((item) => item.route).sort(),
     [
@@ -35,10 +35,14 @@ test("L2A activates pilots, L1 and four satellite/house routes with four distinc
       "/locations/maryina-gorka",
       "/locations/mogilev",
       "/locations/molodechno",
+      "/locations/myadel",
+      "/locations/nesvizh",
       "/locations/slutsk",
       "/locations/smolevichi",
       "/locations/soligorsk",
+      "/locations/vileyka",
       "/locations/vitebsk",
+      "/locations/volozhin",
       "/locations/zaslavl",
       "/locations/zhodino",
     ],
@@ -63,9 +67,9 @@ test("active files and WebP/AVIF parity exist in public", () => {
   }
 });
 
-test("L1A, L1B and L2A states have lightweight mobile WebP derivatives", () => {
+test("completed wave states have lightweight mobile WebP derivatives", () => {
   const waveSeries = locationVisualSeries.filter((item) =>
-    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka", "smolevichi", "dzerzhinsk", "zaslavl", "logoisk"].some((city) => item.route.endsWith(`/${city}`)),
+    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka", "smolevichi", "dzerzhinsk", "zaslavl", "logoisk", "vileyka", "nesvizh", "volozhin", "myadel"].some((city) => item.route.endsWith(`/${city}`)),
   );
 
   for (const item of waveSeries) {
@@ -104,9 +108,8 @@ test("active next routes exist in the canonical sitemap", () => {
   }
 });
 
-test("protected and not-yet-deployed routes receive no active generic config", () => {
+test("protected routes receive no active generic config", () => {
   for (const route of protectedRoutes) assert.equal(getLocationVisualSeries(route), null);
-  assert.equal(getLocationVisualSeries("/locations/vileyka"), null);
 });
 
 test("different active routes do not share complete image series", () => {

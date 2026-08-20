@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Check, CircleAlert } from "lucide-react";
 
 import Link from "@/components/navigation/Link";
-import { useExploreContext } from "@/components/exploration";
+import { useExploreContext } from "@/components/exploration/ExploreContext";
 import { trackExplorationEvent } from "@/lib/analytics";
 import type { LocationVisualSeries, LocationVisualState } from "@/types/location-visual";
 
@@ -18,6 +18,7 @@ const routeLabels: Record<string, string> = {
   "/scenarios/dlya-semi": "Открыть решения для семьи",
   "/scenarios": "Сравнить сценарии кухни",
   "/styles/sovremennye": "Сравнить современные кухни",
+  "/styles/neoklassika": "Посмотреть кухни в неоклассике",
   "/catalog/kuhni-s-ostrovom": "Посмотреть кухни с островом",
   "/materials/mdf-fasady": "Сравнить фасады МДФ",
   "/design-proekt-kuhni": "Подготовить дизайн-проект",

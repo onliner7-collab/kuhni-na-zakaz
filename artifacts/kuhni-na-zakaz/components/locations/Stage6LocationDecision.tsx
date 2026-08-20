@@ -5,7 +5,8 @@ import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 
 import Link from "@/components/navigation/Link";
-import { ContextSummary, useExploreContext } from "@/components/exploration";
+import { ContextSummary } from "@/components/exploration/ContextSummary";
+import { useExploreContext } from "@/components/exploration/ExploreContext";
 
 type LocationMode = "minsk" | "minskaya-oblast";
 
