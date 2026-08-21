@@ -1,0 +1,691 @@
+{
+    "checkedAt":  "2026-08-21T09:03:48.3039874+03:00",
+    "sitemapStatus":  200,
+    "sitemapUrlCount":  112,
+    "passed200":  112,
+    "canonicalMatchCount":  112,
+    "failures":  [
+
+                 ],
+    "robotsStatus":  200,
+    "robotsDeclaresSitemap":  true,
+    "hsts":  null,
+    "locationHubStatus":  200,
+    "locationHubMissingLinks":  [
+
+                                ],
+    "results":  [
+                    {
+                        "url":  "https://kuhni.minsk.by/",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/about",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/about",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/calculator",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/calculator",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/design-proekt-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/design-proekt-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/prices",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/prices",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/contacts",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/contacts",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/reviews",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/reviews",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/delivery-installation",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/delivery-installation",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials/furnitura",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials/furnitura",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials/ldsp",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials/ldsp",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials/mdf-fasady",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials/mdf-fasady",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials/plastik-hpl",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials/plastik-hpl",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials/shpon",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials/shpon",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/scenarios",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/scenarios",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/warranty",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/warranty",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog/uglovye-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog/uglovye-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog/pryamye-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog/pryamye-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog/p-obraznye-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog/p-obraznye-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog/kuhni-s-ostrovom",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog/kuhni-s-ostrovom",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog/malenkie-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog/malenkie-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog/kuhni-do-potolka",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog/kuhni-do-potolka",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/catalog/kuhni-bez-ruchek",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/catalog/kuhni-bez-ruchek",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/neoklassika",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/neoklassika",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/hay-tek",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/hay-tek",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/provans",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/provans",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/loft",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/loft",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/sovremennye",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/sovremennye",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/skandinavskie",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/skandinavskie",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/klassicheskie",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/klassicheskie",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/styles/minimalizm",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/styles/minimalizm",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials/akril",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials/akril",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/materials/mdf-emal",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/materials/mdf-emal",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/scenarios/s-ostrovom",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/scenarios/s-ostrovom",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/scenarios/do-potolka",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/scenarios/do-potolka",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/scenarios/dlya-semi",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/scenarios/dlya-semi",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/scenarios/dlya-studii",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/scenarios/dlya-studii",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/scenarios/dlya-malenkoy-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/scenarios/dlya-malenkoy-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/scenarios/byudzhetnaya-kuhnya",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/scenarios/byudzhetnaya-kuhnya",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/loft-kuhnya-oreh-poluostrov-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/loft-kuhnya-oreh-poluostrov-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/belaya-kuhnya-do-potolka-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/belaya-kuhnya-do-potolka-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-zelenyj-akcent-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-zelenyj-akcent-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-studiya-dubovaya-nisha-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-studiya-dubovaya-nisha-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/seraya-uglovaya-kuhnya-novostrojka-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/seraya-uglovaya-kuhnya-novostrojka-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-dlya-studii-brest",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-dlya-studii-brest",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-grodno",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-grodno",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/neoklassicheskaya-kuhnya-vitebsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/neoklassicheskaya-kuhnya-vitebsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/malenkaya-kuhnya-gomel",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/malenkaya-kuhnya-gomel",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/kuhnya-do-potolka-mogilev",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/kuhnya-do-potolka-mogilev",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/skolko-stoit-kuhnya-na-zakaz-minsk-2026",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/uglovaya-kuhnya-razmery-planirovka",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/uglovaya-kuhnya-razmery-planirovka",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-do-potolka-plyusy-minusy-cena",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-na-zakaz-ili-gotovaya-chto-vygodnee",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-na-zakaz-ili-gotovaya-chto-vygodnee",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-dlya-novostroyki-v-minske-do-zamera",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-dlya-novostroyki-v-minske-do-zamera",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kak-rasschitat-byudzhet-kuhni-materialy-furnitura-montazh",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/oshibki-pri-zakaze-kuhni-15-punktov-pered-dogovorom",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/oshibki-pri-zakaze-kuhni-15-punktov-pered-dogovorom",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/materialy-dlya-kuhni-ldsp-mdf-emal-hpl-shpon",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/materialy-dlya-kuhni-ldsp-mdf-emal-hpl-shpon",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/uglovaya-kuhnya-ili-pryamaya-chto-vybrat",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/uglovaya-kuhnya-ili-pryamaya-chto-vybrat",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kak-podgotovitsya-k-zameru-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kak-podgotovitsya-k-zameru-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-dlya-chastnogo-doma-planirovka-hranenie-tehnika",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-dlya-chastnogo-doma-planirovka-hranenie-tehnika",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-6-kv-m-v-hruschevke",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-6-kv-m-v-hruschevke",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/chto-vhodit-v-stoimost-kuhni-na-zakaz",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/chto-vhodit-v-stoimost-kuhni-na-zakaz",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-pod-vstroennuyu-tehniku",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-pod-vstroennuyu-tehniku",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/p-obraznaya-kuhnya-razmery-prohody-cena",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/p-obraznaya-kuhnya-razmery-prohody-cena",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kak-vybrat-kuhnyu",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kak-vybrat-kuhnyu",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/skolko-stoit-kuhnya-na-zakaz",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/skolko-stoit-kuhnya-na-zakaz",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-dlya-malenkoy-kvartiry",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-dlya-malenkoy-kvartiry",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kakie-fasady-luchshe",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kakie-fasady-luchshe",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhni-blum-hettich-gtv",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhni-blum-hettich-gtv",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-s-ostrovom",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-s-ostrovom",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kakuyu-planirovku-kuhni-vybrat",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kakuyu-planirovku-kuhni-vybrat",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kak-vybrat-materialy-dlya-kuhni",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kak-vybrat-materialy-dlya-kuhni",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/blog/kuhnya-pod-scenarij-semi-studii-doma",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/blog/kuhnya-pod-scenarij-semi-studii-doma",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/vitebsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/vitebsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/gomel",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/gomel",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/grodno",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/grodno",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/molodechno",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/molodechno",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/minsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/minsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/brest",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/brest",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/minskaya-oblast",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/minskaya-oblast",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/mogilev",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/mogilev",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/borisov",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/borisov",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/zhodino",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/zhodino",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/soligorsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/soligorsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/slutsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/slutsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/fanipol",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/fanipol",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/smolevichi",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/smolevichi",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/dzerzhinsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/dzerzhinsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/zaslavl",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/zaslavl",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/logoisk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/logoisk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/vileyka",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/vileyka",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/nesvizh",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/nesvizh",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/berezino",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/berezino",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/volozhin",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/volozhin",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/stolbtsy",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/stolbtsy",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/uzda",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/uzda",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/cherven",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/cherven",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/maryina-gorka",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/maryina-gorka",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/kletsk",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/kletsk",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/kopyl",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/kopyl",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/krupki",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/krupki",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/lyuban",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/lyuban",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/myadel",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/myadel",
+                        "canonicalMatch":  true
+                    },
+                    {
+                        "url":  "https://kuhni.minsk.by/locations/starye-dorogi",
+                        "status":  200,
+                        "canonical":  "https://kuhni.minsk.by/locations/starye-dorogi",
+                        "canonicalMatch":  true
+                    }
+                ]
+}

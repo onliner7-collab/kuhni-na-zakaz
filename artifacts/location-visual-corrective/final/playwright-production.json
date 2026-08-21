@@ -1,0 +1,1519 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\kuhni-na-zakaz\\playwright.location-visual-final.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz-l3-release/artifacts/kuhni-na-zakaz/tests/smoke",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz-l3-release/artifacts/location-visual-corrective/final/playwright-production-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz-l3-release/artifacts/kuhni-na-zakaz/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "location-visual-final.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/location-visual-corrective/final/playwright-production.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "location-visual-final.spec.ts",
+      "file": "location-visual-final.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "/locations/soligorsk: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1626,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:01:51.795Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a3905-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a3905-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-4b61489aec50a7a2b501",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/fanipol: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2112,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:01:53.479Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-192f9-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-192f9-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-3d66510faad7dbe11ca6",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/gomel: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1444,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:01:55.600Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-7a3de-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-7a3de-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-36a85f3eb1a7e73efd67",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/vitebsk: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1638,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:01:57.053Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-5de22-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-5de22-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-d5b1885e7fcf28d8ce33",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/grodno: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1378,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:01:58.707Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-ccafe-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-ccafe-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-7d41373d0d391607da4a",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/brest: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1610,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:00.093Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-fa2bc-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-fa2bc-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-b4ef239567c6482190e3",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/mogilev: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1742,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:01.712Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f522a-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f522a-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-110829ec4ef0be3b3cb9",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/molodechno: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1463,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:03.462Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a8d03-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a8d03-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-3ca3d460a71b11778f67",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/zhodino: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1282,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:04.934Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-32189-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-32189-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-be6d0cf14864aa007cf7",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/slutsk: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1327,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:06.224Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a3c32-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a3c32-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-4f29fe05a8d7b09175ec",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/maryina-gorka: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2465,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:07.559Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-18813-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-18813-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-c4b2203da9f69adac0b3",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/smolevichi: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1412,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:10.031Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-9e702-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-9e702-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-21910c45928b10abeef2",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/dzerzhinsk: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1387,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:11.451Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-e9f7d-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-e9f7d-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-5f0f1ce5153bf6e36813",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/zaslavl: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2438,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:12.846Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-c754a-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-c754a-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-768d75663e184360abc3",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/logoisk: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1337,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:15.291Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-dfd5d-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-dfd5d-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-5b93bf36baaa08bae665",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/vileyka: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1208,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:16.636Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-3cb3a-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-3cb3a-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-ea2eea6ef6e9e98feb92",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/nesvizh: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1312,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:17.851Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f39d4-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f39d4-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-5ca79b485fef55a14d25",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/volozhin: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1257,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:19.173Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-1b0a8-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-1b0a8-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-bd6d888286a6725be706",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/myadel: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1717,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:20.438Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-36c1a-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-36c1a-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-89ff5da4ee00865e2731",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/berezino: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1762,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:22.164Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f4870-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f4870-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-962bd0db718362cc4426",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/stolbtsy: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1449,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:23.933Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a8138-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-a8138-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-ec65fbfa57235001fc02",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/uzda: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1409,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:25.390Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-c3990-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-c3990-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-db66d02e83c8c69faf48",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/cherven: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1341,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:26.806Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-b8eb5-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-b8eb5-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-a27e595f01e9b05b03c4",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/kletsk: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1244,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:28.157Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f1fd5-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-f1fd5-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-6ec382b86e6fb636b714",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/kopyl: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1420,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:29.411Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-35f37-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-35f37-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-3a7cfdbf191747b8e21b",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/krupki: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1143,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:30.838Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-d6af2-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-d6af2-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-a1ac50d5c3740133716e",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/lyuban: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1586,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:31.989Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-4f430-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-4f430-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-ef68ec7e554ab349f85c",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations/starye-dorogi: final interactive acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1291,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:33.586Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-011f2-inal-interactive-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-011f2-inal-interactive-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-7cb62c38ed0f8dd03889",
+          "file": "location-visual-final.spec.ts",
+          "line": 27,
+          "column": 7
+        },
+        {
+          "title": "/locations: final protected acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1150,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:34.888Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--locations-final-protected-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--locations-final-protected-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-9ce339e78c69d8819df8",
+          "file": "location-visual-final.spec.ts",
+          "line": 45,
+          "column": 7
+        },
+        {
+          "title": "/locations/minsk: final protected acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1387,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:36.046Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-c3467--final-protected-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-c3467--final-protected-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-16e7e26f99a043c04105",
+          "file": "location-visual-final.spec.ts",
+          "line": 45,
+          "column": 7
+        },
+        {
+          "title": "/locations/minskaya-oblast: final protected acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1042,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:37.440Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-ea58e--final-protected-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-ea58e--final-protected-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-9f3606c8fe711894c867",
+          "file": "location-visual-final.spec.ts",
+          "line": 45,
+          "column": 7
+        },
+        {
+          "title": "/locations/borisov: final protected acceptance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1109,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-21T06:02:38.489Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-23a3b--final-protected-acceptance\\test-finished-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\final\\playwright-production-results\\location-visual-final--loc-23a3b--final-protected-acceptance\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd651aec8113a15bde8c-a76d079ef9cd6e73bb9c",
+          "file": "location-visual-final.spec.ts",
+          "line": 45,
+          "column": 7
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-21T06:01:51.197Z",
+    "duration": 48503.450000000004,
+    "expected": 32,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
