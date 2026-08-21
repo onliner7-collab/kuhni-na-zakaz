@@ -22,7 +22,7 @@ test("location corrective registry has 28 unique route contracts", () => {
   assert.ok(locationVisualContracts.every((item) => !protectedRoutes.has(item.route)));
 });
 
-test("L3B activates route-planning and compact-kitchen waves with four distinct states", () => {
+test("L3C activates all corrective location waves with four distinct states", () => {
   assert.deepEqual(
     locationVisualSeries.map((item) => item.route).sort(),
     [
@@ -35,7 +35,9 @@ test("L3B activates route-planning and compact-kitchen waves with four distinct 
       "/locations/grodno",
       "/locations/kletsk",
       "/locations/kopyl",
+      "/locations/krupki",
       "/locations/logoisk",
+      "/locations/lyuban",
       "/locations/maryina-gorka",
       "/locations/mogilev",
       "/locations/molodechno",
@@ -44,6 +46,7 @@ test("L3B activates route-planning and compact-kitchen waves with four distinct 
       "/locations/slutsk",
       "/locations/smolevichi",
       "/locations/soligorsk",
+      "/locations/starye-dorogi",
       "/locations/stolbtsy",
       "/locations/uzda",
       "/locations/vileyka",
@@ -75,7 +78,7 @@ test("active files and WebP/AVIF parity exist in public", () => {
 
 test("completed wave states have lightweight mobile WebP derivatives", () => {
   const waveSeries = locationVisualSeries.filter((item) =>
-    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka", "smolevichi", "dzerzhinsk", "zaslavl", "logoisk", "vileyka", "nesvizh", "volozhin", "myadel", "berezino", "stolbtsy", "uzda", "cherven", "kletsk", "kopyl"].some((city) => item.route.endsWith(`/${city}`)),
+    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka", "smolevichi", "dzerzhinsk", "zaslavl", "logoisk", "vileyka", "nesvizh", "volozhin", "myadel", "berezino", "stolbtsy", "uzda", "cherven", "kletsk", "kopyl", "krupki", "lyuban", "starye-dorogi"].some((city) => item.route.endsWith(`/${city}`)),
   );
 
   for (const item of waveSeries) {
