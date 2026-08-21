@@ -22,10 +22,11 @@ test("location corrective registry has 28 unique route contracts", () => {
   assert.ok(locationVisualContracts.every((item) => !protectedRoutes.has(item.route)));
 });
 
-test("L2B activates corrective location waves through four satellite routes with four distinct states", () => {
+test("L3A activates the route-planning wave with four distinct states", () => {
   assert.deepEqual(
     locationVisualSeries.map((item) => item.route).sort(),
     [
+      "/locations/berezino",
       "/locations/brest",
       "/locations/dzerzhinsk",
       "/locations/fanipol",
@@ -40,6 +41,8 @@ test("L2B activates corrective location waves through four satellite routes with
       "/locations/slutsk",
       "/locations/smolevichi",
       "/locations/soligorsk",
+      "/locations/stolbtsy",
+      "/locations/uzda",
       "/locations/vileyka",
       "/locations/vitebsk",
       "/locations/volozhin",
@@ -69,7 +72,7 @@ test("active files and WebP/AVIF parity exist in public", () => {
 
 test("completed wave states have lightweight mobile WebP derivatives", () => {
   const waveSeries = locationVisualSeries.filter((item) =>
-    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka", "smolevichi", "dzerzhinsk", "zaslavl", "logoisk", "vileyka", "nesvizh", "volozhin", "myadel"].some((city) => item.route.endsWith(`/${city}`)),
+    ["vitebsk", "grodno", "brest", "mogilev", "molodechno", "zhodino", "slutsk", "maryina-gorka", "smolevichi", "dzerzhinsk", "zaslavl", "logoisk", "vileyka", "nesvizh", "volozhin", "myadel", "berezino", "stolbtsy", "uzda"].some((city) => item.route.endsWith(`/${city}`)),
   );
 
   for (const item of waveSeries) {
