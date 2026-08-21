@@ -1,0 +1,853 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\kuhni-na-zakaz\\playwright.location-visual-l3a.config.ts",
+    "rootDir": "C:/Users/User/Desktop/kuhni-na-zakaz-l3-release/artifacts/kuhni-na-zakaz/tests/smoke",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/User/Desktop/kuhni-na-zakaz-l3-release/artifacts/location-visual-corrective/l3a/playwright-production-accepted-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/User/Desktop/kuhni-na-zakaz-l3-release/artifacts/kuhni-na-zakaz/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "location-visual-l3a.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../artifacts/location-visual-corrective/l3a/playwright-production-accepted.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "location-visual-l3a.spec.ts",
+      "file": "location-visual-l3a.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "location visual corrective L3A",
+          "file": "location-visual-l3a.spec.ts",
+          "line": 20,
+          "column": 6,
+          "specs": [
+            {
+              "title": "/locations/berezino: three actions change loaded visuals and save safe context",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2767,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:44.962Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-59c9c-suals-and-save-safe-context\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-59c9c-suals-and-save-safe-context\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-c2d400111c36552a64d8",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "/locations/berezino: mobile visual-first layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1075,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:47.788Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-f53a2-isual-first-layout-at-390px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-f53a2-isual-first-layout-at-390px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-12f796f8aa479c7eadce",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 60,
+              "column": 9
+            },
+            {
+              "title": "/locations/stolbtsy: three actions change loaded visuals and save safe context",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2185,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:48.872Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-f97fc-suals-and-save-safe-context\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-f97fc-suals-and-save-safe-context\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-7630cf73cad014af3f02",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "/locations/stolbtsy: mobile visual-first layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1129,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:51.066Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-e9915-isual-first-layout-at-390px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-e9915-isual-first-layout-at-390px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-aa35eeda715794dc3407",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 60,
+              "column": 9
+            },
+            {
+              "title": "/locations/uzda: three actions change loaded visuals and save safe context",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2472,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:52.203Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-9f7b3-suals-and-save-safe-context\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-9f7b3-suals-and-save-safe-context\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-e15c916704b8d19c7f73",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 22,
+              "column": 9
+            },
+            {
+              "title": "/locations/uzda: mobile visual-first layout at 390px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1137,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:54.685Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-e1cf6-isual-first-layout-at-390px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-e1cf6-isual-first-layout-at-390px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-0e75989e01be31f57d3b",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 60,
+              "column": 9
+            },
+            {
+              "title": "route-planning representative remains responsive at 360px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 979,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:55.830Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-2484b-remains-responsive-at-360px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-2484b-remains-responsive-at-360px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-755dedbc91f02cdf3915",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 75,
+              "column": 9
+            },
+            {
+              "title": "route-planning representative remains responsive at 412px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1065,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:56.818Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-19cb8-remains-responsive-at-412px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-19cb8-remains-responsive-at-412px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-e7e2281d030d24af03ca",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 75,
+              "column": 9
+            },
+            {
+              "title": "route-planning representative remains responsive at 768px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1291,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:57.895Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-2e49c-remains-responsive-at-768px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-2e49c-remains-responsive-at-768px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-0278da974d138c43f6b9",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 75,
+              "column": 9
+            },
+            {
+              "title": "route-planning representative remains responsive at 1440px",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1277,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:29:59.194Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-060c9-emains-responsive-at-1440px\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-060c9-emains-responsive-at-1440px\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-64e62eb37f1dc9e1512a",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 75,
+              "column": 9
+            },
+            {
+              "title": "keyboard and reduced motion keep the four states usable",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2422,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:30:00.480Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-53199-keep-the-four-states-usable\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-53199-keep-the-four-states-usable\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-6de63e993e738d752a95",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 82,
+              "column": 7
+            },
+            {
+              "title": "protected /: no generic explorer regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1669,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:30:02.910Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-cb8c3-generic-explorer-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-cb8c3-generic-explorer-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-6ab8040e2f68eb9bbae7",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 96,
+              "column": 9
+            },
+            {
+              "title": "protected /design-proekt-kuhni: no generic explorer regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1563,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:30:04.588Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-040d6-generic-explorer-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-040d6-generic-explorer-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-ef9e509cee17b3de6bd7",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 96,
+              "column": 9
+            },
+            {
+              "title": "protected /locations/minsk: no generic explorer regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1583,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:30:06.159Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-7aaeb-generic-explorer-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-7aaeb-generic-explorer-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-a85386a9f972ceefdf54",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 96,
+              "column": 9
+            },
+            {
+              "title": "protected /locations/minskaya-oblast: no generic explorer regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1453,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:30:07.751Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-11dd6-generic-explorer-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-11dd6-generic-explorer-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-a82d16c76591beb42742",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 96,
+              "column": 9
+            },
+            {
+              "title": "protected /locations/borisov: no generic explorer regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1081,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:30:09.213Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-6b5e2-generic-explorer-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-6b5e2-generic-explorer-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-0256ed971d00a24d60a9",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 96,
+              "column": 9
+            },
+            {
+              "title": "protected /materials/furnitura: no generic explorer regression",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "",
+                  "projectName": "",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1073,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-08-21T05:30:10.307Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-813ea-generic-explorer-regression\\test-finished-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz-l3-release\\artifacts\\location-visual-corrective\\l3a\\playwright-production-accepted-results\\location-visual-l3a-locati-813ea-generic-explorer-regression\\video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23e37a8c0c0a18b563f4-c403900cdbfac407dfd3",
+              "file": "location-visual-l3a.spec.ts",
+              "line": 96,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-08-21T05:29:44.438Z",
+    "duration": 27018.015,
+    "expected": 17,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
