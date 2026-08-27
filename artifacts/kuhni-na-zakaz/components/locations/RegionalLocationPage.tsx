@@ -1101,8 +1101,7 @@ export function RegionalLocationPage({
             <picture>
               <img
                 src="/uploads/locations/minskaya-oblast/minskaya-oblast-hero-desktop.webp"
-                alt=""
-                aria-hidden="true"
+                alt="Кухня на заказ для дома в Минской области"
                 fetchPriority="high"
                 className="h-full w-full object-contain object-top md:object-right"
               />
