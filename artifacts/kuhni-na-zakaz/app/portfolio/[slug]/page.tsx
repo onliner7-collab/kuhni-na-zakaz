@@ -250,7 +250,17 @@ function buildMetaDescription(project: PortfolioProject) {
   return trimMetaDescription(description, description);
 }
 
+const portfolioMetaTitleOverrides: Record<string, string> = {
+  "uglovaya-kuhnya-sovremennaya-001": "Белая угловая кухня в современном стиле — проект №001",
+  "uglovaya-kuhnya-sovremennaya-021": "Белая угловая кухня в современном стиле — проект №021",
+  "uglovaya-kuhnya-minimalizm-018": "Серая угловая кухня в стиле минимализм — проект №018",
+  "uglovaya-kuhnya-minimalizm-036": "Серая угловая кухня в стиле минимализм — проект №036",
+};
+
 function buildPortfolioMetaTitle(project: PortfolioProject) {
+  const override = portfolioMetaTitleOverrides[project.slug];
+  if (override) return override;
+
   const baseTitle = portfolioBaseTitle(project);
   const baseTitleLower = baseTitle.toLowerCase();
   const city = project.city && !baseTitleLower.includes(project.city.toLowerCase()) ? project.city : "";
