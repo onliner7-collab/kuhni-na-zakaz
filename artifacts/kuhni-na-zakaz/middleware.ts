@@ -52,6 +52,9 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   "/catalog/p-obraznaya-kuhnya-minsk": "/catalog/p-obraznye-kuhni",
   "/catalog/kuhnya-s-ostrovom-minsk": "/catalog/kuhni-s-ostrovom",
   "/catalog/kuhnya-dlya-studii-minsk": "/catalog/malenkie-kuhni",
+  "/styles/temnye-kuhni": "/styles",
+  "/styles/zelenye-kuhni": "/styles",
+  "/furnitura-dlya-kuhni": "/materials/furnitura",
 };
 
 export async function middleware(req: NextRequest) {
