@@ -20,7 +20,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
+        allow: ["/", "/kapi/watermarked-image"],
         disallow: closedPaths,
       },
     ],

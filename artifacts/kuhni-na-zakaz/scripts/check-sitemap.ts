@@ -94,6 +94,13 @@ async function main() {
 
   const robotsConfig = robots();
   assert.equal(robotsConfig.sitemap, `${BASE_URL}/sitemap.xml`, "robots.txt must point to the canonical sitemap");
+  const robotRules = Array.isArray(robotsConfig.rules) ? robotsConfig.rules : [robotsConfig.rules];
+  const publicRule = robotRules.find((rule) => rule.userAgent === "*");
+  assert.ok(publicRule, "robots must include a public crawler rule");
+  assert.ok(publicRule.allow?.includes("/kapi/watermarked-image"), "public images must be crawlable");
+  for (const privatePath of ["/admin/", "/api/", "/kapi/"]) {
+    assert.ok(publicRule.disallow?.includes(privatePath), `private route must remain blocked: ${privatePath}`);
+  }
 
   const staticSitemapPath = path.join(process.cwd(), "public", "sitemap-static.xml");
   const staticSitemapXml = await readFile(staticSitemapPath, "utf8");
