@@ -8,6 +8,8 @@ import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { CANONICAL_SITE_URL } from "@/lib/seo";
 
+import { SEO_OWNERSHIP_LAST_MODIFIED, SEO_OWNERSHIP_UPDATED_PATHS } from "@/data/seo-ownership-release";
+
 const BASE_URL = CANONICAL_SITE_URL;
 const STATIC_LAST_MODIFIED = new Date("2026-05-11T00:00:00.000Z");
 const FINAL_POLISH_LAST_MODIFIED = new Date("2026-07-24T19:30:00.000Z");
@@ -261,7 +263,9 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = FINAL_POLISH_PATHS.has(path)
+  const effectiveLastModified = SEO_OWNERSHIP_UPDATED_PATHS.has(normalizePath(path))
+    ? SEO_OWNERSHIP_LAST_MODIFIED
+    : FINAL_POLISH_PATHS.has(path)
     ? FINAL_POLISH_LAST_MODIFIED
     : lastModified;
 

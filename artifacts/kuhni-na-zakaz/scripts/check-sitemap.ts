@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import sitemap, { FINAL_POLISH_PATHS } from "../app/sitemap";
 import robots from "../app/robots";
+import { SEO_OWNERSHIP_UPDATED_PATHS } from "../data/seo-ownership-release";
 
 const BASE_URL = "https://kuhni.minsk.by";
 
@@ -86,7 +87,7 @@ async function main() {
     assert.ok(entry, `missing final polish URL: ${path}`);
     assert.equal(
       new Date(String(entry.lastModified)).toISOString(),
-      "2026-07-24T19:30:00.000Z",
+      SEO_OWNERSHIP_UPDATED_PATHS.has(path) ? "2026-09-06T00:00:00.000Z" : "2026-07-24T19:30:00.000Z",
       `incorrect final polish lastmod: ${path}`,
     );
   }

@@ -109,7 +109,7 @@ const styleOptions = [
     id: "light",
     title: "Светлая и воздушная",
     image: "/images/design-proekt-kuhni/config-style-light.webp",
-    alt: "Светлая кухня на заказ в Минске с мягкими фасадами и рабочей зоной",
+    alt: "Светлая кухня с мягкими оттенками фасадов и рабочей зоной",
     href: "/catalog/pryamye-kuhni",
   },
   {
@@ -141,7 +141,7 @@ const layoutOptions: LayoutOption[] = [
     title: "Прямая",
     href: "/catalog/pryamye-kuhni",
     image: "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp",
-    alt: "Прямая кухня на заказ для квартиры в Минске",
+    alt: "Прямая кухня вдоль одной стены квартиры",
     benefit: "Для узких комнат, студий и лаконичных гарнитуров вдоль одной стены.",
     schema: "straight",
   },
@@ -359,7 +359,7 @@ const priceCards = [
     price: "от 1 200 BYN",
     href: "/catalog/pryamye-kuhni",
     image: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.avif",
-    alt: "Прямая светлая кухня на заказ в Минске",
+    alt: "Прямая светлая кухня на заказ",
     text: "Для студий, вытянутых комнат и спокойных проектов вдоль одной стены.",
   },
   {
@@ -680,7 +680,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           <source media="(min-width: 768px)" srcSet={heroImage} />
           <img
             src={heroImage}
-            alt="Кухни на заказ в Минске, премиальная тёмная кухня с островом и подсветкой"
+            alt="Тёмная кухня с островом и подсветкой рабочей зоны"
             className="h-full w-full object-cover object-center opacity-80"
             fetchPriority="high"
             decoding="async"
@@ -699,7 +699,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
               ))}
             </div>
             <h1 id="home-showroom-hero" className="max-w-3xl text-4xl font-black leading-[1.03] text-white sm:text-5xl lg:text-6xl">
-              Купить кухню в Минске под размер, с проектом и монтажом
+              Купить кухню на заказ по вашим размерам
             </h1>
             <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-white/82 sm:text-lg">
               Замеряем помещение, готовим 3D-проект, производим гарнитур, доставляем и монтируем кухню под ключ с понятным расчетом цены.

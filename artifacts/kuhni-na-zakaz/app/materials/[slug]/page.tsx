@@ -38,7 +38,7 @@ const MATERIAL_HERO_IMAGES: Record<string, string> = {
 };
 
 const MATERIAL_SEO_TITLE_OVERRIDES: Record<string, string> = {
-  shpon: "Распашной шкаф из шпона в Минске",
+  shpon: "Кухни с фасадами из шпона — материалы и уход",
 };
 
 async function getMaterial(slug: string) {

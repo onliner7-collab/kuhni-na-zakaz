@@ -31,6 +31,7 @@ const ignoredDirectories = new Set([
   ".git",
   ".next",
   ".next-codex-build",
+  ".next-seo-ownership",
   "node_modules",
   "coverage",
   "dist",

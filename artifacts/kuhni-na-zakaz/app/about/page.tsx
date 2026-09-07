@@ -40,7 +40,7 @@ const PROCESS_STEPS = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getStaticPage("about");
-  const title = cleanSeoTitle(null, "О компании: производство кухонь в Минске");
+  const title = cleanSeoTitle(null, "О компании КухниBY — производство кухонь на заказ");
   const description = trimMetaDescription(
     page?.seoDescription,
     "Производитель кухонь на заказ по Беларуси: индивидуальные размеры, договор, гарантийные условия и замер по заявке.",
