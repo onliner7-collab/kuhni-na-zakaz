@@ -38,8 +38,8 @@ export function BorisovJourney() {
     <div className="space-y-16 md:space-y-24">
       <section id="process" className="scroll-mt-24" aria-labelledby="borisov-process-title">
         <p className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-800">Путь заказа</p>
-        <h2 id="borisov-process-title" className="mt-2 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">Сначала вопрос, затем подтверждённые условия</h2>
-        <p className="mt-3 max-w-3xl leading-7 text-stone-600">Ниже — порядок обсуждения заказа. Локальные адреса, сроки, зона выезда и проекты не считаются подтверждёнными без отдельного источника.</p>
+        <h2 id="borisov-process-title" className="mt-2 max-w-3xl text-3xl font-bold tracking-tight md:text-4xl">Как заказать кухню в Борисове</h2>
+        <p className="mt-3 max-w-3xl leading-7 text-stone-600">Отправьте размеры и пожелания, чтобы обсудить предварительный расчёт. Затем согласуем замер, проект, комплектацию и условия доставки и монтажа по вашему адресу.</p>
 
         <ol className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Этапы заказа кухни">
           {steps.map((step, index) => (
@@ -67,11 +67,11 @@ export function BorisovJourney() {
       <section id="types" className="scroll-mt-24 rounded-[2rem] bg-emerald-950 p-5 text-white md:p-9" aria-labelledby="borisov-choice-title">
         <p className="text-sm font-bold uppercase tracking-[0.16em] text-emerald-300">Уточнить вопрос</p>
         <h2 id="borisov-choice-title" className="mt-2 text-3xl font-bold md:text-4xl">Выберите то, что уже известно</h2>
-        <p className="mt-3 max-w-3xl leading-7 text-emerald-50/75">Это черновик для заявки, не обещание совместимости, цены или результата.</p>
+        <p className="mt-3 max-w-3xl leading-7 text-emerald-50/75">Выбранные планировка, стиль и фасады помогут обсудить комплектацию и расчёт кухни.</p>
         <div className="mt-7 grid gap-5 md:grid-cols-3">
           {choices.map((group) => <fieldset key={group.key}><legend className="mb-2 font-bold">{group.label}</legend><div className="flex flex-wrap gap-2">{group.values.map((value) => { const isSelected = selected[group.key] === value; return <button key={value} type="button" aria-pressed={isSelected} onClick={() => choose(group.key, value)} className={`min-h-11 rounded-full border px-4 text-sm font-semibold focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-300 ${isSelected ? "border-emerald-300 bg-emerald-300 text-emerald-950" : "border-white/20 bg-white/5 text-white hover:bg-white/10"}`}>{isSelected && <Check className="mr-1 inline h-4 w-4" aria-hidden />}{value}</button>; })}</div></fieldset>)}
         </div>
-        <div className="mt-7 rounded-2xl bg-white p-5 text-stone-950"><h3 className="font-bold">Контекст заявки</h3><p className="mt-2 text-sm leading-6 text-stone-600" aria-live="polite">{summary}</p><a href="#measure" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full bg-emerald-950 px-5 font-bold text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-700">Перейти к заявке <ArrowRight className="h-4 w-4" aria-hidden /></a></div>
+        <div className="mt-7 rounded-2xl bg-white p-5 text-stone-950"><h3 className="font-bold">Контекст заявки</h3><p className="mt-2 text-sm leading-6 text-stone-600" aria-live="polite">{summary}</p><a href="#calculation" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full bg-emerald-950 px-5 font-bold text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-700">Перейти к заявке <ArrowRight className="h-4 w-4" aria-hidden /></a></div>
       </section>
     </div>
   );

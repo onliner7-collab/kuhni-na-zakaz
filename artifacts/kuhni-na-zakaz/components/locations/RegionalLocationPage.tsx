@@ -1040,7 +1040,7 @@ export function RegionalLocationPage({
         hasLocalCases={hasLocalCases}
         // Борисовский пилот не наследует общий Service/Offer/LocalBusiness schema:
         // адрес, цена и локальные условия не подтверждены для этой страницы.
-        jsonLd={[jsonLdBreadcrumb].filter(isJsonLdObject)}
+        jsonLd={[jsonLdBreadcrumb, faqJsonLd(location.faq)].filter(isJsonLdObject)}
       />
     );
   }

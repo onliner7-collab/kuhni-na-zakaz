@@ -288,13 +288,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const regionalLocation = getRegionalLocation(city);
   if (regionalLocation) {
     const path = `/locations/${city}`;
-    const isBorisov = city === "borisov";
-    const title = isBorisov
-      ? "Как проходит заказ кухни для Борисова"
-      : regionalLocation.title;
-    const description = isBorisov
-      ? "Этапы обсуждения заказа кухни для Борисова, условия, которые нужно подтвердить, честный fallback локальных проектов и заявка с контекстом."
-      : regionalLocation.description;
+    const title = regionalLocation.title;
+    const description = regionalLocation.description;
     const regionalImage =
       city === "minsk"
         ? [
