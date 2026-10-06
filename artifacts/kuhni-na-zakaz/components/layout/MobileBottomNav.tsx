@@ -31,11 +31,29 @@ export function MobileBottomNav() {
   const pathname = usePathname() || "/";
   const [isOpen, setIsOpen] = useState(false);
   const [isScrollHidden, setIsScrollHidden] = useState(false);
+  const [isBorisovActionInView, setIsBorisovActionInView] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const lastScrollY = useRef(0);
   const downwardTravel = useRef(0);
   const interactionUntil = useRef(0);
   const close = useCallback(() => setIsOpen(false), []);
+
+  useEffect(() => {
+    if (pathname.replace(/\/$/, "") !== "/locations/borisov") return;
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      }
+      setIsBorisovActionInView(visible.size > 0);
+    }, { threshold: 0.05 });
+    for (const id of ["borisov-hero-action", "calculation"]) {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    }
+    return () => observer.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     if (isExcludedPath(pathname)) return;
@@ -93,6 +111,12 @@ export function MobileBottomNav() {
   }, [pathname]);
 
   if (isExcludedPath(pathname)) return null;
+
+  if (pathname.replace(/\/$/, "") === "/locations/borisov") {
+    return <nav className={cn("fixed inset-x-0 bottom-0 z-40 border-t border-stone-200 bg-white/95 px-4 pt-3 pb-[max(.75rem,env(safe-area-inset-bottom))] backdrop-blur-sm md:hidden", (isScrollHidden || isBorisovActionInView) && "hidden")} aria-label="Расчёт кухни" data-testid="mobile-bottom-nav">
+      <a href="#calculation" className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-950 px-5 font-bold text-white focus-visible:outline focus-visible:ring-2 focus-visible:ring-emerald-700">Рассчитать мою кухню <Send className="h-4 w-4" aria-hidden /></a>
+    </nav>;
+  }
 
   return (
     <>
