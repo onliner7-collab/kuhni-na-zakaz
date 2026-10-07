@@ -108,7 +108,6 @@ export function FloatingSocialButtons({
       "/catalog/malenkie-kuhni",
       "/catalog/kuhni-do-potolka",
       "/catalog/kuhni-bez-ruchek",
-      "/locations/borisov",
       "/materials/mdf-fasady",
       "/materials/furnitura",
     ].includes(pathname);

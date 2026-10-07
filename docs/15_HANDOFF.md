@@ -1,5 +1,7 @@
 # Handoff
 
+2026-10-07: дополнительная задача — включить общий баннер связи на мобильном Борисове. Отчёт: docs/seo/2026-10-07-borisov-contact.md.
+
 ## 2026-10-07 — Борисов: мобильный визуальный подбор
 
 PRODUCTION_PASS: runtime `9669e9e` опубликован, server build/typecheck (173 страницы), service active. Live 320/390/430/768/1440, FAQ 9/9, изображения/якоря/выбор/фокус, HTTP 200 и regression пяти защищённых URL PASS. Закрытая страница 6921 px, footer 988 px на 390×844. Полный итог и rollback: `docs/seo/2026-10-07-borisov-showroom.md`.

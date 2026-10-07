@@ -1,5 +1,7 @@
 # Page Registry
 
+/locations/borisov: общий баннер связи доступен на мобильных; контент и metadata сохранены.
+
 ## 2026-10-07 — Борисов, мобильный подбор
 
 ADAPT `/locations/borisov`: сценарии жилья, четыре планировки/стиля, материал/цвет, компактный процесс, форма до FAQ, scoped mobile footer. URL/canonical/FAQ source сохранены. Отдельный релиз от production `7d90382`; остальные локальные правки не включаются. Контракт и QA: `docs/seo/2026-10-07-borisov-showroom.md`.
