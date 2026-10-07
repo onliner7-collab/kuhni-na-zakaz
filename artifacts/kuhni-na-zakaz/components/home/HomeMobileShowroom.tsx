@@ -865,7 +865,6 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                       sizes="(max-width: 640px) 88vw, 24rem"
                       className="object-cover transition duration-500 group-hover:scale-[1.03]"
                     />
-                    <BrandedImageWatermark show={getImageDisclosure(rawImage).kind === "generated"} compact />
                     {project.photoIndex > 0 && (
                       <span className="absolute left-3 top-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-black text-white">
                         Ракурс {project.photoIndex + 1}
