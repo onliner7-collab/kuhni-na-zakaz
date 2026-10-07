@@ -1,5 +1,7 @@
 # Component Registry
 
+2026-10-07: BorisovPilotPage/BorisovKitchenPicker — изменён только текст, выбор и форма без изменений; regionalLocations metadata изменена только для borisov.
+
 FloatingSocialButtons: удалено мобильное исключение только /locations/borisov; общая анимация и контакты сохранены.
 
 ## 2026-10-07 — Борисов, мобильный подбор

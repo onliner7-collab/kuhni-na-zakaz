@@ -51,7 +51,7 @@ export function BorisovKitchenPicker() {
     <section id="housing" className="scroll-mt-24" aria-labelledby="housing-title">
       <p className="text-xs font-bold uppercase tracking-[0.16em] text-emerald-800">Борисов и район</p>
       <h2 id="housing-title" className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">Куда выбираете кухню?</h2>
-      <p className="mt-3 max-w-xl text-sm leading-6 text-stone-600">Для квартиры, дачи или дома в деревне — начните с идеи, которая ближе вашей задаче.</p>
+      <p className="mt-3 max-w-xl text-sm leading-6 text-stone-600">За городом кухня — сердце дома. Создадим вашу: для урожая с грядки, больших застолий и неспешного чая у окна.</p>
       <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">{ideas.map((idea, index) => <button key={idea.id} type="button" aria-pressed={housing === index} onClick={() => { setHousing(index); choose("scenario", idea.label, { idea: idea.title }); }} className={`overflow-hidden rounded-2xl border-2 bg-white text-left ${focus} ${housing === index ? "border-emerald-800" : "border-transparent"}`}>
         <KitchenImage image={idea.image} alt={idea.alt} small /><span className="flex min-h-14 items-center justify-between gap-2 px-3 py-3 text-sm font-bold">{idea.label}{housing === index && <Check className="h-4 w-4 shrink-0 text-emerald-800" aria-hidden />}</span>
       </button>)}</div>
@@ -63,6 +63,7 @@ export function BorisovKitchenPicker() {
     </section>
     <section id="types" className="scroll-mt-24" aria-labelledby="types-title">
       <h2 id="types-title" className="text-3xl font-bold tracking-tight md:text-4xl">Выберите планировку</h2>
+      <p className="mt-3 max-w-xl text-sm leading-6 text-stone-600">Ваш угол может больше. Превратим его в удобную кухню с местом для готовки, любимой техники и всего, что хочется держать под рукой.</p>
       <div className="mt-5 grid grid-cols-2 gap-2 md:grid-cols-4">{layouts.map((item, index) => <button key={item.label} type="button" aria-pressed={selected.layout === item.label} onClick={() => { setLayout(index); choose("layout", item.label); }} className={`min-h-14 rounded-xl border px-3 py-3 text-sm font-bold ${focus} ${selected.layout === item.label ? "border-emerald-950 bg-emerald-950 text-white" : "border-stone-300 bg-white"}`}>{item.label}{selected.layout === item.label && <Check className="ml-2 inline h-4 w-4" aria-hidden />}</button>)}</div>
       <article className="mt-4 overflow-hidden rounded-2xl bg-white md:grid md:grid-cols-2"><KitchenImage image={layouts[layout].image} alt={layouts[layout].alt} /><div className="p-5 md:p-7" aria-live="polite"><p className="text-xs font-semibold text-stone-600">Идея планировки</p><h3 className="mt-2 text-xl font-bold">{layout === 3 ? "Кухня с островом" : `${layouts[layout].label} кухня`} в Борисове</h3><p className="mt-2 text-sm text-stone-600">{layouts[layout].text}. Размеры и проходы проверим по вашему помещению.</p><Link href={layouts[layout].href} className={`mt-3 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-emerald-800 ${focus}`}>Больше примеров <ArrowRight className="h-4 w-4" aria-hidden /></Link></div></article>
     </section>
