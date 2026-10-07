@@ -6,4 +6,8 @@ Diff audit: ADAPT — мобильная видимость баннера на 
 
 Новые изображения не нужны. Телефон и социальные ссылки используются из общего источника. Заявки и сообщения при проверке не отправляются.
 
-Проверки: типизация и production build; после публикации мобильная видимость, floating/header при прокрутке, открытие/закрытие панели, ссылки и отсутствие горизонтального overflow. Итог production QA фиксируется после деплоя.
+PRODUCTION_PASS: runtime e59f707 опубликован; серверные typecheck/build (173 страницы) PASS, service active. Локальный build PASS с fallback из-за недоступной локальной БД; production собран с рабочей серверной БД.
+
+Live 320/390/430/768/1440: баннер видим, overflow отсутствует; переход floating → header → floating и открытие/закрытие PASS. На 320 px панель полностью в viewport (x 8.5–296.5), телефон раскрывается в tel:+375293720674; Telegram/Instagram совпадают с общими контактами. На 390 px баннер в шапке не перекрывает телефон/меню, нижняя кнопка расчёта доступна. Browser error logs пусты. Regression пяти защищённых URL на 390 px: один H1, canonical, без overflow. Новые сообщения и заявки не отправлялись.
+
+Rollback: предыдущая .next сохранена в /var/www/kuhni-na-zakaz/.deploy-backups/next-before-borisov-contact-20261007; вернуть symlink вместо текущего .next и перезапустить kuhni-na-zakaz. Предыдущий runtime 9669e9e.

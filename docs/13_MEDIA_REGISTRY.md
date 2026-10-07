@@ -1,5 +1,7 @@
 # Media Registry
 
+2026-10-07, баннер связи Борисова: новые медиа не создавались, используются существующие SVG-иконки общего FloatingSocialButtons.
+
 ## 2026-10-07 — Борисов, мобильный подбор
 
 MEDIA_ACCEPTED: четыре независимые AI-идеи apartment/dacha/village/country, встроенный imagegen. PNG + WebP 1200×800/480×320 в `public/media/borisov-20261007/`; UI только WebP. 57–86 КБ / 12–18 КБ. Только Борисов, не реальные проекты. Prompts и provenance: `docs/seo/2026-10-07-borisov-showroom.md`.
