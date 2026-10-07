@@ -263,7 +263,9 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = SEO_OWNERSHIP_UPDATED_PATHS.has(normalizePath(path))
+  const effectiveLastModified = normalizePath(path) === "/"
+    ? new Date("2026-10-07T00:00:00.000Z")
+    : SEO_OWNERSHIP_UPDATED_PATHS.has(normalizePath(path))
     ? SEO_OWNERSHIP_LAST_MODIFIED
     : FINAL_POLISH_PATHS.has(path)
     ? FINAL_POLISH_LAST_MODIFIED

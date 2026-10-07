@@ -20,7 +20,7 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
-import { type ComponentType, type SVGProps, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { BrandedImageWatermark } from "@/components/ui/BrandedImageWatermark";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
@@ -79,15 +79,6 @@ interface HomeLocationCard {
   city: string;
   region: string | null;
   priceFrom: number;
-}
-
-type HomeNavId = "selector" | "projects" | "prices" | "calculate";
-
-interface HomeNavItem {
-  id: HomeNavId;
-  label: string;
-  href: `#${HomeNavId}`;
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
 }
 
 interface LayoutOption {
@@ -447,15 +438,6 @@ const fallbackFaqItems: HomeFaqItem[] = [
   },
 ];
 
-const mobileNavItems: HomeNavItem[] = [
-  { id: "projects", label: "Проекты", href: "#projects", icon: Images },
-  { id: "selector", label: "Подобрать", href: "#selector", icon: Palette },
-  { id: "prices", label: "Цены", href: "#prices", icon: Calculator },
-  { id: "calculate", label: "Рассчитать", href: "#calculate", icon: FileCheck },
-];
-
-const homeNavSectionOrder: HomeNavId[] = ["selector", "projects", "prices", "calculate"];
-
 function LayoutSchema({ type }: { type: LayoutOption["schema"] }) {
   const base = "absolute rounded-sm bg-[#d5b078]";
   const line = "absolute rounded-sm border border-[#d5b078]";
@@ -566,6 +548,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const portfolioPhotos = useMemo(() => normalizeProjectPhotos(projects), [projects]);
   const visibleReviews = reviews.slice(0, 4);
   const visibleFaqs = useMemo(() => {
+    if (faqs.length > 0) return faqs;
     const existingQuestions = new Set(faqs.map((item) => item.question.trim().toLowerCase()));
     return [
       ...faqs,
@@ -580,8 +563,6 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const [activeVisual, setActiveVisual] = useState({ image: layoutOptions[1].image, alt: layoutOptions[1].alt });
   const [selectedPriceStyle, setSelectedPriceStyle] = useState<KitchenStyleId>("minimalism");
   const [beforeAfter, setBeforeAfter] = useState(100);
-  const [activeNav, setActiveNav] = useState<HomeNavId>("selector");
-  const [isFormFocused, setIsFormFocused] = useState(false);
 
   const layout = layoutOptions.find((item) => item.id === selectedLayout) || layoutOptions[1];
   const budget = budgetOptions.find((item) => item.id === selectedBudget) || budgetOptions[1];
@@ -621,105 +602,57 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
     updateContext({ scenario: scenario.title }, "Выбран жизненный сценарий");
   }
 
-  const scrollToHomeSection = useCallback((id: HomeNavId) => {
-    const target = document.getElementById(id);
-    if (!target) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    target.scrollIntoView({
-      behavior: prefersReducedMotion ? "auto" : "smooth",
-      block: "start",
-    });
-    window.history.replaceState(null, "", `#${id}`);
-    setActiveNav(id);
-  }, []);
-
-  useEffect(() => {
-    const updateActiveFromAnchors = () => {
-      const activationLine = window.innerHeight * 0.38;
-      const nextActive = homeNavSectionOrder.reduce<HomeNavId>((current, id) => {
-        const anchor = document.getElementById(id);
-        if (!anchor) return current;
-
-        return anchor.getBoundingClientRect().top <= activationLine ? id : current;
-      }, "selector");
-
-      setActiveNav(nextActive);
-    };
-
-    updateActiveFromAnchors();
-    window.addEventListener("scroll", updateActiveFromAnchors, { passive: true });
-    window.addEventListener("resize", updateActiveFromAnchors);
-    return () => {
-      window.removeEventListener("scroll", updateActiveFromAnchors);
-      window.removeEventListener("resize", updateActiveFromAnchors);
-    };
-  }, []);
-
-  useEffect(() => {
-    const formSection = document.getElementById("home-final-form");
-    if (!formSection) return;
-
-    const updateFocusState = () => {
-      setIsFormFocused(Boolean(document.activeElement && formSection.contains(document.activeElement)));
-    };
-
-    document.addEventListener("focusin", updateFocusState);
-    document.addEventListener("focusout", updateFocusState);
-    return () => {
-      document.removeEventListener("focusin", updateFocusState);
-      document.removeEventListener("focusout", updateFocusState);
-    };
-  }, []);
-
   return (
     <div className="bg-[#15110d] pb-24 text-white md:pb-0">
-      <section className="relative min-h-[100svh] overflow-hidden pt-24" aria-labelledby="home-showroom-hero" data-home-nav="selector" data-no-kitchen-lead>
+      <section className="relative overflow-hidden pt-6 md:pt-24 md:min-h-[85svh]" aria-labelledby="home-showroom-hero" data-home-nav="selector" data-no-kitchen-lead>
         <picture className="absolute inset-0 block">
           <source media="(max-width: 767px)" srcSet={heroMobileImage} />
           <source media="(min-width: 768px)" srcSet={heroImage} />
           <img
             src={heroImage}
-            alt="Тёмная кухня с островом и подсветкой рабочей зоны"
+            alt="Визуализация кухни на заказ с подсветкой рабочей зоны"
+            width={1717}
+            height={916}
             className="h-full w-full object-cover object-center opacity-80"
             fetchPriority="high"
-            decoding="async"
+            decoding="sync"
           />
         </picture>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(14,11,8,0.70)_0%,rgba(14,11,8,0.38)_42%,rgba(14,11,8,0.86)_100%)] md:bg-[linear-gradient(90deg,rgba(14,11,8,0.90)_0%,rgba(14,11,8,0.52)_48%,rgba(14,11,8,0.18)_100%)]" />
         <BrandedImageWatermark show={getImageDisclosure(heroImage).kind === "generated"} />
 
-        <div className="container-site relative z-10 flex min-h-[calc(100svh-6rem)] flex-col justify-end pb-8 md:pb-12">
+        <div className="container-site relative z-10 flex flex-col justify-end pb-8 pt-8 md:min-h-[calc(85svh-6rem)] md:pb-12">
           <div className="max-w-3xl">
-            <div className="mb-5 flex flex-wrap gap-2 text-xs font-bold text-white/86">
-              {["Собственное производство", "3D-проект", "Монтаж под ключ", "Цена в договоре"].map((item) => (
-                <span key={item} className="rounded-full border border-white/20 bg-black/22 px-3 py-2 backdrop-blur">
+            <div className="mb-4 flex flex-wrap gap-2 text-[10px] min-[360px]:text-xs font-bold text-white/86">
+              {["Собственное производство", "Цена в договоре"].map((item) => (
+                <span key={item} className="rounded-full border border-white/20 bg-black/50 px-3 py-2">
                   {item}
                 </span>
               ))}
             </div>
-            <h1 id="home-showroom-hero" className="max-w-3xl text-4xl font-black leading-[1.03] text-white sm:text-5xl lg:text-6xl">
+            <h1 id="home-showroom-hero" className="max-w-3xl text-[clamp(1.75rem,7.8vw,2.5rem)] font-black leading-[1.08] text-white sm:text-5xl lg:text-6xl">
               Купить кухню на заказ по вашим размерам
             </h1>
-            <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-white/82 sm:text-lg">
-              Замеряем помещение, готовим 3D-проект, производим гарнитур, доставляем и монтируем кухню под ключ с понятным расчетом цены.
+            <p className="mt-4 max-w-2xl text-base font-medium leading-6 text-white/90 sm:text-lg">
+              От замера и 3D-проекта до изготовления и монтажа. Планировка, фасады и хранение — под ваше помещение.
             </p>
-            <div className="mt-7 grid gap-3 sm:flex">
+            <div className="mt-5 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-5">
               <a
                 href="#calculate"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-[#c99a62] px-6 py-3 text-sm font-black text-[#17110b] shadow-xl shadow-black/25 transition hover:bg-[#d9ad78]"
               >
-                Рассчитать цену
+                Рассчитать кухню
                 <Sparkles className="h-4 w-4" aria-hidden />
               </a>
               <a
                 href="/catalog"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/34 bg-black/20 px-6 py-3 text-sm font-black text-white backdrop-blur transition hover:bg-white/12"
+                className="inline-flex min-h-11 items-center gap-2 px-1 text-sm font-bold text-white underline underline-offset-4"
               >
-                Перейти в каталог
+                Посмотреть идеи кухонь
                 <Images className="h-4 w-4" aria-hidden />
               </a>
             </div>
+            <p className="mt-3 text-xs leading-5 text-white/80">На фото — визуализация идеи кухни.</p>
           </div>
         </div>
       </section>
@@ -870,7 +803,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
               </Link>
             </div>
 
-            <div className="rounded-lg border border-white/12 bg-white/[0.04] p-4 text-stone-900 [&_*]:text-inherit">
+            <div className="rounded-lg border border-white/12 bg-white p-4 text-stone-900 [&_*]:text-inherit">
               <ContextSummary />
             </div>
           </div>
@@ -882,7 +815,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           <div className="mb-6 flex items-end justify-between gap-4">
             <div>
               <h2 id="home-projects-title" className="text-3xl font-black leading-tight md:text-4xl">
-                Реальные кухни, которые уже установлены
+                Фото и идеи кухонь по индивидуальным размерам
               </h2>
               <p className="mt-2 text-sm font-semibold text-[#75695f]">Листайте →</p>
             </div>
@@ -893,14 +826,13 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           <div
             ref={projectTrackRef}
             className="-mx-4 flex touch-auto snap-x gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 [-webkit-overflow-scrolling:touch] sm:mx-0 sm:px-0"
-            aria-label="Фото реальных кухонь из портфолио"
+            aria-label="Примеры кухонь и визуализации из портфолио"
             data-testid="home-portfolio-photo-loop"
             data-kitchen-lead-gallery
           >
             {portfolioPhotos.map((project, index) => {
               const rawImage = project.image;
               const image = optimizedImageSrc(rawImage) || rawImage;
-              const isInitiallyVisible = index < 6;
 
               return (
                 <Link
@@ -913,7 +845,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                       src={image}
                       alt={buildImageAlt(rawImage, project.imageAlt)}
                       fill
-                      loading={isInitiallyVisible ? "eager" : "lazy"}
+                      loading="lazy"
                       sizes="(max-width: 640px) 88vw, 24rem"
                       className="object-cover transition duration-500 group-hover:scale-[1.03]"
                     />
@@ -930,9 +862,9 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                       {project.area ? `${project.area} м²` : project.size || "индивидуальный размер"} · {project.style || "современный стиль"}
                     </p>
                     <div className="mt-4 space-y-2 text-sm text-[#5d5147]">
-                      <p>{project.material || "МДФ + HPL-столешница"}</p>
-                      <p>Срок: от 21 дня</p>
-                      <p className="font-black text-[#201912]">Бюджет: от {project.priceFrom > 0 ? project.priceFrom.toLocaleString("ru") : "4 200"} BYN</p>
+                      {project.material && <p>{project.material}</p>}
+                      <p>{getImageDisclosure(rawImage).kind === "generated" ? "Визуализация идеи, не фото выполненного заказа" : "Пример из портфолио: подробности на странице"}</p>
+                      {project.priceFrom > 0 && <p className="font-black text-[#201912]">Ориентир: от {project.priceFrom.toLocaleString("ru")} BYN</p>}
                     </div>
                     <span className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#201912] px-4 py-2 text-sm font-black text-white">
                       Смотреть проект
@@ -958,7 +890,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
               <div className="relative aspect-square touch-pan-y overflow-hidden bg-[#e7ded4] sm:aspect-[16/10]">
                 <Image
                   src="/images/home-showroom/left-window-linear-before-20260701.webp"
-                  alt="Комната до установки кухни: окно слева и свободная стена под прямой гарнитур"
+                  alt="Иллюстрация помещения до проектирования кухни: окно слева и свободная стена"
                   fill
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 55vw"
@@ -966,7 +898,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                 />
                 <Image
                   src="/images/home-showroom/left-window-linear-after-20260701.webp"
-                  alt="Та же комната после установки прямой кухни: окно слева, гарнитур по всей стене"
+                  alt="Визуализация прямой кухни в том же помещении с окном слева"
                   fill
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 55vw"
@@ -990,15 +922,15 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
               </div>
             </div>
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">До / после</p>
+              <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#80542b]">До / после</p>
               <h2 id="home-before-after-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
                 Как меняется пространство
               </h2>
-              <p className="mt-4 text-lg font-black">Кухня в квартире, 7,5 м²</p>
+              <p className="mt-4 text-sm leading-6">Иллюстрация планировки до и после проектирования, не фото выполненной работы.</p>
               <ul className="mt-5 grid gap-3 text-sm font-semibold text-[#5d5147]">
                 {["Добавили хранение до потолка", "Увеличили рабочую зону", "Скрыли коммуникации", "Встроили технику"].map((item) => (
                   <li key={item} className="flex items-start gap-3 rounded-lg border border-[#e2d7ca] bg-white p-3">
-                    <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#9b6b3e]" aria-hidden />
+                    <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#80542b]" aria-hidden />
                     {item}
                   </li>
                 ))}
@@ -1011,7 +943,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
       <section className="bg-[#fffaf4] py-10 text-[#201912] md:py-14" aria-labelledby="home-materials-title" data-home-nav="projects" data-no-kitchen-lead>
         <div className="container-site">
           <div className="mb-6 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">Материалы глазами</p>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#80542b]">Материалы глазами</p>
             <h2 id="home-materials-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
               Посмотрите материалы вблизи
             </h2>
@@ -1128,9 +1060,9 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
         <span id="prices" className="block scroll-mt-24" aria-hidden />
         <div className="container-site">
           <div className="mb-7 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">Цены</p>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#80542b]">Цены</p>
             <h2 id="home-prices-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
-              Купить кухню на заказ: выберите стиль и узнайте ориентир по цене
+              От чего зависит стоимость кухни на заказ
             </h2>
             <p className="mt-3 text-sm leading-6 text-[#75695f]">
               Выберите стиль, посмотрите реальные примеры и 3D-визуализации. Точную цену кухни рассчитаем после замера и выбора материалов.
@@ -1156,7 +1088,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                       src={optimizedImageSrc(style.image) || style.image}
                       alt={style.alt}
                       fill
-                      loading={style.id === "minimalism" ? "eager" : "lazy"}
+                      loading="lazy"
                       sizes="(max-width: 640px) 84vw, 19rem"
                       className="object-cover"
                     />
@@ -1165,7 +1097,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     <span className="text-lg font-black leading-tight">{style.title}</span>
                     <span className="mt-2 line-clamp-2 block min-h-10 text-sm leading-5 text-[#75695f]">{style.description}</span>
                     <span className="mt-3 flex items-center justify-between gap-2 text-sm">
-                      <strong className="text-[#9b6b3e]">от {formatByn(style.priceFrom)} BYN</strong>
+                      <strong className="text-[#80542b]">от {formatByn(style.priceFrom)} BYN</strong>
                       <span>{style.variantsCount} вариантов</span>
                     </span>
                   </span>
@@ -1176,7 +1108,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
 
           <div className="mt-7 flex items-center justify-between gap-4">
             <div>
-              <p className="text-sm font-bold text-[#9b6b3e]">Сейчас выбран стиль</p>
+              <p className="text-sm font-bold text-[#80542b]">Сейчас выбран стиль</p>
               <h3 className="text-2xl font-black">{selectedPriceStyleLabel}</h3>
             </div>
             <Link href={`/prices?style=${selectedPriceStyle}`} className="hidden min-h-11 items-center gap-2 rounded-lg border border-[#9b6b3e]/40 bg-white px-4 py-2 text-sm font-black text-[#6e4727] sm:inline-flex">
@@ -1197,7 +1129,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     src={optimizedImageSrc(item.coverImage) || item.coverImage}
                     alt={item.coverAlt}
                     fill
-                    loading={index < 2 ? "eager" : "lazy"}
+                    loading="lazy"
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 24vw"
                     className="object-cover"
                   />
@@ -1215,7 +1147,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     <div><dt className="inline font-bold">Размер: </dt><dd className="inline">{item.sizeRange}</dd></div>
                     <div><dt className="inline font-bold">Фасады: </dt><dd className="inline">{item.facadeMaterial}</dd></div>
                   </dl>
-                  <p className="mt-3 text-2xl font-black text-[#9b6b3e]">от {formatByn(item.priceFrom)} BYN</p>
+                  <p className="mt-3 text-2xl font-black text-[#80542b]">от {formatByn(item.priceFrom)} BYN</p>
                   <span className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-[#201912] px-4 py-2 text-sm font-black text-white">
                     Посмотреть кухню
                     <ArrowRight className="h-4 w-4" aria-hidden />
@@ -1228,6 +1160,16 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
             Все варианты выбранного стиля
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
+          <div className="mt-6 rounded-lg border border-[#e2d7ca] bg-white p-4 text-sm leading-6">
+            <p className="font-bold">Сравнивайте одинаковую комплектацию</p>
+            <p className="mt-2">Размеры, фасады, столешница и фурнитура влияют на смету. Доставка и монтаж согласуются отдельно; итоговую комплектацию, стоимость, сроки и гарантию фиксируем в договоре.</p>
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1">
+              <Link href="/prices" className="inline-flex min-h-11 items-center font-bold underline">Состав цены</Link>
+              <Link href="/calculator" className="inline-flex min-h-11 items-center font-bold underline">Расчёт онлайн</Link>
+              <Link href="/warranty" className="inline-flex min-h-11 items-center font-bold underline">Условия гарантии</Link>
+              <Link href="/reviews" className="inline-flex min-h-11 items-center font-bold underline">Отзывы клиентов</Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1238,32 +1180,24 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#d5b078]">Расчёт</p>
               <h2 id="home-final-form-title" className="mt-2 text-3xl font-black leading-tight text-white md:text-4xl">
-                Получить расчёт кухни в два шага
+                Заказать расчёт кухни
               </h2>
               <p className="mt-4 text-sm leading-6 text-white/64">
-                Оставьте размеры и пожелания — подскажем, какая планировка и материалы подойдут именно вам.
+                Оставьте имя и телефон. Уточним размеры, комплектацию и условия замера при разговоре.
               </p>
-              <div className="mt-6 grid gap-3 text-sm">
-                <div className="rounded-lg border border-[#d5b078]/35 bg-[#d5b078]/10 p-4">
-                  <p className="font-black text-[#f1d0a3]">Шаг 1</p>
-                  <p className="mt-1 text-white/70">Телефон, город и удобный способ связи.</p>
-                </div>
-                <div className="rounded-lg border border-white/12 bg-white/[0.04] p-4">
-                  <p className="font-black text-white">Шаг 2</p>
-                  <p className="mt-1 text-white/64">Размеры, тип кухни и комментарий. Фото при необходимости можно отправить Дмитрию в личный Telegram.</p>
-                </div>
-              </div>
+              <p className="mt-4 text-sm leading-6 text-white/80">Есть план помещения? Подготовьте его для консультации. Если размеров ещё нет, начнём с замера.</p>
             </div>
             <div className="rounded-lg border border-white/12 bg-white p-4 text-[#201912] shadow-[0_20px_60px_rgba(0,0,0,0.22)] sm:p-6">
               <ContactForm
                 source="home"
                 sourceType="home"
+                sourcePage="/"
                 formType="home-showroom"
                 formLocation="home-final-form"
                 submitLabel="Получить расчёт"
-                showMessenger
-                showHasMeasurements
-                showRoomFile
+                compact
+                cityLabel="Город или район (необязательно)"
+                showKitchenType={false}
                 defaultKitchenType={layout.title}
                 defaultComment={`Интересует ${selectedStyleTitle.toLowerCase()}, ${layout.title.toLowerCase()}, бюджет ${budget.title.toLowerCase()}.`}
               />
@@ -1275,25 +1209,25 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
       <section id="home-cities" className="bg-[#f6f1ea] py-10 text-[#201912] md:py-14" aria-labelledby="home-cities-title">
         <div className="container-site">
           <div className="mb-7 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">Города</p>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#80542b]">Города</p>
             <h2 id="home-cities-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
-              Кухни на заказ по Минску, области и Беларуси
+              Условия заказа в вашем городе
             </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <Link href="/locations/minsk" className="rounded-lg border border-[#e2d7ca] bg-white p-4">
-              <MapPin className="mb-3 h-5 w-5 text-[#9b6b3e]" aria-hidden />
+              <MapPin className="mb-3 h-5 w-5 text-[#80542b]" aria-hidden />
               <h3 className="text-lg font-black">Минск</h3>
               <p className="mt-2 text-sm leading-5 text-[#75695f]">Замер, проект, изготовление и монтаж под ключ.</p>
             </Link>
             <Link href="/locations/minskaya-oblast" className="rounded-lg border border-[#e2d7ca] bg-white p-4">
-              <MapPin className="mb-3 h-5 w-5 text-[#9b6b3e]" aria-hidden />
+              <MapPin className="mb-3 h-5 w-5 text-[#80542b]" aria-hidden />
               <h3 className="text-lg font-black">Минская область</h3>
               <p className="mt-2 text-sm leading-5 text-[#75695f]">Выезд и доставка по условиям конкретного проекта.</p>
             </Link>
             {visibleLocations.map((location) => (
               <Link key={location.slug} href={`/locations/${location.slug}`} className="rounded-lg border border-[#e2d7ca] bg-white p-4">
-                <MapPin className="mb-3 h-5 w-5 text-[#9b6b3e]" aria-hidden />
+                <MapPin className="mb-3 h-5 w-5 text-[#80542b]" aria-hidden />
                 <h3 className="text-lg font-black">{location.city}</h3>
                 <p className="mt-2 text-sm leading-5 text-[#75695f]">
                   {location.region || "Беларусь"} · ориентир от {location.priceFrom.toLocaleString("ru")} BYN
@@ -1352,7 +1286,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
       <section id="home-faq" className="bg-[#fffaf4] py-10 text-[#201912] md:py-14" aria-labelledby="home-faq-title">
         <div className="container-site">
           <div className="mb-7 max-w-3xl">
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#9b6b3e]">FAQ</p>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#80542b]">FAQ</p>
             <h2 id="home-faq-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
               Частые вопросы о кухнях на заказ
             </h2>

@@ -64,6 +64,7 @@ interface ContactFormProps {
   successMessage?: string;
   errorMessage?: string;
   showCity?: boolean;
+  cityLabel?: string;
   showKitchenType?: boolean;
   showMessenger?: boolean;
   showHasMeasurements?: boolean;
@@ -249,6 +250,7 @@ export function ContactForm({
   successMessage = "Мы свяжемся с вами в рабочее время и уточним детали кухни.",
   errorMessage,
   showCity = true,
+  cityLabel = "Город",
   showKitchenType = true,
   showMessenger = false,
   showHasMeasurements = false,
@@ -601,7 +603,7 @@ export function ContactForm({
 
       {showCity && (
         <div>
-          <Label htmlFor={cityId}>Город</Label>
+          <Label htmlFor={cityId}>{cityLabel}</Label>
           <Input id={cityId} {...register("city")} placeholder="Минск" className="mt-1 min-h-11" autoComplete="address-level2" data-testid="form-city" />
         </div>
       )}
