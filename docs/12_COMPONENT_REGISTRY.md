@@ -1,5 +1,9 @@
 # Component Registry
 
+## 2026-10-07 — Борисов, мобильный подбор
+
+BorisovKitchenPicker — Client, только Борисов, scenario/idea/layout/style/materials/color и выбор фото. BorisovJourney — четыре этапа и семь в details. FooterGroup — Client, Footer; мобильные details только на Борисове. BorisovPilotPage — Server, hero/SEO/form integration сохранены. QA: `docs/seo/2026-10-07-borisov-showroom.md`.
+
 ## Этап 5 — глобальная навигация
 
 `MobileBottomNav` — четыре стабильных пункта до 767 px; `LeadFormSheet` — компактная заявка на базе `ContactForm`.

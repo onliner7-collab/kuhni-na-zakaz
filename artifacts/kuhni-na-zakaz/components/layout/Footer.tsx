@@ -5,6 +5,7 @@ import { regionalLocations } from "@/data/locations";
 import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { resolveContactInfo } from "@/lib/contact-info";
 import { buildInstagramHref, buildTelegramHref } from "@/lib/social-links";
+import { FooterGroup } from "./FooterGroup";
 
 function FooterTelegramIcon({ className }: { className?: string }) {
   return (
@@ -147,8 +148,7 @@ export function Footer() {
             )}
           </div>
 
-          <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Каталог</p>
+          <FooterGroup title="Каталог">
             <ul className="space-y-2.5">
               {FOOTER_LINKS.catalog.map((link) => (
                 <li key={link.href}>
@@ -158,10 +158,9 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterGroup>
 
-          <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Компания</p>
+          <FooterGroup title="Компания">
             <ul className="space-y-2.5">
               {FOOTER_LINKS.info.map((link) => (
                 <li key={link.href}>
@@ -171,10 +170,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </FooterGroup>
 
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Кухни по городам</p>
+            <FooterGroup title="Кухни по городам">
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {priorityCities.map((city) => (
                 <li key={city.href}>
@@ -184,8 +183,8 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-6">
-              <p className="mb-4 text-xs font-bold uppercase tracking-widest text-white/90">Правовое</p>
+            </FooterGroup><div className="mt-6">
+              <FooterGroup title="Правовое">
               <ul className="space-y-2.5">
                 {FOOTER_LINKS.legal.map((link) => (
                   <li key={link.href}>
@@ -194,7 +193,7 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
-              </ul>
+              </ul></FooterGroup>
             </div>
           </div>
         </div>
