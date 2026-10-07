@@ -508,6 +508,21 @@ function normalizeProjects(projects: HomeProjectCard[]) {
   }));
 }
 
+const HOME_GALLERY_PHOTOS: Record<string, readonly { src: string; alt: string }[]> = {
+  "kuhnya-s-ostrovom-grodno": [
+    { src: "/uploads/seo-showcase/home-gallery-20261007/island-01.webp", alt: "Идея кухни с островом для дома в Гродно: акриловые фасады и кварцевая столешница" },
+    { src: "/uploads/seo-showcase/home-gallery-20261007/island-02.webp", alt: "Идея кухни с островом для дома в Гродно: второй ракурс острова и шкафов" },
+  ],
+  "pryamaya-kuhnya-dlya-studii-brest": [
+    { src: "/uploads/seo-showcase/home-gallery-20261007/straight-01.webp", alt: "Идея прямой кухни для студии в Бресте: светлые фасады HPL и панели под дуб" },
+    { src: "/uploads/seo-showcase/home-gallery-20261007/straight-02.webp", alt: "Идея прямой кухни для студии в Бресте: вид на весь ряд шкафов" },
+  ],
+  "uglovaya-kuhnya-dlya-novostroyki-minsk": [
+    { src: "/uploads/seo-showcase/home-gallery-20261007/corner-01.webp", alt: "Идея угловой кухни для новостройки в Минске: серые фасады МДФ эмаль и мойка у окна" },
+    { src: "/uploads/seo-showcase/home-gallery-20261007/corner-02.webp", alt: "Идея угловой кухни для новостройки в Минске: второй ракурс двух сторон планировки" },
+  ],
+};
+
 function normalizeProjectPhotos(projects: HomeProjectCard[]) {
   return normalizeProjects(projects).flatMap((project) => {
     const seen = new Set<string>();
@@ -523,8 +538,8 @@ function normalizeProjectPhotos(projects: HomeProjectCard[]) {
 
     return photoSources.map<HomeProjectPhotoCard>((src, index) => ({
       ...project,
-      image: src,
-      imageAlt: project.imageAlts?.[index] || `${project.title}, ${project.city || "Минск"}, фото ${index + 1}`,
+      image: HOME_GALLERY_PHOTOS[project.slug]?.[index]?.src || src,
+      imageAlt: HOME_GALLERY_PHOTOS[project.slug]?.[index]?.alt || project.imageAlts?.[index] || `${project.title}, ${project.city || "Минск"}, фото ${index + 1}`,
       photoIndex: index,
     }));
   }).slice(0, MAX_HOME_PORTFOLIO_PHOTOS);
