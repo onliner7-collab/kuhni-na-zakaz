@@ -847,7 +847,8 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           >
             {portfolioPhotos.map((project, index) => {
               const rawImage = project.image;
-              const image = optimizedImageSrc(rawImage) || rawImage;
+              const galleryImageWidth = rawImage.startsWith("/uploads/seo-showcase/home-gallery-20261007/") ? 1120 : undefined;
+              const image = optimizedImageSrc(rawImage, galleryImageWidth) || rawImage;
 
               return (
                 <Link
