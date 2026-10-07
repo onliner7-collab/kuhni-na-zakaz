@@ -1,6 +1,6 @@
 # Handoff
 
-2026-10-07: Борисов copy — текстовая правка подготовлена в codex/borisov-copy-20261007. Отчёт: docs/seo/2026-10-07-borisov-copy.md.
+2026-10-07: PRODUCTION_PASS 29dce6d — эмоциональный description и пять коротких текстов Борисова опубликованы. Mobile/desktop, выбор, баннер, валидация формы PASS; контент и metadata пяти защищённых URL совпали с baseline. Отчёт/rollback: docs/seo/2026-10-07-borisov-copy.md.
 
 2026-10-07: PRODUCTION_PASS e59f707 — общий баннер связи включён на мобильном Борисове. Перелёт/контакты/320–1440 px и regression пяти защищённых URL проверены. Отчёт и rollback: docs/seo/2026-10-07-borisov-contact.md.
 
