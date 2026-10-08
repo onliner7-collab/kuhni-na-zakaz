@@ -9,7 +9,7 @@ import {
   type PilotMedia,
 } from "@/components/pilots/library";
 import { MediaSequence, useExploreContext } from "@/components/exploration";
-import { ArrowRight, Check, PackageOpen } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export const ANGULAR_ANSWERS_EVENT = "angular-kitchen-answers";
@@ -113,18 +113,11 @@ export function AngularStage5Interactive() {
       <section id="inside" className="scroll-mt-24" aria-labelledby="inside-heading">
         <p className="text-sm font-black uppercase tracking-[0.16em] text-amber-800">Внутри угла</p>
         <h2 id="inside-heading" className="mt-2 text-3xl font-black tracking-tight md:text-4xl">Проверьте доступ к глубокой части шкафа</h2>
-        <p className="mt-3 max-w-3xl leading-7 text-stone-600">Последовательность загружает по одному кадру после действия пользователя. При reduced motion остаются дискретные кнопки без автопрокрутки.</p>
-        <div className="mt-6"><CornerStorageExplorer frames={frames} mechanisms={mechanisms} onMechanismChange={setMechanism} /></div>
+        <p className="mt-3 max-w-3xl leading-7 text-stone-600">Откройте механизм и сравните, как доставать посуду с глубокой полки, карусели или выдвижных корзин.</p>
+        <div className="mt-6"><CornerStorageExplorer frames={frames} mechanisms={mechanisms} selectedId={mechanism} onMechanismChange={setMechanism} /></div>
       </section>
 
-      <section aria-labelledby="use-cases-title">
-        <h2 id="use-cases-title" className="text-3xl font-black tracking-tight md:text-4xl">Что удобно хранить в углу</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {[{ title: "Крупная посуда", text: "Кастрюли и формы можно хранить на глубокой полке, если они нужны не каждый день." }, { title: "Ежедневные запасы", text: "Карусель помогает быстро увидеть продукты и небольшую посуду." }, { title: "Часто используемое", text: "Выдвижная система выводит корзины к пользователю и уменьшает необходимость тянуться внутрь." }].map((item) => <article key={item.title} className="rounded-2xl border border-stone-200 bg-white p-5"><PackageOpen className="h-6 w-6 text-amber-800" aria-hidden="true" /><h3 className="mt-3 font-black">{item.title}</h3><p className="mt-2 text-sm leading-6 text-stone-600">{item.text}</p></article>)}
-        </div>
-      </section>
-
-      <section aria-label="Сравнение механизмов"><MechanismComparison title="Сравните способы доступа" options={mechanisms} onChange={setMechanism} /></section>
+      <section aria-label="Сравнение механизмов"><MechanismComparison title="Сравните способы доступа" options={mechanisms} selectedId={mechanism} onChange={setMechanism} /></section>
 
       <section aria-label="Предварительная проверка планировки"><KitchenLayoutCheck onChange={onLayoutChange} /></section>
 

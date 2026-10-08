@@ -1,5 +1,7 @@
 # Handoff
 
+2026-10-08: Коммерческая страница угловых кухонь — отдельная ветка codex/angular-commercial-20261008 от production 0e10d87. Не деплоить всю dirty work поверх неё. Актуальный результат, QA и поисковые действия: docs/seo/2026-10-08-uglovye-kuhni.md.
+
 2026-10-07: Борисов copy — текстовая правка подготовлена в codex/borisov-copy-20261007. Отчёт: docs/seo/2026-10-07-borisov-copy.md.
 
 2026-10-07: PRODUCTION_PASS e59f707 — общий баннер связи включён на мобильном Борисове. Перелёт/контакты/320–1440 px и regression пяти защищённых URL проверены. Отчёт и rollback: docs/seo/2026-10-07-borisov-contact.md.

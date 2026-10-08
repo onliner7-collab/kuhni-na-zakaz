@@ -4,11 +4,11 @@ import { useState } from "react";
 import { MediaPicture } from "./MediaPicture";
 import type { LabeledOption } from "./types";
 
-interface MechanismComparisonProps { title: string; options: LabeledOption[]; onChange?: (id: string) => void; }
+interface MechanismComparisonProps { title: string; options: LabeledOption[]; onChange?: (id: string) => void; selectedId?: string; }
 
-export function MechanismComparison({ title, options, onChange }: MechanismComparisonProps) {
+export function MechanismComparison({ title, options, onChange, selectedId }: MechanismComparisonProps) {
   const [activeId, setActiveId] = useState(options[0]?.id || "");
-  const active = options.find((option) => option.id === activeId) || options[0];
+  const active = options.find((option) => option.id === (selectedId ?? activeId)) || options[0];
   return (
     <section data-component="MechanismComparison" className="rounded-3xl border p-4 sm:p-6">
       <h2 className="text-2xl font-black">{title}</h2>

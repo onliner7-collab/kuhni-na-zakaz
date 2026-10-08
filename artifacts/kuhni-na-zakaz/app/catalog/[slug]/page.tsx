@@ -15,7 +15,7 @@ import {
 } from "@/lib/schema-org";
 import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
 import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
-import { AngularKitchenPage } from "@/components/catalog/angular-kitchens/AngularKitchenPage";
+import { AngularKitchenPage, angularFaq } from "@/components/catalog/angular-kitchens/AngularKitchenPage";
 import { isLayoutBatchSlug, LayoutBatchPage } from "@/components/catalog/layout-batch/LayoutBatchPage";
 import { isPublicContentSlug } from "@/lib/public-content";
 
@@ -67,7 +67,7 @@ type StaticCategory = {
 const STATIC_CATEGORIES: Record<string, StaticCategory> = {
   "uglovye-kuhni": {
     title: "Угловые кухни на заказ — купить по своим размерам",
-    description: "Угловые кухни на заказ: варианты планировки, рабочая зона и хранение в углу. Сравните решения и материалы, чтобы рассчитать кухню по своим размерам.",
+    description: "Угловые кухни на заказ по вашим размерам. Посмотрите варианты Г-образной планировки, сравните комплектации и отправьте заявку для расчёта стоимости.",
     priceFrom: 1800,
     features: ["Эффективное использование угла", "Вместительность", "Зонирование рабочей поверхности", "Любые размеры"],
     content: "Угловая кухня — одно из самых популярных решений для жилых квартир. Она помогает рационально использовать угол, собрать удобный рабочий треугольник и добавить хранение без перегруза прохода.",
@@ -624,8 +624,14 @@ export default async function CatalogItemPage({ params }: Props) {
 
     return (
       <AngularKitchenPage
-        priceFrom={data.priceFrom}
-        jsonLd={[jsonLdBreadcrumb, jsonLdProduct, jsonLdImage]}
+        jsonLd={[jsonLdBreadcrumb, jsonLdImage, compactJsonLd({
+          "@context": "https://schema.org", "@type": "CollectionPage",
+          url: siteUrl("/catalog/uglovye-kuhni"), name: data.title, description: data.description,
+          mainEntity: { "@type": "Service", name: "Изготовление угловых кухонь на заказ", serviceType: "Кухни по индивидуальным размерам", provider: { "@type": "Organization", name: "КухниBY", url: siteUrl("/") } },
+        }), compactJsonLd({
+          "@context": "https://schema.org", "@type": "FAQPage",
+          mainEntity: angularFaq.map(item => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })),
+        })]}
       />
     );
   }

@@ -1,5 +1,7 @@
 # Component Registry
 
+2026-10-08: AngularKitchenPage — Server, коммерческая композиция и FAQ; ContactForm использует существующий compact. AngularStage5Interactive сохраняет выбор. MechanismComparison/CornerStorageExplorer получили необязательный selectedId для синхронизации только угловой страницы.
+
 2026-10-07: BorisovPilotPage/BorisovKitchenPicker — изменён только текст, выбор и форма без изменений; regionalLocations metadata изменена только для borisov.
 
 FloatingSocialButtons: удалено мобильное исключение только /locations/borisov; общая анимация и контакты сохранены.

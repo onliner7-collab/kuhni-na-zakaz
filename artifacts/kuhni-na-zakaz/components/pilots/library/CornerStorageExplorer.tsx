@@ -5,13 +5,13 @@ import { useState } from "react";
 import { MediaPicture } from "./MediaPicture";
 import type { LabeledOption, PilotMedia } from "./types";
 
-interface CornerStorageExplorerProps { frames: PilotMedia[]; mechanisms: LabeledOption[]; onMechanismChange?: (id: string) => void; }
+interface CornerStorageExplorerProps { frames: PilotMedia[]; mechanisms: LabeledOption[]; onMechanismChange?: (id: string) => void; selectedId?: string; }
 
-export function CornerStorageExplorer({ frames, mechanisms, onMechanismChange }: CornerStorageExplorerProps) {
+export function CornerStorageExplorer({ frames, mechanisms, onMechanismChange, selectedId }: CornerStorageExplorerProps) {
   const [hasIntent, setHasIntent] = useState(false);
   const [frameIndex, setFrameIndex] = useState(0);
   const [mechanismId, setMechanismId] = useState(mechanisms[0]?.id || "");
-  const activeMechanism = mechanisms.find((item) => item.id === mechanismId) || mechanisms[0];
+  const activeMechanism = mechanisms.find((item) => item.id === (selectedId ?? mechanismId)) || mechanisms[0];
   const activeFrame = frames[Math.min(frameIndex, frames.length - 1)];
 
   return (
