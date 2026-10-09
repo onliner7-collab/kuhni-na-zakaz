@@ -182,3 +182,13 @@ Production map новых визуальных серий, media slots, generati
 Все 18 masters созданы встроенным Codex/OpenAI imagegen, сохранены в project public media root и не подключены как visible PNG. WebP: 20–55 КБ; AVIF: 12–39 КБ. Provenance `ai_concept`, rights `internal_generation`; русские alt/caption; запрещены claims о реальном проекте, точных размерах, применимости, цене и брендах. Canonical manifest: `content/media/visual-rescue-stages-7-9-2026-07-22.json`.
 
 Production gate: три series повышены до `LIVE` после deploy `07d0e1c`; active AVIF и выбранные state images отдают HTTP 200, `naturalWidth=1200`, bad image responses 0. PNG остаются source-only; provenance не повышается до real project.
+
+## 2026-10-09 — Угловая кухня Жодино
+
+Встроенный imagegen: `public/uploads/locations/zhodino-20261009/zhodino-corner-kitchen-source.png`, WebP 1200×800 (50 790 байт), mobile WebP 600×400 (18 030 байт). Исходник source-only, видимые изображения WebP; русские alt, честная иллюстрация дизайна. Переиспользованы три состояния zhodino-visual-l1b и материалы-gallery-v2. Промпт и production evidence: `docs/seo/2026-10-09-zhodino-implementation.md`.
+
+2026-10-08: angular-commercial-20261008 — три imagegen-концепта (compact/white/green), исходные PNG в source, WebP 1200×800 и 600×400. UI использует только WebP; происхождение раскрыто, реальные проекты не заявляются. Отчёт: docs/seo/2026-10-08-uglovye-kuhni.md.
+
+2026-10-07, Борисов copy: новых медиа нет; текущие WebP/alt сохранены.
+
+2026-10-07, баннер связи Борисова: новые медиа не создавались, используются существующие SVG-иконки общего FloatingSocialButtons.

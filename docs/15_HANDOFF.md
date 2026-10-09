@@ -472,3 +472,7 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 - Bundle comparison: home First Load JS `239 kB` до/после; raw initial chunk set 1 066 544 → 1 065 954 bytes. Новая animation/library dependency не добавлялась.
 - Rollback: `git revert 4646391`, push `work`, standard deploy и повтор production smoke. DB/schema/content rollback не требуется.
 - Связанные, но отдельные проблемы Borisov и furnitura остаются без изменений; текущий этап остановлен.
+
+## 2026-10-09 — Жодино
+
+Перестройка `/locations/zhodino` по покупке кухни и связанным запросам. Собственные ZhodinoPage/ZhodinoShowroom/data, новый встроенный imagegen hero с WebP, семь FAQ, выбор параметров для формы. Изолированная база релиза — production `696e8f9`, ветка `codex/zhodino-deploy-20261009`; основной dirty diff не публиковать. Борисов защищён, другие города/shared backend не менять. Проверки после уточнения пользователя проводятся в IAB. Актуальный статус, evidence, release и rollback: `docs/seo/2026-10-09-zhodino-implementation.md`.

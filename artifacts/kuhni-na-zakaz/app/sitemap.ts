@@ -265,6 +265,8 @@ function sitemapEntry(
 
   const effectiveLastModified = normalizePath(path) === "/"
     ? new Date("2026-10-07T00:00:00.000Z")
+    : normalizePath(path) === "/locations/zhodino"
+    ? new Date("2026-10-09T00:00:00.000Z")
     : normalizePath(path) === "/catalog/uglovye-kuhni"
     ? new Date("2026-10-08T00:00:00.000Z")
     : SEO_OWNERSHIP_UPDATED_PATHS.has(normalizePath(path))

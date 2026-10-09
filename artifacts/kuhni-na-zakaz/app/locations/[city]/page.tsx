@@ -24,6 +24,8 @@ import { CONTACT_DEFAULTS } from "@/lib/contact-defaults";
 import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, offerJsonLd, siteUrl } from "@/lib/schema-org";
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
+import { ZhodinoPage } from "@/components/locations/zhodino/ZhodinoPage";
+import { ZHODINO_PATH, ZHODINO_TITLE, ZHODINO_DESCRIPTION, ZHODINO_HERO } from "@/data/zhodino-page";
 
 export const revalidate = 3600;
 export const dynamic = "force-static";
@@ -285,6 +287,17 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
+  if (city === "zhodino") {
+    return {
+      title: ZHODINO_TITLE,
+      description: ZHODINO_DESCRIPTION,
+      alternates: { canonical: ZHODINO_PATH },
+      openGraph: buildOpenGraph(ZHODINO_PATH, ZHODINO_TITLE, ZHODINO_DESCRIPTION, {
+        images: [{ url: ZHODINO_HERO, width: 1200, height: 800, alt: "Идея угловой кухни на заказ для квартиры или дома в Жодино" }],
+      }),
+      twitter: buildTwitterMetadata(ZHODINO_TITLE, ZHODINO_DESCRIPTION, ZHODINO_HERO),
+    };
+  }
   const regionalLocation = getRegionalLocation(city);
   if (regionalLocation) {
     const path = `/locations/${city}`;
@@ -444,6 +457,7 @@ function StarRow({ rating }: { rating: number }) {
 
 export default async function LocationPage({ params }: Props) {
   const { city } = await params;
+  if (city === "zhodino") return <ZhodinoPage />;
   const regionalLocation = getRegionalLocation(city);
   if (regionalLocation) {
     const { cases, hasLocalCases } = await getRegionalPortfolioCases(regionalLocation);

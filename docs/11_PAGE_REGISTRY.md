@@ -256,3 +256,13 @@ Canonical, H1, metadata/schema flow и sitemap policy сохранены. Produc
 ### Production gate stages 7–9
 
 Runtime commit `07d0e1c` задеплоен штатным Timeweb script. Все три route повышены до `VISUAL_ACCEPTED`: production 3/3 подтверждает HTTP 200, self canonical, H1=1, visual state change, `naturalWidth=1200`, overflow 0, missing alt 0 и отсутствие broken image responses. Protected regression 5/5 PASS; sitemap/robots HTTP 200.
+
+## 2026-10-09 — Жодино: покупка кухни
+
+`/locations/zhodino`: самостоятельная коммерческая страница покупки кухни на заказ по размерам. Визуальный выбор 4 состояний, 3 карточки планировок, 3 материала, 3 приоритета бюджета, логистика, 7 FAQ и одна форма. Отдельная route branch сохраняет Борисов и другие города. Отчёт и статус выпуска: `docs/seo/2026-10-09-zhodino-implementation.md`.
+
+2026-10-08: /catalog/uglovye-kuhni — коммерческий первый экран, примеры дизайна, сравнение комплектаций, короткая форма, FAQ и тематические ссылки. Отчёт: docs/seo/2026-10-08-uglovye-kuhni.md.
+
+2026-10-07: /locations/borisov — согласованный эмоциональный description и короткие тексты пяти групп запросов; URL/H1/интерактивность сохранены.
+
+/locations/borisov: общий баннер связи доступен на мобильных; контент и metadata сохранены.

@@ -235,3 +235,13 @@ Server compositions сохраняют H1, disclosure, ограничения, �
 - Initial visibility не зависит от mount/scroll/timer. Небольшая прокрутка до 48 px не скрывает Dock; устойчивое движение вниз скрывает, движение вверх и возврат к началу возвращают.
 - `data-dock-suppress` скрывает Dock только при реальном pointer/focus interaction, а не из-за самого присутствия explorer в viewport.
 - Mobile-компенсация контента применяется на initial render через `body:has(.mobile-page-dock)`; safe-area и reduced-motion contract сохранены.
+
+## 2026-10-09 — Компоненты Жодино
+
+`ZhodinoPage`: серверный контент, breadcrumbs, WebPage/FAQPage, планировки, логистика и FAQ. `ZhodinoShowroom`: четыре изображения, сравнение фасадов и приоритет бюджета, русские подписи, компактный ContactForm с answers.zhodinoKitchenSelection. Использование только `/locations/zhodino`; shared UI и backend не меняются.
+
+2026-10-08: AngularKitchenPage — Server, коммерческая композиция и FAQ; ContactForm использует существующий compact. AngularStage5Interactive сохраняет выбор. MechanismComparison/CornerStorageExplorer получили необязательный selectedId для синхронизации только угловой страницы.
+
+2026-10-07: BorisovPilotPage/BorisovKitchenPicker — изменён только текст, выбор и форма без изменений; regionalLocations metadata изменена только для borisov.
+
+FloatingSocialButtons: удалено мобильное исключение только /locations/borisov; общая анимация и контакты сохранены.
