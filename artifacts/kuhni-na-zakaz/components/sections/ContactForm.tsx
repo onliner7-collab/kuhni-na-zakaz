@@ -378,7 +378,9 @@ export function ContactForm({
         ? readDesignProjectComment(data.comment || defaultComment)
         : source === "home"
           ? readHomeKitchenComment(data.comment || defaultComment)
-        : data.comment;
+        : source === "location-minsk"
+          ? defaultComment || data.comment
+          : data.comment;
     const designSelection = source === "design-proekt-kuhni" ? readDesignProjectSelection() : null;
     const homeSelection = source === "home" ? readHomeKitchenSelection() : null;
     const exploreContext = serializeExploreContextForLead(readExploreContext(fallbackSourcePage));

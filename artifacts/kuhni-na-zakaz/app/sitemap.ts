@@ -265,7 +265,7 @@ function sitemapEntry(
 
   const effectiveLastModified = normalizePath(path) === "/"
     ? new Date("2026-10-07T00:00:00.000Z")
-    : normalizePath(path) === "/locations/zhodino"
+    : normalizePath(path) === "/locations/zhodino" || normalizePath(path) === "/locations/minsk"
     ? new Date("2026-10-09T00:00:00.000Z")
     : normalizePath(path) === "/catalog/uglovye-kuhni"
     ? new Date("2026-10-08T00:00:00.000Z")

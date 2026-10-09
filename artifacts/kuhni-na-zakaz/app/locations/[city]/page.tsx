@@ -25,6 +25,8 @@ import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, offerJsonLd, siteUr
 import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { PhoneReveal } from "@/components/layout/PhoneReveal";
 import { ZhodinoPage } from "@/components/locations/zhodino/ZhodinoPage";
+import { MinskPage } from "@/components/locations/minsk/MinskPage";
+import { MINSK_PATH, MINSK_TITLE, MINSK_DESCRIPTION, MINSK_HERO } from "@/data/minsk-page";
 import { ZHODINO_PATH, ZHODINO_TITLE, ZHODINO_DESCRIPTION, ZHODINO_HERO } from "@/data/zhodino-page";
 
 export const revalidate = 3600;
@@ -287,6 +289,15 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
+  if (city === "minsk") {
+    return {
+      title: MINSK_TITLE,
+      description: MINSK_DESCRIPTION,
+      alternates: { canonical: MINSK_PATH },
+      openGraph: buildOpenGraph(MINSK_PATH, MINSK_TITLE, MINSK_DESCRIPTION, { images: [{ url: MINSK_HERO, width: 1200, height: 675, alt: "Идея кухни на заказ по индивидуальным размерам в Минске" }] }),
+      twitter: buildTwitterMetadata(MINSK_TITLE, MINSK_DESCRIPTION, MINSK_HERO),
+    };
+  }
   if (city === "zhodino") {
     return {
       title: ZHODINO_TITLE,
@@ -457,6 +468,7 @@ function StarRow({ rating }: { rating: number }) {
 
 export default async function LocationPage({ params }: Props) {
   const { city } = await params;
+  if (city === "minsk") return <MinskPage />;
   if (city === "zhodino") return <ZhodinoPage />;
   const regionalLocation = getRegionalLocation(city);
   if (regionalLocation) {
