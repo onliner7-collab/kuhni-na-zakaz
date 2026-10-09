@@ -475,6 +475,8 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 
 ## 2026-10-09 — Жодино
 
+Google принял запрос индексирования, Яндекс поставил Жодино в очередь 09.10.2026 20:24. Sitemap повторно отправлен обеим системам; анализатор Яндекса: 112 ссылок, ошибок нет. YandexBot получил новый HTML Жодино, HTTP 200, актуальные title/H1/canonical. Фактическая переиндексация не подтверждена. Отчёт: `docs/seo/2026-10-09-zhodino-indexing-search-panels.md`. Код и production не менялись.
+
 Опубликовано: runtime `4cc591a`, server build 173/173 и service active. IAB production 320/390/768/1440, изображения, выбор, FAQ/JSON-LD, canonical, валидация формы PASS; успешный POST проверен локальным перехватчиком. Борисов и защищённые страницы сохранены. Robots/sitemap прямым открытием блокирует IAB; HTTP-проверка не подтверждена. OOM при сборке устранён временным swap, он удалён. Откат: `.next-before-zhodino-4cc591a`, код `696e8f9`.
 
 Перестройка `/locations/zhodino` по покупке кухни и связанным запросам. Собственные ZhodinoPage/ZhodinoShowroom/data, новый встроенный imagegen hero с WebP, семь FAQ, выбор параметров для формы. Изолированная база релиза — production `696e8f9`, ветка `codex/zhodino-deploy-20261009`; основной dirty diff не публиковать. Борисов защищён, другие города/shared backend не менять. Проверки после уточнения пользователя проводятся в IAB. Актуальный статус, evidence, release и rollback: `docs/seo/2026-10-09-zhodino-implementation.md`.
