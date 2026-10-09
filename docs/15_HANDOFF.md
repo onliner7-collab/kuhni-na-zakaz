@@ -1,5 +1,7 @@
 # Handoff
 
+2026-10-09: Сервер очищен от старых Next-сборок, webpack cache и архивных journals. Диск 71% → 53%, свободно около 18 ГБ. Runtime 4cc591a/service active, сайт без перезапуска. Сохранён откат .next-before-zhodino-4cc591a (код 696e8f9); более старые build-backups удалены. Исходники, фото и БД сохранены. IAB smoke четырёх страниц PASS. Детали: docs/2026-10-09-server-cleanup.md.
+
 2026-10-08: Коммерческая страница угловых кухонь — отдельная ветка codex/angular-commercial-20261008 от production 0e10d87. Не деплоить всю dirty work поверх неё. Актуальный результат, QA и поисковые действия: docs/seo/2026-10-08-uglovye-kuhni.md.
 
 2026-10-07: Борисов copy — текстовая правка подготовлена в codex/borisov-copy-20261007. Отчёт: docs/seo/2026-10-07-borisov-copy.md.
