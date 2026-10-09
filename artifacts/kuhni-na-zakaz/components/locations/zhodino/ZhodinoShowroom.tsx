@@ -15,9 +15,10 @@ export function ZhodinoShowroom({ planning, logistics, faq }: { planning: ReactN
   const [layout, setLayout] = useState("");
   const [materialIndex, setMaterialIndex] = useState<number | null>(null);
   const [budget, setBudget] = useState("");
+  const [details, setDetails] = useState("");
   const view = zhodinoViews[viewIndex];
   const material = zhodinoMaterials[materialIndex ?? 0];
-  const answers = useMemo(() => ({ zhodinoKitchenSelection: { layout, view: view.label, material: materialIndex === null ? "" : material.label, budget } }), [layout, view.label, materialIndex, material.label, budget]);
+  const answers = useMemo(() => ({ zhodinoKitchenSelection: { layout, view: view.label, material: materialIndex === null ? "" : material.label, budget, details } }), [layout, view.label, materialIndex, material.label, budget, details]);
 
   return <>
     <section id="zhodino-choose" className="bg-stone-50 pb-10 md:pb-16" aria-label="Выбор кухни в Жодино">
@@ -95,7 +96,7 @@ export function ZhodinoShowroom({ planning, logistics, faq }: { planning: ReactN
     <section id="zhodino-form" className="section-padding scroll-mt-24 bg-stone-100" aria-labelledby="zhodino-form-title">
       <div className="container-site grid gap-7 lg:grid-cols-2">
         <div><p className="text-sm font-semibold text-primary">Заявка из Жодино</p><h2 id="zhodino-form-title" className="mt-2 font-serif text-2xl font-bold md:text-3xl">Получить расчёт кухни по размерам</h2><p className="mt-3 leading-7 text-stone-700">Оставьте телефон. В комментарии можно указать размеры стен, технику, адрес и пожелания. Специалист уточнит задачу и порядок замера.</p><div className="mt-5 rounded-xl border border-stone-300 bg-white p-4"><p className="font-semibold">Ваши пожелания</p><p data-zhodino-selection className="mt-2 text-sm leading-6">{[layout && `Планировка: ${layout}`, materialIndex !== null && `Фасады: ${material.label}`, budget && `Приоритет: ${budget}`].filter(Boolean).join(" · ") || "Выберите планировку, материал или бюджет выше — передадим пожелания вместе с заявкой."}</p></div><div className="mt-3 flex flex-wrap gap-x-5"><Link href="/contacts" className="inline-flex min-h-11 items-center text-primary underline">Контакты</Link><Link href="/warranty" className="inline-flex min-h-11 items-center text-primary underline">Условия гарантии</Link></div></div>
-        <div className="rounded-2xl bg-white p-5 md:p-7"><ContactForm source="location-zhodino" sourcePage={ZHODINO_PATH} sourceType="location" city="Жодино" cityKey="zhodino" formType="zhodino-calculation" formLocation="zhodino-final-form" showCity={false} showKitchenType={false} compact submitLabel="Получить расчёт" defaultAnswers={answers} /></div>
+        <div className="rounded-2xl bg-white p-5 md:p-7"><label htmlFor="zhodino-details" className="mb-2 block text-sm font-semibold">Размеры, техника и пожелания (необязательно)</label><textarea id="zhodino-details" value={details} onChange={event => setDetails(event.target.value)} maxLength={1500} rows={3} placeholder="Например: стены 2,4 и 1,8 м, посудомоечная машина 45 см" className="mb-5 min-h-24 w-full rounded-xl border border-stone-300 bg-white p-3 text-base leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" /><ContactForm source="location-zhodino" sourcePage={ZHODINO_PATH} sourceType="location" city="Жодино" cityKey="zhodino" formType="zhodino-calculation" formLocation="zhodino-final-form" showCity={false} showKitchenType={false} compact submitLabel="Получить расчёт" defaultAnswers={answers} /></div>
       </div>
     </section>
   </>;
