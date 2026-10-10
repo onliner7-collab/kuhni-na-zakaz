@@ -1,632 +1,759 @@
 "use client";
 
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
-import { ArrowRight, Calculator, Check, ChevronLeft, ChevronRight, Maximize2, SlidersHorizontal, X } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
-
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "@/components/navigation/Link";
 import { ContactForm } from "@/components/sections/ContactForm";
-import {
-  budgetFilterOptions,
-  facadeFilterOptions,
-  formatByn,
-  kitchenStyles,
-  layoutFilterOptions,
-  priceKitchenModels,
-  roomFilterOptions,
-  type KitchenBudgetId,
-  type KitchenLayoutId,
-  type KitchenStyleId,
-  type PriceKitchenModel,
-} from "@/data/price-catalog";
 import { optimizedImageSrc } from "@/lib/image-optimization";
+import {
+  exampleImage,
+  marketRange,
+  formatByn,
+  priceExamples,
+  priceStyles,
+  priceLayouts,
+  priceViews,
+  type PriceExample,
+} from "@/data/prices-showcase";
 
-type FilterState = {
-  style: KitchenStyleId | "all";
-  layout: KitchenLayoutId | "all";
-  budget: KitchenBudgetId | "all";
-  facade: (typeof facadeFilterOptions)[number]["id"];
-  room: (typeof roomFilterOptions)[number]["id"];
-  model: string | null;
+const control =
+  "min-h-11 rounded-xl border border-stone-300 bg-white px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700";
+const primary =
+  "inline-flex min-h-11 items-center justify-center rounded-xl bg-stone-900 px-4 py-3 text-sm font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700";
+const budgets = [
+  { id: "all", label: "Любой бюджет" },
+  { id: "under4000", label: "До 4 000 BYN" },
+  { id: "4000-7000", label: "4 000–7 000 BYN" },
+  { id: "7000-10000", label: "7 000–10 000 BYN" },
+  { id: "10000plus", label: "От 10 000 BYN" },
+];
+const facades = [
+  { id: "all", label: "Любые фасады" },
+  { id: "ldsp", label: "ЛДСП" },
+  { id: "film", label: "МДФ в плёнке" },
+  { id: "enamel", label: "МДФ в эмали" },
+  { id: "hpl", label: "Пластик HPL" },
+];
+const sizes = [
+  { id: "all", label: "Любая длина основной стены" },
+  { id: "compact", label: "До 2,4 м" },
+  { id: "medium", label: "Более 2,4 до 3 м" },
+  { id: "large", label: "Более 3 м" },
+];
+const heights = [
+  { id: "all", label: "Любая высота" },
+  { id: "standard", label: "Стандартная" },
+  { id: "ceiling", label: "До потолка" },
+];
+type Filters = {
+  style: string;
+  layout: string;
+  budget: string;
+  facade: string;
+  size: string;
+  height: string;
 };
-
-const defaultFilters: FilterState = {
-  style: "minimalism",
+const initial: Filters = {
+  style: "all",
   layout: "all",
   budget: "all",
   facade: "all",
-  room: "all",
-  model: null,
+  size: "all",
+  height: "all",
 };
-
-function getInitialFilters(searchParams: URLSearchParams): FilterState {
-  const style = searchParams.get("style") as FilterState["style"] | null;
-  const layout = searchParams.get("layout") as FilterState["layout"] | null;
-  const budget = searchParams.get("budget") as FilterState["budget"] | null;
-  const facade = searchParams.get("facade") as FilterState["facade"] | null;
-  const room = searchParams.get("room") as FilterState["room"] | null;
-  const model = searchParams.get("model");
-
+const options = {
+  style: [{ id: "all", label: "Все стили" }, ...priceStyles],
+  layout: [{ id: "all", label: "Все формы" }, ...priceLayouts],
+  budget: budgets,
+  facade: facades,
+  size: sizes,
+  height: heights,
+};
+function readUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const filters = { ...initial };
+  const legacy: Record<string, string> = {
+    lightmodern: "modern",
+    darkmodern: "modern",
+    warmwood: "scandi",
+    "light-modern": "modern",
+    "dark-modern": "modern",
+    "warm-wood": "scandi",
+    ceiling: "modern",
+  };
+  for (const key of Object.keys(initial) as (keyof Filters)[]) {
+    let value = params.get(key);
+    if (key === "style" && value && legacy[value]) value = legacy[value];
+    if (options[key].some((option) => option.id === value))
+      filters[key] = value!;
+  }
+  if (params.get("style") === "ceiling" || params.get("layout") === "ceiling") filters.height = "ceiling";
+  if (params.get("layout") === "small") filters.size = "compact";
+  // Старые ссылки главной ведут к ближайшему обновлённому примеру дизайна.
+  const legacyModels: Record<string, string> = {
+    "minimal-island-01": "minimal-island",
+    "light-straight-01": "modern-ceiling-3m",
+    "light-small-01": "modern-small-2m",
+    "dark-island-01": "hightech-island",
+    "dark-u-01": "modern-u-shape",
+    "wood-corner-01": "scandi-corner",
+    "wood-ceiling-01": "modern-ceiling-3m",
+    "neoclassic-corner-01": "neoclassic-corner",
+    "neoclassic-light-01": "neoclassic-u-shape",
+    "scandi-straight-01": "scandi-straight-3m",
+    "loft-dark-01": "loft-straight-3m",
+    "ceiling-modern-01": "modern-ceiling-3m",
+  };
+  const modelId = params.get("model") ?? "";
   return {
-    style: style && (style === "all" || kitchenStyles.some((item) => item.id === style)) ? style : defaultFilters.style,
-    layout: layout && layoutFilterOptions.some((item) => item.id === layout) ? layout : defaultFilters.layout,
-    budget: budget && budgetFilterOptions.some((item) => item.id === budget) ? budget : defaultFilters.budget,
-    facade: facade && facadeFilterOptions.some((item) => item.id === facade) ? facade : defaultFilters.facade,
-    room: room && roomFilterOptions.some((item) => item.id === room) ? room : defaultFilters.room,
-    model: model || null,
+    filters,
+    model: priceExamples.find((m) => m.id === (legacyModels[modelId] ?? modelId)) ?? null,
   };
 }
-
-function updateUrl(filters: FilterState) {
-  const params = new URLSearchParams();
-  if (filters.style !== "all") params.set("style", filters.style);
-  if (filters.layout !== "all") params.set("layout", filters.layout);
-  if (filters.budget !== "all") params.set("budget", filters.budget);
-  if (filters.facade !== "all") params.set("facade", filters.facade);
-  if (filters.room !== "all") params.set("room", filters.room);
-  if (filters.model) params.set("model", filters.model);
-  window.history.pushState(null, "", params.size ? `/prices?${params.toString()}` : "/prices");
+function writeUrl(filters: Filters, model: PriceExample | null) {
+  const url = new URL(window.location.href);
+  for (const key of Object.keys(filters) as (keyof Filters)[]) {
+    if (filters[key] === "all") url.searchParams.delete(key);
+    else url.searchParams.set(key, filters[key]);
+  }
+  if (model) url.searchParams.set("model", model.id);
+  else url.searchParams.delete("model");
+  window.history.pushState(null, "", url.pathname + url.search + url.hash);
 }
-
-function matchesFacade(model: PriceKitchenModel, facade: FilterState["facade"]) {
-  if (facade === "all") return true;
-  const text = model.facadeMaterial.toLowerCase();
-  if (facade === "mdf") return text.includes("мдф");
-  if (facade === "ldsp") return text.includes("лдсп");
-  if (facade === "emal") return text.includes("эмал");
-  if (facade === "wood") return text.includes("древ") || text.includes("шпон");
-  return true;
+function kitchenType(model?: PriceExample | null) {
+  return model?.layout === "straight"
+    ? "Прямая"
+    : model?.layout === "u-shaped"
+      ? "П-образная"
+      : model?.layout === "island"
+        ? "С островом"
+        : "Угловая";
 }
-
-function matchesRoom(model: PriceKitchenModel, room: FilterState["room"]) {
-  if (room === "all") return true;
-  const text = `${model.roomType} ${model.layoutLabel}`.toLowerCase();
-  if (room === "flat") return text.includes("квартир");
-  if (room === "studio") return text.includes("студи");
-  if (room === "living") return text.includes("гости");
-  if (room === "small") return text.includes("малень");
-  return true;
-}
-
-function getVisualBadge(model: PriceKitchenModel) {
-  if (model.coverImage.includes("/prices-catalog/") && model.coverImage.includes("-generated-")) return "Сгенерированное фото";
-  if (model.is3dVisualization) return "3D-визуализация";
-  return null;
-}
-
-function KitchenCard({ model, onOpen, eager }: { model: PriceKitchenModel; onOpen: () => void; eager?: boolean }) {
-  const visualBadge = getVisualBadge(model);
-
+export function SizeDiagram({ model }: { model: PriceExample }) {
+  const path =
+    model.layout === "straight" || model.layout === "island"
+      ? "M40 40 H220"
+      : model.layout === "u-shaped"
+        ? "M40 110 V40 H220 V110"
+        : "M40 110 V40 H220";
   return (
-    <article className="group min-w-0 overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:border-stone-300 hover:shadow-lg">
-      <button type="button" onClick={onOpen} className="block w-full text-left" aria-label={`Посмотреть кухню ${model.name}`}>
-        <span className="relative block aspect-[4/3] overflow-hidden bg-stone-100">
-          <Image
-            src={optimizedImageSrc(model.coverImage) || model.coverImage}
-            alt={model.coverAlt}
-            fill
-            priority={eager}
-            loading={eager ? "eager" : "lazy"}
-            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 31vw"
-            className="object-cover transition duration-500 group-hover:scale-[1.03]"
-          />
-          {visualBadge && (
-            <span className="absolute left-3 top-3 rounded-md bg-black/70 px-2.5 py-1 text-xs font-bold text-white">
-              {visualBadge}
-            </span>
-          )}
-        </span>
-        <span className="block p-4">
-          <span className="text-xs font-bold uppercase tracking-[0.12em] text-stone-500">{model.styleLabel}</span>
-          <h3 className="mt-1 text-xl font-black leading-tight text-stone-950">{model.name}</h3>
-          <span className="mt-3 grid gap-2 text-sm leading-5 text-stone-600">
-            <span>Планировка: {model.layoutLabel}</span>
-            <span>Размер: {model.sizeRange}</span>
-            <span>Фасады: {model.facadeMaterial}</span>
-          </span>
-          <span className="mt-4 flex flex-col items-start gap-3 min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between">
-            <span className="text-lg font-black text-[#8a5a2f]">от {formatByn(model.priceFrom)} BYN</span>
-            <span className="inline-flex min-h-10 max-w-full items-center gap-2 rounded-lg bg-stone-950 px-3 py-2 text-sm font-bold text-white">
-              Посмотреть
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </span>
-          </span>
-        </span>
-      </button>
-    </article>
+    <figure className="rounded-xl bg-stone-100 p-3">
+      <svg
+        viewBox="0 0 260 140"
+        role="img"
+        aria-label={`Условная схема: ${model.dimensions}`}
+        className="mx-auto h-32 w-full max-w-xs"
+      >
+        <path
+          d={path}
+          stroke="#b08968"
+          strokeWidth="22"
+          fill="none"
+          strokeLinejoin="round"
+        />
+        {model.layout === "island" && (
+          <rect x="90" y="88" width="80" height="28" rx="3" fill="#b08968" />
+        )}
+        <text x="130" y="19" textAnchor="middle" fontSize="14" fill="#292524">
+          {model.layout === "u-shaped" ? model.walls[1] : model.walls[0]} м
+        </text>
+        {model.walls[1] && (
+          <text x="10" y="85" fontSize="12" fill="#292524">
+            {model.layout === "u-shaped" ? model.walls[0] : model.walls[1]} м
+          </text>
+        )}
+        {model.walls[2] && (
+          <text x="230" y="85" fontSize="12" fill="#292524">
+            {model.walls[2]} м
+          </text>
+        )}
+      </svg>
+      <figcaption className="text-center text-xs leading-5 text-stone-600">
+        {model.dimensions} · условная схема; модули уточняются в проекте
+      </figcaption>
+    </figure>
   );
 }
-
+function Specification({ model }: { model: PriceExample }) {
+  return (
+    <dl className="divide-y text-sm">
+      {[
+        ["Размеры", model.dimensions],
+        ["Фасады", model.facadeMaterial],
+        ["Столешница", model.countertop],
+        ["Высота", model.height],
+        ["Хранение", `${model.drawers} ящика в расчётном варианте`],
+        ["Фурнитура", model.fittings],
+      ].map(([label, value]) => (
+        <div key={label} className="py-2">
+          <dt className="text-stone-500">{label}</dt>
+          <dd className="mt-1 font-medium">{value}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
 function ModelDialog({
   model,
-  relatedModels,
   onClose,
-  onOpenModel,
 }: {
-  model: PriceKitchenModel;
-  relatedModels: PriceKitchenModel[];
+  model: PriceExample;
   onClose: () => void;
-  onOpenModel: (model: PriceKitchenModel) => void;
 }) {
-  const [activeImage, setActiveImage] = useState(0);
-  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const currentImage = model.gallery[activeImage];
-
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [view, setView] = useState(0);
+  const touch = useRef<number | null>(null);
   useEffect(() => {
-    setActiveImage(0);
-    setIsFullscreenOpen(false);
-  }, [model.id]);
-
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
+    const opener = document.activeElement as HTMLElement | null;
+    const overflow = document.body.style.overflow;
+    dialog.current?.showModal();
     document.body.style.overflow = "hidden";
-    dialogRef.current?.focus();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        if (isFullscreenOpen) {
-          setIsFullscreenOpen(false);
-          return;
-        }
-        onClose();
-      }
-      if (event.key === "ArrowLeft") setActiveImage((value) => (value === 0 ? model.gallery.length - 1 : value - 1));
-      if (event.key === "ArrowRight") setActiveImage((value) => (value + 1) % model.gallery.length);
-      if (event.key === "Tab" && dialogRef.current && !isFullscreenOpen) {
-        const focusable = Array.from(
-          dialogRef.current.querySelectorAll<HTMLElement>(
-            "a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex='-1'])",
-          ),
-        ).filter((element) => !element.hasAttribute("disabled") && element.offsetParent !== null);
-
-        if (focusable.length === 0) return;
-
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-
+    const element = dialog.current;
     return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKeyDown);
+      element?.close();
+      document.body.style.overflow = overflow;
+      opener?.focus();
     };
-  }, [isFullscreenOpen, model.gallery.length, onClose]);
-
+  }, []);
+  const next = (step: number) => setView((v) => (v + step + 4) % 4);
   return (
-    <div className="fixed inset-0 z-[80] overflow-x-hidden overflow-y-auto bg-black/68 px-3 py-4 backdrop-blur-sm md:px-6" role="dialog" aria-modal="true" aria-labelledby="price-model-title">
-      <div
-        ref={dialogRef}
-        tabIndex={-1}
-        className="mx-auto w-full max-w-6xl overflow-hidden rounded-lg bg-white shadow-2xl outline-none"
-      >
-        <div className="sticky top-0 z-10 flex items-start justify-between gap-3 border-b bg-white/95 px-4 py-3 backdrop-blur">
-          <div className="min-w-0">
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-stone-500">Пример дизайна для расчёта</p>
-            <h2 id="price-model-title" className="text-lg font-black leading-tight text-stone-950 md:text-2xl">{model.name}</h2>
-          </div>
-          <button type="button" onClick={onClose} className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-stone-200 text-stone-700" aria-label="Закрыть карточку кухни">
-            <X className="h-5 w-5" aria-hidden />
-          </button>
-        </div>
-
-        <div className="grid min-w-0 gap-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
-          <div className="min-w-0 bg-stone-950 p-3 md:p-5">
-            <div className="relative mx-auto aspect-[4/3] w-full max-w-full overflow-hidden rounded-lg bg-stone-900 md:max-h-[72svh]">
-              <Image
-                src={optimizedImageSrc(currentImage.src) || currentImage.src}
-                alt={currentImage.alt}
-                fill
-                sizes="(max-width: 1024px) 94vw, 55vw"
-                className="object-cover"
-                priority
-              />
-              <span className="absolute left-3 top-3 rounded-md bg-black/72 px-2.5 py-1 text-xs font-bold text-white">
-                {activeImage + 1} / {model.gallery.length}
-              </span>
-              <span className="absolute bottom-3 left-3 right-3 rounded-md bg-black/62 px-3 py-2 text-sm font-bold leading-snug text-white">
-                {currentImage.caption}
-              </span>
-              <button
-                type="button"
-                onClick={() => setActiveImage((value) => (value === 0 ? model.gallery.length - 1 : value - 1))}
-                className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/88 text-stone-950"
-                aria-label="Предыдущий ракурс"
-              >
-                <ChevronLeft className="h-5 w-5" aria-hidden />
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveImage((value) => (value + 1) % model.gallery.length)}
-                className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/88 text-stone-950"
-                aria-label="Следующий ракурс"
-              >
-                <ChevronRight className="h-5 w-5" aria-hidden />
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsFullscreenOpen(true)}
-                className="absolute right-3 top-3 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/88 text-stone-950"
-                aria-label="Открыть изображение на весь экран"
-              >
-                <Maximize2 className="h-5 w-5" aria-hidden />
-              </button>
-            </div>
-            <div className="mt-3 flex snap-x gap-2 overflow-x-auto pb-1">
-              {model.gallery.map((image, index) => (
-                <button
-                  key={`${image.src}-${image.caption}`}
-                  type="button"
-                  onClick={() => setActiveImage(index)}
-                  className={`relative h-16 w-24 shrink-0 snap-start overflow-hidden rounded-md border-2 ${
-                    activeImage === index ? "border-[#d5b078]" : "border-white/20"
-                  }`}
-                  aria-label={`Показать ракурс: ${image.caption}`}
-                >
-                  <Image src={optimizedImageSrc(image.src) || image.src} alt="" fill sizes="6rem" className="object-cover" />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="min-w-0 p-4 md:p-6">
-            <div className="rounded-lg border border-[#eadccb] bg-[#fff8ef] p-4">
-              <p className="text-sm font-bold text-stone-600">Ориентир стоимости</p>
-              <p className="mt-1 text-3xl font-black text-[#8a5a2f]">от {formatByn(model.priceFrom)} BYN</p>
-              <p className="mt-2 text-sm leading-6 text-stone-600">
-                Точная стоимость зависит от размеров помещения, выбранной фурнитуры, столешницы и состава модулей.
-              </p>
-            </div>
-
-            <div className="mt-5 grid gap-3 text-sm text-stone-700">
-              <p><strong>Стиль:</strong> {model.styleLabel}</p>
-              <p><strong>Планировка:</strong> {model.layoutLabel}</p>
-              <p><strong>Размер:</strong> {model.sizeRange}</p>
-              <p><strong>Фасады:</strong> {model.facadeMaterial}</p>
-              <p><strong>Столешница:</strong> {model.countertopMaterial}</p>
-              <p><strong>Фурнитура:</strong> {model.fittingsLevel}</p>
-              <p><strong>Помещение:</strong> {model.roomType}</p>
-            </div>
-
-            <div className="mt-5">
-              <h3 className="text-lg font-black text-stone-950">В комплектации</h3>
-              <ul className="mt-3 grid gap-2 text-sm text-stone-700">
-                {model.equipment.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#8a5a2f]" aria-hidden />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-5">
-              <h3 className="text-lg font-black text-stone-950">Что влияет на итоговую цену</h3>
-              <ul className="mt-3 grid gap-2 text-sm text-stone-700">
-                {model.priceFactors.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#8a5a2f]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {relatedModels.length > 0 && (
-              <div className="mt-6">
-                <h3 className="text-lg font-black text-stone-950">Похожие кухни</h3>
-                <div className="mt-3 grid min-w-0 gap-3 sm:grid-cols-2">
-                  {relatedModels.map((related) => (
-                    <button
-                      key={related.id}
-                      type="button"
-                      onClick={() => onOpenModel(related)}
-                      className="min-w-0 overflow-hidden rounded-lg border border-stone-200 bg-white text-left transition hover:border-[#d5b078]"
-                    >
-                      <span className="relative block aspect-[4/3] bg-stone-100">
-                        <Image
-                          src={optimizedImageSrc(related.coverImage) || related.coverImage}
-                          alt={related.coverAlt}
-                          fill
-                          loading="lazy"
-                          sizes="(max-width: 640px) 42vw, 13rem"
-                          className="object-cover"
-                        />
-                      </span>
-                      <span className="block p-3">
-                        <span className="line-clamp-2 text-sm font-black text-stone-950">{related.name}</span>
-                        <span className="mt-1 block text-xs text-stone-600">{related.layoutLabel} · от {formatByn(related.priceFrom)} BYN</span>
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div className="mt-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
-              <h3 className="text-lg font-black text-stone-950">Короткая форма заявки</h3>
-              <p className="mt-2 text-sm leading-6 text-stone-600">
-                Отправьте контакты — рассчитаем похожую кухню по вашим размерам и материалам.
-              </p>
-              <div className="mt-4">
-                <ContactForm
-                  source="prices"
-                  sourceType="prices"
-                  formType="prices-model-modal"
-                  formLocation={`prices-model-${model.id}`}
-                  submitLabel="Рассчитать похожую кухню"
-                  showCity
-                  showKitchenType
-                  showMessenger
-                  defaultKitchenType={model.layoutLabel}
-                  defaultComment={`Интересует похожая кухня: ${model.name}. Стиль: ${model.styleLabel}. Планировка: ${model.layoutLabel}. Ориентир: от ${formatByn(model.priceFrom)} BYN.`}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+    <dialog
+      ref={dialog}
+      aria-labelledby="price-model-title"
+      onCancel={(event) => {
+        event.preventDefault();
+        onClose();
+      }}
+      onClick={(event) => {
+        if (event.target === dialog.current) onClose();
+      }}
+      className="m-auto max-h-[90dvh] w-[calc(100%-1rem)] max-w-6xl overflow-y-auto rounded-2xl p-0 text-stone-900 shadow-2xl backdrop:bg-black/60"
+    >
+      <div className="sticky top-0 z-20 flex items-center justify-between gap-3 border-b bg-white p-3">
+        <h2 id="price-model-title" className="text-base font-bold md:text-xl">
+          {model.name}
+        </h2>
+        <button
+          autoFocus
+          onClick={onClose}
+          className={control}
+          aria-label="Закрыть пример"
+        >
+          ✕
+        </button>
       </div>
-
-      {isFullscreenOpen && (
-        <div className="fixed inset-0 z-[90] bg-black/95 p-3 md:p-6" role="dialog" aria-modal="true" aria-label={`Полноэкранный ракурс: ${currentImage.caption}`}>
-          <div className="relative h-full w-full">
+      <div className="grid gap-6 p-3 md:p-6 lg:grid-cols-2">
+        <div>
+          <div
+            tabIndex={0}
+            aria-label="Фотографии кухни: стрелки влево и вправо меняют ракурс"
+            onKeyDown={(event) => {
+              if (event.key === "ArrowLeft") {
+                event.preventDefault();
+                next(-1);
+              }
+              if (event.key === "ArrowRight") {
+                event.preventDefault();
+                next(1);
+              }
+            }}
+            onTouchStart={(event) => {
+              touch.current = event.touches[0].clientX;
+            }}
+            onTouchEnd={(event) => {
+              if (touch.current !== null) {
+                const distance =
+                  event.changedTouches[0].clientX - touch.current;
+                if (Math.abs(distance) > 45) next(distance < 0 ? 1 : -1);
+              }
+              touch.current = null;
+            }}
+            className="relative aspect-[3/2] overflow-hidden rounded-xl bg-stone-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-700"
+          >
             <Image
-              src={optimizedImageSrc(currentImage.src) || currentImage.src}
-              alt={currentImage.alt}
+              src={optimizedImageSrc(exampleImage(model, view))!}
+              alt={`${model.name}: ${priceViews[view].toLowerCase()}, пример дизайна`}
               fill
-              sizes="100vw"
-              className="object-contain"
-              priority
+              sizes="(max-width: 1023px) 94vw, 550px"
+              className="object-cover"
             />
-            <div className="absolute left-3 top-3 rounded-md bg-white/90 px-3 py-2 text-sm font-black text-stone-950">
-              {activeImage + 1} / {model.gallery.length} · {currentImage.caption}
-            </div>
             <button
-              type="button"
-              onClick={() => setIsFullscreenOpen(false)}
-              className="absolute right-3 top-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-stone-950"
-              aria-label="Закрыть полноэкранный просмотр"
+              className={`absolute left-2 top-1/2 -translate-y-1/2 ${control}`}
+              onClick={() => next(-1)}
+              aria-label="Предыдущий ракурс"
             >
-              <X className="h-5 w-5" aria-hidden />
+              ‹
             </button>
             <button
-              type="button"
-              onClick={() => setActiveImage((value) => (value === 0 ? model.gallery.length - 1 : value - 1))}
-              className="absolute left-3 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-stone-950"
-              aria-label="Предыдущий ракурс в полноэкранном просмотре"
+              className={`absolute right-2 top-1/2 -translate-y-1/2 ${control}`}
+              onClick={() => next(1)}
+              aria-label="Следующий ракурс"
             >
-              <ChevronLeft className="h-6 w-6" aria-hidden />
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveImage((value) => (value + 1) % model.gallery.length)}
-              className="absolute right-3 top-1/2 inline-flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-stone-950"
-              aria-label="Следующий ракурс в полноэкранном просмотре"
-            >
-              <ChevronRight className="h-6 w-6" aria-hidden />
+              ›
             </button>
           </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export function InteractivePricesCatalog() {
-  const searchParams = useSearchParams();
-  const [filters, setFilters] = useState<FilterState>(() => getInitialFilters(new URLSearchParams(searchParams.toString())));
-  const [visibleCount, setVisibleCount] = useState(4);
-
-  useEffect(() => {
-    setFilters(getInitialFilters(new URLSearchParams(searchParams.toString())));
-  }, [searchParams]);
-
-  const filteredModels = useMemo(() => {
-    return priceKitchenModels.filter((model) => {
-      if (filters.style !== "all" && model.style !== filters.style) return false;
-      if (filters.layout !== "all" && model.layout !== filters.layout) return false;
-      if (filters.budget !== "all" && model.budget !== filters.budget) return false;
-      if (!matchesFacade(model, filters.facade)) return false;
-      if (!matchesRoom(model, filters.room)) return false;
-      return true;
-    });
-  }, [filters]);
-
-  const selectedModel = useMemo(
-    () => priceKitchenModels.find((model) => model.id === filters.model) || null,
-    [filters.model],
-  );
-  const relatedModels = useMemo(() => {
-    if (!selectedModel) return [];
-
-    const ranked = priceKitchenModels
-      .filter((model) => model.id !== selectedModel.id)
-      .map((model) => ({
-        model,
-        score:
-          (model.style === selectedModel.style ? 4 : 0) +
-          (model.layout === selectedModel.layout ? 3 : 0) +
-          (model.budget === selectedModel.budget ? 2 : 0) +
-          (model.roomType === selectedModel.roomType ? 1 : 0),
-      }))
-      .sort((a, b) => b.score - a.score || a.model.priceFrom - b.model.priceFrom);
-
-    return ranked.slice(0, 2).map((item) => item.model);
-  }, [selectedModel]);
-
-  function patchFilters(next: Partial<FilterState>) {
-    const nextFilters = { ...filters, ...next };
-    setFilters(nextFilters);
-    setVisibleCount(4);
-    updateUrl(nextFilters);
-  }
-
-  function openModel(model: PriceKitchenModel) {
-    patchFilters({ model: model.id });
-  }
-
-  function closeModel() {
-    patchFilters({ model: null });
-  }
-
-  const visibleModels = filteredModels.slice(0, visibleCount);
-
-  return (
-    <section id="styles" className="bg-[#fff8ef] text-stone-950" aria-labelledby="prices-catalog-title">
-      <div className="container-site py-10 md:py-14">
-        <div className="mb-6 max-w-3xl">
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#8a5a2f]">Визуальный каталог</p>
-          <h2 id="prices-catalog-title" className="mt-2 text-3xl font-black leading-tight md:text-4xl">
-            Выберите стиль кухни и посмотрите ориентир по цене
-          </h2>
-          <p className="mt-3 text-sm leading-6 text-stone-600">
-            Карточки ниже — сгенерированные фото и 3D-визуализации для расчёта. Они не выдаются за реальные выполненные проекты:
-            точную смету считаем после замера, материалов и комплектации.
+          <p aria-live="polite" className="my-3 text-sm">
+            {view + 1} / 4 · {priceViews[view]}
           </p>
-        </div>
-
-        <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 sm:mx-0 sm:px-0" aria-label="Выбор стиля кухни">
-          {kitchenStyles.map((style) => {
-            const active = filters.style === style.id;
-            return (
+          <div className="grid grid-cols-4 gap-2">
+            {priceViews.map((label, index) => (
               <button
-                key={style.id}
-                type="button"
-                onClick={() => patchFilters({ style: style.id, model: null })}
-                className={`w-[84vw] max-w-[22rem] shrink-0 snap-start overflow-hidden rounded-lg border bg-white text-left transition md:w-[19rem] ${
-                  active ? "border-[#8a5a2f] ring-2 ring-[#d5b078]/40" : "border-stone-200 hover:border-[#d5b078]"
-                }`}
-                aria-pressed={active}
+                key={label}
+                aria-label={label}
+                aria-pressed={view === index}
+                onClick={() => setView(index)}
+                className={`relative aspect-[3/2] overflow-hidden rounded-lg border-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-700 ${view === index ? "border-amber-700" : "border-transparent"}`}
               >
-                <span className="relative block aspect-[4/3]">
-                  <Image
-                    src={optimizedImageSrc(style.image) || style.image}
-                    alt={style.alt}
-                    fill
-                    sizes="(max-width: 640px) 84vw, 19rem"
-                    className="object-cover"
-                    priority={style.id === defaultFilters.style}
-                  />
-                </span>
-                <span className="block p-4">
-                  <span className="text-lg font-black leading-tight">{style.title}</span>
-                  <span className="mt-2 line-clamp-2 block min-h-10 text-sm leading-5 text-stone-600">{style.description}</span>
-                  <span className="mt-3 flex items-center justify-between gap-2 text-sm">
-                    <strong className="text-[#8a5a2f]">от {formatByn(style.priceFrom)} BYN</strong>
-                    <span>{style.variantsCount} вариантов</span>
-                  </span>
-                </span>
+                <Image
+                  src={optimizedImageSrc(exampleImage(model, index))!}
+                  alt=""
+                  fill
+                  sizes="130px"
+                  className="object-cover"
+                />
               </button>
-            );
-          })}
-        </div>
-
-        <div id="catalog" className="mt-7 scroll-mt-24">
-          <div className="mb-4 flex items-center gap-2 text-sm font-bold text-stone-700">
-            <SlidersHorizontal className="h-4 w-4" aria-hidden />
-            Быстрые фильтры
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
-            <label className="grid gap-1 text-sm font-bold text-stone-700">
-              Планировка
-              <select value={filters.layout} onChange={(event) => patchFilters({ layout: event.target.value as FilterState["layout"], model: null })} className="min-h-12 rounded-lg border border-stone-250 bg-white px-3 text-sm font-semibold text-stone-900">
-                {layoutFilterOptions.map((item) => (
-                  <option key={item.id} value={item.id}>{item.label}</option>
-                ))}
-              </select>
-            </label>
-            <label className="grid gap-1 text-sm font-bold text-stone-700">
-              Бюджет
-              <select value={filters.budget} onChange={(event) => patchFilters({ budget: event.target.value as FilterState["budget"], model: null })} className="min-h-12 rounded-lg border border-stone-250 bg-white px-3 text-sm font-semibold text-stone-900">
-                {budgetFilterOptions.map((item) => (
-                  <option key={item.id} value={item.id}>{item.label}</option>
-                ))}
-              </select>
-            </label>
-            <label className="grid gap-1 text-sm font-bold text-stone-700">
-              Материал фасадов
-              <select value={filters.facade} onChange={(event) => patchFilters({ facade: event.target.value as FilterState["facade"], model: null })} className="min-h-12 rounded-lg border border-stone-250 bg-white px-3 text-sm font-semibold text-stone-900">
-                {facadeFilterOptions.map((item) => (
-                  <option key={item.id} value={item.id}>{item.label}</option>
-                ))}
-              </select>
-            </label>
-            <label className="grid gap-1 text-sm font-bold text-stone-700">
-              Для какого помещения
-              <select value={filters.room} onChange={(event) => patchFilters({ room: event.target.value as FilterState["room"], model: null })} className="min-h-12 rounded-lg border border-stone-250 bg-white px-3 text-sm font-semibold text-stone-900">
-                {roomFilterOptions.map((item) => (
-                  <option key={item.id} value={item.id}>{item.label}</option>
-                ))}
-              </select>
-            </label>
-            <div className="grid content-end">
-              <a href="#calculate" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-stone-950 px-4 py-3 text-sm font-black text-white">
-                Рассчитать кухню
-                <Calculator className="h-4 w-4" aria-hidden />
-              </a>
-            </div>
-          </div>
-
-          <p className="mt-4 rounded-lg border border-[#eadccb] bg-white px-4 py-3 text-sm font-semibold text-stone-700">
-            Выберите стиль → откройте кухню → посмотрите комплектацию и ракурсы → оставьте заявку на расчёт.
-          </p>
-
-          <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {visibleModels.map((model, index) => (
-              <KitchenCard key={model.id} model={model} eager={index < 2} onOpen={() => openModel(model)} />
             ))}
           </div>
-
-          {filteredModels.length === 0 && (
-            <div className="mt-7 rounded-lg border border-stone-200 bg-white p-6 text-center">
-              <h3 className="text-xl font-black">Под этот набор фильтров пока нет карточек</h3>
-              <p className="mt-2 text-sm text-stone-600">Сбросьте часть фильтров или оставьте заявку, и мы подберём похожий вариант вручную.</p>
-              <button type="button" onClick={() => patchFilters({ ...defaultFilters, model: null })} className="mt-4 inline-flex min-h-11 items-center rounded-lg border border-stone-300 px-4 py-2 text-sm font-black">
-                Сбросить фильтры
-              </button>
-            </div>
-          )}
-
-          {visibleCount < filteredModels.length && (
-            <div className="mt-7 text-center">
-              <button type="button" onClick={() => setVisibleCount((value) => value + 4)} className="inline-flex min-h-12 items-center justify-center rounded-lg border border-stone-300 bg-white px-5 py-3 text-sm font-black text-stone-950">
-                Показать ещё кухни
-              </button>
-            </div>
-          )}
-        </div>
-
-        <div id="calculate" className="mx-auto mt-12 max-w-2xl scroll-mt-24 rounded-lg border border-stone-200 bg-white p-4 shadow-sm md:p-6">
-          <h2 className="text-2xl font-black text-center">Получить точный расчёт кухни</h2>
-          <p className="mt-2 text-center text-sm leading-6 text-stone-600">
-            Оставьте заявку — рассчитаем похожую кухню по вашим размерам, материалам и адресу монтажа.
+          <p className="my-4 text-xs leading-5 text-stone-600">
+            Изображения созданы с помощью ИИ для выбора дизайна. Это не
+            фотографии выполненного заказа. Размеры и комплектация — параметры
+            расчётного примера; детали изображения могут отличаться.
           </p>
-          <div className="mt-5">
-            <ContactForm source="prices" sourceType="prices" formType="prices-visual-catalog" formLocation="prices-visual-catalog" />
+          <SizeDiagram model={model} />
+        </div>
+        <div>
+          <div className="rounded-xl bg-amber-50 p-4">
+            <p className="text-sm text-stone-600">
+              Ориентир по рынку за мебель
+            </p>
+            <p className="mt-1 text-2xl font-black">{marketRange(model)}</p>
+            <p className="mt-2 text-sm leading-6">
+              {model.length} м × {formatByn(model.rateFrom)}–
+              {formatByn(model.rateTo)} BYN/м, округлено до 100 BYN. Высота,
+              механизмы и столешница могут увеличить смету.
+            </p>
+            <p className="mt-2 text-xs leading-5">
+              Не предложение КухниBY. Техника, доставка и монтаж отдельно.
+            </p>
+            <a
+              href="#price-method"
+              onClick={onClose}
+              className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold underline"
+            >
+              Источники и методика расчёта
+            </a>
           </div>
+          <Specification model={model} />
+          <h3 className="mt-4 font-bold">Что предлагается сравнить в смете</h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
+            {model.equipment.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <h3 className="mt-4 font-bold">Что не включено в ориентир</h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
+            {model.exclude.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <div className="my-4 flex flex-wrap gap-3">
+            <Link
+              className={control}
+              href={priceLayouts.find((item) => item.id === model.layout)!.href}
+            >
+              Другие планировки
+            </Link>
+            <Link
+              className={control}
+              href={priceStyles.find((item) => item.id === model.style)!.href}
+            >
+              Другие кухни в этом стиле
+            </Link>
+          </div>
+          <h3 className="mb-3 text-xl font-bold">Рассчитать этот вариант</h3>
+          <ContactForm
+            compact
+            showDimensions
+            showComment
+            defaultDimensions={model.dimensions}
+            source="prices"
+            sourceType="prices"
+            formType="prices-model-modal"
+            formLocation="prices-model-modal"
+            showCity
+            showKitchenType
+            defaultKitchenType={kitchenType(model)}
+            defaultComment={`Интересует ${model.name}. Размеры: ${model.dimensions}. Фасады: ${model.facadeMaterial}. На сайте рыночный ориентир ${marketRange(model)}, прошу собственную смету.`}
+            defaultAnswers={{
+              exampleId: model.id,
+              style: model.style,
+              layout: model.layout,
+              dimensions: model.dimensions,
+              facade: model.facadeMaterial,
+              marketBudget: marketRange(model),
+            }}
+            submitLabel="Получить смету по этому примеру"
+          />
         </div>
       </div>
-
-      {selectedModel && (
-        <ModelDialog
-          model={selectedModel}
-          relatedModels={relatedModels}
-          onClose={closeModel}
-          onOpenModel={openModel}
-        />
+    </dialog>
+  );
+}
+export function InteractivePricesCatalog({
+  children,
+}: {
+  children?: ReactNode;
+}) {
+  const [filters, setFilters] = useState<Filters>(initial);
+  const [visible, setVisible] = useState(6);
+  const [selected, setSelected] = useState<PriceExample | null>(null);
+  const [compared, setCompared] = useState<string[]>([]);
+  const [request, setRequest] = useState<PriceExample | null>(null);
+  useEffect(() => {
+    const apply = () => {
+      const state = readUrl();
+      setFilters(state.filters);
+      setSelected(state.model);
+      setVisible(6);
+    };
+    apply();
+    window.addEventListener("popstate", apply);
+    return () => window.removeEventListener("popstate", apply);
+  }, []);
+  const filtered = useMemo(
+    () =>
+      priceExamples.filter((model) => {
+        if (filters.style !== "all" && model.style !== filters.style)
+          return false;
+        if (filters.layout !== "all" && model.layout !== filters.layout)
+          return false;
+        if (filters.facade !== "all" && model.facade !== filters.facade)
+          return false;
+        if (
+          filters.height !== "all" &&
+          (filters.height === "ceiling") !== (model.height === "До потолка")
+        )
+          return false;
+        const length = model.walls[0];
+        if (
+          (filters.size === "compact" && length > 2.4) ||
+          (filters.size === "medium" && (length <= 2.4 || length > 3)) ||
+          (filters.size === "large" && length <= 3)
+        )
+          return false;
+        const range: Record<string, [number, number]> = {
+          under4000: [0, 4000],
+          "4000-7000": [4000, 7000],
+          "7000-10000": [7000, 10000],
+          "10000plus": [10000, Infinity],
+        };
+        const interval = range[filters.budget];
+        return (
+          !interval ||
+          (model.priceFrom < interval[1] && model.priceTo >= interval[0])
+        );
+      }),
+    [filters],
+  );
+  const active = Object.values(filters).some((value) => value !== "all");
+  const change = (key: keyof Filters, value: string) => {
+    const next = { ...filters, [key]: value };
+    setFilters(next);
+    setVisible(6);
+    writeUrl(next, selected);
+  };
+  const reset = () => {
+    setFilters(initial);
+    setVisible(6);
+    writeUrl(initial, null);
+    setSelected(null);
+  };
+  const open = (model: PriceExample) => {
+    setSelected(model);
+    writeUrl(filters, model);
+  };
+  const close = () => {
+    setSelected(null);
+    writeUrl(filters, null);
+  };
+  const compare = (id: string) =>
+    setCompared((old) =>
+      old.includes(id)
+        ? old.filter((item) => item !== id)
+        : old.length < 3
+          ? [...old, id]
+          : old,
+    );
+  const selectControl = (key: keyof Filters, label: string) => (
+    <label key={key} className="grid gap-2 text-sm font-semibold">
+      {label}
+      <select
+        value={filters[key]}
+        onChange={(event) => change(key, event.target.value)}
+        className={`${control} w-full min-w-0`}
+      >
+        {options[key].map((item) => (
+          <option value={item.id} key={item.id}>
+            {item.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+  return (
+    <>
+      <section id="catalog" className="scroll-mt-24 bg-[#f8f5f0] py-8 md:py-12">
+        <div className="container-site">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <h2 className="max-w-2xl text-2xl font-black md:text-3xl">
+              Подберите кухню по бюджету и планировке
+            </h2>
+            <a href="#comparison" className={control}>
+              Сравнение: {compared.length} / 3
+            </a>
+          </div>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-stone-600">
+            18 примеров дизайна: прямые, угловые, П-образные, с островом и
+            полуостровом. Цены — рыночные ориентиры; смету КухниBY рассчитываем
+            по вашим размерам.
+          </p>
+        <div className="mt-5 grid grid-cols-2 gap-3">
+            {selectControl("budget", "Бюджет за мебель")}
+            {selectControl("layout", "Форма кухни")}
+          </div>
+          <details className="mt-3 rounded-xl border bg-white p-3">
+            <summary className="min-h-11 cursor-pointer py-2 font-semibold">
+              Стиль, фасады и размеры
+            </summary>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {selectControl("style", "Стиль кухни")}
+              {selectControl("facade", "Материал фасадов")}
+              {selectControl("size", "Длина основной стены")}
+              {selectControl("height", "Высота шкафов")}
+            </div>
+          </details>
+          <div className="my-4 flex flex-wrap items-center justify-between gap-2">
+            <p role="status" className="text-sm">
+              Найдено примеров: {filtered.length}. Диапазон цены может
+              пересекать выбранный бюджет.
+            </p>
+            {active && (
+              <button onClick={reset} className={control}>
+                Сбросить фильтры
+              </button>
+            )}
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {filtered.slice(0, visible).map((model) => (
+              <article
+                key={model.id}
+                data-testid="price-example"
+                className="overflow-hidden rounded-2xl border bg-white"
+              >
+                <button
+                  onClick={() => open(model)}
+                  className="block w-full text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-700"
+                  aria-label={`Посмотреть кухню: ${model.name}`}
+                >
+                  <div className="relative aspect-[3/2] bg-stone-100">
+                    <Image
+                      src={optimizedImageSrc(exampleImage(model))!}
+                      alt={`${model.name}, общий вид — пример дизайна`}
+                      fill
+                      sizes="(max-width: 767px) 94vw, (max-width: 1279px) 46vw, 31vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-xs font-semibold text-stone-500">
+                      {
+                        priceStyles.find((item) => item.id === model.style)
+                          ?.label
+                      }{" "}
+                      · {model.dimensions}
+                    </p>
+                    <h3 className="mt-2 text-lg font-bold">{model.name}</h3>
+                    <p className="mt-2 text-sm leading-6 text-stone-600">
+                      {model.facadeMaterial} · {model.height}
+                    </p>
+                    <p className="mt-4 text-xs text-stone-500">
+                      Ориентир по рынку за мебель
+                    </p>
+                    <p className="text-xl font-black">{marketRange(model)}</p>
+                    <p className="mt-1 text-xs leading-5 text-stone-600">
+                      Без техники, доставки и монтажа. Не цена КухниBY.
+                    </p>
+                    <span className="mt-3 inline-flex min-h-11 items-center text-sm font-bold text-amber-800">
+                      4 ракурса и комплектация →
+                    </span>
+                  </div>
+                </button>
+                <div className="border-t p-3">
+                  <button
+                    onClick={() => compare(model.id)}
+                    aria-pressed={compared.includes(model.id)}
+                    disabled={
+                      !compared.includes(model.id) && compared.length === 3
+                    }
+                    className={`${control} w-full disabled:opacity-50`}
+                  >
+                    {compared.includes(model.id)
+                      ? "Убрать из сравнения"
+                      : "Добавить к сравнению"}
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+          {filtered.length === 0 && (
+            <div className="rounded-xl border bg-white p-6">
+              <p className="font-bold">Такого сочетания пока нет в примерах</p>
+              <p className="my-3 text-sm">
+                Сбросьте часть фильтров или отправьте размеры для
+                индивидуального проекта.
+              </p>
+              <button onClick={reset} className={control}>
+                Показать все примеры
+              </button>
+              <a href="#calculate" className={`${primary} ml-2 mt-2`}>
+                Запросить расчёт
+              </a>
+            </div>
+          )}
+          {filtered.length > visible && (
+            <button
+              onClick={() => setVisible((old) => old + 6)}
+              className={`${control} mx-auto mt-6 block w-full sm:w-auto`}
+            >
+              Показать ещё {Math.min(6, filtered.length - visible)} примеров
+            </button>
+          )}
+          <p className="mt-4 text-xs leading-5 text-stone-600">
+            Все изображения созданы с помощью ИИ и показывают варианты дизайна.
+            Выполненные заказы смотрите в{" "}
+            <Link className="underline" href="/portfolio">
+              портфолио
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+      <section id="comparison" className="container-site scroll-mt-24 py-10">
+        <h2 className="text-2xl font-black">Сравните комплектации кухни</h2>
+        <p className="mt-3 text-sm leading-6 text-stone-600">
+          Добавьте до трёх вариантов. Сравнивайте одинаковые размеры, материалы
+          и состав работ: одна только итоговая сумма мало что объясняет.
+        </p>
+        {compared.length === 0 ? (
+          <a
+            className={`${control} mt-4 inline-flex items-center`}
+            href="#catalog"
+          >
+            Выбрать примеры для сравнения
+          </a>
+        ) : (
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {compared.map((id) => {
+              const model = priceExamples.find((item) => item.id === id)!;
+              return (
+                <article key={id} className="rounded-xl border p-4">
+                  <h3 className="font-bold">{model.name}</h3>
+                  <p className="my-2 text-lg font-black">
+                    {marketRange(model)}
+                  </p>
+                  <p className="text-xs text-stone-600">
+                    Рыночный ориентир за мебель, не предложение КухниBY
+                  </p>
+                  <Specification model={model} />
+                  <p className="my-3 text-sm">
+                    Отдельно: {model.exclude.join("; ").toLowerCase()}.
+                  </p>
+                  <button
+                    className={`${primary} w-full`}
+                    onClick={() => {
+                      setRequest(model);
+                      document
+                        .getElementById("calculate")
+                        ?.scrollIntoView({ behavior: "instant" });
+                    }}
+                  >
+                    Рассчитать этот вариант
+                  </button>
+                  <button
+                    className={`${control} mt-2 w-full`}
+                    onClick={() => compare(id)}
+                  >
+                    Убрать из сравнения
+                  </button>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </section>
+      {children}
+      <section id="calculate" className="scroll-mt-24 bg-[#f8f5f0] py-10">
+        <div className="container-site grid gap-6 lg:grid-cols-2">
+          <div>
+            <h2 className="text-2xl font-black md:text-3xl">
+              Узнайте стоимость своей кухни
+            </h2>
+            <p className="mt-3 max-w-xl text-sm leading-7 text-stone-600">
+              Укажите размеры и пожелания. В расчёте отдельно проверим мебель,
+              столешницу, фурнитуру, технику, доставку и монтаж. Выбранный
+              пример и параметры отправятся вместе с заявкой.
+            </p>
+            {request && (
+              <div className="mt-4 rounded-xl border bg-white p-4">
+                <p className="font-bold">{request.name}</p>
+                <p className="mt-1 text-sm">
+                  {request.dimensions} · {request.facadeMaterial}
+                </p>
+                <button
+                  className={`${control} mt-3`}
+                  onClick={() => setRequest(null)}
+                >
+                  Убрать выбранный пример
+                </button>
+              </div>
+            )}
+            <Link
+              href="/calculator"
+              className={`${control} mt-5 inline-flex items-center`}
+            >
+              Открыть калькулятор кухни
+            </Link>
+          </div>
+          <ContactForm
+            compact
+            showDimensions
+            showComment
+            defaultDimensions={request?.dimensions}
+            source="prices"
+            sourceType="prices"
+            formType="prices-visual-catalog"
+            formLocation="prices-visual-catalog"
+            showCity
+            showKitchenType
+            showHasMeasurements
+            defaultKitchenType={request ? kitchenType(request) : undefined}
+            defaultComment={
+              request
+                ? `Прошу рассчитать ${request.name}, ${request.dimensions}, ${request.facadeMaterial}.`
+                : undefined
+            }
+            defaultAnswers={{
+              exampleId: request?.id ?? null,
+              comparedExamples: compared,
+              filters,
+            }}
+            submitLabel="Получить расчёт моей кухни"
+          />
+        </div>
+      </section>
+      {selected && (
+        <ModelDialog key={selected.id} model={selected} onClose={close} />
       )}
-    </section>
+    </>
   );
 }

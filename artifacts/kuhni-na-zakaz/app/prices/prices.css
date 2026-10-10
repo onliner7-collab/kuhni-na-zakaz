@@ -1,0 +1,7 @@
+/* На мобильной странице выбор и заявка доступны в нижней панели.
+   Плавающий промоблок иначе перекрывает фильтры и основную кнопку. */
+@media (max-width: 1023px) {
+  body:has(.prices-page) .fixed:has(.floating-contact-item) {
+    display: none;
+  }
+}

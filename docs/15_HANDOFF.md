@@ -476,3 +476,8 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 ## 2026-10-09 — Жодино
 
 Перестройка `/locations/zhodino` по покупке кухни и связанным запросам. Собственные ZhodinoPage/ZhodinoShowroom/data, новый встроенный imagegen hero с WebP, семь FAQ, выбор параметров для формы. Изолированная база релиза — production `696e8f9`, ветка `codex/zhodino-deploy-20261009`; основной dirty diff не публиковать. Борисов защищён, другие города/shared backend не менять. Проверки после уточнения пользователя проводятся в IAB. Актуальный статус, evidence, release и rollback: `docs/seo/2026-10-09-zhodino-implementation.md`.
+
+
+## 2026-10-10 — Страница цен: визуальные комплектации
+
+/prices подготовлена к изолированному деплою. Локальная production-сборка успешна; встроенный браузер проверил фильтры, 18 галерей/72 изображения, клавиатуру и ширины 320/390/768/1440. Следующие действия: production QA, sitemap, Google/Yandex переобход. Rollback: вернуть исходный commit 1fa11843826177b42426d42124f92868713eb00d и предыдущую .next. Итоги деплоя фиксируются в docs/seo/2026-10-10-prices-implementation.md.

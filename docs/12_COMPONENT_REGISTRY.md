@@ -245,3 +245,8 @@ Server compositions сохраняют H1, disclosure, ограничения, �
 2026-10-07: BorisovPilotPage/BorisovKitchenPicker — изменён только текст, выбор и форма без изменений; regionalLocations metadata изменена только для borisov.
 
 FloatingSocialButtons: удалено мобильное исключение только /locations/borisov; общая анимация и контакты сохранены.
+
+
+## 2026-10-10 — Страница цен: визуальные комплектации
+
+InteractivePricesCatalog: фильтры, 4 ракурса в диалоге, сравнение до 3, перенос примера в заявку. ContactForm: опциональные поля размеров/комментария, сохранение пользовательского ввода при смене примера только для source=prices.

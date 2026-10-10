@@ -68,6 +68,9 @@ interface ContactFormProps {
   showKitchenType?: boolean;
   showMessenger?: boolean;
   showHasMeasurements?: boolean;
+  showDimensions?: boolean;
+  showComment?: boolean;
+  defaultDimensions?: string;
   showRoomFile?: boolean;
   defaultKitchenType?: string;
   defaultComment?: string;
@@ -256,6 +259,9 @@ export function ContactForm({
   showHasMeasurements = false,
   defaultKitchenType = "",
   defaultComment = "",
+  showDimensions = false,
+  showComment = false,
+  defaultDimensions = "",
   answersEventName,
   defaultAnswers,
   compact = false,
@@ -321,7 +327,7 @@ export function ContactForm({
     preferredContact: "phone",
     city: city || "",
     kitchenType: defaultKitchenType,
-    dimensions: "",
+    dimensions: defaultDimensions,
     comment: ideaComment,
     hasMeasurements: false,
     agreement: false,
@@ -336,12 +342,18 @@ export function ContactForm({
     utmContent: trackingFields.utmContent,
     referrer: trackingFields.referrer,
     honeypot: "",
-  }), [city, cityKey, defaultKitchenType, effectiveSourceType, ideaComment, projectSlug, trackingFields]);
+  }), [city, cityKey, defaultDimensions, defaultKitchenType, effectiveSourceType, ideaComment, projectSlug, trackingFields]);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset, setValue, getFieldState } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues,
   });
+  useEffect(() => {
+    if (source !== "prices") return;
+    if (!getFieldState("kitchenType").isDirty) setValue("kitchenType", defaultKitchenType);
+    if (!getFieldState("dimensions").isDirty) setValue("dimensions", defaultDimensions);
+    if (!getFieldState("comment").isDirty) setValue("comment", ideaComment);
+  }, [source, defaultKitchenType, defaultDimensions, ideaComment, getFieldState, setValue]);
   const errorMessages = Object.values(errors)
     .map((error) => error?.message)
     .filter(Boolean);
@@ -647,7 +659,7 @@ export function ContactForm({
         </div>
       )}
 
-      {!compact && <div>
+      {(!compact || showDimensions) && <div>
         <Label htmlFor={dimensionsId}>Примерные размеры</Label>
         <Input
           id={dimensionsId}
@@ -658,7 +670,7 @@ export function ContactForm({
         />
       </div>}
 
-      {!compact && <div>
+      {(!compact || showComment) && <div>
         <Label htmlFor={commentId}>Комментарий</Label>
         <Textarea
           id={commentId}

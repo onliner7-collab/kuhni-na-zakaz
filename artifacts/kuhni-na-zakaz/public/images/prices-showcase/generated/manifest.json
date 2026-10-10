@@ -1,0 +1,438 @@
+{
+  "generatedWith": "OpenAI imagegen",
+  "disclosure": "Примеры дизайна, созданные с помощью ИИ, не выполненные проекты",
+  "examples": [
+    {
+      "id": "scandi-straight-3m",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "scandi-straight-3m-1.webp",
+          "bytes": 33418
+        },
+        {
+          "name": "scandi-straight-3m-2.webp",
+          "bytes": 29090
+        },
+        {
+          "name": "scandi-straight-3m-3.webp",
+          "bytes": 41542
+        },
+        {
+          "name": "scandi-straight-3m-4.webp",
+          "bytes": 51664
+        }
+      ],
+      "prompt": "Four consistent photographs of a straight Scandinavian kitchen, white upper and oak lower cabinets, 3 metres. Built-in OpenAI imagegen."
+    },
+    {
+      "id": "modern-corner-3x2",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "modern-corner-3x2-1.webp",
+          "bytes": 28492
+        },
+        {
+          "name": "modern-corner-3x2-2.webp",
+          "bytes": 25462
+        },
+        {
+          "name": "modern-corner-3x2-3.webp",
+          "bytes": 32126
+        },
+        {
+          "name": "modern-corner-3x2-4.webp",
+          "bytes": 39546
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photo series for a made-to-measure kitchen price website. Create ONE contact sheet, precisely FOUR equal landscape 3:2 photographs in a 2x2 grid, overall aspect 3:2, NO borders/gutters. All four depict the SAME kitchen: L-shaped 3 by 2 metre modern kitchen, soft ivory matte flat doors, pale beige laminate worktop, subtle chrome handles, sink on short wing and oven on long wing. Top left entire kitchen front-left, top right entire kitchen front-right; bottom left worktop and facades close-up; bottom right lower storage drawer opened with kitchen utensils. Keep cabinet sequence, shape, appliances, tap, windows, doors and materials consistent in all views. Real interior photography, attainable home, detailed real surfaces, natural daylight. No render look, no people, no text, no prices, no watermarks, no logos. Full layout clearly visible in upper views. Do not add an island to straight or L-shaped layouts."
+    },
+    {
+      "id": "minimal-straight-24",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "minimal-straight-24-1.webp",
+          "bytes": 29622
+        },
+        {
+          "name": "minimal-straight-24-2.webp",
+          "bytes": 32704
+        },
+        {
+          "name": "minimal-straight-24-3.webp",
+          "bytes": 29060
+        },
+        {
+          "name": "minimal-straight-24-4.webp",
+          "bytes": 39542
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photo series for a made-to-measure kitchen price website. Create ONE contact sheet, precisely FOUR equal landscape 3:2 photographs in a 2x2 grid, overall aspect 3:2, NO borders/gutters. All four depict the SAME kitchen: Compact 2.4 metre straight minimalist kitchen, warm greige smooth matte cabinet doors, integrated handle channel, charcoal laminate countertop, no island. Top left entire kitchen front-left, top right entire kitchen front-right; bottom left worktop and facades close-up; bottom right lower storage drawer opened with kitchen utensils. Keep cabinet sequence, shape, appliances, tap, windows, doors and materials consistent in all views. Real interior photography, attainable home, detailed real surfaces, natural daylight. No render look, no people, no text, no prices, no watermarks, no logos. Full layout clearly visible in upper views. Do not add an island to straight or L-shaped layouts."
+    },
+    {
+      "id": "neoclassic-corner",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "neoclassic-corner-1.webp",
+          "bytes": 28624
+        },
+        {
+          "name": "neoclassic-corner-2.webp",
+          "bytes": 29314
+        },
+        {
+          "name": "neoclassic-corner-3.webp",
+          "bytes": 33818
+        },
+        {
+          "name": "neoclassic-corner-4.webp",
+          "bytes": 26788
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photo series for a made-to-measure kitchen price website. Create ONE contact sheet, precisely FOUR equal landscape 3:2 photographs in a 2x2 grid, overall aspect 3:2, NO borders/gutters. All four depict the SAME kitchen: Small L-shaped 2.4 by 1.8 metre neoclassical kitchen, cream shaker framed doors, delicate brass pulls, pale stone-look laminate worktop, restrained moulding. Top left entire kitchen front-left, top right entire kitchen front-right; bottom left worktop and facades close-up; bottom right lower storage drawer opened with kitchen utensils. Keep cabinet sequence, shape, appliances, tap, windows, doors and materials consistent in all views. Real interior photography, attainable home, detailed real surfaces, natural daylight. No render look, no people, no text, no prices, no watermarks, no logos. Full layout clearly visible in upper views. Do not add an island to straight or L-shaped layouts."
+    },
+    {
+      "id": "loft-straight-3m",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "loft-straight-3m-1.webp",
+          "bytes": 39718
+        },
+        {
+          "name": "loft-straight-3m-2.webp",
+          "bytes": 33634
+        },
+        {
+          "name": "loft-straight-3m-3.webp",
+          "bytes": 31092
+        },
+        {
+          "name": "loft-straight-3m-4.webp",
+          "bytes": 35440
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photo series for a made-to-measure kitchen price website. Create ONE contact sheet, precisely FOUR equal landscape 3:2 photographs in a 2x2 grid, overall aspect 3:2, NO borders/gutters. All four depict the SAME kitchen: Straight 3m attainable loft kitchen, walnut textured slab lower doors, graphite flat upper doors, matte black pulls, grey concrete-look worktop, small area of brick wall. Top left entire kitchen front-left, top right entire kitchen front-right; bottom left worktop and facades close-up; bottom right lower storage drawer opened with kitchen utensils. Keep cabinet sequence, shape, appliances, tap, windows, doors and materials consistent in all views. Real interior photography, attainable home, detailed real surfaces, natural daylight. No render look, no people, no text, no prices, no watermarks, no logos. Full layout clearly visible in upper views. Do not add an island to straight or L-shaped layouts."
+    },
+    {
+      "id": "modern-small-2m",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "modern-small-2m-1.webp",
+          "bytes": 26998
+        },
+        {
+          "name": "modern-small-2m-2.webp",
+          "bytes": 26776
+        },
+        {
+          "name": "modern-small-2m-3.webp",
+          "bytes": 24932
+        },
+        {
+          "name": "modern-small-2m-4.webp",
+          "bytes": 43092
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photography series. ONE contact sheet with exactly four equal landscape 3:2 photographs, 2x2 grid, total aspect 3:2, no gaps. SAME kitchen in all quadrants: Very compact straight 2m kitchen for small apartment, white slab doors with pale wood accents, practical laminate countertop, four clearly organized lower modules including slim oven, sink and compact hob, simple handles. Upper left full layout front-left, upper right full layout front-right. Lower left close-up countertop and fronts; lower right open lower drawer showing storage. Cabinet order, shapes, appliances, tap, windows, room, materials must be consistent. Realistic interior photo, ordinary attainable home, believable material grain, natural daylight. No CGI, no people, no text, no logos, no watermark, no prices. No islands unless explicitly specified."
+    },
+    {
+      "id": "scandi-corner",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "scandi-corner-1.webp",
+          "bytes": 31224
+        },
+        {
+          "name": "scandi-corner-2.webp",
+          "bytes": 24566
+        },
+        {
+          "name": "scandi-corner-3.webp",
+          "bytes": 31010
+        },
+        {
+          "name": "scandi-corner-4.webp",
+          "bytes": 35394
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photography series. ONE contact sheet with exactly four equal landscape 3:2 photographs, 2x2 grid, total aspect 3:2, no gaps. SAME kitchen in all quadrants: Compact Scandinavian L-shaped kitchen 2 by 1.5m, white flat upper doors and pale oak flat lower doors, grey laminate worktop, chrome handles, realistic small apartment. Upper left full layout front-left, upper right full layout front-right. Lower left close-up countertop and fronts; lower right open lower drawer showing storage. Cabinet order, shapes, appliances, tap, windows, room, materials must be consistent. Realistic interior photo, ordinary attainable home, believable material grain, natural daylight. No CGI, no people, no text, no logos, no watermark, no prices. No islands unless explicitly specified."
+    },
+    {
+      "id": "modern-ceiling-3m",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "modern-ceiling-3m-1.webp",
+          "bytes": 31380
+        },
+        {
+          "name": "modern-ceiling-3m-2.webp",
+          "bytes": 28406
+        },
+        {
+          "name": "modern-ceiling-3m-3.webp",
+          "bytes": 36860
+        },
+        {
+          "name": "modern-ceiling-3m-4.webp",
+          "bytes": 24054
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photography series. ONE contact sheet with exactly four equal landscape 3:2 photographs, 2x2 grid, total aspect 3:2, no gaps. SAME kitchen in all quadrants: Straight 3m contemporary kitchen extending to ceiling, sand beige matte slab doors, two tiers of upper cabinets, graphite handle channel, stone-look laminate worktop, appliance tall unit. Upper left full layout front-left, upper right full layout front-right. Lower left close-up countertop and fronts; lower right open lower drawer showing storage. Cabinet order, shapes, appliances, tap, windows, room, materials must be consistent. Realistic interior photo, ordinary attainable home, believable material grain, natural daylight. No CGI, no people, no text, no logos, no watermark, no prices. No islands unless explicitly specified."
+    },
+    {
+      "id": "classic-corner",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "classic-corner-1.webp",
+          "bytes": 41282
+        },
+        {
+          "name": "classic-corner-2.webp",
+          "bytes": 40008
+        },
+        {
+          "name": "classic-corner-3.webp",
+          "bytes": 35766
+        },
+        {
+          "name": "classic-corner-4.webp",
+          "bytes": 34492
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photography series. ONE contact sheet with exactly four equal landscape 3:2 photographs, 2x2 grid, total aspect 3:2, no gaps. SAME kitchen in all quadrants: L-shaped 3 by 2m classic cream kitchen, elegant framed cabinet fronts, restrained cornice and brass handles, brown laminate countertop, realistic modest classical interior without excessive ornament. Upper left full layout front-left, upper right full layout front-right. Lower left close-up countertop and fronts; lower right open lower drawer showing storage. Cabinet order, shapes, appliances, tap, windows, room, materials must be consistent. Realistic interior photo, ordinary attainable home, believable material grain, natural daylight. No CGI, no people, no text, no logos, no watermark, no prices. No islands unless explicitly specified."
+    },
+    {
+      "id": "provence-straight",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "provence-straight-1.webp",
+          "bytes": 40258
+        },
+        {
+          "name": "provence-straight-2.webp",
+          "bytes": 36520
+        },
+        {
+          "name": "provence-straight-3.webp",
+          "bytes": 30448
+        },
+        {
+          "name": "provence-straight-4.webp",
+          "bytes": 30524
+        }
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen photography series. ONE contact sheet with exactly four equal landscape 3:2 photographs, 2x2 grid, total aspect 3:2, no gaps. SAME kitchen in all quadrants: Straight 3m Provence kitchen, soft sage green framed lower cabinets, warm cream framed upper cabinets, rustic bronze handles, light oak laminate counter, gentle country details. Upper left full layout front-left, upper right full layout front-right. Lower left close-up countertop and fronts; lower right open lower drawer showing storage. Cabinet order, shapes, appliances, tap, windows, room, materials must be consistent. Realistic interior photo, ordinary attainable home, believable material grain, natural daylight. No CGI, no people, no text, no logos, no watermark, no prices. No islands unless explicitly specified."
+    },
+    {
+      "id": "minimal-corner-01",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "minimal-corner-01-1.webp",
+          "bytes": 27590
+        },
+        {
+          "name": "minimal-corner-01-2.webp",
+          "bytes": 27348
+        },
+        {
+          "name": "minimal-corner-01-3.webp",
+          "bytes": 37166
+        },
+        {
+          "name": "minimal-corner-01-4.webp",
+          "bytes": 26108
+        }
+      ],
+      "prompt": "Photorealistic interior photography for a kitchen design price comparison page. Create ONE contact sheet of precisely FOUR equal landscape photographs in a 2x2 grid, no gaps, overall aspect ratio 3:2. All FOUR depict the SAME kitchen: L-shaped 3 by 2m minimalist kitchen, matte warm grey handleless cabinet fronts to ceiling, light stone HPL worktop, minimal black tap, integrated appliances. Upper left: complete wide front-left view. Upper right: complete wide front-right view. Bottom left: close view of countertop and cabinet fronts. Bottom right: close view with one lower drawer open showing practical storage. Maintain the same layout, cabinet order, windows, appliances, materials, and daylight across all four views. Credible ordinary Belarus apartment, realistic scale, restrained decoration, camera photography with natural light, clean but lived-in. No people, letters, labels, measurements, prices, logos, watermarks. No island unless specified."
+    },
+    {
+      "id": "hightech-corner",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "hightech-corner-1.webp",
+          "bytes": 27898
+        },
+        {
+          "name": "hightech-corner-2.webp",
+          "bytes": 26784
+        },
+        {
+          "name": "hightech-corner-3.webp",
+          "bytes": 37814
+        },
+        {
+          "name": "hightech-corner-4.webp",
+          "bytes": 27352
+        }
+      ],
+      "prompt": "Photorealistic interior photography for a kitchen design price comparison page. Create ONE contact sheet of precisely FOUR equal landscape photographs in a 2x2 grid, no gaps, overall aspect ratio 3:2. All FOUR depict the SAME kitchen: L-shaped 2.8 by 2m high-tech kitchen, white smooth flat fronts, dark graphite worktop, brushed metallic handle strips, practical integrated appliances, restrained cool-toned modern apartment. Upper left: complete wide front-left view. Upper right: complete wide front-right view. Bottom left: close view of countertop and cabinet fronts. Bottom right: close view with one lower drawer open showing practical storage. Maintain the same layout, cabinet order, windows, appliances, materials, and daylight across all four views. Credible ordinary Belarus apartment, realistic scale, restrained decoration, camera photography with natural light, clean but lived-in. No people, letters, labels, measurements, prices, logos, watermarks. No island unless specified."
+    },
+    {
+      "id": "modern-u-shape",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "modern-u-shape-1.webp",
+          "bytes": 31788
+        },
+        {
+          "name": "modern-u-shape-2.webp",
+          "bytes": 30964
+        },
+        {
+          "name": "modern-u-shape-3.webp",
+          "bytes": 32268
+        },
+        {
+          "name": "modern-u-shape-4.webp",
+          "bytes": 31144
+        }
+      ],
+      "prompt": "Photorealistic interior photography for a kitchen design price comparison page. Create ONE contact sheet of precisely FOUR equal landscape photographs in a 2x2 grid, no gaps, overall aspect ratio 3:2. All FOUR depict the SAME kitchen: U-shaped 2 by 3 by 2m modern kitchen, matte light blue slab doors, light laminate worktop, warm oak accents, central window above sink, generous open central aisle, no island. Upper left: complete wide front-left view. Upper right: complete wide front-right view. Bottom left: close view of countertop and cabinet fronts. Bottom right: close view with one lower drawer open showing practical storage. Maintain the same layout, cabinet order, windows, appliances, materials, and daylight across all four views. Credible ordinary Belarus apartment, realistic scale, restrained decoration, camera photography with natural light, clean but lived-in. No people, letters, labels, measurements, prices, logos, watermarks. No island unless specified."
+    },
+    {
+      "id": "neoclassic-u-shape",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "neoclassic-u-shape-1.webp",
+          "bytes": 32966
+        },
+        {
+          "name": "neoclassic-u-shape-2.webp",
+          "bytes": 31280
+        },
+        {
+          "name": "neoclassic-u-shape-3.webp",
+          "bytes": 28364
+        },
+        {
+          "name": "neoclassic-u-shape-4.webp",
+          "bytes": 29760
+        }
+      ],
+      "prompt": "Photorealistic interior photography for a kitchen design price comparison page. Create ONE contact sheet of precisely FOUR equal landscape photographs in a 2x2 grid, no gaps, overall aspect ratio 3:2. All FOUR depict the SAME kitchen: U-shaped 2.4 by 3 by 2.4m neoclassical kitchen, pale blue-grey shaker cabinet doors, brushed brass handles, white quartz countertop, large central aisle and traditional apartment windows. Upper left: complete wide front-left view. Upper right: complete wide front-right view. Bottom left: close view of countertop and cabinet fronts. Bottom right: close view with one lower drawer open showing practical storage. Maintain the same layout, cabinet order, windows, appliances, materials, and daylight across all four views. Credible ordinary Belarus apartment, realistic scale, restrained decoration, camera photography with natural light, clean but lived-in. No people, letters, labels, measurements, prices, logos, watermarks. No island unless specified."
+    },
+    {
+      "id": "minimal-island",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "minimal-island-1.webp",
+          "bytes": 26902
+        },
+        {
+          "name": "minimal-island-2.webp",
+          "bytes": 22678
+        },
+        {
+          "name": "minimal-island-3.webp",
+          "bytes": 30710
+        },
+        {
+          "name": "minimal-island-4.webp",
+          "bytes": 31408
+        }
+      ],
+      "prompt": "Photorealistic natural kitchen interior photography for a design comparison page. ONE contact sheet precisely FOUR equal landscape 3:2 photographs in a 2x2 grid no gaps overall aspect ratio 3:2. All FOUR depict the SAME kitchen: Minimalist kitchen with straight 3.6m back wall and separate 1.6 by 0.9m island, matte taupe slab cabinetry, pale quartz worktops, built-in oven and fridge on back wall, island used only for preparation without hob or sink, generous 1m aisles. Upper left full wide front-left view, upper right full wide front-right view, bottom left countertop and cabinet fronts close view, bottom right one lower drawer open for practical storage. Keep identical cabinet order, island or peninsula geometry, windows, materials and appliances across views. Credible ordinary Belarus apartment, natural daylight, realistic proportions, clean but lived-in, no overdecorated showroom. No people, text, labels, logos, prices or watermarks."
+    },
+    {
+      "id": "hightech-island",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "hightech-island-1.webp",
+          "bytes": 29340
+        },
+        {
+          "name": "hightech-island-2.webp",
+          "bytes": 28178
+        },
+        {
+          "name": "hightech-island-3.webp",
+          "bytes": 31526
+        },
+        {
+          "name": "hightech-island-4.webp",
+          "bytes": 30708
+        }
+      ],
+      "prompt": "Photorealistic natural kitchen interior photography for a design comparison page. ONE contact sheet precisely FOUR equal landscape 3:2 photographs in a 2x2 grid no gaps overall aspect ratio 3:2. All FOUR depict the SAME kitchen: High-tech kitchen with straight 4m wall and separate 1.8 by 0.9m island, charcoal matte cabinets, white quartz worktop, integrated appliances on back wall, island for preparation with no sink or hob, open room and wide safe aisles. Upper left full wide front-left view, upper right full wide front-right view, bottom left countertop and cabinet fronts close view, bottom right one lower drawer open for practical storage. Keep identical cabinet order, island or peninsula geometry, windows, materials and appliances across views. Credible ordinary Belarus apartment, natural daylight, realistic proportions, clean but lived-in, no overdecorated showroom. No people, text, labels, logos, prices or watermarks."
+    },
+    {
+      "id": "loft-peninsula",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "loft-peninsula-1.webp",
+          "bytes": 38262
+        },
+        {
+          "name": "loft-peninsula-2.webp",
+          "bytes": 38746
+        },
+        {
+          "name": "loft-peninsula-3.webp",
+          "bytes": 40404
+        },
+        {
+          "name": "loft-peninsula-4.webp",
+          "bytes": 31532
+        }
+      ],
+      "prompt": "Photorealistic natural kitchen interior photography for a design comparison page. ONE contact sheet precisely FOUR equal landscape 3:2 photographs in a 2x2 grid no gaps overall aspect ratio 3:2. All FOUR depict the SAME kitchen: Loft kitchen 3m main wall with attached 1.5m peninsula making an L, graphite and walnut flat cabinet doors, dark stone-look HPL countertop, black pulls, two slim stools at outer peninsula edge, integrated appliances. Upper left full wide front-left view, upper right full wide front-right view, bottom left countertop and cabinet fronts close view, bottom right one lower drawer open for practical storage. Keep identical cabinet order, island or peninsula geometry, windows, materials and appliances across views. Credible ordinary Belarus apartment, natural daylight, realistic proportions, clean but lived-in, no overdecorated showroom. No people, text, labels, logos, prices or watermarks."
+    },
+    {
+      "id": "scandi-peninsula",
+      "width": 762,
+      "height": 506,
+      "files": [
+        {
+          "name": "scandi-peninsula-1.webp",
+          "bytes": 34288
+        },
+        {
+          "name": "scandi-peninsula-2.webp",
+          "bytes": 27510
+        },
+        {
+          "name": "scandi-peninsula-3.webp",
+          "bytes": 32968
+        },
+        {
+          "name": "scandi-peninsula-4.webp",
+          "bytes": 32654
+        }
+      ],
+      "prompt": "Photorealistic natural kitchen interior photography for a design comparison page. ONE contact sheet precisely FOUR equal landscape 3:2 photographs in a 2x2 grid no gaps overall aspect ratio 3:2. All FOUR depict the SAME kitchen: Scandinavian kitchen 2.8m main wall and attached 1.4m peninsula, matte white upper cabinets and pale oak lower fronts, light neutral laminate worktop, small chrome pulls, comfortable open apartment with two stools. Upper left full wide front-left view, upper right full wide front-right view, bottom left countertop and cabinet fronts close view, bottom right one lower drawer open for practical storage. Keep identical cabinet order, island or peninsula geometry, windows, materials and appliances across views. Credible ordinary Belarus apartment, natural daylight, realistic proportions, clean but lived-in, no overdecorated showroom. No people, text, labels, logos, prices or watermarks."
+    }
+  ]
+}
