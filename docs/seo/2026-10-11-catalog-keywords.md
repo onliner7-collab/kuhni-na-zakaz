@@ -21,4 +21,16 @@ ADAPT: три H2, вводная подпись и существующее по
 
 Локальная production-сборка и типизация прошли: 127 страниц с fallback-данными (локальная БД недоступна). Playwright 7/7: пять фраз в соответствующих блоках на 320/390/768/1440 px, без horizontal overflow, все галереи и 97 image URL, форма с перехватом тестового запроса без настоящего лида, canonical/schema и семь защищённых страниц. Мобильный скриншот проверен визуально. Артефакты: outputs/catalog-keywords-2026-10-11/local-tests/.
 
-Ожидаются изолированная серверная сборка, публикация и live QA.
+Опубликован изолированный runtime 4cb6270208e36e1d75b1b01e1392902f849f1d77, BUILD_ID 8Qdn_d4WGbiq2tan9GwWb. Серверная production-сборка и типизация прошли: 173/173 страниц с настоящей БД, service active, tracked worktree чистый.
+
+Первоначально две сборки остановлены kernel OOM (SIGKILL), попытка с heap 800 МБ прошла компиляцию, но упёрлась в heap на типизации (SIGABRT). Итоговая сборка успешна с heap 1400 МБ, cpus 1, webpackMemoryOptimizations и временным swap 2 ГБ. Config/tsconfig восстановлены; временный swap выключен и файл удалён. Постоянная конфигурация сервера и работающий до публикации runtime не менялись.
+
+Production Playwright 7/7: пять формулировок проверены во всех четырёх ширинах, форма без настоящего лида, все 97 image URL HTTP200, naturalWidth > 0 для всех кадров 24 галерей, без overflow и JS pageerror. MCP на 390 px подтвердил заголовок, naturalWidth 1200 и отсутствие overflow; скриншот просмотрен.
+
+Дополнительно получен серверный HTML и разобран DOMParser без исполнения скриптов: покрытие 5/5, HTTP200, title/description/H1/canonical каталога совпадают с baseline. Артефакты: outputs/catalog-keywords-2026-10-11/production-coverage.json, production-mobile.png и production-tests/.
+
+Аудит: 26/26 внутренних ссылок HTTP200; title/description/H1/canonical семи защищённых страниц совпадают с исходным baseline. Sitemap обновлён, 112 URL, /catalog lastmod 11.10.2026; robots HTTP200. В MCP остаётся прежняя блокировка iframe mc.yandex.ru текущей общей CSP, её эта задача не меняет.
+
+Повторные запросы в Google/Яндекс в этом дополнении не отправлялись. Изменение текстов и обновление sitemap не являются доказательством переиндексации или роста позиций.
+
+Откат: .next-before-gallery-4cb6270208e36e1d75b1b01e1392902f849f1d77, предыдущий runtime 5fcfd3c, предыдущий repository c6cd460. Не сбрасывать пользовательский dirty workspace.

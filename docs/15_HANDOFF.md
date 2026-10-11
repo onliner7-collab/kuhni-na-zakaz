@@ -1,6 +1,6 @@
 # Handoff
 
-2026-10-11: /catalog: внедрено естественное покрытие пяти дополнительных фраз в существующих блоках. Проверка и статус публикации: docs/seo/2026-10-11-catalog-keywords.md; не публиковать посторонний dirty diff.
+2026-10-11: /catalog: PRODUCTION_PASS 4cb6270, пять дополнительных фраз в серверном HTML, build/typecheck и Playwright 7/7. Title/description/H1/canonical сохранены, sitemap 112 URL обновлён. Временный swap сборки убран. QA и откат: docs/seo/2026-10-11-catalog-keywords.md; не публиковать посторонний dirty diff.
 
 2026-10-11: Каталог: PRODUCTION_PASS 5fcfd3c, 97 кадров в 24 галереях (минимум четыре), production build/typecheck и Playwright 7/7. PNG и WebP в проекте, визуализации отмечены. Sitemap 112 URL обновлён. QA и откат: docs/seo/2026-10-11-catalog-gallery-complete.md. Не деплоить весь dirty workspace.
 
