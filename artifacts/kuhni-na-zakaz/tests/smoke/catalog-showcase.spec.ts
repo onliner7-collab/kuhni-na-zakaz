@@ -60,7 +60,7 @@ test("filters, favourite persistence, compare, gallery and lead payload", async 
   await model.getByRole("button", { name: /^Открыть модель:/ }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.getByRole("button", { name: "Следующий ракурс", exact: true }).click();
-  await expect(page.getByRole("button", { name: "Ракурс 2", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("button", { name: /^Ракурс 2:/ })).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", { name: "Рассчитать похожую кухню", exact: true }).click();
   const form = page.locator("#catalog-request form");
   await expect(form.getByTestId("form-kitchen-type")).toHaveValue("Прямая");
@@ -86,6 +86,27 @@ test("filters, favourite persistence, compare, gallery and lead payload", async 
   expect(payload!.sourcePage).toContain("/catalog");
   expect(payload!.answers.model).toBe("wood-green");
   expect(payload!.dimensions).toBe("3,1 м, высота 2,7 м");
+});
+
+test("all model galleries load every view on mobile", async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.goto("/catalog", { waitUntil: "networkidle" });
+  for (const model of catalogModels) {
+    const opener = page.getByTestId(`catalog-model-${model.id}`).getByRole("button", { name: /^Открыть модель:/ });
+    await opener.click();
+    const dialog = page.getByRole("dialog");
+    await expect(dialog).toBeVisible();
+    for (let view = 0; view < model.images.length; view++) {
+      if (model.images.length > 1) await dialog.getByRole("button", { name: new RegExp(`^Ракурс ${view + 1}:`) }).click();
+      await expect(dialog.locator(".catalog-detail-image img")).toHaveAttribute("src", model.images[view]);
+      await expect.poll(() => dialog.locator(".catalog-detail-image img").evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+      await expect(dialog.locator(".catalog-gallery-caption")).toContainText(`${view + 1} / ${model.images.length}`);
+      expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBeTruthy();
+    }
+    if (model.id === "wood-green") await page.screenshot({ path: testInfo.outputPath("wood-green-interior-mobile.png") });
+    await page.keyboard.press("Escape");
+    await expect(opener).toBeFocused();
+  }
 });
 
 test("protected pages retain canonical and one H1", async ({ page }) => {

@@ -6,7 +6,7 @@ export type CatalogModel = {
   id: string; name: string; layout: string; style: string; dimensions: string;
   maxWall: number | null; facade: string; material: string; color: string;
   rooms: CatalogRoom[]; images: string[]; description: string; priceFrom?: number;
-  equipment: string[]; exclude: string[];
+  equipment: string[]; exclude: string[]; imageLabels?: string[]; visualization?: boolean;
 };
 
 export const catalogRooms = [
@@ -36,6 +36,7 @@ const colorById: Record<string, string> = {
 };
 
 const baseModels: CatalogModel[] = priceExamples.map((model) => ({
+  visualization: true,
   id: model.id, name: model.name, layout: model.layout, style: model.style,
   dimensions: model.dimensions, maxWall: Math.max(...model.walls),
   facade: model.facadeMaterial, material: model.facade, color: colorById[model.id] ?? "light",
@@ -47,22 +48,23 @@ const baseModels: CatalogModel[] = priceExamples.map((model) => ({
 }));
 
 const additionalModels: CatalogModel[] = [
-  { id: "wood-green", name: "Зелёная кухня в доме из бруса", layout: "corner", style: "scandi",
+  { id: "wood-green", visualization: true, name: "Зелёная кухня в доме из бруса", layout: "corner", style: "scandi",
     dimensions: "По размерам двух стен", maxWall: null, facade: "Рамочные фасады; покрытие выбирается в проекте", material: "film", color: "colored",
-    rooms: ["wood", "house"], images: ["/images/catalog-showcase/wood-green.webp"],
+    rooms: ["wood", "house"], images: ["/images/catalog-showcase/wood-green.webp", "/images/catalog-showcase/wood-green-angle.webp", "/images/catalog-showcase/wood-green-detail.webp", "/images/catalog-showcase/wood-green-interior.webp"],
+    imageLabels: ["Общий вид", "Другой ракурс", "Рабочая зона", "Внутри ящиков — вариант наполнения"],
     description: "Угловая рабочая зона с мойкой у окна и высоким шкафом. Крепления к деревянным стенам согласуем после осмотра дома.",
     equipment: ["Две рабочие стороны", "Мойка у окна", "Высокий шкаф для техники"], exclude: [] },
-  { id: "country-blue", name: "Кухня с островом для загородного дома", layout: "island", style: "modern",
+  { id: "country-blue", visualization: true, name: "Кухня с островом для загородного дома", layout: "island", style: "modern",
     dimensions: "Стены и остров — по плану помещения", maxWall: null, facade: "Матовые фасады; материал уточняется", material: "enamel", color: "colored",
     rooms: ["house"], images: ["/images/catalog-showcase/country-blue.webp"],
     description: "Отдельный остров для хранения и завтраков, основная техника вдоль стен. Размер острова выбираем после проверки проходов.",
     equipment: ["Остров с посадкой", "Рабочая зона вдоль стен", "Встроенная техника"], exclude: [] },
-  { id: "cottage-white", name: "Компактная кухня для деревянного дома", layout: "straight", style: "scandi",
+  { id: "cottage-white", visualization: true, name: "Компактная кухня для деревянного дома", layout: "straight", style: "scandi",
     dimensions: "По длине свободной стены", maxWall: null, facade: "Светлые гладкие фасады; материал уточняется", material: "ldsp", color: "light",
     rooms: ["wood", "house"], images: ["/images/catalog-showcase/cottage-white.webp"],
     description: "Одна линия шкафов для небольшого дома. Светлые фасады, древесная столешница и минимум открытого хранения.",
     equipment: ["Прямая линия", "Компактная техника", "Закрытое хранение"], exclude: [] },
-  { id: "log-neoclassic", name: "Светлая неоклассика в бревенчатом доме", layout: "corner", style: "neoclassic",
+  { id: "log-neoclassic", visualization: true, name: "Светлая неоклассика в бревенчатом доме", layout: "corner", style: "neoclassic",
     dimensions: "Индивидуальные размеры после замера", maxWall: null, facade: "Светлые рамочные фасады; покрытие уточняется", material: "enamel", color: "light",
     rooms: ["wood", "house"], images: ["/images/catalog-showcase/log-neoclassic.webp"],
     description: "Рамочные фасады на фоне бревенчатых стен. Расположение верхних шкафов и монтаж учитывают состояние деревянного дома.",
@@ -74,7 +76,8 @@ const additionalModels: CatalogModel[] = [
     equipment: ["Одна рабочая линия", "Гладкие фасады", "Встроенная техника"], exclude: [] },
   { id: "corner-green", name: "Зелёная угловая кухня в скандинавском стиле", layout: "corner", style: "scandi",
     dimensions: "По размерам двух стен", maxWall: null, facade: "Зелёные фасады с древесной фактурой", material: "film", color: "colored",
-    rooms: ["apartment", "house"], images: ["/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp"],
+    rooms: ["apartment", "house"], images: ["/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp"],
+    imageLabels: ["Общий вид", "Другой ракурс во время сборки", "Нижние шкафы во время сборки", "Внутри шкафов во время сборки"],
     description: "Две рабочие стороны, цветные фасады и древесные детали. Угловое хранение выбирается отдельно от внешнего оформления.",
     equipment: ["Две рабочие стороны", "Древесные детали", "Угловое хранение"], exclude: [] },
 ];

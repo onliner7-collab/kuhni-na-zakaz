@@ -1,5 +1,7 @@
 # Media Registry
 
+2026-10-11: wood-green: три новых imagegen PNG + WebP 94–129 КБ; corner-green: три существующих реальных фото стадии сборки. Промпты: outputs/catalog-gallery-2026-10-11/prompts.json.
+
 2026-10-08: angular-commercial-20261008 — три imagegen-концепта (compact/white/green), исходные PNG в source, WebP 1200×800 и 600×400. UI использует только WebP; происхождение раскрыто, реальные проекты не заявляются. Отчёт: docs/seo/2026-10-08-uglovye-kuhni.md.
 
 2026-10-07, Борисов copy: новых медиа нет; текущие WebP/alt сохранены.

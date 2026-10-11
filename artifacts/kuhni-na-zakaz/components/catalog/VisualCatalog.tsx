@@ -22,6 +22,9 @@ const labels: Record<keyof Filters, string> = { layout: "Планировка", 
 const layoutLabel = (model: CatalogModel) => catalogLayouts.find((item) => item.id === model.layout)?.label ?? "Угловая";
 const money = (model: CatalogModel) => model.priceFrom ? `от ${model.priceFrom.toLocaleString("ru-BY")} BYN` : "По индивидуальному расчёту";
 const storageKey = "catalog-selection-v1";
+const viewLabel = (model: CatalogModel, view: number) => model.imageLabels?.[view]
+  ?? ["Общий вид", "Другой ракурс", "Детали кухни", "Внутри ящиков — вариант наполнения"][view]
+  ?? `Ракурс ${view + 1}`;
 
 function matches(model: CatalogModel, filters: Filters) {
   return (filters.layout === "all" || model.layout === filters.layout)
@@ -58,11 +61,12 @@ function ModelDetails({ model, choose, onClose }: { model: CatalogModel; choose:
     <div className="catalog-detail">
       <div>
         <div className="catalog-detail-image" tabIndex={0} aria-label="Фото выбранной кухни" onKeyDown={(e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); next(e.key === "ArrowLeft" ? -1 : 1); } }} onTouchStart={(e) => { touch.current = e.touches[0].clientX; }} onTouchEnd={(e) => { if (touch.current !== null) { const delta = e.changedTouches[0].clientX - touch.current; if (Math.abs(delta) > 45) next(delta < 0 ? 1 : -1); } touch.current = null; }}>
-          <Image unoptimized src={model.images[view]} alt={`${model.name}, ${view === 0 ? "общий вид" : `ракурс ${view + 1}`}, пример дизайна`} fill sizes="(max-width: 767px) 94vw, 600px" className="object-cover" />
+          <Image unoptimized src={model.images[view]} alt={`${model.name}, ${viewLabel(model, view).toLowerCase()}, пример дизайна`} fill sizes="(max-width: 767px) 94vw, 600px" className="object-contain" />
           {model.images.length > 1 && <><button className="catalog-icon catalog-prev" aria-label="Предыдущий ракурс" title="Предыдущий ракурс" onClick={() => next(-1)}><ArrowLeft size={20} /></button><button className="catalog-icon catalog-next" aria-label="Следующий ракурс" title="Следующий ракурс" onClick={() => next(1)}><ArrowRight size={20} /></button></>}
         </div>
-        {model.images.length > 1 && <div className="catalog-thumbs">{model.images.map((src, index) => <button key={src} aria-label={`Ракурс ${index + 1}`} aria-pressed={view === index} onClick={() => setView(index)}><Image unoptimized src={src} alt="" width={150} height={100} /></button>)}</div>}
-        <p className="catalog-muted">Пример дизайна. Размеры и материалы согласуем под ваше помещение.</p>
+        <p className="catalog-gallery-caption" aria-live="polite"><span>{viewLabel(model, view)}</span><span>{view + 1} / {model.images.length}</span></p>
+        {model.images.length > 1 && <div className="catalog-thumbs">{model.images.map((src, index) => <button key={src} title={viewLabel(model, index)} aria-label={`Ракурс ${index + 1}: ${viewLabel(model, index)}`} aria-pressed={view === index} onClick={() => setView(index)}><Image unoptimized src={src} alt="" width={150} height={100} /></button>)}</div>}
+        <p className="catalog-muted">{model.visualization ? "Визуализации дизайна и наполнения, не фотографии выполненного заказа." : "Фотографии кухни, включая этапы сборки."} Размеры, материалы и наполнение согласуем под ваше помещение.</p>
       </div>
       <div>
         <p>{model.description}</p>

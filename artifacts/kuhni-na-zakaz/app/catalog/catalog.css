@@ -57,7 +57,10 @@
 .catalog-detail > div > p { line-height: 1.6; font-size: 15px; }
 .catalog-prev, .catalog-next { position: absolute; top: calc(50% - 22px); }
 .catalog-prev { left: 8px; }.catalog-next { right: 8px; }
+.catalog-detail > div > .catalog-gallery-caption { display: flex; justify-content: space-between; gap: 12px; align-items: start; min-height: 48px; padding-top: 8px; font-size: 13px; line-height: 1.4; }
+.catalog-gallery-caption span:last-child { flex-shrink: 0; color: #626d65; font-variant-numeric: tabular-nums; }
 .catalog-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+.catalog-thumbs img { width: 100%; height: auto; aspect-ratio: 3/2; object-fit: contain; background: #e8ede9; }
 .catalog-thumbs button { border: 2px solid transparent; min-height: 44px; border-radius: 4px; overflow: hidden; }
 .catalog-thumbs button[aria-pressed="true"] { border-color: #176456; }
 .catalog-spec { margin: 14px 0; font-size: 14px; }

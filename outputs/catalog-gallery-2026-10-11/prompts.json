@@ -1,0 +1,22 @@
+[
+  {
+    "id": "wood-green",
+    "kind": "angle",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, single landscape 3:2 photorealistic photograph. Input image 1 is the identity reference of the SAME kitchen. Primary request: photograph this exact green shaker L-shaped kitchen in the timber house from a different oblique camera viewpoint near the right end facing toward the cooking run. Keep cabinetry layout, green shade, brass handles, timber walls and ceiling, black oven and stove, sink under the same dark-framed window, oak worktop and floor unchanged. All doors closed. Natural realistic daylight, no people, logos, text, watermark. One photograph, not a collage. Do not mirror, relocate appliances, invent another kitchen or alter cabinetry design."
+  },
+  {
+    "id": "wood-green",
+    "kind": "detail",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog single landscape 3:2 photorealistic photograph. Input image 1 is the identity reference of the SAME kitchen. Primary request: A close three-quarter photograph of the worktop, cabinet fronts, handles and cooking or sink working zone; all doors closed. Preserve exact cabinet layout, facade colours and design, handle style, countertop, appliances, window locations, floor, backsplash, walls and lighting from reference. Change only camera framing and, for storage view, opening of the existing drawer. Do not mirror or relocate cabinets/appliances. No brand labels, no people, no text, no watermark, no collage. Natural real textures, physically plausible joinery."
+  },
+  {
+    "id": "wood-green",
+    "kind": "interior",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog single landscape 3:2 photorealistic photograph. Input image 1 is the identity reference of the SAME kitchen. Primary request: Close three-quarter photograph of ONE existing wide lower storage drawer opened on its real runners, showing cutlery organiser and deeper storage with pans and dishes. Adjacent cupboards stay closed. This is a plausible illustrative storage option, not proof of actual fitted hardware. Preserve exact cabinet layout, facade colours and design, handle style, countertop, appliances, window locations, floor, backsplash, walls and lighting from reference. Change only camera framing and, for storage view, opening of the existing drawer. Do not mirror or relocate cabinets/appliances. No brand labels, no people, no text, no watermark, no collage. Natural real textures, physically plausible joinery."
+  },
+  {
+    "id": "country-blue",
+    "kind": "angle",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog single landscape 3:2 photorealistic photograph. Input image 1 is the identity reference of the SAME kitchen. Primary request: A different wide oblique camera viewpoint, all doors closed. Preserve exact cabinet layout, facade colours and design, handle style, countertop, appliances, window locations, floor, backsplash, walls and lighting from reference. Change only camera framing and, for storage view, opening of the existing drawer. Do not mirror or relocate cabinets/appliances. No brand labels, no people, no text, no watermark, no collage. Natural real textures, physically plausible joinery."
+  }
+]
