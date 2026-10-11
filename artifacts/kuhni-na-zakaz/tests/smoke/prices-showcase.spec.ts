@@ -106,7 +106,7 @@ test("comparison passes selected example, city, dimensions and filters into a mo
     payload=route.request().postDataJSON();
     await route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({id:"intercepted-test",success:true})});
   });
-  await page.goto("/prices?budget=4000-7000&utm_source=prices-test");
+  await page.goto("/prices?budget=2000-2200&utm_source=prices-test");
   const cards=page.getByTestId("price-example");
   for(let index=0;index<3;index++)await cards.nth(index).getByRole("button",{name:"Добавить к сравнению"}).click();
   await expect(cards.nth(3).getByRole("button",{name:"Добавить к сравнению"})).toBeDisabled();
@@ -123,8 +123,8 @@ test("comparison passes selected example, city, dimensions and filters into a mo
   expect(payload!.dimensions).toBe("3000 × 2000 мм");
   expect(payload!.answers.comparedExamples).toHaveLength(3);
   expect(payload!.answers.exampleId).toBeTruthy();
-  expect(payload!.answers.filters.budget).toBe("4000-7000");
-  expect(payload!.sourcePage).toContain("budget=4000-7000");
+  expect(payload!.answers.filters.budget).toBe("2000-2200");
+  expect(payload!.sourcePage).toContain("budget=2000-2200");
   expect(payload!.utmSource).toBe("prices-test");
 });
 

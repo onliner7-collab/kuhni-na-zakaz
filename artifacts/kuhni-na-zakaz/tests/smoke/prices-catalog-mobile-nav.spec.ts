@@ -4,7 +4,7 @@ const requiredPriceHeadings = [
   "Что входит в стоимость кухни",
   "Стоимость кухонь разных форм и стилей",
   "Сравните комплектации кухни",
-  "Сколько стоит кухня: источники и расчёт ориентира",
+  "Сколько стоит кухня: начальная цена и точная смета",
   "Узнайте стоимость своей кухни",
 ] as const;
 
@@ -23,8 +23,8 @@ test.describe("prices visual catalog and mobile navigation", () => {
     await expect(main.getByRole("link", { name: "Угловая кухня", exact: true })).toHaveAttribute("href", "/catalog/uglovye-kuhni");
     await expect(main.getByRole("link", { name: "Материалы рабочей зоны" })).toHaveAttribute("href", "/materials");
 
-    await page.getByRole("combobox", { name: "Бюджет за мебель", exact: true }).selectOption("4000-7000");
-    await expect(page).toHaveURL(/budget=4000-7000/);
+    await page.getByRole("combobox", { name: "Стартовая цена", exact: true }).selectOption("2000-2200");
+    await expect(page).toHaveURL(/budget=2000-2200/);
 
     await page.locator("article button").first().click();
     await expect(page.getByRole("dialog", { name: /кухн/i }).first()).toBeVisible();
