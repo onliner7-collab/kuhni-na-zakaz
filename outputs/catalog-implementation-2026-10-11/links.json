@@ -1,0 +1,106 @@
+[
+  {
+    "href": "/",
+    "status": 200
+  },
+  {
+    "href": "/catalog/uglovye-kuhni",
+    "status": 200
+  },
+  {
+    "href": "/catalog/kuhni-s-ostrovom",
+    "status": 200
+  },
+  {
+    "href": "/catalog/pryamye-kuhni",
+    "status": 200
+  },
+  {
+    "href": "/catalog/p-obraznye-kuhni",
+    "status": 200
+  },
+  {
+    "href": "/prices",
+    "status": 200
+  },
+  {
+    "href": "/personal-data",
+    "status": 200
+  },
+  {
+    "href": "/privacy-policy",
+    "status": 200
+  },
+  {
+    "href": "/catalog/malenkie-kuhni",
+    "status": 200
+  },
+  {
+    "href": "/catalog/kuhni-do-potolka",
+    "status": 200
+  },
+  {
+    "href": "/catalog/kuhni-bez-ruchek",
+    "status": 200
+  },
+  {
+    "href": "/styles/sovremennye",
+    "status": 200
+  },
+  {
+    "href": "/styles/minimalizm",
+    "status": 200
+  },
+  {
+    "href": "/styles/neoklassika",
+    "status": 200
+  },
+  {
+    "href": "/styles/skandinavskie",
+    "status": 200
+  },
+  {
+    "href": "/styles/loft",
+    "status": 200
+  },
+  {
+    "href": "/styles/klassicheskie",
+    "status": 200
+  },
+  {
+    "href": "/styles/provans",
+    "status": 200
+  },
+  {
+    "href": "/styles/hay-tek",
+    "status": 200
+  },
+  {
+    "href": "/materials",
+    "status": 200
+  },
+  {
+    "href": "/materials/furnitura",
+    "status": 200
+  },
+  {
+    "href": "/calculator",
+    "status": 200
+  },
+  {
+    "href": "/portfolio",
+    "status": 200
+  },
+  {
+    "href": "/design-proekt-kuhni",
+    "status": 200
+  },
+  {
+    "href": "/locations/minsk",
+    "status": 200
+  },
+  {
+    "href": "/locations/minskaya-oblast",
+    "status": 200
+  }
+]

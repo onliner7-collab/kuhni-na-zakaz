@@ -12,6 +12,7 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(page.locator(".catalog-card")).toHaveCount(24);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
     const hero = page.locator(".catalog-hero img");
+    await expect(hero).toHaveAttribute("src", "/images/catalog-showcase/country-blue.webp");
     expect(await hero.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
     expect((await hero.boundingBox())!.y).toBeLessThan(500);
     const schemas = await page.locator('script[type="application/ld+json"]').evaluateAll((nodes) => nodes.flatMap((node) => { const value = JSON.parse(node.textContent!); return Array.isArray(value) ? value : [value]; }));
@@ -24,6 +25,7 @@ for (const width of [320, 390, 768, 1440]) {
       await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
     }
     await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(page.getByTestId("floating-social-buttons")).toHaveAttribute("data-position", "floating");
     await expect.poll(() => page.getByTestId("floating-social-buttons").locator(":scope > div").evaluateAll((nodes) => nodes.length > 0 && nodes.every((node) => getComputedStyle(node).getPropertyValue("--floating-contact-flight-rotate").trim() === "0deg"))).toBeTruthy();
     await page.screenshot({ path: testInfo.outputPath(`catalog-${width}.png`) });
     expect(errors).toEqual([]);
