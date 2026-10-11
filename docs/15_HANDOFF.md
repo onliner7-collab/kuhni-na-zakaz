@@ -1,5 +1,7 @@
 # Handoff
 
+2026-10-11: /catalog: внедрено естественное покрытие пяти дополнительных фраз в существующих блоках. Проверка и статус публикации: docs/seo/2026-10-11-catalog-keywords.md; не публиковать посторонний dirty diff.
+
 2026-10-11: Каталог: PRODUCTION_PASS 5fcfd3c, 97 кадров в 24 галереях (минимум четыре), production build/typecheck и Playwright 7/7. PNG и WebP в проекте, визуализации отмечены. Sitemap 112 URL обновлён. QA и откат: docs/seo/2026-10-11-catalog-gallery-complete.md. Не деплоить весь dirty workspace.
 
 2026-10-08: Коммерческая страница угловых кухонь — отдельная ветка codex/angular-commercial-20261008 от production 0e10d87. Не деплоить всю dirty work поверх неё. Актуальный результат, QA и поисковые действия: docs/seo/2026-10-08-uglovye-kuhni.md.

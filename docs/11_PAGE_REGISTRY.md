@@ -1,5 +1,7 @@
 # Page Registry
 
+2026-10-11: /catalog: пять согласованных вариантов запросов добавлены в существующие H2, вводную подпись и пояснение моделей. Title/H1/description/canonical сохранены. docs/seo/2026-10-11-catalog-keywords.md.
+
 2026-10-11: /catalog: все 24 модели имеют минимум четыре кадра, corner-green пять; 97 изображений. Дополнение: docs/seo/2026-10-11-catalog-gallery-complete.md.
 
 2026-10-08: /catalog/uglovye-kuhni — коммерческий первый экран, примеры дизайна, сравнение комплектаций, короткая форма, FAQ и тематические ссылки. Отчёт: docs/seo/2026-10-08-uglovye-kuhni.md.

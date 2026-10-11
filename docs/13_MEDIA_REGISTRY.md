@@ -1,5 +1,7 @@
 # Media Registry
 
+2026-10-11: Дополнение запросов /catalog не меняет медиа: 97 кадров, русские alt и маркировка визуализаций сохранены; новых изображений нет.
+
 2026-10-11: wood-green: три imagegen PNG + WebP; дополнительно отобраны 15 встроенных imagegen кадров 1200x800, WebP 45–158 КБ, PNG source-only. Промпты: outputs/catalog-gallery-2026-10-11/prompts.json и resumed-prompts.json. Реальные фото corner-green сохранены, пятый кадр — визуализация.
 
 2026-10-08: angular-commercial-20261008 — три imagegen-концепта (compact/white/green), исходные PNG в source, WebP 1200×800 и 600×400. UI использует только WebP; происхождение раскрыто, реальные проекты не заявляются. Отчёт: docs/seo/2026-10-08-uglovye-kuhni.md.

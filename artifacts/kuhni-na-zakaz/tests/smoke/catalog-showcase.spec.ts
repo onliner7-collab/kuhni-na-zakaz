@@ -8,6 +8,11 @@ for (const width of [320, 390, 768, 1440]) {
     page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/catalog", { waitUntil: "networkidle" });
     await expect(page.locator("h1")).toHaveText("Каталог кухонь на заказ");
+    await expect(page.locator("#catalog-selection-title")).toHaveText("Модели кухонь на заказ");
+    await expect(page.locator(".catalog-selection > .catalog-muted")).toContainText("Варианты кухонных гарнитуров");
+    await expect(page.locator("#catalog-styles-title")).toHaveText("Каталог дизайна кухонь");
+    await expect(page.locator(".catalog-intro > p")).toContainText("Кухни на заказ: фото и модели");
+    await expect(page.locator("#catalog-types-title")).toHaveText("Каталог планировок кухонь");
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://kuhni.minsk.by/catalog");
     await expect(page.locator(".catalog-card")).toHaveCount(24);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();

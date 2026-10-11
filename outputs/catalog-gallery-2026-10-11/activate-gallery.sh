@@ -25,7 +25,7 @@ done
 systemctl stop kuhni-na-zakaz
 mv "$app/.next" "$release"
 mv "$backup" "$app/.next"
-sudo -u kuhni git -C "$repo" switch --detach c62ca15123d670e27d0e9ab20c3e546a3dc2bfe4
+sudo -u kuhni git -C "$repo" switch --detach c6cd4600feea5fb386a09a5476e39e5b8d8fa380
 systemctl start kuhni-na-zakaz
 echo 'Activation failed; previous runtime restored' >&2
 exit 1

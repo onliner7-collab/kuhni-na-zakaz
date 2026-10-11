@@ -4,7 +4,7 @@ target=$1
 [[ "$target" =~ ^[a-f0-9]{40}$ ]]
 repo=/var/www/kuhni-na-zakaz
 app=$repo/artifacts/kuhni-na-zakaz
-test "$(git -C "$repo" rev-parse HEAD)" = "c62ca15123d670e27d0e9ab20c3e546a3dc2bfe4"
+test "$(git -C "$repo" rev-parse HEAD)" = "c6cd4600feea5fb386a09a5476e39e5b8d8fa380"
 test -z "$(git -C "$repo" status --porcelain --untracked-files=no)"
 sudo -u kuhni git -C "$repo" fetch origin codex/catalog-deploy-20261011
 sudo -u kuhni git -C "$repo" merge --ff-only "$target"
