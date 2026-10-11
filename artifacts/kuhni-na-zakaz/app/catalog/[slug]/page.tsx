@@ -17,6 +17,7 @@ import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage"
 import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
 import { AngularKitchenPage, angularFaq } from "@/components/catalog/angular-kitchens/AngularKitchenPage";
 import { isLayoutBatchSlug, LayoutBatchPage } from "@/components/catalog/layout-batch/LayoutBatchPage";
+import { SmallKitchenPage } from "@/components/catalog/small-kitchens/SmallKitchenPage";
 import { isPublicContentSlug } from "@/lib/public-content";
 
 type SeoLink = {
@@ -556,6 +557,10 @@ export default async function CatalogItemPage({ params }: Props) {
   }
 
   if (!data) notFound();
+
+  if (slug === "malenkie-kuhni") {
+    return <SmallKitchenPage />;
+  }
 
   const seo = STATIC_CATEGORIES[slug]?.seo;
   const buyingGuide = CATEGORY_BUYING_GUIDES[slug];
