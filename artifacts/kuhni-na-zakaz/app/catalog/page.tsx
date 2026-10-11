@@ -41,7 +41,7 @@ export default function CatalogPage() {
       <main className="catalog-page"><div className="catalog-inner">
         <nav className="catalog-breadcrumb" aria-label="Хлебные крошки"><Link href="/">Главная</Link><span aria-hidden="true">/</span><span>Каталог</span></nav>
         <header className="catalog-intro"><h1>Каталог кухонь на заказ</h1><p>24 модели для квартиры и дома: прямые, угловые, П-образные и с островом.</p>
-          <div className="catalog-hero"><Image src={hero} alt="Синяя кухня с островом в загородном доме, пример дизайна" fill priority sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1247px) calc(100vw - 48px), 1200px" /><span className="catalog-hero-label">Для загородного дома · концепция</span></div>
+          <div className="catalog-hero"><Image unoptimized src={hero} alt="Синяя кухня с островом в загородном доме, пример дизайна" fill priority sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1247px) calc(100vw - 48px), 1200px" /><span className="catalog-hero-label">Для загородного дома · концепция</span></div>
         </header>
         <VisualCatalog />
         <section className="catalog-links" aria-labelledby="catalog-types-title"><h2 id="catalog-types-title">Типы кухонь и планировки</h2><div className="catalog-links-list">{categories.map(([slug, label]) => <Link key={slug} href={`/catalog/${slug}`}>{label}</Link>)}</div></section>

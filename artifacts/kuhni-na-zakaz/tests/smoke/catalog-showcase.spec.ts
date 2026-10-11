@@ -24,6 +24,7 @@ for (const width of [320, 390, 768, 1440]) {
       await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
     }
     await page.evaluate(() => window.scrollTo(0, 0));
+    await expect.poll(() => page.getByTestId("floating-social-buttons").locator(":scope > div").evaluateAll((nodes) => nodes.length > 0 && nodes.every((node) => getComputedStyle(node).getPropertyValue("--floating-contact-flight-rotate").trim() === "0deg"))).toBeTruthy();
     await page.screenshot({ path: testInfo.outputPath(`catalog-${width}.png`) });
     expect(errors).toEqual([]);
     if (width === 390) {
