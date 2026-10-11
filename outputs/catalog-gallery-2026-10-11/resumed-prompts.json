@@ -1,0 +1,98 @@
+[
+  {
+    "id": "country-blue",
+    "kind": "angle",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, one landscape 3:2 photorealistic image. Input image 1 is the identity reference of the SAME kitchen. Photograph this exact blue-gray flat-front kitchen with oak island from a slightly different oblique viewpoint near the left foreground. Preserve the L-shaped perimeter, sink under the same black-framed window on the left, cooktop under the same plaster hood at rear, black oven in the tall cabinet on the right, oak island with stone worktop and two stools, three pendants, exposed oak ceiling beams, brick accent and tiled floor. All cupboards closed. Change only camera position; no mirroring, no relocated appliances, no new cabinetry. Natural daylight and realistic textures. No people, text, logos, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "country-blue",
+    "kind": "detail",
+    "prompt": "Use case: precise-object-edit. Asset type: catalog gallery, one landscape 3:2 photorealistic photograph. Input 1 is the identity reference of the SAME kitchen. Subject: Blue-gray flat-front L kitchen with sink under black-framed window on left, cooking run under plaster hood at rear, black oven in tall cabinet on right, oak island with pale stone top and two woven stools, three pendant lamps, exposed oak ceiling beams, brick accent and tiled floor. Request: close three-quarter view of the rear cooking working zone, showing cabinet fronts, worktop, hob and hood, with island partially visible only if naturally in frame. All doors closed. Preserve exact colours, materials, cabinet shapes, handles, appliance locations and architecture. Only camera moves closer. No mirroring, extra units, text, logos, watermark, people or collage.",
+    "selected": true
+  },
+  {
+    "id": "country-blue",
+    "kind": "interior",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME kitchen. Subject: Blue-gray flat-front L kitchen with sink under black-framed window on left, cooking run under plaster hood at rear, black oven in tall cabinet on right, oak island with pale stone top and two woven stools, three pendant lamps, exposed oak ceiling beams, brick accent and tiled floor. Request: close three-quarter view of the left drawer bank in the OAK island from the seating side, opening its existing upper and lower drawers to reveal a realistic wooden cutlery organiser and storage with dishes/pots. Keep two stools on the seating side at right, exact island shape, natural oak fronts, stone top and blue-gray perimeter unchanged. Drawer boxes must sit within their original cabinet widths and have plausible runners. No new cabinets, no mirrored layout, no moved appliances. This is an illustrative option of internal storage, not proof of specified equipment. No people, words, logos, watermark, collage.",
+    "selected": true
+  },
+  {
+    "id": "cottage-white",
+    "kind": "angle",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, single landscape 3:2 photorealistic photograph. Input 1 is identity reference of the SAME kitchen. Subject: Compact WHITE flat-front STRAIGHT kitchen, tall refrigerator cabinet at left, black induction hob above steel oven left of centre, four drawers centre, sink at right near side window, small brass knobs, oak worktop, terracotta square tile backsplash, pale vertical timber walls and oak floor. No L run, no island. Request: a new oblique viewpoint from near the left doorway looking along the ONE straight cabinet line toward the right window. Preserve exactly this kitchen and its arrangement, all doors closed. Change only camera angle, same room, cabinet front design, brass knobs, worktop, backsplash, oven and hob, sink, timber walls and floor. No mirroring, relocating appliances, additional units, L kitchen, text, people, watermark, logos or collage.",
+    "selected": false
+  },
+  {
+    "id": "cottage-white",
+    "kind": "detail",
+    "prompt": "Use case: precise-object-edit. Asset type: catalog gallery, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME kitchen. Subject: Compact WHITE flat-front STRAIGHT kitchen, tall refrigerator cabinet at left, black induction hob above steel oven left of centre, four drawers centre, sink at right near side window, small brass knobs, oak worktop, terracotta square tile backsplash, pale vertical timber walls and oak floor. No L run, no island. Request: a close three-quarter photo of the hob, oven, FOUR-drawer bank immediately to the oven's right and adjacent sink, showing oak worktop, brass knobs and terracotta tiles, all doors closed. Preserve exact four-drawer divisions and positions from reference. Only move camera closer; do not mirror, change colours, change appliances, add units, extend into an L or alter room. No people, logos, text, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "cottage-white",
+    "kind": "interior",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME kitchen. Subject: Compact WHITE flat-front STRAIGHT kitchen, tall refrigerator cabinet at left, black induction hob above steel oven left of centre, four drawers centre, sink at right near side window, small brass knobs, oak worktop, terracotta square tile backsplash, pale vertical timber walls and oak floor. No L run, no island. Request: close three-quarter photo of existing four-drawer bank immediately RIGHT OF THE OVEN. Open the top shallow drawer with a wooden cutlery organiser and the bottom deeper drawer with pots/dishes, keeping the two middle drawer fronts closed, four original divisions unchanged. Preserve white flat fronts, small brass knobs, oak worktop, terracotta tiles, oven on left and sink on right. Plausible cabinet boxes/runners. This is illustrative internal storage, no claim of actual hardware. No mirrored arrangement, new cabinets, moved appliances, text, logos, people, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "log-neoclassic",
+    "kind": "angle",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, single landscape 3:2 photorealistic photograph. Input 1 is identity reference of the SAME kitchen. Subject: WHITE shaker L-shaped kitchen in log house, sink under large window on left run, four drawers left of sink, cooking run under framed hood at right, black oven below induction hob, three drawers to its right, tall refrigerator cabinet far right, brass bar handles, pale stone worktop/backsplash, rounded log walls and oak floor. Request: different oblique wide viewpoint from nearer the right tall refrigerator cabinet toward the window and the inside corner. Keep all doors closed, same cabinet divisions, brass handles, sink/window, cooktop/oven and hood positions. Show the same L layout without mirroring, relocation of units, changing architecture, new appliances or added cabinetry. Natural daylight. No people, text, labels, logo, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "log-neoclassic",
+    "kind": "detail",
+    "prompt": "Use case: precise-object-edit. Asset type: catalog gallery, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME kitchen. Subject: WHITE shaker L-shaped kitchen in log house, sink under large window on left run, four drawers left of sink, cooking run under framed hood at right, black oven below induction hob, three drawers to its right, tall refrigerator cabinet far right, brass bar handles, pale stone worktop/backsplash, rounded log walls and oak floor. Request: close three-quarter view of the right cooking run showing hob, black oven, white shaker drawers and brass handles, pale stone worktop and backsplash, with log walls or window edge visible. All doors/drawers closed. Preserve exact cabinet divisions and appliance positions from image 1, natural textures and daylight. Only move camera, do not mirror, relocate appliances or add cabinets. No people, text, labels, logos, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "log-neoclassic",
+    "kind": "interior",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME kitchen. Subject: WHITE shaker L-shaped kitchen in log house, sink under large window on left run, four drawers left of sink, cooking run under framed hood at right, black oven below induction hob, three drawers to its right, tall refrigerator cabinet far right, brass bar handles, pale stone worktop/backsplash, rounded log walls and oak floor. Request: close three-quarter view of drawer bank immediately RIGHT of black oven on the cooking run. Open the existing top shallow drawer with cutlery organiser and lower deeper drawer with pots and dishes, preserve white shaker frames and brass BAR handles, same drawer widths and countertop. Black oven on left, tall cabinet at right edge. Plausible drawer boxes and runners. This is an illustrative internal storage option. Do not move appliances, mirror, add cabinets or change room/materials. No people, text, logos, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "studio-green",
+    "kind": "angle",
+    "prompt": "Use case: precise-object-edit. Asset type: catalog single landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME cabinetry and room. Subject: Straight pale mint-green flat-front handleless kitchen in a real apartment DURING INSTALLATION. Preserve exposed concrete ceiling, dark unfinished left wall, protective film and small markings on cabinet fronts, black horizontal recess profiles, black oven stack at far left, tall full-height cabinet at right, horizontal reflective black glass upper strip over central working niche. Worktop is not yet fitted, base cabinets partially assembled. Preserve construction stage, do not invent a finished room. No people or reflections of people. Request: new nearly frontal oblique camera angle from further left, showing the entire straight kitchen cabinet wall during installation. KEEP installation stage, protective facade film, black profiles, exact cabinet divisions and oven stack left. Do not invent a countertop, sink or finished backsplash not present. Remove only people/reflections of people. Plausible unfinished room, no changed cabinet colour, no mirror, no new units, no text overlay, brand logo, watermark or collage. This is an illustrative camera reconstruction, not a real additional site photograph.",
+    "selected": true
+  },
+  {
+    "id": "studio-green",
+    "kind": "detail",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME cabinetry. Subject: Straight pale mint-green flat-front handleless kitchen in a real apartment DURING INSTALLATION. Preserve exposed concrete ceiling, dark unfinished left wall, protective film and small markings on cabinet fronts, black horizontal recess profiles, black oven stack at far left, tall full-height cabinet at right, horizontal reflective black glass upper strip over central working niche. Worktop is not yet fitted, base cabinets partially assembled. Preserve construction stage, do not invent a finished room. No people or reflections of people. Request: close three-quarter detail photo of the mint cabinet fronts, recessed black handle profiles and black reflective upper cabinet strip of the central working area during installation. All doors closed. Preserve protective film, no countertop installed, unfinished niche wall and existing cupboard divisions. Do not invent a finished kitchen, new units or a sink. Remove reflections of people. No overlay text, logos, watermark, people or collage. Illustrative reconstructed viewpoint.",
+    "selected": true
+  },
+  {
+    "id": "studio-green",
+    "kind": "interior",
+    "prompt": "Use case: precise-object-edit. Asset type: catalog gallery, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME cabinetry. Subject: Straight pale mint-green flat-front handleless kitchen in a real apartment DURING INSTALLATION. Preserve exposed concrete ceiling, dark unfinished left wall, protective film and small markings on cabinet fronts, black horizontal recess profiles, black oven stack at far left, tall full-height cabinet at right, horizontal reflective black glass upper strip over central working niche. Worktop is not yet fitted, base cabinets partially assembled. Preserve construction stage, do not invent a finished room. No people or reflections of people. Request: close three-quarter photo of the existing lower drawer pair under the right side of the working niche, NOT the full-height right cupboard. Pull the upper existing wide drawer forward to show white cabinet interior, metal runners and a simple removable cutlery organiser; open lower deeper drawer slightly to show a few bowls and pots. Preserve mint fronts with protective film, black recessed profiles, all cabinet widths, unfinished niche and no fitted countertop. This is a hypothetical storage option during fitting, not actual equipment proof. No finished room, new units, added sink, mirror, people/reflections, logos, text overlay, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "corner-green",
+    "kind": "interior",
+    "prompt": "Use case: precise-object-edit. Asset type: kitchen catalog gallery, one landscape 3:2 photorealistic image. Input 1 is identity reference of the SAME kitchen. Subject: Dark forest-green shaker lower cabinets with brass edge handles in L shape, white worktop, induction hob on left run, sink on right run, glass-front oak-interior upper cabinets over sink, cylindrical white wall hood on left, pale vertical fluted wall above white vertical tile backsplash, tall white oven tower and black refrigerator at far right, pale oak floor. Request: close three-quarter photograph of the existing dark green LOWER cupboard immediately left of the inside corner, with its one or two original doors hinged open to show white carcass, one shelf, stacked dishes and pots, realistic metal hinges. Use the EXACT facade finish and brass edge handle from reference, preserve white worktop and corner/sink at right background. Do not turn door cupboards into drawer units, add new cabinetry, change white tile/fluted wall or move appliances. This is a visualised optional internal storage, not proof of installed mechanisms. No people, text, logos, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "classic-corner",
+    "kind": "angle-v2",
+    "prompt": "Use case: precise-object-edit. One single landscape 3:2 photorealistic catalog image. Reference is exact identity of SAME classic cream shaker L kitchen: tall cabinet at far LEFT, black oven and gas hob on LEFT run under cream framed hood; sink and white window on RIGHT run; brass cup handles, oak worktop, white square tiles, pale stone floor. Change ONLY camera viewpoint: move slightly forward and to the left while keeping LEFT cooking run and RIGHT window run in that order. No mirror image, do NOT swap wall positions, oven stays left of corner and window stays right of corner. Preserve exact cabinet colours, widths, drawer divisions, glass upper units, appliances, room and natural light. Doors closed. No people, new cabinets, logo, text, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "hightech-corner",
+    "kind": "angle-v2",
+    "prompt": "Use case: precise-object-edit. One single landscape 3:2 photorealistic catalog photograph. Reference is exact identity of SAME WHITE flat-front handleless L kitchen: gray freestanding refrigerator at far LEFT of cooking run, black oven and induction hob on LEFT run, sink under WHITE window on RIGHT run, charcoal stone worktop and backsplash, white upper cabinets, gray floor, dining table at right. Change ONLY camera: move slightly toward the refrigerator and forward. Keep LEFT cooking run and RIGHT window run in that order. NO MIRRORING, do NOT swap walls, refrigerator stays leftmost, oven remains left of corner, window/sink right of corner. Preserve cupboard divisions, handleless profiles, colours/materials, appliances and room. All doors closed. No people, added cabinets, words, logos, watermark or collage.",
+    "selected": true
+  },
+  {
+    "id": "cottage-white",
+    "kind": "angle-v2",
+    "prompt": "Use case: precise-object-edit. Image 1 is the edit target, alternate viewpoint of a compact white straight kitchen. Image 2 is the original kitchen identity reference. Change ONLY the drawer stack immediately RIGHT of the oven in image 1: it must have FOUR drawers with four brass knobs, matching the divisions in image 2 (two shallow drawers at top, two deeper below). Image 1 currently incorrectly has three. Preserve everything else in image 1 exactly: camera, cabinet positions, fridge left, oven/hob, sink right, window, oak worktop, terracotta tile, white fronts, timber room. One landscape 3:2 photorealistic photo, no collage, text, logos, watermark or people.",
+    "selected": true
+  }
+]

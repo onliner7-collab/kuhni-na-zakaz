@@ -1,6 +1,6 @@
 # Component Registry
 
-2026-10-11: VisualCatalog: русские подписи галереи, счётчик и aria-live; object-contain для полного вертикального фото, клавиатура/свайпы сохранены.
+2026-10-11: VisualCatalog: русские подписи, счётчик, aria-live, object-contain; происхождение текущего кадра учитывает смешанные серии (imageVisualizations). Клавиатура/свайпы сохранены.
 
 2026-10-08: AngularKitchenPage — Server, коммерческая композиция и FAQ; ContactForm использует существующий compact. AngularStage5Interactive сохраняет выбор. MechanismComparison/CornerStorageExplorer получили необязательный selectedId для синхронизации только угловой страницы.
 

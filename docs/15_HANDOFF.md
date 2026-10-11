@@ -1,6 +1,6 @@
 # Handoff
 
-2026-10-11: Каталог: после сброса imagegen 11.10.2026 22:20:12 +03 нужны angle/detail/interior для country-blue, cottage-white, log-neoclassic, studio-green; corner-green имеет фото сборки, не выдвинутые ящики. Отчёт: docs/seo/2026-10-11-catalog-gallery.md.
+2026-10-11: Каталог: очередь дополнительных ракурсов завершена, 97 кадров в 24 галереях (минимум четыре). PNG и WebP в проекте; новые кадры честно отмечены как визуализации. Проверка и статус публикации: docs/seo/2026-10-11-catalog-gallery-complete.md.
 
 2026-10-08: Коммерческая страница угловых кухонь — отдельная ветка codex/angular-commercial-20261008 от production 0e10d87. Не деплоить всю dirty work поверх неё. Актуальный результат, QA и поисковые действия: docs/seo/2026-10-08-uglovye-kuhni.md.
 

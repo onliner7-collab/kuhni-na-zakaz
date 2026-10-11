@@ -15,7 +15,7 @@ mv "$app/.next" "$backup"
 mv "$release" "$app/.next"
 systemctl start kuhni-na-zakaz
 for attempt in $(seq 1 25); do
- if curl -fsS --max-time 10 https://kuhni.minsk.by/catalog | grep -q 'catalog-model-wood-green'; then
+ if curl -fsS --max-time 10 https://kuhni.minsk.by/catalog | grep -F 'catalog-model-wood-green' >/dev/null; then
   sudo -u kuhni bash -c "cd '$app' && pnpm run sitemap:write-static"
   echo 'Gallery release activated and sitemap refreshed'
   exit 0
@@ -25,7 +25,7 @@ done
 systemctl stop kuhni-na-zakaz
 mv "$app/.next" "$release"
 mv "$backup" "$app/.next"
-sudo -u kuhni git -C "$repo" switch --detach 576fa18f0f8c2489dc1b525e3968129d7667435d
+sudo -u kuhni git -C "$repo" switch --detach c62ca15123d670e27d0e9ab20c3e546a3dc2bfe4
 systemctl start kuhni-na-zakaz
 echo 'Activation failed; previous runtime restored' >&2
 exit 1

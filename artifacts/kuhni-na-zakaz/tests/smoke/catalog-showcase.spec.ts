@@ -92,6 +92,7 @@ test("all model galleries load every view on mobile", async ({ page }, testInfo)
   await page.setViewportSize({ width: 320, height: 844 });
   await page.goto("/catalog", { waitUntil: "networkidle" });
   for (const model of catalogModels) {
+    expect(model.images.length, model.id).toBeGreaterThanOrEqual(4);
     const opener = page.getByTestId(`catalog-model-${model.id}`).getByRole("button", { name: /^Открыть модель:/ });
     await opener.click();
     const dialog = page.getByRole("dialog");
@@ -101,9 +102,13 @@ test("all model galleries load every view on mobile", async ({ page }, testInfo)
       await expect(dialog.locator(".catalog-detail-image img")).toHaveAttribute("src", model.images[view]);
       await expect.poll(() => dialog.locator(".catalog-detail-image img").evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
       await expect(dialog.locator(".catalog-gallery-caption")).toContainText(`${view + 1} / ${model.images.length}`);
+      await expect(dialog.locator(".catalog-muted")).toContainText(
+        model.visualization || model.imageVisualizations?.[view]
+          ? "не фотография выполненного заказа" : "Фотография кухни");
       expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth)).toBeTruthy();
     }
-    if (model.id === "wood-green") await page.screenshot({ path: testInfo.outputPath("wood-green-interior-mobile.png") });
+    if (["wood-green", "country-blue", "studio-green", "corner-green"].includes(model.id))
+      await page.screenshot({ path: testInfo.outputPath(`${model.id}-interior-mobile.png`) });
     await page.keyboard.press("Escape");
     await expect(opener).toBeFocused();
   }

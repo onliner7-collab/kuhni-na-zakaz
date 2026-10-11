@@ -66,7 +66,7 @@ function ModelDetails({ model, choose, onClose }: { model: CatalogModel; choose:
         </div>
         <p className="catalog-gallery-caption" aria-live="polite"><span>{viewLabel(model, view)}</span><span>{view + 1} / {model.images.length}</span></p>
         {model.images.length > 1 && <div className="catalog-thumbs">{model.images.map((src, index) => <button key={src} title={viewLabel(model, index)} aria-label={`Ракурс ${index + 1}: ${viewLabel(model, index)}`} aria-pressed={view === index} onClick={() => setView(index)}><Image unoptimized src={src} alt="" width={150} height={100} /></button>)}</div>}
-        <p className="catalog-muted">{model.visualization ? "Визуализации дизайна и наполнения, не фотографии выполненного заказа." : "Фотографии кухни, включая этапы сборки."} Размеры, материалы и наполнение согласуем под ваше помещение.</p>
+        <p className="catalog-muted">{model.visualization || model.imageVisualizations?.[view] ? "Визуализация дизайна и наполнения, не фотография выполненного заказа." : "Фотография кухни, включая этапы сборки."} Размеры, материалы и наполнение согласуем под ваше помещение.</p>
       </div>
       <div>
         <p>{model.description}</p>

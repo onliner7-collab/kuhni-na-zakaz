@@ -7,6 +7,7 @@ export type CatalogModel = {
   maxWall: number | null; facade: string; material: string; color: string;
   rooms: CatalogRoom[]; images: string[]; description: string; priceFrom?: number;
   equipment: string[]; exclude: string[]; imageLabels?: string[]; visualization?: boolean;
+  imageVisualizations?: boolean[];
 };
 
 export const catalogRooms = [
@@ -35,6 +36,11 @@ const colorById: Record<string, string> = {
   "hightech-island": "dark", "loft-peninsula": "dark", "scandi-peninsula": "wood",
 };
 
+const catalogAngleOverrides: Record<string, string> = {
+  "classic-corner": "/images/catalog-showcase/classic-corner-angle-v2.webp",
+  "hightech-corner": "/images/catalog-showcase/hightech-corner-angle-v2.webp",
+};
+
 const baseModels: CatalogModel[] = priceExamples.map((model) => ({
   visualization: true,
   id: model.id, name: model.name, layout: model.layout, style: model.style,
@@ -42,7 +48,8 @@ const baseModels: CatalogModel[] = priceExamples.map((model) => ({
   facade: model.facadeMaterial, material: model.facade, color: colorById[model.id] ?? "light",
   rooms: model.layout === "island" || model.layout === "u-shaped" ? ["house"]
     : model.layout === "peninsula" ? ["studio", "house"] : ["apartment", "studio"],
-  images: [0, 1, 2, 3].map((view) => exampleImage(model, view)),
+  images: [0, 1, 2, 3].map((view) => view === 1
+    ? catalogAngleOverrides[model.id] ?? exampleImage(model, view) : exampleImage(model, view)),
   description: model.description, priceFrom: model.priceFrom,
   equipment: model.equipment, exclude: model.exclude,
 }));
@@ -56,28 +63,34 @@ const additionalModels: CatalogModel[] = [
     equipment: ["Две рабочие стороны", "Мойка у окна", "Высокий шкаф для техники"], exclude: [] },
   { id: "country-blue", visualization: true, name: "Кухня с островом для загородного дома", layout: "island", style: "modern",
     dimensions: "Стены и остров — по плану помещения", maxWall: null, facade: "Матовые фасады; материал уточняется", material: "enamel", color: "colored",
-    rooms: ["house"], images: ["/images/catalog-showcase/country-blue.webp"],
+    rooms: ["house"], images: ["/images/catalog-showcase/country-blue.webp", "/images/catalog-showcase/country-blue-angle.webp", "/images/catalog-showcase/country-blue-detail.webp", "/images/catalog-showcase/country-blue-interior.webp"],
+    imageLabels: ["Общий вид", "Другой ракурс", "Детали острова", "Внутри острова — вариант наполнения"],
     description: "Отдельный остров для хранения и завтраков, основная техника вдоль стен. Размер острова выбираем после проверки проходов.",
     equipment: ["Остров с посадкой", "Рабочая зона вдоль стен", "Встроенная техника"], exclude: [] },
   { id: "cottage-white", visualization: true, name: "Компактная кухня для деревянного дома", layout: "straight", style: "scandi",
     dimensions: "По длине свободной стены", maxWall: null, facade: "Светлые гладкие фасады; материал уточняется", material: "ldsp", color: "light",
-    rooms: ["wood", "house"], images: ["/images/catalog-showcase/cottage-white.webp"],
+    rooms: ["wood", "house"], images: ["/images/catalog-showcase/cottage-white.webp", "/images/catalog-showcase/cottage-white-angle-v2.webp", "/images/catalog-showcase/cottage-white-detail.webp", "/images/catalog-showcase/cottage-white-interior.webp"],
+    imageLabels: ["Общий вид", "Другой ракурс", "Рабочая зона", "Внутри ящиков — вариант наполнения"],
     description: "Одна линия шкафов для небольшого дома. Светлые фасады, древесная столешница и минимум открытого хранения.",
     equipment: ["Прямая линия", "Компактная техника", "Закрытое хранение"], exclude: [] },
   { id: "log-neoclassic", visualization: true, name: "Светлая неоклассика в бревенчатом доме", layout: "corner", style: "neoclassic",
     dimensions: "Индивидуальные размеры после замера", maxWall: null, facade: "Светлые рамочные фасады; покрытие уточняется", material: "enamel", color: "light",
-    rooms: ["wood", "house"], images: ["/images/catalog-showcase/log-neoclassic.webp"],
+    rooms: ["wood", "house"], images: ["/images/catalog-showcase/log-neoclassic.webp", "/images/catalog-showcase/log-neoclassic-angle.webp", "/images/catalog-showcase/log-neoclassic-detail.webp", "/images/catalog-showcase/log-neoclassic-interior.webp"],
+    imageLabels: ["Общий вид", "Другой ракурс", "Детали фасадов", "Внутри шкафов — вариант наполнения"],
     description: "Рамочные фасады на фоне бревенчатых стен. Расположение верхних шкафов и монтаж учитывают состояние деревянного дома.",
     equipment: ["Угловая планировка", "Рамочные фасады", "Мойка у окна"], exclude: [] },
   { id: "studio-green", name: "Зелёная прямая кухня для студии", layout: "straight", style: "minimalism",
     dimensions: "По длине свободной стены", maxWall: null, facade: "Матовые зелёные фасады; покрытие уточняется", material: "enamel", color: "colored",
-    rooms: ["studio", "apartment"], images: ["/uploads/kitchens/catalog/pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp"],
+    rooms: ["studio", "apartment"], images: ["/uploads/kitchens/catalog/pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp", "/images/catalog-showcase/studio-green-angle.webp", "/images/catalog-showcase/studio-green-detail.webp", "/images/catalog-showcase/studio-green-interior.webp"],
+    imageLabels: ["Общий вид", "Другой ракурс", "Рабочая зона", "Внутри ящиков — вариант наполнения"],
+    imageVisualizations: [false, true, true, true],
     description: "Спокойная плоскость фасадов для единого пространства кухни и гостиной. Технику и рабочую поверхность распределим по длине стены.",
     equipment: ["Одна рабочая линия", "Гладкие фасады", "Встроенная техника"], exclude: [] },
   { id: "corner-green", name: "Зелёная угловая кухня в скандинавском стиле", layout: "corner", style: "scandi",
     dimensions: "По размерам двух стен", maxWall: null, facade: "Зелёные фасады с древесной фактурой", material: "film", color: "colored",
-    rooms: ["apartment", "house"], images: ["/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp"],
-    imageLabels: ["Общий вид", "Другой ракурс во время сборки", "Нижние шкафы во время сборки", "Внутри шкафов во время сборки"],
+    rooms: ["apartment", "house"], images: ["/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp", "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp", "/images/catalog-showcase/corner-green-interior.webp"],
+    imageLabels: ["Общий вид", "Другой ракурс во время сборки", "Нижние шкафы во время сборки", "Внутри шкафов во время сборки", "Внутри нижнего шкафа — вариант наполнения"],
+    imageVisualizations: [false, false, false, false, true],
     description: "Две рабочие стороны, цветные фасады и древесные детали. Угловое хранение выбирается отдельно от внешнего оформления.",
     equipment: ["Две рабочие стороны", "Древесные детали", "Угловое хранение"], exclude: [] },
 ];
