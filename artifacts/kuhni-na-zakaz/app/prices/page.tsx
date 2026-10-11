@@ -14,12 +14,12 @@ import {
   priceFaq,
   marketSources,
   exampleImage,
-  marketRange,
+  startingPrice,
 } from "@/data/prices-showcase";
 
 const title = "Цены на кухни на заказ — стоимость и состав сметы";
 const description =
-  "Сколько стоит кухня на заказ: фото вариантов, размеры, комплектации и рыночные ориентиры цен. Сравните фасады и фурнитуру, отправьте размеры для расчёта сметы.";
+  "Сколько стоит кухня на заказ: начальные цены от 1800 BYN, фото, размеры и комплектации. Сравните фасады и фурнитуру, отправьте размеры для расчёта сметы.";
 const hero = exampleImage(priceExamples[0]);
 export const metadata: Metadata = {
   title,
@@ -159,10 +159,10 @@ export default function PricesPage() {
             </a>
           </div>
           <p className="mt-4 text-sm leading-6 text-stone-600">
-            Цифры в примерах — ориентиры по рынку, а не прайс КухниBY. Техника,
-            доставка и монтаж отдельно.{" "}
+            Базовые кухни — от 1 800 до 2 400 BYN по размеру. Комплектацию на
+            фото уточняем в смете. Техника, доставка и монтаж отдельно.{" "}
             <a className="font-semibold underline" href="#price-method">
-              Как проверены цены
+              Как уточнить цену
             </a>
           </p>
         </header>
@@ -283,66 +283,45 @@ export default function PricesPage() {
               className="scroll-mt-24 rounded-2xl border bg-amber-50/60 p-5 md:p-7"
             >
               <h2 className={heading}>
-                Сколько стоит кухня: источники и расчёт ориентира
+                Сколько стоит кухня: начальная цена и точная смета
               </h2>
               <p className="mt-3 text-sm leading-7">
-                Проверка публичных цен: {PRICE_RESEARCH_DATE}. Примеры
-                конкурентов относятся к разным комплектациям; это материал для
-                сравнения, а не подтверждение цены кухни на изображении.
+                Стартовая цена базовой кухни — от 1 800 до 2 400 BYN. Маленькая
+                кухня 2 м — от 1 800 BYN, прямая 3 м — от 1 950 BYN, угловая
+                3 × 2 м — от 2 100 BYN. Чем больше мебели, тем выше начальная цена.
               </p>
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
-                {marketSources.map((source) => (
-                  <div
-                    key={source.name}
-                    className="rounded-xl border bg-white p-4"
-                  >
-                    <a
-                      href={source.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex min-h-11 items-center font-bold underline"
-                    >
-                      {source.name} ↗
-                    </a>
-                    <p className="mt-1 text-sm leading-6 text-stone-600">
-                      {source.note}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <p className="mt-3 text-sm leading-7">
+                Цена «от» относится к базовому варианту по размеру. Фасады,
+                столешницу, высоту и механизмы выбранного дизайна согласуем
+                отдельно: окончательная сумма может быть выше. Техника,
+                доставка и монтаж в стартовую цену не включены.
+              </p>
               <details className="mt-5 rounded-xl border bg-white p-4">
                 <summary className="min-h-11 cursor-pointer py-2 font-bold">
-                  Цена кухни за погонный метр: как получены диапазоны
+                  Цена кухни за погонный метр и сравнение предложений
                 </summary>
-                <div className="mt-3 space-y-3 text-sm leading-7 text-stone-600">
-                  <p>
-                    Формула карточек: условная длина мебели × выбранный диапазон
-                    ставки, округление до 100 BYN. Для более простых вариантов
-                    использован диапазон 980–1430 BYN/м; для эмали, пластика HPL
-                    и островных примеров — 1430–2350 BYN/м. Это редакционное
-                    распределение уровней по публичным примерам SanMari, а не
-                    тариф на конкретный материал. В каталоге источника есть и
-                    более высокие цены.
-                  </p>
-                  <p>
-                    Прямая кухня 3 м: 3 × 980–1430 = примерно 2900–4300 BYN.
-                    Угловая 3 × 2 м: (3 + 2 − 0,6) × 980–1430 = примерно
-                    4300–6300 BYN. В П-образных примерах вычтено 1,2 м на два
-                    общих угла. Для острова добавлена его длина, для полуострова
-                    применена одна угловая поправка.
-                  </p>
-                  <p>
-                    Поправка на угол — условное допущение, не правило всех
-                    производителей. Пеналы, шкафы до потолка, кварц, ящики и
-                    сложные механизмы могут вывести реальную смету за этот
-                    диапазон. Нельзя получить точную цену только умножением
-                    метров.
-                  </p>
+                <p className="mt-3 text-sm leading-7 text-stone-600">
+                  Карточки показывают начальную цену базовой кухни целиком,
+                  а не стоимость одного метра. Для сравнения предложений
+                  проверьте одинаковые модули, материалы и работы. Ранее мы
+                  проверили публичные примеры конкурентов ({PRICE_RESEARCH_DATE});
+                  они не определяют наши стартовые цены.
+                </p>
+                <div className="mt-4 grid gap-3 md:grid-cols-3">
+                  {marketSources.map((source) => (
+                    <div key={source.name} className="rounded-xl border bg-white p-4">
+                      <a href={source.href} target="_blank" rel="noopener noreferrer"
+                        className="inline-flex min-h-11 items-center font-bold underline">
+                        {source.name} ↗
+                      </a>
+                      <p className="mt-1 text-sm leading-6 text-stone-600">{source.note}</p>
+                    </div>
+                  ))}
                 </div>
               </details>
               <details className="mt-3 rounded-xl border bg-white p-4">
                 <summary className="min-h-11 cursor-pointer py-2 font-bold">
-                  Размеры, материалы и ориентиры всех 18 примеров
+                  Размеры и стартовые цены всех 18 примеров
                 </summary>
                 <ul className="mt-3 divide-y">
                   {priceExamples.map((model) => (
@@ -359,9 +338,8 @@ export default function PricesPage() {
                         ящика в расчётном варианте.
                       </p>
                       <p className="text-sm leading-6">
-                        Рыночный ориентир: {marketRange(model)} за мебель;
-                        техника, доставка и монтаж отдельно. Не предложение
-                        КухниBY.
+                        Базовая кухня {startingPrice(model)}; выбранные материалы и
+                        комплектация уточняются. Техника, доставка и монтаж отдельно.
                       </p>
                     </li>
                   ))}

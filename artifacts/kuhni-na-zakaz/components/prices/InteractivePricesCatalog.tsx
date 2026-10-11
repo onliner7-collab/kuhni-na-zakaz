@@ -7,8 +7,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { optimizedImageSrc } from "@/lib/image-optimization";
 import {
   exampleImage,
-  marketRange,
-  formatByn,
+  startingPrice,
   priceExamples,
   priceStyles,
   priceLayouts,
@@ -22,10 +21,9 @@ const primary =
   "inline-flex min-h-11 items-center justify-center rounded-xl bg-stone-900 px-4 py-3 text-sm font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700";
 const budgets = [
   { id: "all", label: "Любой бюджет" },
-  { id: "under4000", label: "До 4 000 BYN" },
-  { id: "4000-7000", label: "4 000–7 000 BYN" },
-  { id: "7000-10000", label: "7 000–10 000 BYN" },
-  { id: "10000plus", label: "От 10 000 BYN" },
+  { id: "1800-2000", label: "От 1 800 до 1 950 BYN" },
+  { id: "2000-2200", label: "От 2 000 до 2 150 BYN" },
+  { id: "2200-2400", label: "От 2 200 до 2 400 BYN" },
 ];
 const facades = [
   { id: "all", label: "Любые фасады" },
@@ -324,23 +322,22 @@ function ModelDialog({
         <div>
           <div className="rounded-xl bg-amber-50 p-4">
             <p className="text-sm text-stone-600">
-              Ориентир по рынку за мебель
+              Стартовая цена базовой кухни
             </p>
-            <p className="mt-1 text-2xl font-black">{marketRange(model)}</p>
+            <p className="mt-1 text-2xl font-black">{startingPrice(model)}</p>
             <p className="mt-2 text-sm leading-6">
-              {model.length} м × {formatByn(model.rateFrom)}–
-              {formatByn(model.rateTo)} BYN/м, округлено до 100 BYN. Высота,
-              механизмы и столешница могут увеличить смету.
+              Цена указана для базовой кухни этого размера. Выбранные фасады,
+              столешница, высота шкафов и механизмы уточняются в смете.
             </p>
             <p className="mt-2 text-xs leading-5">
-              Не предложение КухниBY. Техника, доставка и монтаж отдельно.
+              Техника, доставка и монтаж отдельно.
             </p>
             <a
               href="#price-method"
               onClick={onClose}
               className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold underline"
             >
-              Источники и методика расчёта
+              Как уточнить стоимость
             </a>
           </div>
           <Specification model={model} />
@@ -350,7 +347,7 @@ function ModelDialog({
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <h3 className="mt-4 font-bold">Что не включено в ориентир</h3>
+          <h3 className="mt-4 font-bold">Что рассчитывается отдельно</h3>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6">
             {model.exclude.map((item) => (
               <li key={item}>{item}</li>
@@ -383,14 +380,14 @@ function ModelDialog({
             showCity
             showKitchenType
             defaultKitchenType={kitchenType(model)}
-            defaultComment={`Интересует ${model.name}. Размеры: ${model.dimensions}. Фасады: ${model.facadeMaterial}. На сайте рыночный ориентир ${marketRange(model)}, прошу собственную смету.`}
+            defaultComment={`Интересует ${model.name}. Размеры: ${model.dimensions}. Фасады: ${model.facadeMaterial}. На сайте стартовая цена ${startingPrice(model)}, прошу смету выбранной комплектации.`}
             defaultAnswers={{
               exampleId: model.id,
               style: model.style,
               layout: model.layout,
               dimensions: model.dimensions,
               facade: model.facadeMaterial,
-              marketBudget: marketRange(model),
+              startingBudget: startingPrice(model),
             }}
             submitLabel="Получить смету по этому примеру"
           />
@@ -442,15 +439,14 @@ export function InteractivePricesCatalog({
         )
           return false;
         const range: Record<string, [number, number]> = {
-          under4000: [0, 4000],
-          "4000-7000": [4000, 7000],
-          "7000-10000": [7000, 10000],
-          "10000plus": [10000, Infinity],
+          "1800-2000": [1800, 2000],
+          "2000-2200": [2000, 2200],
+          "2200-2400": [2200, Infinity],
         };
         const interval = range[filters.budget];
         return (
           !interval ||
-          (model.priceFrom < interval[1] && model.priceTo >= interval[0])
+          (model.priceFrom >= interval[0] && model.priceFrom < interval[1])
         );
       }),
     [filters],
@@ -514,11 +510,11 @@ export function InteractivePricesCatalog({
           </div>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-stone-600">
             18 примеров дизайна: прямые, угловые, П-образные, с островом и
-            полуостровом. Цены — рыночные ориентиры; смету КухниBY рассчитываем
-            по вашим размерам.
+            полуостровом. Стартовые цены базовой кухни — от 1 800 до 2 400 BYN
+            по размеру. Точную смету рассчитываем по вашим пожеланиям.
           </p>
         <div className="mt-5 grid grid-cols-2 gap-3">
-            {selectControl("budget", "Бюджет за мебель")}
+            {selectControl("budget", "Стартовая цена")}
             {selectControl("layout", "Форма кухни")}
           </div>
           <details className="mt-3 rounded-xl border bg-white p-3">
@@ -534,8 +530,8 @@ export function InteractivePricesCatalog({
           </details>
           <div className="my-4 flex flex-wrap items-center justify-between gap-2">
             <p role="status" className="text-sm">
-              Найдено примеров: {filtered.length}. Диапазон цены может
-              пересекать выбранный бюджет.
+              Найдено примеров: {filtered.length}. Фильтр учитывает стартовую
+              цену базовой кухни.
             </p>
             {active && (
               <button onClick={reset} className={control}>
@@ -577,11 +573,11 @@ export function InteractivePricesCatalog({
                       {model.facadeMaterial} · {model.height}
                     </p>
                     <p className="mt-4 text-xs text-stone-500">
-                      Ориентир по рынку за мебель
+                      Стартовая цена базовой кухни
                     </p>
-                    <p className="text-xl font-black">{marketRange(model)}</p>
+                    <p className="text-xl font-black">{startingPrice(model)}</p>
                     <p className="mt-1 text-xs leading-5 text-stone-600">
-                      Без техники, доставки и монтажа. Не цена КухниBY.
+                      Комплектация на фото уточняется. Техника и работы отдельно.
                     </p>
                     <span className="mt-3 inline-flex min-h-11 items-center text-sm font-bold text-amber-800">
                       4 ракурса и комплектация →
@@ -659,10 +655,10 @@ export function InteractivePricesCatalog({
                 <article key={id} className="rounded-xl border p-4">
                   <h3 className="font-bold">{model.name}</h3>
                   <p className="my-2 text-lg font-black">
-                    {marketRange(model)}
+                    {startingPrice(model)}
                   </p>
                   <p className="text-xs text-stone-600">
-                    Рыночный ориентир за мебель, не предложение КухниBY
+                    Стартовая цена базовой кухни; комплектация уточняется
                   </p>
                   <Specification model={model} />
                   <p className="my-3 text-sm">

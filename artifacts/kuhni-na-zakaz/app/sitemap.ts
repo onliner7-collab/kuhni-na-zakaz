@@ -270,7 +270,7 @@ function sitemapEntry(
     : normalizePath(path) === "/catalog/uglovye-kuhni"
     ? new Date("2026-10-08T00:00:00.000Z")
     : normalizePath(path) === "/prices"
-    ? new Date("2026-10-10T00:00:00.000Z")
+    ? new Date("2026-10-11T00:00:00.000Z")
     : SEO_OWNERSHIP_UPDATED_PATHS.has(normalizePath(path))
     ? SEO_OWNERSHIP_LAST_MODIFIED
     : FINAL_POLISH_PATHS.has(path)

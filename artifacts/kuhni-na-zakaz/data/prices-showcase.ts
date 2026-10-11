@@ -1,4 +1,4 @@
-/** Примеры дизайна и редакционная методика, не прайс производителя. */
+/** Примеры дизайна. Стартовые цены базовой кухни утверждены владельцем 11 октября 2026. */
 export const PRICE_RESEARCH_DATE = "10 октября 2026";
 export const priceStyles = [
   {
@@ -84,9 +84,6 @@ export interface PriceExample {
   countertop: string;
   height: string;
   priceFrom: number;
-  priceTo: number;
-  rateFrom: number;
-  rateTo: number;
   drawers: number;
   fittings: string;
   imageBase: string;
@@ -107,10 +104,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "ЛДСП с древесной текстурой",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 2900,
-    priceTo: 4300,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 1950,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/scandi-straight-3m",
@@ -141,10 +135,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ в плёнке",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 4300,
-    priceTo: 6300,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 2100,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/modern-corner-3x2",
@@ -175,10 +166,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ в эмали",
     countertop: "Столешница HPL",
     height: "Стандартная высота",
-    priceFrom: 3400,
-    priceTo: 5600,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 1850,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/minimal-straight-24",
@@ -209,10 +197,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "Рамочный МДФ в эмали",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 5100,
-    priceTo: 8500,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 2000,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/neoclassic-corner",
@@ -243,10 +228,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "ЛДСП под дерево",
     countertop: "Столешница HPL",
     height: "Стандартная высота",
-    priceFrom: 2900,
-    priceTo: 4300,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 1950,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/loft-straight-3m",
@@ -277,10 +259,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "ЛДСП",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 2000,
-    priceTo: 2900,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 1800,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/modern-small-2m",
@@ -311,10 +290,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "ЛДСП под светлый дуб",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 2800,
-    priceTo: 4100,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 1900,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/scandi-corner",
@@ -345,10 +321,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ в плёнке",
     countertop: "Столешница HPL",
     height: "До потолка",
-    priceFrom: 2900,
-    priceTo: 4300,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 1950,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/modern-ceiling-3m",
@@ -379,10 +352,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "Рамочный МДФ в эмали",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 6300,
-    priceTo: 10300,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 2100,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/classic-corner",
@@ -413,10 +383,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "Рамочный МДФ в плёнке",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 2900,
-    priceTo: 4300,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 1950,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/provence-straight",
@@ -447,10 +414,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ в матовой эмали",
     countertop: "Столешница HPL",
     height: "До потолка",
-    priceFrom: 6300,
-    priceTo: 10300,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 2100,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/minimal-corner-01",
@@ -481,10 +445,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ с пластиком HPL",
     countertop: "Столешница HPL",
     height: "Стандартная высота",
-    priceFrom: 6000,
-    priceTo: 9900,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 2100,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/hightech-corner",
@@ -515,10 +476,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ в плёнке",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 5700,
-    priceTo: 8300,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 2300,
     drawers: 4,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/modern-u-shape",
@@ -549,10 +507,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "Рамочный МДФ в эмали",
     countertop: "Кварцевая столешница",
     height: "Стандартная высота",
-    priceFrom: 9400,
-    priceTo: 15500,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 2400,
     drawers: 4,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/neoclassic-u-shape",
@@ -583,10 +538,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ в эмали",
     countertop: "Кварцевая столешница",
     height: "До потолка",
-    priceFrom: 7400,
-    priceTo: 12200,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 2200,
     drawers: 4,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/minimal-island",
@@ -617,10 +569,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "МДФ с пластиком HPL",
     countertop: "Кварцевая столешница",
     height: "Стандартная высота",
-    priceFrom: 8300,
-    priceTo: 13600,
-    rateFrom: 1430,
-    rateTo: 2350,
+    priceFrom: 2300,
     drawers: 4,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/hightech-island",
@@ -651,10 +600,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "ЛДСП под орех",
     countertop: "Столешница HPL",
     height: "Стандартная высота",
-    priceFrom: 3800,
-    priceTo: 5600,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 2050,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/loft-peninsula",
@@ -685,10 +631,7 @@ export const priceExamples: PriceExample[] = [
     facadeMaterial: "ЛДСП под дуб",
     countertop: "Ламинированная столешница",
     height: "Стандартная высота",
-    priceFrom: 3500,
-    priceTo: 5100,
-    rateFrom: 980,
-    rateTo: 1430,
+    priceFrom: 2000,
     drawers: 2,
     fittings: "Петли с доводчиком; модель механизма согласуется",
     imageBase: "/images/prices-showcase/generated/scandi-peninsula",
@@ -720,8 +663,8 @@ export function exampleImage(model: PriceExample, view = 0) {
 export function formatByn(value: number) {
   return value.toLocaleString("ru-BY");
 }
-export function marketRange(model: PriceExample) {
-  return `${formatByn(model.priceFrom)}–${formatByn(model.priceTo)} BYN`;
+export function startingPrice(model: PriceExample) {
+  return `от ${formatByn(model.priceFrom)} BYN`;
 }
 export const marketSources = [
   {
@@ -744,7 +687,7 @@ export const priceFaq = [
   {
     question: "Сколько стоит кухня на заказ по индивидуальным размерам?",
     answer:
-      "Стоимость кухни зависит от количества шкафов, размеров, фасадов, столешницы и механизмов. Карточки показывают предварительный ориентир по рыночным примерам. Для цены КухниBY отправьте размеры и выбранную комплектацию: мебель и работы будут рассчитаны отдельно.",
+      "Стоимость кухни зависит от количества шкафов, размеров, фасадов, столешницы и механизмов. Стартовые цены базовой кухни в карточках — от 1800 до 2400 BYN в зависимости от размера: чем больше мебели, тем выше начальная цена. Материалы и комплектация на изображении могут увеличить сумму. Для точной цены отправьте размеры; мебель и работы рассчитаем отдельно.",
   },
   {
     question: "Что входит в стоимость кухни на заказ?",
@@ -754,17 +697,17 @@ export const priceFaq = [
   {
     question: "Как считается цена кухни за погонный метр?",
     answer:
-      "Для предварительного сравнения длину мебели умножают на ставку за метр. Но высота верхних шкафов, количество ящиков, пеналы и столешница меняют сумму. В наших угловых примерах от суммы сторон вычтено 0,6 м на общий угол, в П-образных — 1,2 м на два угла. Это допущение для ориентира, а итог считается по отдельным модулям.",
+      "Для предварительного сравнения длину мебели умножают на ставку за метр. Но высота верхних шкафов, количество ящиков, пеналы и столешница меняют сумму. Стартовые цены в карточках указаны за базовую кухню, а не за погонный метр. Итог считается по отдельным модулям.",
   },
   {
     question: "Сколько стоит прямая кухня 3 метра или угловая 3 × 2 метра?",
     answer:
-      "Сравните примеры соответствующего размера в карточках. У прямой кухни ориентир считается для линии 3 м; у угловой 3 × 2 м — для условной длины 4,4 м после поправки на угол. Это разные объёмы мебели: сравнивать их только по цене одного метра недостаточно.",
+      "Прямая базовая кухня 3 м — от 1950 BYN, угловая 3 × 2 м — от 2100 BYN. Это начальные цены: фасады, столешница, высота шкафов и механизмы выбранного дизайна уточняются в смете. Техника, доставка и монтаж отдельно.",
   },
   {
     question: "Включены ли техника, доставка и монтаж в кухню под ключ?",
     answer:
-      "Выражение «под ключ» само по себе не определяет состав. В нашем предварительном ориентире техника, доставка, подъём, монтаж и подключения не включены. Их стоимость и ответственность согласуются по вашему адресу и фиксируются отдельными строками сметы.",
+      "Выражение «под ключ» само по себе не определяет состав. В стартовой цене базовой кухни техника, доставка, подъём, монтаж и подключения не включены. Их стоимость и ответственность согласуются по вашему адресу и фиксируются отдельными строками сметы.",
   },
   {
     question: "Можно ли узнать стоимость кухни по фото без замера?",
