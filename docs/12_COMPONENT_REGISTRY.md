@@ -255,3 +255,8 @@ InteractivePricesCatalog: фильтры, 4 ракурса в диалоге, с
 ## 2026-10-11 — Начальные цены /prices
 
 Владелец утвердил начальные цены 1800–2400 BYN по размеру. Карточки, сравнение, фильтр, FAQ, description и серверный список используют единую шкалу; фото и shared-компоненты сохранены. Подробности, статус проверки и rollback: docs/seo/2026-10-11-prices-starting-prices.md.
+# 2026-10-11: каталог моделей
+
+VisualCatalog: изолированный клиентский подбор, native dialog, sessionStorage, сравнение до трёх, dirty поля формы сохраняются. ContactForm: source=catalog добавлен к существующему обновлению параметров для prices; остальные sources без изменений.
+
+Подробности: docs/seo/2026-10-11-catalog-implementation.md.

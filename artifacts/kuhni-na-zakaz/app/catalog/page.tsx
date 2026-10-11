@@ -1,349 +1,59 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "@/components/navigation/Link";
-import { resolveCatalogCategoryImage } from "@/lib/catalog-category-images";
-import { CatalogCategoryImage } from "@/components/catalog/CatalogCategoryImage";
-import { JsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema-org";
-import { regionalLocations } from "@/data/locations";
-import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
-import { CatalogShapeExplorer, type CatalogShapeOption } from "@/components/catalog/CatalogShapeExplorer";
-import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { ExploreContextProvider } from "@/components/exploration";
+import { VisualCatalog } from "@/components/catalog/VisualCatalog";
+import { catalogFaq, catalogModels, catalogStyles } from "@/data/catalog-showcase";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd, type JsonLdObject } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata, canonicalSiteUrl } from "@/lib/seo";
+import "./catalog.css";
 
-const title = "Каталог кухонь на заказ: виды, формы и гарнитуры";
-const description =
-  "Каталог кухонь на заказ: угловые, прямые, П-образные, маленькие, до потолка, с островом и без ручек. Выберите тип гарнитура перед расчетом.";
-
+const title = "Каталог кухонь на заказ — фото, модели и планировки";
+const description = "Сравните модели кухонь по фото, планировке, размерам и стилю. Подберите вариант для квартиры или дома и отправьте выбранную комплектацию на расчёт.";
+const hero = "/images/catalog-showcase/country-blue.webp";
 export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/catalog" },
-  openGraph: buildOpenGraph("/catalog", title, description),
-  twitter: buildTwitterMetadata(title, description),
+  title, description, alternates: { canonical: "/catalog" },
+  openGraph: buildOpenGraph("/catalog", title, description, { images: [{ url: hero, width: 1200, height: 800, alt: "Кухня с островом для загородного дома, концепция дизайна" }] }),
+  twitter: buildTwitterMetadata(title, description, hero),
 };
-
 export const revalidate = 3600;
 
-const DEFAULT_CATEGORIES = [
-  { slug: "kuhni-bez-ruchek", title: "Кухни без ручек", description: "Лаконичный современный дизайн. Нажимные механизмы или J-профиль.", priceFrom: 2000, features: ["Чистый дизайн", "Удобный уход", "Современность"] },
-  { slug: "kuhni-do-potolka", title: "Кухни до потолка", description: "С фасадами до самого потолка — максимум хранения и строгий вид.", priceFrom: 2200, features: ["Максимум высоты", "Нет пыли", "Монолитный вид"] },
-  { slug: "malenkie-kuhni", title: "Маленькие кухни", description: "Кухни до 2 п.м. Оптимальные решения для квартир-студий.", priceFrom: 900, features: ["Компактность", "Встроенная техника", "Вертикальное хранение"] },
-  { slug: "kuhni-s-ostrovom", title: "Кухни с островом", description: "Для открытых пространств. Остров совмещает рабочую зону и общение.", priceFrom: 4500, features: ["Барная стойка", "Доп. рабочие поверхности", "Хранение"] },
-  { slug: "p-obraznye-kuhni", title: "П-образные кухни", description: "Максимум рабочего пространства. Идеальны для кухонь от 4 п.м.", priceFrom: 3500, features: ["Максимум хранения", "Большая рабочая зона", "Разделение зон"] },
-  { slug: "pryamye-kuhni", title: "Прямые кухни", description: "Классика кухонного дизайна. Подходят для узких помещений и студий.", priceFrom: 1200, features: ["Простой монтаж", "Лаконичность", "Узкие кухни"] },
-  { slug: "uglovye-kuhni", title: "Угловые кухни", description: "Оптимальное использование угловых зон. Подходят для кухонь от 2 п.м.", priceFrom: 1800, features: ["Эффективный угол", "Вместительность", "Зонирование"] },
+const categories = [
+  ["uglovye-kuhni", "Угловые кухни"], ["pryamye-kuhni", "Прямые кухни"],
+  ["p-obraznye-kuhni", "П-образные кухни"], ["kuhni-s-ostrovom", "Кухни с островом"],
+  ["malenkie-kuhni", "Маленькие кухни"], ["kuhni-do-potolka", "Кухни до потолка"],
+  ["kuhni-bez-ruchek", "Кухни без ручек"],
 ];
 
-const CATALOG_SHAPE_OPTIONS: CatalogShapeOption[] = [
-  { id: "corner", label: "Две стены", question: "Нужно использовать угол?", result: "Угловая форма связывает две рабочие стороны и требует отдельного решения для доступа в угол.", limitation: "проход, открывание соседних фасадов и доступ к глубокой зоне", href: "/catalog/uglovye-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-uglovaya-kuhnya.webp", alt: "Концепция угловой кухни с двумя рабочими сторонами" },
-  { id: "line", label: "Одна стена", question: "Все зоны должны поместиться в одну линию?", result: "Прямая форма освобождает проход, но длину делят между техникой, мойкой, хранением и столешницей.", limitation: "последовательность зон и непрерывный участок рабочей поверхности", href: "/catalog/pryamye-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-pryamaya-kuhnya.webp", alt: "Концепция прямой кухни вдоль одной стены" },
-  { id: "u-shape", label: "Три стороны", question: "Нужны три рабочие стороны?", result: "П-образная форма добавляет столешницу, если центральный проход остаётся безопасным при открытой технике.", limitation: "ширину прохода и два угловых узла по точным размерам", href: "/catalog/p-obraznye-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-p-obraznaya-kuhnya.webp", alt: "Концепция П-образной кухни с центральным проходом" },
-  { id: "island", label: "Остров", question: "Остров нужен для готовки, хранения или общения?", result: "Сначала выбирают функцию острова, затем проверяют проходы и необходимость коммуникаций.", limitation: "маршруты вокруг острова, открывание ящиков, воду, электрику и вытяжку", href: "/catalog/kuhni-s-ostrovom", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-s-ostrovom.webp", alt: "Концепция кухни с отдельным островом" },
-  { id: "small", label: "Мало места", question: "Что нельзя потерять на маленькой площади?", result: "Выберите приоритет: столешницу, хранение или технику — максимизировать всё одновременно обычно не получается.", limitation: "габариты техники и свободный проход до выбора модулей", href: "/catalog/malenkie-kuhni", image: "/images/design-proekt-kuhni/3d-proekt-malenkaya-kuhnya.webp", alt: "Концепция компактной кухни для небольшого помещения" },
-  { id: "ceiling", label: "Больше хранения", question: "Что действительно будет храниться наверху?", result: "Высокие секции подходят для редкого доступа, а ежедневные вещи лучше оставить в средней зоне.", limitation: "перепад высоты, вентиляцию, монтажный зазор и безопасный доступ", href: "/catalog/kuhni-do-potolka", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-do-potolka.webp", alt: "Концепция кухни с высокими секциями до потолка" },
-  { id: "handleless", label: "Чистый фасад", question: "Как открывать активные фасады без обычных ручек?", result: "Профиль, нажатие и фрезерованный хват подходят разным зонам — одного решения для всей кухни может не быть.", limitation: "хват, вес фасада, посудомойку и встроенный холодильник", href: "/catalog/kuhni-bez-ruchek", image: "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp", alt: "Концепция кухни с гладкими фасадами без накладных ручек" },
-];
-
-const BUYING_GUIDE_ROWS = [
-  { type: "Угловая кухня", fit: "типовая квартира, кухня 6-12 м², нужна рабочая зона в углу", href: "/catalog/uglovye-kuhni" },
-  { type: "Прямая кухня", fit: "узкое помещение, студия, ограниченный бюджет или одна свободная стена", href: "/catalog/pryamye-kuhni" },
-  { type: "П-образная кухня", fit: "просторная кухня или дом, где нужно много столешницы и хранения", href: "/catalog/p-obraznye-kuhni" },
-  { type: "Маленькая кухня", fit: "хрущевка, гостинка, студия или помещение со сложными нишами", href: "/catalog/malenkie-kuhni" },
-  { type: "Кухня до потолка", fit: "нужно больше хранения и аккуратный встроенный вид без зазора сверху", href: "/catalog/kuhni-do-potolka" },
-  { type: "Кухня с островом", fit: "кухня-гостиная, частный дом или большая новостройка с проходами от 100 см", href: "/catalog/kuhni-s-ostrovom" },
-  { type: "Кухня без ручек", fit: "современный интерьер, гладкие фасады, легкий уход и спокойный визуальный ряд", href: "/catalog/kuhni-bez-ruchek" },
-];
-
-const COMMERCIAL_PROOF_ITEMS = [
-  {
-    title: "Смета до запуска",
-    text: "До производства фиксируем планировку, материалы, фурнитуру, доставку и монтаж. Так проще сравнить варианты и не потерять важные позиции.",
-  },
-  {
-    title: "Проект под технику",
-    text: "Проверяем мойку, плиту, холодильник, посудомоечную машину, вытяжку и розетки до утверждения модулей.",
-  },
-  {
-    title: "Договор и гарантия",
-    text: "Условия работ, сроки, комплектация и гарантийные обязательства прописываются письменно.",
-  },
-];
-
-const CATALOG_AI_SCENARIOS = [
-  {
-    title: "Маленькая кухня или квартира-студия",
-    text: "Сравните прямую и угловую планировки: сколько останется столешницы, где разместится техника и насколько удобен проход. Высокие шкафы добавляют хранение, но требуют проверки доступа.",
-    href: "/catalog/malenkie-kuhni",
-  },
-  {
-    title: "Готовая кухня или кухня на заказ",
-    text: "Готовый комплект стоит рассматривать при стандартной нише. Индивидуальный проект помогает учесть сложные размеры, короба, встроенную технику и нехватку хранения.",
-    href: "/blog/kuhnya-dlya-malenkoy-kvartiry",
-  },
-  {
-    title: "Сравнение комплектаций",
-    text: "Для выбранной планировки сравните фасады, столешницу и механизмы. Проверяйте состав сметы: одинаковая форма кухни не означает одинаковую стоимость.",
-    href: "/prices",
-  },
-  {
-    title: "Замер, дизайн и монтаж под ключ",
-    text: "После выбора планировки согласуйте размеры, проект, расчёт, изготовление и установку. Условия заказа по Минску можно посмотреть на странице города.",
-    href: "/locations/minsk",
-  },
-];
-
-const CATALOG_FAQ = [
-  {
-    question: "Можно ли заказать кухню из каталога по своим размерам?",
-    answer: "Каталог помогает выбрать форму и идеи для проекта. Размеры секций, материалы, технику и хранение согласуем под ваше помещение. После замера рассчитываем изготовление, доставку и монтаж.",
-  },
-  {
-    question: "Можно ли купить кухню недорого, но под размер?",
-    answer: "Можно, если выбрать простую планировку, практичные фасады и фурнитуру без дорогих механизмов. Даже бюджетную кухню лучше считать по реальным размерам, а не подгонять готовые модули на месте.",
-  },
-  {
-    question: "Какая кухня дешевле: прямая или угловая?",
-    answer: "Обычно прямая дешевле: в ней нет углового узла, проще столешница и монтаж. Угловая дороже, но часто дает больше хранения и рабочей поверхности в типовой квартире.",
-  },
-];
-
-const PRIORITY_CITY_SLUGS = [
-  "borisov",
-  "zhodino",
-  "molodechno",
-  "soligorsk",
-  "slutsk",
-  "fanipol",
-  "smolevichi",
-  "dzerzhinsk",
-  "zaslavl",
-  "logoisk",
-  "vileyka",
-  "nesvizh",
-];
-
-export default async function CatalogPage() {
-  const jsonLd = breadcrumbJsonLd([
-    { name: "Главная", path: "/" },
-    { name: "Каталог", path: "/catalog" },
-  ]);
-  const faqJsonLdData = faqJsonLd(CATALOG_FAQ);
-  const priorityCities = PRIORITY_CITY_SLUGS
-    .map((slug) => regionalLocations.find((location) => location.slug === slug))
-    .filter((location): location is (typeof regionalLocations)[number] => Boolean(location));
-
-  return (
-    <>
-      <JsonLd data={faqJsonLdData ? [jsonLd, faqJsonLdData] : jsonLd} />
-      <ExploreContextProvider sourceRoute="/catalog">
-      <div className="section-padding">
-        <div className="container-site">
-          <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-            <Link href="/" className="hover:text-primary">Главная</Link>
-            <span>/</span>
-            <span className="text-foreground">Каталог</span>
-          </nav>
-          <h1 className="font-serif text-4xl font-bold mb-4">Каталог кухонь на заказ: виды, формы и гарнитуры</h1>
-          <p className="text-muted-foreground mb-10 max-w-2xl">
-            Выберите формат будущей кухни: угловую, прямую, П-образную, маленькую, до потолка, с островом или без ручек.
-            Эта страница помогает сравнить виды кухонь перед расчетом, а не заменяет главную страницу покупки.
-          </p>
-          <CatalogShapeExplorer options={CATALOG_SHAPE_OPTIONS} />
-          <div className="mb-12 grid gap-5 lg:grid-cols-[1fr_1.2fr]">
-            <ContextSummary />
-            <RelatedExplorationRail route="/catalog" />
-          </div>
-          <section className="mb-12 border-y border-border py-8">
-            <div className="max-w-4xl space-y-4 text-sm leading-relaxed text-muted-foreground">
-              <h2 className="font-serif text-2xl font-bold text-foreground">Как выбрать тип кухни под помещение</h2>
-              <p>
-                В каталоге удобно выбрать тип будущей кухни до расчета: угловую, прямую, П-образную, маленькую,
-                до потолка, с островом или без ручек. Готовый гарнитур со склада быстрее купить, но он редко точно попадает
-                в размеры ниши, вентиляционный короб, технику и привычки семьи. Кухня на заказ проектируется под
-                помещение: замеряем стены, проверяем коммуникации, расставляем мойку, плиту, холодильник и хранение,
-                а затем подбираем фасады, столешницу и фурнитуру под бюджет.
-              </p>
-              <p>
-                Сначала выбираем планировку и комплектацию, после этого фиксируем смету. Цена зависит не только от длины гарнитура: важны материал фасадов,
-                количество ящиков, подъемники, угловые механизмы, высота шкафов, столешница и сложность монтажа.
-                Поэтому каталог помогает сузить выбор, а точный расчет делаем после размеров и состава проекта.
-              </p>
-            </div>
-          </section>
-          <section className="mb-12 rounded-xl border bg-muted/20 p-6">
-            <h2 className="font-serif text-2xl font-bold text-foreground">Готовый гарнитур, модульная кухня или кухня на заказ</h2>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              {[
-                {
-                  title: "Готовый гарнитур",
-                  text: "Подходит, если размеры стандартные и нужно быстро закрыть базовую задачу. Минус — зазоры, компромиссы по технике и слабая привязка к коммуникациям.",
-                },
-                {
-                  title: "Модульная кухня",
-                  text: "Можно собрать из типовых секций и удержать бюджет, но шаг модулей редко совпадает с нишами, коробами, подоконником и встроенной техникой.",
-                },
-                {
-                  title: "Кухня на заказ",
-                  text: "Проектируется под реальные размеры, хранение, технику и стиль. Это дольше готового варианта, зато меньше подгонки и понятнее итоговая эргономика.",
-                },
-              ].map((item) => (
-                <div key={item.title} className="rounded-lg border bg-white p-5">
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-          <section className="mb-12 rounded-xl border bg-white p-6">
-            <h2 className="font-serif text-2xl font-bold text-foreground">Что проверяем перед заказом кухни</h2>
-            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-              Каталог помогает выбрать формат, но финальная кухня собирается по размерам конкретного помещения.
-              Перед запуском проекта важно увидеть не только красивое фото, но и понятную комплектацию, смету и следующий шаг заявки.
-            </p>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              {COMMERCIAL_PROOF_ITEMS.map((item) => (
-                <div key={item.title} className="rounded-lg border bg-muted/20 p-5">
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 flex flex-wrap gap-3">
-              <Link href="/prices" className="rounded-lg border px-4 py-2 text-sm font-semibold text-primary hover:bg-muted">
-                Сравнить цены
-              </Link>
-              <Link href="/contacts#form" className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90">
-                Отправить размеры
-              </Link>
-            </div>
-          </section>
-          <section className="mb-12 rounded-xl border bg-muted/20 p-6">
-            <h2 className="font-serif text-2xl font-bold text-foreground">
-              Как выбрать планировку и комплектацию
-            </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-              Эти сценарии помогают быстро понять, какую страницу открыть, если вопрос сформулирован как совет,
-              чек-лист, сравнение готовой и заказной кухни или поиск исполнителя под ключ.
-            </p>
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
-              {CATALOG_AI_SCENARIOS.map((item) => (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className="rounded-lg border bg-white p-5 transition-colors hover:border-primary/40 hover:bg-primary/5"
-                >
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
-                </Link>
-              ))}
-            </div>
-          </section>
-          <div id="catalog-types" className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-3 scroll-mt-24 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3">
-            {DEFAULT_CATEGORIES.map((cat) => {
-              const image = resolveCatalogCategoryImage(cat);
-
-              return (
-                <Link key={cat.slug} href={`/catalog/${cat.slug}`} className="card-base group w-[84vw] max-w-[22rem] shrink-0 snap-start transition-shadow hover:shadow-md sm:w-auto sm:max-w-none">
-                  <CatalogCategoryImage src={image.src} alt={image.alt} />
-                  <div className="p-5">
-                    <h2 className="font-serif font-semibold text-lg group-hover:text-primary transition-colors">{cat.title}</h2>
-                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{cat.description}</p>
-                    <p className="text-primary font-semibold mt-2">от {cat.priceFrom.toLocaleString("ru")} BYN</p>
-                    <div className="flex flex-wrap gap-1 mt-2">
-                      {cat.features.map((f) => <span key={f} className="text-xs bg-muted px-2 py-0.5 rounded-full">{f}</span>)}
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <section className="mt-12 border-t border-border pt-8">
-            <h2 className="font-serif text-2xl font-bold text-foreground">Какой тип кухни выбрать</h2>
-            <div className="mt-5 overflow-x-auto rounded-xl border">
-              <table className="w-full min-w-[720px] text-left text-sm">
-                <thead className="bg-muted/70 text-foreground">
-                  <tr>
-                    <th className="px-4 py-3 font-semibold">Тип кухни</th>
-                    <th className="px-4 py-3 font-semibold">Кому подходит</th>
-                    <th className="px-4 py-3 font-semibold">Посадочная</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y">
-                  {BUYING_GUIDE_ROWS.map((row) => (
-                    <tr key={row.href}>
-                      <td className="px-4 py-3 font-medium text-foreground">{row.type}</td>
-                      <td className="px-4 py-3 text-muted-foreground">{row.fit}</td>
-                      <td className="px-4 py-3">
-                        <Link href={row.href} className="font-medium text-primary hover:underline">
-                          Смотреть раздел
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <section className="mt-12 rounded-xl border bg-muted/20 p-6">
-            <h2 className="font-serif text-2xl font-bold text-foreground">
-              Каталог для Минска и городов Минской области
-            </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-              Тип кухни выбирают одинаково: по размерам, технике, хранению и бюджету.
-              А вот замер, доставка, занос и монтаж зависят от адреса, поэтому для
-              городов сделаны отдельные страницы с условиями работы.
-            </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {priorityCities.map((city) => (
-                <Link
-                  key={city.slug}
-                  href={`/locations/${city.slug}`}
-                  className="rounded-lg border border-border bg-white p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
-                >
-                  <h3 className="font-semibold text-foreground">{city.cityName}</h3>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                    Расчет, замер, доставка и монтаж в {city.cityPrepositional}.
-                  </p>
-                </Link>
-              ))}
-            </div>
-            <Link
-              href="/locations"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-            >
-              Все города и регионы <span aria-hidden="true">→</span>
-            </Link>
-          </section>
-          <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_0.8fr]">
-            <div>
-              <h2 className="font-serif text-2xl font-bold text-foreground">Частые вопросы о покупке кухни</h2>
-              <div className="mt-4 divide-y rounded-xl border">
-                {CATALOG_FAQ.map((item) => (
-                  <div key={item.question} className="p-5">
-                    <h3 className="font-semibold">{item.question}</h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="font-serif text-2xl font-bold text-foreground">Полезные разделы</h2>
-              <div className="mt-4 flex flex-col gap-3 text-sm">
-                {[
-                  { href: "/prices", label: "Цены и что влияет на смету" },
-                  { href: "/locations/minsk", label: "Кухни на заказ в Минске" },
-                  { href: "/locations/minskaya-oblast", label: "Доставка и монтаж по Минской области" },
-                  { href: "/portfolio", label: "Портфолио готовых решений" },
-                  { href: "/blog/kakuyu-planirovku-kuhni-vybrat", label: "Как выбрать планировку кухни" },
-                ].map((item) => (
-                  <Link key={item.href} href={item.href} className="rounded-lg border px-4 py-3 font-medium text-primary hover:bg-muted">
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-      </ExploreContextProvider>
-    </>
-  );
+export default function CatalogPage() {
+  const collection = {
+    "@context": "https://schema.org", "@type": "CollectionPage", "@id": canonicalSiteUrl("/catalog#collection"),
+    url: canonicalSiteUrl("/catalog"), name: title, description, inLanguage: "ru-BY",
+    mainEntity: { "@type": "ItemList", numberOfItems: catalogModels.length,
+      itemListElement: catalogModels.map((model, index) => ({ "@type": "ListItem", position: index + 1,
+        item: { "@type": "CreativeWork", name: model.name, description: model.description, image: canonicalSiteUrl(model.images[0]), url: canonicalSiteUrl(`/catalog#model-${model.id}`) },
+      })),
+    },
+  };
+  return <>
+    <JsonLd data={[breadcrumbJsonLd([{ name: "Главная", path: "/" }, { name: "Каталог кухонь", path: "/catalog" }]), collection, faqJsonLd(catalogFaq)].filter((item): item is JsonLdObject => item !== null)} />
+    <ExploreContextProvider sourceRoute="/catalog">
+      <main className="catalog-page"><div className="catalog-inner">
+        <nav className="catalog-breadcrumb" aria-label="Хлебные крошки"><Link href="/">Главная</Link><span aria-hidden="true">/</span><span>Каталог</span></nav>
+        <header className="catalog-intro"><h1>Каталог кухонь на заказ</h1><p>24 модели для квартиры и дома: прямые, угловые, П-образные и с островом.</p>
+          <div className="catalog-hero"><Image src={hero} alt="Синяя кухня с островом в загородном доме, пример дизайна" fill priority sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1247px) calc(100vw - 48px), 1200px" /><span className="catalog-hero-label">Для загородного дома · концепция</span></div>
+        </header>
+        <VisualCatalog />
+        <section className="catalog-links" aria-labelledby="catalog-types-title"><h2 id="catalog-types-title">Типы кухонь и планировки</h2><div className="catalog-links-list">{categories.map(([slug, label]) => <Link key={slug} href={`/catalog/${slug}`}>{label}</Link>)}</div></section>
+        <section className="catalog-links" aria-labelledby="catalog-styles-title"><h2 id="catalog-styles-title">Стили кухонь</h2><div className="catalog-links-list">{catalogStyles.map((style) => <Link href={style.href} key={style.id}>{style.label}</Link>)}</div></section>
+        <section className="catalog-faq" aria-labelledby="catalog-faq-title"><h2 id="catalog-faq-title">Вопросы о моделях и размерах</h2>{catalogFaq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</section>
+        <section className="catalog-links" aria-labelledby="catalog-next-title"><h2 id="catalog-next-title">Материалы, проекты и расчёт</h2><div className="catalog-links-list">{[
+          ["/materials", "Материалы фасадов"], ["/materials/furnitura", "Фурнитура и хранение"],
+          ["/prices", "Цены и комплектации"], ["/calculator", "Калькулятор кухни"],
+          ["/portfolio", "Реализованные проекты"], ["/design-proekt-kuhni", "Дизайн-проект кухни"],
+          ["/locations/minsk", "Замер и монтаж в Минске"], ["/locations/minskaya-oblast", "Работа по Минской области"],
+        ].map(([href, label]) => <Link href={href} key={href}>{label}</Link>)}</div></section>
+      </div></main>
+    </ExploreContextProvider>
+  </>;
 }

@@ -349,7 +349,7 @@ export function ContactForm({
     defaultValues,
   });
   useEffect(() => {
-    if (source !== "prices") return;
+    if (source !== "prices" && source !== "catalog") return;
     if (!getFieldState("kitchenType").isDirty) setValue("kitchenType", defaultKitchenType);
     if (!getFieldState("dimensions").isDirty) setValue("dimensions", defaultDimensions);
     if (!getFieldState("comment").isDirty) setValue("comment", ideaComment);
