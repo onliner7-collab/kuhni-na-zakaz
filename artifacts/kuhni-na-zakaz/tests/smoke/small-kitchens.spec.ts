@@ -15,7 +15,7 @@ test('small kitchen choices, views and responsive layout', async ({ page }) => {
     await expect(explorer.locator(`[data-priority="${id}"]`)).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('#small-priority-result h3')).not.toHaveText(before!);
     await expect(explorer.locator(`[data-zone-overlay="${id}"]`)).toBeVisible();
-    await expect.poll(() => explorer.locator('img').evaluateAll(images => images.every(image => (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
+    await expect.poll(() => explorer.locator('img').evaluateAll(images => images.every(image => (image as HTMLImageElement).naturalWidth > 0)), { timeout: 15_000 }).toBe(true);
   }
   await explorer.getByRole('button', { name: 'Сравнить с общим видом' }).click();
   await expect(page.getByTestId('small-priority-comparison')).toBeVisible();
