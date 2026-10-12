@@ -25,6 +25,7 @@ export function BudgetKitchenPage() {
       { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: budgetFaq.map(item => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) },
     ]} />
     <main id="budget-page" className="bg-stone-50 pb-20 text-stone-950">
+      <style>{`#budget-page section[id] { scroll-margin-top: var(--budget-scroll-offset, 160px); }`}</style>
       <div className="container-site py-5 md:py-8">
         <nav aria-label="Хлебные крошки" className="flex min-h-11 flex-wrap items-center gap-2 text-sm text-stone-600"><Link href="/">Главная</Link><span aria-hidden="true">/</span><Link href="/scenarios">Сценарии</Link><span aria-hidden="true">/</span><span>Недорогие кухни</span></nav>
         <header className="mt-4 overflow-hidden rounded-3xl bg-stone-950 text-white">
