@@ -8,7 +8,7 @@ export function BudgetKitchenHomeCard() {
       <div className="container-site">
         <div className="grid overflow-hidden rounded-3xl border border-[#9b6b3e]/20 bg-white md:grid-cols-2">
           <div className="relative aspect-[3/2]">
-            <Image src={budgetImage("overview")} alt="Пример недорогой прямой кухни с простыми фасадами и открытыми полками" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+            <Image src={budgetImage("overview")} alt="Пример недорогой прямой кухни со светлыми гладкими фасадами" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
           </div>
           <div className="p-5 sm:p-8">
             <p className="text-sm font-bold text-[#6e4727]">Кухня под ваш бюджет</p>
