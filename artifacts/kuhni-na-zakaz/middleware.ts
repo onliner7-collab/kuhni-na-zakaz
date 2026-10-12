@@ -138,6 +138,11 @@ function isAdminRoute(pathname: string) {
 function withPublicNoindexHeader(url: NextRequest["nextUrl"], response: NextResponse) {
   const { pathname, searchParams } = url;
 
+  // Public image responses set their own indexing policy in the route handler.
+  if (pathname === "/kapi/watermarked-image") {
+    return response;
+  }
+
   if (CLOSED_ROBOTS_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`))) {
     return withNoindexHeader(response);
   }

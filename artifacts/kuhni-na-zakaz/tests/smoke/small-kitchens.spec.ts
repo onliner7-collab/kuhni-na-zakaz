@@ -81,7 +81,7 @@ test('protected routes still render', async ({ request }) => {
 test('server content, FAQ and relevant links are available without JavaScript', async ({ request }) => {
   const response = await request.get('/catalog/malenkie-kuhni');
   const html = await response.text();
-  const schemas = Array.from(html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs), match => JSON.parse(match[1]));
+  const schemas = Array.from(html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g), match => JSON.parse(match[1]));
   const nodes = schemas.flatMap(schema => Array.isArray(schema) ? schema : schema['@graph'] || [schema]);
   const faq = nodes.find(node => node['@type'] === 'FAQPage');
   expect(faq.mainEntity).toHaveLength(7);
