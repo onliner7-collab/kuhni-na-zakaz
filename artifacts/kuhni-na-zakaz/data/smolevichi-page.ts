@@ -1,7 +1,14 @@
 export const SMOLEVICHI_PATH = "/locations/smolevichi";
 export const SMOLEVICHI_TITLE = "Кухни на заказ в Смолевичах — по размерам";
 export const SMOLEVICHI_DESCRIPTION = "Кухни на заказ в Смолевичах и Смолевичском районе. Выберите прямую, угловую или компактную планировку. Отправьте размеры для расчёта и уточнения выезда по адресу.";
-export const SMOLEVICHI_HERO = "/uploads/locations/smolevichi-visual-l2a/smolevichi-apartment-base.webp";
+export const SMOLEVICHI_HERO = "/uploads/locations/smolevichi-hero-v2-20261012/corner.webp";
+
+export const smolevichiHeroImages = {
+  corner: { src: SMOLEVICHI_HERO, alt: "Идея угловой кухни: две рабочие стены, мойка у окна и свободный проход" },
+  straight: { src: "/uploads/locations/smolevichi-hero-v2-20261012/straight.webp", alt: "Идея прямой кухни вдоль одной стены с рабочей поверхностью между мойкой и плитой" },
+  small: { src: "/uploads/locations/smolevichi-hero-v2-20261012/small.webp", alt: "Идея компактной кухни с ящиками, встроенной духовкой и свободным проходом" },
+  house: { src: "/uploads/locations/smolevichi-hero-v2-20261012/house.webp", alt: "Идея кухни для частного дома с полуостровом, высоким хранением и широким проходом" },
+} as const;
 
 export const smolevichiLayouts = [
   { id: "corner", label: "Угловая", title: "Угловая кухня", image: "uglovaya", alt: "Идея угловой кухни с верхним хранением для квартиры в Смолевичах", href: "/catalog/uglovye-kuhni", text: "Две рабочие стены и больше места для подготовки продуктов. Проверяем угол, доступ к мойке и открывание техники." },

@@ -267,6 +267,8 @@ InteractivePricesCatalog: фильтры, 4 ракурса в диалоге, с
 
 ## 2026-10-12 — Смолевичи
 
+Первый блок: по уточнению владельца заменены все четыре изображения переключателя, только встроенный imagegen. Новые исходники и WebP в smolevichi-hero-v2-20261012, отдельная карта hero сохраняет фото нижних блоков. Соответствие описаниям и публикация фиксируются в docs/seo/2026-10-12-smolevichi-hero-images.md.
+
 SmolevichiPage — серверные блоки и JSON-LD; SmolevichiShowroom — выбор планировки/бюджета, три независимые галереи и заявка. LocationVisualExplorer повторно использован ниже первого экрана. Shared ContactForm, Dock и баннер не изменены.
 
 VisualCatalog: изолированный клиентский подбор, native dialog, sessionStorage, сравнение до трёх, dirty поля формы сохраняются. ContactForm: source=catalog добавлен к существующему обновлению параметров для prices; остальные sources без изменений.

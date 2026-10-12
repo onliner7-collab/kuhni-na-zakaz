@@ -3,7 +3,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import Link from "@/components/navigation/Link";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { SMOLEVICHI_PATH, SMOLEVICHI_HERO, smolevichiLayouts } from "@/data/smolevichi-page";
+import { SMOLEVICHI_PATH, smolevichiHeroImages, smolevichiLayouts } from "@/data/smolevichi-page";
 import { exampleImage, startingPrice, priceExamples, priceViews, type PriceExample } from "@/data/prices-showcase";
 
 const button = "min-h-11 rounded-xl border px-3 py-2 text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
@@ -35,15 +35,16 @@ export function SmolevichiShowroom({ children, afterBudget }: { children: ReactN
   const selected = layoutIndex === null ? null : smolevichiLayouts[layoutIndex];
   const answers = useMemo(() => ({ smolevichiKitchenSelection: { layout: priceModel ? priceModel.layout === "corner" ? "Угловая" : "Прямая" : selected?.label || "", budget: budgetIndex === null ? "" : budgets[budgetIndex].label, objectType: object, settlement: district.trim(), modelId: priceModel?.id || "", modelName: priceModel?.name || "", dimensions: priceModel?.dimensions || "", startingPrice: priceModel ? startingPrice(priceModel) : "" } }), [selected, budgetIndex, object, district, priceModel]);
   const kitchenType = priceModel ? priceModel.layout === "corner" ? "Угловая" : "Прямая" : selected?.id === "small" ? "" : selected?.id === "house" ? "" : selected?.label || "";
-  const image = selected ? `/uploads/locations/smolevichi-20261012/${selected.image}.webp` : SMOLEVICHI_HERO;
-  const mobile = selected ? image.replace(".webp", "-mobile.webp") : SMOLEVICHI_HERO.replace(".webp", "-mobile.webp");
+  const hero = smolevichiHeroImages[selected?.id || "corner"];
+  const image = hero.src;
+  const mobile = image.replace(".webp", "-mobile.webp");
 
   return <>
     <section className="bg-stone-50 pb-10 md:pb-14" aria-label="Выбор кухни для Смолевичей">
       <div className="container-site grid gap-5 lg:grid-cols-[1.4fr_1fr] lg:items-center">
         <div>
           <figure className="overflow-hidden rounded-2xl border border-stone-200 bg-stone-200">
-            <picture><source media="(max-width: 767px)" srcSet={mobile} /><img data-smolevichi-hero src={image} alt={selected?.alt || "Идея кухни по размерам квартиры в Смолевичах"} width={1200} height={800} fetchPriority={selected ? "auto" : "high"} loading="eager" decoding="async" className="aspect-[3/2] w-full object-cover" /></picture>
+            <picture><source media="(max-width: 767px)" srcSet={mobile} /><img data-smolevichi-hero src={image} alt={hero.alt} width={1200} height={800} fetchPriority={selected ? "auto" : "high"} loading="eager" decoding="async" className="aspect-[3/2] w-full object-cover" /></picture>
           </figure>
           <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4" role="group" aria-label="Выберите планировку кухни">{smolevichiLayouts.map((item, index) => <button type="button" key={item.id} aria-pressed={layoutIndex === index} onClick={() => { setLayoutIndex(index); setPriceModel(null); }} className={`${button} ${layoutIndex === index ? "border-stone-900 bg-stone-900 text-white" : "border-stone-300 bg-white text-stone-800"}`}>{item.label}</button>)}</div>
           <p className="mt-2 text-xs leading-5 text-stone-600">Идеи дизайна, не фото выполненных заказов. Планировку адаптируем под ваше помещение.</p>
