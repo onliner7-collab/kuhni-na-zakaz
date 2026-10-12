@@ -1,0 +1,55 @@
+{
+  "tool": "OpenAI built-in imagegen",
+  "images": [
+    {
+      "id": "layout-side",
+      "reference": "overview",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Photograph the same straight kitchen from the refrigerator end looking diagonally along the full cabinet run toward the window. Preserve the same white flat fronts, ordinary handles, oak laminate worktop, stainless sink, freestanding white refrigerator, hob and oven. Clearly show depth and unobstructed access. This is an alternate angle, not a new kitchen. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "facade-detail",
+      "reference": "facades",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Make a close photograph of the same flat warm white and oak-look laminated cabinet fronts, showing their straight edge banding and the visible finish on the door edges. Preserve the simple metal handles. Realistic flat laminate, no routed profiles, no claim of technical cutaway. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "worktop-joint",
+      "reference": "worktop",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Make a closer low diagonal photograph of this same oak-look laminate worktop and inset stainless sink, focusing on the metal sink rim meeting the worktop and the rounded front edge. Show a neat dry seam and realistic surface texture. Preserve material, faucet and sink design. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "storage-side",
+      "reference": "storage",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Photograph this same open base cabinet from a different diagonal angle, showing the depth of fixed shelves, cookware, realistic hinge fittings and adjacent shallow cutlery drawer. Keep cabinetry and shelf layout recognizably the same. No new expensive mechanisms. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "handles-detail",
+      "reference": "facades",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Make a very close eye-level photo of one conventional brushed metal pull handle attached to this same white flat laminated door, with its two attachment points and the neighbouring door gap clearly visible. Preserve the handle design, color and surface. No logos. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "corner-side",
+      "reference": "corner",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Photograph the same L-shaped economical kitchen from the other side, looking towards the inside corner and showing both cabinet runs, modest laminate worktop and simple cupboard fronts. Show ordinary closed corner doors and an adjacent open cupboard with a fixed shelf. Preserve this exact light oak laminated furniture and appliances. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "upper-side",
+      "reference": "overview",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Make an alternate slightly upward diagonal photograph of the same ordinary-height white upper cupboards and the clear painted wall gap between cupboard tops and ceiling. Frame the upper row and a little countertop below, natural daylight. Preserve kitchen and handles, no additional stacked cupboards. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "rural-side",
+      "reference": "rural",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Photograph the same economical rural cottage kitchen from the opposite side near the dining table, looking toward the freestanding white fridge and cabinet run. Preserve white flat fronts, laminate oak-look worktop, ordinary handles, sink, standalone cooker, garden window and modest cottage interior. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "wooden-side",
+      "reference": "wooden",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Photograph the same sage-green economical straight kitchen in the same log house from the refrigerator end, diagonally looking toward the window and sink. Preserve all flat doors, conventional handles, laminate oak worktop, oven, fridge and log walls. Show the fit between cabinetry and timber walls. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    },
+    {
+      "id": "dacha-storage",
+      "reference": "rural",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape alternate-angle interior photo for Belarusian budget custom kitchen website. Reference image: design reference and room continuity target. Create a close alternate photo inside the same modest white rural cottage kitchen, with one lower hinged cupboard open to show simple fixed shelves with a few plates and saucepan. Include the oak-look laminate worktop and part of the standalone cooker. Preserve cabinet style and ordinary handles. This is the detail view of the same affordable summer-house kitchen. Keep believable construction, natural daylight and realistic texture, no people, no text, no logos, no watermark, no 3D rendering appearance."
+    }
+  ]
+}

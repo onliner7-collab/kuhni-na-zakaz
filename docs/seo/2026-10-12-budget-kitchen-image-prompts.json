@@ -1,0 +1,33 @@
+{
+  "tool": "OpenAI built-in imagegen",
+  "images": [
+    {
+      "id": "overview",
+      "prompt": "Use case: photorealistic-natural. Asset type: Russian-language custom kitchen website hero photograph, landscape 3:2. Primary request: realistic affordable custom kitchen in an ordinary Belarusian apartment, carefully designed but genuinely economical. One straight run of cabinetry, warm white flat laminated chipboard fronts, simple small brushed metal handles, oak-look laminate worktop, modest white tile backsplash, four upper cupboard doors, a freestanding white refrigerator at the end, a practical stainless sink and conventional cooktop. Honest modest materials, no marble, no island, no ornate decor, no luxury appliances. Natural daylight, realistic material texture, believable construction and joins, professional interior photography at standing eye level with full kitchen visible. A small potted herb and towel only. No people, no lettering, no logos, no watermark. This is a design example, not evidence of a completed customer project."
+    },
+    {
+      "id": "facades",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape educational interior photo for Belarusian budget custom kitchen website. Close interior photograph of an economical kitchen showing flat warm white laminated chipboard doors with neat straight edges and small metal pull handles, adjacent light oak-look flat cabinet doors, simple laminate worktop. Focus on unornamented fronts and conventional handles, physically plausible joinery. No routed profiles or glass showcase. Professional realistic interior photography, natural daylight, honest affordable materials and realistic textures. No people, text, logos, watermark or 3D render aesthetic. This is a design illustration, not an actual customer project."
+    },
+    {
+      "id": "worktop",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape educational interior photo for Belarusian budget custom kitchen website. Close photograph of a light oak-look laminate kitchen worktop with clearly visible rounded front edge, inset stainless-steel sink, simple chrome faucet, white flat cabinets underneath. Dry clean surface and neat sink rim joint, everyday materials, not marble or stone. Low diagonal angle shows laminate texture and thickness. Professional realistic interior photography, natural daylight, honest affordable materials and realistic textures. No people, text, logos, watermark or 3D render aesthetic. This is a design illustration, not an actual customer project."
+    },
+    {
+      "id": "storage",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape educational interior photo for Belarusian budget custom kitchen website. Interior photograph of an affordable kitchen base cabinet with both hinged doors open, showing two plain fixed shelves with neatly arranged cookware. Next to it one shallow cutlery drawer is open. Show simple storage clearly, realistic hinges and construction, no costly pull-out baskets or carousel. Professional realistic interior photography, natural daylight, honest affordable materials and realistic textures. No people, text, logos, watermark or 3D render aesthetic. This is a design illustration, not an actual customer project."
+    },
+    {
+      "id": "corner",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape educational interior photo for Belarusian budget custom kitchen website. Medium interior photograph of a modest L-shaped kitchen, lower corner cupboard with hinged doors open revealing a simple fixed shelf with pots, no carousel or pull-out mechanism. Flat light oak-look fronts, ordinary handles, laminate worktop, single row of plain upper cupboards with visible gap below the ceiling. Believable cabinet geometry. Professional realistic interior photography, natural daylight, honest affordable materials and realistic textures. No people, text, logos, watermark or 3D render aesthetic. This is a design illustration, not an actual customer project."
+    },
+    {
+      "id": "rural",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape educational interior photo for Belarusian budget custom kitchen website. Wide interior photograph of a simple attractive economical straight kitchen in a modest Belarusian rural cottage used as a summer house. White flat laminated fronts, conventional handles, oak-look laminate countertop, separate modest white refrigerator, stainless sink, cooker, short single row of upper cupboards, simple small wooden dining table. Window looks out to a garden. Functional modest everyday furniture, no luxurious farmhouse staging, no island, no marble. Professional realistic interior photography, natural daylight, honest affordable materials and realistic textures. No people, text, logos, watermark or 3D render aesthetic. This is a design illustration, not an actual customer project."
+    },
+    {
+      "id": "wooden",
+      "prompt": "Use case: photorealistic-natural. Asset type: 3:2 landscape educational interior photo for Belarusian budget custom kitchen website. Wide interior photograph of a modest economical kitchen inside a Belarusian timber house with clearly visible natural log walls. A simple straight custom kitchen with sage green flat laminated fronts, ordinary metal handles, oak-look laminate countertop, stainless sink and conventional cooktop. Carefully fitted modest cabinets rather than an expensive solid-wood kitchen. Small window daylight, physically plausible walls and joinery, no island, no marble, no rustic ornate decor. Professional realistic interior photography, natural daylight, honest affordable materials and realistic textures. No people, text, logos, watermark or 3D render aesthetic. This is a design illustration, not an actual customer project."
+    }
+  ]
+}

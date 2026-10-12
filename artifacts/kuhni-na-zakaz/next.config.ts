@@ -62,7 +62,7 @@ const finalPageLcpImages: Record<string, string> = {
   "/scenarios/dlya-malenkoy-kuhni":
     "/media/visual-rescue/dlya-malenkoy-kuhni/small-limit.avif",
   "/scenarios/byudzhetnaya-kuhnya":
-    "/media/visual-rescue/byudzhetnaya-kuhnya/budget-base.avif",
+    "/images/budget-kitchens-20261012/overview.webp",
 };
 
 const nextConfig: NextConfig = {

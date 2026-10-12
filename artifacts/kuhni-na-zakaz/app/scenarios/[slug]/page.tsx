@@ -11,6 +11,8 @@ import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
 import { STATIC_SCENARIO_FALLBACKS, getStaticScenarioFallback } from "@/data/scenario-fallbacks";
 import { SCENARIO_FAMILY } from "@/data/exploration-families";
 import { ScenarioFamilyPage } from "@/components/exploration/ScenarioFamilyPage";
+import { BudgetKitchenPage } from "@/components/scenarios/budget-kitchens/BudgetKitchenPage";
+import { BUDGET_KITCHEN_PATH, budgetKitchenTitle, budgetKitchenDescription, budgetImage } from "@/data/budget-kitchens";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -293,6 +295,16 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (slug === "byudzhetnaya-kuhnya") {
+    return {
+      title: budgetKitchenTitle,
+      description: budgetKitchenDescription,
+      alternates: { canonical: BUDGET_KITCHEN_PATH },
+      openGraph: buildOpenGraph(BUDGET_KITCHEN_PATH, budgetKitchenTitle, budgetKitchenDescription, { images: [{ url: budgetImage("overview"), alt: "Пример недорогой прямой кухни с простыми фасадами" }] }),
+      twitter: buildTwitterMetadata(budgetKitchenTitle, budgetKitchenDescription, budgetImage("overview")),
+      robots: { index: true, follow: true },
+    };
+  }
   const family = SCENARIO_FAMILY[slug];
   if (family) {
     return {
@@ -331,6 +343,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ScenarioDetailPage({ params }: Props) {
   const { slug } = await params;
+  if (slug === "byudzhetnaya-kuhnya") return <BudgetKitchenPage />;
   const family = SCENARIO_FAMILY[slug];
   if (family) {
     const articleJsonLd = {

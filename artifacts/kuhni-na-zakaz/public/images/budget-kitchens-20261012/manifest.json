@@ -1,0 +1,155 @@
+[
+  {
+    "id": "overview",
+    "source": "overview.png",
+    "image": "overview.webp",
+    "bytes": 42242,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "facades",
+    "source": "facades.png",
+    "image": "facades.webp",
+    "bytes": 50792,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "worktop",
+    "source": "worktop.png",
+    "image": "worktop.webp",
+    "bytes": 57652,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "storage",
+    "source": "storage.png",
+    "image": "storage.webp",
+    "bytes": 71654,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "corner",
+    "source": "corner.png",
+    "image": "corner.webp",
+    "bytes": 60604,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "rural",
+    "source": "rural.png",
+    "image": "rural.webp",
+    "bytes": 88242,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "wooden",
+    "source": "wooden.png",
+    "image": "wooden.webp",
+    "bytes": 71718,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "layout-side",
+    "source": "layout-side.png",
+    "image": "layout-side.webp",
+    "bytes": 48088,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "facade-detail",
+    "source": "facade-detail.png",
+    "image": "facade-detail.webp",
+    "bytes": 49082,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "worktop-joint",
+    "source": "worktop-joint.png",
+    "image": "worktop-joint.webp",
+    "bytes": 62234,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "storage-side",
+    "source": "storage-side.png",
+    "image": "storage-side.webp",
+    "bytes": 75356,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "handles-detail",
+    "source": "handles-detail.png",
+    "image": "handles-detail.webp",
+    "bytes": 18806,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "corner-side",
+    "source": "corner-side.png",
+    "image": "corner-side.webp",
+    "bytes": 65976,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "upper-side",
+    "source": "upper-side.png",
+    "image": "upper-side.webp",
+    "bytes": 40026,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "rural-side",
+    "source": "rural-side.png",
+    "image": "rural-side.webp",
+    "bytes": 92548,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "wooden-side",
+    "source": "wooden-side.png",
+    "image": "wooden-side.webp",
+    "bytes": 68914,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "dacha-storage",
+    "source": "dacha-storage.png",
+    "image": "dacha-storage.webp",
+    "bytes": 83920,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  }
+]
