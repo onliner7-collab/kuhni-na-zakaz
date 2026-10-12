@@ -24,7 +24,7 @@ const finalPageLcpImages: Record<string, string> = {
   "/materials/furnitura":
     "/media/pilots/hardware/avif/hardware-hero-open-cabinet-portrait.avif",
   "/catalog/pryamye-kuhni":
-    "/media/visual-rescue/pryamye-kuhni/avif/line-balanced.avif",
+    "/images/straight-kitchens/generated/straight-hero.webp",
   "/catalog/p-obraznye-kuhni":
     "/media/visual-rescue/p-obraznye-kuhni/avif/u-overview.avif",
   "/catalog/kuhni-s-ostrovom":

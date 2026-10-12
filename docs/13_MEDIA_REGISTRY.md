@@ -1,5 +1,9 @@
 # Media Registry
 
+## 2026-10-12 — Прямые кухни
+
+public/images/straight-kitchens: straight-hero и straight-storage, встроенный imagegen, PNG-исходники в проекте, WebP 1200×800 56 496/96 734 байт. ИИ-примеры, не реальные объекты; русские подписи/alt. Четыре схемы модулей и замер — SVG; сохранены шесть прежних WebP/AVIF состояний. [Prompts и provenance](seo/2026-10-12-straight-kitchens-implementation.md).
+
 2026-10-11: Дополнение запросов /catalog не меняет медиа: 97 кадров, русские alt и маркировка визуализаций сохранены; новых изображений нет.
 
 2026-10-11: wood-green: три imagegen PNG + WebP; дополнительно отобраны 15 встроенных imagegen кадров 1200x800, WebP 45–158 КБ, PNG source-only. Промпты: outputs/catalog-gallery-2026-10-11/prompts.json и resumed-prompts.json. Реальные фото corner-green сохранены, пятый кадр — визуализация.

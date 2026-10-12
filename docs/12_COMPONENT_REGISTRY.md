@@ -1,5 +1,9 @@
 # Component Registry
 
+## 2026-10-12 — Прямые кухни
+
+StraightKitchenPage — серверное содержание/JSON-LD/фото. StraightKitchenPlanner/Selection/Request — выбор длины, SVG модулей и действующая форма с сохранением ручного ввода. LayoutVisualExplorer сохранён без правок. Shared Lead/backend не менялся. [Отчёт](seo/2026-10-12-straight-kitchens-implementation.md).
+
 2026-10-11: VisualCatalog: уточнены только H2 выбора моделей и короткое пояснение гарнитуров. Фильтры, форма, галереи и общий UI сохранены.
 
 2026-10-11: VisualCatalog: русские подписи, счётчик, aria-live, object-contain; происхождение текущего кадра учитывает смешанные серии (imageVisualizations). Клавиатура/свайпы сохранены.

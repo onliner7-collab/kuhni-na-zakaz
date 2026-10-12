@@ -18,6 +18,7 @@ import { CatalogImageGallery } from "@/components/catalog/CatalogImageGallery";
 import { AngularKitchenPage, angularFaq } from "@/components/catalog/angular-kitchens/AngularKitchenPage";
 import { isLayoutBatchSlug, LayoutBatchPage } from "@/components/catalog/layout-batch/LayoutBatchPage";
 import { SmallKitchenPage } from "@/components/catalog/small-kitchens/SmallKitchenPage";
+import { StraightKitchenPage, STRAIGHT_HERO } from "@/components/catalog/straight-kitchens/StraightKitchenPage";
 import { isPublicContentSlug } from "@/lib/public-content";
 
 type SeoLink = {
@@ -109,8 +110,8 @@ const STATIC_CATEGORIES: Record<string, StaticCategory> = {
     },
   },
   "pryamye-kuhni": {
-    title: "Прямые кухни на заказ — купить кухню вдоль одной стены",
-    description: "Прямые кухни на заказ для узких помещений и студий. Сравните размещение мойки, техники и хранения вдоль одной стены. Расчёт по размерам и комплектации.",
+    title: "Прямые кухни на заказ — по вашим размерам",
+    description: "Прямые кухни на заказ по вашим размерам. Сравните схемы на 2, 3 и 4 метра, расположение техники и хранение. Отправьте размеры для расчёта комплектации.",
     priceFrom: 1200,
     features: ["Простой монтаж", "Лаконичность", "Подходят для узких кухонь", "Экономичность"],
     content: "Прямая кухня выстраивает хранение, мойку, технику и рабочую поверхность вдоль одной стены. Это спокойное решение для узких помещений, студий и случаев, когда важно оставить максимум свободного места. Если вы ищете кухни модульные купить в Минске, сравним модульный формат с изготовлением по размерам: модульный вариант быстрее подобрать, а индивидуальный проект точнее встает в нишу.",
@@ -488,8 +489,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/catalog/${slug}` },
       openGraph: buildOpenGraph(`/catalog/${slug}`, title, description, slug === "uglovye-kuhni" ? {
         images: [{ url: angularHero, width: 900, height: 1200, alt: "Светлая угловая кухня на заказ" }],
-      } : undefined),
-      twitter: buildTwitterMetadata(title, description, slug === "uglovye-kuhni" ? angularHero : undefined),
+      } : slug === "pryamye-kuhni" ? { images: [{ url: STRAIGHT_HERO, width: 1200, height: 800, alt: "Светлая прямая кухня вдоль одной стены" }] } : undefined),
+      twitter: buildTwitterMetadata(title, description, slug === "uglovye-kuhni" ? angularHero : slug === "pryamye-kuhni" ? STRAIGHT_HERO : undefined),
       robots: { index: true, follow: true },
     };
   }
@@ -560,6 +561,9 @@ export default async function CatalogItemPage({ params }: Props) {
 
   if (slug === "malenkie-kuhni") {
     return <SmallKitchenPage />;
+  }
+  if (slug === "pryamye-kuhni") {
+    return <StraightKitchenPage />;
   }
 
   const seo = STATIC_CATEGORIES[slug]?.seo;
