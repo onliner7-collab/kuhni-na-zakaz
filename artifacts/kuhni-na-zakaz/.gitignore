@@ -1,6 +1,7 @@
 # Next.js build output
 .next/
 .next-seo-ownership/
+.next*/
 out/
 dist/
 
