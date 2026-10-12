@@ -68,6 +68,14 @@ Playwright scripts/smolevichi-qa.mjs: 320/390/768/1440, HTTP 200, один H1, s
 
 Локальное evidence: outputs/smolevichi-20261012/local. Protected baseline: outputs/smolevichi-20261012/protected-before.json.
 
-Статус деплоя и Google будет дополнен после фактического выполнения. В исходной проверке Search Console URL уже присутствовал в индексе Google; это статус старой версии.
+Production опубликован: runtime commit f1c46dfe1d656420d77a7499ef6f2b7fc2758cf6, серверная сборка 173/173, сервис active, tracked дерево чистое. Первый SSH-сеанс оборвался после компиляции до переключения сборки. Был подтверждён точный обратный diff только нашего релиза, восстановлен base и выполнен повторный выпуск через nohup с журналом и файлом статуса. Повторный выпуск завершился с кодом 0; незавершённая сборка сохранена в /var/tmp/smolevichi-interrupted-build-f1c46df. Временный swap удалён после сборки.
 
-Rollback: production base 498af8ee4ae3f582dbb9ca7ee96292e5297bd752 и сохранённая перед выпуском .next; путь резервной сборки фиксируется скриптом деплоя. Не считать запрос переобхода подтверждением переиндексации.
+Production Playwright PASS: 320/390/768/1440, HTTP 200, один H1, self-canonical, 9 загруженных изображений на каждом размере, три галереи/12 ракурсов, hero и подготовка, отсутствие overflow и JS ошибок. Форма перехвачена без реального лида, все параметры переданы; ручные размеры и комментарий сохранены. 24 внутренних перехода дали 200. Главная, Борисов, Минск, Минская область, дизайн-проект и фурнитура: status/title/H1/canonical совпали с baseline. В исходниках Борисова, ContactForm и shared-навигации diff отсутствует.
+
+Sitemap и robots.txt отдают 200. Sitemap содержит 112 URL; Смолевичи lastmod 2026-10-12T00:00:00.000Z. Даты остальных страниц не повышались кодом этого релиза.
+
+12.10.2026 через браузер Google Search Console принял «Отправлен запрос на индексирование»: URL Смолевичей добавлен в приоритетную очередь сканирования. Для sitemap.xml получено «Файл Sitemap отправлен». В исходной проверке URL уже был в индексе Google; переиндексация новой версии не подтверждена.
+
+Evidence в рабочем проекте: outputs/smolevichi-20261012/production/results.json, protected-before.json, protected-after.json, sitemap-after.xml, deploy.log, google/indexing-request.jpg и google/sitemap-sent.jpg. Изолированный diff перенесён в основной рабочий проект через проверенный git apply, пользовательские изменения сохранены.
+
+Rollback: production base 498af8ee4ae3f582dbb9ca7ee96292e5297bd752 и /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.next-before-smolevichi-f1c46dfe1d656420d77a7499ef6f2b7fc2758cf6. Предыдущая static sitemap сохранена в /var/tmp/smolevichi-20261012-sitemap.xml. Откат выполняется после проверки текущего HEAD: остановка сервиса, возврат сохранённой сборки и base, восстановление static sitemap, запуск и HTTP-проверка. Не считать запрос переобхода подтверждением переиндексации.
