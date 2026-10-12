@@ -28,6 +28,8 @@ import { ZhodinoPage } from "@/components/locations/zhodino/ZhodinoPage";
 import { MinskPage } from "@/components/locations/minsk/MinskPage";
 import { MINSK_PATH, MINSK_TITLE, MINSK_DESCRIPTION, MINSK_HERO } from "@/data/minsk-page";
 import { ZHODINO_PATH, ZHODINO_TITLE, ZHODINO_DESCRIPTION, ZHODINO_HERO } from "@/data/zhodino-page";
+import { SmolevichiPage } from "@/components/locations/smolevichi/SmolevichiPage";
+import { SMOLEVICHI_PATH, SMOLEVICHI_TITLE, SMOLEVICHI_DESCRIPTION, SMOLEVICHI_HERO } from "@/data/smolevichi-page";
 
 export const revalidate = 3600;
 export const dynamic = "force-static";
@@ -289,6 +291,15 @@ async function getRegionalPortfolioCases(location: RegionalLocationData) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
+  if (city === "smolevichi") {
+    return {
+      title: SMOLEVICHI_TITLE,
+      description: SMOLEVICHI_DESCRIPTION,
+      alternates: { canonical: SMOLEVICHI_PATH },
+      openGraph: buildOpenGraph(SMOLEVICHI_PATH, SMOLEVICHI_TITLE, SMOLEVICHI_DESCRIPTION, { images: [{ url: SMOLEVICHI_HERO, width: 1200, height: 800, alt: "Идея кухни по размерам квартиры в Смолевичах" }] }),
+      twitter: buildTwitterMetadata(SMOLEVICHI_TITLE, SMOLEVICHI_DESCRIPTION, SMOLEVICHI_HERO),
+    };
+  }
   if (city === "minsk") {
     return {
       title: MINSK_TITLE,
@@ -468,6 +479,7 @@ function StarRow({ rating }: { rating: number }) {
 
 export default async function LocationPage({ params }: Props) {
   const { city } = await params;
+  if (city === "smolevichi") return <SmolevichiPage />;
   if (city === "minsk") return <MinskPage />;
   if (city === "zhodino") return <ZhodinoPage />;
   const regionalLocation = getRegionalLocation(city);
