@@ -36,6 +36,20 @@ for (const width of [320, 390, 768, 1440]) {
         await explorer.screenshot({ path: info.outputPath(`fit-${await button.getAttribute("data-frame-id")}-390.png`) });
       }
     }
+    const storage = root.locator('[data-interaction-role="straight-storage-choice"]');
+    await expect(storage.locator("button[data-frame-id]")).toHaveCount(4);
+    for (const button of await storage.locator("button[data-frame-id]").all()) {
+      const id = await button.getAttribute("data-frame-id");
+      await button.click();
+      await expect(button).toHaveAttribute("aria-pressed", "true");
+      await expect(storage.locator("img")).toHaveAttribute("src", `/images/straight-kitchens/generated/storage-${id}.webp`);
+      await expect.poll(() => storage.locator("img").evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+      expect(await storage.locator("img").evaluate(img => getComputedStyle(img).objectFit)).toBe("contain");
+      if (width === 390) {
+        await storage.locator("img").scrollIntoViewIfNeeded();
+        await storage.screenshot({ path: info.outputPath(`storage-${id}-390.png`) });
+      }
+    }
     for (const img of await root.locator("img").all()) {
       await img.scrollIntoViewIfNeeded();
       await expect.poll(() => img.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);

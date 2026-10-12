@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 target=$1
-base=72739b2a225417d0ea1115b2d4acc355fb0d926d
+base=427531232ac40364dc33617a5ac9a9d2e2c4d0f2
 [[ "$target" =~ ^[a-f0-9]{40}$ ]]
 repo=/var/www/kuhni-na-zakaz
 app=$repo/artifacts/kuhni-na-zakaz
