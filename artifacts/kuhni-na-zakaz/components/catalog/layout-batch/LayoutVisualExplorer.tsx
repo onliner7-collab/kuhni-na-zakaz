@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Check, CircleAlert } from "lucide-react";
 import { useExploreContext } from "@/components/exploration";
 
@@ -31,6 +31,7 @@ export function LayoutVisualExplorer({
   imageFit?: "cover" | "contain";
 }) {
   const [activeId, setActiveId] = useState(frames[0]?.id ?? "");
+  const sectionRef = useRef<HTMLElement>(null);
   const { updateContext } = useExploreContext();
   const active = frames.find((frame) => frame.id === activeId) ?? frames[0];
 
@@ -46,12 +47,15 @@ export function LayoutVisualExplorer({
         limitation: frame.caution,
       },
     }));
+    if (imageFit === "contain") {
+      requestAnimationFrame(() => sectionRef.current?.scrollIntoView({ block: "start", behavior: "instant" }));
+    }
   }
 
   if (!active) return null;
 
   return (
-    <section data-interaction-role={role} aria-labelledby={`${role}-title`} className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm">
+    <section ref={sectionRef} data-interaction-role={role} aria-labelledby={`${role}-title`} className={`overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm ${imageFit === "contain" ? "scroll-mt-24 md:scroll-mt-44 [overflow-anchor:none]" : ""}`}>
       <div className="relative bg-stone-200">
         <picture key={active.id}>
           <source srcSet={active.avif} type="image/avif" />

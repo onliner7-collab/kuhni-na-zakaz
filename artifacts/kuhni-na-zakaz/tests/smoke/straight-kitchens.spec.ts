@@ -31,9 +31,9 @@ for (const width of [320, 390, 768, 1440]) {
       const fit = await explorer.locator("img").evaluate((img: HTMLImageElement) => ({ fit: getComputedStyle(img).objectFit, height: img.getBoundingClientRect().height, viewport: window.innerHeight }));
       expect(fit.fit).toBe("contain");
       expect(fit.height).toBeLessThanOrEqual(fit.viewport * 0.6 + 1);
+      await expect.poll(() => explorer.locator("img").evaluate(img => { const r = img.getBoundingClientRect(); return r.top >= (window.innerWidth >= 768 ? 160 : 70) && r.bottom <= window.innerHeight; })).toBeTruthy();
       if (width === 390) {
-        await explorer.locator("img").scrollIntoViewIfNeeded();
-        await explorer.screenshot({ path: info.outputPath(`fit-${await button.getAttribute("data-frame-id")}-390.png`) });
+        await page.screenshot({ path: info.outputPath(`fit-${await button.getAttribute("data-frame-id")}-390.png`) });
       }
     }
     const storage = root.locator('[data-interaction-role="straight-storage-choice"]');
@@ -45,9 +45,9 @@ for (const width of [320, 390, 768, 1440]) {
       await expect(storage.locator("img")).toHaveAttribute("src", `/images/straight-kitchens/generated/storage-${id}.webp`);
       await expect.poll(() => storage.locator("img").evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
       expect(await storage.locator("img").evaluate(img => getComputedStyle(img).objectFit)).toBe("contain");
+      await expect.poll(() => storage.locator("img").evaluate(img => { const r = img.getBoundingClientRect(); return r.top >= (window.innerWidth >= 768 ? 160 : 70) && r.bottom <= window.innerHeight; })).toBeTruthy();
       if (width === 390) {
-        await storage.locator("img").scrollIntoViewIfNeeded();
-        await storage.screenshot({ path: info.outputPath(`storage-${id}-390.png`) });
+        await page.screenshot({ path: info.outputPath(`storage-${id}-390.png`) });
       }
     }
     for (const img of await root.locator("img").all()) {
