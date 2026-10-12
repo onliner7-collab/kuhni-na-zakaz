@@ -28,6 +28,13 @@ for (const width of [320, 390, 768, 1440]) {
       await button.click();
       await expect(button).toHaveAttribute("aria-pressed", "true");
       await expect.poll(() => explorer.locator("img").evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+      const fit = await explorer.locator("img").evaluate((img: HTMLImageElement) => ({ fit: getComputedStyle(img).objectFit, height: img.getBoundingClientRect().height, viewport: window.innerHeight }));
+      expect(fit.fit).toBe("contain");
+      expect(fit.height).toBeLessThanOrEqual(fit.viewport * 0.6 + 1);
+      if (width === 390) {
+        await explorer.locator("img").scrollIntoViewIfNeeded();
+        await explorer.screenshot({ path: info.outputPath(`fit-${await button.getAttribute("data-frame-id")}-390.png`) });
+      }
     }
     for (const img of await root.locator("img").all()) {
       await img.scrollIntoViewIfNeeded();

@@ -21,12 +21,14 @@ export function LayoutVisualExplorer({
   role,
   legend,
   frames,
+  imageFit = "cover",
 }: {
   route: string;
   layout: string;
   role: string;
   legend: string;
   frames: LayoutVisualFrame[];
+  imageFit?: "cover" | "contain";
 }) {
   const [activeId, setActiveId] = useState(frames[0]?.id ?? "");
   const { updateContext } = useExploreContext();
@@ -61,7 +63,7 @@ export function LayoutVisualExplorer({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) calc(100vw - 3rem), 1200px"
             loading={active.id === frames[0]?.id ? "eager" : "lazy"}
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
-            className={`aspect-[2/3] h-auto w-full object-cover sm:aspect-[3/2] ${
+            className={`${imageFit === "contain" ? "aspect-[3/2] max-h-[60svh] h-auto w-full object-contain" : "aspect-[2/3] h-auto w-full object-cover sm:aspect-[3/2]"} ${
               active.id === frames[0]?.id
                 ? ""
                 : "motion-safe:animate-[fade-in_.22s_ease-out]"
