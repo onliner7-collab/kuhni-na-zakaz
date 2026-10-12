@@ -1,5 +1,9 @@
 # Component Registry
 
+## 2026-10-12 — Фото планировок и визуальный выбор хранения
+
+LayoutVisualExplorer: optional imageFit=contain, default cover сохранён для других страниц. straight-storage-media.ts: четыре русских media state; страница использует тот же доступный переключатель с ExploreContext.
+
 ## 2026-10-12 — Прямые кухни
 
 StraightKitchenPage — серверное содержание/JSON-LD/фото. StraightKitchenPlanner/Selection/Request — выбор длины, SVG модулей и действующая форма с сохранением ручного ввода. LayoutVisualExplorer сохранён без правок. Shared Lead/backend не менялся. [Отчёт](seo/2026-10-12-straight-kitchens-implementation.md).

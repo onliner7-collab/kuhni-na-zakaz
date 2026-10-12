@@ -1,5 +1,9 @@
 # Media Registry
 
+## 2026-10-12 — Фото планировок и визуальный выбор хранения
+
+storage-drawers.png — новая встроенная imagegen генерация. storage-pantry/ceiling/appliances — производные существующих сгенерированных assets проекта, не новая генерация. Четыре пары WebP/AVIF, исходники и точные пути описаны в отчёте прямых кухонь.
+
 ## 2026-10-12 — Прямые кухни
 
 public/images/straight-kitchens/generated: straight-hero и straight-storage, встроенный imagegen, PNG-исходники в проекте, WebP 1200×800 56 496/96 734 байт. ИИ-примеры, не реальные объекты; русские подписи/alt. Четыре схемы модулей и замер — SVG; сохранены шесть прежних WebP/AVIF состояний. [Prompts и provenance](seo/2026-10-12-straight-kitchens-implementation.md).
