@@ -6,6 +6,7 @@ for (const width of [320, 390, 768, 1440]) {
     const errors: string[] = [];
     page.on("pageerror", error => errors.push(error.message));
     await page.goto(path, { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#form").getByTestId("form-dimensions")).toHaveValue("Линия 3 м");
     const root = page.getByTestId("straight-kitchen-page");
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("h1")).toHaveText("Прямые кухни на заказ");
@@ -57,6 +58,7 @@ for (const width of [320, 390, 768, 1440]) {
 }
 test("length and visual choice reach lead; edited dimensions stay; submission intercepted", async ({ page }) => {
   await page.goto(path, { waitUntil: "domcontentloaded" });
+  await expect(page.locator("#form").getByTestId("form-dimensions")).toHaveValue("Линия 3 м");
   const planner = page.getByTestId("straight-planner");
   await planner.getByRole("button", { name: "4 м", exact: true }).click();
   const form = page.locator("#form form");

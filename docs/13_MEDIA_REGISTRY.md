@@ -2,7 +2,7 @@
 
 ## 2026-10-12 — Прямые кухни
 
-public/images/straight-kitchens: straight-hero и straight-storage, встроенный imagegen, PNG-исходники в проекте, WebP 1200×800 56 496/96 734 байт. ИИ-примеры, не реальные объекты; русские подписи/alt. Четыре схемы модулей и замер — SVG; сохранены шесть прежних WebP/AVIF состояний. [Prompts и provenance](seo/2026-10-12-straight-kitchens-implementation.md).
+public/images/straight-kitchens/generated: straight-hero и straight-storage, встроенный imagegen, PNG-исходники в проекте, WebP 1200×800 56 496/96 734 байт. ИИ-примеры, не реальные объекты; русские подписи/alt. Четыре схемы модулей и замер — SVG; сохранены шесть прежних WebP/AVIF состояний. [Prompts и provenance](seo/2026-10-12-straight-kitchens-implementation.md).
 
 2026-10-11: Дополнение запросов /catalog не меняет медиа: 97 кадров, русские alt и маркировка визуализаций сохранены; новых изображений нет.
 
