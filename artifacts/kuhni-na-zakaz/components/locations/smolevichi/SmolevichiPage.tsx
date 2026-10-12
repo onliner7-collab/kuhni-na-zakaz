@@ -3,18 +3,20 @@ import { ExploreContextProvider } from "@/components/exploration/ExploreContext"
 import { LocationVisualExplorer } from "@/components/locations/LocationVisualExplorer";
 import { getLocationVisualSeries } from "@/data/location-visual-series";
 import { JsonLd, breadcrumbJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
-import { SMOLEVICHI_PATH, SMOLEVICHI_TITLE, SMOLEVICHI_DESCRIPTION, smolevichiLayouts, smolevichiFaq } from "@/data/smolevichi-page";
+import { SMOLEVICHI_PATH, SMOLEVICHI_TITLE, SMOLEVICHI_DESCRIPTION, smolevichiFaq } from "@/data/smolevichi-page";
+import { smolevichiPlanningCards } from "@/data/smolevichi-planning";
+import { SmolevichiPlanningDetails } from "./SmolevichiPlanningDetails";
 import { SmolevichiShowroom } from "./SmolevichiShowroom";
 
 function Planning() {
   return <section id="smolevichi-layouts" className="section-padding bg-white" aria-labelledby="smolevichi-layouts-title"><div className="container-site">
     <p className="text-sm font-semibold text-primary">Планировка по размерам</p><h2 id="smolevichi-layouts-title" className="mt-2 font-serif text-2xl font-bold md:text-3xl">Какая кухня подойдёт вашему помещению?</h2>
-    <p className="mt-3 max-w-2xl leading-7 text-stone-700">Прямые, угловые и маленькие кухни на заказ в Смолевичах выбираем по длине стен, проходам и технике. Здесь — примеры дизайна для сравнения.</p>
-    <div className="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{smolevichiLayouts.map(item => <article key={item.id} className="overflow-hidden rounded-2xl border border-stone-200 bg-white">
-      <img src={`/uploads/locations/smolevichi-20261012/${item.image}.webp`} srcSet={`/uploads/locations/smolevichi-20261012/${item.image}-mobile.webp 480w, /uploads/locations/smolevichi-20261012/${item.image}.webp 1200w`} alt={item.alt} width={1200} height={800} loading="lazy" decoding="async" sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw" className="aspect-[3/2] w-full object-cover" />
-      <div className="p-5"><h3 className="text-xl font-bold">{item.title}</h3><p className="mt-2 text-sm leading-6 text-stone-700">{item.text}</p><Link href={item.href} className="mt-2 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">Смотреть решения →</Link></div>
+    <p className="mt-3 max-w-3xl leading-7 text-stone-700">Начните с формы комнаты: сколько стен можно использовать, где находятся окна и коммуникации, какой проход нужно сохранить. Сравните четыре идеи кухни на заказ в Смолевичах — окончательную планировку проверим по вашим размерам.</p>
+    <div className="mt-7 grid gap-6 md:grid-cols-2">{smolevichiPlanningCards.map(item => <article key={item.id} data-planning-card={item.id} className="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white">
+      <figure className="relative"><img src={item.image} srcSet={`${item.image.replace(".webp", "-mobile.webp")} 720w, ${item.image} 1200w`} alt={item.alt} width={1200} height={800} loading="lazy" decoding="async" sizes="(max-width: 767px) 100vw, 50vw" className="aspect-[3/2] w-full object-cover" /><figcaption className="absolute bottom-3 left-3 rounded-full bg-stone-950/90 px-3 py-1.5 text-xs font-semibold text-white">Идея дизайна</figcaption></figure>
+      <div className="flex flex-1 flex-col p-5 md:p-6"><p className="text-sm font-semibold text-primary">{item.fit}</p><h3 className="mt-2 font-serif text-2xl font-bold">{item.title}</h3><p className="mt-3 leading-7 text-stone-700">{item.text}</p><div className="mt-4 rounded-xl bg-stone-50 p-4"><p className="text-sm font-semibold">Проверьте перед выбором</p><ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-6 text-stone-700">{item.checks.map(check => <li key={check}>{check}</li>)}</ul></div><Link href={item.href} className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">{item.link} →</Link></div>
     </article>)}</div>
-    <details className="mt-5 rounded-xl border border-stone-300 p-4"><summary className="min-h-11 cursor-pointer py-2 font-semibold">Кухня до потолка и встроенная техника</summary><p className="mt-3 leading-7 text-stone-700">Высокие шкафы добавляют верхнее хранение, но требуют точного замера потолка и вентиляции. Для встроенной техники проверяем модели приборов, зазоры, розетки и доступ для обслуживания до изготовления.</p><div className="mt-2 flex flex-wrap gap-x-5"><Link href="/catalog/kuhni-do-potolka" className="inline-flex min-h-11 items-center text-primary underline">Кухни до потолка</Link><Link href="/blog/kuhnya-pod-vstroennuyu-tehniku" className="inline-flex min-h-11 items-center text-primary underline">Кухня под встроенную технику</Link><Link href="/catalog" className="inline-flex min-h-11 items-center text-primary underline">Все идеи кухонь</Link></div></details>
+    <SmolevichiPlanningDetails />
   </div></section>;
 }
 

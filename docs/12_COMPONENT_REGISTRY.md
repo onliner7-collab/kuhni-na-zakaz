@@ -273,4 +273,6 @@ SmolevichiPage — серверные блоки и JSON-LD; SmolevichiShowroom 
 
 VisualCatalog: изолированный клиентский подбор, native dialog, sessionStorage, сравнение до трёх, dirty поля формы сохраняются. ContactForm: source=catalog добавлен к существующему обновлению параметров для prices; остальные sources без изменений.
 
+SmolevichiPlanningDetails: native details, фото монтируются после открытия; Planning использует отдельную карту данных и сетку 2×2. Первая карта hero независима.
+
 Подробности: docs/seo/2026-10-11-catalog-implementation.md.
