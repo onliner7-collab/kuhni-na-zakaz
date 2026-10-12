@@ -28,6 +28,7 @@ import { optimizedImageSrc } from "@/lib/image-optimization";
 import { GENERATED_MINSK_PORTFOLIO_CASES } from "@/data/portfolio-projects";
 import { formatByn, kitchenStyles, priceKitchenModels, type KitchenStyleId } from "@/data/price-catalog";
 import { ContextSummary, useExploreContext } from "@/components/exploration";
+import { BudgetKitchenHomeCard } from "@/components/home/BudgetKitchenHomeCard";
 
 interface HomeProjectCard {
   id: number | string;
@@ -671,6 +672,8 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
           </div>
         </div>
       </section>
+
+      <BudgetKitchenHomeCard />
 
       <section id="selector" className="border-t border-white/10 bg-[#17120e] py-10 md:py-14 scroll-mt-24" aria-labelledby="home-picker-title" data-home-nav="selector" data-no-kitchen-lead>
         <div className="container-site">

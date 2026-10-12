@@ -7,6 +7,7 @@ import { MobileNavigation } from "@/components/layout/MobileNavigation";
 
 const primaryLinks = [
   ["/catalog", "Каталог"],
+  ["/scenarios/byudzhetnaya-kuhnya", "Недорогие кухни"],
   ["/styles", "Стили"],
   ["/materials", "Материалы"],
   ["/materials/furnitura", "Фурнитура"],
