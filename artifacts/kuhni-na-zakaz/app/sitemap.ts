@@ -266,7 +266,7 @@ function sitemapEntry(
   const effectiveLastModified = normalizePath(path) === "/scenarios/byudzhetnaya-kuhnya" || normalizePath(path) === "/catalog/pryamye-kuhni" || normalizePath(path) === "/locations/smolevichi"
     ? new Date("2026-10-12T00:00:00.000Z")
     : normalizePath(path) === "/"
-    ? new Date("2026-10-07T00:00:00.000Z")
+    ? new Date("2026-10-12T00:00:00.000Z")
     : normalizePath(path) === "/locations/zhodino" || normalizePath(path) === "/locations/minsk"
     ? new Date("2026-10-09T00:00:00.000Z")
     : normalizePath(path) === "/catalog/uglovye-kuhni"
