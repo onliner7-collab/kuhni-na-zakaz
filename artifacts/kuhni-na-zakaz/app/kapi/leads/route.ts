@@ -7,12 +7,15 @@ import { enqueueLeadCardSync } from "@/lib/leads/telegram-cards";
 import { processTelegramOutbox } from "@/lib/leads/telegram-outbox";
 import {
   leadInputSchema,
+  canUseCalculatorEmail,
   normalizeImageUrl,
   normalizePhone,
   normalizeSourceType,
   normalizeSiteUrl,
 } from "@/lib/leads/validation";
 import { sendEmailNotification } from "@/lib/email";
+import { selectionSchema } from "@/lib/calculator/validation";
+import { describeSelection, estimate, getLengths, layouts, lengthError, meters, tariffKeys, totalMeters } from "@/lib/calculator/config";
 
 const MAX_LEADS_PER_WINDOW = 5;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
@@ -39,14 +42,28 @@ export async function POST(req: NextRequest) {
     }
 
     const data = parsed.data;
+    // Reconstruct calculator details on the server. Never trust a posted price.
+    if (data.source === "calculator" && data.sourceBlock === "calculator_meters") {
+      const calculator = data.answers.calculator as { selection?: unknown } | undefined;
+      const selected = selectionSchema.safeParse(calculator?.selection);
+      if (!selected.success || lengthError(selected.data)) return NextResponse.json({ error: "Проверьте размеры и комплектацию кухни." }, { status: 400 });
+      const selection = selected.data;
+      const rules = await prisma.priceRule.findMany({ where: { key: { in: tariffKeys(selection) }, active: true }, select: { key: true, value: true, active: true } });
+      const calculated = estimate(selection, rules);
+      data.kitchenType = layouts.find(item => item.id === selection.layout)!.title;
+      data.dimensions = `${getLengths(selection).map(meters).join(" × ")} м; сумма сторон ${meters(totalMeters(selection))} м`;
+      data.hasMeasurements = !selection.approximate;
+      data.comment = [...describeSelection(selection), calculated.status === "priced" ? `Предварительная оценка: ${calculated.price} BYN; тариф ${calculated.rate} BYN/м. Требует проверки менеджером.` : "Стоимость не рассчитана. Прошу подготовить смету.", "Техника, мойка, смеситель, фартук, подсветка, доставка и монтаж — отдельно."].join("\n");
+      data.answers = { ...data.answers, calculator: { selection, result: calculated, estimateIsPreliminary: true } };
+    }
     const sourceType = normalizeSourceType(data.sourceType);
     const phone = normalizePhone(data.phone);
-    const canSubmitWithoutPhone =
+    const canSubmitWithoutPhone = canUseCalculatorEmail(data) || (
       data.continueInTelegram &&
-      (sourceType === "kitchen_card" || sourceType === "kitchen_gallery");
+      (sourceType === "kitchen_card" || sourceType === "kitchen_gallery"));
     if (!phone && !canSubmitWithoutPhone) {
       return NextResponse.json(
-        { error: "Введите корректный номер телефона" },
+        { error: data.source === "calculator" ? "Укажите корректный телефон или электронную почту." : "Введите корректный номер телефона" },
         { status: 400 },
       );
     }
@@ -76,7 +93,7 @@ export async function POST(req: NextRequest) {
         name: data.name,
         phone: phone || "",
         email: data.email,
-        preferredContact: data.continueInTelegram ? "telegram" : data.preferredContact,
+        preferredContact: data.continueInTelegram ? "telegram" : canUseCalculatorEmail(data) ? "email" : data.preferredContact,
         city: data.city,
         kitchenType: data.kitchenType,
         dimensions: data.dimensions,

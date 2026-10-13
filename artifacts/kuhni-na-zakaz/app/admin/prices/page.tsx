@@ -51,6 +51,7 @@ export default async function AdminPricesPage() {
       </div>
 
       <PriceRulesEditor grouped={grouped} categoryLabels={CATEGORY_LABELS} categoryOrder={CATEGORY_ORDER} />
+      <Link href="/admin/calculator" className="block rounded-xl border p-4 text-primary font-semibold">Тарифы нового калькулятора в метрах →</Link>
     </div>
   );
 }

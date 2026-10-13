@@ -60,6 +60,12 @@ export function normalizePhone(raw: string): string | null {
   return `+${digits}`;
 }
 
+// Only the calculator accepts email as the sole contact. Other lead forms keep
+// their existing telephone / Telegram requirements.
+export function canUseCalculatorEmail(data: { source: string; formType: string; email: string; phone: string }): boolean {
+  return data.source === "calculator" && data.formType === "calculator" && !data.phone.trim() && z.string().email().safeParse(data.email).success;
+}
+
 export function normalizeSourceType(raw: string): LeadSourceType {
   if (LEAD_SOURCE_TYPES.includes(raw as LeadSourceType)) return raw as LeadSourceType;
   if (raw === "prices" || raw === "calculator") return "price_calculator";

@@ -17,6 +17,10 @@ export async function POST(req: NextRequest) {
     const input: CalcInput = await req.json();
 
     const allRules = await prisma.priceRule.findMany({ where: { active: true } });
+    const requiredKeys = [`material_${input.material}`, `layout_${input.layout}`, `style_${input.style}`, `countertop_${input.countertop}`, `hardware_${input.hardware}`, `tech_${input.tech}`, `priority_${input.priority}`];
+    if (requiredKeys.some(key => !allRules.some(r => r.key === key && Number.isFinite(r.value)))) {
+      return NextResponse.json({ error: "Онлайн-цена пока недоступна. Оставьте заявку на индивидуальный расчёт." }, { status: 503 });
+    }
     const rule = (key: string) => allRules.find(r => r.key === key)?.value ?? 0;
 
     const area = Math.max(1, Math.min(8, Number(input.area) || 3));
@@ -39,6 +43,9 @@ export async function POST(req: NextRequest) {
       + techAddon;
 
     const withPriority = baseEstimate * (1 + priorityDelta);
+    if (!Number.isFinite(withPriority) || withPriority <= 0 || layoutCoeff <= 0 || styleCoeff <= 0) {
+      return NextResponse.json({ error: "Стоимость требует уточнения. Оставьте заявку на индивидуальный расчёт." }, { status: 503 });
+    }
 
     const rawFrom = withPriority * rangeLow;
     const rawTo = withPriority * rangeHigh;
@@ -66,7 +73,7 @@ export async function POST(req: NextRequest) {
       area,
       factors,
     });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 400 });
+  } catch {
+    return NextResponse.json({ error: "Не удалось рассчитать стоимость. Проверьте параметры или повторите попытку позже." }, { status: 400 });
   }
 }
