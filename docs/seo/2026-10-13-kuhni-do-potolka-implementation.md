@@ -32,3 +32,15 @@ TypeScript PASS. Локальная production-сборка PASS с предус
 Деплой-скрипт scripts/deploy-ceiling-kitchens-20261013.sh собирает отдельную .next-ceiling-<commit>, сохраняет runtime в .next-before-ceiling-<commit> и исходный sitemap. При неуспешной активации возвращает исходные commit и сборку. Для ручного отката остановить сервис, восстановить backup сборки, вернуть исходный commit и sitemap, запустить сервис и проверить защищённые страницы.
 
 Проверки, скриншоты, журнал публикации и статусы Google: outputs/ceiling-kitchens-20261013/.
+
+## Итог публикации
+
+Runtime b635124d319256bd0be9804a3b04480bee7fb9d9 опубликован 13.10.2026. Серверная сборка 174/174 PASS, сервис active, tracked дерево сервера чистое. Изолированный релиз не включил чужие незавершённые изменения. Sitemap пересоздан на сервере: 112 URL, lastmod категории 2026-10-13. Сохранён sitemap-after.xml и deploy.log.
+
+Production Playwright: 5/5 PASS (20,7 с). Четыре ширины 320/390/768/1440, все фотографии и шесть состояний хранения, schema/canonical, ссылки и обработчик водяных знаков, фильтры и перехваченная заявка проверены. Реальных лидов не создано. До/после деплоя шесть защищённых URL сохранили HTTP 200, title, H1 и canonical: protected-before.json и protected-after.json. Скриншот первого экрана — production-390.png.
+
+Google Search Console показал существующий URL в индексе. После публикации принят запрос индексирования: URL добавлен в приоритетную очередь сканирования. Повторная отправка https://kuhni.minsk.by/sitemap.xml принята: панель показала «Файл Sitemap отправлен». Подтверждения — google-indexing-request.jpg и google-sitemap-sent.jpg. Переиндексация новой версии и достижение топ-5 не подтверждены.
+
+После завершения проверок и сохранения отчёта запускается отдельный локальный скрипт перехода Windows в сон по поручению владельца. Это запрос операционной системе, а не подтверждение фактического сна до возврата вызова.
+
+Рабочая сборка для отката: /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.next-before-ceiling-b635124d319256bd0be9804a3b04480bee7fb9d9. Исходный commit — 263bf0a6419f5f54067a95d8be930acfb449c422, backup sitemap — /var/tmp/ceiling-b635124d319256bd0be9804a3b04480bee7fb9d9-sitemap.xml.

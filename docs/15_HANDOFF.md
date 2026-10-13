@@ -2,8 +2,9 @@
 
 ## 2026-10-13 — Кухни до потолка
 
-Реализация и узкий релиз `/catalog/kuhni-do-potolka`: `docs/seo/2026-10-13-kuhni-do-potolka-implementation.md`. Семантика и Wordstat: `docs/seo/2026-10-13-kuhni-do-potolka-strategy.md`. Все изображения новые. Фактический итог публикации и Google фиксируется в отчёте; не считать топ-5 или переиндексацию подтверждёнными.
+Опубликован runtime b635124, серверная сборка 174/174 и production QA 5/5 PASS. Sitemap 112 URL, lastmod категории 13.10.2026. Google принял запрос индексирования; подтверждение и финальный статус sitemap в отчёте. Борисов и пять защищённых страниц сохранили title/H1/canonical.
 
+Реализация и узкий релиз `/catalog/kuhni-do-potolka`: `docs/seo/2026-10-13-kuhni-do-potolka-implementation.md`. Семантика и Wordstat: `docs/seo/2026-10-13-kuhni-do-potolka-strategy.md`. Все изображения новые. Фактический итог публикации и Google фиксируется в отчёте; не считать топ-5 или переиндексацию подтверждёнными.
 
 ## 2026-10-12 — Прямые кухни
 

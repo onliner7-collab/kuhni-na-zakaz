@@ -11,7 +11,11 @@ for (const file of ['docs/11_PAGE_REGISTRY.md', 'docs/12_COMPONENT_REGISTRY.md',
   if (first < 0) throw new Error(`Missing new registry section: ${file}`);
   const target = path.join(release, file);
   const original = fs.readFileSync(target, 'utf8').replace(/\r\n/g, '\n');
-  if (!original.includes(section)) {
+  const existingStart = original.indexOf(section.split('\n')[0]);
+  if (existingStart >= 0) {
+    const existingEnd = original.indexOf('\n## ', existingStart + 3);
+    fs.writeFileSync(target, original.slice(0, existingStart) + section + '\n' + (existingEnd < 0 ? '' : original.slice(existingEnd)), 'utf8');
+  } else if (!original.includes(section)) {
     const headerEnd = original.indexOf('\n');
     fs.writeFileSync(target, original.slice(0, headerEnd) + '\n\n' + section + '\n' + original.slice(headerEnd), 'utf8');
   }
