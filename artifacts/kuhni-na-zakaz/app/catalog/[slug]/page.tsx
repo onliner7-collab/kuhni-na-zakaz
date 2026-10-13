@@ -19,6 +19,8 @@ import { AngularKitchenPage, angularFaq } from "@/components/catalog/angular-kit
 import { isLayoutBatchSlug, LayoutBatchPage } from "@/components/catalog/layout-batch/LayoutBatchPage";
 import { SmallKitchenPage } from "@/components/catalog/small-kitchens/SmallKitchenPage";
 import { StraightKitchenPage, STRAIGHT_HERO } from "@/components/catalog/straight-kitchens/StraightKitchenPage";
+import { CeilingKitchenPage } from "@/components/catalog/ceiling-kitchens/CeilingKitchenPage";
+import { CEILING_HERO } from "@/components/catalog/ceiling-kitchens/ceiling-data";
 import { isPublicContentSlug } from "@/lib/public-content";
 
 type SeoLink = {
@@ -489,8 +491,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: { canonical: `/catalog/${slug}` },
       openGraph: buildOpenGraph(`/catalog/${slug}`, title, description, slug === "uglovye-kuhni" ? {
         images: [{ url: angularHero, width: 900, height: 1200, alt: "Светлая угловая кухня на заказ" }],
-      } : slug === "pryamye-kuhni" ? { images: [{ url: STRAIGHT_HERO, width: 1200, height: 800, alt: "Светлая прямая кухня вдоль одной стены" }] } : undefined),
-      twitter: buildTwitterMetadata(title, description, slug === "uglovye-kuhni" ? angularHero : slug === "pryamye-kuhni" ? STRAIGHT_HERO : undefined),
+      } : slug === "pryamye-kuhni" ? { images: [{ url: STRAIGHT_HERO, width: 1200, height: 800, alt: "Светлая прямая кухня вдоль одной стены" }] } : slug === "kuhni-do-potolka" ? { images: [{ url: CEILING_HERO, width: 1200, height: 800, alt: "Светлая угловая кухня до потолка с антресолями" }] } : undefined),
+      twitter: buildTwitterMetadata(title, description, slug === "uglovye-kuhni" ? angularHero : slug === "pryamye-kuhni" ? STRAIGHT_HERO : slug === "kuhni-do-potolka" ? CEILING_HERO : undefined),
       robots: { index: true, follow: true },
     };
   }
@@ -565,6 +567,7 @@ export default async function CatalogItemPage({ params }: Props) {
   if (slug === "pryamye-kuhni") {
     return <StraightKitchenPage />;
   }
+  if (slug === "kuhni-do-potolka") return <CeilingKitchenPage />;
 
   const seo = STATIC_CATEGORIES[slug]?.seo;
   const buyingGuide = CATEGORY_BUYING_GUIDES[slug];

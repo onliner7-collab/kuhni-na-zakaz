@@ -1,5 +1,10 @@
 # Media Registry
 
+## 2026-10-13 — Новые изображения кухонь до потолка
+
+`public/images/ceiling-kitchens/20261013`: 14 уникальных новых генераций встроенного imagegen, 15 WebP-путей (29–89 КБ), 6 AVIF; исходники PNG и manifest сохранены. Старые изображения не подключены. Все изображения обозначены примерами/визуализациями. Отчёт: `docs/seo/2026-10-13-kuhni-do-potolka-implementation.md`.
+
+
 ## 2026-10-12 — Прямые кухни
 
 public/images/straight-kitchens/generated: straight-hero и straight-storage, встроенный imagegen, PNG-исходники в проекте, WebP 1200×800 56 496/96 734 байт. ИИ-примеры, не реальные объекты; русские подписи/alt. Четыре схемы модулей и замер — SVG; сохранены шесть прежних WebP/AVIF состояний. [Prompts и provenance](seo/2026-10-12-straight-kitchens-implementation.md).

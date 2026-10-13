@@ -32,7 +32,7 @@ const finalPageLcpImages: Record<string, string> = {
   "/catalog/malenkie-kuhni":
     "/media/visual-rescue/malenkie-kuhni/avif/small-overview.avif",
   "/catalog/kuhni-do-potolka":
-    "/media/visual-rescue/kuhni-do-potolka/avif/ceiling-overview.avif",
+    "/images/ceiling-kitchens/20261013/hero.webp",
   "/catalog/kuhni-bez-ruchek":
     "/media/visual-rescue/kuhni-bez-ruchek/handleless-overview.avif",
   "/styles/neoklassika":

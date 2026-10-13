@@ -1,5 +1,10 @@
 # Component Registry
 
+## 2026-10-13 — Кухни до потолка
+
+`components/catalog/ceiling-kitchens`: серверная CeilingKitchenPage, изолированные клиентские галерея/подбор/сравнение/форма, data и CSS module. Использует ExploreContext и ContactForm без изменений их поведения. Отчёт: `docs/seo/2026-10-13-kuhni-do-potolka-implementation.md`.
+
+
 ## 2026-10-12 — Прямые кухни
 
 StraightKitchenPage — серверное содержание/JSON-LD/фото. StraightKitchenPlanner/Selection/Request — выбор длины, SVG модулей и действующая форма с сохранением ручного ввода. LayoutVisualExplorer сохранён без правок. Shared Lead/backend не менялся. [Отчёт](seo/2026-10-12-straight-kitchens-implementation.md).

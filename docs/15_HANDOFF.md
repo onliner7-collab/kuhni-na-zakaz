@@ -1,5 +1,10 @@
 # Handoff
 
+## 2026-10-13 — Кухни до потолка
+
+Реализация и узкий релиз `/catalog/kuhni-do-potolka`: `docs/seo/2026-10-13-kuhni-do-potolka-implementation.md`. Семантика и Wordstat: `docs/seo/2026-10-13-kuhni-do-potolka-strategy.md`. Все изображения новые. Фактический итог публикации и Google фиксируется в отчёте; не считать топ-5 или переиндексацию подтверждёнными.
+
+
 ## 2026-10-12 — Прямые кухни
 
 Текущая задача /catalog/pryamye-kuhni: [отчёт внедрения, релиз, QA, поисковые панели и rollback](seo/2026-10-12-straight-kitchens-implementation.md). Ветка codex/straight-kitchens-release от 09e3d4a. Новый отчёт является источником статуса; не публиковать полный dirty diff и не возвращать production на старый work. Борисов защищён.

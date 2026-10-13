@@ -263,7 +263,7 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = normalizePath(path) === "/calculator" || normalizePath(path) === "/scenarios/byudzhetnaya-kuhnya"
+  const effectiveLastModified = normalizePath(path) === "/catalog/kuhni-do-potolka" || normalizePath(path) === "/calculator" || normalizePath(path) === "/scenarios/byudzhetnaya-kuhnya"
     ? new Date("2026-10-13T00:00:00.000Z")
     : normalizePath(path) === "/catalog/pryamye-kuhni" || normalizePath(path) === "/locations/smolevichi"
     ? new Date("2026-10-12T00:00:00.000Z")
