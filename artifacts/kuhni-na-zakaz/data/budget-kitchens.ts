@@ -1,7 +1,14 @@
+import { budgetVisuals } from './budget-kitchen-visuals';
+
 export const BUDGET_KITCHEN_PATH = "/scenarios/byudzhetnaya-kuhnya";
 export const budgetKitchenTitle = "Недорогие кухни на заказ — выбор без лишних затрат";
 export const budgetKitchenDescription = "Как сделать кухню дешевле: планировка, фасады, столешница и фурнитура. Бюджетные решения для квартиры, деревни и дачи в Беларуси. Расчёт по размерам.";
-export const budgetImage = (id: string) => `/images/budget-kitchens-20261012/${id}.webp`;
+export const budgetImage = (id: string) => id.startsWith('v2-') ? `/images/budget-kitchens-20261013/${id.slice(3)}.webp` : `/images/budget-kitchens-20261012/${id}.webp`;
+export function budgetResponsiveImage(id: string, sizes = '(min-width: 1024px) 550px, (min-width: 768px) 45vw, 100vw') {
+  if (!id.startsWith('v2-')) return {};
+  const src = budgetImage(id);
+  return { srcSet: `${src.replace('.webp', '-480.webp')} 480w, ${src.replace('.webp', '-800.webp')} 800w, ${src} 1200w`, sizes };
+}
 
 const secondaryAngles: Record<string, { image: string; label: string; caption: string }> = {
   layout: { image: "layout-side", label: "Вид вдоль кухни", caption: "Одна линия мебели: видно глубину столешницы и расположение шкафов без углового узла." },
@@ -18,6 +25,7 @@ const secondaryAngles: Record<string, { image: string; label: string; caption: s
 };
 
 export function budgetAnglesFor(id: string, image: string, alt: string) {
+  if (budgetVisuals[id]) return budgetVisuals[id].angles;
   const detail = secondaryAngles[id];
   return [
     { image, label: "Основной вид", alt, caption: "Пример дизайна. Рассмотрите решение в общем виде, затем переключитесь на другой ракурс." },

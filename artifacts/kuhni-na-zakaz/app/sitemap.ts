@@ -263,7 +263,9 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = normalizePath(path) === "/scenarios/byudzhetnaya-kuhnya" || normalizePath(path) === "/catalog/pryamye-kuhni" || normalizePath(path) === "/locations/smolevichi"
+  const effectiveLastModified = normalizePath(path) === "/scenarios/byudzhetnaya-kuhnya"
+    ? new Date("2026-10-13T00:00:00.000Z")
+    : normalizePath(path) === "/catalog/pryamye-kuhni" || normalizePath(path) === "/locations/smolevichi"
     ? new Date("2026-10-12T00:00:00.000Z")
     : normalizePath(path) === "/"
     ? new Date("2026-10-12T00:00:00.000Z")

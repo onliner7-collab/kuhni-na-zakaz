@@ -1,0 +1,272 @@
+[
+  {
+    "id": "layout",
+    "source": "layout.png",
+    "image": "layout.webp",
+    "bytes": 75658,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "facades",
+    "source": "facades.png",
+    "image": "facades.webp",
+    "bytes": 60282,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "worktop",
+    "source": "worktop.png",
+    "image": "worktop.webp",
+    "bytes": 63872,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "storage",
+    "source": "storage.png",
+    "image": "storage.webp",
+    "bytes": 87680,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "handles",
+    "source": "handles.png",
+    "image": "handles.webp",
+    "bytes": 43022,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "corner",
+    "source": "corner.png",
+    "image": "corner.webp",
+    "bytes": 44946,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "upper",
+    "source": "upper.png",
+    "image": "upper.webp",
+    "bytes": 51982,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "appliances",
+    "source": "appliances.png",
+    "image": "appliances.webp",
+    "bytes": 36236,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "part-body",
+    "source": "part-body.png",
+    "image": "part-body.webp",
+    "bytes": 42562,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "part-facades",
+    "source": "part-facades.png",
+    "image": "part-facades.webp",
+    "bytes": 36894,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "part-worktop",
+    "source": "part-worktop.png",
+    "image": "part-worktop.webp",
+    "bytes": 112640,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "part-hardware",
+    "source": "part-hardware.png",
+    "image": "part-hardware.webp",
+    "bytes": 128784,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "part-details",
+    "source": "part-details.png",
+    "image": "part-details.webp",
+    "bytes": 31894,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "part-installation",
+    "source": "part-installation.png",
+    "image": "part-installation.webp",
+    "bytes": 48574,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "village",
+    "source": "village.png",
+    "image": "village.webp",
+    "bytes": 104892,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "dacha",
+    "source": "dacha.png",
+    "image": "dacha.webp",
+    "bytes": 86236,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "layout-side",
+    "source": "layout-side.png",
+    "image": "layout-side.webp",
+    "bytes": 68588,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "facade-detail",
+    "source": "facade-detail.png",
+    "image": "facade-detail.webp",
+    "bytes": 23360,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "worktop-joint",
+    "source": "worktop-joint.png",
+    "image": "worktop-joint.webp",
+    "bytes": 64266,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "storage-side",
+    "source": "storage-side.png",
+    "image": "storage-side.webp",
+    "bytes": 77840,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "handles-detail",
+    "source": "handles-detail.png",
+    "image": "handles-detail.webp",
+    "bytes": 12432,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "corner-side",
+    "source": "corner-side.png",
+    "image": "corner-side.webp",
+    "bytes": 25738,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "upper-side",
+    "source": "upper-side.png",
+    "image": "upper-side.webp",
+    "bytes": 34664,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "appliances-side",
+    "source": "appliances-side.png",
+    "image": "appliances-side.webp",
+    "bytes": 36786,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "village-side",
+    "source": "village-side.png",
+    "image": "village-side.webp",
+    "bytes": 99674,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "dacha-side",
+    "source": "dacha-side.png",
+    "image": "dacha-side.webp",
+    "bytes": 93496,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "compare-basic",
+    "source": "compare-basic.png",
+    "image": "compare-basic.webp",
+    "bytes": 37732,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "compare-corner",
+    "source": "compare-corner.png",
+    "image": "compare-corner.webp",
+    "bytes": 58012,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "compare-basic-detail",
+    "source": "compare-basic-detail.png",
+    "image": "compare-basic-detail.webp",
+    "bytes": 32894,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  },
+  {
+    "id": "compare-drawers",
+    "source": "compare-drawers.png",
+    "image": "compare-drawers.webp",
+    "bytes": 36226,
+    "width": 1200,
+    "height": 800,
+    "provenance": "OpenAI built-in imagegen; design example"
+  }
+]
