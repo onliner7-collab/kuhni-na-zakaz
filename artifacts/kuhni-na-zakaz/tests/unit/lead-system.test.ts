@@ -65,6 +65,8 @@ test("formats a Russian Telegram lead card without exposing Telegram ID", () => 
   });
 
   assert.match(card, /ЗАЯВКА №1001/);
+  assert.match(card, /https:\/\/kuhni\.minsk\.by\/admin\/leads\/1001/);
+  assert.match(card, /Открыть заявку и выбранные параметры/);
   assert.match(card, /Изображение кухни/);
   assert.match(card, /https:\/\/t\.me\/client/);
   assert.match(card, /@client — написать в ЛС/);

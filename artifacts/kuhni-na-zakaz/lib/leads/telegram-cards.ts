@@ -1,5 +1,6 @@
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
+import { leadDetailsPath } from "@/lib/leads/details";
 import {
   LEAD_SOURCE_LABELS,
   type LeadSourceType,
@@ -81,6 +82,7 @@ export function formatLeadCard(lead: NonNullable<LeadCardData>): string {
 
   const lines = [
     `<b>🟢 ЗАЯВКА №${lead.publicNumber}</b>`,
+    `<a href="https://kuhni.minsk.by${leadDetailsPath(lead.publicNumber)}">Открыть заявку и выбранные параметры</a>`,
     "",
     `<b>Источник:</b> ${escapeTelegramHtml(sourceLabel)}`,
     "",
@@ -97,7 +99,7 @@ export function formatLeadCard(lead: NonNullable<LeadCardData>): string {
   const sourcePageUrl = normalizePublicUrl(lead.sourcePage);
   const imageUrl = normalizePublicUrl(lead.imageUrl);
   if (sourcePageUrl || imageUrl) lines.push("");
-  if (sourcePageUrl) lines.push(`<b>Страница:</b> <a href="${escapeTelegramHtml(sourcePageUrl)}">открыть ссылку</a>`);
+  if (sourcePageUrl) lines.push(`<b>Страница сайта:</b> <a href="${escapeTelegramHtml(sourcePageUrl)}">исходная страница</a>`);
   if (imageUrl) lines.push(`<b>Выбранная кухня:</b> <a href="${escapeTelegramHtml(imageUrl)}">открыть изображение</a>`);
   lines.push("", `<b>Создана:</b> ${escapeTelegramHtml(date)}`);
   return lines.join("\n");

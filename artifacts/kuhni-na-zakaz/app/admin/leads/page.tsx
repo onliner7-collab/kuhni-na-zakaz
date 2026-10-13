@@ -185,7 +185,7 @@ export default async function AdminLeadsPage({
                     <Badge variant="outline" className="text-xs text-muted-foreground">
                       {lead.source}
                     </Badge>
-                    <span className="text-xs text-muted-foreground">№{lead.publicNumber}</span>
+                    <a href={`/admin/leads/${lead.publicNumber}`} className="inline-flex min-h-11 items-center text-sm underline">Открыть заявку №{lead.publicNumber}</a>
                   </div>
 
                   {hasConfig(lead) && (
