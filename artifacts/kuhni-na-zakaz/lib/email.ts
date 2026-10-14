@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { answerRows as describeAnswers } from '@/lib/leads/details';
 
 const DEFAULT_LEAD_NOTIFICATION_RECIPIENT = "onliner7@gmail.com";
 
@@ -43,9 +44,9 @@ function buildHtmlBody(lead: EmailLeadData): string {
       ? (lead.answers as Record<string, unknown>)
       : {};
 
-  const answerRows = Object.entries(answersObj)
+  const answerRows = describeAnswers(answersObj)
     .map(
-      ([key, value]) => `
+      ({label: key, value}) => `
       <tr>
         <td style="padding:4px 8px;color:#6b7280;white-space:nowrap">${escapeHtml(key)}</td>
         <td style="padding:4px 8px">${escapeHtml(formatAnswerValue(value))}</td>

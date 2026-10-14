@@ -1,0 +1,38 @@
+{
+  "generator": "Встроенный image_gen Codex/OpenAI",
+  "date": "2026-10-14",
+  "prompts": [
+    {
+      "id": 1,
+      "prompt": "Use case: photorealistic-natural. Asset type: full-width kitchen photograph for a Russian kitchen-material selection website, mobile-first crop. Primary request: realistic interior photograph of a modest contemporary Belarusian apartment kitchen with warm ivory matte MDF-style painted cabinet fronts, pale oak lower accent cabinets, straight 3-metre layout, stone-look laminate worktop, integrated oven, believable sink and tap, no island. Composition: landscape 3:2, full kitchen visible, camera at chest height, straight verticals, important cabinetry centered so portrait crops work. Natural cloudy daylight, subtle lived-in details, true surface texture, fine join lines, realistic hardware and proportions, editorial interior photography. No text, people, watermark, brand marks, collage, CGI or 3D-render appearance. This is an illustrative design concept, not evidence of a completed installation. Generate one distinct photo."
+    },
+    {
+      "id": 2,
+      "prompt": "Use case: photorealistic-natural. Asset type: kitchen material gallery photo, landscape 3:2. Photograph a believable compact sage-green kitchen in a Belarusian new-build apartment: satin smooth painted MDF-style cabinet fronts, simple shallow frame on doors, light limestone-look worktop, L-shaped layout, wall cabinets, slim brass handles, freestanding dining table edge in foreground. Distinct from any previous photo. Eye-level full-room interior photography, soft daylight from right, natural shadows, precise joinery, everyday kettle and ceramic cup. Ensure centered kitchen supports mobile portrait crop. No text, logo, people, collage, 3D render or artificial CGI gloss. Illustrative material design concept, not a completed customer project."
+    },
+    {
+      "id": 3,
+      "prompt": "Use case: photorealistic-natural. Asset type: Russian kitchen-material selection gallery, mobile-first, landscape 3:2 photograph. Primary request: A compact 2.5-metre straight kitchen for an inhabited country house, honey oak woodgrain laminated chipboard-style flat front panels, separate visible neat matching edge band, off-white walls, simple black handles, durable-looking stone-grey laminate worktop, sink, electric hob, daylight, practical affordable design. Composition centered for mobile crop, realistic interior photography with straight verticals and correct cabinet/appliance scale. Show fine believable texture and restrained everyday objects. No people, text, logos, watermarks, collage, CGI or 3D-render appearance. Different room and composition for each photo. Illustrative design concept, not a documented customer installation. Generate one photo."
+    },
+    {
+      "id": 4,
+      "prompt": "Use case: photorealistic-natural. Asset type: Russian kitchen-material selection gallery, mobile-first, landscape 3:2 photograph. Primary request: A modern L-shaped family kitchen with flat dark graphite matte HPL-laminate-style fronts and light warm grey upper cabinets, carefully visible matching edges, light worktop, realistic sink and oven, no island, tall window on left, lively morning light. Composition centered for mobile crop, realistic interior photography with straight verticals and correct cabinet/appliance scale. Show fine believable texture and restrained everyday objects. No people, text, logos, watermarks, collage, CGI or 3D-render appearance. Different room and composition for each photo. Illustrative design concept, not a documented customer installation. Generate one photo."
+    },
+    {
+      "id": 5,
+      "prompt": "Use case: photorealistic-natural. Asset type: Russian kitchen-material selection gallery, mobile-first, landscape 3:2 photograph. Primary request: A light grey glossy acrylic-style straight kitchen in a small city apartment, precisely reflected window in smooth glossy slab doors, discrete brushed metal handles, pale worktop, visible sink and integrated oven, no island, soft diffused daylight, realistic reflections rather than mirror-chrome. Composition centered for mobile crop, realistic interior photography with straight verticals and correct cabinet/appliance scale. Show fine believable texture and restrained everyday objects. No people, text, logos, watermarks, collage, CGI or 3D-render appearance. Different room and composition for each photo. Illustrative design concept, not a documented customer installation. Generate one photo."
+    },
+    {
+      "id": 6,
+      "prompt": "Use case: photorealistic-natural. Asset type: Russian kitchen-material selection gallery, mobile-first, landscape 3:2 photograph. Primary request: A contemporary spacious home kitchen with natural oak veneer-style front panels showing carefully aligned vertical grain, warm beige upper cabinets, subtle dark handles, long pale worktop and compact island, morning light, believable spacious room with an ordinary window and understated decor. Composition centered for mobile crop, realistic interior photography with straight verticals and correct cabinet/appliance scale. Show fine believable texture and restrained everyday objects. No people, text, logos, watermarks, collage, CGI or 3D-render appearance. Different room and composition for each photo. Illustrative design concept, not a documented customer installation. Generate one photo."
+    },
+    {
+      "id": 7,
+      "prompt": "Use case: photorealistic-natural. Asset type: Russian kitchen-material selection gallery, mobile-first, landscape 3:2 photograph. Primary request: A cozy classic cream kitchen in a modest country home with film-wrapped MDF-style shallow framed door panels, slim simple bronze handles, laminate woodgrain worktop, 3-metre straight layout, small stove and sink, everyday ceramic crockery, soft window daylight, not a luxury mansion. Composition centered for mobile crop, realistic interior photography with straight verticals and correct cabinet/appliance scale. Show fine believable texture and restrained everyday objects. No people, text, logos, watermarks, collage, CGI or 3D-render appearance. Different room and composition for each photo. Illustrative design concept, not a documented customer installation. Generate one photo."
+    },
+    {
+      "id": 8,
+      "prompt": "Use case: photorealistic-natural. Asset type: Russian kitchen-material selection gallery, mobile-first, landscape 3:2 photograph. Primary request: A photorealistic close detail of a warm beige matte kitchen front with shallow painted frame profile, slim metal handle, adjacent light oak textured flat panel and stone-look worktop, join at counter eye-level, sideways soft window light revealing surface texture and accurate edge construction, no cutaway or impossible exposed layers. Composition centered for mobile crop, realistic interior photography with straight verticals and correct cabinet/appliance scale. Show fine believable texture and restrained everyday objects. No people, text, logos, watermarks, collage, CGI or 3D-render appearance. Different room and composition for each photo. Illustrative design concept, not a documented customer installation. Generate one photo."
+    }
+  ]
+}

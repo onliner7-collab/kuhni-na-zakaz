@@ -1,0 +1,195 @@
+{
+  "date": "2026-10-14",
+  "scope": "Семантика; реализация этапа 1 не выполнялась",
+  "rawRows": 365,
+  "accepted": 339,
+  "hubCandidates": 262,
+  "routedCandidates": 77,
+  "rejectedOrDeferred": 18,
+  "duplicateRowsRemoved": 0,
+  "buyQueriesAdded": 36,
+  "buyQueriesTotal": 45,
+  "observedSearchQueries": 0,
+  "statisticsAvailable": false,
+  "allCandidatesAreHypotheses": true,
+  "sources": 8,
+  "moscowSources": 5,
+  "belarusSources": 3,
+  "clusters": [
+    {
+      "cluster": "Общий выбор",
+      "ownerRoute": "/materials",
+      "count": 16
+    },
+    {
+      "cluster": "Сравнение нескольких решений",
+      "ownerRoute": "/materials",
+      "count": 20
+    },
+    {
+      "cluster": "Фото и каталог материалов",
+      "ownerRoute": "/materials",
+      "count": 24
+    },
+    {
+      "cluster": "Цвет и сочетания",
+      "ownerRoute": "/materials",
+      "count": 18
+    },
+    {
+      "cluster": "Поверхность и фактура",
+      "ownerRoute": "/materials",
+      "count": 16
+    },
+    {
+      "cluster": "Стиль и обработка",
+      "ownerRoute": "/materials",
+      "count": 14
+    },
+    {
+      "cluster": "Условия эксплуатации",
+      "ownerRoute": "/materials",
+      "count": 20
+    },
+    {
+      "cluster": "Уход и повреждения",
+      "ownerRoute": "/materials",
+      "count": 14
+    },
+    {
+      "cluster": "Стоимость и комплектация",
+      "ownerRoute": "/materials",
+      "count": 18
+    },
+    {
+      "cluster": "Бюджетный выбор",
+      "ownerRoute": "/materials",
+      "count": 14
+    },
+    {
+      "cluster": "Дом и деревня: выбор фасадов",
+      "ownerRoute": "/materials",
+      "count": 14
+    },
+    {
+      "cluster": "Дача: выбор и ограничения",
+      "ownerRoute": "/materials",
+      "count": 14
+    },
+    {
+      "cluster": "Квартира и новостройка: выбор фасадов",
+      "ownerRoute": "/materials",
+      "count": 14
+    },
+    {
+      "cluster": "Размеры и планировки: влияние фасадов",
+      "ownerRoute": "/materials",
+      "count": 14
+    },
+    {
+      "cluster": "Состав решения и заказ",
+      "ownerRoute": "/materials",
+      "count": 16
+    },
+    {
+      "cluster": "Беларусь: общий выбор",
+      "ownerRoute": "/materials",
+      "count": 8
+    },
+    {
+      "cluster": "МДФ: передать подробной странице",
+      "ownerRoute": "/materials/mdf-fasady",
+      "count": 6
+    },
+    {
+      "cluster": "ЛДСП: передать подробной странице",
+      "ownerRoute": "/materials/ldsp",
+      "count": 6
+    },
+    {
+      "cluster": "Эмаль: передать подробной странице",
+      "ownerRoute": "/materials/mdf-emal",
+      "count": 6
+    },
+    {
+      "cluster": "HPL: передать подробной странице",
+      "ownerRoute": "/materials/plastik-hpl",
+      "count": 6
+    },
+    {
+      "cluster": "Акрил: передать подробной странице",
+      "ownerRoute": "/materials/akril",
+      "count": 6
+    },
+    {
+      "cluster": "Шпон: передать подробной странице",
+      "ownerRoute": "/materials/shpon",
+      "count": 6
+    },
+    {
+      "cluster": "Общие цены: передать /prices",
+      "ownerRoute": "/prices",
+      "count": 4
+    },
+    {
+      "cluster": "Расчет: передать калькулятору",
+      "ownerRoute": "/calculator",
+      "count": 2
+    },
+    {
+      "cluster": "Планировка: передать каталогу",
+      "ownerRoute": "/catalog/pryamye-kuhni",
+      "count": 2
+    },
+    {
+      "cluster": "Угловая: передать каталогу",
+      "ownerRoute": "/catalog/uglovye-kuhni",
+      "count": 2
+    },
+    {
+      "cluster": "Город: передать Минску",
+      "ownerRoute": "/locations/minsk",
+      "count": 3
+    },
+    {
+      "cluster": "Купить: внешний вид и сочетания",
+      "ownerRoute": "/materials",
+      "count": 8
+    },
+    {
+      "cluster": "Купить: МДФ",
+      "ownerRoute": "/materials/mdf-fasady",
+      "count": 4
+    },
+    {
+      "cluster": "Купить: ЛДСП",
+      "ownerRoute": "/materials/ldsp",
+      "count": 4
+    },
+    {
+      "cluster": "Купить: эмаль",
+      "ownerRoute": "/materials/mdf-emal",
+      "count": 4
+    },
+    {
+      "cluster": "Купить: HPL",
+      "ownerRoute": "/materials/plastik-hpl",
+      "count": 4
+    },
+    {
+      "cluster": "Купить: акрил",
+      "ownerRoute": "/materials/akril",
+      "count": 4
+    },
+    {
+      "cluster": "Купить: шпон",
+      "ownerRoute": "/materials/shpon",
+      "count": 4
+    },
+    {
+      "cluster": "Купить: Минск",
+      "ownerRoute": "/locations/minsk",
+      "count": 4
+    }
+  ]
+}

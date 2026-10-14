@@ -3,18 +3,14 @@
 import Image from "next/image";
 import { Check, CircleAlert } from "lucide-react";
 import { useState } from "react";
-import { useExploreContext } from "@/components/exploration";
 import type { MaterialExplorationConfig, MaterialExplorationFrame } from "@/data/material-exploration";
 
 export function MaterialDecisionExplorer({ config }: { config: MaterialExplorationConfig }) {
   const [activeId, setActiveId] = useState(config.frames[0].id);
-  const { updateContext } = useExploreContext();
   const active = config.frames.find((frame) => frame.id === activeId) ?? config.frames[0];
 
   function select(frame: MaterialExplorationFrame) {
     setActiveId(frame.id);
-    updateContext({ materials: [config.material, frame.label], sourceRoute: `/materials/${config.slug}` }, `material_visual:${config.slug}:${frame.id}`);
-    window.dispatchEvent(new CustomEvent("material-exploration-answers", { detail: { material: config.material, selectedView: frame.label, evidenceStatus: "requires-sample-confirmation" } }));
   }
 
   return (

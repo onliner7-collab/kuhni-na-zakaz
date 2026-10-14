@@ -1,21 +1,22 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
-import { prisma } from "@/lib/db";
-import { ArrowRight } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { MaterialsGallerySection } from "@/components/sections/MaterialsGallerySection";
-import { MaterialsCardsGrid } from "@/components/sections/MaterialsCardsGrid";
-import { isPublicContentSlug, publicSlugWhere } from "@/lib/public-content";
+import {
+  MaterialsChoiceHelper,
+  MaterialsComparison,
+  MaterialsLeadSummary,
+  MaterialsPhotoGallery,
+  MaterialsPriceScenarios,
+  MaterialsSolutionCards,
+} from "@/components/materials/MaterialsHub";
+import { MATERIAL_SOLUTIONS } from "@/data/material-solutions";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
-import { STATIC_MATERIAL_PAGES } from "@/data/material-fallbacks";
-import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
-import { MaterialsHubExplorer } from "@/components/materials/MaterialsHubExplorer";
+import { breadcrumbJsonLd } from "@/lib/schema-org";
 
-const title = "Материалы для кухонных фасадов";
+const title = "Материалы фасадов кухни — фото, сравнение и выбор";
 const description =
-  "Материалы для кухонных фасадов по всей Беларуси: МДФ плёнка, пластик HPL, эмаль матовая, шпон, ЛДСП EGGER. Цены, плюсы и минусы каждого.";
-
+  "Выберите материалы кухни на заказ в Беларуси: ЛДСП, МДФ в плёнке, эмаль, HPL, акрил и шпон. Фото, сравнение 2–3 вариантов и расчёт по вашим размерам.";
 export const metadata: Metadata = {
   title,
   description,
@@ -23,186 +24,312 @@ export const metadata: Metadata = {
   openGraph: buildOpenGraph("/materials", title, description),
   twitter: buildTwitterMetadata(title, description),
 };
-
-const budgetColor: Record<string, string> = {
-  "Экономный": "bg-green-100 text-green-700 border-green-200",
-  "Средний": "bg-blue-100 text-blue-700 border-blue-200",
-  "Выше среднего": "bg-orange-100 text-orange-700 border-orange-200",
-  "Премиум": "bg-purple-100 text-purple-700 border-purple-200",
-};
-
-const featuredMaterialPages = [
+const faq = [
+  [
+    "Из какого материала лучше заказать кухню?",
+    "Сначала определите условия помещения, внешний вид и бюджет. Затем сравните конкретные исполнения: основу, покрытие и торец. Универсального победителя без размеров, образцов и требований к эксплуатации нет.",
+  ],
+  [
+    "Чем отличаются корпус, основа и покрытие фасада?",
+    "Корпус — стенки шкафов и полки. Фасад — дверцы и лицевые панели ящиков. МДФ и древесно-стружечная плита могут быть основой; эмаль, плёнка, HPL, акрил или шпон определяют отделку конкретной конструкции. Столешница и фурнитура выбираются отдельно.",
+  ],
+  [
+    "МДФ или эмаль: что выбрать?",
+    "Это разные уровни конструкции. Эмаль может быть покрытием МДФ. Сравнивайте МДФ в плёнке с МДФ с эмалью, а не основу с её отделкой. В обзоре МДФ собраны покрытия и отдельный раздел плёнки.",
+  ],
+  [
+    "Матовые или глянцевые фасады практичнее?",
+    "Степень блеска влияет на отражения, но сама по себе не определяет стойкость. Посмотрите образец при дневном и боковом свете, проверьте заметность отпечатков и разводов, уточните способ очистки выбранной серии.",
+  ],
+  [
+    "Как купить недорогую кухню и сравнить материалы без переплаты?",
+    "Попросите рассчитать одну планировку с несколькими фасадами. Сохраните размеры, корпус, количество ящиков, класс механизмов, столешницу и услуги. ЛДСП и плёнку можно включить в такое сравнение, но экономию подтверждает смета.",
+  ],
+  [
+    "Что выбрать: плёнку, эмаль или пластик HPL?",
+    "Плёнка и эмаль — варианты отделки, которые нужно сопоставлять на конкретных фасадах. Для HPL уточняют основу, облицовку и кромку. В сравнении рядом видны различия конструкции, фрезеровки, ухода и неизвестные параметры.",
+  ],
+  [
+    "Акрил или эмаль: как сравнивать?",
+    "Посмотрите финиш, свет, торцы, ограничения ухода и возможные повреждения по документам конкретной серии. Не все акриловые и окрашенные фасады имеют одинаковые свойства. Глянцевый визуальный пример не подтверждает наличие матовой серии.",
+  ],
+  [
+    "Шпон и фасады под дерево — одно и то же?",
+    "Натуральный шпон — древесная облицовка с индивидуальным рисунком. Декор под дерево воспроизводит внешний вид древесины другим способом. Согласуйте направление рисунка, стыки и отделку на образце.",
+  ],
+  [
+    "Какие фасады выбрать для дачи, которая зимой не отапливается?",
+    "До заказа сообщите о сезонном проживании, влажности и отоплении. Допустимые условия зависят от основы, покрытия, кромки и инструкции поставщика. Ни ЛДСП, ни МДФ сами по себе не дают гарантии пригодности для неотапливаемой дачи.",
+  ],
+  [
+    "Как выбрать фасады рядом с мойкой, духовкой и посудомоечной машиной?",
+    "Уточните защиту стыков, требования к вентиляции, расстояниям и пару. Не оставляйте воду на открытых торцах. Режим очистки, нагрева и возможное восстановление согласуйте для выбранного исполнения.",
+  ],
+  [
+    "Можно ли купить кухню с комбинированными фасадами?",
+    "В проекте можно рассмотреть разные отделки верхних и нижних шкафов, однотонные и древесные поверхности. Сочетаемость, доступность декоров и стоимость подтверждаются при согласовании заказа.",
+  ],
+  [
+    "Почему цена за погонный метр не равна стоимости кухни?",
+    "В такую цену могут входить разные шкафы, механизмы и услуги. Размеры фасадов, антресоли, ящики, ручки, столешница и техника меняют смету. Для сравнения используйте одинаковый состав и отдельные строки доставки, подъёма и монтажа.",
+  ],
+  [
+    "Можно ли купить отдельно фасады или заказать их замену?",
+    "Этот раздел посвящён выбору кухни на заказ. Продажу отдельного комплекта фасадов, ремонт или замену на существующем гарнитуре нужно уточнить до заявки; эти услуги не включаются автоматически.",
+  ],
+];
+const rooms = [
   {
-    href: "/materials/mdf-fasady",
-    title: "МДФ фасады",
-    description: "Фасады с пленкой, эмалью, пластиком и вариантами фрезеровки для разных стилей кухни.",
-    image: "/uploads/seo-showcase/kuhnya-mdf-emal-1.webp",
-    alt: "Кухня на заказ с фасадами МДФ в светлом современном интерьере",
+    title: "Для квартиры и новостройки",
+    text: "Сравните гладкие, рамочные, матовые и глянцевые фасады при свете вашего помещения. Для студии и кухни-гостиной важны отражения и сочетание со стенами; для первой кухни — полный состав заказа.",
+    href: "/catalog/malenkie-kuhni",
+    anchor: "Посмотреть компактные кухни",
   },
   {
+    title: "Для частного дома и коттеджа",
+    text: "Кухня с островом, большая угловая или прямая — материал выбирают вместе с планировкой. Для дома в деревне заранее уточните адрес, подъезд, размеры проёмов и условия монтажа. Выезд и доставку согласуем по адресу.",
+    href: "/delivery-installation",
+    anchor: "Доставка и установка",
+  },
+  {
+    title: "Для дачи и сезонного проживания",
+    text: "Перед покупкой кухни для дачи уточните температуру и влажность зимой. Для деревянного дома дополнительно проверяют крепления и состояние стен. Внешний вид под дерево не означает пригодность материала для неотапливаемого помещения.",
     href: "/materials/ldsp",
-    title: "ЛДСП",
-    description: "Корпуса, простые фасады и бюджетные кухни с честным разбором плюсов и ограничений.",
-    image: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
-    alt: "Светлая прямая кухня на заказ с простыми гладкими фасадами",
+    anchor: "ЛДСП: фасады, корпуса и кромки",
   },
   {
-    href: "/materials/plastik-hpl",
-    title: "Пластик HPL",
-    description: "Практичные гладкие фасады для ежедневного использования, матовых и декоративных решений.",
-    image: "/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
-    alt: "Кухня с пластиковыми фасадами HPL в современном стиле",
-  },
-  {
+    title: "Для семьи и активной готовки",
+    text: "Смотрите не только на цену и цвет: как очищается поверхность, заметны ли следы, как защищены торцы и что делать при повреждении. Класс фурнитуры и количество выдвижных ящиков сравнивайте отдельно от фасадов.",
     href: "/materials/furnitura",
-    title: "Фурнитура для кухни",
-    description: "Петли, направляющие, доводчики, подъемные механизмы, ручки и системы хранения для удобной кухни на заказ.",
-    image: "/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
-    alt: "Современная кухня на заказ с фурнитурой для фасадов без ручек",
+    anchor: "Фурнитура и хранение",
   },
 ];
-
-async function getMaterials() {
-  try {
-    const materials = await prisma.materialPage.findMany({ where: { published: true, slug: publicSlugWhere() }, orderBy: [{ order: "asc" }, { id: "asc" }] });
-    return materials.length > 0 ? materials : STATIC_MATERIAL_PAGES;
-  } catch { return STATIC_MATERIAL_PAGES; }
-}
-
-export default async function MaterialsPage() {
-  const materials = (await getMaterials()).filter((item) => isPublicContentSlug(item.slug));
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Материалы для кухонных фасадов",
-    itemListElement: materials.map((m, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: m.title,
-      url: `https://kuhni.minsk.by/materials/${m.slug}`,
-    })),
-  };
-
+export default function MaterialsPage() {
   return (
-    <ExploreContextProvider sourceRoute="/materials">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      <div className="section-padding">
-        <div className="container-site">
-          <nav className="text-sm text-muted-foreground mb-6 flex items-center gap-2">
-            <Link href="/" className="hover:text-primary">Главная</Link><span>/</span>
-            <span className="text-foreground">Материалы</span>
-          </nav>
-
-          <div className="max-w-2xl mb-10">
-            <h1 className="font-serif text-4xl font-bold mb-4">Материалы для кухонных фасадов</h1>
-            <p className="text-muted-foreground text-lg">
-              Сравните материалы по цене, прочности и уходу. Поможем выбрать оптимальный вариант под ваш бюджет и образ жизни.
+    <main className="bg-[#faf9f6] pb-12 text-stone-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              breadcrumbJsonLd([
+                { name: "Главная", path: "/" },
+                { name: "Материалы", path: "/materials" },
+              ]),
+              {
+                "@type": "ItemList",
+                name: "Материалы кухонных фасадов",
+                itemListElement: MATERIAL_SOLUTIONS.map((m, i) => ({
+                  "@type": "ListItem",
+                  position: i + 1,
+                  name: m.title,
+                  url: `https://kuhni.minsk.by${m.href}`,
+                })),
+              },
+            ],
+          }),
+        }}
+      />
+      <div className="container-site pt-5">
+        <nav
+          aria-label="Хлебные крошки"
+          className="mb-5 text-sm text-stone-600"
+        >
+          <Link href="/" className="underline">
+            Главная
+          </Link>
+          <span aria-hidden="true"> / </span>
+          <span>Материалы</span>
+        </nav>
+        <section className="overflow-hidden rounded-[2rem] bg-stone-950 text-white lg:grid lg:grid-cols-2">
+          <div className="p-6 sm:p-9 lg:p-10">
+            <p className="text-xs font-bold uppercase tracking-[.18em] text-violet-200">
+              Кухни на заказ · Беларусь
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              <Link href="/design-proekt-kuhni" className="font-semibold text-primary hover:underline">
-                Посмотрите, как выбранные фасады и столешница будут выглядеть в 3D-проекте
+            <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+              Фасады для кухни — сравните материалы и покрытия
+            </h1>
+            <p className="mt-5 max-w-xl leading-7 text-stone-200">
+              Рассмотрите кухни целиком и детали вблизи. Выберите 2–3 решения,
+              сохраните предпочтение и передайте варианты на расчёт по вашим
+              размерам.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="#gallery"
+                className="inline-flex min-h-12 items-center rounded-xl bg-white px-5 font-semibold text-stone-900"
+              >
+                Смотреть фото кухонь
               </Link>
-              : так проще оценить сочетание цвета, фактуры и планировки до запуска кухни в производство.
+              <Link
+                href="#solutions"
+                className="inline-flex min-h-12 items-center rounded-xl border border-white/50 px-5 font-semibold"
+              >
+                Выбрать материалы
+              </Link>
+            </div>
+            <p className="mt-5 text-xs leading-5 text-stone-300">
+              Фото — визуальные концепции. Цвет и состав фасада подтвердим по
+              образцу.
             </p>
           </div>
-
-          <MaterialsHubExplorer />
-
-          <div className="mb-12 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
-            <ContextSummary />
-            <RelatedExplorationRail route="/materials" state="RESULT" />
-          </div>
-
-          <section className="mb-12" aria-labelledby="featured-material-pages-heading">
-            <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2 id="featured-material-pages-heading" className="font-serif text-2xl font-bold">Подробные гиды по материалам</h2>
-                <p className="mt-1 text-sm text-muted-foreground">Отдельные страницы для сравнения фасадов, корпусов, бюджета и ухода.</p>
+          <Image
+            src="/images/materials-hub-20261014/hero-ivory.webp"
+            alt="Визуальный пример светлой прямой кухни с однотонными верхними фасадами и древесным декором нижних шкафов"
+            width={1200}
+            height={800}
+            priority
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            className="aspect-[3/2] h-full w-full object-cover"
+          />
+        </section>
+        <section className="my-10">
+          <h2 className="text-2xl font-bold">
+            Сначала разберёмся, из чего состоит кухня
+          </h2>
+          <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {[
+              [
+                "Корпус",
+                "Стенки шкафов и полки. Материал корпуса не обязан совпадать с фасадом.",
+              ],
+              [
+                "Основа фасада",
+                "Плита, из которой сделаны дверцы и лицевые панели ящиков.",
+              ],
+              [
+                "Покрытие и торец",
+                "Внешняя отделка и обработка краёв. Именно исполнение сравнивают по образцу.",
+              ],
+              [
+                "Столешница и фурнитура",
+                "Рабочая поверхность, петли, направляющие и ручки — отдельные части комплектации.",
+              ],
+            ].map(([h, p]) => (
+              <div key={h} className="rounded-2xl bg-white p-4">
+                <h3 className="font-bold">{h}</h3>
+                <p className="mt-2 text-sm leading-6 text-stone-600">{p}</p>
               </div>
-            </div>
-            <div className="grid gap-5 md:grid-cols-3">
-              {featuredMaterialPages.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="group overflow-hidden rounded-2xl border border-border bg-white transition-all hover:border-primary/30 hover:shadow-lg"
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    width={720}
-                    height={480}
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="aspect-[3/2] h-auto w-full object-cover"
-                  />
-                  <div className="p-5">
-                    <h3 className="font-serif text-xl font-semibold transition-colors group-hover:text-primary">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                      Читать гид <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          <MaterialsGallerySection />
-
-          {/* Quick comparison table */}
-          {materials.length > 0 && (
-            <div className="overflow-x-auto mb-12">
-              <table className="w-full text-sm border border-gray-100 rounded-xl overflow-hidden">
-                <thead>
-                  <tr className="bg-gray-50 border-b border-gray-100">
-                    <th className="text-left p-4 font-semibold text-gray-600 min-w-[160px]">Материал</th>
-                    <th className="text-left p-4 font-semibold text-gray-600">Бюджет</th>
-                    <th className="text-left p-4 font-semibold text-gray-600">Цена от</th>
-                    <th className="text-left p-4 font-semibold text-gray-600 min-w-[180px]">Главный плюс</th>
-                    <th className="text-left p-4 font-semibold text-gray-600 min-w-[160px]">Главный минус</th>
-                    <th className="text-right p-4"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {materials.map((m, i) => (
-                    <tr key={m.slug} className={`border-b border-gray-50 hover:bg-gray-50 transition-colors ${i % 2 === 0 ? "" : "bg-gray-50/30"}`}>
-                      <td className="p-4 font-semibold text-gray-900">{m.title.split(" ").slice(0, 2).join(" ")}</td>
-                      <td className="p-4">
-                        {m.budgetLevel && (
-                          <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium border ${budgetColor[m.budgetLevel] || "bg-gray-100 text-gray-600 border-gray-200"}`}>
-                            {m.budgetLevel}
-                          </span>
-                        )}
-                      </td>
-                      <td className="p-4 text-gray-700 font-medium">{m.priceFrom > 0 ? `${m.priceFrom.toLocaleString("ru")} BYN` : "—"}</td>
-                      <td className="p-4 text-gray-600 text-xs">{m.pros[0] || "—"}</td>
-                      <td className="p-4 text-gray-600 text-xs">{m.cons[0] || "—"}</td>
-                      <td className="p-4 text-right">
-                        <Link href={`/materials/${m.slug}`} className="text-primary text-xs font-medium hover:underline">Подробнее</Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-          {/* Cards grid */}
-          <MaterialsCardsGrid materials={materials} budgetColor={budgetColor} />
-
-          {/* CTA */}
-          <div id="form" className="max-w-xl mx-auto scroll-mt-24">
-            <h2 className="font-serif text-2xl font-bold text-center mb-2">Не знаете какой материал выбрать?</h2>
-            <p className="text-center text-muted-foreground mb-6">Расскажите о вашей кухне — порекомендуем оптимальный вариант</p>
-            <div className="card-base p-6">
-              <ContactForm source="materials-index" />
-            </div>
+            ))}
           </div>
-        </div>
+          <Link
+            href="/materials/mdf-fasady"
+            className="mt-4 inline-flex min-h-11 items-center font-semibold text-violet-800 underline"
+          >
+            МДФ как основа: какие бывают покрытия →
+          </Link>
+        </section>
+        <MaterialsSolutionCards />
+        <MaterialsComparison />
+        <MaterialsPhotoGallery />
+        <MaterialsPriceScenarios />
+        <MaterialsChoiceHelper />
+        <section className="mt-14">
+          <h2 className="text-3xl font-bold">
+            Материал под ваши условия жизни
+          </h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {rooms.map((r) => (
+              <article key={r.title} className="rounded-2xl bg-white p-5">
+                <h3 className="text-xl font-bold">{r.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-stone-600">
+                  {r.text}
+                </p>
+                <Link
+                  className="mt-3 inline-flex min-h-11 items-center font-semibold text-violet-800 underline"
+                  href={r.href}
+                >
+                  {r.anchor} →
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section className="mt-14 rounded-3xl bg-stone-100 p-5 sm:p-8">
+          <h2 className="text-3xl font-bold">
+            Размер, цвет и планировка — вместе с материалом
+          </h2>
+          <p className="mt-4 leading-7 text-stone-600">
+            Для кухни 2 или 3 метра, угловой 2,4 × 1,8 м, гарнитура до потолка и
+            кухни без ручек важны размеры каждой детали. Сравните светлые,
+            бежевые, серые, графитовые и зелёные варианты, древесный рисунок и
+            сочетания со столешницей под камень. Кашемир на разных покрытиях
+            может выглядеть по-разному: окончательный оттенок выбирают по
+            образцу при вашем освещении.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            {[
+              ["/catalog/pryamye-kuhni", "Прямые кухни"],
+              ["/catalog/uglovye-kuhni", "Угловые кухни"],
+              ["/catalog/kuhni-do-potolka", "Кухни до потолка"],
+              ["/catalog/kuhni-bez-ruchek", "Кухни без ручек"],
+              ["/design-proekt-kuhni", "Сочетания в дизайн-проекте"],
+            ].map(([href, label]) => (
+              <Link
+                href={href}
+                key={href}
+                className="inline-flex min-h-11 items-center rounded-xl border border-stone-300 bg-white px-4 text-sm font-semibold"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section className="mt-14">
+          <h2 className="text-3xl font-bold">Вопросы перед покупкой кухни</h2>
+          <div className="mt-5 divide-y divide-stone-200">
+            {faq.map(([q, a]) => (
+              <details key={q} className="py-3">
+                <summary className="cursor-pointer py-3 text-lg font-semibold">
+                  {q}
+                </summary>
+                <p className="max-w-3xl pb-4 leading-7 text-stone-600">{a}</p>
+              </details>
+            ))}
+          </div>
+          <p className="mt-4 text-sm leading-7 text-stone-600">
+            Продолжите разбор в статьях{" "}
+            <Link href="/blog/kakie-fasady-luchshe" className="underline">
+              о выборе фасадов
+            </Link>{" "}
+            и{" "}
+            <Link
+              href="/blog/kak-vybrat-materialy-dlya-kuhni"
+              className="underline"
+            >
+              о материалах кухни
+            </Link>
+            . Условия заказа в столице — на странице{" "}
+            <Link href="/locations/minsk" className="underline">
+              кухни на заказ в Минске
+            </Link>
+            .
+          </p>
+        </section>
+        <section
+          id="materials-form"
+          className="mx-auto mt-14 max-w-2xl scroll-mt-24"
+        >
+          <h2 className="text-3xl font-bold">Рассчитать выбранные варианты</h2>
+          <p className="my-4 leading-7 text-stone-600">
+            Хотите купить кухню по индивидуальным размерам? Укажите планировку,
+            размеры и населённый пункт. Сравним материалы на одном проекте;
+            доставку, установку, столешницу и технику уточним отдельно.
+          </p>
+          <MaterialsLeadSummary />
+          <div className="rounded-3xl bg-white p-5 sm:p-7">
+            <ContactForm
+              source="materials-index"
+              sourceType="material-comparison"
+              showDimensions
+              showComment
+              showKitchenType
+              submitLabel="Получить расчёт выбранных вариантов"
+            />
+          </div>
+        </section>
       </div>
-    </ExploreContextProvider>
+    </main>
   );
 }

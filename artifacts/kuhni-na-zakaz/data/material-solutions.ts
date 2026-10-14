@@ -1,0 +1,201 @@
+export const MATERIAL_UNKNOWN = "Уточним для выбранного исполнения";
+export const MATERIAL_ROUTES = [
+  "/materials",
+  "/materials/mdf-fasady",
+  "/materials/ldsp",
+  "/materials/mdf-emal",
+  "/materials/plastik-hpl",
+  "/materials/akril",
+  "/materials/shpon",
+] as const;
+export const MATERIAL_CRITERIA = [
+  ["base", "Основа фасада"],
+  ["coating", "Покрытие / облицовка"],
+  ["look", "Внешний вид"],
+  ["finish", "Финиш и цвет"],
+  ["milling", "Фрезеровка"],
+  ["edge", "Торец / кромка"],
+  ["care", "Уход и следы"],
+  ["limits", "Вода, пар и нагрев"],
+  ["repair", "Восстановление"],
+  ["price", "Стоимость одинаковой комплектации"],
+] as const;
+export type MaterialCriterion = (typeof MATERIAL_CRITERIA)[number][0];
+export type MaterialSolution = {
+  id: string;
+  title: string;
+  href: string;
+  image: string;
+  description: string;
+  question: string;
+  availability: string;
+  checkedAt: string;
+  sources: string[];
+  values: Record<MaterialCriterion, string>;
+};
+const shared = {
+  care: "Средство и способ очистки подтвердим по инструкции покрытия; сравните следы на образце.",
+  limits: "Нужны требования поставщика к воде, пару, нагреву и защите торцов.",
+  repair: MATERIAL_UNKNOWN,
+  price:
+    "Расчёт в BYN по размерам и составу кухни; проверенная сопоставимая вилка пока не опубликована.",
+};
+export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
+  {
+    id: "ldsp",
+    title: "Фасады ЛДСП",
+    href: "/materials/ldsp",
+    image: "/images/materials-hub-20261014/ldsp-home.webp",
+    description:
+      "Ламинированная плита для гладких фасадов и корпусов. Основа, декор и кромка выбираются отдельно.",
+    question:
+      "Хотите купить недорогую кухню с гладкими фасадами? Сравните ЛДСП с плёнкой на одинаковом проекте.",
+    availability: MATERIAL_UNKNOWN,
+    checkedAt: "2026-10-14",
+    sources: ["https://www.egger.com/ru/"],
+    values: {
+      ...shared,
+      base: "Ламинированная древесно-стружечная плита",
+      coating: "Декоративный ламинированный слой",
+      look: "Однотонные и древесные декоры — по выбранной коллекции",
+      finish: MATERIAL_UNKNOWN,
+      milling:
+        "Для фигурного профиля рассмотрите другое исполнение; возможности уточняются по детали.",
+      edge: "Отдельная кромка; согласовать материал и обработку стыков.",
+    },
+  },
+  {
+    id: "mdf-film",
+    title: "МДФ в плёнке",
+    href: "/materials/mdf-fasady#plenka",
+    image: "/images/materials-hub-20261014/film-country.webp",
+    description:
+      "Основа МДФ с плёночным покрытием. Сравните гладкую поверхность и варианты фрезеровки по образцу.",
+    question:
+      "Кухня МДФ в плёнке для квартиры или дачи: сначала согласуйте декор и условия помещения.",
+    availability: MATERIAL_UNKNOWN,
+    checkedAt: "2026-10-14",
+    sources: [],
+    values: {
+      ...shared,
+      base: "МДФ",
+      coating: "Плёнка; тип и коллекция уточняются",
+      look: "Гладкие и профилированные варианты требуют согласования",
+      finish: MATERIAL_UNKNOWN,
+      milling: "Возможность и рисунок подтвердим для выбранной плёнки.",
+      edge: "Согласовать обработку торца и обратной стороны.",
+    },
+  },
+  {
+    id: "mdf-enamel",
+    title: "МДФ с эмалью",
+    href: "/materials/mdf-emal",
+    image: "/images/materials-hub-20261014/enamel-green.webp",
+    description:
+      "Окрашенная основа МДФ. Цвет проверяют по выкрасу, а форму фасада — по согласованной фрезеровке.",
+    question:
+      "Чтобы купить кухню с эмалью, сравните финиш, фрезеровку и комплектацию, а не только цвет на экране.",
+    availability: MATERIAL_UNKNOWN,
+    checkedAt: "2026-10-14",
+    sources: [],
+    values: {
+      ...shared,
+      base: "МДФ",
+      coating: "Система грунта, эмали и отделки — по спецификации",
+      look: "Окрашенные гладкие или профилированные фасады",
+      finish: "Цвет и степень блеска согласуем по выкрасу.",
+      milling: "Рисунок и ограничения — по выбранной технологии.",
+      edge: "Обработку граней и обратной стороны фиксируют в спецификации.",
+    },
+  },
+  {
+    id: "hpl",
+    title: "Фасады с HPL",
+    href: "/materials/plastik-hpl",
+    image: "/images/materials-hub-20261014/hpl-graphite.webp",
+    description:
+      "Облицовка HPL на согласованной основе. Важно сравнить декор, кромку и всю конструкцию фасада.",
+    question:
+      "Планируете купить кухню из пластика? Уточните, что предлагается именно HPL, и на каком основании.",
+    availability: MATERIAL_UNKNOWN,
+    checkedAt: "2026-10-14",
+    sources: ["https://www.arpaindustriale.com/"],
+    values: {
+      ...shared,
+      base: MATERIAL_UNKNOWN,
+      coating: "Декоративный пластик высокого давления HPL",
+      look: "Плоскость и декор конкретной серии",
+      finish: MATERIAL_UNKNOWN,
+      milling: MATERIAL_UNKNOWN,
+      edge: "Материал кромки и соединение с облицовкой уточняются.",
+    },
+  },
+  {
+    id: "acrylic",
+    title: "Акриловые фасады",
+    href: "/materials/akril",
+    image: "/images/materials-hub-20261014/acrylic-grey.webp",
+    description:
+      "Акриловая поверхность на выбранной основе. Глянец, отражения и следы проверяют на конкретном образце.",
+    question:
+      "Перед покупкой акриловой кухни посмотрите поверхность при боковом свете и уточните правила ухода.",
+    availability: MATERIAL_UNKNOWN,
+    checkedAt: "2026-10-14",
+    sources: [],
+    values: {
+      ...shared,
+      base: MATERIAL_UNKNOWN,
+      coating: "Акриловая облицовка; конструкция зависит от серии",
+      look: "Ровная поверхность; на примере показан глянец",
+      finish: MATERIAL_UNKNOWN,
+      milling: MATERIAL_UNKNOWN,
+      edge: "Уточняются конструкция торца и тип кромки.",
+    },
+  },
+  {
+    id: "veneer",
+    title: "Шпонированные фасады",
+    href: "/materials/shpon",
+    image: "/images/materials-hub-20261014/veneer-oak.webp",
+    description:
+      "Натуральный древесный шпон на плитной основе с защитной отделкой. Это не массив и не печатный декор.",
+    question:
+      "Чтобы купить кухню из шпона, согласуйте направление рисунка, отделку и сочетание с однотонными фасадами.",
+    availability: MATERIAL_UNKNOWN,
+    checkedAt: "2026-10-14",
+    sources: [],
+    values: {
+      ...shared,
+      base: MATERIAL_UNKNOWN,
+      coating: "Натуральный шпон и согласованная защитная отделка",
+      look: "Рисунок древесины; раскладка согласуется отдельно",
+      finish: MATERIAL_UNKNOWN,
+      milling: MATERIAL_UNKNOWN,
+      edge: "Способ отделки торцов согласуется с конструкцией.",
+    },
+  },
+];
+export const materialById = (id: string) =>
+  MATERIAL_SOLUTIONS.find((m) => m.id === id);
+export const materialForRoute = (route: string) =>
+  MATERIAL_SOLUTIONS.find((m) => m.href.split("#")[0] === route);
+export const MATERIAL_PRICE_SCENARIOS = [
+  {
+    id: "straight-3m",
+    title: "Прямая кухня около 3 м",
+    dimensions: "Одна стена 3 м",
+    equipment:
+      "Корпус ЛДСП 18 мм; нижние шкафы 720 мм, верхние 900 мм; 3 выдвижных ящика; петли и направляющие с доводчиками одного класса; столешница ламинат 38 мм; накладные ручки; без антресолей.",
+    services:
+      "Техника, мойка, смеситель, доставка, подъём и монтаж — отдельными строками расчёта.",
+  },
+  {
+    id: "corner-24-18",
+    title: "Угловая кухня около 2,4 × 1,8 м",
+    dimensions: "Две стены 2,4 и 1,8 м; угловой модуль учитывается один раз",
+    equipment:
+      "Те же корпус, высоты, 3 ящика, класс механизмов, столешница и ручки. Угловой шкаф с полкой; без выдвижной угловой системы и антресолей.",
+    services:
+      "Техника, мойка, смеситель, доставка, подъём и монтаж — отдельными строками расчёта.",
+  },
+] as const;

@@ -3,6 +3,8 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { emptyExploreContext, readExploreContext, writeExploreContext, type ExploreContextValue } from "@/lib/explore-context";
 import { trackExplorationEvent } from "@/lib/analytics";
+import { useOptionalMaterials } from '@/components/materials/MaterialsSelection';
+import { materialById } from '@/data/material-solutions';
 
 interface ExploreContextApi {
   context: ExploreContextValue;
@@ -14,6 +16,9 @@ const Context = createContext<ExploreContextApi | null>(null);
 
 export function ExploreContextProvider({ sourceRoute, children }: { sourceRoute: string; children: ReactNode }) {
   const [context, setContext] = useState(() => emptyExploreContext(sourceRoute));
+  const selection = useOptionalMaterials();
+  const selectedIds = selection?.state.comparisonIds.join(',') || '';
+  useEffect(()=>{if(!selection?.ready)return;setContext(previous=>{const next={...previous,materials:selectedIds.split(',').filter(Boolean).map(id=>materialById(id)!.title)};writeExploreContext(next);return next;});},[selectedIds,selection?.ready]);
   useEffect(() => setContext(readExploreContext(sourceRoute)), [sourceRoute]);
   const updateContext = useCallback((patch: Partial<ExploreContextValue>, action = "") => {
     setContext((previous) => {

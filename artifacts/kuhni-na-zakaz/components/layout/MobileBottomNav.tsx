@@ -121,7 +121,10 @@ export function MobileBottomNav() {
   return (
     <>
       <nav className={cn("mobile-page-dock", (isOpen || isScrollHidden) && "mobile-page-dock--hidden")} aria-label="Основная навигация" data-testid="mobile-bottom-nav">
-        {DOCK_ITEMS.map(({ label, href, icon: Icon, testId }) => {
+        {DOCK_ITEMS.map(({ label: originalLabel, href: originalHref, icon: Icon, testId }) => {
+          const materialsPage = pathname === '/materials' || ['/materials/mdf-fasady','/materials/ldsp','/materials/mdf-emal','/materials/plastik-hpl','/materials/akril','/materials/shpon'].includes(pathname);
+          const href = materialsPage && originalHref === '/catalog' ? '/materials#compare' : originalHref;
+          const label = materialsPage && originalHref === '/catalog' ? 'Сравнить' : originalLabel;
           const active = isActivePath(pathname, href);
           return (
             <Link key={href} href={href} className={cn("mobile-page-dock__item", active && "mobile-page-dock__item--active")} aria-current={active ? "page" : undefined} aria-label={label} data-testid={testId}>

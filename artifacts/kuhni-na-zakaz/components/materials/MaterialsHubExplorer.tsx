@@ -4,17 +4,14 @@ import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { ArrowRight, Check, CircleAlert } from "lucide-react";
 import { useState } from "react";
-import { useExploreContext } from "@/components/exploration";
 import { MATERIAL_HUB_OPTIONS } from "@/data/material-exploration";
 
 export function MaterialsHubExplorer() {
   const [activeSlug, setActiveSlug] = useState(MATERIAL_HUB_OPTIONS[0].slug);
-  const { updateContext } = useExploreContext();
   const active = MATERIAL_HUB_OPTIONS.find((item) => item.slug === activeSlug) ?? MATERIAL_HUB_OPTIONS[0];
 
   function select(item: (typeof MATERIAL_HUB_OPTIONS)[number]) {
     setActiveSlug(item.slug);
-    updateContext({ materials: [item.material], sourceRoute: "/materials" }, `material_hub:${item.slug}`);
   }
 
   return (

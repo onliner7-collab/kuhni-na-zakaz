@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Check, CircleAlert } from "lucide-react";
-import { useExploreContext } from "@/components/exploration/ExploreContext";
 
 const frames = [
   {
@@ -57,19 +56,10 @@ const frames = [
 
 export function MaterialSurfaceComparator() {
   const [activeId, setActiveId] = useState<(typeof frames)[number]["id"]>("closeup");
-  const { updateContext } = useExploreContext();
   const active = frames.find((frame) => frame.id === activeId) ?? frames[0];
 
   function select(frame: (typeof frames)[number]) {
     setActiveId(frame.id);
-    updateContext({ materials: ["МДФ", frame.label] }, `surface_visual:${frame.id}`);
-    window.dispatchEvent(new CustomEvent("mdf-surface-answers", {
-      detail: {
-        material: "МДФ",
-        selectedSurfaces: [frame.label],
-        evidenceStatus: "requires-sample-confirmation",
-      },
-    }));
   }
 
   return (

@@ -4,6 +4,7 @@ import { ArrowRight, CircleAlert, Layers3 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import { MaterialSurfaceComparator } from "@/components/materials/MaterialSurfaceComparator";
+import { SelectionButtons, MaterialDetailsLink } from '@/components/materials/MaterialsSelection';
 import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
@@ -55,6 +56,7 @@ export default function MdfFacadesPage() {
 
       <div className="container-site py-6 md:py-12">
         <MaterialSurfaceComparator />
+        <section id="plenka" className="mt-12 scroll-mt-24 rounded-2xl border border-stone-200 bg-white p-6"><h2 className="text-2xl font-bold">МДФ в плёнке — отдельное исполнение для сравнения</h2><p className="my-4 leading-7 text-stone-600">Основа МДФ покрывается плёнкой. Декор, форму фасада, торец и ограничения эксплуатации подтвердим по выбранной серии. Просмотр этой страницы не выбирает покрытие автоматически.</p><SelectionButtons id="mdf-film"/><div className="mt-4 flex flex-wrap gap-5"><MaterialDetailsLink id="mdf-enamel">Сравнить с МДФ с эмалью →</MaterialDetailsLink><MaterialDetailsLink id="hpl">Посмотреть HPL →</MaterialDetailsLink></div></section>
 
         <section id="compare" className="mt-16 scroll-mt-24" aria-labelledby="compare-title"><p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-800">Сравнение</p><h2 id="compare-title" className="mt-2 text-3xl font-bold md:text-4xl">Вопросы, которые можно проверить по образцу</h2><div className="mt-6 overflow-hidden rounded-2xl border border-stone-200 bg-white"><table className="w-full text-left text-sm"><thead className="bg-stone-100"><tr><th className="p-4 font-bold">Вопрос</th><th className="p-4 font-bold">Следующее действие</th></tr></thead><tbody>{comparison.map((row) => <tr key={row.question} className="border-t border-stone-200"><th scope="row" className="p-4 align-top font-semibold">{row.question}</th><td className="p-4 leading-6 text-stone-600">{row.action}</td></tr>)}</tbody></table></div></section>
 

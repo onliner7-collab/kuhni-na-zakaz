@@ -45,8 +45,9 @@ async function getMaterial(slug: string) {
   if (!isPublicContentSlug(slug)) return null;
 
   try {
-    return (await prisma.materialPage.findFirst({ where: { slug, published: true } })) ?? STATIC_MATERIAL_BY_SLUG.get(slug) ?? null;
-  } catch { return STATIC_MATERIAL_BY_SLUG.get(slug) ?? null; }
+    const material = (await prisma.materialPage.findFirst({ where: { slug, published: true } })) ?? STATIC_MATERIAL_BY_SLUG.get(slug) ?? null;
+    return material ? {...material,priceFrom:0,pricePer:''} : null;
+  } catch { const material=STATIC_MATERIAL_BY_SLUG.get(slug);return material?{...material,priceFrom:0,pricePer:''}:null; }
 }
 
 async function getRelatedData(m: Awaited<ReturnType<typeof getMaterial>>) {

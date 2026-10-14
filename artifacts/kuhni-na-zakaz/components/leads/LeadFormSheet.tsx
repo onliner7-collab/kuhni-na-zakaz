@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 
 import { ContactForm } from "@/components/sections/ContactForm";
+import { MaterialsSubmitPreview } from '@/components/materials/MaterialsSelection';
 
 interface LeadFormSheetProps {
   pathname: string;
@@ -76,6 +77,7 @@ export function LeadFormSheet({ pathname, triggerRef, onClose }: LeadFormSheetPr
           </button>
         </div>
         <div className="mt-5">
+          {pathname.startsWith('/materials') && <MaterialsSubmitPreview/>}
           <ContactForm
             source="global-dock"
             sourcePage={pathname}

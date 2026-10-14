@@ -1,0 +1,50 @@
+[
+  {
+    "name": "hero-ivory",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\hero-ivory.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\hero-ivory.webp",
+    "bytes": 76050
+  },
+  {
+    "name": "enamel-green",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\enamel-green.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\enamel-green.webp",
+    "bytes": 49508
+  },
+  {
+    "name": "ldsp-home",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\ldsp-home.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\ldsp-home.webp",
+    "bytes": 98578
+  },
+  {
+    "name": "hpl-graphite",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\hpl-graphite.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\hpl-graphite.webp",
+    "bytes": 87784
+  },
+  {
+    "name": "acrylic-grey",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\acrylic-grey.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\acrylic-grey.webp",
+    "bytes": 67946
+  },
+  {
+    "name": "veneer-oak",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\veneer-oak.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\veneer-oak.webp",
+    "bytes": 89208
+  },
+  {
+    "name": "film-country",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\film-country.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\film-country.webp",
+    "bytes": 107290
+  },
+  {
+    "name": "facade-detail",
+    "source": "prepared-images\\generated-sources\\materials-hub-20261014\\facade-detail.png",
+    "output": "artifacts\\kuhni-na-zakaz\\public\\images\\materials-hub-20261014\\facade-detail.webp",
+    "bytes": 61686
+  }
+]

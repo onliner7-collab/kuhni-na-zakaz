@@ -1,4 +1,5 @@
 import { after, NextRequest, NextResponse } from "next/server";
+import { normalizeMaterialLead } from '@/lib/material-selection';
 import type { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db";
 import { getSession } from "@/lib/auth";
@@ -42,6 +43,9 @@ export async function POST(req: NextRequest) {
     }
 
     const data = parsed.data;
+    if (data.answers.materialSelection !== undefined) {
+      data.answers.materialSelection = normalizeMaterialLead(data.answers.materialSelection);
+    }
     // Reconstruct calculator details on the server. Never trust a posted price.
     if (data.source === "calculator" && data.sourceBlock === "calculator_meters") {
       const calculator = data.answers.calculator as { selection?: unknown } | undefined;

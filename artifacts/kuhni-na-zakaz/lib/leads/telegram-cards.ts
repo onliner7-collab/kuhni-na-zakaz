@@ -1,4 +1,5 @@
 import type { Prisma } from "@prisma/client";
+import { normalizeMaterialLead } from '@/lib/material-selection';
 import { prisma } from "@/lib/db";
 import { leadDetailsPath } from "@/lib/leads/details";
 import {
@@ -92,6 +93,12 @@ export function formatLeadCard(lead: NonNullable<LeadCardData>): string {
     `<b>Город:</b> ${escapeTelegramHtml(lead.city || "не указан")}`,
   ];
 
+  const answerObject = lead.answers && typeof lead.answers === 'object' && !Array.isArray(lead.answers) ? lead.answers as Record<string, unknown> : {};
+  if (answerObject.materialSelection) {
+    const choice = normalizeMaterialLead(answerObject.materialSelection);
+    lines.push(`<b>Варианты фасадов:</b> ${escapeTelegramHtml(choice.comparisonNames.join(', ') || 'Помогите выбрать')}`);
+    if (choice.preferredName) lines.push(`<b>Предпочитаю:</b> ${escapeTelegramHtml(choice.preferredName)}`);
+  }
   if (lead.email) lines.push(`<b>Email:</b> ${escapeTelegramHtml(lead.email)}`);
   if (lead.kitchenType) lines.push(`<b>Кухня:</b> ${escapeTelegramHtml(lead.kitchenType)}`);
   if (lead.dimensions) lines.push(`<b>Размеры:</b> ${escapeTelegramHtml(lead.dimensions)}`);

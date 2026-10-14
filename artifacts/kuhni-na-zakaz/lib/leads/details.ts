@@ -1,5 +1,6 @@
 import { describeSelection } from "@/lib/calculator/config";
 import { selectionSchema } from "@/lib/calculator/validation";
+import { materialById, MATERIAL_PRICE_SCENARIOS } from '@/data/material-solutions';
 
 export function leadDetailsPath(publicNumber: number) {
   if (!Number.isSafeInteger(publicNumber) || publicNumber < 1) throw new Error("Invalid lead number");
@@ -7,6 +8,7 @@ export function leadDetailsPath(publicNumber: number) {
 }
 
 const labels: Record<string, string> = {
+  materialSelection: 'Выбранные фасады', comparisonIds: 'Коды вариантов', comparisonNames: 'Варианты для расчёта', preferredId: 'Код предпочтительного варианта', preferredName: 'Предпочитаю', scenarioId: 'Пример комплектации',
   calculator: "Калькулятор", selection: "Выбранные параметры", result: "Предварительный расчёт", status: "Статус расчёта", price: "Цена, BYN", rate: "Тариф, BYN/м", length: "Общая длина, м", lengths: "Длины сторон, м", approximate: "Примерные размеры", undecided: "Материалы ещё не выбраны", estimateIsPreliminary: "Предварительная оценка",
   layout: "Планировка", cornerType: "Тип угловой кухни", material: "Материал", materials: "Материалы", hardware: "Фурнитура", mechanism: "Механизм", upper: "Верхние шкафы", countertop: "Столешница", style: "Стиль", budget: "Бюджет", priority: "Приоритет", details: "Пожелания", dimensions: "Размеры", model: "Модель", modelName: "Название модели", modelId: "Код модели", priceFrom: "Цена от, BYN", startingPrice: "Цена от", room: "Помещение", kitchenType: "Тип кухни", hasMeasurements: "Есть точные замеры", selectedIdea: "Выбранный пример", selectedIdeaName: "Название примера", view: "Ракурс", objectType: "Тип объекта", settlement: "Населённый пункт",
   wallOneLength: "Первая стена", wallTwoLength: "Вторая стена", windowPosition: "Положение окна", doorPosition: "Положение двери", communicationsPosition: "Коммуникации", designProjectSelection: "Выбор для дизайн-проекта", homeKitchenSelection: "Выбор на главной странице", zhodinoKitchenSelection: "Выбор кухни в Жодино", smolevichiKitchenSelection: "Выбор кухни в Смолевичах", exploreContext: "Параметры подбора", source: "Источник", sourcePage: "Страница обращения", sourceRoute: "Раздел сайта", pageUrl: "Страница", sourceType: "Тип обращения", projectSlug: "Проект", cityKey: "Город", utm: "Источник рекламы", medium: "Канал", campaign: "Кампания", term: "Поисковый запрос", content: "Объявление", agreement: "Согласие на обработку данных", evidencePreference: "Тип примеров", name: "Название", title: "Название", imageUrl: "Изображение", imageId: "Код изображения", kitchenId: "Код кухни", color: "Цвет", colors: "Цвета", appliances: "Техника", furniture: "Фурнитура", area: "Размер", height: "Высота", width: "Ширина", depth: "Глубина", version: "Версия расчёта",
@@ -32,7 +34,7 @@ export function answerRows(input: unknown): { label: string; value: string }[] {
       }
       return;
     }
-    rows.push({ label: path.join(" → ") || "Ответ", value: typeof value === "boolean" ? value ? "Да" : "Нет" : values[String(value)] || String(value) });
+    rows.push({ label: path.join(" → ") || "Ответ", value: typeof value === "boolean" ? value ? "Да" : "Нет" : materialById(String(value))?.title || MATERIAL_PRICE_SCENARIOS.find(s=>s.id===value)?.title || values[String(value)] || String(value) });
   }
   visit(input, [], 0); return rows;
 }

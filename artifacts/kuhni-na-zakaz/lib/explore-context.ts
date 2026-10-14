@@ -1,4 +1,6 @@
 import type { ExploreContextState } from "./exploration-types";
+import { readMaterialState } from './material-selection';
+import { materialById } from '@/data/material-solutions';
 
 export type EvidencePreference = "ideas" | "real";
 export type ExploreContextValue = ExploreContextState;
@@ -70,13 +72,13 @@ export function readExploreContext(sourceRoute = "/"): ExploreContextValue {
   try {
     const raw = window.sessionStorage.getItem(EXPLORE_CONTEXT_STORAGE_KEY)
       || window.sessionStorage.getItem(LEGACY_EXPLORE_CONTEXT_STORAGE_KEY);
-    if (!raw) return emptyExploreContext(sourceRoute);
-    const migrated = migrateExploreContext(JSON.parse(raw), sourceRoute);
+    const migrated = raw ? migrateExploreContext(JSON.parse(raw), sourceRoute) : emptyExploreContext(sourceRoute);
+    migrated.materials = readMaterialState().comparisonIds.map(id=>materialById(id)!.title);
     writeExploreContext(migrated);
     window.sessionStorage.removeItem(LEGACY_EXPLORE_CONTEXT_STORAGE_KEY);
     return migrated;
   } catch {
-    return emptyExploreContext(sourceRoute);
+    return {...emptyExploreContext(sourceRoute),materials:readMaterialState().comparisonIds.map(id=>materialById(id)!.title)};
   }
 }
 
@@ -86,7 +88,7 @@ export function writeExploreContext(value: ExploreContextValue) {
     version: EXPLORE_CONTEXT_VERSION,
     value: sanitizeExploreContext(value, value.sourceRoute),
   };
-  window.sessionStorage.setItem(EXPLORE_CONTEXT_STORAGE_KEY, JSON.stringify(stored));
+  try { window.sessionStorage.setItem(EXPLORE_CONTEXT_STORAGE_KEY, JSON.stringify(stored)); } catch { /* Storage is optional. */ }
 }
 
 export function serializeExploreContextForLead(value: ExploreContextValue) {

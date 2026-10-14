@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 import { readExploreContext, serializeExploreContextForLead } from "@/lib/explore-context";
 import { getKitchenIdea3DById } from "@/data/kitchen-ideas-3d";
+import { materialSelectionForLead } from '@/lib/material-selection';
 
 const kitchenTypes = [
   { value: "", label: "Пока не знаю" },
@@ -50,6 +51,7 @@ const schema = z.object({
 });
 
 type FormData = z.infer<typeof schema>;
+let materialsFormDraft: Partial<FormData> | null = null;
 
 interface ContactFormProps {
   source?: string;
@@ -344,10 +346,18 @@ export function ContactForm({
     honeypot: "",
   }), [city, cityKey, defaultDimensions, defaultKitchenType, effectiveSourceType, ideaComment, projectSlug, trackingFields]);
 
-  const { register, handleSubmit, formState: { errors }, reset, setValue, getFieldState } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset, setValue, getFieldState, watch } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues,
   });
+  useEffect(()=>{
+    if(!pathname.startsWith('/materials'))return;
+    if(materialsFormDraft)reset({...defaultValues,...materialsFormDraft});
+    const subscription=watch(value=>{materialsFormDraft={name:value.name,phone:value.phone,email:value.email,city:value.city,dimensions:value.dimensions,kitchenType:value.kitchenType,comment:value.comment,preferredContact:value.preferredContact,agreement:value.agreement};});
+    return()=>subscription.unsubscribe();
+  // Contact draft stays in memory, never in the materials URL or storage.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[pathname,reset,watch]);
   useEffect(() => {
     if (source !== "prices" && source !== "catalog") return;
     if (!getFieldState("kitchenType").isDirty) setValue("kitchenType", defaultKitchenType);
@@ -396,16 +406,18 @@ export function ContactForm({
     const designSelection = source === "design-proekt-kuhni" ? readDesignProjectSelection() : null;
     const homeSelection = source === "home" ? readHomeKitchenSelection() : null;
     const exploreContext = serializeExploreContextForLead(readExploreContext(fallbackSourcePage));
+    const materialSelection = materialSelectionForLead();
     const payload = {
       ...data,
       comment: currentComment,
       continueInTelegram: data.preferredContact === "telegram",
       answers: {
         ...(data.answers || {}),
-        ...contextAnswers,
+        ...(pathname.startsWith('/materials') ? {} : contextAnswers),
         ...(designSelection ? { designProjectSelection: designSelection } : {}),
         ...(homeSelection ? { homeKitchenSelection: homeSelection } : {}),
         ...(exploreContext ? { exploreContext } : {}),
+        ...(materialSelection.comparisonIds.length || pathname.startsWith('/materials') ? { materialSelection } : {}),
       },
       source,
       formType,
@@ -441,6 +453,7 @@ export function ContactForm({
         const result = await res.json().catch(() => ({}));
         setTelegramUrl(typeof result.telegramUrl === "string" ? result.telegramUrl : "");
         setSent(true);
+        if(pathname.startsWith('/materials'))materialsFormDraft=null;
         reset({
           ...defaultValues,
           name: "",

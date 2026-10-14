@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type TouchEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { optimizedImageSrc } from "@/lib/image-optimization";
@@ -20,6 +20,7 @@ interface ImageLightboxProps {
   onOpenChange: (open: boolean) => void;
   onIndexChange: (index: number) => void;
   label?: string;
+  footer?: ReactNode;
 }
 
 const FOCUSABLE_SELECTOR = [
@@ -38,6 +39,7 @@ export function ImageLightbox({
   onOpenChange,
   onIndexChange,
   label = "Просмотр фотографии",
+  footer,
 }: ImageLightboxProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -82,7 +84,7 @@ export function ImageLightbox({
       document.documentElement.style.overflow = previousHtmlOverflowRef.current;
       previousFocusRef.current?.focus();
     };
-  }, [activeImage, open]);
+  }, [imageCount > 0, open]);
 
   useEffect(() => {
     if (!open || !activeImage) return;
@@ -238,6 +240,7 @@ export function ImageLightbox({
         onClick={(event) => event.stopPropagation()}
       >
         <p>{activeImage.caption || activeImage.alt}</p>
+        {footer}
         {imageCount > 1 && (
           <p className="mt-1 text-white/70">
             {activeIndex + 1} / {imageCount}
