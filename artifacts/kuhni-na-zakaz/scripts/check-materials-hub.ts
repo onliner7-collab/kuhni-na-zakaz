@@ -71,6 +71,7 @@ try{
  const watermarked=await context.request.get(base+'/kapi/watermarked-image?src='+encodeURIComponent('/images/materials-hub-20261014/hero-ivory.webp')+'&w=640');
  assert.equal(watermarked.status(),200);report.watermarkEndpoint=200;
  await page.goto(base+'/materials'+query,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#materials-form button[type="submit"]')?.getAttribute('disabled')===null);
  await page.locator('#materials-form input[name="name"]').fill('Тест формы материалов');
  await page.locator('#materials-form input[name="phone"]').fill('+375291234567');
  await page.locator('#materials-form input[name="agreement"]').check();
@@ -80,7 +81,7 @@ try{
  await page.getByTestId('form-success').waitFor();
  assert.deepEqual(payload.answers.materialSelection.comparisonIds,['mdf-film','ldsp']);assert.equal(payload.answers.materialSelection.preferredId,'ldsp');assert.ok(!('recentViews' in payload.answers.materialSelection));
  report.formPayload={method:'Intercepted locally; no real submission or notification',selection:payload.answers.materialSelection,source:payload.source};
- assert.equal(errors.length,0);report.status='PASS';
+ assert.equal(errors.length,0);report.status='PASS';console.log('Browser QA PASS: 42 transitions, 64 images, selected form payload');
 }catch(e){report.status='FAIL';report.error=String(e);try{await page.screenshot({path:path.join(out,'failure.png'),timeout:5000});}catch{}throw e;}
 finally{await fs.writeFile(path.join(out,'browser-report.json'),JSON.stringify(report,null,2)+'\n','utf8');await browser.close();}
 }

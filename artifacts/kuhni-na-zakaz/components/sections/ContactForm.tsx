@@ -269,6 +269,8 @@ export function ContactForm({
   compact = false,
 }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
+  const [formReady, setFormReady] = useState(false);
+  useEffect(()=>setFormReady(true),[]);
   const [sent, setSent] = useState(false);
   const [telegramUrl, setTelegramUrl] = useState("");
   const pathname = usePathname() || "/";
@@ -532,6 +534,9 @@ export function ContactForm({
   return (
     <form
       ref={formRef}
+      method="post"
+      action="/kapi/leads"
+      encType="multipart/form-data"
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-4"
       data-testid="contact-form"
@@ -716,7 +721,7 @@ export function ContactForm({
         {errors.agreement && <p id={`${agreementId}-error`} className="mt-1 text-xs text-destructive" role="alert">{errors.agreement.message}</p>}
       </div>
 
-      <Button type="submit" className="min-h-11 w-full" disabled={loading} data-testid="form-submit">
+      <Button type="submit" className="min-h-11 w-full" disabled={loading || !formReady} data-testid="form-submit">
         {loading ? "Отправляем..." : submitLabel}
       </Button>
     </form>
