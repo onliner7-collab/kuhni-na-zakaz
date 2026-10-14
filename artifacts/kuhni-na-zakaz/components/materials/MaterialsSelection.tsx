@@ -350,7 +350,7 @@ export function MaterialsSelectionProvider({
                 >
                   Вернуться к сравнению
                 </Link>
-                {current && <SelectionButtons id={current.id} />}
+                {current && pathname !== '/materials/mdf-fasady' && <SelectionButtons id={current.id} />}
               </div>
             )}
           </div>
