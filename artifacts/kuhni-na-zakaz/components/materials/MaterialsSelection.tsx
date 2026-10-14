@@ -266,7 +266,8 @@ export function MaterialsSelectionProvider({
         <div className="container-site pt-4">
           <div
             className="rounded-2xl border border-violet-200 bg-violet-50 p-4"
-            data-testid="materials-selection"
+              data-testid="materials-selection"
+              inert={!ready}
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm font-semibold">
@@ -367,6 +368,7 @@ export function MaterialsSelectionProvider({
         <div className="container-site pb-10">
           <nav
             aria-label="Другие материалы"
+            inert={!ready}
             className="rounded-2xl bg-stone-100 p-5"
           >
             <h2 className="text-xl font-bold">Другие материалы</h2>
@@ -481,12 +483,15 @@ export function MaterialDetailsLink({
   children?: ReactNode;
   fromComparison?: boolean;
 }) {
-  const { state } = useMaterials();
+  const { state, ready } = useMaterials();
   const item = materialById(id);
   return item ? (
     <Link
       className="inline-flex min-h-11 items-center font-semibold text-violet-800 underline underline-offset-4"
-      href={buildMaterialLink(state, item.href, fromComparison)}
+      href={ready ? buildMaterialLink(state, item.href, fromComparison) : item.href}
+      aria-disabled={!ready}
+      tabIndex={ready ? undefined : -1}
+      onClick={event=>{if(!ready)event.preventDefault();}}
     >
       {children || "Подробнее о материале →"}
     </Link>

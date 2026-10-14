@@ -142,7 +142,7 @@ export default function MaterialsPage() {
           <span aria-hidden="true"> / </span>
           <span>Материалы</span>
         </nav>
-        <section className="overflow-hidden rounded-[2rem] bg-stone-950 text-white lg:grid lg:grid-cols-2">
+        <section className="flex flex-col overflow-hidden rounded-[2rem] bg-stone-950 text-white lg:grid lg:grid-cols-2">
           <div className="p-6 sm:p-9 lg:p-10">
             <p className="text-xs font-bold uppercase tracking-[.18em] text-violet-200">
               Кухни на заказ · Беларусь
@@ -181,7 +181,7 @@ export default function MaterialsPage() {
             height={800}
             priority
             sizes="(max-width: 1023px) 100vw, 50vw"
-            className="aspect-[3/2] h-full w-full object-cover"
+            className="order-first aspect-[3/2] h-full w-full object-cover lg:order-none"
           />
         </section>
         <section className="my-10">

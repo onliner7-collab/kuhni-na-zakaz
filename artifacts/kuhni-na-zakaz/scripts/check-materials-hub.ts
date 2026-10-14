@@ -39,22 +39,26 @@ try{
    await page.setViewportSize({width,height:900});await page.goto(base+'/materials'+query,{waitUntil:'domcontentloaded'});
    await page.locator('#gallery').scrollIntoViewIfNeeded();
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`overflow ${width}`);
-   await page.screenshot({path:path.join(out,`gallery-${width}.png`)});
-   if(width===390){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(out,'first-screen-390.png')});}
+   if(process.env.MATERIALS_QA_SCREENSHOTS!=='0'){
+     await page.screenshot({path:path.join(out,`gallery-${width}.png`)});
+     if(width===390){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(out,'first-screen-390.png')});}
+   }
  }
  report.viewports='360, 390, 768, 1280 PASS';
  await page.setViewportSize({width:390,height:844});
  await page.route('**/*',r=>r.request().resourceType()==='image'?r.abort():r.continue());
  for(const from of MATERIAL_ROUTES){
-   await page.goto(base+from+query,{waitUntil:'domcontentloaded'});await page.getByRole('navigation',{name:'Другие материалы',exact:true}).waitFor();
+   await page.goto(base+from+query,{waitUntil:'domcontentloaded'});await page.getByTestId('materials-selection').getByText('В сравнении: 2 из 3',{exact:true}).waitFor();await page.getByRole('navigation',{name:'Другие материалы',exact:true}).waitFor();
    assert.equal(await page.locator('h1').count(),1,from);
    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://kuhni.minsk.by'+from);
    (report.routes as unknown[]).push({route:from,h1:1,canonical:'PASS'});
    for(const to of MATERIAL_ROUTES.filter(r=>r!==from)){
      await page.goto(base+from+query,{waitUntil:'domcontentloaded'});
+     await page.getByTestId('materials-selection').getByText('В сравнении: 2 из 3',{exact:true}).waitFor();
      const nav=page.getByRole('navigation',{name:'Другие материалы',exact:true});
      await nav.locator(`a[href^="${to}?"]`).click();
      await page.waitForURL(u=>u.pathname===to,{waitUntil:'domcontentloaded'});
+     await page.getByTestId('materials-selection').getByText('В сравнении: 2 из 3',{exact:true}).waitFor();
      await page.waitForFunction(()=>localStorage.getItem('kuhni-materials-v1')!==null);
      const s=await page.evaluate(()=>JSON.parse(localStorage.getItem('kuhni-materials-v1')!));
      assert.deepEqual(s.comparisonIds,['mdf-film','ldsp']);assert.equal(s.preferredId,'ldsp');
@@ -73,7 +77,7 @@ try{
  let payload:any=null;
  await page.route('**/kapi/leads',async route=>{payload=route.request().postDataJSON();await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({success:true})});});
  await page.locator('#materials-form').getByRole('button',{name:'Получить расчёт выбранных вариантов',exact:true}).click();
- await page.waitForFunction(()=>document.body.innerText.includes('Спасибо')||document.body.innerText.includes('отправлена'));
+ await page.getByTestId('form-success').waitFor();
  assert.deepEqual(payload.answers.materialSelection.comparisonIds,['mdf-film','ldsp']);assert.equal(payload.answers.materialSelection.preferredId,'ldsp');assert.ok(!('recentViews' in payload.answers.materialSelection));
  report.formPayload={method:'Intercepted locally; no real submission or notification',selection:payload.answers.materialSelection,source:payload.source};
  assert.equal(errors.length,0);report.status='PASS';
