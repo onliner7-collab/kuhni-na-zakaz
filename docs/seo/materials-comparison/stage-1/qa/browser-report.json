@@ -1,5 +1,5 @@
 {
-  "base": "http://127.0.0.1:3015",
+  "base": "https://kuhni.minsk.by",
   "date": "2026-10-14",
   "routes": [
     {
@@ -513,6 +513,24 @@
   "filterHistory": "PASS",
   "lightboxFocus": "PASS",
   "viewports": "360, 390, 768, 1280 PASS",
-  "status": "FAIL",
-  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n400 !== 200\n"
+  "watermarkEndpoint": 200,
+  "formPayload": {
+    "method": "Intercepted locally; no real submission or notification",
+    "selection": {
+      "version": 1,
+      "comparisonIds": [
+        "mdf-film",
+        "ldsp"
+      ],
+      "comparisonNames": [
+        "МДФ в плёнке",
+        "Фасады ЛДСП"
+      ],
+      "preferredId": "ldsp",
+      "preferredName": "Фасады ЛДСП",
+      "scenarioId": "straight-3m"
+    },
+    "source": "materials-index"
+  },
+  "status": "PASS"
 }

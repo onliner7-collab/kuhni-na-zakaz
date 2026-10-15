@@ -1,0 +1,56 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "title": "Купить кухню на заказ — по вашим размерам | КухниBY",
+    "h1": [
+      "Купить кухню на заказ по вашим размерам"
+    ],
+    "canonical": "https://kuhni.minsk.by"
+  },
+  {
+    "route": "/design-proekt-kuhni",
+    "status": 200,
+    "title": "3D-проект кухни на заказ в Минске — дизайн, планировка и визуализация",
+    "h1": [
+      "3D-проект кухни на заказ"
+    ],
+    "canonical": "https://kuhni.minsk.by/design-proekt-kuhni"
+  },
+  {
+    "route": "/locations/minskaya-oblast",
+    "status": 200,
+    "title": "Кухни в Минской области на заказ | КухниBY",
+    "h1": [
+      "Купить кухню в Минской области под размер, с доставкой и монтажом"
+    ],
+    "canonical": "https://kuhni.minsk.by/locations/minskaya-oblast"
+  },
+  {
+    "route": "/locations/minsk",
+    "status": 200,
+    "title": "Купить кухню на заказ в Минске — размеры, стили и материалы | КухниBY",
+    "h1": [
+      "Купить кухню в Минске на заказ"
+    ],
+    "canonical": "https://kuhni.minsk.by/locations/minsk"
+  },
+  {
+    "route": "/materials/furnitura",
+    "status": 200,
+    "title": "Фурнитура для кухни: петли и направляющие | КухниBY",
+    "h1": [
+      "Фурнитура для кухни на заказ"
+    ],
+    "canonical": "https://kuhni.minsk.by/materials/furnitura"
+  },
+  {
+    "route": "/locations/borisov",
+    "status": 200,
+    "title": "Купить кухню на заказ в Борисове: каталог и цены | КухниBY",
+    "h1": [
+      "Кухни на заказ в Борисове"
+    ],
+    "canonical": "https://kuhni.minsk.by/locations/borisov"
+  }
+]
