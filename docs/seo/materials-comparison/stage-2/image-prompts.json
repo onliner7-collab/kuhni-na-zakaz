@@ -4,41 +4,41 @@
     "prompt": "Use case: photorealistic-natural. Asset: website kitchen photo, landscape 3:2. Photograph of a complete compact straight kitchen approximately 3 metres long in a contemporary Belarus apartment, warm ivory matte PVC wrapped MDF slab fronts, realistic subtle surface, oak-look laminate worktop 38mm, pale warm wall, integrated oven at right, sink at left, three drawers, ordinary sensible proportions. Frontal three-quarter interior photograph, daylight from left, eye level 35mm lens. Entire kitchen visible without clipping cabinets. Natural editorial interior photography with convincing joins and hardware. No people, no text, no branding, no watermarks, no collage, no cutaway, no CGI aesthetics.",
     "tool": "built-in imagegen",
     "sourceFile": "exec-48df6ebb-fddd-439a-93de-9cc2708d09ad.png",
-    "status": "generated; awaiting semantic discussion; no deployment"
+    "status": "generated; implemented and deployed in abbd5313"
   },
   {
     "id": "film-country",
     "prompt": "Use case: photorealistic-natural. Asset: website kitchen photograph landscape 3:2. Entire L-shaped kitchen in a modest heated countryside house, muted sage PVC-wrapped MDF cabinet fronts with shallow routed shaker-style recessed panel, pale oak-look laminate countertop, black slim handles, plaster walls, large window on left, sink below window, oven on right, believable cabinet joins and hinges. Warm daylight, 35mm architectural photo, realistic everyday house, restrained styling, no excessive luxury. MDF fronts appear continuous with no exposed raw fibre. No people, text, logos, collage, watermarks or CGI.",
     "tool": "built-in imagegen",
     "sourceFile": "exec-5d8d86b0-c6df-46db-9741-8b5183883066.png",
-    "status": "generated; awaiting semantic discussion; no deployment"
+    "status": "generated; implemented and deployed in abbd5313"
   },
   {
     "id": "enamel-apartment",
     "prompt": "Use case: photorealistic-natural. Asset: kitchen comparison photograph landscape 3:2. Complete modern corner kitchen in a newly finished apartment, satin painted MDF fronts in warm muted terracotta, flat fronts and long brushed steel handles, light grey stone-look worktop, cream backsplash, oven integrated at right, sink left, three functional drawers, upper cupboards to ceiling, believable room geometry. Natural side daylight with soft reflections, eye-level professional interior photograph with real surface imperfections. Show all units. No text, people, logos, watermark, collage, cutaway, no artificial 3D rendering appearance.",
     "tool": "built-in imagegen",
     "sourceFile": "exec-4c3ab537-7f21-478d-bd78-15d6be8dc7df.png",
-    "status": "generated; awaiting semantic discussion; no deployment"
+    "status": "generated; implemented and deployed in abbd5313"
   },
   {
     "id": "film-profile",
     "prompt": "Use case: photorealistic-natural. Asset: MDF facade detail photograph 3:2 horizontal. Close-up of two warm ivory matte PVC-wrapped MDF kitchen cabinet doors with shallow routed rectangular panel profile, slim aged brass handle, clear realistic soft rounded moulding, closed door gap and continuous wrapped edge visible at an angle. Small part of oak-look laminate worktop below. Soft side daylight reveals subtle film texture and the profile, highly realistic cabinetry photography, tactile surfaces, restrained shallow depth of field, no exposed raw board, no labels, no text, no logos, no people, no collage or cutaway.",
     "tool": "built-in imagegen",
     "sourceFile": "exec-e8ef8e5a-7130-4eda-9ec9-d650c4ba446d.png",
-    "status": "generated; awaiting semantic discussion; no deployment"
+    "status": "generated; implemented and deployed in abbd5313"
   },
   {
     "id": "film-wood",
     "prompt": "Use case: photorealistic-natural. Asset: website kitchen photograph landscape 3:2. Compact two-metre straight kitchen in a simple heated guest cottage, natural oak-pattern PVC-wrapped MDF flat doors, visible fine printed oak grain without claiming solid wood, soft warm grey upper cupboards, light laminate worktop, black small handles, freestanding small stove, sink, two drawers, pale plaster walls, simple practical interior. Whole kitchen visible, honest proportions, realistic daylight and gentle shadows, 35mm interior photograph. No text, no people, no logos, no watermark, no collage, no CGI aesthetics.",
     "tool": "built-in imagegen",
     "sourceFile": "exec-fb7f82d9-d1a9-468a-baf7-7806fb36aaa3.png",
-    "status": "generated; awaiting semantic discussion; no deployment"
+    "status": "generated; implemented and deployed in abbd5313"
   },
   {
     "id": "finish-combination",
     "prompt": "Use case: photorealistic-natural. Asset: close-up materials combination photograph horizontal 3:2. A real-looking kitchen corner with muted warm grey satin painted MDF flat cabinet fronts, closed cabinet edge and fine door gaps, horizontal light oak-look laminate worktop 38mm, pale ceramic backsplash, one brushed nickel slim handle. Show full depth of counter and crisp junction of door, worktop and wall. Natural window light, tangible believable smooth paint and countertop textures, editorial product detail photograph. No text, people, logos, watermark, collage, cutaway, infographic or CGI.",
     "tool": "built-in imagegen",
     "sourceFile": "exec-bc7d4100-70df-45a5-92e0-d9112d7c26ac.png",
-    "status": "generated; awaiting semantic discussion; no deployment"
+    "status": "generated; implemented and deployed in abbd5313"
   }
 ]

@@ -68,11 +68,13 @@ async function main() {
     let payload: any;
     await page.route("**/kapi/leads", async route => { payload = route.request().postDataJSON(); await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ success: true }) }); });
     const form = page.locator("#materials-form");
+    await expect(form.getByRole("button", { name: "Рассчитать кухню", exact: true })).toBeEnabled();
     await form.locator('input[name="name"]').fill("Проверка формы");
     await form.locator('input[name="phone"]').fill("+375291234567");
     await form.locator('input[name="agreement"]').check();
     await form.getByRole("button", { name: "Рассчитать кухню", exact: true }).click();
-    await page.getByTestId("form-success").waitFor();
+    try { await page.getByTestId("form-success").waitFor(); }
+    catch (e) { report.formDiagnostics = { intercepted: Boolean(payload), alerts: await form.locator('[role="alert"]').allTextContents(), text: (await form.innerText()).slice(-600) }; throw e; }
     assert.deepEqual(payload.answers.materialSelection.comparisonIds, ["mdf-film", "ldsp", "hpl"]);
     assert.equal(payload.answers.materialSelection.preferredId, "mdf-film");
     assert.equal(payload.source, "material-mdf-facades");

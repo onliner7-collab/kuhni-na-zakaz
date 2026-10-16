@@ -1,0 +1,93 @@
+{
+  "base": "https://kuhni.minsk.by",
+  "errors": [],
+  "viewing": "12 images, lightbox, focus return and lighting do not change selection",
+  "filters": "MDF filter survives refresh and round trip; hub filters unchanged",
+  "selection": "explicit film preference, 3 solutions, fourth cancelled, hub round trip and refresh PASS",
+  "form": {
+    "method": "POST intercepted; no real lead or notification",
+    "selection": {
+      "version": 1,
+      "comparisonIds": [
+        "mdf-film",
+        "ldsp",
+        "hpl"
+      ],
+      "comparisonNames": [
+        "МДФ в плёнке",
+        "Фасады ЛДСП",
+        "Фасады с HPL"
+      ],
+      "preferredId": "mdf-film",
+      "preferredName": "МДФ в плёнке",
+      "scenarioId": "straight-3m"
+    },
+    "source": "material-mdf-facades"
+  },
+  "images": [
+    {
+      "src": "/images/mdf-facades-20261015/film-apartment.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/film-country.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/enamel-apartment.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/film-profile.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/film-wood.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/finish-combination.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/film-apartment-angle.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/film-apartment-edge.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/film-country-angle.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/film-country-profile.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/profile-daylight.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    },
+    {
+      "src": "/images/mdf-facades-20261015/profile-warm.webp",
+      "status": 200,
+      "naturalWidth": 1200
+    }
+  ],
+  "watermark": 200,
+  "responsive": "360/390/768/1440 PASS",
+  "ldspBlocks": "Both existing photo blocks preserved; four angles load; explicit preference retained",
+  "status": "PASS"
+}
