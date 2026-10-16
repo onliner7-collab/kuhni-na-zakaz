@@ -264,7 +264,19 @@ export function MaterialsSelectionProvider({
   const current = materialForRoute(pathname);
   return (
     <Context.Provider value={value}>
-      {isMaterial && (
+      {pathname === "/materials/mdf-fasady" && <div className="container-site relative py-1" data-testid="materials-selection" inert={!ready}>
+        <div className="flex items-center justify-between gap-2 text-xs font-semibold text-violet-900 sm:text-sm">
+          <Link className="inline-flex min-h-11 items-center underline underline-offset-4" href={comparisonHref(state, "/materials", "#gallery")}>Все материалы</Link>
+          <Link className="inline-flex min-h-11 items-center underline underline-offset-4" href={comparisonHref(state)}>Моё сравнение ({state.comparisonIds.length})</Link>
+          <details><summary className="min-h-11 cursor-pointer content-center px-2">Ещё</summary><div className="absolute left-4 right-4 top-full z-40 grid gap-3 rounded-2xl border border-stone-200 bg-white p-4 shadow-xl">
+            <Link className={materialButton} href={comparisonHref(state)}>Вернуться к сравнению</Link>
+            {state.comparisonIds.length ? state.comparisonIds.map(id => <div key={id} className="flex flex-wrap items-center justify-between gap-2"><MaterialDetailsLink id={id}>{materialById(id)!.title}{state.preferredId === id ? " · Предпочитаю" : ""}</MaterialDetailsLink><button className={materialButton} onClick={() => removeFromCompare(id)}>Убрать</button></div>) : <p>Добавьте варианты, чтобы сравнить</p>}
+            {state.comparisonIds.length > 0 && <button className={materialButton} onClick={value.clearMaterialsSelection}>Очистить сравнение материалов</button>}
+          </div></details>
+        </div>
+        {state.preferredId && <p className="pb-1 text-xs text-stone-600">Предпочитаю: {materialById(state.preferredId)?.title}</p>}
+      </div>}
+      {isMaterial && pathname !== "/materials/mdf-fasady" && (
         <div className="container-site pt-4">
           <div
             className="rounded-2xl border border-violet-200 bg-violet-50 p-4"
