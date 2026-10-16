@@ -263,7 +263,9 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = normalizePath(path) === "/materials"
+  const effectiveLastModified = normalizePath(path) === "/materials/mdf-fasady"
+    ? new Date("2026-10-15T00:00:00.000Z")
+    : normalizePath(path) === "/materials"
     ? new Date("2026-10-14T00:00:00.000Z")
     : normalizePath(path) === "/catalog/kuhni-do-potolka" || normalizePath(path) === "/calculator" || normalizePath(path) === "/scenarios/byudzhetnaya-kuhnya"
     ? new Date("2026-10-13T00:00:00.000Z")

@@ -20,7 +20,7 @@ const finalPageLcpImages: Record<string, string> = {
   "/locations/borisov":
     "/media/pilots/borisov/webp/borisov-process-request.webp",
   "/materials/mdf-fasady":
-    "/media/pilots/mdf-fasady/avif/mdf-surface-closeup.avif",
+    "/images/mdf-facades-20261015/film-apartment.webp",
   "/materials/furnitura":
     "/media/pilots/hardware/avif/hardware-hero-open-cabinet-portrait.avif",
   "/catalog/pryamye-kuhni":

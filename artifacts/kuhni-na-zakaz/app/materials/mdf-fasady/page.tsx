@@ -1,72 +1,65 @@
 import type { Metadata } from "next";
 import Link from "@/components/navigation/Link";
-import { ArrowRight, CircleAlert, Layers3 } from "lucide-react";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import { MaterialSurfaceComparator } from "@/components/materials/MaterialSurfaceComparator";
-import { SelectionButtons, MaterialDetailsLink } from '@/components/materials/MaterialsSelection';
+import { SelectionButtons, MaterialDetailsLink } from "@/components/materials/MaterialsSelection";
+import { MaterialsPriceScenarios, MaterialsLeadSummary } from "@/components/materials/MaterialsHub";
+import { MdfPhotoGallery } from "@/components/materials/MdfPhotoGallery";
+import { MATERIAL_SOLUTIONS } from "@/data/material-solutions";
+import { MDF_FAQ, MDF_SCENARIOS, MDF_PRICE_RESEARCH } from "@/data/mdf-content";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const title = "Фасады МДФ для кухни: поверхность и сравнение";
-const description = "Как сравнить поверхность фасадов МДФ: крупный план, визуальные различия, вопросы к образцу, ограничения и следующий шаг без неподтверждённых свойств и цен.";
-
+const title = "Кухни с фасадами МДФ на заказ — покрытия и комплектация";
+const description = "Кухни с фасадами МДФ: плёнка, эмаль и другие покрытия. Примеры для квартиры, дома и дачи, уход, сравнение и расчёт в BYN по размерам и комплектации.";
 export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/materials/mdf-fasady" },
+  title, description, alternates: { canonical: "/materials/mdf-fasady" },
   robots: { index: true, follow: true },
-  openGraph: buildOpenGraph("/materials/mdf-fasady", title, description),
-  twitter: buildTwitterMetadata(title, description),
+  openGraph: buildOpenGraph("/materials/mdf-fasady", title, description, { images: [{ url: "/images/mdf-facades-20261015/film-apartment.webp", width: 1200, height: 800, alt: "Светлая кухня с гладкими фасадами МДФ — визуальный пример" }] }),
+  twitter: buildTwitterMetadata(title, description, "/images/mdf-facades-20261015/film-apartment.webp"),
 };
-
-const comparison = [
-  { question: "Как выглядит поверхность?", action: "Рассмотреть один физический образец при дневном и искусственном свете." },
-  { question: "Как читается торец?", action: "Попросить показать фактический образец торца и способ обработки выбранного решения." },
-  { question: "Как выглядит рядом с окружением?", action: "Сопоставить образец со столешницей, стеной и освещением проекта." },
-  { question: "Что известно об уходе?", action: "Запросить подтверждённые рекомендации именно для выбранного покрытия." },
-];
-
-const limitations = [
-  "Экран не подтверждает точный оттенок, фактуру или степень блеска.",
-  "Состав и доступные варианты уточняются для выбранного покрытия.",
-  "Цена не выводится без размеров, покрытия и состава заказа.",
-  "Совместимость со стилем и планировкой проверяется в конкретном проекте, а не по названию материала.",
-];
-
-const nextLinks = [
-  { href: "/styles", title: "Сопоставить со стилем", text: "Открыть стили как отдельный визуальный вопрос, без обещания совместимости." },
-  { href: "/catalog/uglovye-kuhni", title: "Проверить угловую планировку", text: "Сначала оценить форму помещения, затем возвращаться к фасаду." },
-  { href: "/materials/furnitura", title: "Перейти к механизмам", text: "Фурнитура — отдельный слой выбора после внешней поверхности фасада." },
-  { href: "/calculator", title: "Передать выбор в расчёт", text: "Зафиксировать МДФ как интерес, не обещая цену до исходных данных." },
-];
+const section = "mt-12 scroll-mt-24";
+const card = "rounded-2xl border border-stone-200 bg-white p-5 md:p-7";
+const action = "inline-flex min-h-11 items-center justify-center rounded-xl bg-violet-800 px-5 py-3 text-sm font-bold text-white hover:bg-violet-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-700";
 
 export default function MdfFacadesPage() {
-  const breadcrumb = breadcrumbJsonLd([{ name: "Главная", path: "/" }, { name: "Материалы", path: "/materials" }, { name: "Фасады МДФ", path: "/materials/mdf-fasady" }]);
-
   return <ExploreContextProvider sourceRoute="/materials/mdf-fasady">
-    <JsonLd data={breadcrumb} />
+    <JsonLd data={breadcrumbJsonLd([{ name: "Главная", path: "/" }, { name: "Материалы", path: "/materials" }, { name: "Кухни с фасадами МДФ", path: "/materials/mdf-fasady" }])} />
     <div className="overflow-x-clip bg-[#f7f5f2] pb-28 text-stone-950 md:pb-16">
-      <section className="border-b border-stone-200 bg-white">
-        <div className="container-site py-6 md:py-12">
-          <nav className="flex flex-wrap items-center gap-2 text-sm text-stone-600" aria-label="Хлебные крошки"><Link href="/" className="min-h-11 content-center">Главная</Link><span aria-hidden="true">/</span><Link href="/materials" className="min-h-11 content-center">Материалы</Link><span aria-hidden="true">/</span><span>Фасады МДФ</span></nav>
-          <div className="mt-4 max-w-4xl"><p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-800">Поверхности фасадов МДФ</p><h1 className="mt-2 text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">Как меняется фасад МДФ при разном свете</h1><p className="mt-3 max-w-2xl text-base leading-7 text-stone-600 md:text-lg">Выберите поверхность, свет или сочетание. Экран задаёт визуальное направление, а точный вариант подтверждается по образцу.</p></div>
-        </div>
-      </section>
-
-      <div className="container-site py-6 md:py-12">
-        <MaterialSurfaceComparator />
-        <section id="plenka" className="mt-12 scroll-mt-24 rounded-2xl border border-stone-200 bg-white p-6"><h2 className="text-2xl font-bold">МДФ в плёнке — отдельное исполнение для сравнения</h2><p className="my-4 leading-7 text-stone-600">Основа МДФ покрывается плёнкой. Декор, форму фасада, торец и ограничения эксплуатации подтвердим по выбранной серии. Просмотр этой страницы не выбирает покрытие автоматически.</p><SelectionButtons id="mdf-film"/><div className="mt-4 flex flex-wrap gap-5"><MaterialDetailsLink id="mdf-enamel">Сравнить с МДФ с эмалью →</MaterialDetailsLink><MaterialDetailsLink id="hpl">Посмотреть HPL →</MaterialDetailsLink></div></section>
-
-        <section id="compare" className="mt-16 scroll-mt-24" aria-labelledby="compare-title"><p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-800">Сравнение</p><h2 id="compare-title" className="mt-2 text-3xl font-bold md:text-4xl">Вопросы, которые можно проверить по образцу</h2><div className="mt-6 overflow-hidden rounded-2xl border border-stone-200 bg-white"><table className="w-full text-left text-sm"><thead className="bg-stone-100"><tr><th className="p-4 font-bold">Вопрос</th><th className="p-4 font-bold">Следующее действие</th></tr></thead><tbody>{comparison.map((row) => <tr key={row.question} className="border-t border-stone-200"><th scope="row" className="p-4 align-top font-semibold">{row.question}</th><td className="p-4 leading-6 text-stone-600">{row.action}</td></tr>)}</tbody></table></div></section>
-
-        <section id="limits" className="mt-16 scroll-mt-24 overflow-hidden rounded-[2rem] border border-amber-200 bg-amber-50" aria-labelledby="limits-title"><div className="grid lg:grid-cols-[.75fr_1.25fr]"><figure className="min-h-0 bg-white"><img src="/media/pilots/mdf-fasady/webp/mdf-surface-cutaway.webp" alt="Условная схема основы, покрытия и торца фасада МДФ" width="1200" height="675" loading="lazy" decoding="async" className="aspect-[16/9] h-auto w-full object-cover lg:h-full" /><figcaption className="px-5 py-3 text-sm text-stone-600">Условная AI-иллюстрация слоёв; состав конкретного фасада подтверждается по образцу и документации.</figcaption></figure><div className="p-6 md:p-9"><div className="flex items-start gap-3"><CircleAlert className="mt-1 h-7 w-7 shrink-0 text-amber-800" aria-hidden /><h2 id="limits-title" className="min-w-0 text-3xl font-bold leading-tight">Что нужно уточнить</h2></div><ul className="mt-6 grid gap-3">{limitations.map((item) => <li key={item} className="flex gap-3 rounded-2xl bg-white p-4 text-sm leading-6"><span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-amber-700" />{item}</li>)}</ul></div></div></section>
-
-        <section className="mt-16" aria-labelledby="combination-title"><p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-800">Стиль и планировка</p><h2 id="combination-title" className="mt-2 text-3xl font-bold md:text-4xl">Продолжите с отдельным вопросом</h2><p className="mt-3 max-w-3xl leading-7 text-stone-600">Мы не объявляем МДФ совместимым с конкретным стилем или формой только по названию. Переходы ниже помогают проверить следующий слой решения.</p><div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{nextLinks.map((item) => <Link key={item.href} href={item.href} className="rounded-2xl border border-stone-200 bg-white p-5 hover:border-violet-700 focus-visible:outline focus-visible:ring-2 focus-visible:ring-violet-700"><Layers3 className="h-5 w-5 text-violet-800" aria-hidden /><h3 className="mt-3 font-bold">{item.title}</h3><p className="mt-2 text-sm leading-6 text-stone-600">{item.text}</p><span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet-800">Открыть <ArrowRight className="h-4 w-4" aria-hidden /></span></Link>)}</div></section>
-
-        <section className="mt-8" aria-labelledby="mdf-transition-title"><h2 id="mdf-transition-title" className="sr-only">Переходы после сравнения поверхности</h2><RelatedExplorationRail route="/materials/mdf-fasady" /></section>
-
-        <section id="calculation" className="mt-16 scroll-mt-24 grid overflow-hidden rounded-[2rem] bg-stone-950 text-white lg:grid-cols-[.8fr_1.2fr]" aria-labelledby="calculation-title"><div className="p-6 md:p-10"><p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-300">Цена или заявка</p><h2 id="calculation-title" className="mt-2 text-3xl font-bold md:text-4xl">Передайте визуальное направление</h2><p className="mt-4 leading-7 text-stone-300">Форма сохраняет интерес к МДФ. Цена и вариант покрытия определяются после уточнения заказа.</p><div className="mt-6 text-stone-950"><ContextSummary /></div></div><div className="bg-white p-5 text-stone-950 md:p-8"><ContactForm source="material-mdf-surface" sourcePage="/materials/mdf-fasady" sourceType="material" submitLabel="Передать вопрос по фасадам" answersEventName="mdf-surface-answers" defaultAnswers={{ material: "МДФ", evidenceStatus: "requires-sample-confirmation" }} /></div></section>
+      <div className="container-site py-5 md:py-10">
+        <nav className="flex flex-wrap items-center gap-2 text-sm text-stone-600" aria-label="Хлебные крошки"><Link href="/" className="min-h-11 content-center">Главная</Link><span aria-hidden>/</span><Link href="/materials" className="min-h-11 content-center">Материалы</Link><span aria-hidden>/</span><span aria-current="page">Фасады МДФ</span></nav>
+        <section className="mt-3 grid overflow-hidden rounded-3xl bg-white lg:grid-cols-2">
+          <figure className="min-w-0"><img src="/images/mdf-facades-20261015/film-apartment.webp" alt="Светлая прямая кухня с гладкими фасадами и столешницей под дуб" width={1200} height={800} fetchPriority="high" className="aspect-[3/2] w-full object-cover"/><figcaption className="px-5 py-3 text-xs text-stone-600">Визуальный пример, созданный ИИ. Покрытие и комплектацию согласуем по образцу.</figcaption></figure>
+          <div className="p-5 md:p-8"><p className="text-xs font-bold uppercase tracking-widest text-violet-800">Основа, покрытие, кухня целиком</p><h1 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">Кухни с фасадами МДФ — покрытия и комплектация</h1><p className="mt-4 leading-7 text-stone-600">МДФ — основа фасада. Плёнка или эмаль задают его поверхность, а корпус, столешница и механизмы выбираются отдельно. Подберём кухню по вашим размерам для квартиры или дома в Беларуси.</p><div className="mt-5 flex flex-wrap gap-3"><Link href="#coatings" className={action}>Выбрать покрытие</Link><Link href="#materials-form" className={action}>Рассчитать по размерам</Link></div></div>
+        </section>
+        <nav aria-label="Разделы страницы МДФ" className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm font-semibold text-violet-800">{[["#construction","Состав фасада"],["#plenka","МДФ в плёнке"],["#gallery","Примеры кухонь"],["#prices","Комплектация и цена"],["#care","Уход"],["#questions","Вопросы"]].map(([href,label])=><Link key={href} href={href} className="inline-flex min-h-11 items-center underline underline-offset-4">{label}</Link>)}</nav>
+        <section id="construction" className={section} aria-labelledby="construction-title"><h2 id="construction-title" className="text-3xl font-bold">Из чего состоит кухня с фасадами МДФ</h2><div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{[
+          ["Основа фасада", "МДФ — древесноволокнистая плита средней плотности. Она позволяет получать гладкие и профилированные детали; допустимая фрезеровка зависит от плиты и технологии."],
+          ["Покрытие и торец", "Плёнка, окраска или облицовка образуют наружную поверхность. В спецификации нужны название серии, отделка обратной стороны и способ обработки торцов."],
+          ["Корпус, столешница, механизмы", "Корпус — стенки и полки шкафов, например из ЛДСП. Столешница, петли и ящики выбираются отдельно от фасада: их состав и стоимость считают отдельными позициями."],
+        ].map(([h,p])=><article key={h} className={card}><h3 className="text-xl font-bold">{h}</h3><p className="mt-3 text-sm leading-6 text-stone-600">{p}</p></article>)}</div><p className="mt-4 text-sm leading-6 text-stone-600">О свойствах основы: <a className="underline" href="https://www.egger.com/it/mobili-arredamento-dinterni/gamma/prodotti/mdfe05mb?country=IT" target="_blank" rel="noopener noreferrer">техническая страница производителя EGGER</a>. Это пример типа плиты; поставщик вашей кухни определяется отдельно.</p></section>
+        <section id="coatings" className={section} aria-labelledby="coatings-title"><h2 id="coatings-title" className="text-3xl font-bold">Сначала выберите покрытие</h2><p className="mt-3 max-w-3xl leading-7 text-stone-600">Сравнивайте законченные исполнения: МДФ в плёнке и МДФ с эмалью. Для HPL, акрила и шпона основание уточняется отдельно — оно не всегда из МДФ.</p><div className="mt-5 grid gap-4 md:grid-cols-2">{MATERIAL_SOLUTIONS.filter(m=>["mdf-film","mdf-enamel","hpl","acrylic","veneer"].includes(m.id)).map(m=><article key={m.id} id={m.id==="mdf-film"?"plenka":undefined} data-material-id={m.id} className={`${card} scroll-mt-24`}><h3 className="text-2xl font-bold">{m.title}</h3><p className="mt-3 text-sm leading-6 text-stone-600">{m.description}</p><p className="mt-3 text-sm leading-6">{m.values.edge}</p>{m.id==="mdf-film"&&<p className="mt-3 text-sm leading-6">Плёнка повторяет согласованный профиль основы. Древесный рисунок — декор. Матовый или глянцевый финиш, гладкую поверхность и фрезеровку выбирают по доступной коллекции; наличие серии уточним.</p>}<div className="mt-4"><SelectionButtons id={m.id}/></div>{m.id!=="mdf-film"&&<MaterialDetailsLink id={m.id}/>}</article>)}</div></section>
+        <MdfPhotoGallery/>
+        <section id="rooms" className={section} aria-labelledby="rooms-title"><h2 id="rooms-title" className="text-3xl font-bold">Для квартиры, дома и дачи</h2><div className="mt-5 grid gap-4 md:grid-cols-3">{MDF_SCENARIOS.map(s=><article key={s.title} className={card}><h3 className="text-xl font-bold">{s.title}</h3><p className="mt-3 text-sm leading-6 text-stone-600">{s.text}</p><Link className="mt-3 inline-flex min-h-11 items-center font-semibold text-violet-800 underline" href={s.href}>{s.link}</Link></article>)}</div><p className="mt-4 text-sm leading-6 text-stone-600">Для заказа в деревню или посёлок укажите адрес, подъезд и этаж. Возможность выезда, доставку, подъём и установку согласуем до договора.</p></section>
+        <MaterialsPriceScenarios/>
+        <details className={`${card} mt-5`}><summary className="min-h-11 cursor-pointer text-lg font-bold">Почему здесь нет готовой цены за кухню МДФ?</summary><p className="mt-3 text-sm leading-6">Проверка предложений Беларуси: 15 октября 2026 года. Недостаточно сопоставимых предложений для надёжного диапазона. Ставка за метр, отдельный фасад и полный проект — разные единицы цены. Ниже источники исследования; это не прайс нашей компании.</p><ul className="mt-4 grid gap-3 text-sm leading-6">{MDF_PRICE_RESEARCH.map(r=><li key={r.url}><a href={r.url} className="font-semibold text-violet-800 underline" target="_blank" rel="noopener noreferrer">{r.seller}: {r.model}</a><p>{r.reason}</p></li>)}</ul></details>
+        <section id="care" className={section} aria-labelledby="care-title"><h2 id="care-title" className="text-3xl font-bold">Плёнка: возможности, ограничения и уход</h2><div className="mt-5 grid gap-4 sm:grid-cols-2">{[
+          ["Декор и фрезеровка", "Плёнка позволяет выбрать однотонный или древесный декор и подчеркнуть профиль. Образец показывает, как покрытие ложится на углы и углубления; совместимость профиля с плёнкой проверяют у изготовителя."],
+          ["Вода, пар и нагрев", "Убирайте воду и конденсат с торцов и стыков. Не направляйте пар чайника на дверцы. Зазоры у духовки и защиту рядом с посудомоечной машиной задают инструкции мебели и техники."],
+          ["Очистка поверхности", "Начните с мягкой слегка влажной салфетки и вытрите поверхность насухо. Абразивы и растворители могут повредить покрытие. Средство применяйте только по инструкции выбранной серии."],
+          ["Повреждения и замена", "Скол, вздутие или отслоение сначала покажите изготовителю. Домашний нагрев или подклейка не гарантируют восстановления. Ремонт и совпадение декора при замене уточняются отдельно."],
+        ].map(([h,p])=><article className={card} key={h}><h3 className="text-xl font-bold">{h}</h3><p className="mt-3 text-sm leading-6 text-stone-600">{p}</p></article>)}</div><p className="mt-4 text-sm leading-6 text-stone-600">Общие рекомендации сверены с <a className="underline" target="_blank" rel="noopener noreferrer" href="https://alanmebel.by/kompanija/pravila-ekspluataczii-mebeli/">правилами эксплуатации Алан Мебель</a>. Они описывают мебель этого производителя. Инструкцию и допустимые условия для вашего исполнения нужно получить до заказа.</p></section>
+        <section className={section} aria-label="Проверка образца при разном свете"><MaterialSurfaceComparator/></section>
+        <section id="alternatives" className={section} aria-labelledby="alternatives-title"><h2 id="alternatives-title" className="text-3xl font-bold">Что сравнить с плёночным МДФ</h2><div className="mt-5 grid gap-4 md:grid-cols-3">{[
+          ["ldsp","Нужна гладкая кухня с древесным декором?","Сопоставьте ЛДСП и плёнку: рисунок, торец и стоимость одного проекта. Фасады и корпус из ЛДСП — разные позиции спецификации."],
+          ["mdf-enamel","Важен цвет и выразительный профиль?","Сравните плёнку с окрашенным МДФ по образцу и выкрасу. Возможность ремонта, финиш и цена зависят от системы отделки."],
+          ["hpl","Рассматриваете ровную облицовку?","Проверьте HPL: основание, декор, кромку и инструкцию серии. Слово «пластик» само по себе не подтверждает HPL."],
+        ].map(([id,h,p])=><article key={id} className={card}><h3 className="text-xl font-bold">{h}</h3><p className="mt-3 text-sm leading-6 text-stone-600">{p}</p><MaterialDetailsLink id={id}/><SelectionButtons id={id}/></article>)}</div></section>
+        <aside className={`${card} mt-5`} aria-label="Фотографии ЛДСП для сравнения"><p className="font-bold">Сравните МДФ с ЛДСП по фотографиям</p><p className="mt-2 text-sm leading-6 text-stone-600">На странице ЛДСП сохранены четыре ракурса декора и галерея образцов и кухонь. Посмотрите плоскость, кромку и фактуру, затем вернитесь к своему сравнению.</p><div className="mt-3 flex flex-wrap gap-x-6"><MaterialDetailsLink id="ldsp" anchor="#material-explorer">Проверьте декор ЛДСП в четырёх ракурсах →</MaterialDetailsLink><MaterialDetailsLink id="ldsp" anchor="#material-detail-gallery">Как выглядит ЛДСП для кухни в образцах и интерьере →</MaterialDetailsLink></div></aside>
+        <section id="questions" className={section} aria-labelledby="questions-title"><h2 id="questions-title" className="text-3xl font-bold">Вопросы перед заказом кухни</h2><div className="mt-5 grid gap-3">{MDF_FAQ.map(([q,a])=><details key={q} className={card}><summary className="min-h-11 cursor-pointer content-center font-bold">{q}</summary><p className="mt-3 max-w-4xl text-sm leading-7 text-stone-600">{a}</p></details>)}</div></section>
+        <section className="mt-8" aria-label="Продолжить выбор кухни"><RelatedExplorationRail route="/materials/mdf-fasady"/></section>
+        <section id="materials-form" className={`${section} grid overflow-hidden rounded-3xl bg-stone-950 lg:grid-cols-2`} aria-labelledby="calculation-title"><div className="p-5 text-white md:p-8"><h2 id="calculation-title" className="text-3xl font-bold">Рассчитать кухню с выбранными фасадами</h2><p className="mt-4 leading-7 text-stone-300">Укажите размеры стен, помещение, покрытие и нужную комплектацию. Если покрытие ещё не выбрано, поможем сравнить образцы. В заявку попадут варианты, которые вы добавили отдельно.</p><div className="mt-5 text-stone-950"><MaterialsLeadSummary/></div></div><div className="bg-white p-5 md:p-8"><ContactForm source="material-mdf-facades" sourcePage="/materials/mdf-fasady" sourceType="material" submitLabel="Рассчитать кухню" answersEventName="mdf-facades-answers"/></div></section>
       </div>
     </div>
   </ExploreContextProvider>;

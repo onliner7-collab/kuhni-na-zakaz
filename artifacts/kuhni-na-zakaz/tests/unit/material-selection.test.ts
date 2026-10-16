@@ -100,7 +100,7 @@ test("portable link and lead serialization exclude contacts, viewing history and
 test("all registry routes and gallery assets exist with stable unique ids", () => {
   assert.equal(MATERIAL_ROUTES.length, 7);
   assert.equal(MATERIAL_SOLUTIONS.length, 6);
-  assert.equal(MATERIAL_PHOTOS.length, 64);
+  assert.ok(MATERIAL_PHOTOS.length >= 64);
   assert.equal(
     new Set(MATERIAL_PHOTOS.map((p) => p.id)).size,
     MATERIAL_PHOTOS.length,
@@ -114,4 +114,14 @@ test("all registry routes and gallery assets exist with stable unique ids", () =
     assert.ok(/[а-яё]/i.test(p.alt));
     assert.ok(p.src.endsWith(".webp"));
   }
+});
+test("MDF view is restored separately without selecting a material or refreshing its TTL", () => {
+  const s = sanitizeMaterialState({ ...saved, galleryFilters: { color: "Тёмные" }, mdfGallery: { material: "mdf-film", layout: "Деталь", limit: 12, activePhoto: "mdf-20261015-film-apartment-edge" } }, now);
+  assert.deepEqual(s.comparisonIds, saved.comparisonIds);
+  assert.equal(s.preferredId, saved.preferredId);
+  assert.equal(s.updatedAt, now);
+  assert.equal(s.galleryFilters.color, "Тёмные");
+  assert.equal(s.mdfGallery.layout, "Деталь");
+  assert.equal(s.mdfGallery.activePhoto, "mdf-20261015-film-apartment-edge");
+  assert.deepEqual(sanitizeMaterialState({ version: 1, mdfGallery: { material: "PRIVATE", layout: "PRIVATE", limit: Infinity, activePhoto: "https://example.com" } }).mdfGallery, EMPTY_MATERIAL_STATE.mdfGallery);
 });

@@ -1,5 +1,10 @@
 # Component Registry
 
+## МДФ, этап 2
+
+MdfPhotoGallery — 6/12 фото, фильтры, lightbox и история; MaterialSurfaceComparator — новые детали и свет; MaterialsSelection — совместимое поле mdfGallery и якорные MaterialDetailsLink. Общие формы и MobileBottomNav без изменения контракта. См. stage-2/report.md.
+
+
 ## 2026-10-13 — Кухни до потолка
 
 `components/catalog/ceiling-kitchens`: серверная CeilingKitchenPage, изолированные клиентские галерея/подбор/сравнение/форма, data и CSS module. Использует ExploreContext и ContactForm без изменений их поведения. Отчёт: `docs/seo/2026-10-13-kuhni-do-potolka-implementation.md`.

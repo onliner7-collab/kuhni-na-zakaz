@@ -1,0 +1,584 @@
+{
+  "base": "http://127.0.0.1:3017",
+  "date": "2026-10-14",
+  "routes": [
+    {
+      "route": "/materials",
+      "h1": 1,
+      "canonical": "PASS"
+    },
+    {
+      "route": "/materials/mdf-fasady",
+      "h1": 1,
+      "canonical": "PASS"
+    },
+    {
+      "route": "/materials/ldsp",
+      "h1": 1,
+      "canonical": "PASS"
+    },
+    {
+      "route": "/materials/mdf-emal",
+      "h1": 1,
+      "canonical": "PASS"
+    },
+    {
+      "route": "/materials/plastik-hpl",
+      "h1": 1,
+      "canonical": "PASS"
+    },
+    {
+      "route": "/materials/akril",
+      "h1": 1,
+      "canonical": "PASS"
+    },
+    {
+      "route": "/materials/shpon",
+      "h1": 1,
+      "canonical": "PASS"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "/materials",
+      "to": "/materials/mdf-fasady",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/ldsp",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/mdf-emal",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/plastik-hpl",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/akril",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/shpon",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/ldsp",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/mdf-emal",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/plastik-hpl",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/akril",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/shpon",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/mdf-fasady",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/mdf-emal",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/plastik-hpl",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/akril",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/shpon",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/mdf-fasady",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/ldsp",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/plastik-hpl",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/akril",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/shpon",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/mdf-fasady",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/ldsp",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/mdf-emal",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/akril",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/shpon",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/mdf-fasady",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/ldsp",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/mdf-emal",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/plastik-hpl",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/shpon",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/mdf-fasady",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/ldsp",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/mdf-emal",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/plastik-hpl",
+      "status": "PASS"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/akril",
+      "status": "PASS"
+    }
+  ],
+  "images": [
+    {
+      "id": "hero-ivory",
+      "status": 200
+    },
+    {
+      "id": "enamel-green",
+      "status": 200
+    },
+    {
+      "id": "ldsp-home",
+      "status": 200
+    },
+    {
+      "id": "hpl-graphite",
+      "status": 200
+    },
+    {
+      "id": "acrylic-grey",
+      "status": 200
+    },
+    {
+      "id": "veneer-oak",
+      "status": 200
+    },
+    {
+      "id": "film-country",
+      "status": 200
+    },
+    {
+      "id": "facade-detail",
+      "status": 200
+    },
+    {
+      "id": "surface-ldsp-a-front",
+      "status": 200
+    },
+    {
+      "id": "surface-ldsp-b-angle",
+      "status": 200
+    },
+    {
+      "id": "surface-ldsp-c-macro",
+      "status": 200
+    },
+    {
+      "id": "surface-ldsp-d-kitchen",
+      "status": 200
+    },
+    {
+      "id": "surface-plastik-hpl-a-front",
+      "status": 200
+    },
+    {
+      "id": "surface-plastik-hpl-b-angle",
+      "status": 200
+    },
+    {
+      "id": "surface-plastik-hpl-c-macro",
+      "status": 200
+    },
+    {
+      "id": "surface-plastik-hpl-d-kitchen",
+      "status": 200
+    },
+    {
+      "id": "surface-shpon-a-front",
+      "status": 200
+    },
+    {
+      "id": "surface-shpon-b-angle",
+      "status": 200
+    },
+    {
+      "id": "surface-shpon-c-macro",
+      "status": 200
+    },
+    {
+      "id": "surface-shpon-d-kitchen",
+      "status": 200
+    },
+    {
+      "id": "surface-akril-a-front",
+      "status": 200
+    },
+    {
+      "id": "surface-akril-b-angle",
+      "status": 200
+    },
+    {
+      "id": "surface-akril-c-macro",
+      "status": 200
+    },
+    {
+      "id": "surface-akril-d-kitchen",
+      "status": 200
+    },
+    {
+      "id": "surface-mdf-emal-a-front",
+      "status": 200
+    },
+    {
+      "id": "surface-mdf-emal-b-angle",
+      "status": 200
+    },
+    {
+      "id": "surface-mdf-emal-c-macro",
+      "status": 200
+    },
+    {
+      "id": "surface-mdf-emal-d-kitchen",
+      "status": 200
+    },
+    {
+      "id": "idea-wood-green-main",
+      "status": 200
+    },
+    {
+      "id": "idea-wood-green-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-country-blue-main",
+      "status": 200
+    },
+    {
+      "id": "idea-country-blue-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-cottage-white-main",
+      "status": 200
+    },
+    {
+      "id": "idea-cottage-white-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-log-neoclassic-main",
+      "status": 200
+    },
+    {
+      "id": "idea-log-neoclassic-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-scandi-straight-3m-main",
+      "status": 200
+    },
+    {
+      "id": "idea-scandi-straight-3m-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-corner-3x2-main",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-corner-3x2-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-minimal-straight-24-main",
+      "status": 200
+    },
+    {
+      "id": "idea-minimal-straight-24-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-neoclassic-corner-main",
+      "status": 200
+    },
+    {
+      "id": "idea-neoclassic-corner-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-loft-straight-3m-main",
+      "status": 200
+    },
+    {
+      "id": "idea-loft-straight-3m-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-small-2m-main",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-small-2m-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-scandi-corner-main",
+      "status": 200
+    },
+    {
+      "id": "idea-scandi-corner-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-ceiling-3m-main",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-ceiling-3m-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-classic-corner-main",
+      "status": 200
+    },
+    {
+      "id": "idea-classic-corner-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-provence-straight-main",
+      "status": 200
+    },
+    {
+      "id": "idea-provence-straight-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-minimal-corner-01-main",
+      "status": 200
+    },
+    {
+      "id": "idea-minimal-corner-01-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-hightech-corner-main",
+      "status": 200
+    },
+    {
+      "id": "idea-hightech-corner-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-u-shape-main",
+      "status": 200
+    },
+    {
+      "id": "idea-modern-u-shape-angle",
+      "status": 200
+    },
+    {
+      "id": "idea-neoclassic-u-shape-main",
+      "status": 200
+    },
+    {
+      "id": "idea-neoclassic-u-shape-angle",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-apartment",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-country",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-enamel-apartment",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-profile",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-wood",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-finish-combination",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-apartment-angle",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-apartment-edge",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-country-angle",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-film-country-profile",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-profile-daylight",
+      "status": 200
+    },
+    {
+      "id": "mdf-20261015-profile-warm",
+      "status": 200
+    }
+  ],
+  "errors": [],
+  "selectionAndReplace": "PASS",
+  "filterHistory": "PASS",
+  "lightboxFocus": "PASS",
+  "viewports": "360, 390, 768, 1280 PASS",
+  "watermarkEndpoint": 200,
+  "formPayload": {
+    "method": "Intercepted locally; no real submission or notification",
+    "selection": {
+      "version": 1,
+      "comparisonIds": [
+        "mdf-film",
+        "ldsp"
+      ],
+      "comparisonNames": [
+        "МДФ в плёнке",
+        "Фасады ЛДСП"
+      ],
+      "preferredId": "ldsp",
+      "preferredName": "Фасады ЛДСП",
+      "scenarioId": "straight-3m"
+    },
+    "source": "materials-index"
+  },
+  "status": "PASS"
+}

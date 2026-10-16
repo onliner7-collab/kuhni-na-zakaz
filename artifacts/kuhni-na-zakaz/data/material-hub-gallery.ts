@@ -1,5 +1,6 @@
 import { MATERIAL_EXPLORATION } from "./material-exploration";
 import { catalogModels } from "./catalog-showcase";
+import { MDF_PHOTOS } from "./mdf-gallery";
 export type MaterialPhoto = {
   id: string;
   src: string;
@@ -177,4 +178,5 @@ export const MATERIAL_PHOTOS: MaterialPhoto[] = [
   ...generated,
   ...details,
   ...catalog,
+  ...MDF_PHOTOS,
 ].filter((p, i, arr) => arr.findIndex((x) => x.src === p.src) === i);

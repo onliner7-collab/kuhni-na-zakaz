@@ -93,12 +93,13 @@ export function MaterialsSelectionProvider({
   }
   function updateView(patch: Partial<MaterialState>) {
     const next = { ...ref.current, ...patch };
-    if ("galleryFilters" in patch || "onlyDifferences" in patch) {
+    if ("galleryFilters" in patch || "onlyDifferences" in patch || ("mdfGallery" in patch && (patch.mdfGallery?.material !== ref.current.mdfGallery.material || patch.mdfGallery?.layout !== ref.current.mdfGallery.layout))) {
       const view = (s: MaterialState) => ({
         galleryFilters: s.galleryFilters,
         galleryLimit: s.galleryLimit,
         activePhoto: s.activePhoto,
         onlyDifferences: s.onlyDifferences,
+        mdfGallery: s.mdfGallery,
       });
       history.replaceState(
         { ...history.state, materialsView: view(ref.current) },
@@ -131,6 +132,7 @@ export function MaterialsSelectionProvider({
         galleryLimit: view.galleryLimit,
         activePhoto: view.activePhoto,
         onlyDifferences: view.onlyDifferences,
+        mdfGallery: view.mdfGallery,
         recentViews: [
           pathname,
           ...before.recentViews.filter((v) => v !== pathname),
@@ -478,17 +480,20 @@ export function MaterialDetailsLink({
   id,
   children,
   fromComparison = false,
+  anchor,
 }: {
   id: string;
   children?: ReactNode;
   fromComparison?: boolean;
+  anchor?: "#material-explorer" | "#material-detail-gallery";
 }) {
   const { state, ready } = useMaterials();
   const item = materialById(id);
+  const href = item ? (anchor ? item.href.split("#")[0] + anchor : item.href) : "";
   return item ? (
     <Link
       className="inline-flex min-h-11 items-center font-semibold text-violet-800 underline underline-offset-4"
-      href={ready ? buildMaterialLink(state, item.href, fromComparison) : item.href}
+      href={ready ? buildMaterialLink(state, href, fromComparison) : href}
       aria-disabled={!ready}
       tabIndex={ready ? undefined : -1}
       onClick={event=>{if(!ready)event.preventDefault();}}

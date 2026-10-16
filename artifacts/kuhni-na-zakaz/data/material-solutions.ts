@@ -74,8 +74,8 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
     question:
       "Кухня МДФ в плёнке для квартиры или дачи: сначала согласуйте декор и условия помещения.",
     availability: MATERIAL_UNKNOWN,
-    checkedAt: "2026-10-14",
-    sources: [],
+    checkedAt: "2026-10-15",
+    sources: ["https://www.egger.com/it/mobili-arredamento-dinterni/gamma/prodotti/mdfe05mb?country=IT", "https://alanmebel.by/kompanija/pravila-ekspluataczii-mebeli/"],
     values: {
       ...shared,
       base: "МДФ",
@@ -84,6 +84,9 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
       finish: MATERIAL_UNKNOWN,
       milling: "Возможность и рисунок подтвердим для выбранной плёнки.",
       edge: "Согласовать обработку торца и обратной стороны.",
+      care: "Общий ориентир: мягкая слегка влажная салфетка, затем вытереть насухо; средство — по инструкции серии. Документы источников не подтверждают поставщика заказа.",
+      limits: "Убирать воду и конденсат; не направлять пар на фасады. Допуски для неотапливаемого дома и зазоры у техники подтвердить по инструкциям выбранного исполнения.",
+      repair: "Возможность ремонта и совпадение декора при замене уточняются у изготовителя; незаметное восстановление не гарантируется.",
     },
   },
   {

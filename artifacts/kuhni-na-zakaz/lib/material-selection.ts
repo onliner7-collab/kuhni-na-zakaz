@@ -10,6 +10,7 @@ export type MaterialState = {
   galleryFilters: Record<string, string>;
   galleryLimit: number;
   activePhoto: string | null;
+  mdfGallery: { material: string; layout: string; limit: number; activePhoto: string | null };
   onlyDifferences: boolean;
   scenarioId: string;
   returnTo: string;
@@ -23,6 +24,7 @@ export const EMPTY_MATERIAL_STATE: MaterialState = {
   galleryFilters: {},
   galleryLimit: 12,
   activePhoto: null,
+  mdfGallery: { material: "", layout: "", limit: 6, activePhoto: null },
   onlyDifferences: false,
   scenarioId: "straight-3m",
   returnTo: "/materials#compare",
@@ -115,6 +117,12 @@ export function sanitizeMaterialState(
         ? v.activePhoto
         : null,
     onlyDifferences: v.onlyDifferences === true,
+    mdfGallery: {
+      material: ["mdf-film", "mdf-enamel"].includes(v.mdfGallery?.material || "") ? v.mdfGallery!.material : "",
+      layout: ["Прямая", "Угловая", "Деталь"].includes(v.mdfGallery?.layout || "") ? v.mdfGallery!.layout : "",
+      limit: typeof v.mdfGallery?.limit === "number" && Number.isFinite(v.mdfGallery.limit) ? Math.min(60, Math.max(6, Math.floor(v.mdfGallery.limit))) : 6,
+      activePhoto: typeof v.mdfGallery?.activePhoto === "string" && /^mdf-20261015-[a-z-]+$/.test(v.mdfGallery.activePhoto) ? v.mdfGallery.activePhoto : null,
+    },
     scenarioId:
       v.scenarioId === "corner-24-18" ? "corner-24-18" : "straight-3m",
     returnTo: safeMaterialReturn(v.returnTo),
