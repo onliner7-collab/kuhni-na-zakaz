@@ -16,7 +16,7 @@ import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
 const title = "Кухни с фасадами МДФ на заказ — покрытия и комплектация";
-const description = "Кухни с фасадами МДФ: плёнка, эмаль и другие покрытия. Примеры для квартиры, дома и дачи, уход, сравнение и расчёт в BYN по размерам и комплектации.";
+const description = "Не покупайте кухню, пока не сравните фасады у нас. МДФ, плёнка, эмаль — в чём разница? Посмотрите фото и детали вблизи, выберите свой вариант.";
 export const metadata: Metadata = {
   title, description, alternates: { canonical: "/materials/mdf-fasady" }, robots: { index: true, follow: true },
   openGraph: buildOpenGraph("/materials/mdf-fasady", title, description, { images: [{ url: "/images/mdf-facades-20261015/film-apartment.webp", width: 1200, height: 800, alt: "Светлая кухня с гладкими фасадами МДФ — визуальный пример" }] }),
