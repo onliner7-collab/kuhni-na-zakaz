@@ -1,0 +1,211 @@
+{
+  "base": "https://kuhni.minsk.by",
+  "errors": [],
+  "states": [
+    "film-apartment-angle",
+    "film-apartment-edge",
+    "film-country",
+    "film-country-profile"
+  ],
+  "initial": {
+    "visibleWords": 583,
+    "imageTop": 368.328125,
+    "firstChoiceTop": 692.828125,
+    "h1Lines": 2.9989053914835164,
+    "overflow": false
+  },
+  "constructionComparison": "3 illustrated pairs, both photos loaded and labelled",
+  "form": {
+    "intercepted": true,
+    "selection": {
+      "version": 1,
+      "comparisonIds": [
+        "mdf-film"
+      ],
+      "comparisonNames": [
+        "МДФ в плёнке"
+      ],
+      "preferredId": "mdf-film",
+      "preferredName": "МДФ в плёнке",
+      "scenarioId": "corner-24-18"
+    }
+  },
+  "responsive": [
+    360,
+    390,
+    412,
+    768,
+    1440
+  ],
+  "transitions": [
+    {
+      "from": "/materials",
+      "to": "/materials/mdf-fasady"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/ldsp"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/mdf-emal"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/plastik-hpl"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/akril"
+    },
+    {
+      "from": "/materials",
+      "to": "/materials/shpon"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/ldsp"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/mdf-emal"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/plastik-hpl"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/akril"
+    },
+    {
+      "from": "/materials/mdf-fasady",
+      "to": "/materials/shpon"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/mdf-fasady"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/mdf-emal"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/plastik-hpl"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/akril"
+    },
+    {
+      "from": "/materials/ldsp",
+      "to": "/materials/shpon"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/mdf-fasady"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/ldsp"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/plastik-hpl"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/akril"
+    },
+    {
+      "from": "/materials/mdf-emal",
+      "to": "/materials/shpon"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/mdf-fasady"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/ldsp"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/mdf-emal"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/akril"
+    },
+    {
+      "from": "/materials/plastik-hpl",
+      "to": "/materials/shpon"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/mdf-fasady"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/ldsp"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/mdf-emal"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/plastik-hpl"
+    },
+    {
+      "from": "/materials/akril",
+      "to": "/materials/shpon"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/mdf-fasady"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/ldsp"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/mdf-emal"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/plastik-hpl"
+    },
+    {
+      "from": "/materials/shpon",
+      "to": "/materials/akril"
+    }
+  ],
+  "status": "PASS"
+}
