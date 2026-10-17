@@ -17,7 +17,7 @@ async function main() {
  const report:Record<string,any>={base,date:'2026-10-17',errors};
  const ready=()=>page.waitForFunction(()=>{const e=document.querySelector('[data-testid="materials-selection"]');return e&&!e.hasAttribute('inert');});
  const state=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('kuhni-materials-v1')||'{}'));
- const loadImages=async()=>{await page.locator('#enamel-visual-page img').evaluateAll(async es=>{es.forEach(e=>(e as HTMLImageElement).loading='eager');await Promise.all(es.map(e=>(e as HTMLImageElement).decode().catch(()=>{})));});assert.deepEqual(await page.locator('#enamel-visual-page img').evaluateAll(es=>es.filter(e=>!(e as HTMLImageElement).naturalWidth).map(e=>(e as HTMLImageElement).src)),[]);};
+ const loadImages=async()=>{await page.locator('#enamel-visual-page img').evaluateAll(async es=>{es.forEach(e=>(e as HTMLImageElement).loading='eager');await Promise.all(es.map(e=>(e as HTMLImageElement).decode().catch(()=>{})));});await page.waitForFunction(()=>Array.from(document.querySelectorAll('#enamel-visual-page img')).every(e=>(e as HTMLImageElement).complete&&(e as HTMLImageElement).naturalWidth>0),{},{timeout:30000});assert.deepEqual(await page.locator('#enamel-visual-page img').evaluateAll(es=>es.filter(e=>!(e as HTMLImageElement).naturalWidth).map(e=>(e as HTMLImageElement).src)),[]);};
  try {
   await page.goto(base+'/materials/mdf-emal');await ready();await page.evaluate(()=>localStorage.clear());await page.reload();await ready();
   assert.deepEqual((await state()).comparisonIds,[]);
