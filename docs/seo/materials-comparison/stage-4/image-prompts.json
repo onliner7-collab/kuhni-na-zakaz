@@ -1,0 +1,30 @@
+[
+  {
+    "name": "corner-sage",
+    "prompt": "Use case: photorealistic-natural. Asset type: wide 3:2 editorial kitchen photograph for a Russian custom kitchen materials website. Primary request: photograph an achievable contemporary Belarusian apartment kitchen with warm off-white matte painted MDF doors with a thin recessed milled frame, muted sage green lower cabinets, pale warm stone countertop, oak dining detail, built-in appliances. Whole L shaped kitchen visible, credible 2.4 by 1.8 metre cabinetry with tall pantry and modest ceiling height, straight verticals, eye-level architectural photography, natural soft window daylight, subtle real paint microtexture, convincing door gaps and practical handles. Restrained styling, no people, no logos, no text, no watermark. Must look like a real photographed interior, never a 3D render. This is a visual concept, not a claim of a built project.",
+    "source": "C:/Users/User/.codex/generated_images/01a14b3a-405e-7983-9529-bba1054982df/exec-8e1b7c7f-d579-4536-9dd0-955258099f4e.png",
+    "tool": "built-in image_gen",
+    "status": "generated-visual-concept"
+  },
+  {
+    "name": "milling-samples",
+    "prompt": "Use case: photorealistic-natural. Asset type: 3:2 website educational material photograph. Primary request: real workshop sample photography of THREE separate painted MDF cabinet doors standing upright next to each other on a pale stone worktop: left smooth flat matte warm greige, middle warm white narrow recessed milled rectangular frame, right muted sage green traditional wider recessed milled frame. Close-up that shows upper corners and lower profiles, all three doors approximately same height, realistic opaque lacquered smooth MDF surfaces, no wood grain on painted parts, precise edges and proportions, soft raking daylight showing the subtle relief. Small oak sample and stone sample foreground for scale. This is a photorealistic sample display, not 3D rendering, no text, no labels, no logos, no watermark, no people.",
+    "source": "C:/Users/User/.codex/generated_images/01a14b3a-405e-7983-9529-bba1054982df/exec-0d2c664c-8a4a-4780-97f9-334ee50c5468.png",
+    "tool": "built-in image_gen",
+    "status": "generated-visual-concept"
+  },
+  {
+    "name": "finish-samples",
+    "prompt": "Use case: photorealistic-natural. Asset type: 3:2 editorial sample photograph for kitchen finish comparison. Primary request: two identical full-size smooth warm grey painted MDF cabinet doors on a pale worktop, left door with matte lacquer and soft diffused reflection, right door with glossy lacquer clearly reflecting a rectangular window, same underlying grey colour and same size in the SAME neutral room with identical daylight. Both upright side by side in a believable materials showroom, camera at slight oblique angle so specular reflections read correctly, close enough to inspect surface, subtle physical painted edge with no separate plastic band. Small neutral stone and natural oak swatches on worktop. No text, no labels, no watermark, no people, no branding. Real product photography, not render, not a collage. The only meaningful difference is matte versus gloss. Do not introduce fake perfect scratchproof or water resistant visual effects.",
+    "source": "C:/Users/User/.codex/generated_images/01a14b3a-405e-7983-9529-bba1054982df/exec-669ce974-f098-42f4-8821-647acbb5b039.png",
+    "tool": "built-in image_gen",
+    "status": "generated-visual-concept"
+  },
+  {
+    "name": "straight-gloss",
+    "prompt": "Use case: photorealistic-natural. Asset type: 3:2 wide kitchen photograph for custom kitchen enamel materials website. Primary request: modest realistic straight kitchen about three metres along one wall in a contemporary Belarusian apartment. Smooth flat light warm-grey GLOSSY PAINTED MDF cabinet doors with visibly soft window reflections, practical small brushed nickel handles, oak-effect worktop and warm white backsplash, built-in black oven and hob, stainless steel sink, three drawers, wall cabinets, tall fridge cabinet at one end. Eye-level architectural interior photography, natural daylight from side window, credible small room and cabinetry proportions, a little real material texture, understated lived-in styling, all cabinet fronts visible. No text, logos, watermark or people. Photographic realism, never 3D render. A visual concept, not a claimed completed project. Keep floor and countertop uncluttered.",
+    "source": "C:/Users/User/.codex/generated_images/01a14b3a-405e-7983-9529-bba1054982df/exec-28cccdbc-86c2-4180-b179-c3eb7c8e9bf7.png",
+    "tool": "built-in image_gen",
+    "status": "generated-visual-concept"
+  }
+]

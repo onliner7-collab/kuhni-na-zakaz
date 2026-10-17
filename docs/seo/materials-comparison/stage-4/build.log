@@ -1,0 +1,468 @@
+ ✓ Compiled successfully in 9.0s
+   Linting and checking validity of types ...
+   Collecting page data ...
+prisma:error 
+Invalid `prisma.portfolioCase.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.scenarioPage.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+   Generating static pages (0/129) ...
+   Generating static pages (32/129) 
+   Generating static pages (64/129) 
+prisma:error 
+Invalid `prisma.guestAccess.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchenFacade.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchenTemplate.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchenSkinal.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchen.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.stylePage.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.portfolioCase.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.review.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.locationPage.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+   Generating static pages (96/129) 
+prisma:error 
+Invalid `prisma.kitchenCountertop.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.activityLog.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.blogPost.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.review.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.siteSettings.findFirst()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.scenarioPage.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.staticPage.findUnique()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.siteSettings.findFirst()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.user.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchenHandle.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.compatibilityRule.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchenAppliance.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchenMechanism.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+prisma:error 
+Invalid `prisma.kitchenModule.findMany()` invocation:
+
+
+Can't reach database server at `127.0.0.1:5434`
+
+Please make sure your database server is running at `127.0.0.1:5434`.
+ ✓ Generating static pages (129/129)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                      Size  First Load JS  Revalidate  Expire
+┌ ○ /                                                         25.4 kB         263 kB          1h      1y
+├ ○ /_not-found                                                 336 B         103 kB
+├ ○ /about                                                     3.5 kB         182 kB
+├ ƒ /admin/activity-log                                         336 B         103 kB
+├ ƒ /admin/blog                                                 738 B         116 kB
+├ ƒ /admin/blog/[id]/edit                                       139 B         115 kB
+├ ƒ /admin/blog/new                                             139 B         115 kB
+├ ƒ /admin/calculator                                         2.99 kB         105 kB
+├ ƒ /admin/configurator-visual                                  250 B         106 kB
+├ ƒ /admin/configurator-visual/appliances                       250 B         106 kB
+├ ƒ /admin/configurator-visual/appliances/[id]                1.82 kB         104 kB
+├ ƒ /admin/configurator-visual/appliances/new                 1.82 kB         104 kB
+├ ƒ /admin/configurator-visual/compatibility                    250 B         106 kB
+├ ƒ /admin/configurator-visual/compatibility/[id]             1.56 kB         104 kB
+├ ƒ /admin/configurator-visual/compatibility/new              1.56 kB         104 kB
+├ ƒ /admin/configurator-visual/countertops                      250 B         106 kB
+├ ƒ /admin/configurator-visual/countertops/[id]               1.65 kB         104 kB
+├ ƒ /admin/configurator-visual/countertops/new                1.65 kB         104 kB
+├ ƒ /admin/configurator-visual/facades                          250 B         106 kB
+├ ƒ /admin/configurator-visual/facades/[id]                    1.7 kB         104 kB
+├ ƒ /admin/configurator-visual/facades/new                     1.7 kB         104 kB
+├ ƒ /admin/configurator-visual/handles                          250 B         106 kB
+├ ƒ /admin/configurator-visual/handles/[id]                   1.72 kB         104 kB
+├ ƒ /admin/configurator-visual/handles/new                    1.72 kB         104 kB
+├ ƒ /admin/configurator-visual/mechanisms                       250 B         106 kB
+├ ƒ /admin/configurator-visual/mechanisms/[id]                1.72 kB         104 kB
+├ ƒ /admin/configurator-visual/mechanisms/new                 1.72 kB         104 kB
+├ ƒ /admin/configurator-visual/modules                          250 B         106 kB
+├ ƒ /admin/configurator-visual/modules/[id]                    1.9 kB         104 kB
+├ ƒ /admin/configurator-visual/modules/new                     1.9 kB         104 kB
+├ ƒ /admin/configurator-visual/projects                         250 B         106 kB
+├ ƒ /admin/configurator-visual/projects/[id]                    250 B         106 kB
+├ ƒ /admin/configurator-visual/settings                       1.84 kB         104 kB
+├ ƒ /admin/configurator-visual/skinals                          250 B         106 kB
+├ ƒ /admin/configurator-visual/skinals/[id]                   1.58 kB         104 kB
+├ ƒ /admin/configurator-visual/skinals/new                    1.58 kB         104 kB
+├ ƒ /admin/configurator-visual/templates                        250 B         106 kB
+├ ƒ /admin/configurator-visual/templates/[id]                 1.92 kB         104 kB
+├ ƒ /admin/configurator-visual/templates/new                  1.92 kB         104 kB
+├ ƒ /admin/contacts                                           5.52 kB         124 kB
+├ ƒ /admin/dashboard                                            250 B         106 kB
+├ ƒ /admin/faq                                                4.69 kB         116 kB
+├ ƒ /admin/guest-access                                       3.83 kB         122 kB
+├ ƒ /admin/homepage                                           4.37 kB         107 kB
+├ ƒ /admin/imports                                            8.14 kB         127 kB
+├ ƒ /admin/kitchens                                             250 B         106 kB
+├ ƒ /admin/kitchens/[id]                                        143 B         124 kB
+├ ƒ /admin/kitchens/new                                         144 B         124 kB
+├ ƒ /admin/leads                                                336 B         103 kB
+├ ƒ /admin/leads/[number]                                       336 B         103 kB
+├ ƒ /admin/locations                                          3.65 kB         109 kB
+├ ƒ /admin/locations/[id]/edit                                  137 B         112 kB
+├ ƒ /admin/locations/new                                        136 B         112 kB
+├ ƒ /admin/login                                              2.08 kB         111 kB
+├ ƒ /admin/materials                                            250 B         106 kB
+├ ƒ /admin/materials/[id]                                       137 B         107 kB
+├ ƒ /admin/materials/new                                        137 B         107 kB
+├ ƒ /admin/notifications                                      9.05 kB         131 kB
+├ ƒ /admin/notifications/logs                                   250 B         106 kB
+├ ƒ /admin/pages                                                250 B         106 kB
+├ ƒ /admin/pages/[id]/edit                                    3.91 kB         116 kB
+├ ƒ /admin/portfolio                                            250 B         106 kB
+├ ƒ /admin/portfolio/[id]                                       141 B         119 kB
+├ ƒ /admin/portfolio/[id]/edit                                  141 B         119 kB
+├ ƒ /admin/portfolio/new                                        141 B         119 kB
+├ ƒ /admin/prices                                             3.12 kB         118 kB
+├ ƒ /admin/profile                                            3.23 kB         115 kB
+├ ƒ /admin/reviews                                            6.29 kB         128 kB
+├ ƒ /admin/scenarios                                            250 B         106 kB
+├ ƒ /admin/scenarios/[id]                                       142 B         117 kB
+├ ƒ /admin/scenarios/new                                        142 B         117 kB
+├ ƒ /admin/settings                                           2.63 kB         121 kB
+├ ƒ /admin/styles                                               250 B         106 kB
+├ ƒ /admin/styles/[id]                                          138 B         107 kB
+├ ƒ /admin/styles/new                                           137 B         107 kB
+├ ƒ /admin/users                                              2.13 kB         121 kB
+├ ○ /apple-icon.png                                               0 B            0 B
+├ ○ /blog                                                       152 B         136 kB
+├ ƒ /blog/[slug]                                                152 B         136 kB
+├ ƒ /calculator                                                 11 kB         130 kB
+├ ○ /catalog                                                  7.14 kB         240 kB          1h      1y
+├ ○ /catalog/[slug]                                           25.5 kB         269 kB
+├ ○ /component-library-preview                                2.06 kB         110 kB
+├ ○ /contacts                                                 4.52 kB         178 kB          1h      1y
+├ ○ /delivery-installation                                      149 B         131 kB          1h      1y
+├ ○ /design-proekt-kuhni                                      17.2 kB         251 kB
+├ ○ /icon.svg                                                     0 B            0 B
+├ ƒ /kapi/admin/blog                                            336 B         103 kB
+├ ƒ /kapi/admin/blog/[id]                                       336 B         103 kB
+├ ƒ /kapi/admin/calculator-tariffs                              336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/appliances                  336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/appliances/[id]             336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/compatibility               336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/compatibility/[id]          336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/countertops                 336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/countertops/[id]            336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/facades                     336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/facades/[id]                336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/handles                     336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/handles/[id]                336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/mechanisms                  336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/mechanisms/[id]             336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/modules                     336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/modules/[id]                336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/projects                    336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/projects/[id]               336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/settings                    336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/skinals                     336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/skinals/[id]                336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/templates                   336 B         103 kB
+├ ƒ /kapi/admin/configurator-visual/templates/[id]              336 B         103 kB
+├ ƒ /kapi/admin/faq                                             336 B         103 kB
+├ ƒ /kapi/admin/faq/[id]                                        336 B         103 kB
+├ ƒ /kapi/admin/guest-access                                    336 B         103 kB
+├ ƒ /kapi/admin/homepage                                        336 B         103 kB
+├ ƒ /kapi/admin/homepage/[id]                                   336 B         103 kB
+├ ƒ /kapi/admin/imports/bulk/v1/sessions/[id]                   336 B         103 kB
+├ ƒ /kapi/admin/imports/bulk/v1/sessions/[id]/confirm           336 B         103 kB
+├ ƒ /kapi/admin/imports/bulk/v1/upload                          336 B         103 kB
+├ ƒ /kapi/admin/kitchens                                        336 B         103 kB
+├ ƒ /kapi/admin/kitchens/[id]                                   336 B         103 kB
+├ ƒ /kapi/admin/leads/[id]                                      336 B         103 kB
+├ ƒ /kapi/admin/locations                                       336 B         103 kB
+├ ƒ /kapi/admin/locations/[id]                                  336 B         103 kB
+├ ƒ /kapi/admin/materials                                       336 B         103 kB
+├ ƒ /kapi/admin/materials/[id]                                  336 B         103 kB
+├ ƒ /kapi/admin/notifications/telegram                          336 B         103 kB
+├ ƒ /kapi/admin/notifications/telegram/[id]                     336 B         103 kB
+├ ƒ /kapi/admin/notifications/telegram/logs                     336 B         103 kB
+├ ƒ /kapi/admin/portfolio                                       336 B         103 kB
+├ ƒ /kapi/admin/portfolio/[id]                                  336 B         103 kB
+├ ƒ /kapi/admin/prices                                          336 B         103 kB
+├ ƒ /kapi/admin/prices/[id]                                     336 B         103 kB
+├ ƒ /kapi/admin/profile                                         336 B         103 kB
+├ ƒ /kapi/admin/reviews/[id]                                    336 B         103 kB
+├ ƒ /kapi/admin/scenarios                                       336 B         103 kB
+├ ƒ /kapi/admin/scenarios/[id]                                  336 B         103 kB
+├ ƒ /kapi/admin/settings                                        336 B         103 kB
+├ ƒ /kapi/admin/static-pages                                    336 B         103 kB
+├ ƒ /kapi/admin/static-pages/[id]                               336 B         103 kB
+├ ƒ /kapi/admin/styles                                          336 B         103 kB
+├ ƒ /kapi/admin/styles/[id]                                     336 B         103 kB
+├ ƒ /kapi/admin/uploads/[entity]                                336 B         103 kB
+├ ƒ /kapi/admin/uploads/style-image                             336 B         103 kB
+├ ƒ /kapi/admin/users                                           336 B         103 kB
+├ ƒ /kapi/auth/login                                            336 B         103 kB
+├ ƒ /kapi/auth/logout                                           336 B         103 kB
+├ ƒ /kapi/calculator                                            336 B         103 kB
+├ ƒ /kapi/calculator/estimate                                   336 B         103 kB
+├ ƒ /kapi/configurator-visual/catalog                           336 B         103 kB
+├ ƒ /kapi/configurator-visual/projects                          336 B         103 kB
+├ ƒ /kapi/configurator-visual/projects/[id]                     336 B         103 kB
+├ ƒ /kapi/favorites                                             336 B         103 kB
+├ ƒ /kapi/leads                                                 336 B         103 kB
+├ ƒ /kapi/reviews                                               336 B         103 kB
+├ ƒ /kapi/telegram/webhook                                      336 B         103 kB
+├ ƒ /kapi/watermarked-image                                     336 B         103 kB
+├ ○ /kitchen-configurator                                       336 B         103 kB
+├ ○ /locations                                                2.87 kB         231 kB          1h      1y
+├ ○ /locations/[city]                                         28.6 kB         225 kB
+├ ○ /manifest.webmanifest                                       336 B         103 kB
+├ ○ /materials                                                3.94 kB         188 kB
+├ ○ /materials/[slug]                                           257 B         189 kB
+├ ○ /materials/furnitura                                      10.5 kB         239 kB
+├ ○ /materials/ldsp                                           5.49 kB         199 kB
+├ ○ /materials/mdf-emal                                       6.12 kB         200 kB
+├ ○ /materials/mdf-fasady                                     6.29 kB         200 kB
+├ ○ /materials/plastik-hpl                                      257 B         189 kB
+├ ○ /personal-data                                              250 B         106 kB
+├ ƒ /portfolio                                                8.49 kB         187 kB
+├ ● /portfolio/[slug]                                         8.68 kB         187 kB
+├   ├ /portfolio/kuhnya-japandi-zelenye-fasady-minsk
+├   ├ /portfolio/loft-kuhnya-oreh-poluostrov-minsk
+├   ├ /portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk
+├   └ [+4 more paths]
+├ ○ /prices                                                      8 kB         175 kB
+├ ○ /privacy-policy                                             250 B         106 kB
+├ ○ /reviews                                                  9.04 kB         179 kB          1h      1y
+├ ○ /robots.txt                                                 336 B         103 kB
+├ ○ /scenarios                                                1.06 kB         138 kB
+├ ● /scenarios/[slug]                                         6.12 kB         189 kB
+├   ├ /scenarios/s-ostrovom
+├   ├ /scenarios/do-potolka
+├   ├ /scenarios/dlya-semi
+├   └ [+3 more paths]
+├ ƒ /sitemap.xml                                                336 B         103 kB
+├ ○ /styles                                                     247 B         184 kB          1h      1y
+├ ○ /styles/[slug]                                            5.88 kB         189 kB
+├ ○ /terms                                                      250 B         106 kB
+├ ○ /thanks                                                     250 B         106 kB
+└ ○ /warranty                                                   150 B         131 kB
++ First Load JS shared by all                                  102 kB
+  ├ chunks/7904-5e73b285e5dedfc8.js                             47 kB
+  ├ chunks/84ef1543-4359dd0ed8653557.js                       53.2 kB
+  └ other shared chunks (total)                               2.15 kB
+
+
+ƒ Middleware                                                  42.4 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+

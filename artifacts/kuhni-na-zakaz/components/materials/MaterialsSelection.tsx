@@ -93,7 +93,7 @@ export function MaterialsSelectionProvider({
   }
   function updateView(patch: Partial<MaterialState>) {
     const next = { ...ref.current, ...patch };
-    if ("galleryFilters" in patch || "onlyDifferences" in patch || "ldspView" in patch || ("mdfGallery" in patch && (patch.mdfGallery?.material !== ref.current.mdfGallery.material || patch.mdfGallery?.layout !== ref.current.mdfGallery.layout))) {
+    if ("galleryFilters" in patch || "onlyDifferences" in patch || "ldspView" in patch || "enamelView" in patch || ("mdfGallery" in patch && (patch.mdfGallery?.material !== ref.current.mdfGallery.material || patch.mdfGallery?.layout !== ref.current.mdfGallery.layout))) {
       const view = (s: MaterialState) => ({
         galleryFilters: s.galleryFilters,
         galleryLimit: s.galleryLimit,
@@ -101,6 +101,7 @@ export function MaterialsSelectionProvider({
         onlyDifferences: s.onlyDifferences,
         mdfGallery: s.mdfGallery,
         ldspView: s.ldspView,
+        enamelView: s.enamelView,
       });
       history.replaceState(
         { ...history.state, materialsView: view(ref.current) },
@@ -135,6 +136,7 @@ export function MaterialsSelectionProvider({
         onlyDifferences: view.onlyDifferences,
         mdfGallery: view.mdfGallery,
         ldspView: view.ldspView,
+        enamelView: view.enamelView,
         recentViews: [
           pathname,
           ...before.recentViews.filter((v) => v !== pathname),
@@ -266,7 +268,7 @@ export function MaterialsSelectionProvider({
   const current = materialForRoute(pathname);
   return (
     <Context.Provider value={value}>
-      {["/materials/mdf-fasady", "/materials/ldsp"].includes(pathname) && <div className="container-site relative py-1" data-testid="materials-selection" inert={!ready}>
+      {["/materials/mdf-fasady", "/materials/ldsp", "/materials/mdf-emal"].includes(pathname) && <div className="container-site relative py-1" data-testid="materials-selection" inert={!ready}>
         <div className="flex items-center justify-between gap-2 text-xs font-semibold text-violet-900 sm:text-sm">
           <Link className="inline-flex min-h-11 items-center underline underline-offset-4" href={comparisonHref(state, "/materials", "#gallery")}>Все материалы</Link>
           <Link className="inline-flex min-h-11 items-center underline underline-offset-4" href={comparisonHref(state)}>Моё сравнение ({state.comparisonIds.length})</Link>
@@ -278,7 +280,7 @@ export function MaterialsSelectionProvider({
         </div>
         {state.preferredId && <p className="pb-1 text-xs text-stone-600">Предпочитаю: {materialById(state.preferredId)?.title}</p>}
       </div>}
-      {isMaterial && !["/materials/mdf-fasady", "/materials/ldsp"].includes(pathname) && (
+      {isMaterial && !["/materials/mdf-fasady", "/materials/ldsp", "/materials/mdf-emal"].includes(pathname) && (
         <div className="container-site pt-4">
           <div
             className="rounded-2xl border border-violet-200 bg-violet-50 p-4"

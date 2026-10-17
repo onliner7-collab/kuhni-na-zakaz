@@ -1,0 +1,34 @@
+[
+  {
+    "name": "corner-sage",
+    "source": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\corner-sage.png",
+    "output": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\corner-sage.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 64370
+  },
+  {
+    "name": "milling-samples",
+    "source": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\milling-samples.png",
+    "output": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\milling-samples.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 27194
+  },
+  {
+    "name": "finish-samples",
+    "source": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\finish-samples.png",
+    "output": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\finish-samples.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 27224
+  },
+  {
+    "name": "straight-gloss",
+    "source": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\straight-gloss.png",
+    "output": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\public\\images\\mdf-enamel-20261017\\straight-gloss.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 46108
+  }
+]

@@ -12,6 +12,7 @@ export type MaterialState = {
   activePhoto: string | null;
   mdfGallery: { material: string; layout: string; limit: number; activePhoto: string | null };
   ldspView: { construction: number; decor: number; room: number; alternative: string };
+  enamelView: { finish: number; profile: number; room: number; alternative: string; galleryFinish: string; galleryMilling: string; galleryLayout: string; limit: number; photo: string | null };
   onlyDifferences: boolean;
   scenarioId: string;
   returnTo: string;
@@ -27,6 +28,7 @@ export const EMPTY_MATERIAL_STATE: MaterialState = {
   activePhoto: null,
   mdfGallery: { material: "", layout: "", limit: 6, activePhoto: null },
   ldspView: { construction: 0, decor: 0, room: 0, alternative: "mdf-film" },
+  enamelView: { finish: 0, profile: 0, room: 0, alternative: "mdf-film", galleryFinish: "", galleryMilling: "", galleryLayout: "", limit: 6, photo: null },
   onlyDifferences: false,
   scenarioId: "straight-3m",
   returnTo: "/materials#compare",
@@ -124,6 +126,17 @@ export function sanitizeMaterialState(
       decor: [0, 1, 2, 3].includes(v.ldspView?.decor ?? -1) ? v.ldspView!.decor : 0,
       room: [0, 1, 2].includes(v.ldspView?.room ?? -1) ? v.ldspView!.room : 0,
       alternative: v.ldspView?.alternative === "mdf-enamel" ? "mdf-enamel" : "mdf-film",
+    },
+    enamelView: {
+      finish: v.enamelView?.finish === 1 ? 1 : 0,
+      profile: [0, 1, 2].includes(v.enamelView?.profile ?? -1) ? v.enamelView!.profile : 0,
+      room: [0, 1, 2].includes(v.enamelView?.room ?? -1) ? v.enamelView!.room : 0,
+      alternative: ["mdf-film", "hpl", "acrylic"].includes(v.enamelView?.alternative || "") ? v.enamelView!.alternative : "mdf-film",
+      galleryFinish: ["Матовая", "Глянцевая"].includes(v.enamelView?.galleryFinish || "") ? v.enamelView!.galleryFinish : "",
+      galleryMilling: ["Гладкая", "Рамочная"].includes(v.enamelView?.galleryMilling || "") ? v.enamelView!.galleryMilling : "",
+      galleryLayout: ["Прямая", "Угловая", "Деталь"].includes(v.enamelView?.galleryLayout || "") ? v.enamelView!.galleryLayout : "",
+      limit: typeof v.enamelView?.limit === "number" && Number.isFinite(v.enamelView.limit) ? Math.min(60, Math.max(6, Math.floor(v.enamelView.limit))) : 6,
+      photo: typeof v.enamelView?.photo === "string" && /^enamel-[a-z0-9-]{1,80}$/.test(v.enamelView.photo) ? v.enamelView.photo : null,
     },
     mdfGallery: {
       material: ["mdf-film", "mdf-enamel"].includes(v.mdfGallery?.material || "") ? v.mdfGallery!.material : "",

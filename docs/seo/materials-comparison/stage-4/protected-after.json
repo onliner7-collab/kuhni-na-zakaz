@@ -1,0 +1,38 @@
+[
+  {
+    "file": "app/page.tsx",
+    "sha256": "ede3b599e67fbd5a55147b52b1eec9e7a73d12c2650b640cbb848e46fce82ff1"
+  },
+  {
+    "file": "app/design-proekt-kuhni/page.tsx",
+    "sha256": "f8ae93985342a9d08463234f738acae399a114c367a53cf59f94ed96bb0ca0d0"
+  },
+  {
+    "file": "app/materials/furnitura/page.tsx",
+    "sha256": "9ce3a16e896a48f4620b8719dfcaa82d65b2d2b162dda7f7a6fa67059835262b"
+  },
+  {
+    "file": "app/materials/page.tsx",
+    "sha256": "7b22a76bca3c01f43289e01cd2844b97035fb7f0ba81282f865bb896cbb70c9b"
+  },
+  {
+    "file": "app/materials/mdf-fasady/page.tsx",
+    "sha256": "d8b94b59af1f04a57846ce88f41d0c9e01d07c24ed2af7f1103d1b51f7eab2e0"
+  },
+  {
+    "file": "app/materials/ldsp/page.tsx",
+    "sha256": "66336682a8b8edfe06abb7a9a7d2e1c8ec7a7ea398a19d63a1807bd490a9f66b"
+  },
+  {
+    "file": "app/materials/[slug]/page.tsx",
+    "sha256": "fe7de27f3caf7ca0e78c9683808ba717c53f1d5eabab89cda1e2c458bf7379f0"
+  },
+  {
+    "file": "components/materials/MaterialDecisionExplorer.tsx",
+    "sha256": "04f48f9008270459fdc1487218d120a8c3f066f0aa47104f0e1917a6d3553fda"
+  },
+  {
+    "file": "components/sections/MaterialDetailGallery.tsx",
+    "sha256": "4fe651ca3978e78d957b3f25373f0cd8f0dcc0536e5e09a33e6517cf8d94289f"
+  }
+]

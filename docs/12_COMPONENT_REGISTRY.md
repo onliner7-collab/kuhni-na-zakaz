@@ -290,3 +290,7 @@ SmolevichiPlanningDetails: native details, фото монтируются по�
 ## 2026-10-17 — ЛДСП
 
 LdspVisualJourney: отдельные client-компоненты конструкции, декоров, сценариев, альтернатив и комплектации; SSR-содержание в app/materials/ldsp/page.tsx. MaterialsSelection использует прежнюю компактную шапку также на ЛДСП; ldspView входит в общий store и историю, не в lead payload. Старые MaterialDecisionExplorer/MaterialDetailGallery не изменены.
+
+## 2026-10-17 — эмаль
+
+EnamelVisualJourney.tsx: EnamelActions, EnamelFinishes, EnamelProfiles, EnamelGallery, EnamelRooms, EnamelComparison, EnamelPriceScenarios. Общий store получил санитизируемое enamelView и снимки истории; выбор и lead-контракт прежние. MaterialDecisionExplorer/MaterialDetailGallery сохранены без правок. Основной контент и подробные ответы рендерит серверная страница. Новых зависимостей нет.

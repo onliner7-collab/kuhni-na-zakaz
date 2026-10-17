@@ -263,7 +263,7 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = normalizePath(path) === "/materials/ldsp"
+  const effectiveLastModified = ["/materials/ldsp", "/materials/mdf-emal"].includes(normalizePath(path))
     ? new Date("2026-10-17T00:00:00.000Z")
     : normalizePath(path) === "/materials/mdf-fasady"
     ? new Date("2026-10-16T00:00:00.000Z")

@@ -1,4 +1,5 @@
 const GENERATED_IMAGE_PREFIXES = [
+  "/images/mdf-enamel-20261017/",
   "/images/ldsp-20261017/",
   "/images/mdf-facades-20261015/",
   "/images/materials-hub-20261014/",
@@ -41,6 +42,9 @@ export function getImageDisclosure(src: string | null | undefined): ImageDisclos
   }
 
   const cleanSrc = src.split("?")[0] ?? src;
+  if (cleanSrc.startsWith("/images/mdf-enamel-20261017/")) {
+    return { kind: "generated", label: "ИИ-иллюстрация", caption: "Визуальная идея, созданная с помощью ИИ", altPrefix: "ИИ-иллюстрация: " };
+  }
   const isGenerated =
     GENERATED_IMAGE_PREFIXES.some((prefix) => cleanSrc.startsWith(prefix)) ||
     cleanSrc.includes("-generated-") ||

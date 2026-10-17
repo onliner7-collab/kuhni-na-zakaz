@@ -18,6 +18,19 @@ import {
 import { answerRows } from "../../lib/leads/details";
 
 const now = Date.now();
+test("enamel view migrates safely, preserves explicit selection and is excluded from leads", () => {
+  assert.deepEqual(sanitizeMaterialState({version:1},now).enamelView,EMPTY_MATERIAL_STATE.enamelView);
+  const s=sanitizeMaterialState({...EMPTY_MATERIAL_STATE,comparisonIds:["mdf-enamel","hpl"],preferredId:"mdf-enamel",updatedAt:now,enamelView:{finish:1,profile:2,room:2,alternative:"hpl",galleryFinish:"Глянцевая",galleryMilling:"Гладкая",galleryLayout:"Прямая",limit:12,photo:"enamel-straight-gloss"}},now);
+  assert.equal(s.enamelView.finish,1);
+  assert.equal(s.enamelView.photo,"enamel-straight-gloss");
+  assert.equal(s.preferredId,"mdf-enamel");
+  assert.equal(s.updatedAt,now);
+  const invalid=sanitizeMaterialState({...s,enamelView:{finish:99,profile:99,room:-1,alternative:"PRIVATE",galleryFinish:"PRIVATE",galleryMilling:"PRIVATE",galleryLayout:"PRIVATE",limit:Infinity,photo:"https://evil.test"}},now);
+  assert.deepEqual(invalid.enamelView,EMPTY_MATERIAL_STATE.enamelView);
+  const lead=normalizeMaterialLead(s);
+  assert.deepEqual(lead.comparisonIds,["mdf-enamel","hpl"]);
+  assert.ok(!("enamelView" in lead));
+});
 test("LDSP visual exploration restores safely without becoming a purchase preference", () => {
   const legacy = sanitizeMaterialState({ version: 1 }, now);
   assert.deepEqual(legacy.ldspView, { construction: 0, decor: 0, room: 0, alternative: "mdf-film" });

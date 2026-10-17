@@ -237,3 +237,7 @@ smolevichi-planning-v2-20261012: шесть новых встроенных imag
 ## 2026-10-17 — ldsp-20261017
 
 Четыре встроенных image_gen фотографии-иллюстрации: apartment, cabinet, edge, country. Исходные PNG и WebP 1200×800 сохранены в artifacts/kuhni-na-zakaz/public/images/ldsp-20261017. Основные файлы 68–108 КБ; PNG не подключены как src. Русские alt, видимое указание иллюстративного происхождения. Промпты: docs/seo/materials-comparison/stage-3/image-prompts.json.
+
+## 2026-10-17 — mdf-enamel-20261017
+
+Четыре новые фотореалистичные ИИ-иллюстрации встроенным image_gen: corner-sage, straight-gloss, milling-samples, finish-samples. PNG-исходники и WebP 1200×800 в artifacts/kuhni-na-zakaz/public/images/mdf-enamel-20261017/. WebP 27–64 КБ; исходники не используются как основной src. Промпты и происхождение: docs/seo/materials-comparison/stage-4/image-prompts.json; размеры/вес: image-assets.json. Старые фото сохраняются. Иллюстрации не объявлены выполненными заказами.
