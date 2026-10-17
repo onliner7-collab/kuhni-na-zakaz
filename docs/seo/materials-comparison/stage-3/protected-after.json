@@ -1,0 +1,50 @@
+[
+  {
+    "route": "/",
+    "title": "Купить кухню на заказ — по вашим размерам | КухниBY",
+    "h1": "Купить кухню на заказ по вашим размерам",
+    "canonical": "https://kuhni.minsk.by"
+  },
+  {
+    "route": "/locations/borisov",
+    "title": "Купить кухню на заказ в Борисове: каталог и цены | КухниBY",
+    "h1": "Кухни на заказ в Борисове",
+    "canonical": "https://kuhni.minsk.by/locations/borisov"
+  },
+  {
+    "route": "/locations/minsk",
+    "title": "Купить кухню на заказ в Минске — размеры, стили и материалы | КухниBY",
+    "h1": "Купить кухню в Минске на заказ",
+    "canonical": "https://kuhni.minsk.by/locations/minsk"
+  },
+  {
+    "route": "/locations/minskaya-oblast",
+    "title": "Кухни в Минской области на заказ | КухниBY",
+    "h1": "Купить кухню в Минской области под размер, с доставкой и монтажом",
+    "canonical": "https://kuhni.minsk.by/locations/minskaya-oblast"
+  },
+  {
+    "route": "/design-proekt-kuhni",
+    "title": "3D-проект кухни на заказ в Минске — дизайн, планировка и визуализация",
+    "h1": "3D-проект кухни на заказ",
+    "canonical": "https://kuhni.minsk.by/design-proekt-kuhni"
+  },
+  {
+    "route": "/materials/furnitura",
+    "title": "Фурнитура для кухни: петли и направляющие | КухниBY",
+    "h1": "Фурнитура для кухни на заказ",
+    "canonical": "https://kuhni.minsk.by/materials/furnitura"
+  },
+  {
+    "route": "/materials/mdf-fasady",
+    "title": "Кухни с фасадами МДФ на заказ — покрытия и комплектация | КухниBY",
+    "h1": "Кухни с фасадами МДФ — покрытия и комплектация",
+    "canonical": "https://kuhni.minsk.by/materials/mdf-fasady"
+  },
+  {
+    "route": "/materials",
+    "title": "Материалы фасадов кухни — фото, сравнение и выбор | КухниBY",
+    "h1": "Фасады для кухни — сравните материалы и покрытия",
+    "canonical": "https://kuhni.minsk.by/materials"
+  }
+]
