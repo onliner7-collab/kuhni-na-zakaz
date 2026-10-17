@@ -1,0 +1,20 @@
+[
+  {
+    "name": "profile-smooth",
+    "source": "C:/Users/User/.codex/generated_images/01a14b3a-405e-7983-9529-bba1054982df/exec-7361e461-f1c8-4dd0-82ff-8c8fafb3bb52.png",
+    "prompt": "Use case: photorealistic-natural. Asset: 3:2 landscape website product-detail photograph. A single warm sage green matte painted MDF kitchen cabinet door with completely smooth flat slab door, absolutely no frame, recess, groove or border. Close-up photographed at a subtle oblique angle on a neutral warm light grey studio backdrop, the upper left corner and right-hand edge clearly visible, most of the entire door in frame, ample space to see its real geometry. Door occupies 75 percent of image height, consistent soft grazing daylight reveals profile. Real opaque painted MDF, no wood grain, no handle. True commercial product photography, no text, no logos, no watermark, not a render. Make the requested door profile immediately obvious, do not include multiple sample doors or a kitchen interior. This is an illustrative material sample.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "name": "profile-thin-frame",
+    "source": "C:/Users/User/.codex/generated_images/01a14b3a-405e-7983-9529-bba1054982df/exec-b62f26e3-f04c-4f04-b8ab-57e9270a1071.png",
+    "prompt": "Use case: photorealistic-natural. Asset: 3:2 landscape website product-detail photograph. A single warm sage green matte painted MDF kitchen cabinet door with a narrow recessed rectangular milled frame, thin modern shaker outline approximately 25mm wide, shallow crisp inner groove. Close-up photographed at a subtle oblique angle on a neutral warm light grey studio backdrop, the upper left corner and right-hand edge clearly visible, most of the entire door in frame, ample space to see its real geometry. Door occupies 75 percent of image height, consistent soft grazing daylight reveals profile. Real opaque painted MDF, no wood grain, no handle. True commercial product photography, no text, no logos, no watermark, not a render. Make the requested door profile immediately obvious, do not include multiple sample doors or a kitchen interior. This is an illustrative material sample.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "name": "profile-deep-frame",
+    "source": "C:/Users/User/.codex/generated_images/01a14b3a-405e-7983-9529-bba1054982df/exec-f3cb3210-3a5c-4843-a7f3-8a3fa21160ce.png",
+    "prompt": "Use case: photorealistic-natural. Asset: 3:2 landscape website product-detail photograph. A single warm sage green matte painted MDF kitchen cabinet door with a strongly pronounced broad recessed traditional rectangular frame with deep bevels around an inset central panel, visibly three-dimensional moulded profile. Close-up photographed at a subtle oblique angle on a neutral warm light grey studio backdrop, the upper left corner and right-hand edge clearly visible, most of the entire door in frame, ample space to see its real geometry. Door occupies 75 percent of image height, consistent soft grazing daylight reveals profile. Real opaque painted MDF, no wood grain, no handle. True commercial product photography, no text, no logos, no watermark, not a render. Make the requested door profile immediately obvious, do not include multiple sample doors or a kitchen interior. This is an illustrative material sample.",
+    "tool": "built-in image_gen"
+  }
+]

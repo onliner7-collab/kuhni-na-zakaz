@@ -30,7 +30,7 @@ async function main() {
   await page.getByRole('button',{name:'Глянцевая эмаль',exact:true}).click();
   assert.ok((await page.locator('#enamel-finishes img').first().getAttribute('src'))?.includes('straight-gloss'));
   await page.getByRole('button',{name:'Выраженная рамка',exact:true}).click();
-  assert.ok((await page.locator('#enamel-profiles img').getAttribute('style'))?.includes('66.666'));
+  assert.ok((await page.locator('#enamel-profiles img').getAttribute('src'))?.includes('profile-deep-frame'));
   await page.getByRole('button',{name:'Дача и сезонное проживание',exact:true}).click();
   await page.getByRole('button',{name:'С HPL',exact:true}).click();
   await page.goBack();await ready();assert.equal((await state()).enamelView.alternative,'mdf-film');

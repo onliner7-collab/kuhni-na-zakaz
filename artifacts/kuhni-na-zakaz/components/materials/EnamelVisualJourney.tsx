@@ -39,15 +39,15 @@ export function EnamelFinishes() {
 }
 
 const profiles = [
-  { title:"Гладкий фасад", text:"Ровная плоскость для современной кухни. Обратите внимание на торец, блик и геометрию зазоров." },
-  { title:"Тонкая рамка", text:"Неглубокий рисунок для сдержанной неоклассики. Ширину рамки сопоставляют с размером дверцы и ящика." },
-  { title:"Выраженная рамка", text:"Более заметный рельеф для классической композиции. Проверяйте углы, углубления и удобство очистки." },
+  { image:"profile-smooth", title:"Гладкий фасад", text:"Ровная плоскость для современной кухни. Обратите внимание на торец, блик и геометрию зазоров." },
+  { image:"profile-thin-frame", title:"Тонкая рамка", text:"Неглубокий рисунок для сдержанной неоклассики. Ширину рамки сопоставляют с размером дверцы и ящика." },
+  { image:"profile-deep-frame", title:"Выраженная рамка", text:"Более заметный рельеф для классической композиции. Проверяйте углы, углубления и удобство очистки." },
 ];
 export function EnamelProfiles() {
   const { view, update } = useEnamelView();
   const active = view.profile;
   return <section id="enamel-profiles" className={panel} aria-labelledby="enamel-profiles-title"><h2 id="enamel-profiles-title" className="text-2xl font-bold md:text-3xl">Фрезеровка: от плоскости к рамке</h2><div className="my-4 flex flex-wrap gap-2" aria-label="Рисунок фрезеровки">{profiles.map((p,i)=><button type="button" key={p.title} aria-pressed={active===i} onClick={()=>update({profile:i})} className={`${control} ${active===i?selected:idle}`}>{p.title}</button>)}</div>
-    <div className="grid overflow-hidden rounded-3xl bg-white lg:grid-cols-2"><div className="relative aspect-[4/3] overflow-hidden bg-stone-100"><img src={`${ENAMEL_IMAGE_ROOT}/milling-samples.webp`} alt={`Увеличенный фрагмент образца: ${profiles[active].title.toLowerCase()}`} width={1200} height={800} loading="lazy" decoding="async" className="h-full w-[300%] max-w-none object-cover" style={{transform:`translateX(-${active*100/3}%)`}}/></div><div className="p-5 md:p-7" aria-live="polite"><p className="text-xs font-bold text-violet-800">Образец {active+1} из 3</p><h3 className="mt-2 text-xl font-bold">{profiles[active].title}</h3><p className={`${note} mt-3`}>{profiles[active].text}</p><p className="mt-4 rounded-xl bg-violet-50 p-3 text-sm leading-6">Рисунок вырезают в основе МДФ до окрашивания. Доступные профили, толщину и минимальные размеры подтверждает изготовитель.</p></div></div>
+    <div className="grid overflow-hidden rounded-3xl bg-white lg:grid-cols-2"><div className="relative aspect-[4/3] overflow-hidden bg-stone-100"><Image key={profiles[active].image} src={`${ENAMEL_IMAGE_ROOT}/${profiles[active].image}.webp`} alt={`Образец крашеного фасада МДФ: ${profiles[active].title.toLowerCase()}`} width={1200} height={800} loading="lazy" sizes="(max-width: 1024px) 100vw, 50vw" className="h-full w-full object-contain"/></div><div className="p-5 md:p-7" aria-live="polite"><p className="text-xs font-bold text-violet-800">Образец {active+1} из 3</p><h3 className="mt-2 text-xl font-bold">{profiles[active].title}</h3><p className={`${note} mt-3`}>{profiles[active].text}</p><p className="mt-4 rounded-xl bg-violet-50 p-3 text-sm leading-6">Рисунок вырезают в основе МДФ до окрашивания. Доступные профили, толщину и минимальные размеры подтверждает изготовитель.</p></div></div>
     <details className="mt-3 rounded-2xl border border-stone-200 bg-white p-4"><summary className="min-h-11 cursor-pointer content-center font-bold">Рифление, радиусы и кухня без ручек: что уточнить?</summary><p className={`${note} mt-3`}>Вертикальные канавки, рифлёные и радиусные фасады, патина и специальные эффекты — только после подтверждения технологии и доступности. Интегрированная фрезерованная ручка и отдельный профиль Gola устроены по-разному. Для высоких шкафов, узких дверец и широких ящиков согласуют толщину, ограничения размеров и раскладку рисунка.</p></details>
   </section>;
 }

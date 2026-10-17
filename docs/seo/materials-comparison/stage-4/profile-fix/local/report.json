@@ -1,0 +1,71 @@
+{
+  "base": "http://127.0.0.1:3037",
+  "phase": "local",
+  "date": "2026-10-17",
+  "results": [
+    {
+      "reducedMotion": "reduce",
+      "width": 360,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "reduce",
+      "width": 390,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "reduce",
+      "width": 412,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "reduce",
+      "width": 768,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "reduce",
+      "width": 1440,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "no-preference",
+      "width": 360,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "no-preference",
+      "width": 390,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "no-preference",
+      "width": 412,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "no-preference",
+      "width": 768,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    },
+    {
+      "reducedMotion": "no-preference",
+      "width": 1440,
+      "distinctSources": 3,
+      "distinctRenderedPhotos": 3
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "refreshBackForward": true,
+  "selectionAndTTLUnchanged": true
+}
