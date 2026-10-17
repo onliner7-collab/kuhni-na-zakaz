@@ -51,8 +51,8 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
     question:
       "Хотите купить недорогую кухню с гладкими фасадами? Сравните ЛДСП с плёнкой на одинаковом проекте.",
     availability: MATERIAL_UNKNOWN,
-    checkedAt: "2026-10-14",
-    sources: ["https://www.egger.com/ru/"],
+    checkedAt: "2026-10-17",
+    sources: ["https://support.egger.com/hc/en-us/articles/360013538418-How-should-I-clean-EGGER-Eurodekor-Faced-Chipboard", "https://www.egger.com/get_download/8da0f0ec-c9cb-4af9-adbb-19f590df7781/Technical_leaflet_cleaning_and_care_instructions_without_EPSC_English.pdf"],
     values: {
       ...shared,
       base: "Ламинированная древесно-стружечная плита",
@@ -62,6 +62,8 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
       milling:
         "Для фигурного профиля рассмотрите другое исполнение; возможности уточняются по детали.",
       edge: "Отдельная кромка; согласовать материал и обработку стыков.",
+      care: "Мягкая слегка влажная салфетка, затем вытереть насухо; средство — по инструкции выбранной серии. Не использовать абразивную очистку без допуска изготовителя.",
+      limits: "Убирать воду со стыков и вырезов. Зазоры у техники и пригодность для неотапливаемого дома подтвердить по документам выбранного исполнения.",
     },
   },
   {

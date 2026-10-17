@@ -18,6 +18,18 @@ import {
 import { answerRows } from "../../lib/leads/details";
 
 const now = Date.now();
+test("LDSP visual exploration restores safely without becoming a purchase preference", () => {
+  const legacy = sanitizeMaterialState({ version: 1 }, now);
+  assert.deepEqual(legacy.ldspView, { construction: 0, decor: 0, room: 0, alternative: "mdf-film" });
+  const valid = sanitizeMaterialState({ ...EMPTY_MATERIAL_STATE, ldspView: { construction: 2, decor: 3, room: 2, alternative: "mdf-enamel" } }, now);
+  assert.equal(valid.ldspView.decor, 3);
+  assert.equal(valid.ldspView.alternative, "mdf-enamel");
+  assert.deepEqual(valid.comparisonIds, []);
+  assert.equal(valid.preferredId, null);
+  assert.equal(valid.updatedAt, 0);
+  const bad = sanitizeMaterialState({ ...EMPTY_MATERIAL_STATE, ldspView: { construction: 999, decor: -1, room: 2.5, alternative: "unknown" } }, now);
+  assert.deepEqual(bad.ldspView, legacy.ldspView);
+});
 const saved = {
   ...EMPTY_MATERIAL_STATE,
   comparisonIds: ["ldsp", "mdf-film"],

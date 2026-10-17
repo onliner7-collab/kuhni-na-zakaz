@@ -1,408 +1,57 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
-import {
-  ArrowRight,
-  CheckCircle,
-  ClipboardCheck,
-  Layers,
-  Palette,
-  ShieldCheck,
-  Sparkles,
-  Wallet,
-} from "lucide-react";
-import { ContactForm } from "@/components/sections/ContactForm";
-import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
-import { JsonLd, breadcrumbJsonLd, compactJsonLd, faqJsonLd, siteUrl } from "@/lib/schema-org";
-import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
-import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
+import { ExploreContextProvider } from "@/components/exploration";
 import { MaterialDecisionExplorer } from "@/components/materials/MaterialDecisionExplorer";
+import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
+import { ContactForm } from "@/components/sections/ContactForm";
+import { MaterialsLeadSummary } from "@/components/materials/MaterialsHub";
+import { MaterialDetailsLink } from "@/components/materials/MaterialsSelection";
+import { LdspActions, LdspConstruction, LdspDecors, LdspRooms, LdspComparison, LdspPriceScenarios } from "@/components/materials/LdspVisualJourney";
 import { MATERIAL_EXPLORATION } from "@/data/material-exploration";
+import { LDSP_FAQ, LDSP_IMAGE_ROOT, LDSP_PRICE_RESEARCH, LDSP_ROOMS } from "@/data/ldsp-content";
+import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
+import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
-const pageTitle = "Кухни из ЛДСП: корпуса, фасады, цена";
-const pageDescription =
-  "Кухни из ЛДСП на заказ: где используется ЛДСП, плюсы и ограничения, сравнение с МДФ, примеры бюджетных решений и заявка на расчет.";
-
+const title = "Кухни из ЛДСП на заказ — фасады, корпуса и декоры";
+const description = "Кухни из ЛДСП по вашим размерам в Беларуси: фото фасадов и корпусов, декоры, кромки, сравнение с МДФ. Комплектации для квартиры, дома и дачи, расчёт в BYN.";
+const hero = `${LDSP_IMAGE_ROOT}/apartment.webp`;
 export const metadata: Metadata = {
-  title: pageTitle,
-  description: pageDescription,
-  alternates: { canonical: "/materials/ldsp" },
-  robots: { index: true, follow: true },
-  openGraph: buildOpenGraph("/materials/ldsp", pageTitle, pageDescription, { type: "article" }),
-  twitter: buildTwitterMetadata(pageTitle, pageDescription),
+  title, description, alternates: { canonical: "/materials/ldsp" }, robots: { index: true, follow: true },
+  openGraph: buildOpenGraph("/materials/ldsp", title, description, { images: [{ url: hero, width: 1200, height: 800, alt: "Кухня со светлыми и древесными фасадами ЛДСП — визуальная идея" }] }),
+  twitter: buildTwitterMetadata(title, description, hero),
 };
+const panel = "rounded-2xl border border-stone-200 bg-white p-4 md:p-5";
+const summary = "min-h-11 cursor-pointer content-center font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-700";
 
-const useCases = [
-  {
-    icon: Layers,
-    title: "Корпуса",
-    text: "Самое частое применение ЛДСП: боковины, полки, дно, перегородки и внутренние элементы кухонных модулей.",
-  },
-  {
-    icon: Palette,
-    title: "Фасады",
-    text: "Подходит для простых гладких фасадов без фрезеровки, когда нужен спокойный дизайн и понятная смета.",
-  },
-  {
-    icon: Wallet,
-    title: "Бюджетные решения",
-    text: "Помогает удержать стоимость кухни, особенно в прямых, небольших и арендных квартирах.",
-  },
-];
-
-const strengths = [
-  "Доступный материал для корпусов и простых фасадов.",
-  "Большой выбор декоров: однотонные, древесные, каменные и нейтральные фактуры.",
-  "Понятный уход без сложных средств: достаточно мягкой ткани и бытовых неабразивных составов.",
-  "Хорошо подходит для небольших кухонь, прямых гарнитуров и проектов с ограниченным бюджетом.",
-];
-
-const limits = [
-  "Влагостойкость зависит от качества кромки, обработки торцов, стыков и ежедневной эксплуатации.",
-  "ЛДСП не подходит для фрезеровки фасадов так гибко, как МДФ.",
-  "В зонах мойки, посудомоечной машины и плиты нужно заранее продумать защиту от влаги и пара.",
-  "Точная цена зависит от размеров, фурнитуры, столешницы, кромки, декора и монтажа.",
-];
-
-const comparisonRows = [
-  {
-    parameter: "Основное применение",
-    ldsp: "Корпуса, полки, простые гладкие фасады, бюджетные гарнитуры.",
-    mdf: "Фасады с пленкой, эмалью, пластиком, фрезеровкой и более гибким дизайном.",
-  },
-  {
-    parameter: "Дизайн",
-    ldsp: "Много декоров, но форма фасада обычно остается простой и плоской.",
-    mdf: "Больше вариантов формы, покрытия, цвета и декоративной обработки.",
-  },
-  {
-    parameter: "Бюджет",
-    ldsp: "Часто помогает снизить смету, особенно в корпусах и простых решениях.",
-    mdf: "Обычно дороже для фасадов, но дает больше визуальных возможностей.",
-  },
-  {
-    parameter: "Влага",
-    ldsp: "Критичны кромка, стыки, монтаж и аккуратная эксплуатация.",
-    mdf: "Тоже требует защиты торцов и правильного покрытия, особенно возле воды.",
-  },
-];
-
-const chooseLdspItems = [
-  "Нужна аккуратная кухня без лишнего декора и с контролем бюджета.",
-  "Планируется прямая, небольшая или временная кухня для квартиры под аренду.",
-  "Важны нейтральные древесные или однотонные декоры без фрезеровки.",
-  "Корпуса нужны практичные, а акцент можно сделать на столешнице, фартуке или ручках.",
-];
-
-const galleryImages = [
-  {
-    src: "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
-    alt: "Прямая светлая кухня на заказ с простыми гладкими фасадами",
-    title: "Прямая светлая кухня",
-  },
-  {
-    src: "/uploads/seo-showcase/kuhnya-malenkaya-funkcionalnaya-1.webp",
-    alt: "Небольшая функциональная кухня на заказ с компактной планировкой",
-    title: "Небольшая кухня",
-  },
-  {
-    src: "/images/blog/fasady-mdf-plastik-emal-shpon.webp",
-    alt: "Образцы кухонных фасадов и декоров для сравнения материалов",
-    title: "Сравнение декоров",
-  },
-];
-
-const faqItems = [
-  {
-    question: "Что такое ЛДСП в кухнях?",
-    answer:
-      "ЛДСП - это ламинированная древесно-стружечная плита. В кухнях ее часто используют для корпусов, полок, перегородок и простых гладких фасадов.",
-  },
-  {
-    question: "Кухня из ЛДСП подходит для ежедневного использования?",
-    answer:
-      "Да, если правильно подобраны кромка, фурнитура, столешница и монтаж. Важно не оставлять воду на стыках и внимательно относиться к зонам возле мойки и посудомоечной машины.",
-  },
-  {
-    question: "ЛДСП лучше МДФ?",
-    answer:
-      "Это разные материалы для разных задач. ЛДСП часто выбирают для корпусов и бюджетных решений, а МДФ чаще используют для фасадов, когда нужны фрезеровка, эмаль, пленка или более сложный внешний вид.",
-  },
-  {
-    question: "Можно ли сделать фасады кухни из ЛДСП?",
-    answer:
-      "Можно, если нужны ровные гладкие фасады без фрезеровки. Для сложных форм, эмали или классических рамочных фасадов обычно рассматривают МДФ.",
-  },
-  {
-    question: "Боится ли ЛДСП влаги?",
-    answer:
-      "Открытые торцы и плохо защищенные стыки чувствительны к влаге. Поэтому для кухни важны качественная кромка, аккуратная обработка, правильный монтаж и бережная эксплуатация.",
-  },
-  {
-    question: "Можно заранее назвать точную цену кухни из ЛДСП?",
-    answer:
-      "Без размеров, планировки и комплектации можно дать только ориентир. Точную стоимость подтверждают после замера, выбора декора, фурнитуры, столешницы и согласования деталей.",
-  },
-];
-
-const internalLinks = [
-  { href: "/materials", label: "Все материалы" },
-  { href: "/materials/furnitura", label: "Фурнитура для кухни" },
-  { href: "/materials/mdf-fasady", label: "МДФ фасады" },
-  { href: "/materials/plastik-hpl", label: "Пластик HPL" },
-  { href: "/prices", label: "Цены на кухни" },
-  { href: "/portfolio", label: "Портфолио" },
-  { href: "/design-proekt-kuhni", label: "3D-проект кухни" },
-];
-
-export default function LdspMaterialsPage() {
-  const jsonLdBreadcrumb = breadcrumbJsonLd([
-    { name: "Главная", path: "/" },
-    { name: "Материалы", path: "/materials" },
-    { name: "ЛДСП", path: "/materials/ldsp" },
-  ]);
-  const jsonLdFaq = faqJsonLd(faqItems);
-  const jsonLdService = compactJsonLd({
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: pageTitle,
-    description: pageDescription,
-    url: siteUrl("/materials/ldsp"),
-    provider: { "@type": "Organization", name: "КухниBY", url: siteUrl() },
-    areaServed: { "@type": "Country", name: "Belarus" },
-    serviceType: "Кухни на заказ из ЛДСП",
-  });
-
-  return (
-    <ExploreContextProvider sourceRoute="/materials/ldsp">
-      <JsonLd data={jsonLdFaq ? [jsonLdBreadcrumb, jsonLdService, jsonLdFaq] : [jsonLdBreadcrumb, jsonLdService]} />
-      <div className="section-padding">
-        <main className="container-site">
-          <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground" aria-label="Хлебные крошки">
-            <Link href="/" className="hover:text-primary">Главная</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/materials" className="hover:text-primary">Материалы</Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-foreground">ЛДСП</span>
-          </nav>
-
-          <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,520px)] lg:items-center">
-            <div>
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Материалы для кухни</p>
-              <h1 className="mb-5 font-serif text-4xl font-bold leading-tight md:text-5xl">
-                Кухни из ЛДСП на заказ
-              </h1>
-              <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                ЛДСП выбирают, когда нужна аккуратная кухня с понятным бюджетом: чаще всего для корпусов,
-                внутренних полок и простых гладких фасадов. Мы честно объясняем, где этот материал уместен,
-                а где лучше рассмотреть МДФ или другое решение.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="#calculation"
-                  className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                >
-                  Получить расчет <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/prices"
-                  className="inline-flex min-h-11 items-center rounded-xl border border-border bg-white px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                >
-                  Посмотреть цены
-                </Link>
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-2xl border border-border bg-stone-100 shadow-sm">
-              <Image
-                src="/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp"
-                alt="Светлая кухня из ЛДСП на заказ с прямой планировкой и гладкими фасадами"
-                width={1280}
-                height={720}
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 1024px) 100vw, 520px"
-                className="aspect-[16/9] h-auto w-full object-cover"
-              />
-            </div>
-          </section>
-
-          <div className="mt-12 space-y-4">
-            <MaterialDecisionExplorer config={MATERIAL_EXPLORATION.ldsp} />
-            <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
-              <ContextSummary />
-              <RelatedExplorationRail route="/materials/ldsp" state="RESULT" />
-            </div>
-          </div>
-
-          <MaterialDetailGallery slug="ldsp" title="ЛДСП для кухни" />
-
-          <section className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
-              <h2 className="font-serif text-3xl font-bold">Что такое ЛДСП в кухнях</h2>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                ЛДСП - это древесно-стружечная плита с ламинированным декоративным покрытием. В кухонной мебели
-                материал ценят за доступность и большой выбор декоров, но итоговая надежность зависит не только
-                от плиты: важны кромка, обработка торцов, стыки, фурнитура, столешница и монтаж.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {useCases.map((item) => (
-                <div key={item.title} className="card-base p-5">
-                  <item.icon className="mb-3 h-6 w-6 text-primary" aria-hidden="true" />
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-16 grid gap-6 lg:grid-cols-2">
-            <div className="card-base p-6">
-              <div className="mb-4 flex items-center gap-3">
-                <CheckCircle className="h-6 w-6 text-green-600" aria-hidden="true" />
-                <h2 className="font-serif text-2xl font-bold">Плюсы ЛДСП</h2>
-              </div>
-              <ul className="space-y-3">
-                {strengths.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-relaxed">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="card-base p-6">
-              <div className="mb-4 flex items-center gap-3">
-                <ShieldCheck className="h-6 w-6 text-amber-600" aria-hidden="true" />
-                <h2 className="font-serif text-2xl font-bold">Ограничения</h2>
-              </div>
-              <ul className="space-y-3">
-                {limits.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-relaxed">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-
-          <section className="mt-16">
-            <h2 className="font-serif text-3xl font-bold">Сравнение ЛДСП и МДФ</h2>
-            <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-white">
-              <table className="w-full min-w-[760px] text-left text-sm">
-                <thead className="bg-muted/50 text-muted-foreground">
-                  <tr>
-                    <th className="p-4 font-semibold">Критерий</th>
-                    <th className="p-4 font-semibold">ЛДСП</th>
-                    <th className="p-4 font-semibold">МДФ</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonRows.map((row) => (
-                    <tr key={row.parameter} className="border-t border-border">
-                      <th scope="row" className="p-4 font-semibold text-foreground">{row.parameter}</th>
-                      <td className="p-4 text-muted-foreground">{row.ldsp}</td>
-                      <td className="p-4 text-muted-foreground">{row.mdf}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section className="mt-16">
-            <div className="mb-6 flex items-center gap-3">
-              <ClipboardCheck className="h-6 w-6 text-primary" aria-hidden="true" />
-              <h2 className="font-serif text-3xl font-bold">Когда стоит выбрать ЛДСП</h2>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2">
-              {chooseLdspItems.map((item) => (
-                <div key={item} className="rounded-2xl border border-border bg-white p-5 text-sm leading-relaxed text-muted-foreground">
-                  {item}
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-16">
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h2 className="font-serif text-3xl font-bold">Примеры и визуальные ориентиры</h2>
-                <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-                  Эти примеры помогают обсудить формат кухни: простые фасады, компактные планировки и спокойные
-                  декоры. Конкретный материал, цвет и кромку лучше подтверждать по образцам.
-                </p>
-              </div>
-              <Link href="/portfolio" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
-                Смотреть портфолио <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="grid gap-5 md:grid-cols-3">
-              {galleryImages.map((image) => (
-                <figure key={image.src} className="overflow-hidden rounded-2xl border border-border bg-white">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={720}
-                    height={480}
-                    loading="lazy"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="aspect-[3/2] h-auto w-full object-cover"
-                  />
-                  <figcaption className="p-4 text-sm font-medium">{image.title}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-16">
-            <div className="mb-6 flex items-center gap-3">
-              <Sparkles className="h-6 w-6 text-primary" aria-hidden="true" />
-              <h2 className="font-serif text-3xl font-bold">Куда перейти дальше</h2>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {internalLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-xl border border-border bg-white px-4 py-3 text-sm font-semibold transition-colors hover:border-primary/40 hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-16">
-            <h2 className="font-serif text-3xl font-bold">FAQ</h2>
-            <div className="mt-6 space-y-3">
-              {faqItems.map((item, index) => (
-                <details key={item.question} className="group card-base p-5" open={index === 0}>
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold">
-                    <span>{item.question}</span>
-                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" aria-hidden="true" />
-                  </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
-                </details>
-              ))}
-            </div>
-          </section>
-
-          <section id="calculation" className="mt-16 scroll-mt-24">
-            <div className="mx-auto max-w-2xl">
-              <h2 className="text-center font-serif text-3xl font-bold">Расчет кухни из ЛДСП</h2>
-              <p className="mx-auto mt-3 max-w-xl text-center leading-relaxed text-muted-foreground">
-                Оставьте заявку: уточним размеры, планировку, декор, кромку, фурнитуру и подготовим расчет
-                без лишних обещаний по точной цене.
-              </p>
-              <div className="mt-8">
-                <ContactForm source="materials/ldsp" sourceType="materials" />
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
-    </ExploreContextProvider>
-  );
+export default function LdspPage() {
+  return <ExploreContextProvider sourceRoute="/materials/ldsp">
+    <JsonLd data={breadcrumbJsonLd([{name:"Главная",path:"/"},{name:"Материалы",path:"/materials"},{name:"Кухни из ЛДСП",path:"/materials/ldsp"}])}/>
+    <div id="ldsp-visual-page" className="bg-[#f7f5f2] pb-16 text-stone-950"><div className="container-site py-3 md:py-6">
+      <nav aria-label="Хлебные крошки" className="mb-3 flex flex-wrap items-center gap-2 text-xs text-stone-600"><Link href="/" className="inline-flex min-h-11 items-center">Главная</Link><span aria-hidden="true">/</span><Link href="/materials" className="inline-flex min-h-11 items-center">Материалы</Link><span aria-hidden="true">/</span><span aria-current="page">ЛДСП</span></nav>
+      <section aria-labelledby="ldsp-title" className="grid overflow-hidden rounded-3xl border border-stone-200 bg-white lg:grid-cols-[1.4fr_1fr]">
+        <div className="relative lg:order-2"><Image src={hero} alt="Идея кухни из ЛДСП: светлый верх, древесные нижние фасады, столешница и встроенная техника" width={1200} height={800} priority fetchPriority="high" sizes="(max-width: 1024px) 100vw, 45vw" className="aspect-[3/2] h-full w-full object-cover"/><span className="absolute bottom-3 left-3 rounded-full bg-stone-950/80 px-3 py-2 text-xs font-medium text-white">Визуальная идея · создано с помощью ИИ</span></div>
+        <div className="p-4 md:p-7 lg:order-1"><p className="text-xs font-bold uppercase tracking-widest text-violet-800">Гладкие фасады · понятная комплектация</p><h1 id="ldsp-title" className="mt-2 text-[1.75rem] font-bold leading-tight md:text-4xl">Кухни из ЛДСП на заказ</h1><p className="mt-3 max-w-xl text-sm leading-6 text-stone-600">Посмотрите фасады и корпуса вблизи, подберите сочетание декоров и сравните ЛДСП с МДФ на одном проекте.</p><LdspActions/></div>
+      </section>
+      <nav aria-label="Разделы страницы ЛДСП" className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm font-semibold text-violet-800">{[["#ldsp-construction","Устройство"],["#ldsp-decors","Декоры"],["#material-explorer","Визуальная проверка"],["#material-detail-gallery","Фото"],["#ldsp-alternatives","ЛДСП и МДФ"],["#material-price","Комплектация и цена"]].map(([href,label])=><a key={href} href={href} className="inline-flex min-h-11 items-center underline underline-offset-4">{label}</a>)}</nav>
+      <LdspConstruction/>
+      <LdspDecors/>
+      <div className="mt-10"><MaterialDecisionExplorer config={MATERIAL_EXPLORATION.ldsp}/></div>
+      <MaterialDetailGallery slug="ldsp" title="ЛДСП для кухни"/>
+      <section id="ldsp-edges" className="mt-10 scroll-mt-24" aria-labelledby="ldsp-edges-title"><h2 id="ldsp-edges-title" className="text-2xl font-bold md:text-3xl">Кромка: посмотрите на торец и угол</h2><div className="mt-4 grid overflow-hidden rounded-3xl bg-white lg:grid-cols-[1.2fr_1fr]"><Image src={`${LDSP_IMAGE_ROOT}/edge.webp`} alt="Крупный план кромки на древесном декоре ЛДСП и открытого стружечного среза образца" width={1200} height={800} sizes="(max-width: 1024px) 100vw, 55vw" className="aspect-[3/2] h-full w-full object-cover"/><div className="grid gap-3 p-4 md:p-6">{[["01","Ровное примыкание","На образце проверяют прилегание по всему торцу и обработку углов."],["02","Совпадение декора","Смотрите цвет, фактуру и направление рисунка рядом с лицевой поверхностью."],["03","Стыки возле воды","Защиту спилов и узлы у мойки согласуют отдельно. Кромка не делает всю кухню водонепроницаемой."]].map(([n,t,d])=><div key={n} className="flex gap-3"><span className="text-lg font-bold text-violet-800">{n}</span><div><h3 className="font-bold">{t}</h3><p className="mt-1 text-sm leading-6 text-stone-600">{d}</p></div></div>)}</div></div><details className={`${panel} mt-3`}><summary className={summary}>Что записать в спецификации кромки?</summary><p className="mt-3 text-sm leading-6">Материал (например, ПВХ или АБС), толщину, декор, клеевую систему и обработку узлов. Доступность и технологию подтверждаем для заказа. На иллюстрации показан принцип; по ней нельзя определить марку плиты, кромки или клея.</p></details></section>
+      <LdspRooms/>
+      <LdspComparison/>
+      <LdspPriceScenarios/>
+      <details className={`${panel} mt-3`}><summary className={summary}>Исследование белорусских цен: источники и ограничения</summary><p className="mt-3 text-sm leading-6">Проверка 17 октября 2026 года. Ниже — опубликованные предложения других компаний, а не наши цены. Различаются размеры, фасады, механизмы, столешницы и услуги. Данных недостаточно для сопоставимой числовой вилки.</p><div className="mt-4 grid gap-3 md:grid-cols-2">{LDSP_PRICE_RESEARCH.map(r=><article key={`${r.seller}-${r.model}`} className="rounded-xl bg-stone-50 p-4 text-sm leading-6"><h3 className="font-bold">{r.seller} · {r.model}</h3><p className="mt-1 font-medium">{r.price}</p><p className="mt-2">{r.composition}</p><p className="mt-2 text-stone-600">{r.reason}</p><a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-violet-800 underline">Источник предложения ↗</a></article>)}</div></details>
+      <section id="ldsp-care" className="mt-10 scroll-mt-24" aria-labelledby="ldsp-care-title"><h2 id="ldsp-care-title" className="text-2xl font-bold md:text-3xl">Три зоны внимания при эксплуатации</h2><div className="mt-4 grid gap-4 sm:grid-cols-3">{[
+        {title:"Вода и мойка",image:`${LDSP_IMAGE_ROOT}/cabinet.webp`,alt:"Мойка, столешница и корпус кухни возле влажной зоны",text:"Убирайте воду и конденсат со стыков. Спилы и примыкания требуют защиты по технологии изготовителя."},
+        {title:"Пар и нагрев",image:`${LDSP_IMAGE_ROOT}/country.webp`,alt:"Рабочая зона кухни с варочной поверхностью и верхними шкафами",text:"Не направляйте пар чайника на фасады. Зазоры у духовки и защиту от пара определяют инструкции мебели и техники."},
+        {title:"Поверхность и торцы",image:`${LDSP_IMAGE_ROOT}/edge.webp`,alt:"Поверхность и кромки образцов ЛДСП для проверки и ухода",text:"Общий ориентир: мягкая слегка влажная салфетка, затем насухо. Средство и допустимость очистки — по инструкции выбранной серии."},
+      ].map(c=><article key={c.title} className="overflow-hidden rounded-2xl bg-white"><Image src={c.image} alt={c.alt} width={1200} height={800} loading="lazy" sizes="(max-width: 640px) 100vw, 33vw" className="aspect-[3/2] w-full object-cover"/><div className="p-4"><h3 className="text-lg font-bold">{c.title}</h3><p className="mt-2 text-sm leading-6 text-stone-600">{c.text}</p></div></article>)}</div><details className={`${panel} mt-3`}><summary className={summary}>Документы, повреждения и условия помещения</summary><div className="mt-3 space-y-3 text-sm leading-6"><p>До заказа уточняют производителя плиты, серию, документы по применению и эксплуатации. Сертификат одной серии не описывает все материалы. Ремонт, замену детали и совпадение декора проверяют отдельно; невидимое восстановление не обещается.</p><p>Для сырого или неотапливаемого дома нужны конкретные допуски. Фотография и слово «влагостойкая» их не заменяют.</p><a href="https://support.egger.com/hc/en-us/articles/360013538418-How-should-I-clean-EGGER-Eurodekor-Faced-Chipboard" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-violet-800 underline">Рекомендации EGGER по уходу за ЛДСП ↗</a><p className="text-xs text-stone-500">Внешняя инструкция — общий ориентир, не подтверждение поставщика вашего заказа.</p></div></details></section>
+      <section id="questions" className="mt-8 scroll-mt-24" aria-labelledby="ldsp-questions-title"><h2 id="ldsp-questions-title" className="mb-4 text-2xl font-bold">Вопросы перед заказом кухни из ЛДСП</h2><div className="grid gap-3">{LDSP_FAQ.map(([q,a])=><details key={q} className={panel}><summary className={summary}>{q}</summary><p className="mt-3 text-sm leading-6 text-stone-600">{a}</p></details>)}</div></section>
+      <details className={`${panel} mt-3`}><summary className={summary}>Подбор кухни для квартиры, дома и дачи</summary><div className="mt-3 grid gap-4 text-sm leading-6">{LDSP_ROOMS.map(r=><div key={r.id}><h3 className="font-bold">{r.title}</h3><p>{r.text}</p></div>)}<p>Для кухни из ЛДСП по индивидуальным размерам согласуем планировку, высоту шкафов, количество ящиков и комплект техники. Декор под дерево — ламинированная поверхность, а не массив или натуральный шпон.</p><p>Работаем в Беларуси. Адрес, выезд на замер, доставку в Минск, Минскую область или другой населённый пункт согласуем при обращении.</p><Link href="/locations/minsk" className="inline-flex min-h-11 items-center text-violet-800 underline">Условия заказа в Минске →</Link><Link href="/locations/minskaya-oblast" className="inline-flex min-h-11 items-center text-violet-800 underline">Заказ в Минской области →</Link></div></details>
+      <section className="mt-8" aria-labelledby="ldsp-next-title"><h2 id="ldsp-next-title" className="text-2xl font-bold">Если хочется другой поверхности</h2><div className="mt-4 grid gap-4 sm:grid-cols-3">{[{id:"hpl",title:"HPL: сравнить облицовку и кромку",image:"/images/materials-hub-20261014/hpl-graphite.webp"},{id:"acrylic",title:"Акрил: посмотреть отражения",image:"/images/materials-hub-20261014/acrylic-grey.webp"},{id:"veneer",title:"Шпон: натуральный рисунок дерева",image:"/images/materials-hub-20261014/veneer-oak.webp"}].map(m=><article key={m.id} className="overflow-hidden rounded-2xl bg-white"><Image src={m.image} alt={`Визуальная альтернатива фасадам ЛДСП: ${m.title}`} width={1200} height={800} loading="lazy" sizes="(max-width: 640px) 100vw, 33vw" className="aspect-[3/2] w-full object-cover"/><div className="p-4"><h3 className="font-bold">{m.title}</h3><MaterialDetailsLink id={m.id}>Фото и подробности →</MaterialDetailsLink></div></article>)}</div></section>
+      <section id="materials-form" className="mt-10 scroll-mt-24 rounded-3xl bg-white p-4 md:p-7" aria-labelledby="ldsp-form-title"><h2 id="ldsp-form-title" className="mb-4 text-2xl font-bold md:text-3xl">Рассчитать кухню по вашим размерам</h2><div className="grid gap-6 lg:grid-cols-2"><div><Image src={`${LDSP_IMAGE_ROOT}/country.webp`} alt="Идея прямой кухни для расчёта: гладкие фасады, ящики и пенал" width={1200} height={800} loading="lazy" sizes="(max-width: 1024px) 100vw, 50vw" className="mb-4 aspect-[3/2] w-full rounded-2xl object-cover"/><MaterialsLeadSummary/></div><div id="form" className="scroll-mt-24"><p className="mb-4 text-sm leading-6 text-stone-600">Укажите размеры, помещение и пожелания к комплектации. Замер, доставку и монтаж согласуем при обращении.</p><ContactForm source="material-ldsp" sourcePage="/materials/ldsp" sourceType="material" submitLabel="Рассчитать кухню" answersEventName="ldsp-answers"/></div></div></section>
+    </div></div>
+  </ExploreContextProvider>;
 }

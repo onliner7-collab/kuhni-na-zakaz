@@ -1,0 +1,23 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-17",
+  "output": "artifacts/kuhni-na-zakaz/public/images/ldsp-20261017",
+  "prompts": [
+    {
+      "id": "hero",
+      "prompt": "Use case: photorealistic-natural. Website photograph for a Belarus custom kitchen material guide, landscape 3:2. A believable compact modern apartment kitchen, full kitchen visible, flat slab laminated particleboard fronts: warm beige upper cabinets, natural light oak woodgrain lower fronts, slim simple dark handles, light grey laminate countertop, sink and built-in oven, daylight from side window. Eye-level architectural editorial photography, realistic panel edges and assembly gaps, modest practical room, warm neutral palette, no luxury staging. Make the laminated oak decor visibly a consistent printed woodgrain rather than rustic solid wood. No people, no logos, no lettering, no watermarks, no collage, no CGI or 3D rendered appearance. This is an illustrative kitchen idea, not a claimed real project."
+    },
+    {
+      "id": "cabinet",
+      "prompt": "Use case photorealistic-natural, educational editorial close-up photograph for a custom kitchen website. Landscape 3:2. A floor-standing kitchen cabinet beneath a pale laminate countertop, seen slightly from above at a three-quarter angle. One warm oak printed woodgrain laminated particleboard slab door is open about 80 degrees, showing its neat edge band and handle, white laminated particleboard carcass sidewalls, one white shelf and realistic concealed hinges. Other adjacent matching doors closed. Entire cabinet in frame, simple beige apartment kitchen, soft natural daylight. Physically plausible hinge placement, ordinary factory cabinetry, believable subtle texture, no exploded view, no floating parts, no cutaway, no text, no logos, no people, no CGI. Focus on understanding door versus carcass."
+    },
+    {
+      "id": "edge",
+      "prompt": "Use case product-mockup, photorealistic macro editorial product photograph for laminated particleboard kitchen edge education. Landscape 3:2. On a neutral warm light grey worktop lie three rectangular laminated particleboard furniture sample boards, offset slightly: a light oak printed decor board foreground, warm beige board and graphite board behind. Focus on foreground board front corner: oak decor face, accurately matching thin ABS edge band neatly attached to the straight edge, subtle join line visible, believable 18mm board thickness but no measuring marks. Also one small unedged matching sample nearby reveals compressed wood chips inside, no floating exploded parts. Soft side daylight, sharp detail at front corner, calm background. No text, no people, no logos, no watermarks, no CGI. Show samples as illustrative rather than branded certified products."
+    },
+    {
+      "id": "country",
+      "prompt": "Use case photorealistic-natural. Landscape 3:2 editorial architectural photograph of a practical small straight kitchen in a modest heated country house in Belarus. Sage grey flat slab laminated particleboard cabinet fronts, warm oak printed decor tall side cabinet, simple visible handles, pale laminate worktop, sink, compact oven, a few drawers, daylight by window with garden and ordinary wooden fence outside, light plaster walls and timber floor. Whole kitchen visible at eye level, functional welcoming room with realistic cabinet gaps, modest proportions and natural texture. No rustic carved solid wood fronts, no luxury island, no text, no people, no logos, no collage, no watermarks, no CGI appearance. Illustrative kitchen idea, not evidence of a completed project or of suitability for unheated rooms."
+    }
+  ]
+}

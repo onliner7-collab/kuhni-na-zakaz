@@ -286,3 +286,7 @@ VisualCatalog: изолированный клиентский подбор, nat
 SmolevichiPlanningDetails: native details, фото монтируются после открытия; Planning использует отдельную карту данных и сетку 2×2. Первая карта hero независима.
 
 Подробности: docs/seo/2026-10-11-catalog-implementation.md.
+
+## 2026-10-17 — ЛДСП
+
+LdspVisualJourney: отдельные client-компоненты конструкции, декоров, сценариев, альтернатив и комплектации; SSR-содержание в app/materials/ldsp/page.tsx. MaterialsSelection использует прежнюю компактную шапку также на ЛДСП; ldspView входит в общий store и историю, не в lead payload. Старые MaterialDecisionExplorer/MaterialDetailGallery не изменены.

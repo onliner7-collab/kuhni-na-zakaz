@@ -26,3 +26,7 @@
 ## Документация
 
 Next.js 15.3.9; проверены текущие официальные примеры Context7 `/vercel/next.js` по History API и layout. Точной версии 15.3.9 в выдаче Context7 нет, поэтому применены совместимые существующие API и проверена сборка установленной версии. SEO: Google Search Central SEO Starter Guide и Image SEO Best Practices. Разметка — BreadcrumbList и ItemList по видимым данным, без выдуманных Product/Offer/rating. Основные блоки и обычные ссылки доступны в серверном HTML.
+
+## Дополнения этапа 3 — ЛДСП, 17.10.2026
+
+app/materials/ldsp/page.tsx использует LdspVisualJourney и прежние MaterialDecisionExplorer/MaterialDetailGallery без изменения их исходников. `MaterialState.ldspView` содержит индексы construction (0–2), decor (0–3), room (0–2) и alternative (mdf-film/mdf-enamel). Санитизация дополняет старые сохранения безопасными значениями. updateView записывает эти поля в localStorage и снимки history; Back/Forward/refresh восстанавливают просмотр. Поля не затрагивают comparisonIds/preferredId/updatedAt и не входят в materialSelection заявки. Фильтры хаба и mdfGallery независимы. scenarioId продолжает использовать два общих состава. Компактная шапка выбора расширена с МДФ на ЛДСП; прочие маршруты сохраняют прежний вид. Новый префикс /images/ldsp-20261017/ зарегистрирован для безопасного watermarked-image endpoint.

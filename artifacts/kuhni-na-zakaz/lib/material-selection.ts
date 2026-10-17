@@ -11,6 +11,7 @@ export type MaterialState = {
   galleryLimit: number;
   activePhoto: string | null;
   mdfGallery: { material: string; layout: string; limit: number; activePhoto: string | null };
+  ldspView: { construction: number; decor: number; room: number; alternative: string };
   onlyDifferences: boolean;
   scenarioId: string;
   returnTo: string;
@@ -25,6 +26,7 @@ export const EMPTY_MATERIAL_STATE: MaterialState = {
   galleryLimit: 12,
   activePhoto: null,
   mdfGallery: { material: "", layout: "", limit: 6, activePhoto: null },
+  ldspView: { construction: 0, decor: 0, room: 0, alternative: "mdf-film" },
   onlyDifferences: false,
   scenarioId: "straight-3m",
   returnTo: "/materials#compare",
@@ -117,6 +119,12 @@ export function sanitizeMaterialState(
         ? v.activePhoto
         : null,
     onlyDifferences: v.onlyDifferences === true,
+    ldspView: {
+      construction: [0, 1, 2].includes(v.ldspView?.construction ?? -1) ? v.ldspView!.construction : 0,
+      decor: [0, 1, 2, 3].includes(v.ldspView?.decor ?? -1) ? v.ldspView!.decor : 0,
+      room: [0, 1, 2].includes(v.ldspView?.room ?? -1) ? v.ldspView!.room : 0,
+      alternative: v.ldspView?.alternative === "mdf-enamel" ? "mdf-enamel" : "mdf-film",
+    },
     mdfGallery: {
       material: ["mdf-film", "mdf-enamel"].includes(v.mdfGallery?.material || "") ? v.mdfGallery!.material : "",
       layout: ["Прямая", "Угловая", "Деталь"].includes(v.mdfGallery?.layout || "") ? v.mdfGallery!.layout : "",

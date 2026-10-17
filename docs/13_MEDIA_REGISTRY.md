@@ -233,3 +233,7 @@ catalog-showcase: четыре новые AI-концепции домов, PNG-
 smolevichi-planning-v2-20261012: шесть новых встроенных image_gen идей, PNG + WebP 1200×800 и 720×480, 38–98 КБ. Четыре старые пары WebP удалены как неиспользуемые.
 
 Подробности: docs/seo/2026-10-11-catalog-implementation.md.
+
+## 2026-10-17 — ldsp-20261017
+
+Четыре встроенных image_gen фотографии-иллюстрации: apartment, cabinet, edge, country. Исходные PNG и WebP 1200×800 сохранены в artifacts/kuhni-na-zakaz/public/images/ldsp-20261017. Основные файлы 68–108 КБ; PNG не подключены как src. Русские alt, видимое указание иллюстративного происхождения. Промпты: docs/seo/materials-comparison/stage-3/image-prompts.json.
