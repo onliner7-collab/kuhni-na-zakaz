@@ -1,6 +1,6 @@
 # Этап 4: /materials/mdf-emal
 
-Дата: 17 октября 2026 года. Статус: **опубликован, production QA PASS**, runtime `540f0a67956939208410ebe2afabdb3b302af3c4`.
+Дата: 17 октября 2026 года. Статус: **опубликован, production QA PASS**. Основной релиз `540f0a67956939208410ebe2afabdb3b302af3c4`; текущее исправление фрезеровок `d9c5dfedf8c177d454f53b96f60082bfd8162d30` — см. profile-fix/report.md.
 
 ## Результат
 

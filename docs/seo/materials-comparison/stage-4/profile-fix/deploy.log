@@ -1,0 +1,90 @@
+ ✓ Compiled successfully in 40.0s
+   Linting and checking validity of types ...
+
+   We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+   The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+   	- include was updated to add '.next-enamel-profile-d9c5dfedf8c177d454f53b96f60082bfd8162d30/types/**/*.ts'
+
+   Collecting page data ...
+   Generating static pages (0/175) ...
+   Generating static pages (43/175) 
+Warning: truncated output (original token count: 4475)
+Total output lines: 219
+
+   Generating static pages (87/175) 
+   Generating static pages (131/175) 
+ ✓ Generating static pages (175/175)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                      Size  First Load JS  Revalidate  Expire
+┌ ○ /                                                         25.4 kB         262 kB          1h      1y
+├ ○ /_not-found                                                 336 B         102 kB
+├ ○ /about                                                    3.52 kB         182 kB
+├ ƒ /admin/activity-log                                         336 B         102 kB
+├ ƒ /admin/blog                                                 745 B         115 kB
+├ ƒ /admin/blog/[id]/edit                                       141 B         115 kB
+├ ƒ /admin/blog/new                                             141 B         115 kB
+├ ƒ /admin/calculator                                         2.99 kB         105 kB
+├ ƒ /admin/configurator-visual                                  250 B         106 kB
+├ ƒ /admin/configurator-visual/appliances                       250 B         106 kB
+├ ƒ /admin/configurator-visual/appliances/[id]                1.83 kB         104 kB
+├ ƒ /admin/configurator-visual/appliances/new                 1.83 kB         104 kB
+├ ƒ /admin/configurator-visual/compatibility                    250 B         106 kB
+├ ƒ /admin/configurator-visual/compatibility/[id]             1.56 kB         104 kB
+├ ƒ /admin/configurator-visual/compatibility/new              1.56 kB         104 kB
+├ ƒ /admin/configurator-visual/countertops                      250 B         106 kB
+├ ƒ /admin/configurator-visual/countertops/[id]               1.65 kB         104 kB
+├ ƒ /admin/configurator-visual/countertops/new                1.65 kB         104 kB
+├ ƒ /admin/configurator-visual/facades                          250 B         106 kB
+├ ƒ /admin/configurator-visual/facades/[id]                   1.71 kB         104 kB
+├ ƒ /admin/configurator-visual/facades/new                    1.71 kB         104 kB
+├ ƒ /admin/configurator-visual/handles                          250 B         106 kB
+├ ƒ /admin/configurator-visual/handles/[id]                   1.73 kB         104 kB
+├ ƒ /admin/configurator-visual/handles/new                    1.73 kB         104 kB
+├ ƒ /admin/configurator-visual/mechanisms                       250 B         106 kB
+├ ƒ /admin/configurator-visual/mechanisms/[id]                1.72 kB         104 kB
+…3175 tokens truncated…folio                                                8.47 kB         187 kB
+├ ● /portfolio/[slug]                                         8.69 kB         187 kB
+├   ├ /portfolio/kuhnya-japandi-zelenye-fasady-minsk
+├   ├ /portfolio/loft-kuhnya-oreh-poluostrov-minsk
+├   ├ /portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk
+├   └ [+46 more paths]
+├ ○ /prices                                                   8.01 kB         175 kB
+├ ○ /privacy-policy                                             250 B         106 kB
+├ ○ /reviews                                                  9.05 kB         179 kB          1h      1y
+├ ○ /robots.txt                                                 336 B         102 kB
+├ ○ /scenarios                                                1.06 kB         137 kB
+├ ● /scenarios/[slug]                                         6.08 kB         188 kB
+├   ├ /scenarios/s-ostrovom
+├   ├ /scenarios/do-potolka
+├   ├ /scenarios/dlya-semi
+├   └ [+7 more paths]
+├ ƒ /sitemap.xml                                                336 B         102 kB
+├ ○ /styles                                                     248 B         184 kB          1h      1y
+├ ○ /styles/[slug]                                            5.86 kB         188 kB
+├ ○ /terms                                                      250 B         106 kB
+├ ○ /thanks                                                     250 B         106 kB
+└ ○ /warranty                                                   149 B         130 kB
++ First Load JS shared by all                                  102 kB
+  ├ chunks/8581-85b6b417bf4ff1f5.js                           46.7 kB
+  ├ chunks/b55b93ef-688cd5400c6495dc.js                       53.2 kB
+  └ other shared chunks (total)                               2.11 kB
+
+
+ƒ Middleware                                                  42.1 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> @workspace/kuhni-na-zakaz@0.0.0 sitemap:write-static /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz
+> tsx scripts/write-static-sitemap.ts
+
+Wrote 112 sitemap URLs to /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/public/sitemap-static.xml
+curl: (22) The requested URL returned error: 502
+active
+DEPLOYED d9c5dfedf8c177d454f53b96f60082bfd8162d30
+ROLLBACK_BUILD /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.next-before-enamel-profile-d9c5dfedf8c177d454f53b96f60082bfd8162d30

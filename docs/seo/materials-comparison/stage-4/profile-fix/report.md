@@ -8,4 +8,6 @@
 
 Локально: production build Next 15.3.9 и типизация PASS. check-enamel-profiles.ts — PASS: 360/390/412/768/1440 px × reduce/no-preference × 3 состояния; три разных src и три разных хеша отрисованных изображений в каждом случае, без переполнения, сохранение после refresh/Back/Forward, отсутствие изменения сравнения/предпочтения/updatedAt, 3 WebP + 3 watermarked-image HTTP 200. Скриншоты и отчёт: local/.
 
-Статус публикации и production-проверки будет зафиксирован после активации исправления.
+Опубликован runtime `d9c5dfedf8c177d454f53b96f60082bfd8162d30`, ветка codex/mdf-enamel-profile-20261017, поверх runtime 540f0a6. Серверная сборка PASS (175 страниц), service active, tracked Git чистый. Предыдущая сборка сохранена в `.next-before-enamel-profile-d9c5dfedf8c177d454f53b96f60082bfd8162d30`. Миграций и заявок не было.
+
+Production QA PASS: те же 5 ширин × 2 режима движения × 3 разных файла и разных изображения; refresh/Back/Forward и сохранение явного выбора/TTL проверены. 3 WebP и 3 watermarked-image HTTP 200. Ошибок приложения нет. Отчёт и скриншоты: production/. Контрольные title/H1/canonical 9 защищённых страниц совпадают с baseline. Уже открытый старый документ нужно обновить, чтобы загрузился новый JavaScript; простая смена якоря не перезагружает страницу.
