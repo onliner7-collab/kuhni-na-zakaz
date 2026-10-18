@@ -241,3 +241,7 @@ smolevichi-planning-v2-20261012: шесть новых встроенных imag
 ## 2026-10-17 — mdf-enamel-20261017
 
 Четыре новые фотореалистичные ИИ-иллюстрации встроенным image_gen: corner-sage, straight-gloss, milling-samples, finish-samples. PNG-исходники и WebP 1200×800 в artifacts/kuhni-na-zakaz/public/images/mdf-enamel-20261017/. WebP 27–64 КБ; исходники не используются как основной src. Промпты и происхождение: docs/seo/materials-comparison/stage-4/image-prompts.json; размеры/вес: image-assets.json. Старые фото сохраняются. Иллюстрации не объявлены выполненными заказами.
+
+## 2026-10-18 — Минск: соответствие иллюстраций
+
+public/uploads/locations/minsk-v2-20261018/: 36 новых встроенных imagegen masters, 12 проверенных проектных источников, 144 WebP 480/960/1200 (6,86 МБ суммарно, максимум 179158 байт). Четыре прежних стилевых фото сохранены. Все 52 visual choices уникальны; hero/замер просмотрены. Неподходящие фото для газовой колонки/ската/компакт-плиты не используются: эти условия вынесены в checkbox. Промпты, provenance и аудит в outputs/minsk-visual-20261018/.

@@ -294,3 +294,7 @@ LdspVisualJourney: отдельные client-компоненты констру
 ## 2026-10-17 — эмаль
 
 EnamelVisualJourney.tsx: EnamelActions, EnamelFinishes, EnamelProfiles, EnamelGallery, EnamelRooms, EnamelComparison, EnamelPriceScenarios. Общий store получил санитизируемое enamelView и снимки истории; выбор и lead-контракт прежние. MaterialDecisionExplorer/MaterialDetailGallery сохранены без правок. Основной контент и подробные ответы рендерит серверная страница. Новых зависимостей нет.
+
+## 2026-10-18 — Минск: соответствие иллюстраций
+
+MinskDimensions показывает суммы модулей и планы комнат. MinskSelection меняет кадр, подпись и схему, возвращает фото в мобильный viewport, показывает загрузку. Три условия проекта передаются через существующий ContactForm в answers/comment без изменения backend. Runtime b5715231.

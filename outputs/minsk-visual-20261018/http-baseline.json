@@ -1,0 +1,88 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "title": "Купить кухню на заказ — по вашим размерам | КухниBY",
+    "h1": "Купить кухню на заказ по вашим размерам",
+    "canonical": "https://kuhni.minsk.by",
+    "mainHash": "8396900d15e01746ad1d06175de78d835f00ae6663baf80d4352fba165660c36",
+    "robots": null
+  },
+  {
+    "route": "/locations/borisov",
+    "status": 200,
+    "title": "Купить кухню на заказ в Борисове: каталог и цены | КухниBY",
+    "h1": "Кухни на заказ в Борисове",
+    "canonical": "https://kuhni.minsk.by/locations/borisov",
+    "mainHash": "06d87f9b776e136caa11b5654f24dbce770d69febcc6201aef227a2a8fedf287",
+    "robots": null
+  },
+  {
+    "route": "/locations/zhodino",
+    "status": 200,
+    "title": "Купить кухню в Жодино — на заказ по вашим размерам | КухниBY",
+    "h1": "Купить кухню в Жодино на заказ",
+    "canonical": "https://kuhni.minsk.by/locations/zhodino",
+    "mainHash": "6feee0b568c2e0d299a3e65ba28fc3c340428dac753ffd8dfe389817e6f700fd",
+    "robots": null
+  },
+  {
+    "route": "/catalog/uglovye-kuhni",
+    "status": 200,
+    "title": "Угловые кухни на заказ — купить по своим размерам | КухниBY",
+    "h1": "Угловые кухни на заказ",
+    "canonical": "https://kuhni.minsk.by/catalog/uglovye-kuhni",
+    "mainHash": "22414b4f97ef6a2e15806a09361e44f54262c9dd1a4484a2789cd68211679df8",
+    "robots": null
+  },
+  {
+    "route": "/design-proekt-kuhni",
+    "status": 200,
+    "title": "3D-проект кухни на заказ в Минске — дизайн, планировка и визуализация",
+    "h1": "3D-проект кухни на заказ",
+    "canonical": "https://kuhni.minsk.by/design-proekt-kuhni",
+    "mainHash": "8f8ab3200969d6fff2cc4cbc2525709d785cfe784688e538f16fec019f6a1042",
+    "robots": null
+  },
+  {
+    "route": "/locations/minskaya-oblast",
+    "status": 200,
+    "title": "Кухни в Минской области на заказ | КухниBY",
+    "h1": "Купить кухню в Минской области под размер, с доставкой и монтажом",
+    "canonical": "https://kuhni.minsk.by/locations/minskaya-oblast",
+    "mainHash": "ac99fe2c3684d1d5f0e229a1b5a0db5443fd3a87679e3c1509fd10d03d945f15",
+    "robots": null
+  },
+  {
+    "route": "/materials/furnitura",
+    "status": 200,
+    "title": "Фурнитура для кухни: петли и направляющие | КухниBY",
+    "h1": "Фурнитура для кухни на заказ",
+    "canonical": "https://kuhni.minsk.by/materials/furnitura",
+    "mainHash": "3b0fd544f490635809937bfe80e590f5c36e8340d9efdccbf4c943213a4c70a2",
+    "robots": null
+  },
+  {
+    "route": "/locations/minsk",
+    "status": 200,
+    "title": "Купить кухню на заказ в Минске — размеры, стили и материалы | КухниBY",
+    "h1": "Купить кухню в Минске на заказ",
+    "canonical": "https://kuhni.minsk.by/locations/minsk",
+    "mainHash": "14fbf21025fe6aab7f882b529aec1e90d4c3a68de5595084c51da7ea99a6411f",
+    "robots": null
+  },
+  {
+    "route": "/robots.txt",
+    "status": 200,
+    "mainHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "robots": null
+  },
+  {
+    "route": "/sitemap.xml",
+    "status": 200,
+    "mainHash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "robots": null,
+    "count": 112,
+    "minskEntry": "<url>\n<loc>https://kuhni.minsk.by/locations/minsk</loc>\n<lastmod>2026-10-09T00:00:00.000Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.8</priority>\n</url>"
+  }
+]
