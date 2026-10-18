@@ -1,0 +1,316 @@
+{
+  "generator": "Встроенный Codex/OpenAI imagegen",
+  "date": "2026-10-18",
+  "jobs": [
+    {
+      "id": "layout-corner",
+      "group": "layout",
+      "index": 0,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. L-shaped kitchen exactly two perpendicular runs meeting once, muted clay and cream fronts, show entire L and clear floor, no island. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-straight",
+      "group": "layout",
+      "index": 1,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. single straight run of blue-grey cabinets against one wall, frontal oblique view, no side return or island, refrigerator tower at end. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-small",
+      "group": "layout",
+      "index": 2,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. tiny compact 1.8m one-wall kitchenette with just three base cabinets and undercounter fridge, two-burner hob, compact sink, limited but usable prep space. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-ceiling",
+      "group": "layout",
+      "index": 3,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. L kitchen with clearly visible double-height upper cupboards and a continuous top tier of shallow antresol cabinets reaching the 2.6m ceiling, pale oak and off-white. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-u-shape",
+      "group": "layout",
+      "index": 4,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. TRUE U-shaped kitchen with THREE connected cabinet runs on left back and right walls, TWO inside corners and a generous empty central aisle open towards camera, no island, warm grey shaker fronts. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-island",
+      "group": "layout",
+      "index": 5,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. large airy kitchen with wall cabinets and a freestanding oak island completely detached on ALL four sides, visible circulation gaps, no peninsula, beige cabinetry. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-peninsula",
+      "group": "layout",
+      "index": 6,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. L-shaped kitchen with a short breakfast peninsula physically ATTACHED to the right cabinet run, one continuous countertop junction clearly visible, two stools on outer edge, walnut and pale green. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-galley",
+      "group": "layout",
+      "index": 7,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. galley kitchen with TWO PARALLEL cabinet runs on opposite walls, clear 1200mm central aisle to window at back, neither run joins at back, pale grey on one side oak on other. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-handleless",
+      "group": "layout",
+      "index": 8,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. handleless minimalist anthracite and light oak kitchen with clearly visible continuous recessed GOLA finger channel under worktop, no knobs no external handles. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "layout-integrated",
+      "group": "layout",
+      "index": 9,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. kitchen featuring tall integrated refrigerator hidden behind cabinet panels, oven and microwave neatly built into appliance tower, paneled dishwasher, visible ventilation clearances, ivory fronts. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-2m",
+      "group": "length",
+      "index": 0,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. one straight run EXACTLY 2000 mm: 400mm three-drawer base, 600mm oven/hob base, 400mm prep drawers, 600mm sink base. Four clear modules. Freestanding refrigerator is elsewhere and MUST NOT be pictured. Four matching upper cabinets. Bright pale blue fronts in compact room. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-2-5m",
+      "group": "length",
+      "index": 1,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. one straight run EXACTLY 2500 mm: 600mm sink base, 450mm integrated dishwasher, 350mm pullout, 600mm oven/hob base, 500mm drawers. Five visibly separate modules and upper cupboards. No refrigerator in pictured run. Warm white fronts, terracotta tile. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-3m",
+      "group": "length",
+      "index": 2,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. one straight run EXACTLY 3000 mm: 600mm sink base, 450mm integrated dishwasher, 450mm drawers prep, 600mm oven/hob base, 900mm two-door storage. Five base modules with the last visibly wide. NO refrigerator inside frame. Sage green fronts oak worktop, upper cupboards. Clearly show both ends. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-3-5m",
+      "group": "length",
+      "index": 3,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. one straight run EXACTLY 3500 mm: 600mm refrigerator tower, 600mm sink base, 450mm integrated dishwasher, 650mm drawers, 600mm oven/hob base, 600mm drawers. Six distinct modules including fridge tower. Dusty blue lower cabinets and white uppers. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-4m",
+      "group": "length",
+      "index": 4,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. one straight run EXACTLY 4000 mm: 600mm fridge tower, 600mm sink base, 600mm integrated dishwasher, 1000mm wide drawer bank, 600mm oven/hob base, 600mm pantry tower. Six distinct modules, fridge and pantry at opposite ends, warm walnut lowers cream uppers. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-5m",
+      "group": "length",
+      "index": 5,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. one long straight run EXACTLY 5000 mm, WIDER and visibly MORE cupboards than 3m: 600mm fridge tower, 600mm pantry tower, 600mm sink cabinet, 600mm paneled dishwasher, 800mm drawer bank prep area, 600mm oven/hob base, 600mm drawer base, 600mm pantry tower. Eight clearly distinct modules. Muted navy lower fronts, warm white uppers, light stone worktop, long prep area. Wide room showing entire full run without cropping. No island. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-corner-2x2",
+      "group": "length",
+      "index": 6,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. small L-shaped kitchen fitting two perpendicular 2000mm walls measured outer wall corner to each end. 600mm deep units, 900mm corner unit shared between legs, each leg remaining1100mm: one 600mm hob base plus500mm drawers on one leg,600mm sink plus500mm storage on other. No refrigerator within run. White oak framed fronts. Both short legs fully visible. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-corner-2x3",
+      "group": "length",
+      "index": 7,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. L-shaped kitchen fitting 2000mm short wall and3000mm long wall measured outside corner to ends. 900mm shared corner; short leg sink600+drawers500; long leg fridge600+hob600+drawers900. Noticeably longer right leg, warm grey and walnut fronts. Entire L shape visible. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "length-custom",
+      "group": "length",
+      "index": 8,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. irregular kitchen with 2350mm main wall and a 1650mm angled return, deep window niche, asymmetric custom-width cabinet modules, narrow filler strips fitted neatly at awkward end, terracotta lower cabinets, believable custom joinery. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "area-5m2",
+      "group": "area",
+      "index": 0,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. VERY SMALL enclosed room exactly2.0m wide by2.5m deep, area5m2. Eye-level wide doorway view of the entire compact room, single straight2000mm kitchen across back wall 600mm deep, compact hob and sink, undercounter fridge, four narrow upper units, no dining table no island, only one narrow fold-down side shelf, cramped but functional. Cream fronts, pale tiled floor. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "area-6m2",
+      "group": "area",
+      "index": 1,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. small enclosed room exactly2.0m wide by3.0m deep, area6m2, one straight2400mm kitchen along left long wall, 600mm deep, standard hob and sink and narrow fridge at far end; small wall-mounted fold-down breakfast table on right with ONE stool tucked beneath, generous visible aisle, back window. Pale blue cabinets, light oak floor. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "area-7m2",
+      "group": "area",
+      "index": 2,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. enclosed kitchen room exactly2.5m wide by2.8m deep, area7m2, compact L-shaped kitchen along back and left walls, 600mm deep, back window, compact sink at left, oven hob at back, small round650mm table with TWO chairs in front right corner leaving clear passage. Light grey fronts with oak uppers, eye-level doorway view. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "area-8m2",
+      "group": "area",
+      "index": 3,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. enclosed room exactly2.5m wide by3.2m deep, area8m2, L kitchen along left and back with fridge tower at far left, sink under back window, compact two-person breakfast table right side, visible central floor and passage. Sage lower cabinets cream uppers, tiled backsplash. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "area-9m2",
+      "group": "area",
+      "index": 4,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. room exactly3m by3m, area9m2 square kitchen, L cabinets along two walls, standard fridge tower and dishwasher, four-person compact square800mm dining table with four chairs near window on free wall, believable circulation, no island. Pale wood and white cabinets. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "area-10m2",
+      "group": "area",
+      "index": 5,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. room exactly2.5m wide by4m deep, area10m2, single long kitchen along left wall with fridge and oven tower, a1000x650mm table with three chairs along right near far window, clearly elongated room and visible aisle, no island. Dusty navy cabinet fronts, white walls. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "area-12m2",
+      "group": "area",
+      "index": 6,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. room exactly3m wide by4m deep, area12m2, more spacious enclosed kitchen with L-shaped cabinetry along back and left, fridge pantry towers, long prep surface, a1200x750mm dining table and four chairs on right, clear walkways, no island to avoid crowding. Warm greige and walnut cabinets. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-apartment",
+      "group": "room",
+      "index": 0,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. ordinary Belarusian panel apartment kitchen, enclosed rectangular room, low2.55m flat ceiling, visible vertical utility riser enclosure and ventilation bulkhead carefully worked around, L-shaped light grey kitchen, modest single window, radiator below window, compact table. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-new-build",
+      "group": "room",
+      "index": 1,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. modern new-build apartment kitchen in Minsk, high2.85m ceiling, large floor-to-ceiling window to balcony, new clean white plaster walls, finished but unfurnished dining zone, contemporary long straight warm beige kitchen with service outlets neatly located above counter, tall pantry storage, no old exposed pipes. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-studio",
+      "group": "room",
+      "index": 2,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. studio apartment open-plan kitchen living room, short compact one-wall muted green kitchen along left sharing one space with small sofa on right, distinct living area and a narrow breakfast peninsula marking zoning without blocking passage, hide kitchen clutter. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-khrushchev",
+      "group": "room",
+      "index": 3,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. small1960s Khrushchev flat kitchen, low2.45m ceiling, narrow doorway, small window with radiator, compact2m cream kitchen with gas hob, modest small fold-down table, realistic tight proportions and usable worktop. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-house",
+      "group": "room",
+      "index": 4,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. detached family house kitchen, spacious room, two windows overlooking garden, pitched roof exterior visible outside only, long L kitchen and detached substantial island with sink, walnut and off-white cabinetry, large family dining area beyond. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-dacha",
+      "group": "room",
+      "index": 5,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. simple seasonal dacha cottage kitchen, pine plank interior walls, modest straight white laminate cabinets with wood handles, small sink, freestanding compact stove, practical sturdy worktop, no luxury island, garden daylight. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-narrow",
+      "group": "room",
+      "index": 6,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. very narrow kitchen room1.8m wide by4m deep, ONE straight600mm deep cabinet run along left wall, unobstructed1.2m aisle to window, slim pantry at end, no table no island no opposite cabinets. Muted blue fronts. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-gas",
+      "group": "room",
+      "index": 7,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. small apartment kitchen with a REALISTIC clearly visible wall-mounted gas water heater ABOVE an open service zone on right, metallic flue visibly rising toward ventilation duct, unobstructed access, no cabinet enclosing heater, hob on separate left run, window and breathable door area, white and pale wood cabinetry. Gas equipment is illustrative subject to local engineer review. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "room-sloped",
+      "group": "room",
+      "index": 8,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. attic kitchen with obvious diagonally sloping ceiling descending on right side, skylight in slope, low base cabinets under low right slope with NO tall uppers there, tallest pantry on full-height left wall, shaped triangular end panels, oak and forest-green fronts. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-mdf-film",
+      "group": "material",
+      "index": 0,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. close three-quarter kitchen view showcasing warm ivory matte PVC FILM-wrapped MDF cabinet doors with shallow routed SHAKER frames, softly rounded continuous wrapped edges, small dark knobs, light wood laminate worktop. Show detail of door and surrounding3m kitchen, realistic non-reflective smooth finish. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-ldsp",
+      "group": "material",
+      "index": 1,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. kitchen showcasing FLAT melamine faced chipboard doors in light oak woodgrain decor with clearly visible thin straight edge banding, simple rectangular slab geometry, black bar pulls, no routed frames, no actual exposed raw chipboard, laminate worktop. Three-quarter view close enough to see woodgrain. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-enamel",
+      "group": "material",
+      "index": 2,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. kitchen showcasing smooth PAINTED MDF doors with deep muted burgundy SATIN lacquer, elegant crisp narrow shaker frames with seamless painted rounded edges, polished brass knobs, cream stone countertop, no wood texture no plastic film. Three-quarter view emphasizing rich painted finish. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-hpl",
+      "group": "material",
+      "index": 3,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. kitchen showcasing HPL laminate slab fronts in dark grey CONCRETE texture, distinctly flat rectangular doors, narrow black edge banding visible on one slightly open door, industrial steel bar handles, medium grey worktop, side daylight shows mineral matte texture. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-acrylic",
+      "group": "material",
+      "index": 4,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. kitchen showcasing HIGH-GLOSS ACRYLIC deep petrol blue flat slab doors with sharp CLEAN MIRROR REFLECTIONS of a window and bright crisp glossy highlights, handleless channels, white worktop, no matte surfaces on doors. Three-quarter view showing obvious gloss. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-veneer",
+      "group": "material",
+      "index": 5,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. kitchen showcasing real NATURAL WALNUT VENEER doors with continuously bookmatched vertical grain, warm varied organic real wood pores visible, flat wide slabs and discreet bronze pulls, cream worktop. Close three-quarter natural lighting emphasizing genuine woodgrain. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-matte-mix",
+      "group": "material",
+      "index": 6,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. kitchen showcasing COMBINED ultra-matte charcoal lower slab fronts and warm pale oak upper fronts, contrasting two distinct zones, matte no mirror reflections, minimalist black pulls, pale stone countertop, believable cabinetry. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-worktop-laminate",
+      "group": "material",
+      "index": 7,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. close foreground dominant view of a38mm thick LAMINATE chipboard worktop in light oak effect with a clearly visible straight ABS front edge seam, affordable pale grey slab cabinets beneath, inset stainless steel sink with sealed rim, enough full kitchen context. Not raw exposed wood chips. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-worktop-quartz",
+      "group": "material",
+      "index": 8,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. close foreground dominant view of a20mm white QUARTZ COMPOSITE worktop with subtle grey veins, smooth polished square edge, undermount sink flush clean cutout and visible uniform stone thickness, navy cabinetry below. Show broad continuous surface and stone pattern, no wooden edge. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "material-worktop-compact",
+      "group": "material",
+      "index": 9,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. close foreground dominant view of an ULTRA-THIN12mm COMPACT HPL worktop, off-white top with a DARK continuous thin core exposed at square front edge, dark thin profile very clear against pale green cabinets, inset sink and realistic supported spans. Contrast thin worktop with full kitchen context. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "style-japandi",
+      "group": "style",
+      "index": 0,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. Japanese Scandinavian JAPANDI kitchen, warm natural oak slatted end panel, muted sand flat fronts, paper pendant, restrained natural ceramic bowl, minimalist uncluttered composition, no ornate details. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "style-white",
+      "group": "style",
+      "index": 1,
+      "prompt": "Use case: photorealistic-natural. Asset: single kitchen selector illustration, landscape3:2 around1536x1024. Create ONE realistic interior PHOTOGRAPH with credible appliances and cabinet construction. bright all-white kitchen with white flat fronts, white stone worktop and white tiled backsplash, few pale oak accents only on flooring, very airy daylight, no dark or colored fronts. Natural soft daylight, straight verticals, believable human scale. Show complete furniture ends and relevant room boundaries. No people, no text, no numbers, no dimensions drawn onto photo, no watermark no logos no collage. This is an illustrative proposed design, not proof of a real installed kitchen. "
+    },
+    {
+      "id": "style-neoclassic",
+      "index": 2,
+      "description": "Distinct NEOCLASSICAL kitchen in muted sage green with delicate narrow framed doors, balanced symmetrical tall units, subtle brass knobs, pale quartz worktop and plain restrained crown moulding. Three-quarter eye-level photograph, absolutely no ornate carved corbels, no rustic decor, bright urban apartment",
+      "group": "style",
+      "prompt": "Use case: photorealistic-natural. One realistic interior photograph, landscape3:2, Distinct NEOCLASSICAL kitchen in muted sage green with delicate narrow framed doors, balanced symmetrical tall units, subtle brass knobs, pale quartz worktop and plain restrained crown moulding. Three-quarter eye-level photograph, absolutely no ornate carved corbels, no rustic decor, bright urban apartment. Show whole kitchen. Natural material detail, correct appliance scale. No people no text no labels no watermark no logos. Proposed design illustration."
+    },
+    {
+      "id": "style-scandi",
+      "index": 4,
+      "description": "Distinct SCANDINAVIAN kitchen, flat matte white lower slab doors and natural LIGHT BIRCH upper cabinets, slender light wood handles, white square tiles, pale oak floor, simple small round wooden dining table by large window, functional bright unornamented room, NO framed doors no cornice no island",
+      "group": "style",
+      "prompt": "Use case: photorealistic-natural. One realistic interior photograph, landscape3:2, Distinct SCANDINAVIAN kitchen, flat matte white lower slab doors and natural LIGHT BIRCH upper cabinets, slender light wood handles, white square tiles, pale oak floor, simple small round wooden dining table by large window, functional bright unornamented room, NO framed doors no cornice no island. Show whole kitchen. Natural material detail, correct appliance scale. No people no text no labels no watermark no logos. Proposed design illustration."
+    },
+    {
+      "id": "style-classic",
+      "index": 5,
+      "description": "Distinct traditional CLASSICAL kitchen with rich dark NAVY raised-panel cabinet doors, elegant moulded cornice, pilasters, decorative corbels surrounding stove hood, aged brass pulls, cream marble countertop, symmetrical cabinetry, credible tasteful traditional craft details, no modern slabs",
+      "group": "style",
+      "prompt": "Use case: photorealistic-natural. One realistic interior photograph, landscape3:2, Distinct traditional CLASSICAL kitchen with rich dark NAVY raised-panel cabinet doors, elegant moulded cornice, pilasters, decorative corbels surrounding stove hood, aged brass pulls, cream marble countertop, symmetrical cabinetry, credible tasteful traditional craft details, no modern slabs. Show whole kitchen. Natural material detail, correct appliance scale. No people no text no labels no watermark no logos. Proposed design illustration."
+    },
+    {
+      "id": "style-provence",
+      "index": 6,
+      "description": "Distinct French PROVENCE rustic cottage kitchen with soft lavender and warm cream framed doors, small lattice-glazed upper cabinets, wooden rustic ceiling beams, ceramic apron-front sink, antique-style knobs, warm terracotta tiled floor, gingham window curtain, daylight, not ornate grand classical",
+      "group": "style",
+      "prompt": "Use case: photorealistic-natural. One realistic interior photograph, landscape3:2, Distinct French PROVENCE rustic cottage kitchen with soft lavender and warm cream framed doors, small lattice-glazed upper cabinets, wooden rustic ceiling beams, ceramic apron-front sink, antique-style knobs, warm terracotta tiled floor, gingham window curtain, daylight, not ornate grand classical. Show whole kitchen. Natural material detail, correct appliance scale. No people no text no labels no watermark no logos. Proposed design illustration."
+    }
+  ]
+}

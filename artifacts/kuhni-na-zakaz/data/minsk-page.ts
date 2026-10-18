@@ -1,4 +1,5 @@
 import { STYLE_FAMILY } from "@/data/exploration-families";
+import { minskVisual, type MinskVisual } from "./minsk-visuals";
 
 export const MINSK_PATH = "/locations/minsk";
 export const MINSK_TITLE =
@@ -13,6 +14,7 @@ export type MinskOption = {
   image: string;
   text: string;
   href: string;
+  visual?: MinskVisual;
 };
 export type MinskGroup = {
   id: string;
@@ -36,7 +38,7 @@ const option = (
   href: string,
 ): MinskOption => ({ label, image, text, href });
 
-export const minskGroups: MinskGroup[] = [
+const minskBaseGroups: MinskGroup[] = [
   {
     id: "layout",
     title: "Купить кухню в Минске: выберите планировку",
@@ -175,7 +177,7 @@ export const minskGroups: MinskGroup[] = [
     intro:
       "Погонные метры — длина мебели, а не площадь комнаты. Изготавливаем по замеру, а не по готовой размерной сетке.",
     options: [
-      ...["2 м", "2,5 м", "3 м", "3,5 м", "4 м"].map((label) =>
+      ...["2 м", "2,5 м", "3 м", "3,5 м", "4 м", "5 м"].map((label) =>
         option(
           label,
           straight,
@@ -345,6 +347,41 @@ export const minskGroups: MinskGroup[] = [
       ),
     ],
   },
+];
+
+export const minskGroups: MinskGroup[] = minskBaseGroups.map((group) => ({
+  ...group,
+  options: group.options
+    .filter(
+      (_, index) =>
+        !(group.id === "room" && index >= 7) &&
+        !(group.id === "material" && index === 9),
+    )
+    .map((item, index) => {
+      const visual = minskVisual(group.id, index, item.label);
+      return {
+        ...item,
+        image: visual?.image ?? item.image,
+        visual,
+        text:
+          group.id === "length" || group.id === "area"
+            ? visual!.caption
+            : item.text
+                .replace("; на фото — идея островной зоны", "")
+                .replace(" Иллюстрация показывает одну рабочую линию.", "")
+                .replace(" Иллюстрация — общая идея кухни для дома.", "")
+                .replace(
+                  "На фото — общая идея рабочей поверхности.",
+                  "Толщину и опоры согласуем в проекте.",
+                ),
+      };
+    }),
+}));
+
+export const minskProjectFeatures = [
+  { group: "room", label: "Есть газовая колонка или венткороб" },
+  { group: "room", label: "Есть скошенный потолок" },
+  { group: "material", label: "Рассмотреть столешницу из компакт-плиты" },
 ];
 
 export const minskFaq = [

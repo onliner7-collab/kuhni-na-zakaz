@@ -3,9 +3,17 @@
 import { useState, type ReactNode } from "react";
 import Link from "@/components/navigation/Link";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { MINSK_PATH, minskGroups } from "@/data/minsk-page";
+import {
+  MINSK_PATH,
+  minskGroups,
+  minskProjectFeatures,
+} from "@/data/minsk-page";
+import { MinskDimensions } from "./MinskDimensions";
 
 export function minskPreview(source: string, width: number) {
+  if (source.startsWith("/uploads/locations/minsk-v2-20261018/")) {
+    return source.replace(/\.webp$/, `-${width}.webp`);
+  }
   return `/uploads/locations/minsk-selection/${source
     .split("/")
     .slice(-2)
@@ -17,10 +25,16 @@ export function MinskSelection({ children }: { children: ReactNode }) {
   const [selection, setSelection] = useState<Record<string, number>>({});
   const [budget, setBudget] = useState("");
   const [comment, setComment] = useState("");
-  const selected = Object.entries(selection).map(([id, index]) => {
-    const group = minskGroups.find((item) => item.id === id)!;
-    return { group: group.title, value: group.options[index].label };
-  });
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const [features, setFeatures] = useState<string[]>([]);
+  const selected = Object.entries(selection)
+    .map(([id, index]) => {
+      const group = minskGroups.find((item) => item.id === id)!;
+      return { group: group.title, value: group.options[index].label };
+    })
+    .concat(
+      features.map((value) => ({ group: "Учесть при проектировании", value })),
+    );
   const buttonClass =
     "min-h-11 rounded-xl border px-3 py-2 text-left text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
   return (
@@ -37,12 +51,23 @@ export function MinskSelection({ children }: { children: ReactNode }) {
                 key={item.label}
                 type="button"
                 aria-pressed={active}
-                onClick={() =>
+                onClick={() => {
                   setSelection((previous) => ({
                     ...previous,
                     [group.id]: itemIndex,
-                  }))
-                }
+                  }));
+                  if (window.matchMedia("(max-width: 767px)").matches) {
+                    requestAnimationFrame(() => {
+                      document
+                        .querySelector(`[data-minsk-preview="${group.id}"]`)
+                        ?.closest("figure")
+                        ?.scrollIntoView({
+                          block: "start",
+                          behavior: "instant",
+                        });
+                    });
+                  }
+                }}
                 className={`${buttonClass} ${active ? "border-stone-900 bg-stone-900 text-white" : "border-stone-300 bg-white text-stone-900"}`}
               >
                 {item.label}
@@ -70,22 +95,57 @@ export function MinskSelection({ children }: { children: ReactNode }) {
                 {group.intro}
               </p>
               <div className="mt-5 grid gap-5 md:grid-cols-2 md:items-start">
-                <figure>
-                  <img
-                    data-minsk-preview={group.id}
-                    src={minskPreview(current.image, 960)}
-                    srcSet={`${minskPreview(current.image, 480)} 480w, ${minskPreview(current.image, 960)} 960w`}
-                    sizes="(max-width: 767px) calc(100vw - 32px), 50vw"
-                    alt={`Идея кухни для заказа в Минске: ${current.label.toLocaleLowerCase("ru")}`}
-                    width={960}
-                    height={640}
-                    loading="lazy"
-                    decoding="async"
-                    className="aspect-[3/2] w-full rounded-2xl bg-stone-200 object-cover"
-                  />
+                <figure className="scroll-mt-24">
+                  <div
+                    className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-stone-200"
+                    aria-busy={!loadedImages[current.image]}
+                  >
+                    {!loadedImages[current.image] && (
+                      <span
+                        className="absolute inset-0 flex items-center justify-center text-sm text-stone-600"
+                        role="status"
+                      >
+                        Загружаем иллюстрацию…
+                      </span>
+                    )}
+                    <img
+                      key={current.image}
+                      ref={(node) => {
+                        if (
+                          node?.complete &&
+                          node.naturalWidth > 0 &&
+                          !loadedImages[current.image]
+                        ) {
+                          setLoadedImages((previous) => ({
+                            ...previous,
+                            [current.image]: true,
+                          }));
+                        }
+                      }}
+                      data-minsk-preview={group.id}
+                      src={minskPreview(current.image, 960)}
+                      srcSet={`${minskPreview(current.image, 480)} 480w, ${minskPreview(current.image, 960)} 960w`}
+                      sizes="(max-width: 767px) calc(100vw - 32px), 50vw"
+                      alt={
+                        current.visual?.alt ??
+                        `Идея кухни для заказа в Минске: ${current.label.toLocaleLowerCase("ru")}`
+                      }
+                      width={960}
+                      height={640}
+                      loading="lazy"
+                      decoding="async"
+                      onLoad={() =>
+                        setLoadedImages((previous) => ({
+                          ...previous,
+                          [current.image]: true,
+                        }))
+                      }
+                      className="relative aspect-[3/2] w-full object-contain"
+                    />
+                  </div>
                   <figcaption className="mt-2 text-xs text-stone-600">
-                    Иллюстрация решения. Размеры и комплектация — по вашему
-                    проекту.
+                    {current.visual?.caption ??
+                      "Иллюстрация стиля. Размеры и комплектация — по вашему проекту."}
                   </figcaption>
                 </figure>
                 <div>
@@ -129,6 +189,40 @@ export function MinskSelection({ children }: { children: ReactNode }) {
                       </nav>
                     </details>
                   )}
+                  {minskProjectFeatures.some(
+                    (item) => item.group === group.id,
+                  ) && (
+                    <fieldset className="mt-4 rounded-xl border border-stone-200 bg-white p-3">
+                      <legend className="px-1 text-sm font-semibold">
+                        Учесть при проектировании
+                      </legend>
+                      {minskProjectFeatures
+                        .filter((item) => item.group === group.id)
+                        .map((item) => (
+                          <label
+                            key={item.label}
+                            className="flex min-h-11 cursor-pointer items-center gap-3 py-2 text-sm"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={features.includes(item.label)}
+                              onChange={(event) =>
+                                setFeatures((previous) =>
+                                  event.target.checked
+                                    ? [...previous, item.label]
+                                    : previous.filter(
+                                        (value) => value !== item.label,
+                                      ),
+                                )
+                              }
+                              className="size-5 accent-stone-900"
+                            />
+                            {item.label}
+                          </label>
+                        ))}
+                    </fieldset>
+                  )}
+                  <MinskDimensions visual={current.visual} />
                   <div
                     className="mt-4 rounded-xl bg-stone-100 p-4"
                     aria-live="polite"
@@ -138,9 +232,11 @@ export function MinskSelection({ children }: { children: ReactNode }) {
                       {current.label}
                       {selection[group.id] !== undefined ? " · Выбрано" : ""}
                     </h3>
-                    <p className="mt-2 text-sm leading-6 text-stone-700">
-                      {current.text}
-                    </p>
+                    {group.id !== "length" && group.id !== "area" && (
+                      <p className="mt-2 text-sm leading-6 text-stone-700">
+                        {current.text}
+                      </p>
+                    )}
                   </div>
                   <div className="mt-1 flex flex-wrap gap-x-5">
                     <Link
@@ -231,7 +327,7 @@ export function MinskSelection({ children }: { children: ReactNode }) {
               <h3 className="font-semibold">Ваш выбор</h3>
               <ul data-minsk-selection className="mt-2 space-y-2 text-sm">
                 {selected.map((item) => (
-                  <li key={item.group}>{item.value}</li>
+                  <li key={`${item.group}-${item.value}`}>{item.value}</li>
                 ))}
                 {budget && <li>{budget}</li>}
                 {!selected.length && !budget && (
@@ -290,7 +386,7 @@ export function MinskSelection({ children }: { children: ReactNode }) {
                 .filter(Boolean)
                 .join("\n")}
               defaultAnswers={{
-                minskKitchenSelection: { selected, budget, comment },
+                minskKitchenSelection: { selected, budget, comment, features },
               }}
             />
           </div>

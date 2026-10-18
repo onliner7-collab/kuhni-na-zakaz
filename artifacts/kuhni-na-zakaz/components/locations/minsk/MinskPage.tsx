@@ -26,7 +26,7 @@ export function MinskPage() {
             url: siteUrl(MINSK_PATH),
             name: MINSK_TITLE,
             inLanguage: "ru-BY",
-            dateModified: "2026-10-09",
+            dateModified: "2026-10-18",
           },
           ...(faq ? [faq] : []),
         ]}

@@ -1,0 +1,729 @@
+[
+  {
+    "group": "layout",
+    "label": "Угловая / Г-образная",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-corner.webp",
+    "bytes": 59490,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-corner-480.webp",
+    "hash": "8ec6110ced02f57524fef346d88485bad9024c990f89987a5342ca78b9652d10"
+  },
+  {
+    "group": "layout",
+    "label": "Прямая / линейная",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-straight.webp",
+    "bytes": 75830,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-straight-480.webp",
+    "hash": "8e07793d9f455f565641fc869f67821784c93d2edc68c48d39280cd3379c7f08"
+  },
+  {
+    "group": "layout",
+    "label": "Маленькая",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-small.webp",
+    "bytes": 68130,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-small-480.webp",
+    "hash": "c94cc622a0de44c3e5e41ad501546b5cddea21817bd4b3079e2dfb701e003635"
+  },
+  {
+    "group": "layout",
+    "label": "До потолка / антресоли",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-ceiling.webp",
+    "bytes": 75316,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-ceiling-480.webp",
+    "hash": "4230aeedfb86c6423829491e391f905811b249bf67aaca8bb02f37e6cdaa34a8"
+  },
+  {
+    "group": "layout",
+    "label": "П-образная",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-u-shape.webp",
+    "bytes": 73510,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-u-shape-480.webp",
+    "hash": "50e7646007d571ce0a531154e56c2d2ad7615b521e3d5812541614a21b305cd3"
+  },
+  {
+    "group": "layout",
+    "label": "С островом",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-island.webp",
+    "bytes": 85242,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-island-480.webp",
+    "hash": "5f1a3c92cd893ab03c9c9345e7d321f5ad959ad47e6cfed47bbde2e365ff6c65"
+  },
+  {
+    "group": "layout",
+    "label": "С полуостровом / барной стойкой",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-peninsula.webp",
+    "bytes": 93208,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-peninsula-480.webp",
+    "hash": "34ed31b5da3521b6a301614dd7a5fbb8e5dc861f640b15c1519a088530e429f1"
+  },
+  {
+    "group": "layout",
+    "label": "Двухрядная",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-galley.webp",
+    "bytes": 65652,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-galley-480.webp",
+    "hash": "0f85f8fb5bd668e59c420d76260f0f1f7b5aa2a6f1bceb79c7eafdc07a77e398"
+  },
+  {
+    "group": "layout",
+    "label": "Без ручек",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-handleless.webp",
+    "bytes": 74078,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-handleless-480.webp",
+    "hash": "1660504ac6deb342f8dd82acecea9ccfdfe7ccf98789b2820c01f5b87646bb73"
+  },
+  {
+    "group": "layout",
+    "label": "Встроенная / под технику",
+    "image": "/uploads/locations/minsk-v2-20261018/layout-integrated.webp",
+    "bytes": 84810,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/layout-integrated-480.webp",
+    "hash": "7da2600abc492e687c91a636d7957a28219ca680450f27dbcfce7e380eacef58"
+  },
+  {
+    "group": "style",
+    "label": "Современная",
+    "image": "/media/visual-rescue/sovremennye/modern-overview.webp",
+    "bytes": 37540,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-selection/sovremennye-modern-overview-480.webp",
+    "hash": "c5070e49ca237119ca488fd5a013ec53bf3f7776aad425bb5db015078aa4d6f7"
+  },
+  {
+    "group": "style",
+    "label": "Минимализм",
+    "image": "/media/visual-rescue/minimalizm/minimal-overview.webp",
+    "bytes": 28440,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-selection/minimalizm-minimal-overview-480.webp",
+    "hash": "2b948a72994c4caf25407c57a350ef97eff3e300714dcb26aec4d844736eaea4"
+  },
+  {
+    "group": "style",
+    "label": "Неоклассика",
+    "image": "/uploads/locations/minsk-v2-20261018/style-neoclassic.webp",
+    "bytes": 80808,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/style-neoclassic-480.webp",
+    "hash": "870d6e2d326ab2bda9239570e14ff9d638c5811481068cbf75c9cf07388397c3"
+  },
+  {
+    "group": "style",
+    "label": "Лофт",
+    "image": "/media/visual-rescue/loft/loft-overview.webp",
+    "bytes": 43112,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-selection/loft-loft-overview-480.webp",
+    "hash": "328c25b0c36a47b28eb505c1f73976a24c9aff6f57c33d80a7517186eb009f92"
+  },
+  {
+    "group": "style",
+    "label": "Скандинавская",
+    "image": "/uploads/locations/minsk-v2-20261018/style-scandi.webp",
+    "bytes": 69912,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/style-scandi-480.webp",
+    "hash": "b7383d0464a69aa0b422aa97e2b064f11b177edb0f02ede970f61586aa60188e"
+  },
+  {
+    "group": "style",
+    "label": "Классическая",
+    "image": "/uploads/locations/minsk-v2-20261018/style-classic.webp",
+    "bytes": 112876,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/style-classic-480.webp",
+    "hash": "7df675926026603b1ab4da88ad72cc9cc024389a91d23c9a0cdf5b93a1e089f2"
+  },
+  {
+    "group": "style",
+    "label": "Прованс",
+    "image": "/uploads/locations/minsk-v2-20261018/style-provence.webp",
+    "bytes": 179158,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/style-provence-480.webp",
+    "hash": "479f5f20a4ee3db5b66319b5eebd18fbb12e9b090c38f3ed1eb18451494a8e51"
+  },
+  {
+    "group": "style",
+    "label": "Хай-тек",
+    "image": "/media/visual-rescue/hay-tek/hightech-overview.webp",
+    "bytes": 35408,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-selection/hay-tek-hightech-overview-480.webp",
+    "hash": "a3c505e800cbff7ed17caca47b87b1e2d11294e6054adbc6f6170650e760d692"
+  },
+  {
+    "group": "style",
+    "label": "Джапанди",
+    "image": "/uploads/locations/minsk-v2-20261018/style-japandi.webp",
+    "bytes": 75020,
+    "width": 1200,
+    "height": 900,
+    "preview": "/uploads/locations/minsk-v2-20261018/style-japandi-480.webp",
+    "hash": "f28168b89f4115fc04fb42bd2599a60fca61de4255d042ad4b8d8a2c7ce68823"
+  },
+  {
+    "group": "style",
+    "label": "Белая / светлая",
+    "image": "/uploads/locations/minsk-v2-20261018/style-white.webp",
+    "bytes": 41972,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/style-white-480.webp",
+    "hash": "369c9b2d705e30c975947e6d7c50879a5f19189f725bc38c45a2a5cfca024241"
+  },
+  {
+    "group": "length",
+    "label": "2 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-2m.webp",
+    "bytes": 47896,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-2m-480.webp",
+    "hash": "836571156048ab444a3b61f4674066da2a66a2fe486d012aa301be0fe5e1c6b6",
+    "modules": [
+      {
+        "label": "Ящики",
+        "width": 400
+      },
+      {
+        "label": "Духовка",
+        "width": 600
+      },
+      {
+        "label": "Ящики",
+        "width": 400
+      },
+      {
+        "label": "Мойка",
+        "width": 600
+      }
+    ]
+  },
+  {
+    "group": "length",
+    "label": "2,5 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-2-5m.webp",
+    "bytes": 87848,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-2-5m-480.webp",
+    "hash": "fa81a4ca30ef72a8e914a6154eb96990f1d262d34e3cec1b7761497938ba04b8",
+    "modules": [
+      {
+        "label": "Мойка",
+        "width": 600
+      },
+      {
+        "label": "ПММ",
+        "width": 450
+      },
+      {
+        "label": "Хранение",
+        "width": 350
+      },
+      {
+        "label": "Духовка",
+        "width": 600
+      },
+      {
+        "label": "Ящики",
+        "width": 500
+      }
+    ]
+  },
+  {
+    "group": "length",
+    "label": "3 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-3m.webp",
+    "bytes": 68364,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-3m-480.webp",
+    "hash": "b56ea5caf012886e8bdcead3c6fd4e358d932a1a3f0f7ba717a12151b56abf71",
+    "modules": [
+      {
+        "label": "Мойка",
+        "width": 600
+      },
+      {
+        "label": "ПММ",
+        "width": 450
+      },
+      {
+        "label": "Ящики",
+        "width": 450
+      },
+      {
+        "label": "Духовка",
+        "width": 600
+      },
+      {
+        "label": "Шкаф",
+        "width": 900
+      }
+    ]
+  },
+  {
+    "group": "length",
+    "label": "3,5 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-3-5m.webp",
+    "bytes": 72728,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-3-5m-480.webp",
+    "hash": "6b13fc9055038ba2282e0de2db4d5969710a937ca26f0c76cec7d40fedf7706d",
+    "modules": [
+      {
+        "label": "Холод.",
+        "width": 600
+      },
+      {
+        "label": "Мойка",
+        "width": 600
+      },
+      {
+        "label": "ПММ",
+        "width": 450
+      },
+      {
+        "label": "Ящики",
+        "width": 650
+      },
+      {
+        "label": "Духовка",
+        "width": 600
+      },
+      {
+        "label": "Ящики",
+        "width": 600
+      }
+    ]
+  },
+  {
+    "group": "length",
+    "label": "4 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-4m.webp",
+    "bytes": 93818,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-4m-480.webp",
+    "hash": "6c6e29d1727fd70852f54da1f1d5f9049deae7021aef848ba58d3bbd911e258f",
+    "modules": [
+      {
+        "label": "Холод.",
+        "width": 600
+      },
+      {
+        "label": "Мойка",
+        "width": 600
+      },
+      {
+        "label": "ПММ",
+        "width": 600
+      },
+      {
+        "label": "Ящики",
+        "width": 1000
+      },
+      {
+        "label": "Духовка",
+        "width": 600
+      },
+      {
+        "label": "Пенал",
+        "width": 600
+      }
+    ]
+  },
+  {
+    "group": "length",
+    "label": "5 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-5m.webp",
+    "bytes": 68948,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-5m-480.webp",
+    "hash": "ca69fa22bb065ed0d0d14dab80eb60ff78f8b11f0f554284b542f65ba65920f1",
+    "modules": [
+      {
+        "label": "Холод.",
+        "width": 600
+      },
+      {
+        "label": "Пенал",
+        "width": 600
+      },
+      {
+        "label": "Мойка",
+        "width": 600
+      },
+      {
+        "label": "ПММ",
+        "width": 600
+      },
+      {
+        "label": "Ящики",
+        "width": 800
+      },
+      {
+        "label": "Духовка",
+        "width": 600
+      },
+      {
+        "label": "Ящики",
+        "width": 600
+      },
+      {
+        "label": "Пенал",
+        "width": 600
+      }
+    ]
+  },
+  {
+    "group": "length",
+    "label": "Угловая 2 × 2 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-corner-2x2.webp",
+    "bytes": 107834,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-corner-2x2-480.webp",
+    "hash": "434f9407bdf46ac835310c65ceeb6bfaf0bf5a015ad9f8b91edc9fd9dd9ce3fc"
+  },
+  {
+    "group": "length",
+    "label": "Угловая 2 × 3 м",
+    "image": "/uploads/locations/minsk-v2-20261018/length-corner-2x3.webp",
+    "bytes": 99478,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-corner-2x3-480.webp",
+    "hash": "b44509f231531c1796c12ef46e0284f06f359628ad15d3b35ab6dda228ec07e8"
+  },
+  {
+    "group": "length",
+    "label": "Нестандартные размеры",
+    "image": "/uploads/locations/minsk-v2-20261018/length-custom.webp",
+    "bytes": 102370,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/length-custom-480.webp",
+    "hash": "889d466b439767c4ffb12deaab78e3a9d399846fb6fd47ff94af4ca7b74f3f14"
+  },
+  {
+    "group": "area",
+    "label": "5 м²",
+    "image": "/uploads/locations/minsk-v2-20261018/area-5m2.webp",
+    "bytes": 40718,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/area-5m2-480.webp",
+    "hash": "d069f91ba1c5dae66cafbfa0359a1d9fe0141b388d931b2934a25ea3f5188bf2",
+    "room": {
+      "width": 2000,
+      "depth": 2500,
+      "layout": "straight-back"
+    }
+  },
+  {
+    "group": "area",
+    "label": "6 м²",
+    "image": "/uploads/locations/minsk-v2-20261018/area-6m2.webp",
+    "bytes": 82092,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/area-6m2-480.webp",
+    "hash": "919ab1b16804dae5c2369677a63813936f6342275ae071e62cb3784130a353a6",
+    "room": {
+      "width": 2000,
+      "depth": 3000,
+      "layout": "straight-left",
+      "table": [
+        600,
+        350
+      ]
+    }
+  },
+  {
+    "group": "area",
+    "label": "7 м²",
+    "image": "/uploads/locations/minsk-v2-20261018/area-7m2.webp",
+    "bytes": 61036,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/area-7m2-480.webp",
+    "hash": "4845ca725f81b3b786afdc3ffd6a62794275912b9ac6ba125b2474c60e521bea",
+    "room": {
+      "width": 2500,
+      "depth": 2800,
+      "layout": "corner",
+      "table": [
+        650,
+        650
+      ]
+    }
+  },
+  {
+    "group": "area",
+    "label": "8 м²",
+    "image": "/uploads/locations/minsk-v2-20261018/area-8m2.webp",
+    "bytes": 95646,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/area-8m2-480.webp",
+    "hash": "96caa8cf6e6acfa6481e309b0dfe5c6e38bde247e5385d64951be39b5a099a85",
+    "room": {
+      "width": 2500,
+      "depth": 3200,
+      "layout": "corner",
+      "table": [
+        750,
+        500
+      ]
+    }
+  },
+  {
+    "group": "area",
+    "label": "9 м²",
+    "image": "/uploads/locations/minsk-v2-20261018/area-9m2.webp",
+    "bytes": 67616,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/area-9m2-480.webp",
+    "hash": "3939c7947f91732c9f1f0b87859b3dcbd40c880c701e9515671e128edc689879",
+    "room": {
+      "width": 3000,
+      "depth": 3000,
+      "layout": "corner",
+      "table": [
+        800,
+        800
+      ]
+    }
+  },
+  {
+    "group": "area",
+    "label": "10 м²",
+    "image": "/uploads/locations/minsk-v2-20261018/area-10m2.webp",
+    "bytes": 55972,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/area-10m2-480.webp",
+    "hash": "b7ab141b4bf9868532424164dc5157f87cddeaa3d6108b731f14a442299ecd38",
+    "room": {
+      "width": 2500,
+      "depth": 4000,
+      "layout": "straight-left",
+      "table": [
+        1000,
+        650
+      ]
+    }
+  },
+  {
+    "group": "area",
+    "label": "12 м²",
+    "image": "/uploads/locations/minsk-v2-20261018/area-12m2.webp",
+    "bytes": 71548,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/area-12m2-480.webp",
+    "hash": "dbcc18b55acd3fc44b8d46f5f4c595e420f090b91b8148497a7efe5bb5398659",
+    "room": {
+      "width": 3000,
+      "depth": 4000,
+      "layout": "corner",
+      "table": [
+        1200,
+        750
+      ]
+    }
+  },
+  {
+    "group": "room",
+    "label": "Квартира / панельный дом",
+    "image": "/uploads/locations/minsk-v2-20261018/room-apartment.webp",
+    "bytes": 72606,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/room-apartment-480.webp",
+    "hash": "511ef750978486d96bf476f36f5fa7f55bd915509349b094e5bbd1a0638a269b"
+  },
+  {
+    "group": "room",
+    "label": "Новостройка",
+    "image": "/uploads/locations/minsk-v2-20261018/room-new-build.webp",
+    "bytes": 42008,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/room-new-build-480.webp",
+    "hash": "21e4a491d8203a4dc5d694c86c3edd358d276257398b036ed84c94639270ee2f"
+  },
+  {
+    "group": "room",
+    "label": "Студия / кухня-гостиная",
+    "image": "/uploads/locations/minsk-v2-20261018/room-studio.webp",
+    "bytes": 80226,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/room-studio-480.webp",
+    "hash": "9d2ad5779fc422d7ec6bab9da8554fad9e717528da33dc69aa793ec57b9ab363"
+  },
+  {
+    "group": "room",
+    "label": "Хрущёвка / маленькая квартира",
+    "image": "/uploads/locations/minsk-v2-20261018/room-khrushchev.webp",
+    "bytes": 75982,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/room-khrushchev-480.webp",
+    "hash": "03780922801957d22bd453b78e29309e8e30ca9ec71d9f2db0b74d60a930243b"
+  },
+  {
+    "group": "room",
+    "label": "Частный дом / коттедж",
+    "image": "/uploads/locations/minsk-v2-20261018/room-house.webp",
+    "bytes": 88372,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/room-house-480.webp",
+    "hash": "5460fa9287938076c5f3ce3cd35ec2bb4e3afb05485a6ae4d1efa41abb42f556"
+  },
+  {
+    "group": "room",
+    "label": "Дача",
+    "image": "/uploads/locations/minsk-v2-20261018/room-dacha.webp",
+    "bytes": 110548,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/room-dacha-480.webp",
+    "hash": "29a79aa653c2b0a73220b81ac5c5fd4119873a2c652c1b44fb939ee8b2377d77"
+  },
+  {
+    "group": "room",
+    "label": "Узкое помещение",
+    "image": "/uploads/locations/minsk-v2-20261018/room-narrow.webp",
+    "bytes": 48558,
+    "width": 1200,
+    "height": 675,
+    "preview": "/uploads/locations/minsk-v2-20261018/room-narrow-480.webp",
+    "hash": "1ee0954370183f75fad82ff0bdade6d62ef41254ce559ba6e66c26c299779b23"
+  },
+  {
+    "group": "material",
+    "label": "МДФ / плёнка",
+    "image": "/uploads/locations/minsk-v2-20261018/material-mdf-film.webp",
+    "bytes": 61558,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-mdf-film-480.webp",
+    "hash": "5ece39c6d94e1129af6d0a3c9c4730f8e47d55c49d045188625bdbb2ed7f8a6f"
+  },
+  {
+    "group": "material",
+    "label": "ЛДСП / под дерево",
+    "image": "/uploads/locations/minsk-v2-20261018/material-ldsp.webp",
+    "bytes": 63184,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-ldsp-480.webp",
+    "hash": "c772e3845aa324010ccf810928d2b3bd16071a315d12a94cdb21941c31c69620"
+  },
+  {
+    "group": "material",
+    "label": "МДФ эмаль / крашеные",
+    "image": "/uploads/locations/minsk-v2-20261018/material-enamel.webp",
+    "bytes": 46850,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-enamel-480.webp",
+    "hash": "0ca27cbfd831543646094a59146131b91390fafe47dcb4745a9bdf8a0b38e823"
+  },
+  {
+    "group": "material",
+    "label": "Пластик HPL",
+    "image": "/uploads/locations/minsk-v2-20261018/material-hpl.webp",
+    "bytes": 84660,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-hpl-480.webp",
+    "hash": "332286fcda6c6b1cbff31da467ecfa677231134f794ace9b0b94363cebf71131"
+  },
+  {
+    "group": "material",
+    "label": "Акрил / глянец",
+    "image": "/uploads/locations/minsk-v2-20261018/material-acrylic.webp",
+    "bytes": 65344,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-acrylic-480.webp",
+    "hash": "1dfe21121c6906369bf5cb85e564904ace045c9be5187a86ac13d19f6dff141b"
+  },
+  {
+    "group": "material",
+    "label": "Шпон",
+    "image": "/uploads/locations/minsk-v2-20261018/material-veneer.webp",
+    "bytes": 85488,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-veneer-480.webp",
+    "hash": "5abc2706d1c5e9d872b4fd9f7616c3035bb804c1b0d6a22586f10dc62fe3ae5d"
+  },
+  {
+    "group": "material",
+    "label": "Матовые / комбинированные",
+    "image": "/uploads/locations/minsk-v2-20261018/material-matte-mix.webp",
+    "bytes": 48898,
+    "width": 1200,
+    "height": 1200,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-matte-mix-480.webp",
+    "hash": "782cdc23186ad531fbe02977b0df09370ad9734fdc74fdeb96c582959659adcd"
+  },
+  {
+    "group": "material",
+    "label": "Столешница: ЛДСП",
+    "image": "/uploads/locations/minsk-v2-20261018/material-worktop-laminate.webp",
+    "bytes": 64652,
+    "width": 1200,
+    "height": 800,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-worktop-laminate-480.webp",
+    "hash": "e9bfc0379aaef01552ab574ea28a8b6bedb9b738bbe298b55b4676cd61882755"
+  },
+  {
+    "group": "material",
+    "label": "Столешница: камень / кварц",
+    "image": "/uploads/locations/minsk-v2-20261018/material-worktop-quartz.webp",
+    "bytes": 32778,
+    "width": 1200,
+    "height": 1200,
+    "preview": "/uploads/locations/minsk-v2-20261018/material-worktop-quartz-480.webp",
+    "hash": "56e433503e78814356b3521d30efdd6165be08efb93629adbb08c145221441e3"
+  }
+]
