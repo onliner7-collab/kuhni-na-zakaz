@@ -21,7 +21,7 @@ export function LayoutVisualExplorer({
   role,
   legend,
   frames,
-  imageFit = "cover",
+  imageFit = "contain",
 }: {
   route: string;
   layout: string;
@@ -74,7 +74,7 @@ export function LayoutVisualExplorer({
             }`}
           />
         </picture>
-        <span className="absolute left-3 top-3 rounded-full bg-stone-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">AI-визуализация</span>
+        <span className="absolute left-3 top-3 rounded-full bg-stone-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">Иллюстрация дизайна</span>
       </div>
 
       <div className="p-4 md:p-6">

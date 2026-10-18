@@ -294,3 +294,6 @@ LdspVisualJourney: отдельные client-компоненты констру
 ## 2026-10-17 — эмаль
 
 EnamelVisualJourney.tsx: EnamelActions, EnamelFinishes, EnamelProfiles, EnamelGallery, EnamelRooms, EnamelComparison, EnamelPriceScenarios. Общий store получил санитизируемое enamelView и снимки истории; выбор и lead-контракт прежние. MaterialDecisionExplorer/MaterialDetailGallery сохранены без правок. Основной контент и подробные ответы рендерит серверная страница. Новых зависимостей нет.
+# 2026-10-18 — Визуальное соответствие
+
+StyleVisualExplorer, ScenarioVisualExplorer, LayoutVisualExplorer, MaterialDecisionExplorer, LocationVisualStage/InitialStage: целый кадр, русская подпись, мобильная обратная связь. HomeMobileShowroom и DesignProjectInteractive явно показывают независимые критерии; удалены фиктивные состояния стадий дизайн-проекта. BorisovKitchenPicker/PilotPage и AngularKitchenPage: корректные геометрия, alt и кадрирование. Backend и формы не переписаны. Фактические проверки и rollout: `docs/seo/2026-10-18-site-visual-consistency.md`.

@@ -25,7 +25,7 @@ export function BorisovPilotPage({ location, jsonLd }: Props) {
             <div className="mt-5 hidden lg:block"><a href="#calculation" className={button}>Рассчитать мою кухню <ArrowRight className="h-4 w-4" aria-hidden /></a></div>
           </div>
           <div className="relative overflow-hidden rounded-[1.5rem] bg-stone-200 lg:col-start-2 lg:row-span-2">
-            <picture><source media="(max-width: 767px)" srcSet="/uploads/locations/borisov-3d/borisov-hero-bright-mobile-20260628-480.webp" /><img src="/uploads/locations/borisov-3d/borisov-hero-bright-20260628.webp" alt="Светлая кухня с деревянными акцентами и полуостровом" width="1200" height="800" fetchPriority="high" className="aspect-[4/3] w-full object-cover object-[center_60%] lg:aspect-[5/4]" /></picture>
+            <picture><source media="(max-width: 767px)" srcSet="/uploads/locations/borisov-3d/borisov-hero-bright-mobile-20260628-480.webp" /><img src="/uploads/locations/borisov-3d/borisov-hero-bright-20260628.webp" alt="Иллюстрация светлой угловой кухни с деревянными акцентами" width="1200" height="800" fetchPriority="high" className="aspect-[3/2] w-full object-contain" /></picture>
             <span className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 text-xs font-semibold text-stone-800">Вдохновение для вашей кухни</span>
           </div>
           <div className="flex flex-col gap-3 lg:col-start-1 lg:row-start-2">

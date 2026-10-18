@@ -9,12 +9,16 @@ export function ScenarioVisualExplorer({ config }: { config: ScenarioFamilyConfi
   const frames = config.visualFrames ?? [];
   const [activeId, setActiveId] = useState(frames[0]?.id ?? "");
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const stageRef = useRef<HTMLDivElement>(null);
   const { updateContext } = useExploreContext();
   const active = frames.find((frame) => frame.id === activeId) ?? frames[0];
 
   function choose(frame: ScenarioVisualFrame) {
     setActiveId(frame.id);
     updateContext({ scenario: `${config.h1}: ${frame.label}` }, `scenario_visual:${frame.id}`);
+    requestAnimationFrame(() => {
+      if (window.matchMedia("(max-width: 767px)").matches) stageRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    });
   }
 
   function moveSelection(index: number) {
@@ -92,7 +96,7 @@ export function ScenarioVisualExplorer({ config }: { config: ScenarioFamilyConfi
         </div>
       </div>
 
-      <div className="relative h-[clamp(21rem,52vh,28rem)] bg-stone-200 md:col-start-1 md:row-span-2 md:row-start-1 md:aspect-[3/2] md:h-auto">
+      <div ref={stageRef} className="relative aspect-[3/2] scroll-mt-24 bg-stone-200 md:col-start-1 md:row-span-2 md:row-start-1">
         <picture key={active.id} className="block h-full w-full">
           <source srcSet={active.avif} type="image/avif" />
           <img
@@ -105,7 +109,7 @@ export function ScenarioVisualExplorer({ config }: { config: ScenarioFamilyConfi
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
             decoding={active.id === frames[0]?.id ? undefined : "async"}
             style={{ objectPosition: active.objectPosition }}
-            className={`block h-full w-full object-cover ${
+            className={`block h-full w-full object-contain ${
               active.id === frames[0]?.id
                 ? ""
                 : "motion-safe:animate-[fade-in_.2s_ease-out]"

@@ -49,7 +49,26 @@ const series = (
   states: LocationVisualSeries["states"],
 ): LocationVisualSeries => ({ ...contractsByRoute[route], seriesId, initialStateId: states[0].id, states });
 
-const disclosure = "AI-концепция, не фото выполненной работы.";
+const disclosure = "Иллюстрация дизайна, созданная нейросетью; не фото выполненной работы.";
+
+function reviewedSeries(config: LocationVisualSeries): LocationVisualSeries {
+  const city = config.route.split("/").pop();
+  return { ...config, states: config.states.map(state => {
+    if (["vitebsk", "fanipol", "soligorsk"].includes(city ?? "") && state.id === "storage-to-ceiling") {
+      const base = `/images/visual-consistency-20261018/${city}-ceiling`;
+      return { ...state, image: `${base}.webp`, avifImage: `${base}.avif`,
+        altRu: "Кухня с открытыми верхними антресолями, корзинами и сезонной посудой",
+        consequenceRu: "Открытый верхний ярус показывает отдельное хранение для редких лёгких вещей. Высоту, нагрузку и безопасный доступ проверяем в проекте после замера." };
+    }
+    if (city === "gomel" && state.id === "family-straight") {
+      return { ...state, image: "/uploads/locations/minsk-v2-20261018/length-5m.webp",
+        avifImage: "/uploads/locations/minsk-v2-20261018/length-5m.avif",
+        altRu: "Прямая семейная кухня вдоль одной стены с холодильником, пеналами и рабочей зоной",
+        disclosureRu: "Отдельный пример прямой планировки, созданный нейросетью; не местный выполненный заказ." };
+    }
+    return state;
+  }) };
+}
 
 export const locationVisualSeries = [
   series("/locations/soligorsk", "location-soligorsk-compact-storage-l0", [
@@ -219,7 +238,7 @@ export const locationVisualSeries = [
     { id: "ceiling-storage", controlLabelRu: "Верхнее хранение", titleRu: "Используем высоту старого дома", consequenceRu: "Шкафы из светлого ясеня доходят до потолка и принимают редкие запасы, не добавляя напольных модулей.", image: "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-ceiling-storage.webp", avifImage: "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-ceiling-storage.avif", altRu: "Семейная кухня со шкафами хранения до потолка", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/catalog/kuhni-do-potolka", "/design-proekt-kuhni"] },
     { id: "drawers-backsplash", controlLabelRu: "Ящики и фартук", titleRu: "Проверяем нагруженные детали", consequenceRu: "Широкие ящики открывают содержимое целиком, а керамический фартук защищает рабочую стену у подготовки.", image: "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-drawers-backsplash.webp", avifImage: "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-drawers-backsplash.avif", altRu: "Прочные ящики и керамический фартук семейной кухни", sourceType: "ai-concept", disclosureRu: disclosure, nextRoutes: ["/materials/furnitura", "/calculator"] },
     { id: "delivery-ready", controlLabelRu: "Готовность доставки", titleRu: "Освобождаем домашний проход", consequenceRu: "Защитный маршрут от входа и аккуратно размещённая столешница помогают завершить доставку без помех дому.", image: "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-delivery-ready.webp", avifImage: "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-delivery-ready.avif", altRu: "Подготовка семейной кухни в Старых Дорогах к доставке", sourceType: "process-illustration", disclosureRu: disclosure, nextRoutes: ["/delivery-installation", "/calculator"] },
-  ]),] satisfies LocationVisualSeries[];
+  ]),].map(reviewedSeries) satisfies LocationVisualSeries[];
 
 const seriesByRoute = Object.fromEntries(locationVisualSeries.map((item) => [item.route, item]));
 

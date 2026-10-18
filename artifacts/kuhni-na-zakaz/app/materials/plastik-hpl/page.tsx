@@ -103,19 +103,19 @@ const designOptions = [
 
 const galleryImages = [
   {
-    src: "/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp",
-    alt: "Кухня на заказ с пластиковыми фасадами HPL в современном стиле",
+    src: "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-kitchen-2.webp",
+    alt: "Иллюстрация гладких зелёных фасадов HPL у рабочей поверхности",
     title: "Пластиковые фасады HPL",
   },
   {
-    src: "/uploads/seo-showcase/kuhnya-bez-ruchek-1.webp",
-    alt: "Современная кухня без ручек с гладкими практичными фасадами",
+    src: "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-kitchen-3.webp",
+    alt: "Иллюстрация гладких терракотовых фасадов с прямой кромкой",
     title: "Гладкие фасады",
   },
   {
     src: "/images/blog/fasady-mdf-plastik-emal-shpon.webp",
-    alt: "Образцы фасадов МДФ, пластика HPL, эмали и шпона для сравнения покрытий",
-    title: "Сравнение покрытий",
+    alt: "Рамочные фасады для сравнения с гладкой плоскостью HPL",
+    title: "Рамочные фасады: другое исполнение",
   },
 ];
 
@@ -221,14 +221,14 @@ export default function PlastikHplPage() {
             </div>
             <div className="overflow-hidden rounded-2xl border border-border bg-stone-100 shadow-sm">
               <Image
-                src="/uploads/seo-showcase/kuhnya-plastik-hpl-1.webp"
-                alt="Кухня с пластиковыми фасадами HPL на заказ в современном интерьере"
+                src="/images/materials-hub-20261014/hpl-graphite.webp"
+                alt="Иллюстрация кухни с гладкими графитовыми фасадами HPL"
                 width={1280}
                 height={720}
                 priority
                 fetchPriority="high"
                 sizes="(max-width: 1024px) 100vw, 520px"
-                className="aspect-[16/9] h-auto w-full object-cover"
+                className="aspect-[3/2] h-auto w-full object-contain"
               />
             </div>
           </section>

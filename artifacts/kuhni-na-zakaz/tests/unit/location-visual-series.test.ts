@@ -69,7 +69,7 @@ test("active files and WebP/AVIF parity exist in public", () => {
   for (const item of locationVisualSeries) {
     for (const state of item.states) {
       for (const publicPath of [state.image, state.avifImage]) {
-        assert.equal(publicPath.startsWith("/uploads/locations/"), true);
+        assert.match(publicPath, /^\/(?:uploads\/locations|images\/visual-consistency-20261018)\//);
         assert.equal(fs.existsSync(path.join(process.cwd(), "public", publicPath)), true, publicPath);
       }
     }

@@ -241,7 +241,7 @@ function classicFrames(): StyleVisualFrame[] {
   const caption = "AI-концепция одной классической кухни; не фотография выполненного проекта.";
   return [
     styleFrame(base, "classic-symmetry", "Симметрия", "Симметричная светлая классическая кухня с центральной зоной готовки", "Парные высокие секции и центральная ось собирают композицию.", "совпадает ли ось кухни с геометрией реального помещения", caption),
-    styleFrame(base, "classic-frame", "Глубже рамка", "Та же классическая кухня с выраженными рамочными фасадами", "Глубокая рамка усиливает декоративный ритм на каждом модуле.", "не становится ли рисунок слишком дробным и сложным в уходе", caption),
+    { ...styleFrame(base, "classic-frame", "Рамка крупно", "Крупный план классического кремового фасада с объёмной рамкой и латунной ручкой", "На отдельном крупном плане видны ступени профиля, глубина рамки и отделка ручки.", "профиль, покрытие и удобство ухода по физическому образцу", "Отдельная иллюстрация детали, созданная нейросетью; не изменение всей кухни."), webp: "/images/visual-consistency-20261018/classic-frame.webp", avif: undefined },
     styleFrame(base, "classic-glass", "Добавить витрины", "Та же классическая кухня с симметричными стеклянными витринами", "Парные витрины подчёркивают центральную ось и открывают часть хранения.", "готовы ли видимые предметы постоянно участвовать в композиции", caption),
     styleFrame(base, "classic-cornice", "Выше карниз", "Та же классическая кухня с высоким ступенчатым карнизом", "Высокий карниз завершает шкафы, но визуально уменьшает свободную высоту.", "достаточно ли высоты потолка и места для монтажа", caption),
     styleFrame(base, "classic-scale", "Проверить масштаб", "Широкий второй ракурс той же классической кухни с двумя рабочими линиями", "Широкий ракурс показывает, сколько пространства требует симметрия и крупный декор.", "не сужают ли проход парные линии шкафов", caption),
@@ -273,7 +273,15 @@ const styleRows: Omit<StyleFamilyConfig, "links">[] = [
   { slug:"minimalizm", title:"Кухни минимализм на заказ — фасады и скрытое хранение", description:"Кухни минимализм на заказ: цельные фасады, скрытые ручки и встроенная техника. Сравните способы открывания и хранение, подберите материалы для проекта.", h1:"Кухни в стиле минимализм на заказ", question:"Что скрыть за цельными фасадами?", promise:"Открывайте хранение, механизм и технику на одной кухне.", visualLanguage:["цельные плоскости","скрытый ритм открывания","минимум материалов в одном поле зрения"], materials:["матовый HPL","акрил после бытовой пробы","профиль или интегрированная ручка"], constraints:["ровные зазоры и монтаж особенно заметны","скрытое хранение нужно спроектировать заранее","система без ручек имеет разные бытовые компромиссы"], comparison:{title:"Минимализм или хай-тек",items:["минимализм убирает технику и эффекты из фокуса","хай-тек делает технологичность частью образа"]}, seriesId:"STYLE-MINIMAL-2026-07-23", media:minimalFrames(), visualFrames:minimalFrames(), variants:["матовый монолит","тёплый минимализм","контрастная архитектура"] },
 ];
 
-export const STYLE_FAMILY = Object.fromEntries(styleRows.map((row, index) => [row.slug, { ...row, links: [
+// These frames repeat the overview or promise a detail that is not clearly visible.
+// Keep the source files for history; do not offer them as separate visual choices.
+const excludedVisualFrames = new Set([
+  "neo-proportions", "hightech-lines", "modern-plane", "modern-material",
+  "classic-cornice", "small-worktop", "budget-workzone",
+]);
+const distinctFrames = <T extends { id: string }>(frames: T[] | undefined) => frames?.filter(frame => !excludedVisualFrames.has(frame.id));
+
+export const STYLE_FAMILY = Object.fromEntries(styleRows.map((row, index) => [row.slug, { ...row, visualFrames: distinctFrames(row.visualFrames), links: [
   { type:"DEEPEN", label:"Сравнить подходящие материалы", href: row.materials[0].includes("ЛДСП") ? "/materials/ldsp" : row.materials[0].includes("HPL") ? "/materials/plastik-hpl" : "/materials/mdf-fasady", reason:"Материал уточняет внешний вид и бытовые ограничения." },
   { type:"COMPARE", label:`Сравнить: ${row.comparison.title.toLowerCase()}`, href:`/styles/${styleRows[(index+1)%styleRows.length].slug}`, reason:"Соседний стиль показывает реальную визуальную альтернативу." },
   { type:"PROOF", label:"Открыть подтверждённые работы", href:"/portfolio", reason:"Концепции, созданные нейросетью, не выдаются за реализованные проекты." },
@@ -316,7 +324,7 @@ const scenarioVisualConfigs: Record<string, Pick<ScenarioFamilyConfig, "seriesId
   },
 };
 
-export const SCENARIO_FAMILY = Object.fromEntries(scenarioRows.map(row => [row.slug,{...row,...scenarioVisualConfigs[row.slug],links:[
+export const SCENARIO_FAMILY = Object.fromEntries(scenarioRows.map(row => [row.slug,{...row,...scenarioVisualConfigs[row.slug],visualFrames:distinctFrames(scenarioVisualConfigs[row.slug].visualFrames),links:[
   {type:"DEEPEN",label:row.article.label,href:row.article.href,reason:"Статья раскрывает измерения и ошибки подробнее."},
   {type:"COMPARE",label:row.priorities[1].layouts[0].label,href:row.priorities[1].layouts[0].href,reason:"Альтернатива помогает проверить компромисс выбранного сценария."},
   {type:"PROOF",label:"Проверить подтверждённые работы",href:"/portfolio",reason:"Раздел работ отделён от концепции сценария, созданной нейросетью."},

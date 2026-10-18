@@ -21,7 +21,7 @@ const heroStages = [
     text: "Сразу показываем, каким может быть понятный финальный результат.",
     image: `${imageBase}/3d-proekt-kuhni-hero.webp`,
     mobileImage: `${imageBase}/3d-proekt-kuhni-hero-mobile-v2.webp`,
-    alt: "Готовая кухня после 3D-проектирования",
+    alt: "Иллюстрация будущей кухни с островом",
   },
   {
     title: "Комната",
@@ -31,18 +31,11 @@ const heroStages = [
     alt: "Пустое помещение кухни перед созданием 3D-проекта",
   },
   {
-    title: "План",
-    text: "Появляются размеры, рабочие зоны, техника и проходы.",
-    image: `${imageBase}/3d-proekt-kuhni-empty-room-20260629-plan.webp`,
-    mobileImage: `${imageBase}/3d-proekt-kuhni-plan-mobile-v2.webp`,
-    alt: "Помещение кухни с чертежными линиями планировки",
-  },
-  {
     title: "Материалы",
-    text: "Добавляем модули, фасады, столешницу и встроенную технику.",
-    image: `${imageBase}/3d-proekt-uglovaya-kuhnya.webp`,
-    mobileImage: `${imageBase}/3d-proekt-kuhni-materials-mobile-v2.webp`,
-    alt: "Появление модулей угловой кухни в 3D-проекте",
+    text: "Рассматриваем поверхность фасада; цвет и покрытие выбираем по образцам.",
+    image: `${imageBase}/config-facade-matte.webp`,
+    mobileImage: `${imageBase}/config-facade-matte.webp`,
+    alt: "Крупный план матового кухонного фасада",
   },
 ];
 
@@ -441,7 +434,6 @@ export function DesignProjectInteractive() {
     extras: [choices.extras[1], choices.extras[2]],
   });
   const [activeLayer, setActiveLayer] = useState(layerItems[0].key);
-  const [caseState, setCaseState] = useState(2);
   const [activeFilter, setActiveFilter] = useState("Все");
   const [lightbox, setLightbox] = useState<(typeof gallery)[number] | null>(null);
   const [activePart, setActivePart] = useState<string>(projectParts[0][0]);
@@ -449,6 +441,7 @@ export function DesignProjectInteractive() {
   const [activeMaterial, setActiveMaterial] = useState<string>(materials[0][1]);
   const [activeConfigSource, setActiveConfigSource] = useState<ConfigVisualSource>({ type: "shape", value: choices.shape[1] });
   const [beforeAfterPosition, setBeforeAfterPosition] = useState(52);
+  const configImageRef = useRef<HTMLDivElement>(null);
   const beforeAfterRef = useRef<HTMLDivElement>(null);
   const beforeAfterTouchStart = useRef<{ x: number; y: number } | null>(null);
   const touchStartX = useRef<number | null>(null);
@@ -579,7 +572,7 @@ export function DesignProjectInteractive() {
       alt: activeShapeItem.alt,
     };
   }, [activeConfigSource, activeShapeItem, selection.extras, selection.facade, selection.style]);
-  const caseImageLabel = ["Пустое помещение", "План", "3D-визуализация", "Реализация"][caseState];
+  const caseImageLabel = "Иллюстрация проекта";
 
   const updateBeforeAfterPosition = useCallback((clientX: number) => {
     const bounds = beforeAfterRef.current?.getBoundingClientRect();
@@ -633,6 +626,9 @@ export function DesignProjectInteractive() {
     setSelection((current) => ({ ...current, [key]: value }));
     if (key === "shape" || key === "style" || key === "facade") {
       setActiveConfigSource({ type: key, value });
+      requestAnimationFrame(() => {
+        if (window.matchMedia("(max-width: 767px)").matches) configImageRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+      });
     }
     track(ANALYTICS_EVENTS.DESIGN_CONFIG_CHOICE, { field: key, value });
     if (key === "shape") updateContext({ layout: value }, "Выбрана форма дизайн-проекта");
@@ -649,7 +645,9 @@ export function DesignProjectInteractive() {
     setSelection((current) => {
       return { ...current, extras };
     });
-    setActiveConfigSource({ type: "extras", value });
+    setActiveConfigSource(extras.includes(value)
+      ? { type: "extras", value }
+      : { type: "shape", value: selection.shape });
     updateContext({
       scenario: extras.length ? `Ограничения: ${extras.join(", ")}` : "Ограничения не выбраны",
       hardware: extras.filter((item) => /хран|техник|остров|потол/i.test(item)),
@@ -887,7 +885,7 @@ export function DesignProjectInteractive() {
               </div>
               <div className="space-y-6 rounded-lg border border-border bg-muted/20 p-4 sm:p-5">
                 <p className="mb-4 text-sm font-bold text-muted-foreground">Уточните стиль и комплектацию</p>
-              <ChoiceGroup title="Размер помещения" items={choices.size} value={selection.size} onChoose={(value) => choose("size", value)} />
+              <ChoiceGroup title="Площадь для расчёта — фото не меняется" items={choices.size} value={selection.size} onChoose={(value) => choose("size", value)} />
               <ChoiceGroup title="Стиль" items={choices.style} value={selection.style} onChoose={(value) => choose("style", value)} />
               <ChoiceGroup title="Фасады" items={choices.facade} value={selection.facade} onChoose={(value) => choose("facade", value)} />
               <div>
@@ -898,6 +896,7 @@ export function DesignProjectInteractive() {
                       key={item}
                       type="button"
                       onClick={() => toggleExtra(item)}
+                      aria-pressed={selection.extras.includes(item)}
                       className={`inline-flex min-h-11 items-center gap-2 rounded-lg border px-3 py-2 text-left text-sm transition-colors ${selection.extras.includes(item) ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}
                     >
                       <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -909,10 +908,11 @@ export function DesignProjectInteractive() {
               <ContextSummary />
             </div>
             </div>
-            <div className="sticky top-4 overflow-hidden rounded-lg border border-border bg-stone-950 text-white">
-              <img src={activeConfigVisual.image} alt={activeConfigVisual.alt} width={960} height={720} loading="lazy" className="aspect-[4/5] w-full object-cover transition-opacity duration-300 sm:aspect-[4/3]" />
+            <div ref={configImageRef} className="sticky top-4 scroll-mt-24 overflow-hidden rounded-lg border border-border bg-stone-950 text-white">
+              <img key={activeConfigVisual.image} src={activeConfigVisual.image} alt={activeConfigVisual.alt} width={960} height={720} loading="lazy" className="aspect-[3/2] w-full object-contain transition-opacity duration-300" />
               <div className="p-5">
                 <p className="rounded-lg bg-white/10 p-3 text-sm font-bold text-white">Показано: {activeConfigVisual.title.toLowerCase()}</p>
+                <p className="mt-3 text-xs leading-5 text-white/75">Иллюстрация одного выбранного признака. Форма, стиль и оснащение показаны отдельно; точное сочетание и размеры уточняются в проекте после замера.</p>
                 <h3 className="mt-4 text-2xl font-extrabold">{activeConfigVisual.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-white/75">{activeConfigVisual.caption}</p>
                 <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -964,23 +964,18 @@ export function DesignProjectInteractive() {
       <section className="section-padding bg-white" id="before-after-cases">
         <div className="container-site">
           <div className="max-w-3xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Примеры до и после</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Примеры проектных решений</p>
             <h2 className="text-3xl font-extrabold sm:text-4xl">Шесть ситуаций, где проект экономит ошибки</h2>
           </div>
           <div className="mt-8 flex snap-x gap-4 overflow-x-auto overscroll-x-contain pb-4 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0">
             {cases.map((item) => (
               <article key={item.title} className="w-[86vw] shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-white shadow-sm sm:w-[420px] lg:w-auto">
                 <div className="relative">
-                  {caseState === 0 ? (
-                    <img src={`${imageBase}/3d-proekt-kuhni-empty-room-20260629-mobile.webp`} alt={`Исходное помещение для кейса ${item.title}`} className="h-[58svh] min-h-[360px] w-full object-cover lg:h-auto lg:aspect-[4/3] lg:min-h-0" loading="lazy" width={760} height={1010} />
-                  ) : (
-                    <Image src={item.final} alt={`${caseImageLabel}: ${item.title.toLowerCase()}`} width={900} height={675} sizes="(min-width: 1024px) 33vw, 86vw" className={`h-[58svh] min-h-[360px] w-full object-cover lg:h-auto lg:aspect-[4/3] lg:min-h-0 ${caseState === 1 ? "grayscale" : ""}`} />
-                  )}
-                  {caseState === 1 && <div className="absolute inset-6 border border-primary/70 bg-white/10"><div className="absolute left-1/2 top-0 h-full border-l border-dashed border-primary/80" /><div className="absolute left-0 top-1/2 w-full border-t border-dashed border-primary/80" /></div>}
+                  <Image src={item.final} alt={`${caseImageLabel}: ${item.title.toLowerCase()}`} width={900} height={675} sizes="(min-width: 1024px) 33vw, 86vw" className="aspect-[3/2] h-auto w-full object-contain" />
                 </div>
                 <div className="p-5">
                   <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-                    <span>{item.area}</span><span>{item.type}</span><span>{caseImageLabel}</span>
+                    <span>{item.type}</span><span>{caseImageLabel}</span>
                   </div>
                   <h3 className="mt-3 text-lg font-extrabold">{item.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground"><b className="text-foreground">Проблема:</b> {item.problem}</p>
@@ -994,19 +989,7 @@ export function DesignProjectInteractive() {
             ))}
           </div>
           <div className="mt-6 rounded-lg border border-border bg-muted/30 p-4">
-            <p className="text-sm font-bold">Этап кейса: {caseImageLabel}</p>
-            <div className="mt-3 grid grid-cols-4 gap-2">
-              {["До", "План", "3D", "Результат"].map((label, index) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => { setCaseState(index); track(ANALYTICS_EVENTS.DESIGN_CASE_VIEW, { state: index }); }}
-                  className={`min-h-11 rounded-lg border px-2 text-sm font-bold transition-colors ${caseState === index ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+            <p className="text-sm leading-6">Это отдельные иллюстрации идей, а не этапы выполненных заказов. План с размерами и фотографии реализации добавляются только при наличии соответствующих материалов. Площадь, проходы и комплектацию проверяем по вашему помещению.</p>
           </div>
         </div>
       </section>
@@ -1222,7 +1205,7 @@ function ChoiceGroup({ title, items, value, onChoose }: { title: string; items: 
       <h3 className="text-sm font-bold">{title}</h3>
       <div className="mt-3 flex flex-wrap gap-2">
         {items.map((item) => (
-          <button key={item} type="button" onClick={() => onChoose(item)} className={`inline-flex min-h-10 items-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${value === item ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
+          <button key={item} type="button" aria-pressed={value === item} onClick={() => onChoose(item)} className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${value === item ? "border-primary bg-primary text-primary-foreground" : "border-border bg-white hover:border-primary/40"}`}>
             {item}
           </button>
         ))}

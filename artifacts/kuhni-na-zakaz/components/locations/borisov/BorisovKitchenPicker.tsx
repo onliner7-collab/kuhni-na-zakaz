@@ -29,7 +29,7 @@ const colors = [{ label: "Светлый", hex: "#eee8dc" }, { label: "Под д
 
 function KitchenImage({ image, alt, small = false, thumbnail = false }: { image: string; alt: string; small?: boolean; thumbnail?: boolean }) {
   const responsive = image.startsWith(base);
-  return <img src={image} srcSet={responsive ? `${image.replace(".webp", "-480.webp")} 480w, ${image} 1200w` : undefined} sizes={thumbnail ? "64px" : small ? "(max-width: 767px) 45vw, 280px" : "(max-width: 767px) 100vw, 600px"} alt={alt} width={1200} height={800} loading="lazy" decoding="async" className={thumbnail ? "h-16 w-12 shrink-0 object-cover sm:w-16" : "aspect-[3/2] w-full object-cover"} />;
+  return <img key={image} src={image} srcSet={responsive ? `${image.replace(".webp", "-480.webp")} 480w, ${image} 1200w` : undefined} sizes={thumbnail ? "64px" : small ? "(max-width: 767px) 45vw, 280px" : "(max-width: 767px) 100vw, 600px"} alt={alt} width={1200} height={800} loading="lazy" decoding="async" className={thumbnail ? "h-16 w-12 shrink-0 object-cover sm:w-16" : "aspect-[3/2] w-full object-contain"} />;
 }
 
 export function BorisovKitchenPicker() {

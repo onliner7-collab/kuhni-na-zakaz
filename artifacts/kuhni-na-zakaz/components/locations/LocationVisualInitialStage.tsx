@@ -32,11 +32,11 @@ export function LocationVisualInitialStage({ state }: { state: LocationVisualSta
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          className="aspect-[3/2] h-auto w-full object-cover"
+          className="aspect-[3/2] h-auto w-full object-contain"
         />
       </picture>
       <span className="absolute left-3 top-3 rounded-full bg-stone-950/90 px-3 py-1.5 text-xs font-bold text-white">
-        AI-концепция
+        Иллюстрация дизайна
       </span>
     </div>
   );

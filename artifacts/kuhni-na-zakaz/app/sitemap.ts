@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import net from "node:net";
 import { regionalLocations } from "@/data/locations";
+import { locationVisualSeries } from "@/data/location-visual-series";
 import { prisma } from "@/lib/db";
 import { BLOG_POSTS } from "@/lib/blog-static";
 import { SEO_BLOG_POSTS_FALLBACK } from "@/lib/blog-seo-fallback";
@@ -13,6 +14,13 @@ import { SEO_OWNERSHIP_LAST_MODIFIED, SEO_OWNERSHIP_UPDATED_PATHS } from "@/data
 const BASE_URL = CANONICAL_SITE_URL;
 const STATIC_LAST_MODIFIED = new Date("2026-05-11T00:00:00.000Z");
 const FINAL_POLISH_LAST_MODIFIED = new Date("2026-07-24T19:30:00.000Z");
+const VISUAL_REVIEW_PATHS = new Set([
+  "/", "/design-proekt-kuhni", "/locations/borisov", "/materials", "/materials/akril", "/materials/plastik-hpl", "/materials/shpon", "/materials/mdf-fasady", "/materials/ldsp", "/materials/mdf-emal",
+  "/catalog/uglovye-kuhni", "/catalog/pryamye-kuhni", "/catalog/p-obraznye-kuhni", "/catalog/kuhni-s-ostrovom", "/catalog/kuhni-bez-ruchek", "/catalog/kuhni-do-potolka",
+  ...["neoklassika", "hay-tek", "provans", "loft", "sovremennye", "skandinavskie", "klassicheskie", "minimalizm"].map(slug => `/styles/${slug}`),
+  ...["s-ostrovom", "do-potolka", "dlya-semi", "dlya-studii", "dlya-malenkoy-kuhni"].map(slug => `/scenarios/${slug}`),
+  ...locationVisualSeries.map(item => item.route).filter(route => !["/locations/zhodino", "/locations/smolevichi"].includes(route)),
+]);
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -263,7 +271,7 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = normalizePath(path) === "/locations/minsk"
+  const effectiveLastModified = VISUAL_REVIEW_PATHS.has(normalizePath(path)) || normalizePath(path) === "/locations/minsk"
     ? new Date("2026-10-18T00:00:00.000Z")
     : ["/materials/ldsp", "/materials/mdf-emal"].includes(normalizePath(path))
     ? new Date("2026-10-17T00:00:00.000Z")

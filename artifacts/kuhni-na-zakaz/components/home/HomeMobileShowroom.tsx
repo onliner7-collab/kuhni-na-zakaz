@@ -315,8 +315,8 @@ const orderSteps = [
     number: "05",
     title: "Производство",
     text: "Изготавливаем корпус, фасады и детали под утвержденные размеры.",
-    image: "/uploads/seo-showcase/kuhnya-do-potolka-1.avif",
-    alt: "Кухня до потолка как пример производственного проекта",
+    image: "/media/pilots/borisov/webp/borisov-process-production.webp",
+    alt: "Иллюстрация изготовления деталей кухонных шкафов",
     icon: Factory,
   },
   {
@@ -324,15 +324,15 @@ const orderSteps = [
     title: "Доставка",
     text: "Согласуем дату, адрес, занос и условия работы по Минску или региону.",
     image: "/uploads/seo-showcase/portfolio-minsk-uglovaya-1.avif",
-    alt: "Угловая кухня в Минске после доставки и установки",
+    alt: "Иллюстрация кухни для обсуждения доставки и заноса",
     icon: Truck,
   },
   {
     number: "07",
     title: "Монтаж",
     text: "Собираем гарнитур, выставляем фасады, проверяем фурнитуру и узлы.",
-    image: "/images/home-showroom/left-window-linear-after-20260701.webp",
-    alt: "Готовая кухня после монтажа в квартире",
+    image: "/media/pilots/borisov/webp/borisov-process-installation.webp",
+    alt: "Иллюстрация регулировки кухонного фасада при монтаже",
     icon: LayoutGrid,
   },
   {
@@ -340,7 +340,7 @@ const orderSteps = [
     title: "Гарантия",
     text: "Фиксируем условия в договоре и остаемся на связи после установки.",
     image: "/uploads/seo-showcase/kuhnya-neoklassika-1.avif",
-    alt: "Готовая кухня с гарантийными условиями по договору",
+    alt: "Иллюстрация кухни; гарантийные условия определяются договором",
     icon: BadgeCheck,
   },
 ];
@@ -577,6 +577,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
   const [selectedBudget, setSelectedBudget] = useState(budgetOptions[1].id);
   const [selectedScenario, setSelectedScenario] = useState(scenarioOptions[0].id);
   const [activeVisual, setActiveVisual] = useState({ image: layoutOptions[1].image, alt: layoutOptions[1].alt });
+  const selectionImageRef = useRef<HTMLDivElement>(null);
   const [selectedPriceStyle, setSelectedPriceStyle] = useState<KitchenStyleId>("minimalism");
   const [beforeAfter, setBeforeAfter] = useState(100);
 
@@ -599,6 +600,9 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
     const budgetOption = budgetOptions.find((item) => item.id === budgetValue);
     if (next.style && styleOption) setActiveVisual({ image: styleOption.image, alt: styleOption.alt });
     if (next.layout && layoutOption) setActiveVisual({ image: layoutOption.image, alt: layoutOption.alt });
+    if (next.style || next.layout) requestAnimationFrame(() => {
+      if (window.matchMedia("(max-width: 767px)").matches) selectionImageRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    });
     updateContext({
       style: styleOption?.title || style,
       layout: layoutOption?.title || layoutValue,
@@ -615,6 +619,9 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
     const scenario = scenarioOptions.find((item) => item.id === id) || scenarioOptions[0];
     setSelectedScenario(id);
     setActiveVisual({ image: scenario.image, alt: scenario.alt });
+    requestAnimationFrame(() => {
+      if (window.matchMedia("(max-width: 767px)").matches) selectionImageRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    });
     updateContext({ scenario: scenario.title }, "Выбран жизненный сценарий");
   }
 
@@ -698,6 +705,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     key={item.id}
                     type="button"
                     onClick={() => handleSelection({ style: item.id })}
+                    aria-pressed={selectedStyle === item.id}
                     className={`group relative min-h-[17rem] w-[84vw] max-w-[22rem] shrink-0 snap-start overflow-hidden rounded-lg border text-left transition sm:w-auto ${
                       selectedStyle === item.id ? "border-[#d5b078] ring-2 ring-[#d5b078]/40" : "border-white/12"
                     }`}
@@ -727,6 +735,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     key={item.id}
                     type="button"
                     onClick={() => handleSelection({ layout: item.id })}
+                    aria-pressed={selectedLayout === item.id}
                     className={`flex min-h-24 w-52 shrink-0 snap-start items-center gap-3 rounded-lg border p-3 text-left transition ${
                       selectedLayout === item.id ? "border-[#d5b078] bg-white/10" : "border-white/12 bg-white/[0.04]"
                     }`}
@@ -740,14 +749,15 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                 ))}
               </div>
               <div className="mt-4 grid overflow-hidden rounded-lg border border-white/12 bg-[#211a14] md:grid-cols-[0.95fr_1.05fr]">
-                <div className="relative aspect-[4/3] md:aspect-auto" data-stage6-home-result>
+                <div ref={selectionImageRef} className="relative aspect-[3/2] scroll-mt-24 md:aspect-auto" data-stage6-home-result>
                   <Image
+                    key={activeVisual.image}
                     src={activeVisual.image}
                     alt={activeVisual.alt}
                     fill
                     loading="lazy"
                     sizes="(max-width: 768px) 100vw, 48vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
                 <div className="p-5 md:p-7">
@@ -759,9 +769,10 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     </div>
                   </div>
                   <p className="mt-5 text-sm leading-6 text-white/68">
-                    Подбор сейчас: {selectedStyleTitle.toLowerCase()}, {layout.title.toLowerCase()}, бюджет {budget.title.toLowerCase()}.
+                    Пожелания: {selectedStyleTitle.toLowerCase()}, {layout.title.toLowerCase()}, бюджет {budget.title.toLowerCase()}.
                     Эти параметры сохраняются и попадут в заявку на расчёт.
                   </p>
+                  <p className="mt-3 text-xs leading-5 text-white/68" aria-live="polite">На иллюстрации: {activeVisual.alt}. Каждый переключатель показывает отдельный пример; все пожелания одновременно на фото не отображаются.</p>
                   <Link href={layout.href} className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg border border-[#d5b078]/60 px-4 py-2 text-sm font-black text-[#f1d0a3]">
                     Посмотреть такие кухни
                     <ArrowRight className="h-4 w-4" aria-hidden />
@@ -780,6 +791,7 @@ export function HomeMobileShowroom({ projects, reviews, faqs, locations }: HomeM
                     key={item.id}
                     type="button"
                     onClick={() => handleSelection({ budget: item.id })}
+                    aria-pressed={selectedBudget === item.id}
                     className={`min-h-28 rounded-lg border p-4 text-left transition ${
                       selectedBudget === item.id ? "border-[#d5b078] bg-[#d5b078] text-[#17110b]" : "border-white/12 bg-white/[0.04] text-white"
                     }`}

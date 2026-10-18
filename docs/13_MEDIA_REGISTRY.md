@@ -241,3 +241,6 @@ smolevichi-planning-v2-20261012: шесть новых встроенных imag
 ## 2026-10-17 — mdf-enamel-20261017
 
 Четыре новые фотореалистичные ИИ-иллюстрации встроенным image_gen: corner-sage, straight-gloss, milling-samples, finish-samples. PNG-исходники и WebP 1200×800 в artifacts/kuhni-na-zakaz/public/images/mdf-enamel-20261017/. WebP 27–64 КБ; исходники не используются как основной src. Промпты и происхождение: docs/seo/materials-comparison/stage-4/image-prompts.json; размеры/вес: image-assets.json. Старые фото сохраняются. Иллюстрации не объявлены выполненными заказами.
+# 2026-10-18 — Пять принятых иллюстраций
+
+`public/images/visual-consistency-20261018`: classic-frame, acrylic-front, vitebsk-ceiling, fanipol-ceiling, soligorsk-ceiling. Только встроенный Codex/OpenAI imagegen; PNG sources сохранены в проекте, UI WebP/AVIF, мобильные версии трёх регионов. `asset-manifest.json` содержит промпты и reference paths. 11 оптимизированных файлов — 346611 байт; максимальный 52322 байта. Дополнительно AVIF-производная существующего length-5m для прямой кухни Гомеля; источник не выдан за местный заказ. Старые файлы не удалены. Недостоверные повторы исключены из choices, исходники сохранены. Отчёт: `docs/seo/2026-10-18-site-visual-consistency.md`.

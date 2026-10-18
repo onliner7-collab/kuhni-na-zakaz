@@ -496,7 +496,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
           </nav>
 
           <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
-            <div>
+            <div className="min-w-0">
               <div className="mb-4 flex flex-wrap gap-2">
                 {project.city && !isConceptProject && (
                   <span className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
@@ -516,7 +516,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 )}
               </div>
 
-              <h1 className="font-serif text-4xl font-bold leading-tight sm:text-5xl">
+              <h1 className="break-words font-serif text-4xl font-bold leading-tight sm:text-5xl">
                 {project.title}
               </h1>
               <div className="mt-4">

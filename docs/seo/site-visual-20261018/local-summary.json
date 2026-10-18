@@ -1,0 +1,63 @@
+{
+  "pages": 75,
+  "states": 636,
+  "errors": [],
+  "assets": [
+    {
+      "name": "acrylic-front.webp",
+      "bytes": 40514,
+      "sha256": "99d145d3a49d6855b3722fd9742da65280c4eb6f7aba2f5fe4c50df0cd0562b9"
+    },
+    {
+      "name": "classic-frame.webp",
+      "bytes": 52322,
+      "sha256": "92933cfb2dd6512478181052184a4c4940410929296c0d618700a926369e0f02"
+    },
+    {
+      "name": "fanipol-ceiling-mobile.webp",
+      "bytes": 9564,
+      "sha256": "daad8ded46c2aeb8f5f64e05ac82599277099274219edb3b5fdd6c9958207bc2"
+    },
+    {
+      "name": "fanipol-ceiling.avif",
+      "bytes": 28429,
+      "sha256": "93d702a8f3b037f72be840eacaca1b92097e3b5488e7c40580f7952ea616113d"
+    },
+    {
+      "name": "fanipol-ceiling.webp",
+      "bytes": 48454,
+      "sha256": "c91da29cf5405ec7b10e86b3d4dbe26595b7cb5f353cb33397564bd6663c86cb"
+    },
+    {
+      "name": "soligorsk-ceiling-mobile.webp",
+      "bytes": 10474,
+      "sha256": "abe777fa9ca17a57821a94e60f3307214ac2b93de3e446b352ab4b41bb197dc6"
+    },
+    {
+      "name": "soligorsk-ceiling.avif",
+      "bytes": 30771,
+      "sha256": "b223fcdcb160bc158386465f85cfcac02e21e0d3cb09be14905f5c37e68c8237"
+    },
+    {
+      "name": "soligorsk-ceiling.webp",
+      "bytes": 52280,
+      "sha256": "e0febcbb37eeb6d04e0759013d0b3fb843ebff13c60ef9e1292f5048471e9d06"
+    },
+    {
+      "name": "vitebsk-ceiling-mobile.webp",
+      "bytes": 8364,
+      "sha256": "97e0f1c6afd4ab61013e3c50fd7ab483f468d61d35fa38f97d9efa3756e18a9e"
+    },
+    {
+      "name": "vitebsk-ceiling.avif",
+      "bytes": 25011,
+      "sha256": "ae08fb706594b41304e0864c07be5c2e60c4c4da37b5a55e26e0d9c985461491"
+    },
+    {
+      "name": "vitebsk-ceiling.webp",
+      "bytes": 40428,
+      "sha256": "b8d256ab97a94449b772b364dfb0e7ee26f0f069093e8bc85f999227a2488a08"
+    }
+  ],
+  "totalOptimizedBytes": 346611
+}

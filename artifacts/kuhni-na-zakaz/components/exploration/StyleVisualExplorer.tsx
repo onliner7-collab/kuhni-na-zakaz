@@ -9,12 +9,16 @@ export function StyleVisualExplorer({ config }: { config: StyleFamilyConfig }) {
   const frames = config.visualFrames ?? [];
   const [activeId, setActiveId] = useState(frames[0]?.id ?? "");
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const stageRef = useRef<HTMLDivElement>(null);
   const { updateContext } = useExploreContext();
   const active = frames.find((frame) => frame.id === activeId) ?? frames[0];
 
   function choose(frame: StyleVisualFrame) {
     setActiveId(frame.id);
     updateContext({ style: `${config.h1}: ${frame.label}` }, `style_visual:${frame.id}`);
+    requestAnimationFrame(() => {
+      if (window.matchMedia("(max-width: 767px)").matches) stageRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    });
   }
 
   function moveSelection(index: number) {
@@ -33,7 +37,7 @@ export function StyleVisualExplorer({ config }: { config: StyleFamilyConfig }) {
       data-dock-suppress
       className="overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm"
     >
-      <div className="relative bg-stone-200">
+      <div ref={stageRef} className="relative scroll-mt-24 bg-stone-200 [overflow-anchor:none]">
         <picture key={active.id}>
           <source srcSet={active.avif} type="image/avif" />
           <img
@@ -45,7 +49,7 @@ export function StyleVisualExplorer({ config }: { config: StyleFamilyConfig }) {
             loading={active.id === frames[0]?.id ? "eager" : "lazy"}
             fetchPriority={active.id === frames[0]?.id ? "high" : "auto"}
             decoding={active.id === frames[0]?.id ? undefined : "async"}
-            className={`aspect-[2/3] h-auto w-full object-cover sm:aspect-[3/2] ${
+            className={`aspect-[3/2] h-auto w-full object-contain ${
               active.id === frames[0]?.id
                 ? ""
                 : "motion-safe:animate-[fade-in_.22s_ease-out]"

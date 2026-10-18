@@ -41,7 +41,7 @@ export function AngularKitchenPage({ jsonLd }: { jsonLd: JsonLdObject[] }) {
           <figure className="overflow-hidden rounded-2xl bg-stone-200">
             <picture>
               <source srcSet="/media/pilots/angular-kitchens/avif/angular-kitchens-hero-corner-wide-portrait.avif" type="image/avif" />
-              <img src="/media/pilots/angular-kitchens/webp/angular-kitchens-hero-corner-wide-portrait.webp" alt="Светлая угловая кухня с дубовыми деталями и рабочей поверхностью вдоль двух стен" width="900" height="1200" fetchPriority="high" className="h-48 w-full object-cover object-[50%_55%] sm:h-72 md:h-[440px]" />
+              <img src="/media/pilots/angular-kitchens/gallery/angular-kitchens-angles-full-room-front-landscape-v1.webp" alt="Светлая угловая кухня с дубовыми деталями и рабочей поверхностью вдоль двух стен" width="1200" height="800" fetchPriority="high" className="aspect-[3/2] h-auto w-full object-contain" />
             </picture>
             <figcaption className="px-3 py-2 text-xs text-stone-600">Вариант дизайна, созданный нейросетью.</figcaption>
           </figure>

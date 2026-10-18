@@ -2,23 +2,27 @@
 
 import Image from "next/image";
 import { Check, CircleAlert } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { MaterialExplorationConfig, MaterialExplorationFrame } from "@/data/material-exploration";
 
 export function MaterialDecisionExplorer({ config }: { config: MaterialExplorationConfig }) {
   const [activeId, setActiveId] = useState(config.frames[0].id);
+  const imageRef = useRef<HTMLElement>(null);
   const active = config.frames.find((frame) => frame.id === activeId) ?? config.frames[0];
 
   function select(frame: MaterialExplorationFrame) {
     setActiveId(frame.id);
+    requestAnimationFrame(() => {
+      if (window.matchMedia("(max-width: 767px)").matches) imageRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+    });
   }
 
   return (
     <section id="material-explorer" data-interaction-role="material-decision-explorer" className="scroll-mt-24 overflow-hidden rounded-[1.75rem] border border-stone-200 bg-white shadow-sm" aria-labelledby="material-explorer-title">
       <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
-        <figure className="relative bg-stone-100">
-          <Image key={active.id} src={active.image} alt={active.alt} width={1200} height={800} loading="lazy" sizes="(max-width: 1024px) 100vw, 60vw" className="aspect-[3/2] h-full w-full object-cover motion-safe:animate-[fade-in_.22s_ease-out]" />
-          <span className="absolute left-3 top-3 rounded-full bg-violet-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">AI-визуализация</span>
+        <figure ref={imageRef} className="relative scroll-mt-24 bg-stone-100">
+          <Image key={active.image} src={active.image} alt={active.alt} width={1200} height={800} loading="lazy" sizes="(max-width: 1024px) 100vw, 60vw" className="aspect-[3/2] h-auto w-full object-contain motion-safe:animate-[fade-in_.22s_ease-out]" />
+          <span className="absolute left-3 top-3 rounded-full bg-violet-950/85 px-3 py-1.5 text-xs font-bold text-white backdrop-blur">Иллюстрация материала</span>
         </figure>
         <div className="p-5 md:p-7">
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-violet-800">Визуальная проверка</p>

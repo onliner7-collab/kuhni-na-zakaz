@@ -8,7 +8,9 @@ interface LocationVisualStageProps {
 }
 
 export function LocationVisualStage({ state, eager, onError, onLoad }: LocationVisualStageProps) {
-  const mobileImage = /-visual-l(?:1[ab]|2[ab]|3[abc])\//.test(state.image)
+  const mobileImage = state.image.startsWith("/images/visual-consistency-20261018/")
+    ? state.image.replace(/\.webp$/, "-mobile.webp")
+    : /-visual-l(?:1[ab]|2[ab]|3[abc])\//.test(state.image)
     ? state.image.replace(/\.webp$/, "-mobile.webp")
     : null;
 
@@ -28,13 +30,13 @@ export function LocationVisualStage({ state, eager, onError, onLoad }: LocationV
           decoding={eager ? "sync" : "async"}
           onError={onError}
           onLoad={onLoad}
-          className={`aspect-[3/2] h-auto w-full object-cover ${
+          className={`aspect-[3/2] h-auto w-full object-contain ${
             eager ? "" : "motion-safe:animate-[fade-in_.2s_ease-out] motion-reduce:animate-none"
           }`}
         />
       </picture>
       <span className="absolute left-3 top-3 rounded-full bg-stone-950/90 px-3 py-1.5 text-xs font-bold text-white">
-        AI-концепция
+        Иллюстрация дизайна
       </span>
     </div>
   );

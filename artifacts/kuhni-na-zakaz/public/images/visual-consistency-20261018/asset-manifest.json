@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-18",
+  "generator": "Built-in Codex/OpenAI image_gen.imagegen",
+  "provenance": "Сгенерированные иллюстрации; не фотографии выполненных заказов",
+  "assets": [
+    {
+      "id": "classic-frame",
+      "source": "sources/classic-frame.png",
+      "webp": "classic-frame.webp",
+      "alt": "Крупный план классического кремового фасада с объёмной рамкой и латунной ручкой",
+      "generationFile": "exec-40b4d566-1096-4a8f-9436-343aa9684e1e.png",
+      "prompt": "Use case: photorealistic interior detail. Asset type: kitchen website comparison photo. Primary request: a realistic photographic close-up of a cream classical kitchen cabinet door with visibly deep raised panel moulding, a small aged brass handle, adjoining limestone countertop edge. Show three-dimensional stepped frame profile clearly at oblique angle; natural side lighting highlights deep bevels. Traditional crafted classic cabinetry, warm ivory, not flat Shaker or minimalist. Composition: landscape 3:2 close-up, full door occupies most of frame, small glimpse of countertop and adjacent matching door, all geometry physically plausible. Real interior photography, natural fine paint surface. No text, no logos, no watermark, no people. Clearly demonstrate raised frame depth for comparison on mobile."
+    },
+    {
+      "id": "vitebsk-ceiling",
+      "source": "sources/vitebsk-ceiling.png",
+      "webp": "vitebsk-ceiling.webp",
+      "mobile": "vitebsk-ceiling-mobile.webp",
+      "avif": "vitebsk-ceiling.avif",
+      "generationFile": "exec-c1385146-f806-4d62-b87f-d18c81edb3b9.png",
+      "reference": "/uploads/locations/vitebsk-visual-l1a/vitebsk-apartment-base.webp",
+      "prompt": "Use case: precise-object-edit. Asset: realistic kitchen website photo, landscape 3:2. Edit target is the supplied apartment kitchen. Keep camera angle, room dimensions, window, door, fridge, lower cabinets, sink, stove and finishes unchanged. Make the ceiling storage choice visibly different: split the existing tall white wall cupboards on the RIGHT wall into an everyday lower row and a separate upper loft row reaching the ceiling. Show TWO of the upper loft doors opened sideways to reveal large lightweight woven storage baskets and a few seasonal serving dishes; the open interiors must be clearly visible in the upper third of the image. Lower cupboard doors remain closed. Photorealistic plausible hinges and structure. No people, no text, no labels, no logos. Do not expand the room or add floor cabinets. This is a photographic illustration of upper storage, not a finished customer job."
+    },
+    {
+      "id": "fanipol-ceiling",
+      "source": "sources/fanipol-ceiling.png",
+      "webp": "fanipol-ceiling.webp",
+      "mobile": "fanipol-ceiling-mobile.webp",
+      "avif": "fanipol-ceiling.avif",
+      "generationFile": "exec-9bd63434-19d3-40cb-8c54-9222cbb0f070.png",
+      "reference": "/uploads/locations/fanipol-visual-l0/fanipol-new-build-base.webp",
+      "prompt": "Use case: precise-object-edit. Asset: realistic kitchen website photo 3:2. Edit the supplied studio kitchen and retain the exact same camera, window, hallway, sofa, peninsula, stools, lower cabinets, sink, oven, warm oak and white palette. The ceiling-storage variant must have an unmistakable second horizontal row of shallow WHITE upper loft cabinets above the OAK everyday cupboards, reaching the ceiling. Shorten the oak doors enough to accommodate the row without moving the countertop. Open two white loft cupboard doors sideways, clearly revealing lightweight storage baskets and neatly stacked seasonal dishes. Keep everyday oak doors closed, retain the full room and furniture ends in frame. Photorealistic physically plausible cabinetry. No text, people, logos or watermark. This is an illustration of separate upper storage, not a customer installation."
+    },
+    {
+      "id": "soligorsk-ceiling",
+      "source": "sources/soligorsk-ceiling.png",
+      "webp": "soligorsk-ceiling.webp",
+      "mobile": "soligorsk-ceiling-mobile.webp",
+      "avif": "soligorsk-ceiling.avif",
+      "generationFile": "exec-9a68aae2-601f-42bf-ad46-37c94edbd5d7.png",
+      "reference": "/uploads/locations/soligorsk-visual-l0/soligorsk-compact-base.webp",
+      "prompt": "Use case: precise-object-edit. Asset: realistic kitchen website photo, landscape 3:2. Keep the supplied compact apartment kitchen EXACTLY the same room size, window, table and chair, lower grey cabinets, hob, oven tower and oak niche, same camera. Make upper seasonal storage a clearly different state: open the grey horizontal loft cupboards above the oak wall cupboards all the way to the ceiling. Show TWO upper doors swung sideways, revealing shelves with large lightweight fabric storage boxes and seasonal serving dishes. Keep lower oak everyday cupboard doors closed; make upper open interiors clearly visible in the top-right area. Retain physically plausible hinges and no floating shelves. Full room framing without cutting kitchen ends. Natural photographic light. No text, labels, people, logos or watermark. It is a design illustration, not a finished customer project."
+    },
+    {
+      "id": "acrylic-front",
+      "source": "sources/acrylic-front.png",
+      "webp": "acrylic-front.webp",
+      "alt": "Плоский синий глянцевый акриловый фасад без рамки и фрезеровки",
+      "generationFile": "exec-8687e7e5-403f-4ebb-9319-d48c9a1b4fe9.png",
+      "prompt": "Use case: photorealistic product sample. Asset type: kitchen material comparison detail, landscape 3:2. A single perfectly FLAT rectangular glossy deep navy blue ACRYLIC-faced kitchen cabinet door slab, leaning upright on a pale stone workshop countertop. Front view at very slight angle, whole rectangular door fully in frame with a narrow clean matching ABS edge, rounded just minimally at the edge. Uninterrupted flat mirror-gloss face with a soft realistic window reflection. Absolutely NO frame, no inset panel, no raised moulding, no routed grooves, no handles. Background out-of-focus neutral real kitchen with daylight. Material demonstration photography, precise physically plausible slab geometry and smooth acrylic shine. No text, labels, logos, watermarks or people."
+    }
+  ]
+}

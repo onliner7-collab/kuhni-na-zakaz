@@ -1,0 +1,1122 @@
+[
+  {
+    "route": "/locations/soligorsk",
+    "id": "compact-base",
+    "label": "Компактная кухня",
+    "alt": "Компактная угловая кухня со свободным проходом для квартиры в Солигорске",
+    "result": "Угловая компоновка собирает мойку, готовку и технику по периметру, не занимая центр комнаты.",
+    "webp": "/uploads/locations/soligorsk-visual-l0/soligorsk-compact-base.webp",
+    "exists": true,
+    "hash": "f47d85b6e76fd8153801c4577fc80d43ca58c25a93c912793ebd655f837c5622"
+  },
+  {
+    "route": "/locations/soligorsk",
+    "id": "storage-to-ceiling",
+    "label": "Хранение до потолка",
+    "alt": "Кухня с открытыми верхними антресолями, корзинами и сезонной посудой",
+    "result": "Открытый верхний ярус показывает отдельное хранение для редких лёгких вещей. Высоту, нагрузку и безопасный доступ проверяем в проекте после замера.",
+    "webp": "/images/visual-consistency-20261018/soligorsk-ceiling.webp",
+    "exists": true,
+    "hash": "e0febcbb37eeb6d04e0759013d0b3fb843ebff13c60ef9e1292f5048471e9d06"
+  },
+  {
+    "route": "/locations/soligorsk",
+    "id": "inner-drawers",
+    "label": "Внутри ящиков",
+    "alt": "Выдвижные ящики и внутреннее хранение в компактной кухне",
+    "result": "Глубокие выдвижные ящики дают обзор содержимого и не требуют освобождать проход для распашных дверей.",
+    "webp": "/uploads/locations/soligorsk-visual-l0/soligorsk-inner-drawers.webp",
+    "exists": true,
+    "hash": "5b10be1df9fec3f44af3f409de32dafc5305092db622bd89ac0255cddd80db05"
+  },
+  {
+    "route": "/locations/soligorsk",
+    "id": "installation-ready",
+    "label": "Подготовка монтажа",
+    "alt": "Подготовленные к монтажу модули компактной кухни",
+    "result": "До монтажного дня важно освободить помещение, защитить пол и подтвердить готовность коммуникаций и заноса.",
+    "webp": "/uploads/locations/soligorsk-visual-l0/soligorsk-installation-ready.webp",
+    "exists": true,
+    "hash": "0a6b5716ba01dc7ec3c18e25dce52df03c523f5520b3dc42983b13f4de6cf8de"
+  },
+  {
+    "route": "/locations/fanipol",
+    "id": "new-build-base",
+    "label": "Базовая планировка",
+    "alt": "Светлая кухня для новостройки в Фаниполе с удобным проходом",
+    "result": "Прямая линия с коротким полуостровом разделяет кухню и гостиную, не перекрывая маршрут к окну.",
+    "webp": "/uploads/locations/fanipol-visual-l0/fanipol-new-build-base.webp",
+    "exists": true,
+    "hash": "3c4f52c8ce7026f82b44ba2def9daa1a0603ffb8a0378da629dd4923e397bda2"
+  },
+  {
+    "route": "/locations/fanipol",
+    "id": "storage-to-ceiling",
+    "label": "Шкафы до потолка",
+    "alt": "Кухня с открытыми верхними антресолями, корзинами и сезонной посудой",
+    "result": "Открытый верхний ярус показывает отдельное хранение для редких лёгких вещей. Высоту, нагрузку и безопасный доступ проверяем в проекте после замера.",
+    "webp": "/images/visual-consistency-20261018/fanipol-ceiling.webp",
+    "exists": true,
+    "hash": "c91da29cf5405ec7b10e86b3d4dbe26595b7cb5f353cb33397564bd6663c86cb"
+  },
+  {
+    "route": "/locations/fanipol",
+    "id": "built-in-appliances",
+    "label": "Встроенная техника",
+    "alt": "Пеналы со встроенной техникой в кухне для новостройки",
+    "result": "Пеналы удобнее считать вместе с моделями техники, вентиляционными зазорами и направлениями открывания.",
+    "webp": "/uploads/locations/fanipol-visual-l0/fanipol-built-in-appliances.webp",
+    "exists": true,
+    "hash": "e1284f6f086a390eb1db4c971afbe7b186a42d373cfa5e27b931f1007a11fc8e"
+  },
+  {
+    "route": "/locations/fanipol",
+    "id": "communications-ready",
+    "label": "Коммуникации",
+    "alt": "Подготовленные коммуникации для установки кухни в новостройке",
+    "result": "Вода, розетки и вентиляция должны совпасть с планом кухни до чистовой фиксации модулей.",
+    "webp": "/uploads/locations/fanipol-visual-l0/fanipol-communications-ready.webp",
+    "exists": true,
+    "hash": "bd10e34d45328a8a5ae6e51c001aa62487f7361cea5cefa479ad708435e6f47a"
+  },
+  {
+    "route": "/locations/gomel",
+    "id": "family-straight",
+    "label": "Длинная рабочая зона",
+    "alt": "Прямая семейная кухня вдоль одной стены с холодильником, пеналами и рабочей зоной",
+    "result": "Прямая рабочая линия упрощает последовательность готовки и оставляет центр кухни свободным.",
+    "webp": "/uploads/locations/minsk-v2-20261018/length-5m.webp",
+    "exists": true,
+    "hash": "ca69fa22bb065ed0d0d14dab80eb60ff78f8b11f0f554284b542f65ba65920f1"
+  },
+  {
+    "route": "/locations/gomel",
+    "id": "family-corner",
+    "label": "Угловая планировка",
+    "alt": "Угловая семейная кухня с увеличенной рабочей зоной",
+    "result": "Угол увеличивает полезную поверхность, но требует заранее проверить открывание фасадов и доступ к мойке.",
+    "webp": "/uploads/locations/gomel-visual-l0/gomel-family-corner.webp",
+    "exists": true,
+    "hash": "f3e5fb90974c272b1ca2219ce9f9c19cda9e41e5fb1f0114dbce51c7f17ea2bd"
+  },
+  {
+    "route": "/locations/gomel",
+    "id": "appliances-drawers",
+    "label": "Техника и ящики",
+    "alt": "Встроенная техника и глубокие ящики семейной кухни",
+    "result": "Глубокие ящики рядом с подготовкой и единый блок техники сокращают лишние перемещения во время готовки.",
+    "webp": "/uploads/locations/gomel-visual-l0/gomel-appliances-drawers.webp",
+    "exists": true,
+    "hash": "d1552437a1dbec6e13f6f0cfaaf657b4712a320398c1720711ee6aee6de3b513"
+  },
+  {
+    "route": "/locations/gomel",
+    "id": "installation-stage",
+    "label": "Этап монтажа",
+    "alt": "Завершающий этап монтажа семейной кухни",
+    "result": "На завершающем этапе регулируют фасады и механизмы, затем проверяют стыки, рабочую поверхность и доступ к технике.",
+    "webp": "/uploads/locations/gomel-visual-l0/gomel-installation-stage.webp",
+    "exists": true,
+    "hash": "18ba5e0216390244222ef1e96f2443bd770043727f0c3bf1cd4f657314176d4c"
+  },
+  {
+    "route": "/locations/vitebsk",
+    "id": "apartment-base",
+    "label": "Городская квартира",
+    "alt": "Городская угловая кухня в квартире Витебска",
+    "result": "Г-образная компоновка собирает ежедневные зоны по периметру и оставляет прямой проход к окну.",
+    "webp": "/uploads/locations/vitebsk-visual-l1a/vitebsk-apartment-base.webp",
+    "exists": true,
+    "hash": "3cf43c5fc79851f2669b518347171d5fd989f5eaae4680481317a24a35eb9f0d"
+  },
+  {
+    "route": "/locations/vitebsk",
+    "id": "storage-to-ceiling",
+    "label": "До потолка",
+    "alt": "Кухня с открытыми верхними антресолями, корзинами и сезонной посудой",
+    "result": "Открытый верхний ярус показывает отдельное хранение для редких лёгких вещей. Высоту, нагрузку и безопасный доступ проверяем в проекте после замера.",
+    "webp": "/images/visual-consistency-20261018/vitebsk-ceiling.webp",
+    "exists": true,
+    "hash": "b8d256ab97a94449b772b364dfb0e7ee26f0f069093e8bc85f999227a2488a08"
+  },
+  {
+    "route": "/locations/vitebsk",
+    "id": "task-lighting",
+    "label": "Рабочий свет",
+    "alt": "Рабочее освещение столешницы городской кухни",
+    "result": "Непрерывный рабочий свет убирает тени от верхних шкафов и делает столешницу удобнее в короткий световой день.",
+    "webp": "/uploads/locations/vitebsk-visual-l1a/vitebsk-task-lighting.webp",
+    "exists": true,
+    "hash": "12f2997401e507c20d7760b10da538db155f8b7d0efa3b7d23c3799ad8607e94"
+  },
+  {
+    "route": "/locations/vitebsk",
+    "id": "installation-ready",
+    "label": "Подготовка монтажа",
+    "alt": "Подготовленные к монтажу модули кухни в свободном помещении",
+    "result": "Защищённый пол, собранные модули и свободный проход помогают проверить готовность помещения до установки.",
+    "webp": "/uploads/locations/vitebsk-visual-l1a/vitebsk-installation-ready.webp",
+    "exists": true,
+    "hash": "9b620a4a27320ab4453fe1da345056556ee5c38a79fe20025a4860dffd45c93d"
+  },
+  {
+    "route": "/locations/grodno",
+    "id": "light-base",
+    "label": "Светлая кухня",
+    "alt": "Светлая современная кухня в спокойном интерьере Гродно",
+    "result": "Молочные фасады и светлый кварц сохраняют интерьер цельным, а полуостров отделяет рабочую зону без глухой перегородки.",
+    "webp": "/uploads/locations/grodno-visual-l1a/grodno-light-base.webp",
+    "exists": true,
+    "hash": "950bbe5d2b02066a283289e79ad458fe35ff1efac47bc5f7da2260583baa4170"
+  },
+  {
+    "route": "/locations/grodno",
+    "id": "wood-texture",
+    "label": "Древесная фактура",
+    "alt": "Та же светлая кухня с древесной фактурой нижних фасадов",
+    "result": "Светлая древесная фактура делает нижние фасады выразительнее, не перегружая верхнюю линию кухни.",
+    "webp": "/uploads/locations/grodno-visual-l1a/grodno-wood-texture.webp",
+    "exists": true,
+    "hash": "71eb67e3d34f6fbe50185cc37a0352d589dc502338671dcd5a68937add186a47"
+  },
+  {
+    "route": "/locations/grodno",
+    "id": "hidden-appliances",
+    "label": "Скрытая техника",
+    "alt": "Спокойная светлая кухня со скрытой встроенной техникой",
+    "result": "Встроенная техника и закрытый холодильник уменьшают визуальный шум и сохраняют спокойный ритм фасадов.",
+    "webp": "/uploads/locations/grodno-visual-l1a/grodno-hidden-appliances.webp",
+    "exists": true,
+    "hash": "718a6a9946f7bfbefe5c24527c02eb04d87efde34027e23583bfb38115cefb74"
+  },
+  {
+    "route": "/locations/grodno",
+    "id": "measurement-ready",
+    "label": "Подготовка замера",
+    "alt": "Подготовка помещения кухни к точному замеру",
+    "result": "Свободная стена, доступные коммуникации и лазерная разметка помогают снять исходные данные до деталировки проекта.",
+    "webp": "/uploads/locations/grodno-visual-l1a/grodno-measurement-ready.webp",
+    "exists": true,
+    "hash": "cb5208d64f2aa4276d49bd44677aea0af751d1ea53cbaca22e2d0944e91dbccb"
+  },
+  {
+    "route": "/locations/brest",
+    "id": "apartment-base",
+    "label": "Семейная квартира",
+    "alt": "Семейная угловая кухня для городской квартиры в Бресте",
+    "result": "Угловая кухня собирает рабочие зоны вокруг окна и сохраняет центр для движения семьи.",
+    "webp": "/uploads/locations/brest-visual-l1a/brest-apartment-base.webp",
+    "exists": true,
+    "hash": "ae495c1bbef86b459e1241368d6dd53009fa6ef204d3ff45b9584418d6f99df4"
+  },
+  {
+    "route": "/locations/brest",
+    "id": "house-layout",
+    "label": "Кухня для дома",
+    "alt": "Просторная семейная кухня с островом для дома",
+    "result": "В более широком помещении короткий остров добавляет поверхность, сохраняя удобные проходы по обе стороны.",
+    "webp": "/uploads/locations/brest-visual-l1a/brest-house-layout.webp",
+    "exists": true,
+    "hash": "9a31e5544c51cbd222ec092db4db25ac9c1f22e2ecae2f756d3b1ac6cb4dd725"
+  },
+  {
+    "route": "/locations/brest",
+    "id": "family-storage",
+    "label": "Семейное хранение",
+    "alt": "Высокие пеналы и открытые глубокие ящики семейной кухни",
+    "result": "Высокий пенал и глубокие ящики держат часто используемые вещи в обзоре и не заставляют освобождать весь проход.",
+    "webp": "/uploads/locations/brest-visual-l1a/brest-family-storage.webp",
+    "exists": true,
+    "hash": "b29b13b47776fb7d890040109ee913594e4f635d67f0f820b556e247fd16e362"
+  },
+  {
+    "route": "/locations/brest",
+    "id": "installation-logistics",
+    "label": "Логистика монтажа",
+    "alt": "Подготовленный маршрут заноса и модули для монтажа кухни",
+    "result": "Защитная дорожка и компактно расставленные модули показывают, где нужен свободный путь от двери до зоны сборки.",
+    "webp": "/uploads/locations/brest-visual-l1a/brest-installation-logistics.webp",
+    "exists": true,
+    "hash": "ce8292d917b94a6812c998f4c221d74c598806f9ca17073da16197cf7a2ade81"
+  },
+  {
+    "route": "/locations/mogilev",
+    "id": "straight-base",
+    "label": "Прямая планировка",
+    "alt": "Прямая кухня с непрерывной рабочей поверхностью в Могилёве",
+    "result": "Одна рабочая линия оставляет свободный проход и даёт непрерывную поверхность между мойкой и плитой.",
+    "webp": "/uploads/locations/mogilev-visual-l1a/mogilev-straight-base.webp",
+    "exists": true,
+    "hash": "7c8a8b5e2aea2d3c1126c42a6e5c111656bab9c21e7de5cfa43f6073bab01352"
+  },
+  {
+    "route": "/locations/mogilev",
+    "id": "corner-layout",
+    "label": "Угловая планировка",
+    "alt": "Угловая кухня с сохранённым проходом",
+    "result": "Рабочая зона под окном увеличивает полезную поверхность, но сохраняет свободный маршрут от двери.",
+    "webp": "/uploads/locations/mogilev-visual-l1a/mogilev-corner-layout.webp",
+    "exists": true,
+    "hash": "a76dda1248b6de3ace9f1acb62d1f1524bdd0c5afafac2bbd976a258a7617d99"
+  },
+  {
+    "route": "/locations/mogilev",
+    "id": "worktop-zone",
+    "label": "Рабочая зона",
+    "alt": "Практичная рабочая зона между мойкой и плитой",
+    "result": "Средний план показывает, хватает ли непрерывной поверхности между водой и готовкой для ежедневной подготовки.",
+    "webp": "/uploads/locations/mogilev-visual-l1a/mogilev-worktop-zone.webp",
+    "exists": true,
+    "hash": "33c40a4fd252834dc74b507d28928477b0b63e66d2c38372adbd58c3512b3688"
+  },
+  {
+    "route": "/locations/mogilev",
+    "id": "project-ready",
+    "label": "Подготовка проекта",
+    "alt": "Подготовка планировки кухни к дизайн-проекту",
+    "result": "Свободное помещение, образцы и проверенные выводы помогают зафиксировать форму кухни до деталировки модулей.",
+    "webp": "/uploads/locations/mogilev-visual-l1a/mogilev-project-ready.webp",
+    "exists": true,
+    "hash": "c78fc18af2e8e669d9b822f273ca768766ac01852ececaa7c8511618865a92ef"
+  },
+  {
+    "route": "/locations/molodechno",
+    "id": "storage-priority",
+    "label": "Больше хранения",
+    "alt": "Семейная кухня с высоким хранением в Молодечно",
+    "result": "Пеналы и верхний ряд до потолка добавляют место для семейных запасов, сохраняя свободный центр помещения.",
+    "webp": "/uploads/locations/molodechno-visual-l1b/molodechno-storage-priority.webp",
+    "exists": true,
+    "hash": "7c7f179fd1fced1447d4b0fc96ea82044b57287fa1fe455e43e052faffd71fb0"
+  },
+  {
+    "route": "/locations/molodechno",
+    "id": "worktop-priority",
+    "label": "Больше столешницы",
+    "alt": "Семейная кухня с большой рабочей поверхностью",
+    "result": "Непрерывная поверхность между мойкой и плитой даёт больше места для ежедневной подготовки и совместной готовки.",
+    "webp": "/uploads/locations/molodechno-visual-l1b/molodechno-worktop-priority.webp",
+    "exists": true,
+    "hash": "76832b59df5108570cca928c35931997fa9b289ed5d0b60fea4dacde84d19422"
+  },
+  {
+    "route": "/locations/molodechno",
+    "id": "built-in-appliances",
+    "label": "Встроенная техника",
+    "alt": "Встроенная техника в семейной кухне",
+    "result": "Единая высокая линия фиксирует технику, вентиляционные зазоры и направления открывания до деталировки проекта.",
+    "webp": "/uploads/locations/molodechno-visual-l1b/molodechno-built-in-appliances.webp",
+    "exists": true,
+    "hash": "c6cf00aa9d9b7bf67d239354c6013deadfbbf0ef5028b52f8b90e0568b4320a2"
+  },
+  {
+    "route": "/locations/molodechno",
+    "id": "measurement-ready",
+    "label": "Подготовка замера",
+    "alt": "Подготовка семейной кухни к точному замеру",
+    "result": "Свободный доступ к стенам, розеткам и воде помогает проверить точную геометрию помещения до заказа модулей.",
+    "webp": "/uploads/locations/molodechno-visual-l1b/molodechno-measurement-ready.webp",
+    "exists": true,
+    "hash": "d4f34616b030e13919cb2592616dcb8e5b1bb6259c8826a6dd53d860532d63a3"
+  },
+  {
+    "route": "/locations/zhodino",
+    "id": "compact-corner",
+    "label": "Компактная угловая",
+    "alt": "Компактная угловая кухня для ежедневной нагрузки в Жодино",
+    "result": "Угловая форма даёт два рабочих плеча и сохраняет свободный проход в компактном помещении.",
+    "webp": "/uploads/locations/zhodino-visual-l1b/zhodino-compact-corner.webp",
+    "exists": true,
+    "hash": "8d3078ff04d6ed4035cd8ffc72b5382ffab3b68e395dd3d4926c3f58b7490c94"
+  },
+  {
+    "route": "/locations/zhodino",
+    "id": "straight-layout",
+    "label": "Прямая планировка",
+    "alt": "Прямая компактная кухня со свободным проходом",
+    "result": "Одна рабочая линия оставляет больше места для движения и упрощает ежедневный маршрут между техникой, мойкой и столом.",
+    "webp": "/uploads/locations/zhodino-visual-l1b/zhodino-straight-layout.webp",
+    "exists": true,
+    "hash": "be62706ac65ad328d5cbf9e7e581bbc8b2d5ed30ec8c842d5fc90250c6d3d13d"
+  },
+  {
+    "route": "/locations/zhodino",
+    "id": "drawers-worktop",
+    "label": "Ящики и столешница",
+    "alt": "Глубокие ящики и рабочая столешница компактной кухни",
+    "result": "Глубокие ящики открывают содержимое целиком, а свободная столешница выдерживает частую подготовку без лишних перестановок.",
+    "webp": "/uploads/locations/zhodino-visual-l1b/zhodino-drawers-worktop.webp",
+    "exists": true,
+    "hash": "31c5c05c1c03da9e2a149e5a076bf677f8b5cb462117464a0d676d7458038bb3"
+  },
+  {
+    "route": "/locations/zhodino",
+    "id": "installation-stage",
+    "label": "Этап монтажа",
+    "alt": "Завершающий этап монтажа компактной кухни",
+    "result": "Защищённый пол и доступ к модулям помогают спокойно выровнять фасады и проверить механизмы перед сдачей кухни.",
+    "webp": "/uploads/locations/zhodino-visual-l1b/zhodino-installation-stage.webp",
+    "exists": true,
+    "hash": "6dc2c9390e0536c7a97f4d274ba0c7e1215685c4af4013c04a9918aa262c30c1"
+  },
+  {
+    "route": "/locations/slutsk",
+    "id": "straight-base",
+    "label": "Прямая кухня",
+    "alt": "Прямая семейная кухня без лишней площади в Слуцке",
+    "result": "Компактный прямой гарнитур сохраняет свободную площадь и даёт понятную последовательность ежедневных зон.",
+    "webp": "/uploads/locations/slutsk-visual-l1b/slutsk-straight-base.webp",
+    "exists": true,
+    "hash": "5b6cc04b2af5966255d26affd5f602f82f6f8d9e5ac213f7d86e8ed6ec9112a6"
+  },
+  {
+    "route": "/locations/slutsk",
+    "id": "corner-layout",
+    "label": "Угловая кухня",
+    "alt": "Угловая семейная кухня с сохранённым проходом",
+    "result": "Поворот под окном увеличивает столешницу и хранение, не перекрывая маршрут от двери.",
+    "webp": "/uploads/locations/slutsk-visual-l1b/slutsk-corner-layout.webp",
+    "exists": true,
+    "hash": "a15cc73560506c501fc32ed245f76cd959c1ae636937438eab47fc6a897396e4"
+  },
+  {
+    "route": "/locations/slutsk",
+    "id": "appliances-storage",
+    "label": "Техника и хранение",
+    "alt": "Встроенная техника и хранение семейной кухни",
+    "result": "Высокий блок техники и глубокие ящики освобождают рабочую поверхность и держат семейные запасы в обзоре.",
+    "webp": "/uploads/locations/slutsk-visual-l1b/slutsk-appliances-storage.webp",
+    "exists": true,
+    "hash": "3c0261ec70468c3ca6cb22a20a3d5496eb2cc3b7174701219c29412d1977cab5"
+  },
+  {
+    "route": "/locations/slutsk",
+    "id": "measurement-ready",
+    "label": "Подготовка замера",
+    "alt": "Подготовка помещения семейной кухни к замеру",
+    "result": "Открытые стены и доступные выводы позволяют сверить размеры, углы и будущую привязку техники на объекте.",
+    "webp": "/uploads/locations/slutsk-visual-l1b/slutsk-measurement-ready.webp",
+    "exists": true,
+    "hash": "99b85e2ed0c8199432bb7b33d399bbb09e5c677cf73c676b61d5e95329aa6ab8"
+  },
+  {
+    "route": "/locations/maryina-gorka",
+    "id": "straight-base",
+    "label": "Прямая планировка",
+    "alt": "Светлая прямая семейная кухня в Марьиной Горке",
+    "result": "Одна длинная линия оставляет семье свободное место и даёт непрерывную поверхность для подготовки.",
+    "webp": "/uploads/locations/maryina-gorka-visual-l1b/maryina-gorka-straight-base.webp",
+    "exists": true,
+    "hash": "ddbfd7cbc14f2133da644676377c1f1f920700a666389a1cfa2abc5cbd0f02fd"
+  },
+  {
+    "route": "/locations/maryina-gorka",
+    "id": "corner-layout",
+    "label": "Угловая планировка",
+    "alt": "Угловая семейная кухня со свободным центром",
+    "result": "Короткое плечо под окном увеличивает полезную поверхность и не забирает свободный центр кухни.",
+    "webp": "/uploads/locations/maryina-gorka-visual-l1b/maryina-gorka-corner-layout.webp",
+    "exists": true,
+    "hash": "5d25d511167d076c968ecdc6aead7a398f8d1ec2c4922dd304a0c708a5bbfd7f"
+  },
+  {
+    "route": "/locations/maryina-gorka",
+    "id": "appliances-drawers",
+    "label": "Техника и ящики",
+    "alt": "Встроенная техника и глубокие ящики семейной кухни",
+    "result": "Встроенная техника и глубокие ящики показывают, где разместятся ежедневная посуда, запасы и приборы.",
+    "webp": "/uploads/locations/maryina-gorka-visual-l1b/maryina-gorka-appliances-drawers.webp",
+    "exists": true,
+    "hash": "321812baa6785efa845149c14c701c2450254ba91dc70bfafe6ec8055a494649"
+  },
+  {
+    "route": "/locations/maryina-gorka",
+    "id": "installation-stage",
+    "label": "Подготовка монтажа",
+    "alt": "Подготовка семейной кухни к монтажу",
+    "result": "Защищённый пол, свободный проход и доступ к фасадам помогают провести финальную сборку и регулировку.",
+    "webp": "/uploads/locations/maryina-gorka-visual-l1b/maryina-gorka-installation-stage.webp",
+    "exists": true,
+    "hash": "280da69bcf38227359667557aa6a940212ae5cb6036dcdbc482ffb6520f3e8d4"
+  },
+  {
+    "route": "/locations/smolevichi",
+    "id": "apartment-base",
+    "label": "Квартира",
+    "alt": "Кухня для квартиры до чистовой отделки в Смолевичах",
+    "result": "Компактная угловая линия собирает основные зоны по периметру и оставляет центр помещения свободным.",
+    "webp": "/uploads/locations/smolevichi-visual-l2a/smolevichi-apartment-base.webp",
+    "exists": true,
+    "hash": "20c52c2a3acebf02e070f22836e4d7cbbfadcf8f47912f3ffb264315f80d466c"
+  },
+  {
+    "route": "/locations/smolevichi",
+    "id": "house-layout",
+    "label": "Дом",
+    "alt": "Просторная кухня для дома в Смолевичах",
+    "result": "Высокий блок и короткий полуостров увеличивают хранение и рабочую поверхность, если широкие проходы это позволяют.",
+    "webp": "/uploads/locations/smolevichi-visual-l2a/smolevichi-house-layout.webp",
+    "exists": true,
+    "hash": "a5156ae850d50da7feb411bb988433e654fcc0607354c1bd7724797e98a3a750"
+  },
+  {
+    "route": "/locations/smolevichi",
+    "id": "utilities-check",
+    "label": "Коммуникации",
+    "alt": "Подготовленные коммуникации для будущей кухни",
+    "result": "Воду, розетки и вентиляцию полезно сверить с будущими модулями до чистовой отделки и заказа кухни.",
+    "webp": "/uploads/locations/smolevichi-visual-l2a/smolevichi-utilities-check.webp",
+    "exists": true,
+    "hash": "5c9a4f04d577e4c37043702aca8fe84582ead7fa20eea2452524145bb11a2055"
+  },
+  {
+    "route": "/locations/smolevichi",
+    "id": "measurement-ready",
+    "label": "Подготовка замера",
+    "alt": "Подготовка помещения кухни к точному замеру",
+    "result": "Свободное помещение и доступные выводы позволяют точно проверить геометрию до деталировки проекта.",
+    "webp": "/uploads/locations/smolevichi-visual-l2a/smolevichi-measurement-ready.webp",
+    "exists": true,
+    "hash": "6f1008a1837d77b27ee2443c7cd3c9fd2e2013e14a754a8a76f2b459dd4f1879"
+  },
+  {
+    "route": "/locations/dzerzhinsk",
+    "id": "compact-apartment",
+    "label": "Квартира",
+    "alt": "Компактная кухня для квартиры в Дзержинске",
+    "result": "Угловая планировка даёт два рабочих плеча и сохраняет свободный маршрут от двери к окну.",
+    "webp": "/uploads/locations/dzerzhinsk-visual-l2a/dzerzhinsk-compact-apartment.webp",
+    "exists": true,
+    "hash": "f85a540ccff186016daf8d86b11d464585db2521963269298caa0346df47d25e"
+  },
+  {
+    "route": "/locations/dzerzhinsk",
+    "id": "family-layout",
+    "label": "Семейная кухня",
+    "alt": "Семейная кухня с большой рабочей зоной",
+    "result": "Непрерывная столешница и высокий блок добавляют место для общей готовки и семейных запасов.",
+    "webp": "/uploads/locations/dzerzhinsk-visual-l2a/dzerzhinsk-family-layout.webp",
+    "exists": true,
+    "hash": "fccd46090c00b1553902e08ceced42fdf468f4b8e413c48734d836248e52227c"
+  },
+  {
+    "route": "/locations/dzerzhinsk",
+    "id": "drawer-detail",
+    "label": "Глубокие ящики",
+    "alt": "Глубокие ящики в семейной кухне",
+    "result": "Выдвижные ящики дают обзор посуды и не требуют освобождать проход для распашных дверец.",
+    "webp": "/uploads/locations/dzerzhinsk-visual-l2a/dzerzhinsk-drawer-detail.webp",
+    "exists": true,
+    "hash": "49c7aa8aad0dbbca21d1bbf1d123f6044bc914871e9fa41e6db1d752c09e65ff"
+  },
+  {
+    "route": "/locations/dzerzhinsk",
+    "id": "installation-stage",
+    "label": "Этап монтажа",
+    "alt": "Подготовка кухни к завершающему монтажу",
+    "result": "Защищённый пол и свободный доступ к модулям помогают выровнять фасады и проверить механизмы.",
+    "webp": "/uploads/locations/dzerzhinsk-visual-l2a/dzerzhinsk-installation-stage.webp",
+    "exists": true,
+    "hash": "d0e7cb0ebcc4c1631c65de58be47221c1dbe94ef733d73598cbaf8c9165b307f"
+  },
+  {
+    "route": "/locations/zaslavl",
+    "id": "apartment-layout",
+    "label": "Квартира",
+    "alt": "Светлая кухня для городской квартиры в Заславле",
+    "result": "Прямая кухня и компактный высокий блок используют одну стену, не перегружая помещение.",
+    "webp": "/uploads/locations/zaslavl-visual-l2a/zaslavl-apartment-layout.webp",
+    "exists": true,
+    "hash": "e0318560a9258f26714c7c3b0394a97506a99b82ae6499c882c855c8112e8447"
+  },
+  {
+    "route": "/locations/zaslavl",
+    "id": "house-island",
+    "label": "Дом",
+    "alt": "Просторная кухня с островом для дома в Заславле",
+    "result": "В просторном помещении остров создаёт дополнительную рабочую сторону, если вокруг остаются широкие маршруты.",
+    "webp": "/uploads/locations/zaslavl-visual-l2a/zaslavl-house-island.webp",
+    "exists": true,
+    "hash": "959f5c040fbd5c582d8a662db273dc27c17738642cf1f9bce41dd41ae665333e"
+  },
+  {
+    "route": "/locations/zaslavl",
+    "id": "appliance-wall",
+    "label": "Встроенная техника",
+    "alt": "Встроенная техника в высокой стене кухни",
+    "result": "Высокая композиция помогает заранее согласовать приборы, вентиляционные зазоры и направления открывания.",
+    "webp": "/uploads/locations/zaslavl-visual-l2a/zaslavl-appliance-wall.webp",
+    "exists": true,
+    "hash": "182d19fa04b11e14f9c92c5ad6daa185d71b2e7a751142c9930fed92b8357788"
+  },
+  {
+    "route": "/locations/zaslavl",
+    "id": "delivery-logistics",
+    "label": "Логистика",
+    "alt": "Подготовленный маршрут заноса кухонных модулей",
+    "result": "Упакованные модули и защищённый пол показывают, сколько свободного места нужно оставить до установки.",
+    "webp": "/uploads/locations/zaslavl-visual-l2a/zaslavl-delivery-logistics.webp",
+    "exists": true,
+    "hash": "8b644c4f14950736589e13b0188a3b06fbd7fc8dcbf2a9d69a8a456dde49f9a2"
+  },
+  {
+    "route": "/locations/logoisk",
+    "id": "permanent-house",
+    "label": "Постоянный дом",
+    "alt": "Кухня для постоянного дома в Логойске",
+    "result": "Полная угловая линия и высокое хранение подходят для постоянного использования без потери проходов.",
+    "webp": "/uploads/locations/logoisk-visual-l2a/logoisk-permanent-house.webp",
+    "exists": true,
+    "hash": "82084a1a4877b875d90c1daf326d20d35d1713469983f2e688bebc4ed5ce5220"
+  },
+  {
+    "route": "/locations/logoisk",
+    "id": "seasonal-dacha",
+    "label": "Сезонная дача",
+    "alt": "Компактная кухня для сезонной дачи",
+    "result": "Компактная прямая линия оставляет больше свободной площади и сохраняет только необходимые зоны.",
+    "webp": "/uploads/locations/logoisk-visual-l2a/logoisk-seasonal-dacha.webp",
+    "exists": true,
+    "hash": "e199d25e897c2f74375100a22fb0bcdeeffe56f98b0719873350ca5f9841baab"
+  },
+  {
+    "route": "/locations/logoisk",
+    "id": "engineering-zone",
+    "label": "Инженерные зоны",
+    "alt": "Подготовленная инженерная зона кухни в доме",
+    "result": "Котёл, вентиляцию, воду и питание важно согласовать до шкафов, сохранив доступ для обслуживания.",
+    "webp": "/uploads/locations/logoisk-visual-l2a/logoisk-engineering-zone.webp",
+    "exists": true,
+    "hash": "09f09c79ab91eb38738eb3840612cb75afba44f3ed9ee050e5675d8adba4e40c"
+  },
+  {
+    "route": "/locations/logoisk",
+    "id": "installation-stage",
+    "label": "Этап монтажа",
+    "alt": "Монтаж кухни в частном доме",
+    "result": "Защищённый пол и доступ к корпусам помогают выполнить финальное выравнивание и регулировку фасадов.",
+    "webp": "/uploads/locations/logoisk-visual-l2a/logoisk-installation-stage.webp",
+    "exists": true,
+    "hash": "de867dec1c8eb8c39d4d01f8c8d3685c1995075040adea3054ddd83a46d4dba7"
+  },
+  {
+    "route": "/locations/vileyka",
+    "id": "apartment-layout",
+    "label": "Квартира",
+    "alt": "Спокойная компактная кухня для квартиры в Вилейке",
+    "result": "Прямая линия и высокий блок используют одну стену и оставляют свободный маршрут через компактное помещение.",
+    "webp": "/uploads/locations/vileyka-visual-l2b/vileyka-apartment-layout.webp",
+    "exists": true,
+    "hash": "80413b1b4999651cfe4cd8cd06742cf864620682c4f770b644e415cd0f569e90"
+  },
+  {
+    "route": "/locations/vileyka",
+    "id": "house-layout",
+    "label": "Дом",
+    "alt": "Просторная кухня для дома в Вилейке",
+    "result": "Угловая композиция добавляет рабочую поверхность и высокое хранение, сохраняя широкие проходы.",
+    "webp": "/uploads/locations/vileyka-visual-l2b/vileyka-house-layout.webp",
+    "exists": true,
+    "hash": "61f2ff7b7de2227a9a964e7f9ca0fd4cb34887c23218ba09131cf0abf8e6e4f0"
+  },
+  {
+    "route": "/locations/vileyka",
+    "id": "compact-dacha",
+    "label": "Дача",
+    "alt": "Компактная кухня для дачи возле Вилейки",
+    "result": "Короткая линия собирает мойку, варочную зону и компактное хранение, не занимая свободную площадь дачи.",
+    "webp": "/uploads/locations/vileyka-visual-l2b/vileyka-compact-dacha.webp",
+    "exists": true,
+    "hash": "4a06ea388065d8b961975e75f440d27935fce5fa39e4ea69bf51d8d021d7b21c"
+  },
+  {
+    "route": "/locations/vileyka",
+    "id": "measurement-ready",
+    "label": "Подготовка замера",
+    "alt": "Подготовка помещения кухни к точному замеру",
+    "result": "Свободные стены, углы и доступные выводы помогают точно проверить размеры до деталировки проекта.",
+    "webp": "/uploads/locations/vileyka-visual-l2b/vileyka-measurement-ready.webp",
+    "exists": true,
+    "hash": "34dd22bc7799e6a65f2dc00eeb79fca156e3afa6331db04aff844da87716ba34"
+  },
+  {
+    "route": "/locations/nesvizh",
+    "id": "light-neoclassic",
+    "label": "Светлая кухня",
+    "alt": "Светлая практичная кухня в современной неоклассике",
+    "result": "Светлые фасады и каменная поверхность делают композицию выразительной, не перегружая практичную рабочую зону.",
+    "webp": "/uploads/locations/nesvizh-visual-l2b/nesvizh-light-neoclassic.webp",
+    "exists": true,
+    "hash": "9bf2ea4c93ce602bc3a98a82ff2b6d50e793c8eceb10bf79476496431ebce991"
+  },
+  {
+    "route": "/locations/nesvizh",
+    "id": "wood-accent",
+    "label": "Древесная фактура",
+    "alt": "Кухня с выразительной древесной фактурой в Несвиже",
+    "result": "Ореховые пеналы усиливают характер кухни, а светлые нижние модули сохраняют спокойный баланс и обзор помещения.",
+    "webp": "/uploads/locations/nesvizh-visual-l2b/nesvizh-wood-accent.webp",
+    "exists": true,
+    "hash": "619b1ed1698dd0605a087a89ae4ef295498908de1dc47d4eb1bc8332e25680a0"
+  },
+  {
+    "route": "/locations/nesvizh",
+    "id": "storage-detail",
+    "label": "Хранение",
+    "alt": "Практичное внутреннее хранение в высокой кухонной колонне",
+    "result": "Выдвижные внутренние ящики дают обзор запасов и используют высоту колонны без глубоких недоступных полок.",
+    "webp": "/uploads/locations/nesvizh-visual-l2b/nesvizh-storage-detail.webp",
+    "exists": true,
+    "hash": "8a06c01dca7c3fb8cdec37ba03663987494c1bf11b741eba59e09909eb396570"
+  },
+  {
+    "route": "/locations/nesvizh",
+    "id": "project-review",
+    "label": "Этап проекта",
+    "alt": "Подготовка проекта выразительной кухни",
+    "result": "Образцы рядом с планом помогают согласовать фактуры, ручки и общую композицию до запуска кухни в работу.",
+    "webp": "/uploads/locations/nesvizh-visual-l2b/nesvizh-project-review.webp",
+    "exists": true,
+    "hash": "695dbfd1219132ed9b2d5203db9f85bfd12a35a58090ad64b012e01777601275"
+  },
+  {
+    "route": "/locations/volozhin",
+    "id": "permanent-house",
+    "label": "Постоянный дом",
+    "alt": "Кухня для постоянного дома в Воложине",
+    "result": "Полная угловая линия и высокий пенал дают рабочую поверхность и хранение для постоянного режима.",
+    "webp": "/uploads/locations/volozhin-visual-l2b/volozhin-permanent-house.webp",
+    "exists": true,
+    "hash": "68d1fd85d38bd1ec6aeedb1a337d981dfe36d753265dcb9e4d2d0118143fd63b"
+  },
+  {
+    "route": "/locations/volozhin",
+    "id": "seasonal-dacha",
+    "label": "Сезонная дача",
+    "alt": "Компактная кухня для сезонной дачи",
+    "result": "Прямая линия оставляет больше свободного места и сохраняет только необходимые зоны для периодического использования.",
+    "webp": "/uploads/locations/volozhin-visual-l2b/volozhin-seasonal-dacha.webp",
+    "exists": true,
+    "hash": "0116f4899af63dc903bcfa5909b680aedbd976d9d11ba4f7c5786c4c53af7ca7"
+  },
+  {
+    "route": "/locations/volozhin",
+    "id": "engineering-zone",
+    "label": "Инженерная зона",
+    "alt": "Подготовленная инженерная зона кухни в доме",
+    "result": "Котёл, вентиляцию, воду и питание важно согласовать до шкафов, сохранив доступ для обслуживания.",
+    "webp": "/uploads/locations/volozhin-visual-l2b/volozhin-engineering-zone.webp",
+    "exists": true,
+    "hash": "4d8a95dd93cc7d2adb0c8bf0243a7f80baf2faa1e340d04f00aa3ebe61e10af1"
+  },
+  {
+    "route": "/locations/volozhin",
+    "id": "installation-route",
+    "label": "Монтаж",
+    "alt": "Подготовка дома к заносу и монтажу кухни",
+    "result": "Защищённый пол и свободный путь от входа к зоне сборки помогают подготовить дом к установке модулей.",
+    "webp": "/uploads/locations/volozhin-visual-l2b/volozhin-installation-route.webp",
+    "exists": true,
+    "hash": "58a1024a9fd8b03ee4946b8998a70a4a9f1d698d7b8772ac15489cd1143ff451"
+  },
+  {
+    "route": "/locations/myadel",
+    "id": "permanent-house",
+    "label": "Постоянный дом",
+    "alt": "Кухня для постоянного загородного дома в Мяделе",
+    "result": "Угловая форма, высокий блок и непрерывная столешница поддерживают ежедневный режим загородного дома.",
+    "webp": "/uploads/locations/myadel-visual-l2b/myadel-permanent-house.webp",
+    "exists": true,
+    "hash": "0b2a17d2a8c6e6b682557708abb3f070e5a39a71db2d6105b0b24b82c2a1dfa7"
+  },
+  {
+    "route": "/locations/myadel",
+    "id": "seasonal-dacha",
+    "label": "Сезонная дача",
+    "alt": "Компактная кухня для сезонной дачи в Мяделе",
+    "result": "Компактная прямая линия даёт базовые зоны готовки и оставляет свободное место для сезонного сценария.",
+    "webp": "/uploads/locations/myadel-visual-l2b/myadel-seasonal-dacha.webp",
+    "exists": true,
+    "hash": "1704678a098c86b5571ae3e3e033a1b204b375261372f908233c661a137f171e"
+  },
+  {
+    "route": "/locations/myadel",
+    "id": "worktop-materials",
+    "label": "Рабочая зона",
+    "alt": "Практичные материалы рабочей зоны кухни",
+    "result": "Минеральная поверхность, фартук и аккуратные примыкания показывают практичную зону вокруг мойки без лишних швов.",
+    "webp": "/uploads/locations/myadel-visual-l2b/myadel-worktop-materials.webp",
+    "exists": true,
+    "hash": "875d3b4347307c6cc78c117fa723ef252c7b67bff956ed859214b77fa93c66ad"
+  },
+  {
+    "route": "/locations/myadel",
+    "id": "installation-stage",
+    "label": "Монтаж",
+    "alt": "Подготовка загородной кухни к завершению монтажа",
+    "result": "Защищённый пол, доступ к корпусам и свободный проход позволяют завершить подгонку столешницы и фасадов.",
+    "webp": "/uploads/locations/myadel-visual-l2b/myadel-installation-stage.webp",
+    "exists": true,
+    "hash": "c01f48634c74179cb38814b7431c7eb35e0b50292513ce97ef51264c7e5075c3"
+  },
+  {
+    "route": "/locations/berezino",
+    "id": "source-data",
+    "label": "Исходные данные",
+    "alt": "Исходные данные помещения для проекта кухни в Березино",
+    "result": "Фото стен, углов и выводов помогают начать проект дистанционно и заранее увидеть вопросы для точного замера.",
+    "webp": "/uploads/locations/berezino-visual-l3a/berezino-source-data.webp",
+    "exists": true,
+    "hash": "adce8490184882ef603d2728fc713e9440511dd432ba761285dcc9e4b993ada5"
+  },
+  {
+    "route": "/locations/berezino",
+    "id": "layout-plan",
+    "label": "Планировка",
+    "alt": "Угловая планировка кухни после дистанционной подготовки проекта",
+    "result": "Угловая схема связывает мойку, готовку и хранение, оставляя понятный проход к окну и входу.",
+    "webp": "/uploads/locations/berezino-visual-l3a/berezino-layout-plan.webp",
+    "exists": true,
+    "hash": "9c66a10387e5cdda07874008a6fed271aca9bd88d275fc53239e836b6fdf8f0e"
+  },
+  {
+    "route": "/locations/berezino",
+    "id": "appliances-plan",
+    "label": "Техника",
+    "alt": "Размещение встроенной техники в проекте кухни",
+    "result": "Размеры духовки, холодильника и пеналов важно согласовать до точного замера, сохранив вентиляционные зазоры.",
+    "webp": "/uploads/locations/berezino-visual-l3a/berezino-appliances-plan.webp",
+    "exists": true,
+    "hash": "577e4ee84229c2a287579d70d4dee3f461764cf5cc016cc025f299008db66a88"
+  },
+  {
+    "route": "/locations/berezino",
+    "id": "measurement-route",
+    "label": "Маршрут замера",
+    "alt": "Подготовка кухни к точному замеру и выезду",
+    "result": "Свободные углы, доступные выводы и подготовленный проход сокращают неопределённость на точном замере.",
+    "webp": "/uploads/locations/berezino-visual-l3a/berezino-measurement-route.webp",
+    "exists": true,
+    "hash": "54c68a611480a3467820038e2a2a1f952fcc26cf24725719d09f8d31e75d6fc1"
+  },
+  {
+    "route": "/locations/stolbtsy",
+    "id": "photos-dimensions",
+    "label": "Фото и размеры",
+    "alt": "Подготовленное помещение с исходными размерами для кухни в Столбцах",
+    "result": "Обзор помещения, углов и выводов позволяет обсудить ограничения до обязательной проверки на объекте.",
+    "webp": "/uploads/locations/stolbtsy-visual-l3a/stolbtsy-photos-dimensions.webp",
+    "exists": true,
+    "hash": "b1b3a791af8f102067b82f66cb4b9cff9509ca446a928863daf3cc21b7f49042"
+  },
+  {
+    "route": "/locations/stolbtsy",
+    "id": "layout-choice",
+    "label": "Планировка",
+    "alt": "Угловая планировка кухни со свободным проходом",
+    "result": "Угловая композиция добавляет рабочую поверхность, сохраняя свободный маршрут от входа к окну.",
+    "webp": "/uploads/locations/stolbtsy-visual-l3a/stolbtsy-layout-choice.webp",
+    "exists": true,
+    "hash": "81dd86225c798589da45844720b5910182a054026e2d44bc7772f2eefbc37780"
+  },
+  {
+    "route": "/locations/stolbtsy",
+    "id": "appliance-check",
+    "label": "Техника",
+    "alt": "Проверка размещения техники в проекте кухни",
+    "result": "Модели техники задают высоту пеналов, вентиляцию и направления открывания до финальной привязки мебели.",
+    "webp": "/uploads/locations/stolbtsy-visual-l3a/stolbtsy-appliance-check.webp",
+    "exists": true,
+    "hash": "8c6247bbc8d3c90bb5de7b89499e1680bf56702acddcbf58a4d58f09b8408f65"
+  },
+  {
+    "route": "/locations/stolbtsy",
+    "id": "onsite-measurement",
+    "label": "Точный замер",
+    "alt": "Подготовка объекта к точному замеру кухни в Столбцах",
+    "result": "На месте уточняются углы, выводы и проходы, которые нельзя надёжно подтвердить только по фото.",
+    "webp": "/uploads/locations/stolbtsy-visual-l3a/stolbtsy-onsite-measurement.webp",
+    "exists": true,
+    "hash": "f5226e27bba0c2bd15fbb41541a6de88401a1b86b73e58c3d624a33deee1d70d"
+  },
+  {
+    "route": "/locations/uzda",
+    "id": "small-straight",
+    "label": "Маленькая прямая",
+    "alt": "Маленькая прямая кухня со свободным проходом в Узде",
+    "result": "Одна рабочая линия оставляет центр узкой кухни свободным и собирает основные функции вдоль стены.",
+    "webp": "/uploads/locations/uzda-visual-l3a/uzda-small-straight.webp",
+    "exists": true,
+    "hash": "4b5d889e457a37e2e616885102a32006aec8bf2c88b9c83d6d45f76584e2edc0"
+  },
+  {
+    "route": "/locations/uzda",
+    "id": "compact-corner",
+    "label": "Угловая",
+    "alt": "Компактная угловая кухня с удобным проходом",
+    "result": "Короткое угловое продолжение даёт больше столешницы, не перекрывая вход и основной проход.",
+    "webp": "/uploads/locations/uzda-visual-l3a/uzda-compact-corner.webp",
+    "exists": true,
+    "hash": "b09fa8e848a81d76b23aa0885598ca81c0eee6c5174f2b794fa138e3cbda2733"
+  },
+  {
+    "route": "/locations/uzda",
+    "id": "vertical-storage",
+    "label": "Хранение",
+    "alt": "Вертикальное хранение и выдвижные ящики в маленькой кухне",
+    "result": "Шкафы до потолка и выдвижные ящики увеличивают полезный объём без дополнительных напольных модулей.",
+    "webp": "/uploads/locations/uzda-visual-l3a/uzda-vertical-storage.webp",
+    "exists": true,
+    "hash": "a2db4694f1703f92cabc827d9bf2ca00e279cb40d73856daad1adfd65b4a3434"
+  },
+  {
+    "route": "/locations/uzda",
+    "id": "measurement-ready",
+    "label": "Подготовка замера",
+    "alt": "Подготовка компактной кухни к точному замеру",
+    "result": "Доступ к углам и выводам помогает точно сверить глубины модулей и ширину маршрута до заказа.",
+    "webp": "/uploads/locations/uzda-visual-l3a/uzda-measurement-ready.webp",
+    "exists": true,
+    "hash": "f4e0b478b57ed78bddcc96e1b116f02212b37423f76a7cd2f7590efc600bf251"
+  },
+  {
+    "route": "/locations/cherven",
+    "id": "remote-brief",
+    "label": "Короткий бриф",
+    "alt": "Подготовка исходных данных для проекта кухни в Червене",
+    "result": "Фото углов, выводов и образцы материалов помогают начать разговор о проекте до точного выезда.",
+    "webp": "/uploads/locations/cherven-visual-l3b/cherven-remote-brief.webp",
+    "exists": true,
+    "hash": "457f8520bc5d8e0558fa6b14c35fcf06f3dab65d7f81831909c13573ab918b22"
+  },
+  {
+    "route": "/locations/cherven",
+    "id": "layout-choice",
+    "label": "Планировка",
+    "alt": "Тёплая угловая кухня с шалфейными фасадами для дома в Червене",
+    "result": "Компактная угловая форма объединяет мойку, готовку и холодильник, оставляя центр домашней кухни свободным.",
+    "webp": "/uploads/locations/cherven-visual-l3b/cherven-layout-choice.webp",
+    "exists": true,
+    "hash": "23c7d4a2b268824e6ad69f5b779f45ad5e9b9e48f8891df530a51d5fa213fc29"
+  },
+  {
+    "route": "/locations/cherven",
+    "id": "appliance-set",
+    "label": "Комплектация",
+    "alt": "Комплектация техникой и ящиками кухни в Червене",
+    "result": "Пенал, духовка и глубокие ящики образуют компактный блок, размеры которого важно закрепить до заказа.",
+    "webp": "/uploads/locations/cherven-visual-l3b/cherven-appliance-set.webp",
+    "exists": true,
+    "hash": "717281ccdc78cf3697b2665bd128b82262fc1f28ae30ab7f979b2075ddafce20"
+  },
+  {
+    "route": "/locations/cherven",
+    "id": "delivery-route",
+    "label": "Логистика",
+    "alt": "Подготовленный маршрут доставки деталей кухни в доме",
+    "result": "Защищённый пол и свободный проход от входа позволяют заранее проверить занос оставшихся деталей и столешницы.",
+    "webp": "/uploads/locations/cherven-visual-l3b/cherven-delivery-route.webp",
+    "exists": true,
+    "hash": "2365a2d79bd50c8c3e2d667cde3436135d7d32c2f286bb1e4f4f88a393b4dd19"
+  },
+  {
+    "route": "/locations/kletsk",
+    "id": "light-straight",
+    "label": "Лёгкая прямая",
+    "alt": "Светлая прямая кухня в небольшой квартире в Клецке",
+    "result": "Одна неглубокая рабочая линия сохраняет проход и не перегружает невысокое квартирное помещение.",
+    "webp": "/uploads/locations/kletsk-visual-l3b/kletsk-light-straight.webp",
+    "exists": true,
+    "hash": "51885aaedcda108ac18967601adba7e367e205a1339e9917f1acf3799d3576f0"
+  },
+  {
+    "route": "/locations/kletsk",
+    "id": "short-corner",
+    "label": "Короткий угол",
+    "alt": "Компактная угловая кухня с открытым проходом в Клецке",
+    "result": "Короткое второе плечо расширяет место подготовки, но оставляет основную линию движения открытой.",
+    "webp": "/uploads/locations/kletsk-visual-l3b/kletsk-short-corner.webp",
+    "exists": true,
+    "hash": "d965ebaad818f42b9ecfcafa88b8e77f4e94b829238efad820f84656535c0259"
+  },
+  {
+    "route": "/locations/kletsk",
+    "id": "inner-storage",
+    "label": "Внутри шкафов",
+    "alt": "Выдвижное внутреннее хранение маленькой кухни",
+    "result": "Глубокий ящик и узкий выдвижной пенал дают обзор содержимого, не требуя широкого радиуса распашных дверец.",
+    "webp": "/uploads/locations/kletsk-visual-l3b/kletsk-inner-storage.webp",
+    "exists": true,
+    "hash": "b691340f9ea218f904deb71ba60d4cdc2155a1f3cf5362a9bbfc01f987ad3b7f"
+  },
+  {
+    "route": "/locations/kletsk",
+    "id": "measurement-ready",
+    "label": "Точный замер",
+    "alt": "Небольшая кухня в Клецке подготовлена к точному замеру",
+    "result": "Открытые углы, окно и выводы позволяют точно сверить глубину модулей и ширину прохода до заказа.",
+    "webp": "/uploads/locations/kletsk-visual-l3b/kletsk-measurement-ready.webp",
+    "exists": true,
+    "hash": "9df491a911d4b6980b5a02c729d0d20fcf9741d4aea79f9f1f8831b604928ebb"
+  },
+  {
+    "route": "/locations/kopyl",
+    "id": "apartment-worktop",
+    "label": "Квартира",
+    "alt": "Терракотовая прямая кухня с длинной столешницей в Копыле",
+    "result": "Прямая кухня оставляет свободный маршрут к окну и даёт непрерывную поверхность между мойкой и плитой.",
+    "webp": "/uploads/locations/kopyl-visual-l3b/kopyl-apartment-worktop.webp",
+    "exists": true,
+    "hash": "7626344ab49b40791a67efe0a95a92dc324ddf46b5aa4880f3dee251f7842473"
+  },
+  {
+    "route": "/locations/kopyl",
+    "id": "house-corner",
+    "label": "Небольшой дом",
+    "alt": "Практичная угловая кухня для небольшого дома в Копыле",
+    "result": "Угловая линия использует две стены и сохраняет достаточно места для компактной семейной обеденной зоны.",
+    "webp": "/uploads/locations/kopyl-visual-l3b/kopyl-house-corner.webp",
+    "exists": true,
+    "hash": "a151139697dd17ea47e89dd5ec56fc68189daa19441ee7c3c25ea790c0c7af92"
+  },
+  {
+    "route": "/locations/kopyl",
+    "id": "work-zone",
+    "label": "Рабочая зона",
+    "alt": "Практичная рабочая зона терракотовой кухни",
+    "result": "Свободные участки между мойкой, подготовкой и варочной поверхностью уменьшают лишние перестановки во время готовки.",
+    "webp": "/uploads/locations/kopyl-visual-l3b/kopyl-work-zone.webp",
+    "exists": true,
+    "hash": "23880faa2aaeb3cac69890210c35e5afb0e7bf2ea65799b5f8f64968411362df"
+  },
+  {
+    "route": "/locations/kopyl",
+    "id": "installation-stage",
+    "label": "Подготовка монтажа",
+    "alt": "Подготовка модулей кухни к монтажу в небольшом доме",
+    "result": "Модули размещены вдоль одной стены, а свободный вход и защищённый пол позволяют начать установку без перестановок.",
+    "webp": "/uploads/locations/kopyl-visual-l3b/kopyl-installation-stage.webp",
+    "exists": true,
+    "hash": "fbf7221fd592e693e3e0f34b34e0bd0f5316c0888a95d434d1aff29e00b211bd"
+  },
+  {
+    "route": "/locations/krupki",
+    "id": "measurement-data",
+    "label": "Точные размеры",
+    "alt": "Подготовка точных размеров помещения для кухни в Крупках",
+    "result": "Фронтальный обзор стен, окна и выводов помогает заранее увидеть ограничения двухрядной планировки.",
+    "webp": "/uploads/locations/krupki-visual-l3c/krupki-measurement-data.webp",
+    "exists": true,
+    "hash": "673d8bfce98a173e2d60a59add8564f75da52cdd8128b3b790ae84a68a0b94a6"
+  },
+  {
+    "route": "/locations/krupki",
+    "id": "galley-layout",
+    "label": "Два ряда",
+    "alt": "Двухрядная кухня с прямым проходом в Крупках",
+    "result": "Две параллельные линии дают больше поверхности и оставляют прямой безопасный проход к окну.",
+    "webp": "/uploads/locations/krupki-visual-l3c/krupki-galley-layout.webp",
+    "exists": true,
+    "hash": "559b8ac0337a6428687c45f0b1a78dfb5b4cc36ac38ca1e17e11064a4edecb3c"
+  },
+  {
+    "route": "/locations/krupki",
+    "id": "appliance-fit",
+    "label": "Проверка техники",
+    "alt": "Проверка техники и дверей двухрядной кухни",
+    "result": "Зазоры у пенала и направления дверей важно проверить вместе, чтобы техника не перекрывала движение.",
+    "webp": "/uploads/locations/krupki-visual-l3c/krupki-appliance-fit.webp",
+    "exists": true,
+    "hash": "334051a412f7e9dcbc45b831ce8ff3cf90f37565746d1c1e840f5c233659a075"
+  },
+  {
+    "route": "/locations/krupki",
+    "id": "carrying-route",
+    "label": "Маршрут заноса",
+    "alt": "Подготовленный маршрут заноса кухни в Крупках",
+    "result": "Углы коридора и пол подготовлены так, чтобы компактные модули прошли к месту сборки без блокировки дверей.",
+    "webp": "/uploads/locations/krupki-visual-l3c/krupki-carrying-route.webp",
+    "exists": true,
+    "hash": "77dde56605bac8661ff9dc8992b4d29fc2412c87989312df415fd2311295ef96"
+  },
+  {
+    "route": "/locations/lyuban",
+    "id": "open-passage",
+    "label": "Свободный проход",
+    "alt": "Бирюзовая семейная кухня со свободным проходом в Любани",
+    "result": "Короткие рабочие стороны освобождают центр и сохраняют удобный маршрут к балконной двери и столу.",
+    "webp": "/uploads/locations/lyuban-visual-l3c/lyuban-open-passage.webp",
+    "exists": true,
+    "hash": "7f1d4bfcf8b4aeaaa784cab675960704d4f91355221bfc52285a151895a1e640"
+  },
+  {
+    "route": "/locations/lyuban",
+    "id": "appliance-priority",
+    "label": "Удобная техника",
+    "alt": "Компактное размещение техники в семейной кухне",
+    "result": "Холодильник и духовка собраны у торца, а мойка с посудомоечной машиной образуют короткую инженерную зону.",
+    "webp": "/uploads/locations/lyuban-visual-l3c/lyuban-appliance-priority.webp",
+    "exists": true,
+    "hash": "3179a4c8b0cecb32280f7a905a49a58e6be142a71b710cc86249091dc461fef6"
+  },
+  {
+    "route": "/locations/lyuban",
+    "id": "family-storage",
+    "label": "Семейное хранение",
+    "alt": "Доступные ящики и шкаф для семейного хранения",
+    "result": "Широкие нижние ящики и неглубокий шкаф для завтраков дают быстрый доступ, не занимая основной проход.",
+    "webp": "/uploads/locations/lyuban-visual-l3c/lyuban-family-storage.webp",
+    "exists": true,
+    "hash": "01eff99fe48fb11c83eecacb8f4c5bc7b12b306d46f840b1ce771f95e3251174"
+  },
+  {
+    "route": "/locations/lyuban",
+    "id": "measurement-ready",
+    "label": "Подготовка замера",
+    "alt": "Подготовка семейной кухни в Любани к точному замеру",
+    "result": "Освобождённые углы и балконный проём позволяют проверить не только стены, но и реальные траектории открывания.",
+    "webp": "/uploads/locations/lyuban-visual-l3c/lyuban-measurement-ready.webp",
+    "exists": true,
+    "hash": "164f0d040bc10e6c6953000c319967109e352fca5ca82c50ff09608a797a5dd0"
+  },
+  {
+    "route": "/locations/starye-dorogi",
+    "id": "family-corner",
+    "label": "Надёжная угловая",
+    "alt": "Тёмно-зелёная семейная угловая кухня в Старых Дорогах",
+    "result": "Прочная угловая кухня оставляет центр комнате и даёт две полноценные стороны для ежедневной готовки.",
+    "webp": "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-family-corner.webp",
+    "exists": true,
+    "hash": "2d5e668621b72d039b1132ec2ee1457910a67f7246b48efcca863802bcb610a6"
+  },
+  {
+    "route": "/locations/starye-dorogi",
+    "id": "ceiling-storage",
+    "label": "Верхнее хранение",
+    "alt": "Семейная кухня со шкафами хранения до потолка",
+    "result": "Шкафы из светлого ясеня доходят до потолка и принимают редкие запасы, не добавляя напольных модулей.",
+    "webp": "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-ceiling-storage.webp",
+    "exists": true,
+    "hash": "5ba55c975c9abf8c8d084e9e278f928e74a7ef92ca847b33c27b5e35722814e1"
+  },
+  {
+    "route": "/locations/starye-dorogi",
+    "id": "drawers-backsplash",
+    "label": "Ящики и фартук",
+    "alt": "Прочные ящики и керамический фартук семейной кухни",
+    "result": "Широкие ящики открывают содержимое целиком, а керамический фартук защищает рабочую стену у подготовки.",
+    "webp": "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-drawers-backsplash.webp",
+    "exists": true,
+    "hash": "f9379005e54eb639b98fd9fe7d963e52c38250e93f2d15d3dcc2609a809a1a6b"
+  },
+  {
+    "route": "/locations/starye-dorogi",
+    "id": "delivery-ready",
+    "label": "Готовность доставки",
+    "alt": "Подготовка семейной кухни в Старых Дорогах к доставке",
+    "result": "Защитный маршрут от входа и аккуратно размещённая столешница помогают завершить доставку без помех дому.",
+    "webp": "/uploads/locations/starye-dorogi-visual-l3c/starye-dorogi-delivery-ready.webp",
+    "exists": true,
+    "hash": "3a607baa12505a414a67d3622cc0cec0eae5ace9db65575cd52fd3d6b2e9b020"
+  }
+]

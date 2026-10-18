@@ -20,7 +20,9 @@ function frames(slug: string, material: string, notes: Array<[string, string, st
   return notes.map(([label, result, caution], index) => ({
     id: suffixes[index],
     label,
-    image: ["", "images", "materials-gallery-v2", slug, `${slug}-${suffixes[index]}.webp`].join("/"),
+    image: slug === "akril" && index === 0
+      ? "/images/visual-consistency-20261018/acrylic-front.webp"
+      : ["", "images", "materials-gallery-v2", slug, `${slug}-${suffixes[index]}.webp`].join("/"),
     alt: `${material}: ${label.toLowerCase()}, визуальный ориентир для выбора фасада кухни`,
     result,
     caution,
