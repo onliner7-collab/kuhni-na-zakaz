@@ -516,7 +516,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 )}
               </div>
 
-              <h1 className="break-words font-serif text-4xl font-bold leading-tight sm:text-5xl">
+              <h1 className="break-words font-serif text-3xl font-bold leading-tight sm:text-5xl">
                 {project.title}
               </h1>
               <div className="mt-4">
