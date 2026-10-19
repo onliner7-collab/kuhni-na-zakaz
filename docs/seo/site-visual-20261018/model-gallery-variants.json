@@ -1,0 +1,427 @@
+{
+  "catalog": [
+    {
+      "id": "wood-green",
+      "name": "Зелёная кухня в доме из бруса",
+      "images": [
+        "/images/catalog-showcase/wood-green.webp",
+        "/images/catalog-showcase/wood-green-angle.webp",
+        "/images/catalog-showcase/wood-green-detail.webp",
+        "/images/catalog-showcase/wood-green-interior.webp"
+      ]
+    },
+    {
+      "id": "country-blue",
+      "name": "Кухня с островом для загородного дома",
+      "images": [
+        "/images/catalog-showcase/country-blue.webp",
+        "/images/catalog-showcase/country-blue-angle.webp",
+        "/images/catalog-showcase/country-blue-detail.webp",
+        "/images/catalog-showcase/country-blue-interior.webp"
+      ]
+    },
+    {
+      "id": "cottage-white",
+      "name": "Компактная кухня для деревянного дома",
+      "images": [
+        "/images/catalog-showcase/cottage-white.webp",
+        "/images/catalog-showcase/cottage-white-angle-v2.webp",
+        "/images/catalog-showcase/cottage-white-detail.webp",
+        "/images/catalog-showcase/cottage-white-interior.webp"
+      ]
+    },
+    {
+      "id": "log-neoclassic",
+      "name": "Светлая неоклассика в бревенчатом доме",
+      "images": [
+        "/images/catalog-showcase/log-neoclassic.webp",
+        "/images/catalog-showcase/log-neoclassic-angle.webp",
+        "/images/catalog-showcase/log-neoclassic-detail.webp",
+        "/images/catalog-showcase/log-neoclassic-interior.webp"
+      ]
+    },
+    {
+      "id": "scandi-straight-3m",
+      "name": "Скандинавская прямая кухня 3 м",
+      "images": [
+        "/images/prices-showcase/generated/scandi-straight-3m-1.webp",
+        "/images/prices-showcase/generated/scandi-straight-3m-2.webp",
+        "/images/prices-showcase/generated/scandi-straight-3m-3.webp",
+        "/images/prices-showcase/generated/scandi-straight-3m-4.webp"
+      ]
+    },
+    {
+      "id": "modern-corner-3x2",
+      "name": "Светлая угловая кухня 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/modern-corner-3x2-1.webp",
+        "/images/prices-showcase/generated/modern-corner-3x2-2.webp",
+        "/images/prices-showcase/generated/modern-corner-3x2-3.webp",
+        "/images/prices-showcase/generated/modern-corner-3x2-4.webp"
+      ]
+    },
+    {
+      "id": "minimal-straight-24",
+      "name": "Минимализм без ручек, 2,4 м",
+      "images": [
+        "/images/prices-showcase/generated/minimal-straight-24-1.webp",
+        "/images/prices-showcase/generated/minimal-straight-24-2.webp",
+        "/images/prices-showcase/generated/minimal-straight-24-3.webp",
+        "/images/prices-showcase/generated/minimal-straight-24-4.webp"
+      ]
+    },
+    {
+      "id": "neoclassic-corner",
+      "name": "Неоклассика, угол 2,4 × 1,8 м",
+      "images": [
+        "/images/prices-showcase/generated/neoclassic-corner-1.webp",
+        "/images/prices-showcase/generated/neoclassic-corner-2.webp",
+        "/images/prices-showcase/generated/neoclassic-corner-3.webp",
+        "/images/prices-showcase/generated/neoclassic-corner-4.webp"
+      ]
+    },
+    {
+      "id": "loft-straight-3m",
+      "name": "Лофт с древесной фактурой, 3 м",
+      "images": [
+        "/images/prices-showcase/generated/loft-straight-3m-1.webp",
+        "/images/prices-showcase/generated/loft-straight-3m-2.webp",
+        "/images/prices-showcase/generated/loft-straight-3m-3.webp",
+        "/images/prices-showcase/generated/loft-straight-3m-4.webp"
+      ]
+    },
+    {
+      "id": "modern-small-2m",
+      "name": "Компактная прямая кухня 2 м",
+      "images": [
+        "/images/prices-showcase/generated/modern-small-2m-1.webp",
+        "/images/prices-showcase/generated/modern-small-2m-2.webp",
+        "/images/prices-showcase/generated/modern-small-2m-3.webp",
+        "/images/prices-showcase/generated/modern-small-2m-4.webp"
+      ]
+    },
+    {
+      "id": "scandi-corner",
+      "name": "Скандинавская кухня 2 × 1,5 м",
+      "images": [
+        "/images/prices-showcase/generated/scandi-corner-1.webp",
+        "/images/prices-showcase/generated/scandi-corner-2.webp",
+        "/images/prices-showcase/generated/scandi-corner-3.webp",
+        "/images/prices-showcase/generated/scandi-corner-4.webp"
+      ]
+    },
+    {
+      "id": "modern-ceiling-3m",
+      "name": "Современная кухня 3 м до потолка",
+      "images": [
+        "/images/prices-showcase/generated/modern-ceiling-3m-1.webp",
+        "/images/prices-showcase/generated/modern-ceiling-3m-2.webp",
+        "/images/prices-showcase/generated/modern-ceiling-3m-3.webp",
+        "/images/prices-showcase/generated/modern-ceiling-3m-4.webp"
+      ]
+    },
+    {
+      "id": "classic-corner",
+      "name": "Классическая кухня 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/classic-corner-1.webp",
+        "/images/catalog-showcase/classic-corner-angle-v2.webp",
+        "/images/prices-showcase/generated/classic-corner-3.webp",
+        "/images/prices-showcase/generated/classic-corner-4.webp"
+      ]
+    },
+    {
+      "id": "provence-straight",
+      "name": "Прованс в светлых тонах, 3 м",
+      "images": [
+        "/images/prices-showcase/generated/provence-straight-1.webp",
+        "/images/prices-showcase/generated/provence-straight-2.webp",
+        "/images/prices-showcase/generated/provence-straight-3.webp",
+        "/images/prices-showcase/generated/provence-straight-4.webp"
+      ]
+    },
+    {
+      "id": "minimal-corner-01",
+      "name": "Угловой минимализм 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/minimal-corner-01-1.webp",
+        "/images/prices-showcase/generated/minimal-corner-01-2.webp",
+        "/images/prices-showcase/generated/minimal-corner-01-3.webp",
+        "/images/prices-showcase/generated/minimal-corner-01-4.webp"
+      ]
+    },
+    {
+      "id": "hightech-corner",
+      "name": "Хай-тек, угол 2,8 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/hightech-corner-1.webp",
+        "/images/catalog-showcase/hightech-corner-angle-v2.webp",
+        "/images/prices-showcase/generated/hightech-corner-3.webp",
+        "/images/prices-showcase/generated/hightech-corner-4.webp"
+      ]
+    },
+    {
+      "id": "modern-u-shape",
+      "name": "П-образная кухня 2 × 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/modern-u-shape-1.webp",
+        "/images/prices-showcase/generated/modern-u-shape-2.webp",
+        "/images/prices-showcase/generated/modern-u-shape-3.webp",
+        "/images/prices-showcase/generated/modern-u-shape-4.webp"
+      ]
+    },
+    {
+      "id": "neoclassic-u-shape",
+      "name": "Неоклассика 2,4 × 3 × 2,4 м",
+      "images": [
+        "/images/prices-showcase/generated/neoclassic-u-shape-1.webp",
+        "/images/prices-showcase/generated/neoclassic-u-shape-2.webp",
+        "/images/prices-showcase/generated/neoclassic-u-shape-3.webp",
+        "/images/prices-showcase/generated/neoclassic-u-shape-4.webp"
+      ]
+    },
+    {
+      "id": "minimal-island",
+      "name": "Минимализм с островом 1,6 × 0,9 м",
+      "images": [
+        "/images/prices-showcase/generated/minimal-island-1.webp",
+        "/images/prices-showcase/generated/minimal-island-2.webp",
+        "/images/prices-showcase/generated/minimal-island-3.webp",
+        "/images/prices-showcase/generated/minimal-island-4.webp"
+      ]
+    },
+    {
+      "id": "hightech-island",
+      "name": "Хай-тек с островом 1,8 × 0,9 м",
+      "images": [
+        "/images/prices-showcase/generated/hightech-island-1.webp",
+        "/images/prices-showcase/generated/hightech-island-2.webp",
+        "/images/prices-showcase/generated/hightech-island-3.webp",
+        "/images/prices-showcase/generated/hightech-island-4.webp"
+      ]
+    },
+    {
+      "id": "loft-peninsula",
+      "name": "Лофт с полуостровом 1,5 м",
+      "images": [
+        "/images/prices-showcase/generated/loft-peninsula-1.webp",
+        "/images/prices-showcase/generated/loft-peninsula-2.webp",
+        "/images/prices-showcase/generated/loft-peninsula-3.webp",
+        "/images/prices-showcase/generated/loft-peninsula-4.webp"
+      ]
+    },
+    {
+      "id": "scandi-peninsula",
+      "name": "Скандинавская кухня с полуостровом",
+      "images": [
+        "/images/prices-showcase/generated/scandi-peninsula-1.webp",
+        "/images/prices-showcase/generated/scandi-peninsula-2.webp",
+        "/images/prices-showcase/generated/scandi-peninsula-3.webp",
+        "/images/prices-showcase/generated/scandi-peninsula-4.webp"
+      ]
+    },
+    {
+      "id": "studio-green",
+      "name": "Зелёная прямая кухня для студии",
+      "images": [
+        "/uploads/kitchens/catalog/pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp",
+        "/images/catalog-showcase/studio-green-angle.webp",
+        "/images/catalog-showcase/studio-green-detail.webp",
+        "/images/catalog-showcase/studio-green-interior.webp"
+      ]
+    },
+    {
+      "id": "corner-green",
+      "name": "Зелёная угловая кухня в скандинавском стиле",
+      "images": [
+        "/uploads/kitchens/catalog/uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
+        "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp",
+        "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp",
+        "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp",
+        "/images/catalog-showcase/corner-green-interior.webp"
+      ]
+    }
+  ],
+  "prices": [
+    {
+      "id": "scandi-straight-3m",
+      "name": "Скандинавская прямая кухня 3 м",
+      "images": [
+        "/images/prices-showcase/generated/scandi-straight-3m-1.webp",
+        "/images/prices-showcase/generated/scandi-straight-3m-2.webp",
+        "/images/prices-showcase/generated/scandi-straight-3m-3.webp",
+        "/images/prices-showcase/generated/scandi-straight-3m-4.webp"
+      ]
+    },
+    {
+      "id": "modern-corner-3x2",
+      "name": "Светлая угловая кухня 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/modern-corner-3x2-1.webp",
+        "/images/prices-showcase/generated/modern-corner-3x2-2.webp",
+        "/images/prices-showcase/generated/modern-corner-3x2-3.webp",
+        "/images/prices-showcase/generated/modern-corner-3x2-4.webp"
+      ]
+    },
+    {
+      "id": "minimal-straight-24",
+      "name": "Минимализм без ручек, 2,4 м",
+      "images": [
+        "/images/prices-showcase/generated/minimal-straight-24-1.webp",
+        "/images/prices-showcase/generated/minimal-straight-24-2.webp",
+        "/images/prices-showcase/generated/minimal-straight-24-3.webp",
+        "/images/prices-showcase/generated/minimal-straight-24-4.webp"
+      ]
+    },
+    {
+      "id": "neoclassic-corner",
+      "name": "Неоклассика, угол 2,4 × 1,8 м",
+      "images": [
+        "/images/prices-showcase/generated/neoclassic-corner-1.webp",
+        "/images/prices-showcase/generated/neoclassic-corner-2.webp",
+        "/images/prices-showcase/generated/neoclassic-corner-3.webp",
+        "/images/prices-showcase/generated/neoclassic-corner-4.webp"
+      ]
+    },
+    {
+      "id": "loft-straight-3m",
+      "name": "Лофт с древесной фактурой, 3 м",
+      "images": [
+        "/images/prices-showcase/generated/loft-straight-3m-1.webp",
+        "/images/prices-showcase/generated/loft-straight-3m-2.webp",
+        "/images/prices-showcase/generated/loft-straight-3m-3.webp",
+        "/images/prices-showcase/generated/loft-straight-3m-4.webp"
+      ]
+    },
+    {
+      "id": "modern-small-2m",
+      "name": "Компактная прямая кухня 2 м",
+      "images": [
+        "/images/prices-showcase/generated/modern-small-2m-1.webp",
+        "/images/prices-showcase/generated/modern-small-2m-2.webp",
+        "/images/prices-showcase/generated/modern-small-2m-3.webp",
+        "/images/prices-showcase/generated/modern-small-2m-4.webp"
+      ]
+    },
+    {
+      "id": "scandi-corner",
+      "name": "Скандинавская кухня 2 × 1,5 м",
+      "images": [
+        "/images/prices-showcase/generated/scandi-corner-1.webp",
+        "/images/prices-showcase/generated/scandi-corner-2.webp",
+        "/images/prices-showcase/generated/scandi-corner-3.webp",
+        "/images/prices-showcase/generated/scandi-corner-4.webp"
+      ]
+    },
+    {
+      "id": "modern-ceiling-3m",
+      "name": "Современная кухня 3 м до потолка",
+      "images": [
+        "/images/prices-showcase/generated/modern-ceiling-3m-1.webp",
+        "/images/prices-showcase/generated/modern-ceiling-3m-2.webp",
+        "/images/prices-showcase/generated/modern-ceiling-3m-3.webp",
+        "/images/prices-showcase/generated/modern-ceiling-3m-4.webp"
+      ]
+    },
+    {
+      "id": "classic-corner",
+      "name": "Классическая кухня 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/classic-corner-1.webp",
+        "/images/prices-showcase/generated/classic-corner-2.webp",
+        "/images/prices-showcase/generated/classic-corner-3.webp",
+        "/images/prices-showcase/generated/classic-corner-4.webp"
+      ]
+    },
+    {
+      "id": "provence-straight",
+      "name": "Прованс в светлых тонах, 3 м",
+      "images": [
+        "/images/prices-showcase/generated/provence-straight-1.webp",
+        "/images/prices-showcase/generated/provence-straight-2.webp",
+        "/images/prices-showcase/generated/provence-straight-3.webp",
+        "/images/prices-showcase/generated/provence-straight-4.webp"
+      ]
+    },
+    {
+      "id": "minimal-corner-01",
+      "name": "Угловой минимализм 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/minimal-corner-01-1.webp",
+        "/images/prices-showcase/generated/minimal-corner-01-2.webp",
+        "/images/prices-showcase/generated/minimal-corner-01-3.webp",
+        "/images/prices-showcase/generated/minimal-corner-01-4.webp"
+      ]
+    },
+    {
+      "id": "hightech-corner",
+      "name": "Хай-тек, угол 2,8 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/hightech-corner-1.webp",
+        "/images/prices-showcase/generated/hightech-corner-2.webp",
+        "/images/prices-showcase/generated/hightech-corner-3.webp",
+        "/images/prices-showcase/generated/hightech-corner-4.webp"
+      ]
+    },
+    {
+      "id": "modern-u-shape",
+      "name": "П-образная кухня 2 × 3 × 2 м",
+      "images": [
+        "/images/prices-showcase/generated/modern-u-shape-1.webp",
+        "/images/prices-showcase/generated/modern-u-shape-2.webp",
+        "/images/prices-showcase/generated/modern-u-shape-3.webp",
+        "/images/prices-showcase/generated/modern-u-shape-4.webp"
+      ]
+    },
+    {
+      "id": "neoclassic-u-shape",
+      "name": "Неоклассика 2,4 × 3 × 2,4 м",
+      "images": [
+        "/images/prices-showcase/generated/neoclassic-u-shape-1.webp",
+        "/images/prices-showcase/generated/neoclassic-u-shape-2.webp",
+        "/images/prices-showcase/generated/neoclassic-u-shape-3.webp",
+        "/images/prices-showcase/generated/neoclassic-u-shape-4.webp"
+      ]
+    },
+    {
+      "id": "minimal-island",
+      "name": "Минимализм с островом 1,6 × 0,9 м",
+      "images": [
+        "/images/prices-showcase/generated/minimal-island-1.webp",
+        "/images/prices-showcase/generated/minimal-island-2.webp",
+        "/images/prices-showcase/generated/minimal-island-3.webp",
+        "/images/prices-showcase/generated/minimal-island-4.webp"
+      ]
+    },
+    {
+      "id": "hightech-island",
+      "name": "Хай-тек с островом 1,8 × 0,9 м",
+      "images": [
+        "/images/prices-showcase/generated/hightech-island-1.webp",
+        "/images/prices-showcase/generated/hightech-island-2.webp",
+        "/images/prices-showcase/generated/hightech-island-3.webp",
+        "/images/prices-showcase/generated/hightech-island-4.webp"
+      ]
+    },
+    {
+      "id": "loft-peninsula",
+      "name": "Лофт с полуостровом 1,5 м",
+      "images": [
+        "/images/prices-showcase/generated/loft-peninsula-1.webp",
+        "/images/prices-showcase/generated/loft-peninsula-2.webp",
+        "/images/prices-showcase/generated/loft-peninsula-3.webp",
+        "/images/prices-showcase/generated/loft-peninsula-4.webp"
+      ]
+    },
+    {
+      "id": "scandi-peninsula",
+      "name": "Скандинавская кухня с полуостровом",
+      "images": [
+        "/images/prices-showcase/generated/scandi-peninsula-1.webp",
+        "/images/prices-showcase/generated/scandi-peninsula-2.webp",
+        "/images/prices-showcase/generated/scandi-peninsula-3.webp",
+        "/images/prices-showcase/generated/scandi-peninsula-4.webp"
+      ]
+    }
+  ]
+}

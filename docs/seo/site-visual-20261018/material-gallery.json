@@ -1,0 +1,650 @@
+[
+  {
+    "index": 1,
+    "id": "hero-ivory",
+    "expected": "/images/materials-hub-20261014/hero-ivory.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Fhero-ivory.webp&w=640&q=75",
+    "alt": "Светлая прямая кухня с фасадами цвета слоновой кости и древесным декором",
+    "width": 195
+  },
+  {
+    "index": 2,
+    "id": "enamel-green",
+    "expected": "/images/materials-hub-20261014/enamel-green.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Fenamel-green.webp&w=640&q=75",
+    "alt": "Зелёная угловая кухня с рамочными фасадами и светлой столешницей",
+    "width": 195
+  },
+  {
+    "index": 3,
+    "id": "ldsp-home",
+    "expected": "/images/materials-hub-20261014/ldsp-home.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Fldsp-home.webp&w=640&q=75",
+    "alt": "Прямая кухня с древесным декором, чёрными ручками и серой столешницей для дома",
+    "width": 195
+  },
+  {
+    "index": 4,
+    "id": "hpl-graphite",
+    "expected": "/images/materials-hub-20261014/hpl-graphite.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Fhpl-graphite.webp&w=640&q=75",
+    "alt": "Графитовая угловая кухня с гладкими фасадами и светлым верхом",
+    "width": 195
+  },
+  {
+    "index": 5,
+    "id": "acrylic-grey",
+    "expected": "/images/materials-hub-20261014/acrylic-grey.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Facrylic-grey.webp&w=640&q=75",
+    "alt": "Светло-серая прямая кухня с глянцевыми фасадами у окна",
+    "width": 195
+  },
+  {
+    "index": 6,
+    "id": "veneer-oak",
+    "expected": "/images/materials-hub-20261014/veneer-oak.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Fveneer-oak.webp&w=640&q=75",
+    "alt": "Кухня с вертикальным древесным рисунком фасадов и островом",
+    "width": 195
+  },
+  {
+    "index": 7,
+    "id": "film-country",
+    "expected": "/images/materials-hub-20261014/film-country.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Ffilm-country.webp&w=640&q=75",
+    "alt": "Светлая кухня с рамочными фасадами и древесной столешницей для загородного дома",
+    "width": 195
+  },
+  {
+    "index": 8,
+    "id": "facade-detail",
+    "expected": "/images/materials-hub-20261014/facade-detail.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmaterials-hub-20261014%252Ffacade-detail.webp&w=640&q=75",
+    "alt": "Крупный план бежевого рамочного фасада рядом с древесной панелью и столешницей",
+    "width": 195
+  },
+  {
+    "index": 9,
+    "id": "surface-ldsp-a-front",
+    "expected": "/images/materials-gallery-v2/ldsp/ldsp-a-front.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-a-front.webp&w=640&q=75",
+    "alt": "ЛДСП: фасад спереди, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 10,
+    "id": "surface-ldsp-b-angle",
+    "expected": "/images/materials-gallery-v2/ldsp/ldsp-b-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-b-angle.webp&w=640&q=75",
+    "alt": "ЛДСП: торец под углом, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 11,
+    "id": "surface-ldsp-c-macro",
+    "expected": "/images/materials-gallery-v2/ldsp/ldsp-c-macro.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-c-macro.webp&w=640&q=75",
+    "alt": "ЛДСП: фактура вблизи, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 12,
+    "id": "surface-ldsp-d-kitchen",
+    "expected": "/images/materials-gallery-v2/ldsp/ldsp-d-kitchen.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-d-kitchen.webp&w=640&q=75",
+    "alt": "ЛДСП: в интерьере, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 13,
+    "id": "surface-plastik-hpl-a-front",
+    "expected": "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-a-front.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fplastik-hpl%2Fplastik-hpl-a-front.webp&w=640&q=75",
+    "alt": "Пластик HPL: ровная плоскость, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 14,
+    "id": "surface-plastik-hpl-b-angle",
+    "expected": "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-b-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fplastik-hpl%2Fplastik-hpl-b-angle.webp&w=640&q=75",
+    "alt": "Пластик HPL: свет под углом, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 15,
+    "id": "surface-plastik-hpl-c-macro",
+    "expected": "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-c-macro.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fplastik-hpl%2Fplastik-hpl-c-macro.webp&w=640&q=75",
+    "alt": "Пластик HPL: поверхность вблизи, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 16,
+    "id": "surface-plastik-hpl-d-kitchen",
+    "expected": "/images/materials-gallery-v2/plastik-hpl/plastik-hpl-d-kitchen.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fplastik-hpl%2Fplastik-hpl-d-kitchen.webp&w=640&q=75",
+    "alt": "Пластик HPL: готовая композиция, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 17,
+    "id": "surface-shpon-a-front",
+    "expected": "/images/materials-gallery-v2/shpon/shpon-a-front.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fshpon%2Fshpon-a-front.webp&w=640&q=75",
+    "alt": "Шпон: рисунок фасада, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 18,
+    "id": "surface-shpon-b-angle",
+    "expected": "/images/materials-gallery-v2/shpon/shpon-b-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fshpon%2Fshpon-b-angle.webp&w=640&q=75",
+    "alt": "Шпон: стыки и угол, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 19,
+    "id": "surface-shpon-c-macro",
+    "expected": "/images/materials-gallery-v2/shpon/shpon-c-macro.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fshpon%2Fshpon-c-macro.webp&w=640&q=75",
+    "alt": "Шпон: волокна вблизи, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 20,
+    "id": "surface-shpon-d-kitchen",
+    "expected": "/images/materials-gallery-v2/shpon/shpon-d-kitchen.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fshpon%2Fshpon-d-kitchen.webp&w=640&q=75",
+    "alt": "Шпон: шпон в кухне, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 21,
+    "id": "surface-akril-a-front",
+    "expected": "/images/visual-consistency-20261018/acrylic-front.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fvisual-consistency-20261018%2Facrylic-front.webp&w=640&q=75",
+    "alt": "Акрил: фасад спереди, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 22,
+    "id": "surface-akril-b-angle",
+    "expected": "/images/materials-gallery-v2/akril/akril-b-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-b-angle.webp&w=640&q=75",
+    "alt": "Акрил: блик под углом, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 23,
+    "id": "surface-akril-c-macro",
+    "expected": "/images/materials-gallery-v2/akril/akril-c-macro.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-c-macro.webp&w=640&q=75",
+    "alt": "Акрил: глянец вблизи, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 24,
+    "id": "surface-akril-d-kitchen",
+    "expected": "/images/materials-gallery-v2/akril/akril-d-kitchen.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-d-kitchen.webp&w=640&q=75",
+    "alt": "Акрил: акрил в интерьере, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 25,
+    "id": "surface-mdf-emal-a-front",
+    "expected": "/images/materials-gallery-v2/mdf-emal/mdf-emal-a-front.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fmdf-emal%2Fmdf-emal-a-front.webp&w=640&q=75",
+    "alt": "МДФ с эмалью: цвет фасада, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 26,
+    "id": "surface-mdf-emal-b-angle",
+    "expected": "/images/materials-gallery-v2/mdf-emal/mdf-emal-b-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fmdf-emal%2Fmdf-emal-b-angle.webp&w=640&q=75",
+    "alt": "МДФ с эмалью: свет на грани, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 27,
+    "id": "surface-mdf-emal-c-macro",
+    "expected": "/images/materials-gallery-v2/mdf-emal/mdf-emal-c-macro.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fmdf-emal%2Fmdf-emal-c-macro.webp&w=640&q=75",
+    "alt": "МДФ с эмалью: финиш вблизи, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 28,
+    "id": "surface-mdf-emal-d-kitchen",
+    "expected": "/images/materials-gallery-v2/mdf-emal/mdf-emal-d-kitchen.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fmdf-emal%2Fmdf-emal-d-kitchen.webp&w=640&q=75",
+    "alt": "МДФ с эмалью: эмаль в кухне, визуальный ориентир для выбора фасада кухни",
+    "width": 390
+  },
+  {
+    "index": 29,
+    "id": "idea-wood-green-main",
+    "expected": "/images/catalog-showcase/wood-green.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fwood-green.webp&w=640&q=75",
+    "alt": "Зелёная кухня в доме из бруса: общий вид, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 30,
+    "id": "idea-wood-green-angle",
+    "expected": "/images/catalog-showcase/wood-green-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fwood-green-angle.webp&w=640&q=75",
+    "alt": "Зелёная кухня в доме из бруса: другой ракурс, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 31,
+    "id": "idea-country-blue-main",
+    "expected": "/images/catalog-showcase/country-blue.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fcountry-blue.webp&w=640&q=75",
+    "alt": "Кухня с островом для загородного дома: общий вид, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 32,
+    "id": "idea-country-blue-angle",
+    "expected": "/images/catalog-showcase/country-blue-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fcountry-blue-angle.webp&w=640&q=75",
+    "alt": "Кухня с островом для загородного дома: другой ракурс, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 33,
+    "id": "idea-cottage-white-main",
+    "expected": "/images/catalog-showcase/cottage-white.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fcottage-white.webp&w=640&q=75",
+    "alt": "Компактная кухня для деревянного дома: общий вид, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 34,
+    "id": "idea-cottage-white-angle",
+    "expected": "/images/catalog-showcase/cottage-white-angle-v2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fcottage-white-angle-v2.webp&w=640&q=75",
+    "alt": "Компактная кухня для деревянного дома: другой ракурс, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 35,
+    "id": "idea-log-neoclassic-main",
+    "expected": "/images/catalog-showcase/log-neoclassic.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Flog-neoclassic.webp&w=640&q=75",
+    "alt": "Светлая неоклассика в бревенчатом доме: общий вид, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 36,
+    "id": "idea-log-neoclassic-angle",
+    "expected": "/images/catalog-showcase/log-neoclassic-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Flog-neoclassic-angle.webp&w=640&q=75",
+    "alt": "Светлая неоклассика в бревенчатом доме: другой ракурс, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 37,
+    "id": "idea-scandi-straight-3m-main",
+    "expected": "/images/prices-showcase/generated/scandi-straight-3m-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fscandi-straight-3m-1.webp&w=640&q=75",
+    "alt": "Скандинавская прямая кухня 3 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 38,
+    "id": "idea-scandi-straight-3m-angle",
+    "expected": "/images/prices-showcase/generated/scandi-straight-3m-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fscandi-straight-3m-2.webp&w=640&q=75",
+    "alt": "Скандинавская прямая кухня 3 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 39,
+    "id": "idea-modern-corner-3x2-main",
+    "expected": "/images/prices-showcase/generated/modern-corner-3x2-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-corner-3x2-1.webp&w=640&q=75",
+    "alt": "Светлая угловая кухня 3 × 2 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 40,
+    "id": "idea-modern-corner-3x2-angle",
+    "expected": "/images/prices-showcase/generated/modern-corner-3x2-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-corner-3x2-2.webp&w=640&q=75",
+    "alt": "Светлая угловая кухня 3 × 2 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 41,
+    "id": "idea-minimal-straight-24-main",
+    "expected": "/images/prices-showcase/generated/minimal-straight-24-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fminimal-straight-24-1.webp&w=640&q=75",
+    "alt": "Минимализм без ручек, 2,4 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 42,
+    "id": "idea-minimal-straight-24-angle",
+    "expected": "/images/prices-showcase/generated/minimal-straight-24-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fminimal-straight-24-2.webp&w=640&q=75",
+    "alt": "Минимализм без ручек, 2,4 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 43,
+    "id": "idea-neoclassic-corner-main",
+    "expected": "/images/prices-showcase/generated/neoclassic-corner-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fneoclassic-corner-1.webp&w=640&q=75",
+    "alt": "Неоклассика, угол 2,4 × 1,8 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 44,
+    "id": "idea-neoclassic-corner-angle",
+    "expected": "/images/prices-showcase/generated/neoclassic-corner-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fneoclassic-corner-2.webp&w=640&q=75",
+    "alt": "Неоклассика, угол 2,4 × 1,8 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 45,
+    "id": "idea-loft-straight-3m-main",
+    "expected": "/images/prices-showcase/generated/loft-straight-3m-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Floft-straight-3m-1.webp&w=640&q=75",
+    "alt": "Лофт с древесной фактурой, 3 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 46,
+    "id": "idea-loft-straight-3m-angle",
+    "expected": "/images/prices-showcase/generated/loft-straight-3m-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Floft-straight-3m-2.webp&w=640&q=75",
+    "alt": "Лофт с древесной фактурой, 3 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 47,
+    "id": "idea-modern-small-2m-main",
+    "expected": "/images/prices-showcase/generated/modern-small-2m-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-small-2m-1.webp&w=640&q=75",
+    "alt": "Компактная прямая кухня 2 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 48,
+    "id": "idea-modern-small-2m-angle",
+    "expected": "/images/prices-showcase/generated/modern-small-2m-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-small-2m-2.webp&w=640&q=75",
+    "alt": "Компактная прямая кухня 2 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 49,
+    "id": "idea-scandi-corner-main",
+    "expected": "/images/prices-showcase/generated/scandi-corner-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fscandi-corner-1.webp&w=640&q=75",
+    "alt": "Скандинавская кухня 2 × 1,5 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 50,
+    "id": "idea-scandi-corner-angle",
+    "expected": "/images/prices-showcase/generated/scandi-corner-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fscandi-corner-2.webp&w=640&q=75",
+    "alt": "Скандинавская кухня 2 × 1,5 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 51,
+    "id": "idea-modern-ceiling-3m-main",
+    "expected": "/images/prices-showcase/generated/modern-ceiling-3m-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-ceiling-3m-1.webp&w=640&q=75",
+    "alt": "Современная кухня 3 м до потолка: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 52,
+    "id": "idea-modern-ceiling-3m-angle",
+    "expected": "/images/prices-showcase/generated/modern-ceiling-3m-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-ceiling-3m-2.webp&w=640&q=75",
+    "alt": "Современная кухня 3 м до потолка: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 53,
+    "id": "idea-classic-corner-main",
+    "expected": "/images/prices-showcase/generated/classic-corner-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fclassic-corner-1.webp&w=640&q=75",
+    "alt": "Классическая кухня 3 × 2 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 54,
+    "id": "idea-classic-corner-angle",
+    "expected": "/images/catalog-showcase/classic-corner-angle-v2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fclassic-corner-angle-v2.webp&w=640&q=75",
+    "alt": "Классическая кухня 3 × 2 м: другой ракурс, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 55,
+    "id": "idea-provence-straight-main",
+    "expected": "/images/prices-showcase/generated/provence-straight-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fprovence-straight-1.webp&w=640&q=75",
+    "alt": "Прованс в светлых тонах, 3 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 56,
+    "id": "idea-provence-straight-angle",
+    "expected": "/images/prices-showcase/generated/provence-straight-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fprovence-straight-2.webp&w=640&q=75",
+    "alt": "Прованс в светлых тонах, 3 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 57,
+    "id": "idea-minimal-corner-01-main",
+    "expected": "/images/prices-showcase/generated/minimal-corner-01-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fminimal-corner-01-1.webp&w=640&q=75",
+    "alt": "Угловой минимализм 3 × 2 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 58,
+    "id": "idea-minimal-corner-01-angle",
+    "expected": "/images/prices-showcase/generated/minimal-corner-01-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fminimal-corner-01-2.webp&w=640&q=75",
+    "alt": "Угловой минимализм 3 × 2 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 59,
+    "id": "idea-hightech-corner-main",
+    "expected": "/images/prices-showcase/generated/hightech-corner-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fhightech-corner-1.webp&w=640&q=75",
+    "alt": "Хай-тек, угол 2,8 × 2 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 60,
+    "id": "idea-hightech-corner-angle",
+    "expected": "/images/catalog-showcase/hightech-corner-angle-v2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fcatalog-showcase%2Fhightech-corner-angle-v2.webp&w=640&q=75",
+    "alt": "Хай-тек, угол 2,8 × 2 м: другой ракурс, визуальный пример кухни",
+    "width": 390
+  },
+  {
+    "index": 61,
+    "id": "idea-modern-u-shape-main",
+    "expected": "/images/prices-showcase/generated/modern-u-shape-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-u-shape-1.webp&w=640&q=75",
+    "alt": "П-образная кухня 2 × 3 × 2 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 62,
+    "id": "idea-modern-u-shape-angle",
+    "expected": "/images/prices-showcase/generated/modern-u-shape-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fmodern-u-shape-2.webp&w=640&q=75",
+    "alt": "П-образная кухня 2 × 3 × 2 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 63,
+    "id": "idea-neoclassic-u-shape-main",
+    "expected": "/images/prices-showcase/generated/neoclassic-u-shape-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fneoclassic-u-shape-1.webp&w=640&q=75",
+    "alt": "Неоклассика 2,4 × 3 × 2,4 м: общий вид, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 64,
+    "id": "idea-neoclassic-u-shape-angle",
+    "expected": "/images/prices-showcase/generated/neoclassic-u-shape-2.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fprices-showcase%252Fgenerated%252Fneoclassic-u-shape-2.webp&w=640&q=75",
+    "alt": "Неоклассика 2,4 × 3 × 2,4 м: другой ракурс, визуальный пример кухни",
+    "width": 195
+  },
+  {
+    "index": 65,
+    "id": "mdf-20261015-film-apartment",
+    "expected": "/images/mdf-facades-20261015/film-apartment.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-apartment.webp&w=640&q=75",
+    "alt": "Светлая прямая кухня с гладкими фасадами и столешницей под дуб",
+    "width": 195
+  },
+  {
+    "index": 66,
+    "id": "mdf-20261015-film-country",
+    "expected": "/images/mdf-facades-20261015/film-country.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-country.webp&w=640&q=75",
+    "alt": "Зелёная кухня с рамочными фасадами и мойкой у окна в загородном доме",
+    "width": 195
+  },
+  {
+    "index": 67,
+    "id": "mdf-20261015-enamel-apartment",
+    "expected": "/images/mdf-facades-20261015/enamel-apartment.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Fenamel-apartment.webp&w=640&q=75",
+    "alt": "Терракотовая угловая кухня с гладкими фасадами и высокими верхними шкафами",
+    "width": 195
+  },
+  {
+    "index": 68,
+    "id": "mdf-20261015-film-profile",
+    "expected": "/images/mdf-facades-20261015/film-profile.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-profile.webp&w=640&q=75",
+    "alt": "Крупный план светлого фасада с неглубокой фрезеровкой и латунной ручкой",
+    "width": 195
+  },
+  {
+    "index": 69,
+    "id": "mdf-20261015-film-wood",
+    "expected": "/images/mdf-facades-20261015/film-wood.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-wood.webp&w=640&q=75",
+    "alt": "Компактная кухня с древесным декором нижних фасадов и серыми верхними шкафами",
+    "width": 195
+  },
+  {
+    "index": 70,
+    "id": "mdf-20261015-finish-combination",
+    "expected": "/images/mdf-facades-20261015/finish-combination.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffinish-combination.webp&w=640&q=75",
+    "alt": "Серый гладкий фасад рядом с древесной столешницей и светлым фартуком",
+    "width": 195
+  },
+  {
+    "index": 71,
+    "id": "mdf-20261015-film-apartment-angle",
+    "expected": "/images/mdf-facades-20261015/film-apartment-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-apartment-angle.webp&w=640&q=75",
+    "alt": "Светлая прямая кухня с гладкими фасадами с другого ракурса",
+    "width": 195
+  },
+  {
+    "index": 72,
+    "id": "mdf-20261015-film-apartment-edge",
+    "expected": "/images/mdf-facades-20261015/film-apartment-edge.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-apartment-edge.webp&w=640&q=75",
+    "alt": "Крупный план приоткрытого светлого фасада, округлого торца и столешницы",
+    "width": 195
+  },
+  {
+    "index": 73,
+    "id": "mdf-20261015-film-country-angle",
+    "expected": "/images/mdf-facades-20261015/film-country-angle.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-country-angle.webp&w=640&q=75",
+    "alt": "Другой ракурс зелёной кухни с мойкой у окна и рамочными фасадами",
+    "width": 195
+  },
+  {
+    "index": 74,
+    "id": "mdf-20261015-film-country-profile",
+    "expected": "/images/mdf-facades-20261015/film-country-profile.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Ffilm-country-profile.webp&w=640&q=75",
+    "alt": "Зелёный фасад с неглубокой прямоугольной фрезеровкой и чёрной ручкой крупным планом",
+    "width": 195
+  },
+  {
+    "index": 75,
+    "id": "mdf-20261015-profile-daylight",
+    "expected": "/images/mdf-facades-20261015/profile-daylight.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Fprofile-daylight.webp&w=640&q=75",
+    "alt": "Светлый рамочный фасад с латунной ручкой при нейтральном дневном освещении",
+    "width": 195
+  },
+  {
+    "index": 76,
+    "id": "mdf-20261015-profile-warm",
+    "expected": "/images/mdf-facades-20261015/profile-warm.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-facades-20261015%252Fprofile-warm.webp&w=640&q=75",
+    "alt": "Тот же светлый рамочный фасад с латунной ручкой при тёплом освещении",
+    "width": 195
+  },
+  {
+    "index": 77,
+    "id": "enamel-corner-sage",
+    "expected": "/images/mdf-enamel-20261017/corner-sage.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-enamel-20261017%252Fcorner-sage.webp&w=640&q=75",
+    "alt": "Светлая угловая кухня с зелёными нижними рамочными фасадами и каменной столешницей",
+    "width": 195
+  },
+  {
+    "index": 78,
+    "id": "enamel-straight-gloss",
+    "expected": "/images/mdf-enamel-20261017/straight-gloss.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-enamel-20261017%252Fstraight-gloss.webp&w=640&q=75",
+    "alt": "Прямая кухня с гладкими светло-серыми глянцевыми фасадами и древесной столешницей",
+    "width": 195
+  },
+  {
+    "index": 79,
+    "id": "enamel-milling-samples",
+    "expected": "/images/mdf-enamel-20261017/milling-samples.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-enamel-20261017%252Fmilling-samples.webp&w=640&q=75",
+    "alt": "Три образца крашеных фасадов: гладкий, с тонкой рамкой и с широкой рамочной фрезеровкой",
+    "width": 195
+  },
+  {
+    "index": 80,
+    "id": "enamel-finish-samples",
+    "expected": "/images/mdf-enamel-20261017/finish-samples.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fkapi%2Fwatermarked-image%3Fsrc%3D%252Fimages%252Fmdf-enamel-20261017%252Ffinish-samples.webp&w=640&q=75",
+    "alt": "Два серых рамочных крашеных фасада рядом: матовый слева и глянцевый с отражением окна справа",
+    "width": 195
+  },
+  {
+    "index": 81,
+    "id": "enamel-old-matte",
+    "expected": "/images/materials-gallery-v2/mdf-emal/mdf-emal-kitchen-1.webp",
+    "src": "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fmdf-emal%2Fmdf-emal-kitchen-1.webp&w=640&q=75",
+    "alt": "Крупный фрагмент кухни с матовыми окрашенными фасадами",
+    "width": 390
+  }
+]

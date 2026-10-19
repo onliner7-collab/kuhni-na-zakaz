@@ -1,0 +1,21 @@
+{
+  "verifiedDate": "2026-10-19",
+  "runtime": "a0c0ac3421adf20637bb5af7e645773075b93b83",
+  "primaryRuntime": "6cb731480bc2c08dfac3aae34b758c650b3d5d5b",
+  "pages": 112,
+  "viewportChecks": 448,
+  "switchPages": 75,
+  "states": 639,
+  "stateIssues": [],
+  "materialGalleryFrames": 81,
+  "assets": 558,
+  "assetIssues": [],
+  "metadataComparable": 107,
+  "metadataChanges": [],
+  "sitemap": {
+    "status": 200,
+    "count": 112,
+    "modified18": 56
+  },
+  "robotsStatus": 200
+}

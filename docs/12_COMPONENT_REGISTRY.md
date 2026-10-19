@@ -297,3 +297,7 @@ EnamelVisualJourney.tsx: EnamelActions, EnamelFinishes, EnamelProfiles, EnamelGa
 # 2026-10-18 — Визуальное соответствие
 
 StyleVisualExplorer, ScenarioVisualExplorer, LayoutVisualExplorer, MaterialDecisionExplorer, LocationVisualStage/InitialStage: целый кадр, русская подпись, мобильная обратная связь. HomeMobileShowroom и DesignProjectInteractive явно показывают независимые критерии; удалены фиктивные состояния стадий дизайн-проекта. BorisovKitchenPicker/PilotPage и AngularKitchenPage: корректные геометрия, alt и кадрирование. Backend и формы не переписаны. Фактические проверки и rollout: `docs/seo/2026-10-18-site-visual-consistency.md`.
+
+## 2026-10-19 — Итог соответствия фотографий: DEPLOYED_AND_VERIFIED
+
+Обновлённые визуальные компоненты опубликованы. Проверены 75 страниц и 639 состояний; дополнительно 81 кадр materials lightbox, 24 галереи каталога и 18 ценовых галерей. Мобильные contain/возврат кадра в область просмотра и независимость параметров проверены; формы проверялись с перехватом без реальных лидов.
