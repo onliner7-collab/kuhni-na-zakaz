@@ -1,0 +1,66 @@
+[
+  {
+    "name": "hero-beige",
+    "prompt": "Use case: photorealistic-natural. Asset type: hero photo for Russian custom kitchen website. Create a single realistic editorial interior photograph, landscape 3:2. A believable Belarusian apartment kitchen, L-shaped contemporary smooth warm beige HPL-faced doors with an oak-effect lower section, visible fine separate color-matched edge banding on a nearby door, quartz-look light worktop, practical fitted appliances, daylight from a window. Full kitchen in frame, human-scale cabinetry and realistic construction, no curved or routed panel fronts. Soft natural light, understated warm stone palette. Actual photography look with natural imperfections, no 3D render appearance. No people, no lettering, no logos or watermark. This is an illustrative design concept, not a claim of a completed installation. Compose for a large website image with no embedded captions.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-bea0a855-c3f3-4513-b273-512b0188e9ad.png",
+    "projectSource": "public/images/hpl-20261020/hero-beige.png",
+    "webp": "/images/hpl-20261020/hero-beige.webp",
+    "generator": "built-in image_gen"
+  },
+  {
+    "name": "straight-sage",
+    "prompt": "Single photorealistic editorial interior photograph, landscape 3:2, realistic compact straight 3-metre custom kitchen in an ordinary Belarusian new apartment. Muted sage green smooth matte HPL-faced flat doors on board substrate, pale stone-look worktop, small black handles, built-in oven, daylight, believable dimensions and cabinetry. Full kitchen, natural lived-in details, no people, no lettering or brand marks. Photography, never a CGI or 3D render. Educational visual concept, do not simulate any proof of completed work.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-4c753728-05ca-4b3c-b43c-4293d6ecfe4a.png",
+    "projectSource": "public/images/hpl-20261020/straight-sage.png",
+    "webp": "/images/hpl-20261020/straight-sage.webp",
+    "generator": "built-in image_gen"
+  },
+  {
+    "name": "wood-country",
+    "prompt": "Single realistic interior photograph, landscape 3:2. Modest bright country home kitchen with large window, straight run of contemporary flat oak-effect HPL-faced lower doors and warm white upper doors, simple dark handles, practical pale worktop and freestanding everyday objects. Warm realistic daylight, true wood-effect laminated texture rather than solid wood, realistic fine edge banding, no ornate routing. Full kitchen visible. No people, text, logos or watermark. Natural architectural photography, not a render. Illustrative design concept.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-40e56a0d-8e16-48d4-b174-80eb30eafe63.png",
+    "projectSource": "public/images/hpl-20261020/wood-country.png",
+    "webp": "/images/hpl-20261020/wood-country.webp",
+    "generator": "built-in image_gen"
+  },
+  {
+    "name": "graphite-island",
+    "prompt": "Single realistic architectural interior photograph, landscape 3:2. Spacious family house kitchen with graphite flat matte HPL-faced cabinet doors and a small practical island, light warm worktop, oak-effect tall cabinet accent, daylight. Visible integrated-appliance proportions, slim separate black handles, no impossible cantilevers or routed panels. Deep grey surface subtly catches soft side light, natural photographic texture. No people, no text, no logos, no watermark, no CGI render look. Illustrative design concept.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-89430d65-521a-4a68-8a99-2ddcc4247c53.png",
+    "projectSource": "public/images/hpl-20261020/graphite-island.png",
+    "webp": "/images/hpl-20261020/graphite-island.webp",
+    "generator": "built-in image_gen"
+  },
+  {
+    "name": "gloss-white",
+    "prompt": "Single photorealistic interior photograph, landscape 3:2. Small bright apartment kitchen with flat white glossy HPL-faced kitchen doors, clearly visible soft reflected window light, grey stone-effect worktop and simple satin metal handles. Show a full practical L-shaped kitchen from a moderate wide camera angle, not distorted. Realistic fingerprints-free clean sample styling without claiming technical antifingerprint properties. No text, people, brands or watermark. Natural product-interior photography, not 3D rendering. Illustrative visual concept.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-4cb9dbd7-94f9-41bd-a85e-cb69165c336c.png",
+    "projectSource": "public/images/hpl-20261020/gloss-white.png",
+    "webp": "/images/hpl-20261020/gloss-white.webp",
+    "generator": "built-in image_gen"
+  },
+  {
+    "name": "substrates-edge",
+    "prompt": "Single photorealistic macro product photograph, landscape 3:2. On a neutral warm grey workshop table, TWO small sample cutaway blocks of laminated kitchen door board placed next to each other. Left substrate is fine homogeneous light tan MDF fibreboard; right substrate is coarser wood chip particleboard with clearly visible chip structure. Each has a thin solid matte beige HPL decorative laminate sheet bonded flat on top, and a separate matching beige edge band neatly applied to ONE long edge; exposed cut ends reveal the different cores. Physically plausible sub-millimetre laminate, no giant thick layers. Soft side lighting, exceptional realistic surface detail, photography not schematic diagram or 3D render. No labels, text, arrows, rulers, people or logos. This is a conceptual sample not a certified section.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-fd7509ae-687d-4265-b3e8-8ad02112de4f.png",
+    "projectSource": "public/images/hpl-20261020/substrates-edge.png",
+    "webp": "/images/hpl-20261020/substrates-edge.webp",
+    "generator": "built-in image_gen"
+  },
+  {
+    "name": "edge-macro",
+    "prompt": "Single photorealistic extreme close-up product photograph, landscape 3:2. A finished warm beige matte HPL-faced flat kitchen door corner resting on a pale workshop table, separate matching edge band wraps the exposed straight edge, a very fine plausible joining line visible at the interface, clean but not magically seamless. Frame tightly on front surface, top edge and door thickness with soft side lighting and shallow but sufficient depth of field so corner and edge are clear. A small oak-effect decorative sample blurred in background. No hands, text, brand marks or watermark. Real macro photography, not 3D rendering. An illustrative reference for discussing edge appearance.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-4d9a9aa3-0dc1-420f-87c5-34f06e256e9b.png",
+    "projectSource": "public/images/hpl-20261020/edge-macro.png",
+    "webp": "/images/hpl-20261020/edge-macro.webp",
+    "generator": "built-in image_gen"
+  },
+  {
+    "name": "workshop-lamination",
+    "prompt": "Single realistic documentary-style photograph, landscape 3:2. Anonymous clean small furniture workshop, close view of a workbench with a rectangular MDF door blank and a thin beige HPL decorative sheet aligned above the board, alongside a finished matching edge-banded sample and a plain unbranded hand pressure roller. Focus on materials and preparation, no machinery operation, no worker or hands, no spray or unsafe scene. Natural workshop window light, believable light tan MDF cut edges, thin laminated sheet and restrained material detail. No text, logos or watermarks. Photographic illustration of the concept of bonding kitchen door laminate, not a real record of a particular company's workshop; not CGI or 3D rendering.",
+    "sourcePath": "C:\\Users\\User\\.codex\\generated_images\\01a15a1b-ec4d-7032-81cc-8aeab219dffc\\exec-7a0bd5f2-bc16-4113-98c8-46fe4c3716f8.png",
+    "projectSource": "public/images/hpl-20261020/workshop-lamination.png",
+    "webp": "/images/hpl-20261020/workshop-lamination.webp",
+    "generator": "built-in image_gen"
+  }
+]

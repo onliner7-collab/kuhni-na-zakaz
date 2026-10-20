@@ -13,6 +13,7 @@ export type MaterialState = {
   mdfGallery: { material: string; layout: string; limit: number; activePhoto: string | null };
   ldspView: { construction: number; decor: number; room: number; alternative: string };
   enamelView: { finish: number; profile: number; room: number; alternative: string; galleryFinish: string; galleryMilling: string; galleryLayout: string; limit: number; photo: string | null };
+  hplView: { base: number; finish: number; room: number; alternative: string; color: string; texture: string; layout: string; limit: number; photo: string | null };
   onlyDifferences: boolean;
   scenarioId: string;
   returnTo: string;
@@ -29,6 +30,7 @@ export const EMPTY_MATERIAL_STATE: MaterialState = {
   mdfGallery: { material: "", layout: "", limit: 6, activePhoto: null },
   ldspView: { construction: 0, decor: 0, room: 0, alternative: "mdf-film" },
   enamelView: { finish: 0, profile: 0, room: 0, alternative: "mdf-film", galleryFinish: "", galleryMilling: "", galleryLayout: "", limit: 6, photo: null },
+  hplView: { base: 0, finish: 0, room: 0, alternative: "acrylic", color: "", texture: "", layout: "", limit: 6, photo: null },
   onlyDifferences: false,
   scenarioId: "straight-3m",
   returnTo: "/materials#compare",
@@ -137,6 +139,17 @@ export function sanitizeMaterialState(
       galleryLayout: ["Прямая", "Угловая", "Деталь"].includes(v.enamelView?.galleryLayout || "") ? v.enamelView!.galleryLayout : "",
       limit: typeof v.enamelView?.limit === "number" && Number.isFinite(v.enamelView.limit) ? Math.min(60, Math.max(6, Math.floor(v.enamelView.limit))) : 6,
       photo: typeof v.enamelView?.photo === "string" && /^enamel-[a-z0-9-]{1,80}$/.test(v.enamelView.photo) ? v.enamelView.photo : null,
+    },
+    hplView: {
+      base: v.hplView?.base === 1 ? 1 : 0,
+      finish: v.hplView?.finish === 1 ? 1 : 0,
+      room: [0, 1, 2].includes(v.hplView?.room ?? -1) ? v.hplView!.room : 0,
+      alternative: ["acrylic", "mdf-enamel", "ldsp"].includes(v.hplView?.alternative || "") ? v.hplView!.alternative : "acrylic",
+      color: ["Светлые", "Тёмные", "Древесные", "Цветные"].includes(v.hplView?.color || "") ? v.hplView!.color : "",
+      texture: ["Однотонная", "Под дерево", "Комбинированная"].includes(v.hplView?.texture || "") ? v.hplView!.texture : "",
+      layout: ["Прямая", "Угловая", "С островом", "Деталь"].includes(v.hplView?.layout || "") ? v.hplView!.layout : "",
+      limit: typeof v.hplView?.limit === "number" && Number.isFinite(v.hplView.limit) ? Math.min(60, Math.max(6, Math.floor(v.hplView.limit))) : 6,
+      photo: typeof v.hplView?.photo === "string" && /^hpl-[a-z0-9-]{1,80}$/.test(v.hplView.photo) ? v.hplView.photo : null,
     },
     mdfGallery: {
       material: ["mdf-film", "mdf-enamel"].includes(v.mdfGallery?.material || "") ? v.mdfGallery!.material : "",

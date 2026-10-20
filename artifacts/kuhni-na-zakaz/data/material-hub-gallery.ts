@@ -2,6 +2,7 @@ import { MATERIAL_EXPLORATION } from "./material-exploration";
 import { catalogModels } from "./catalog-showcase";
 import { MDF_PHOTOS } from "./mdf-gallery";
 import { ENAMEL_PHOTOS } from "./enamel-content";
+import { HPL_PHOTOS } from "./hpl-content";
 export type MaterialPhoto = {
   id: string;
   src: string;
@@ -181,4 +182,5 @@ export const MATERIAL_PHOTOS: MaterialPhoto[] = [
   ...catalog,
   ...MDF_PHOTOS,
   ...ENAMEL_PHOTOS,
+  ...HPL_PHOTOS,
 ].filter((p, i, arr) => arr.findIndex((x) => x.src === p.src) === i);

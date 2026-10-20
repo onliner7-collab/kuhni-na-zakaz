@@ -1,0 +1,74 @@
+[
+  {
+    "name": "hero-beige",
+    "original": "public/images/hpl-20261020/hero-beige.png",
+    "src": "/images/hpl-20261020/hero-beige.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 72576,
+    "mobileBytes": 25334
+  },
+  {
+    "name": "straight-sage",
+    "original": "public/images/hpl-20261020/straight-sage.png",
+    "src": "/images/hpl-20261020/straight-sage.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 74954,
+    "mobileBytes": 29296
+  },
+  {
+    "name": "wood-country",
+    "original": "public/images/hpl-20261020/wood-country.png",
+    "src": "/images/hpl-20261020/wood-country.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 126568,
+    "mobileBytes": 45538
+  },
+  {
+    "name": "graphite-island",
+    "original": "public/images/hpl-20261020/graphite-island.png",
+    "src": "/images/hpl-20261020/graphite-island.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 64214,
+    "mobileBytes": 27658
+  },
+  {
+    "name": "gloss-white",
+    "original": "public/images/hpl-20261020/gloss-white.png",
+    "src": "/images/hpl-20261020/gloss-white.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 74786,
+    "mobileBytes": 31068
+  },
+  {
+    "name": "substrates-edge",
+    "original": "public/images/hpl-20261020/substrates-edge.png",
+    "src": "/images/hpl-20261020/substrates-edge.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 69088,
+    "mobileBytes": 25370
+  },
+  {
+    "name": "edge-macro",
+    "original": "public/images/hpl-20261020/edge-macro.png",
+    "src": "/images/hpl-20261020/edge-macro.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 41026,
+    "mobileBytes": 12016
+  },
+  {
+    "name": "workshop-lamination",
+    "original": "public/images/hpl-20261020/workshop-lamination.png",
+    "src": "/images/hpl-20261020/workshop-lamination.webp",
+    "width": 1200,
+    "height": 800,
+    "bytes": 70312,
+    "mobileBytes": 29728
+  }
+]

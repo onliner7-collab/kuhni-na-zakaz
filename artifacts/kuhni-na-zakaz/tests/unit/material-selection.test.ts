@@ -18,6 +18,20 @@ import {
 import { answerRows } from "../../lib/leads/details";
 
 const now = Date.now();
+test("HPL view restores safely without changing preference, TTL or lead payload", () => {
+  assert.deepEqual(sanitizeMaterialState({version:1},now).hplView,EMPTY_MATERIAL_STATE.hplView);
+  const s=sanitizeMaterialState({...EMPTY_MATERIAL_STATE,comparisonIds:["hpl","acrylic"],preferredId:"hpl",updatedAt:now,hplView:{base:1,finish:1,room:2,alternative:"ldsp",color:"Древесные",texture:"Под дерево",layout:"Прямая",limit:12,photo:"hpl-wood-country"}},now);
+  assert.equal(s.hplView.base,1);
+  assert.equal(s.hplView.photo,"hpl-wood-country");
+  assert.equal(s.updatedAt,now);
+  assert.equal(s.preferredId,"hpl");
+  const bad=sanitizeMaterialState({...s,hplView:{base:-1,finish:50,room:99,alternative:"unknown",color:"PRIVATE",texture:"PRIVATE",layout:"PRIVATE",limit:Infinity,photo:"https://evil.test"}},now);
+  assert.deepEqual(bad.hplView,EMPTY_MATERIAL_STATE.hplView);
+  const lead=normalizeMaterialLead(s);
+  assert.deepEqual(lead.comparisonIds,["hpl","acrylic"]);
+  assert.ok(!("hplView" in lead));
+  assert.ok(!JSON.stringify(lead).includes("hpl-wood-country"));
+});
 test("enamel view migrates safely, preserves explicit selection and is excluded from leads", () => {
   assert.deepEqual(sanitizeMaterialState({version:1},now).enamelView,EMPTY_MATERIAL_STATE.enamelView);
   const s=sanitizeMaterialState({...EMPTY_MATERIAL_STATE,comparisonIds:["mdf-enamel","hpl"],preferredId:"mdf-enamel",updatedAt:now,enamelView:{finish:1,profile:2,room:2,alternative:"hpl",galleryFinish:"Глянцевая",galleryMilling:"Гладкая",galleryLayout:"Прямая",limit:12,photo:"enamel-straight-gloss"}},now);

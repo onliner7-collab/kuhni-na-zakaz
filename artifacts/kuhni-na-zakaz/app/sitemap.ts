@@ -271,7 +271,9 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = VISUAL_REVIEW_PATHS.has(normalizePath(path)) || normalizePath(path) === "/locations/minsk"
+  const effectiveLastModified = normalizePath(path) === "/materials/plastik-hpl"
+    ? new Date("2026-10-20T00:00:00.000Z")
+    : VISUAL_REVIEW_PATHS.has(normalizePath(path)) || normalizePath(path) === "/locations/minsk"
     ? new Date("2026-10-18T00:00:00.000Z")
     : ["/materials/ldsp", "/materials/mdf-emal"].includes(normalizePath(path))
     ? new Date("2026-10-17T00:00:00.000Z")

@@ -244,3 +244,7 @@ smolevichi-planning-v2-20261012: шесть новых встроенных imag
 # 2026-10-18 — Пять принятых иллюстраций
 
 `public/images/visual-consistency-20261018`: classic-frame, acrylic-front, vitebsk-ceiling, fanipol-ceiling, soligorsk-ceiling. Только встроенный Codex/OpenAI imagegen; PNG sources сохранены в проекте, UI WebP/AVIF, мобильные версии трёх регионов. `asset-manifest.json` содержит промпты и reference paths. 11 оптимизированных файлов — 346611 байт; максимальный 52322 байта. Дополнительно AVIF-производная существующего length-5m для прямой кухни Гомеля; источник не выдан за местный заказ. Старые файлы не удалены. Недостоверные повторы исключены из choices, исходники сохранены. Отчёт: `docs/seo/2026-10-18-site-visual-consistency.md`.
+
+## 2026-10-20 — HPL: содержание и иллюстрации
+
+public/images/hpl-20261020/: 8 встроенных image_gen PNG-мастеров, WebP 1200×800 и 720×480, русские alt/подписи. Процесс и срезы — условные ИИ-иллюстрации; все новые src WebP. Промпты/вес/контактный лист — stage-5/image-*.json и image-contact-sheet.jpg.

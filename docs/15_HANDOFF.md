@@ -532,3 +532,7 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 # 2026-10-18 — Текущая задача соответствия фото
 
 Продолжать из `C:/Users/User/Desktop/kuhni-visual-consistency-20261018`, ветка codex/site-visual-consistency-20261018, база production b5715231. Не публиковать dirty work основной папки. 112 страниц проверены в браузере, 636 состояний локально без ошибок загрузки новых кадров; unit 20+6 и browser suites 14+14 PASS. Пять новых imagegen сохранены с источниками/WebP; доступ генерации восстановился после повторной проверки пользователем. Финальная сборка и QA — в отчёте, деплой ещё не подтверждён. Источник текущего статуса: `docs/seo/2026-10-18-site-visual-consistency.md`; варианты и hashes: `docs/seo/site-visual-20261018/`.
+
+## 2026-10-20 — HPL: содержание и иллюстрации
+
+HPL продолжать из изолированной ветки codex/hpl-20261020 в C:/Users/User/Desktop/kuhni-hpl-20261020. Полный отчёт и актуальный runtime/production QA: docs/seo/materials-comparison/stage-5/implementation.md. Общий store и ID hpl сохранены. Не переносить весь dirty основной checkout и не начинать акрил в этом этапе.

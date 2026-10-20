@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-20",
+  "hplCandidates": 164,
+  "observedAutocompleteCandidates": 25,
+  "hypothesisCandidates": 139,
+  "clusters": {
+    "Заказ кухни": 17,
+    "Цена и состав": 17,
+    "Основание и покрытие": 18,
+    "Кромка и торец": 14,
+    "Фото и декоры": 18,
+    "Финиш и внешний вид": 13,
+    "Размеры и планировки": 12,
+    "Помещения и эксплуатация": 14,
+    "Уход и ограничения": 18,
+    "Выбор и сравнение": 15,
+    "Заказ и комплектация": 8
+  },
+  "priorities": {
+    "P1": 130,
+    "P2": 34
+  },
+  "supportingCandidates": 21,
+  "rejectedCandidates": 43,
+  "rawRows": 270,
+  "uniqueRawCandidates": 228,
+  "autocompleteRequests": 16,
+  "successfulAutocompleteRequests": 16,
+  "autocompleteOccurrences": 73,
+  "uniqueAutocompletePhrases": 57
+}

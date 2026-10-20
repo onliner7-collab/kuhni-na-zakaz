@@ -297,3 +297,7 @@ EnamelVisualJourney.tsx: EnamelActions, EnamelFinishes, EnamelProfiles, EnamelGa
 # 2026-10-18 — Визуальное соответствие
 
 StyleVisualExplorer, ScenarioVisualExplorer, LayoutVisualExplorer, MaterialDecisionExplorer, LocationVisualStage/InitialStage: целый кадр, русская подпись, мобильная обратная связь. HomeMobileShowroom и DesignProjectInteractive явно показывают независимые критерии; удалены фиктивные состояния стадий дизайн-проекта. BorisovKitchenPicker/PilotPage и AngularKitchenPage: корректные геометрия, alt и кадрирование. Backend и формы не переписаны. Фактические проверки и rollout: `docs/seo/2026-10-18-site-visual-consistency.md`.
+
+## 2026-10-20 — HPL: содержание и иллюстрации
+
+HplVisualJourney: основания/финиши/помещения/альтернативы, фильтры, lightbox и общие ценовые сценарии. hplView в store v1 сохраняет просмотр отдельно от выбора и заявки. Общие MaterialDecisionExplorer/MaterialDetailGallery не переписаны.
