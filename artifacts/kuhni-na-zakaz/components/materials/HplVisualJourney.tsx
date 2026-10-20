@@ -30,6 +30,49 @@ function useHplView() {
   };
 }
 
+function SwitchPhoto({ src, alt }: { src: string; alt: string }) {
+  const [loaded, setLoaded] = useState<string | null>(null);
+  const [failed, setFailed] = useState<string | null>(null);
+  return (
+    <div className="relative aspect-[3/2] overflow-hidden bg-stone-100">
+      <Image
+        key={src}
+        src={src}
+        alt={alt}
+        width={1200}
+        height={800}
+        unoptimized
+        loading="eager"
+        onLoad={() => setLoaded(src)}
+        onError={() => setFailed(src)}
+        className="h-full w-full object-cover"
+      />
+      {loaded !== src && (
+        <p
+          role="status"
+          className="absolute inset-x-3 bottom-3 rounded-lg bg-white/95 px-3 py-2 text-sm text-stone-800"
+        >
+          {failed === src ? (
+            <>
+              Не удалось загрузить фото.{" "}
+              <a
+                className="underline"
+                href={src}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Открыть изображение
+              </a>
+            </>
+          ) : (
+            "Загружаем фото…"
+          )}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function HplActions() {
   const { openComparison } = useMaterials();
   return (
@@ -171,14 +214,7 @@ export function HplFinishes() {
         ))}
       </div>
       <div className="grid overflow-hidden rounded-3xl bg-white lg:grid-cols-[1.3fr_1fr]">
-        <Image
-          src={p.src}
-          alt={p.alt}
-          width={1200}
-          height={800}
-          sizes="(max-width: 1024px) 100vw, 60vw"
-          className="aspect-[3/2] h-full w-full object-cover"
-        />
+        <SwitchPhoto src={p.src} alt={p.alt} />
         <div className="p-5 md:p-7" aria-live="polite">
           <h3 className="text-xl font-bold">
             {view.finish === 0 ? "Мягкое отражение" : "Выраженные отражения"}
@@ -402,13 +438,9 @@ export function HplRooms() {
         ))}
       </div>
       <div className="grid overflow-hidden rounded-3xl bg-white lg:grid-cols-[1.3fr_1fr]">
-        <Image
+        <SwitchPhoto
           src={HPL_PHOTOS[room.photo].src}
           alt={HPL_PHOTOS[room.photo].alt}
-          width={1200}
-          height={800}
-          sizes="(max-width: 1024px) 100vw, 60vw"
-          className="aspect-[3/2] h-full w-full object-cover"
         />
         <div className="p-5 md:p-7" aria-live="polite">
           <h3 className="text-xl font-bold">{room.title}</h3>
@@ -467,6 +499,9 @@ export function HplComparison() {
           </button>
         ))}
       </div>
+      <p role="status" className="mb-3 text-sm font-semibold text-violet-900">
+        Сравниваем HPL и {alt.title.toLowerCase()}
+      </p>
       <div className="grid gap-4 md:grid-cols-2">
         {[
           {
@@ -482,14 +517,14 @@ export function HplComparison() {
             text: text[alt.id],
           },
         ].map((m) => (
-          <article key={m.id} className="overflow-hidden rounded-3xl bg-white">
-            <Image
+          <article
+            key={m.id}
+            data-comparison-material={m.id}
+            className={`overflow-hidden rounded-3xl bg-white ${m.id === "hpl" ? "order-2 md:order-1" : "order-1 md:order-2"}`}
+          >
+            <SwitchPhoto
               src={m.image}
               alt={`Визуальная идея для сравнения: ${m.title}`}
-              width={1200}
-              height={800}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="aspect-[3/2] w-full object-cover"
             />
             <div className="p-5">
               <h3 className="text-xl font-bold">{m.title}</h3>
@@ -563,14 +598,7 @@ export function HplPriceScenarios() {
       </div>
       <div className="grid overflow-hidden rounded-3xl bg-white lg:grid-cols-[1.2fr_1fr]">
         <figure>
-          <Image
-            src={p.src}
-            alt={p.alt}
-            width={1200}
-            height={800}
-            sizes="(max-width: 1024px) 100vw, 55vw"
-            className="aspect-[3/2] w-full object-cover"
-          />
+          <SwitchPhoto src={p.src} alt={p.alt} />
           <figcaption className="p-4 text-xs leading-5 text-stone-600">
             ИИ-иллюстрация планировки. Фото не задаёт точные размеры и состав
             сметы.

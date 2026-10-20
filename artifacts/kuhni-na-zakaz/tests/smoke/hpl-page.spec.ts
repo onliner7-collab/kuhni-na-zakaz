@@ -91,6 +91,37 @@ test("all 42 material navigation transitions retain comparison and preference",a
   expect(transitions).toBe(42);
 });
 
+test("each room, alternative, finish and price scenario displays its own decoded photo",async({page})=>{
+  for(const width of [390,1440]){
+    await page.setViewportSize({width,height:960});
+    await page.goto(route+selected);
+    await expect(page.locator('[data-testid="materials-selection"]')).not.toHaveAttribute('inert','');
+    for(const [label,file] of [['Квартира и новостройка','straight-sage'],['Дом и кухня-гостиная','graphite-island'],['Дача и деревенский дом','wood-country']]){
+      await page.locator('#hpl-rooms').getByRole('button',{name:label,exact:true}).click();
+      const photo=page.locator('#hpl-rooms img');
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement)=>new URL(i.src).pathname)).toBe(`/images/hpl-20261020/${file}.webp`);
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement, expected:string)=>i.complete&&i.naturalWidth>0&&i.currentSrc.includes(expected+'.webp'),file)).toBe(true);
+    }
+    for(const [label,id,file] of [['С акрилом','acrylic','acrylic-grey'],['С эмалью','mdf-enamel','enamel-green'],['С ЛДСП','ldsp','ldsp-home']]){
+      await page.locator('#hpl-alternatives').getByRole('button',{name:label,exact:true}).click();
+      const card=page.locator(`[data-comparison-material="${id}"]`);const photo=card.locator('img');
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement)=>new URL(i.src).pathname)).toBe(`/images/materials-hub-20261014/${file}.webp`);
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement, expected:string)=>i.complete&&i.naturalWidth>0&&i.currentSrc.includes(expected+'.webp'),file)).toBe(true);
+      if(width===390)expect((await card.boundingBox())!.y).toBeLessThan((await page.locator('[data-comparison-material="hpl"]').boundingBox())!.y);
+    }
+    for(const [index,file] of [[0,'straight-sage'],[1,'hero-beige']] as const){
+      await page.locator('#hpl-price').getByRole('button').nth(index).click();const photo=page.locator('#hpl-price img');
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement)=>new URL(i.src).pathname)).toBe(`/images/hpl-20261020/${file}.webp`);
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement, expected:string)=>i.complete&&i.naturalWidth>0&&i.currentSrc.includes(expected+'.webp'),file)).toBe(true);
+    }
+    for(const [label,file] of [['Матовая поверхность','straight-sage'],['Глянцевая поверхность','gloss-white']]){
+      await page.locator('#hpl-finish').getByRole('button',{name:label,exact:true}).click();const photo=page.locator('#hpl-finish img');
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement)=>new URL(i.src).pathname)).toBe(`/images/hpl-20261020/${file}.webp`);
+      await expect.poll(()=>photo.evaluate((i:HTMLImageElement, expected:string)=>i.complete&&i.naturalWidth>0&&i.currentSrc.includes(expected+'.webp'),file)).toBe(true);
+    }
+  }
+});
+
 test("lead contains explicit HPL selection and scenario but no view or history",async({page})=>{
   let payload:Record<string,any>|undefined;
   await page.route('**/kapi/leads',async intercepted=>{
