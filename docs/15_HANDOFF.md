@@ -536,3 +536,7 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 ## 2026-10-20 — HPL: содержание и иллюстрации
 
 HPL продолжать из изолированной ветки codex/hpl-20261020 в C:/Users/User/Desktop/kuhni-hpl-20261020. Полный отчёт и актуальный runtime/production QA: docs/seo/materials-comparison/stage-5/implementation.md. Общий store и ID hpl сохранены. Не переносить весь dirty основной checkout и не начинать акрил в этом этапе.
+
+## 2026-10-20 — Исправление смены фото HPL
+
+Актуальный HPL runtime 39d84165bf9df533d336ce4bbed4a0a25020aa55. Исправлены переключатели фотографий, production 5/5 PASS (включая 42 перехода и заявку). Изолированная ветка codex/hpl-20261020, отчёт stage-5/switch-fix.md. Документальные коммиты после runtime повторно не деплоить.

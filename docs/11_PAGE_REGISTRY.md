@@ -322,3 +322,7 @@ Runtime commit `07d0e1c` задеплоен штатным Timeweb script. Вс�
 ## 2026-10-20 — HPL: содержание и иллюстрации
 
 /materials/plastik-hpl: самостоятельная облицовка и кромление, основные основания МДФ/ДСП, 11 тем ядра, 8 новых ИИ-иллюстраций, сравнение и расчёт. Прежние фотоблоки сохранены. Статус и QA: docs/seo/materials-comparison/stage-5/implementation.md.
+
+## 2026-10-20 — Исправление смены фото HPL
+
+/materials/plastik-hpl: фото помещений, альтернатив, комплектаций и финишей загружаются напрямую из WebP. Runtime 39d84165, production 5/5 PASS. Подробности: docs/seo/materials-comparison/stage-5/switch-fix.md.

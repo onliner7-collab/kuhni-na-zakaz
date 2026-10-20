@@ -1,0 +1,244 @@
+From https://github.com/onliner7-collab/kuhni-na-zakaz
+ * branch            codex/hpl-20261020 -> FETCH_HEAD
+   d595e04..39d8416  codex/hpl-20261020 -> origin/codex/hpl-20261020
+Previous HEAD position was d595e04 feat: explain HPL facades with construction photos and saved comparison
+HEAD is now at 39d8416 fix: show selected HPL photos immediately in interactive sections
+Setting up swapspace version 1, size = 4 GiB (4294963200 bytes)
+no label, UUID=32435e73-c9a8-4beb-b9e0-27ab6084acf5
+   ▲ Next.js 15.3.9
+   - Environments: .env
+   - Experiments (use with caution):
+     ✓ webpackBuildWorker
+     ✓ webpackMemoryOptimizations
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 45s
+   Linting and checking validity of types ...
+
+   We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
+   The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
+
+   	- include was updated to add '.next-hpl-39d84165bf9df533d336ce4bbed4a0a25020aa55/types/**/*.ts'
+
+   Collecting page data ...
+   Generating static pages (0/175) ...
+   Generating static pages (43/175) 
+   Generating static pages (87/175) 
+   Generating static pages (131/175) 
+ ✓ Generating static pages (175/175)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                      Size  First Load JS  Revalidate  Expire
+┌ ○ /                                                         25.7 kB         264 kB          1h      1y
+├ ○ /_not-found                                                 336 B         102 kB
+├ ○ /about                                                    3.52 kB         184 kB
+├ ƒ /admin/activity-log                                         336 B         102 kB
+├ ƒ /admin/blog                                                 745 B         115 kB
+├ ƒ /admin/blog/[id]/edit                                       141 B         115 kB
+├ ƒ /admin/blog/new                                             141 B         115 kB
+├ ƒ /admin/calculator                                         2.99 kB         105 kB
+├ ƒ /admin/configurator-visual                                  250 B         106 kB
+├ ƒ /admin/configurator-visual/appliances                       250 B         106 kB
+├ ƒ /admin/configurator-visual/appliances/[id]                1.83 kB         104 kB
+├ ƒ /admin/configurator-visual/appliances/new                 1.83 kB         104 kB
+├ ƒ /admin/configurator-visual/compatibility                    250 B         106 kB
+├ ƒ /admin/configurator-visual/compatibility/[id]             1.56 kB         104 kB
+├ ƒ /admin/configurator-visual/compatibility/new              1.56 kB         104 kB
+├ ƒ /admin/configurator-visual/countertops                      250 B         106 kB
+├ ƒ /admin/configurator-visual/countertops/[id]               1.65 kB         104 kB
+├ ƒ /admin/configurator-visual/countertops/new                1.65 kB         104 kB
+├ ƒ /admin/configurator-visual/facades                          250 B         106 kB
+├ ƒ /admin/configurator-visual/facades/[id]                   1.71 kB         104 kB
+├ ƒ /admin/configurator-visual/facades/new                    1.71 kB         104 kB
+├ ƒ /admin/configurator-visual/handles                          250 B         106 kB
+├ ƒ /admin/configurator-visual/handles/[id]                   1.73 kB         104 kB
+├ ƒ /admin/configurator-visual/handles/new                    1.73 kB         104 kB
+├ ƒ /admin/configurator-visual/mechanisms                       250 B         106 kB
+├ ƒ /admin/configurator-visual/mechanisms/[id]                1.72 kB         104 kB
+├ ƒ /admin/configurator-visual/mechanisms/new                 1.72 kB         104 kB
+├ ƒ /admin/configurator-visual/modules                          250 B         106 kB
+├ ƒ /admin/configurator-visual/modules/[id]                   1.91 kB         104 kB
+├ ƒ /admin/configurator-visual/modules/new                    1.91 kB         104 kB
+├ ƒ /admin/configurator-visual/projects                         250 B         106 kB
+├ ƒ /admin/configurator-visual/projects/[id]                    250 B         106 kB
+├ ƒ /admin/configurator-visual/settings                       1.85 kB         104 kB
+├ ƒ /admin/configurator-visual/skinals                          250 B         106 kB
+├ ƒ /admin/configurator-visual/skinals/[id]                   1.58 kB         104 kB
+├ ƒ /admin/configurator-visual/skinals/new                    1.58 kB         104 kB
+├ ƒ /admin/configurator-visual/templates                        250 B         106 kB
+├ ƒ /admin/configurator-visual/templates/[id]                 1.93 kB         104 kB
+├ ƒ /admin/configurator-visual/templates/new                  1.93 kB         104 kB
+├ ƒ /admin/contacts                                           5.53 kB         124 kB
+├ ƒ /admin/dashboard                                            250 B         106 kB
+├ ƒ /admin/faq                                                 4.7 kB         116 kB
+├ ƒ /admin/guest-access                                       3.82 kB         122 kB
+├ ƒ /admin/homepage                                           4.38 kB         106 kB
+├ ƒ /admin/imports                                            8.13 kB         126 kB
+├ ƒ /admin/kitchens                                             250 B         106 kB
+├ ƒ /admin/kitchens/[id]                                        143 B         124 kB
+├ ƒ /admin/kitchens/new                                         144 B         124 kB
+├ ƒ /admin/leads                                                336 B         102 kB
+├ ƒ /admin/leads/[number]                                       336 B         102 kB
+├ ƒ /admin/locations                                          3.65 kB         109 kB
+├ ƒ /admin/locations/[id]/edit                                  137 B         111 kB
+├ ƒ /admin/locations/new                                        137 B         111 kB
+├ ƒ /admin/login                                              2.08 kB         111 kB
+├ ƒ /admin/materials                                            250 B         106 kB
+├ ƒ /admin/materials/[id]                                       137 B         106 kB
+├ ƒ /admin/materials/new                                        137 B         106 kB
+├ ƒ /admin/notifications                                      8.99 kB         131 kB
+├ ƒ /admin/notifications/logs                                   250 B         106 kB
+├ ƒ /admin/pages                                                250 B         106 kB
+├ ƒ /admin/pages/[id]/edit                                    3.92 kB         116 kB
+├ ƒ /admin/portfolio                                            250 B         106 kB
+├ ƒ /admin/portfolio/[id]                                       141 B         118 kB
+├ ƒ /admin/portfolio/[id]/edit                                  140 B         118 kB
+├ ƒ /admin/portfolio/new                                        141 B         118 kB
+├ ƒ /admin/prices                                             3.12 kB         118 kB
+├ ƒ /admin/profile                                            3.24 kB         115 kB
+├ ƒ /admin/reviews                                            6.28 kB         128 kB
+├ ƒ /admin/scenarios                                            250 B         106 kB
+├ ƒ /admin/scenarios/[id]                                       139 B         117 kB
+├ ƒ /admin/scenarios/new                                        139 B         117 kB
+├ ƒ /admin/settings                                           2.63 kB         121 kB
+├ ƒ /admin/styles                                               250 B         106 kB
+├ ƒ /admin/styles/[id]                                          137 B         106 kB
+├ ƒ /admin/styles/new                                           136 B         106 kB
+├ ƒ /admin/users                                              2.12 kB         120 kB
+├ ○ /apple-icon.png                                               0 B            0 B
+├ ○ /blog                                                       152 B         137 kB
+├ ƒ /blog/[slug]                                                151 B         137 kB
+├ ƒ /calculator                                                 11 kB         129 kB
+├ ○ /catalog                                                  7.14 kB         242 kB          1h      1y
+├ ○ /catalog/[slug]                                           25.6 kB         270 kB
+├ ○ /component-library-preview                                2.05 kB         110 kB
+├ ○ /contacts                                                 4.55 kB         179 kB          1h      1y
+├ ○ /delivery-installation                                      149 B         132 kB          1h      1y
+├ ○ /design-proekt-kuhni                                      17.3 kB         252 kB
+├ ○ /icon.svg                                                     0 B            0 B
+├ ƒ /kapi/admin/blog                                            336 B         102 kB
+├ ƒ /kapi/admin/blog/[id]                                       336 B         102 kB
+├ ƒ /kapi/admin/calculator-tariffs                              336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/appliances                  336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/appliances/[id]             336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/compatibility               336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/compatibility/[id]          336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/countertops                 336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/countertops/[id]            336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/facades                     336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/facades/[id]                336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/handles                     336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/handles/[id]                336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/mechanisms                  336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/mechanisms/[id]             336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/modules                     336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/modules/[id]                336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/projects                    336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/projects/[id]               336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/settings                    336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/skinals                     336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/skinals/[id]                336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/templates                   336 B         102 kB
+├ ƒ /kapi/admin/configurator-visual/templates/[id]              336 B         102 kB
+├ ƒ /kapi/admin/faq                                             336 B         102 kB
+├ ƒ /kapi/admin/faq/[id]                                        336 B         102 kB
+├ ƒ /kapi/admin/guest-access                                    336 B         102 kB
+├ ƒ /kapi/admin/homepage                                        336 B         102 kB
+├ ƒ /kapi/admin/homepage/[id]                                   336 B         102 kB
+├ ƒ /kapi/admin/imports/bulk/v1/sessions/[id]                   336 B         102 kB
+├ ƒ /kapi/admin/imports/bulk/v1/sessions/[id]/confirm           336 B         102 kB
+├ ƒ /kapi/admin/imports/bulk/v1/upload                          336 B         102 kB
+├ ƒ /kapi/admin/kitchens                                        336 B         102 kB
+├ ƒ /kapi/admin/kitchens/[id]                                   336 B         102 kB
+├ ƒ /kapi/admin/leads/[id]                                      336 B         102 kB
+├ ƒ /kapi/admin/locations                                       336 B         102 kB
+├ ƒ /kapi/admin/locations/[id]                                  336 B         102 kB
+├ ƒ /kapi/admin/materials                                       336 B         102 kB
+├ ƒ /kapi/admin/materials/[id]                                  336 B         102 kB
+├ ƒ /kapi/admin/notifications/telegram                          336 B         102 kB
+├ ƒ /kapi/admin/notifications/telegram/[id]                     336 B         102 kB
+├ ƒ /kapi/admin/notifications/telegram/logs                     336 B         102 kB
+├ ƒ /kapi/admin/portfolio                                       336 B         102 kB
+├ ƒ /kapi/admin/portfolio/[id]                                  336 B         102 kB
+├ ƒ /kapi/admin/prices                                          336 B         102 kB
+├ ƒ /kapi/admin/prices/[id]                                     336 B         102 kB
+├ ƒ /kapi/admin/profile                                         336 B         102 kB
+├ ƒ /kapi/admin/reviews/[id]                                    336 B         102 kB
+├ ƒ /kapi/admin/scenarios                                       336 B         102 kB
+├ ƒ /kapi/admin/scenarios/[id]                                  336 B         102 kB
+├ ƒ /kapi/admin/settings                                        336 B         102 kB
+├ ƒ /kapi/admin/static-pages                                    336 B         102 kB
+├ ƒ /kapi/admin/static-pages/[id]                               336 B         102 kB
+├ ƒ /kapi/admin/styles                                          336 B         102 kB
+├ ƒ /kapi/admin/styles/[id]                                     336 B         102 kB
+├ ƒ /kapi/admin/uploads/[entity]                                336 B         102 kB
+├ ƒ /kapi/admin/uploads/style-image                             336 B         102 kB
+├ ƒ /kapi/admin/users                                           336 B         102 kB
+├ ƒ /kapi/auth/login                                            336 B         102 kB
+├ ƒ /kapi/auth/logout                                           336 B         102 kB
+├ ƒ /kapi/calculator                                            336 B         102 kB
+├ ƒ /kapi/calculator/estimate                                   336 B         102 kB
+├ ƒ /kapi/configurator-visual/catalog                           336 B         102 kB
+├ ƒ /kapi/configurator-visual/projects                          336 B         102 kB
+├ ƒ /kapi/configurator-visual/projects/[id]                     336 B         102 kB
+├ ƒ /kapi/favorites                                             336 B         102 kB
+├ ƒ /kapi/leads                                                 336 B         102 kB
+├ ƒ /kapi/reviews                                               336 B         102 kB
+├ ƒ /kapi/telegram/webhook                                      336 B         102 kB
+├ ƒ /kapi/watermarked-image                                     336 B         102 kB
+├ ○ /kitchen-configurator                                       336 B         102 kB
+├ ○ /locations                                                2.87 kB         232 kB          1h      1y
+├ ○ /locations/[city]                                           31 kB         229 kB
+├ ○ /manifest.webmanifest                                       336 B         102 kB
+├ ○ /materials                                                3.94 kB         189 kB
+├ ○ /materials/[slug]                                           253 B         190 kB
+├ ○ /materials/furnitura                                      10.5 kB         240 kB
+├ ○ /materials/ldsp                                           5.49 kB         201 kB
+├ ○ /materials/mdf-emal                                        6.1 kB         201 kB
+├ ○ /materials/mdf-fasady                                      6.3 kB         201 kB
+├ ○ /materials/plastik-hpl                                    6.52 kB         202 kB
+├ ○ /personal-data                                              250 B         106 kB
+├ ƒ /portfolio                                                8.48 kB         189 kB
+├ ● /portfolio/[slug]                                         8.71 kB         189 kB
+├   ├ /portfolio/kuhnya-japandi-zelenye-fasady-minsk
+├   ├ /portfolio/loft-kuhnya-oreh-poluostrov-minsk
+├   ├ /portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk
+├   └ [+46 more paths]
+├ ○ /prices                                                   8.02 kB         175 kB
+├ ○ /privacy-policy                                             250 B         106 kB
+├ ○ /reviews                                                  9.07 kB         181 kB          1h      1y
+├ ○ /robots.txt                                                 336 B         102 kB
+├ ○ /scenarios                                                1.06 kB         139 kB
+├ ● /scenarios/[slug]                                         6.17 kB         190 kB
+├   ├ /scenarios/s-ostrovom
+├   ├ /scenarios/do-potolka
+├   ├ /scenarios/dlya-semi
+├   └ [+7 more paths]
+├ ƒ /sitemap.xml                                                336 B         102 kB
+├ ○ /styles                                                     248 B         185 kB          1h      1y
+├ ○ /styles/[slug]                                            5.98 kB         190 kB
+├ ○ /terms                                                      250 B         106 kB
+├ ○ /thanks                                                     250 B         106 kB
+└ ○ /warranty                                                   149 B         132 kB
++ First Load JS shared by all                                  102 kB
+  ├ chunks/8581-85b6b417bf4ff1f5.js                           46.7 kB
+  ├ chunks/b55b93ef-688cd5400c6495dc.js                       53.2 kB
+  └ other shared chunks (total)                                2.1 kB
+
+
+ƒ Middleware                                                  42.1 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> @workspace/kuhni-na-zakaz@0.0.0 sitemap:write-static /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz
+> tsx scripts/write-static-sitemap.ts
+
+Wrote 112 sitemap URLs to /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/public/sitemap-static.xml
+curl: (22) The requested URL returned error: 502
+active
+DEPLOYED 39d84165bf9df533d336ce4bbed4a0a25020aa55
+ROLLBACK_BUILD /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.next-before-hpl-39d84165bf9df533d336ce4bbed4a0a25020aa55

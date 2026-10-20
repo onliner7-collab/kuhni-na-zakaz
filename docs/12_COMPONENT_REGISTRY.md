@@ -301,3 +301,7 @@ StyleVisualExplorer, ScenarioVisualExplorer, LayoutVisualExplorer, MaterialDecis
 ## 2026-10-20 — HPL: содержание и иллюстрации
 
 HplVisualJourney: основания/финиши/помещения/альтернативы, фильтры, lightbox и общие ценовые сценарии. hplView в store v1 сохраняет просмотр отдельно от выбора и заявки. Общие MaterialDecisionExplorer/MaterialDetailGallery не переписаны.
+
+## 2026-10-20 — Исправление смены фото HPL
+
+Локальный SwitchPhoto в HplVisualJourney: key по src, eager/unoptimized, индикатор загрузки и сообщение ошибки, фиксированный кадр 3:2. На телефоне выбранная альтернатива первая, desktop сохраняет HPL слева. Общий store не менялся.

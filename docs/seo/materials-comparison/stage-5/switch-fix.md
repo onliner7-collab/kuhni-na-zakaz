@@ -7,3 +7,11 @@
 Добавлен отдельный браузерный сценарий: 3 помещения, 3 альтернативы, 2 комплектации и 2 финиша на 390 и 1440 px. Для каждого проверяются конкретный src, currentSrc, complete и naturalWidth > 0; на телефоне — порядок карточек. Результат и runtime дополняются после проверки и публикации.
 
 Деплой разрешён владельцем ранее в этом чате, исправление входит в тот же scope. База сервера перед исправлением подтверждена SSH: d595e0489ec2118c13d16f507f0ebba27335ab69, tracked clean. Откат исправления — этот commit и новая .next-before-hpl-<SHA исправления>.
+
+## Результат
+
+Опубликован runtime **39d84165bf9df533d336ce4bbed4a0a25020aa55**. TypeScript и 10 unit PASS; локальная production-сборка PASS (129 fallback-страниц), браузерные проверки адаптива и всех 20 состояний PASS. Серверная сборка — 175/175, service active, tracked clean, дополнительный swap удалён (остался штатный /swapfile).
+
+Production Playwright **5/5 PASS**: 5 ширин, изображения/watermark, фильтры/Back/refresh, 42 перехода, все 3 помещения + 3 альтернативы + 2 комплектации + 2 финиша на телефоне и desktop, перехваченная заявка. Для каждого выбранного фото проверены путь, currentSrc, complete и naturalWidth. Ошибок приложения в тестовом контексте нет; внешняя аналитика отключена. Реальные лиды не отправлялись. 12 контрольных metadata-снимков совпали; robots/sitemap 200, 112 URL.
+
+Evidence: switch-local-results.json, switch-production-results.json, switch-deploy.log. Rollback: код d595e0489ec2118c13d16f507f0ebba27335ab69, сборка /var/www/kuhni-na-zakaz/artifacts/kuhni-na-zakaz/.next-before-hpl-39d84165bf9df533d336ce4bbed4a0a25020aa55 и sitemap /var/tmp/hpl-39d84165bf9df533d336ce4bbed4a0a25020aa55-sitemap.xml. Перед откатом проверить отсутствие последующих публикаций.
