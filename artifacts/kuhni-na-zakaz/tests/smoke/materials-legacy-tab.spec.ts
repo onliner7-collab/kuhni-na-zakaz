@@ -1,0 +1,16 @@
+import {test,expect} from '@playwright/test';
+test('an older tab cannot reset the current acrylic illustration through storage synchronization',async({page,context})=>{
+  await page.route(/mc\.yandex|google-analytics|googletagmanager|jivo|jivosite/,r=>r.abort());
+  await page.goto('/materials/akril#acrylic-alternatives');
+  await expect(page.getByTestId('materials-selection')).not.toHaveAttribute('inert','');
+  const legacy=await context.newPage();
+  await legacy.route('**/legacy-material-store-test',r=>r.fulfill({contentType:'text/html',body:'<html><body>Legacy store test</body></html>'}));
+  await legacy.goto('/legacy-material-store-test');
+  await legacy.evaluate(()=>{window.addEventListener('storage',e=>{if(e.key!=='kuhni-materials-v1'||!e.newValue)return;const value=JSON.parse(e.newValue);if('acrylicView' in value){delete value.acrylicView;localStorage.setItem(e.key,JSON.stringify(value));}});});
+  const choice=page.getByRole('button',{name:'С плёнкой',exact:true});await choice.click();
+  await expect(choice).toHaveAttribute('aria-pressed','true');
+  await expect.poll(()=>page.locator('[data-comparison-material="mdf-film"] img').count()).toBe(1);
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('kuhni-materials-v1')||'{}').acrylicView===undefined)).toBe(true);
+  await expect(choice).toHaveAttribute('aria-pressed','true');
+  await legacy.close();
+});

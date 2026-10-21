@@ -156,11 +156,25 @@ export function MaterialsSelectionProvider({
       )
         return;
       try {
-        publish(
-          sanitizeMaterialState(
-            e.newValue ? JSON.parse(e.newValue) : EMPTY_MATERIAL_STATE,
-          ),
+        const incoming = sanitizeMaterialState(
+          e.newValue ? JSON.parse(e.newValue) : EMPTY_MATERIAL_STATE,
         );
+        const current = ref.current;
+        if (
+          current.comparisonIds.join(",") === incoming.comparisonIds.join(",") &&
+          current.preferredId === incoming.preferredId &&
+          current.updatedAt === incoming.updatedAt
+        ) return;
+        // A storage event already persisted the other tab's change. Do not echo
+        // it back, or let an older tab erase the current page's newer view fields.
+        const next = {
+          ...current,
+          comparisonIds: incoming.comparisonIds,
+          preferredId: incoming.preferredId,
+          updatedAt: incoming.updatedAt,
+        };
+        ref.current = next;
+        setState(next);
       } catch {
         /* Keep this tab usable. */
       }
