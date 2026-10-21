@@ -12,5 +12,10 @@ test('an older tab cannot reset the current acrylic illustration through storage
   await expect.poll(()=>page.locator('[data-comparison-material="mdf-film"] img').count()).toBe(1);
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('kuhni-materials-v1')||'{}').acrylicView===undefined)).toBe(true);
   await expect(choice).toHaveAttribute('aria-pressed','true');
+  await legacy.evaluate(()=>{localStorage.setItem('kuhni-materials-v1',JSON.stringify({version:1,comparisonIds:['hpl'],preferredId:'hpl',updatedAt:Date.now()}));});
+  await expect(page.getByTestId('materials-selection').getByText('Предпочитаю: Фасады с HPL',{exact:true})).toBeVisible();
+  await expect(choice).toHaveAttribute('aria-pressed','true');
   await legacy.close();
+  await page.reload();
+  await expect(choice).toHaveAttribute('aria-pressed','true');
 });

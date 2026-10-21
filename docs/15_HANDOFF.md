@@ -536,3 +536,7 @@ Runtime commit `07d0e1c` pushed и задеплоен стандартным Tim
 ## 2026-10-20 — HPL: содержание и иллюстрации
 
 HPL продолжать из изолированной ветки codex/hpl-20261020 в C:/Users/User/Desktop/kuhni-hpl-20261020. Полный отчёт и актуальный runtime/production QA: docs/seo/materials-comparison/stage-5/implementation.md. Общий store и ID hpl сохранены. Не переносить весь dirty основной checkout и не начинать акрил в этом этапе.
+# 21.10.2026 — акрил опубликован
+
+Runtime d27492037e0986d8e4bd8d8fac21d5b4ee7ae6b6, service active, tracked clean. Отдельный релиз от production 39d84165, без чужих dirty-правок. Server build 176/176, production Playwright 8/8, 42 перехода PASS. Sitemap 112 URL, акрил lastmod 2026-10-21. Google принял URL и sitemap; Яндекс только чтение. Отчёт, источники и откат: docs/seo/materials-comparison/stage-6/deployment.md.
+

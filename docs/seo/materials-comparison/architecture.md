@@ -1,5 +1,11 @@
 # Контракт материалов v1
 
+## Этап 6 — акрил, 21.10.2026
+
+Отдельный server route /materials/akril, AcrylicVisualJourney, data/acrylic-content.ts; прежние фотоблоки сохранены. acrylicView в общем store v1 хранит ракурс/помещение/альтернативу/фильтры/лимит/фото отдельно от явного выбора, проходит санитизацию и history/refresh. Фото открывается только по явному действию. ID acrylic и lead-контракт прежние. ACRYLIC_PHOTOS добавлены после прежних src в общей галерее. Новый disclosure prefix /images/acrylic-20261021/; PNG в проекте, основные src WebP.
+
+Storage event принимает только comparisonIds/preferredId/updatedAt в память текущей вкладки без обратной записи; просмотр/фильтры не сбрасываются старой вкладкой без acrylicView. Explicit compare сохраняет приоритет. Photo использует готовые WebP напрямую без второго /_next/image. Runtime d2749203; build 176/176, 8 production scenarios и 42 перехода PASS. Документы, ограничения и откат — stage-6/deployment.md.
+
 ## Дополнения этапа 2 — МДФ
 
 16.10.2026: `MdfVisualJourney` использует существующий `mdfGallery.activePhoto` для двух серий по три ракурса. `MdfVisualComparison`, `MdfVisualEquipment` и `MdfConstructionCompare` показывают фото до объяснений. Последний компонент переключает три пары с двумя иллюстрациями и подписями. Нового хранилища нет. Компактная шапка `MaterialsSelection` применяется только к `/materials/mdf-fasady`; остальные маршруты сохраняют прежнее представление. Оба существующих фотоблока ЛДСП встроены в native details на странице МДФ.

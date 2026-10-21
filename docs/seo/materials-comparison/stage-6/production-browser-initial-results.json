@@ -1,0 +1,304 @@
+{
+  "stats": {
+    "startTime": "2026-10-21T17:11:43.997Z",
+    "duration": 133498.356,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "suites": [
+    {
+      "title": "acrylic-page.spec.ts",
+      "file": "acrylic-page.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "comparison switches the decoded alternative image next to its controls on mobile and desktop",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 20515,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n    at C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\acrylic-page.spec.ts:16:7",
+                    "location": {
+                      "file": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\acrylic-page.spec.ts",
+                      "column": 7,
+                      "line": 16
+                    },
+                    "snippet": "  14 |       await block.getByRole('button',{name:label,exact:true}).click();\n  15 |       const card=block.locator(`[data-comparison-material=\"${id}\"]`);\n> 16 |       await expect.poll(()=>card.locator('img').evaluate((i:HTMLImageElement,expected:string)=>i.complete&&i.naturalWidth>0&&decodeURIComponent(i.currentSrc).includes(expected+'.webp'),file)).toBe(true);\n     |       ^\n  17 |       if(width===390)expect((await card.boundingBox())!.y).toBeLessThan((await block.locator('[data-comparison-material=\"acrylic\"]').boundingBox())!.y);\n  18 |       await expect(block.getByRole('status')).toContainText('Сравниваем: акрил и');\n  19 |       await page.screenshot({path:`../../docs/seo/materials-comparison/stage-6/comparison-fixed-${width}-${id}.png`});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\acrylic-page.spec.ts",
+                        "column": 7,
+                        "line": 16
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  14 |       await block.getByRole('button',{name:label,exact:true}).click();\n  15 |       const card=block.locator(`[data-comparison-material=\"${id}\"]`);\n> 16 |       await expect.poll(()=>card.locator('img').evaluate((i:HTMLImageElement,expected:string)=>i.complete&&i.naturalWidth>0&&decodeURIComponent(i.currentSrc).includes(expected+'.webp'),file)).toBe(true);\n     |       ^\n  17 |       if(width===390)expect((await card.boundingBox())!.y).toBeLessThan((await block.locator('[data-comparison-material=\"acrylic\"]').boundingBox())!.y);\n  18 |       await expect(block.getByRole('status')).toContainText('Сравниваем: акрил и');\n  19 |       await page.screenshot({path:`../../docs/seo/materials-comparison/stage-6/comparison-fixed-${width}-${id}.png`});\n    at C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\acrylic-page.spec.ts:16:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T17:11:44.940Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\docs\\seo\\materials-comparison\\stage-6\\production-browser-artifacts\\acrylic-page-comparison-sw-61885-trols-on-mobile-and-desktop-desktop\\test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\docs\\seo\\materials-comparison\\stage-6\\production-browser-artifacts\\acrylic-page-comparison-sw-61885-trols-on-mobile-and-desktop-desktop\\video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\docs\\seo\\materials-comparison\\stage-6\\production-browser-artifacts\\acrylic-page-comparison-sw-61885-trols-on-mobile-and-desktop-desktop\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\docs\\seo\\materials-comparison\\stage-6\\production-browser-artifacts\\acrylic-page-comparison-sw-61885-trols-on-mobile-and-desktop-desktop\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\User\\Desktop\\kuhni-na-zakaz\\artifacts\\kuhni-na-zakaz\\tests\\smoke\\acrylic-page.spec.ts",
+                    "column": 7,
+                    "line": 16
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "b644eb6b220cd140a1a8-d83195cc53d5037829b8",
+          "file": "acrylic-page.spec.ts",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "title": "replacement needs confirmation and protected pages remain accessible",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 32233,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T17:12:07.127Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b644eb6b220cd140a1a8-8bc85ac0a0ac9deb2be2",
+          "file": "acrylic-page.spec.ts",
+          "line": 24,
+          "column": 5
+        },
+        {
+          "title": "visual review screenshots for gallery, surface and mobile form",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2331,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T17:12:39.438Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b644eb6b220cd140a1a8-0d07fc3782526d379f0d",
+          "file": "acrylic-page.spec.ts",
+          "line": 37,
+          "column": 5
+        },
+        {
+          "title": "acrylic production page: five widths, images, metadata and existing galleries",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5928,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T17:12:41.784Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b644eb6b220cd140a1a8-0d47c0a1403d841ea3f8",
+          "file": "acrylic-page.spec.ts",
+          "line": 51,
+          "column": 5
+        },
+        {
+          "title": "acrylic visual changes, filtering, modal focus and history preserve explicit selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6425,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T17:12:47.728Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b644eb6b220cd140a1a8-9878b5f788ff94d677d3",
+          "file": "acrylic-page.spec.ts",
+          "line": 78,
+          "column": 5
+        },
+        {
+          "title": "all 42 material transitions retain acrylic selection and preference",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 61481,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T17:12:54.169Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b644eb6b220cd140a1a8-8c2c0b393b83039482a2",
+          "file": "acrylic-page.spec.ts",
+          "line": 110,
+          "column": 5
+        },
+        {
+          "title": "acrylic lead serializes explicit selection and scenario only",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1040,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T17:13:55.669Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "b644eb6b220cd140a1a8-649ae788520e03a8a1c3",
+          "file": "acrylic-page.spec.ts",
+          "line": 122,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

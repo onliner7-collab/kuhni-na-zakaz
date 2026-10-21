@@ -1,0 +1,19 @@
+[
+  {
+    "route": "/materials/akril",
+    "status": 200,
+    "canonical": "https://kuhni.minsk.by/materials/akril",
+    "h1Count": 1,
+    "visualPage": true
+  },
+  {
+    "route": "/robots.txt",
+    "status": 200
+  },
+  {
+    "route": "/sitemap.xml",
+    "status": 200,
+    "urlCount": 112,
+    "acrylic": "<url>\n<loc>https://kuhni.minsk.by/materials/akril</loc>\n<lastmod>2026-10-21T00:00:00.000Z</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.6</priority>\n</url>"
+  }
+]
