@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-21T19:07:34.829Z",
+  "routes": [
+    {
+      "path": "/materials/shpon",
+      "status": 200,
+      "visualPage": true,
+      "constructionPhoto": true,
+      "h1": "Кухни с фасадами из натурального шпона на заказ",
+      "canonical": "https://kuhni.minsk.by/materials/shpon"
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "count": 112,
+      "veneerLastmod": "2026-10-21T00:00:00.000Z"
+    }
+  ],
+  "images": [
+    {
+      "path": "/images/veneer-20261021/oak-corner.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "path": "/images/veneer-20261021/grain-edge.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "path": "/images/veneer-20261021/walnut-white.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "path": "/images/veneer-20261021/oak-graphite.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "path": "/images/veneer-20261021/finish-samples.webp",
+      "status": 200,
+      "type": "image/webp"
+    },
+    {
+      "path": "/images/veneer-20261021/oak-beige.webp",
+      "status": 200,
+      "type": "image/webp"
+    }
+  ]
+}
