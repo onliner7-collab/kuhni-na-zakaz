@@ -1,0 +1,57 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-21",
+  "use": "visual-only",
+  "images": [
+    {
+      "name": "hero-white-corner",
+      "prompt": "Use case: photorealistic-natural. Asset type: website kitchen acrylic facade educational hero, landscape 3:2. Primary request: realistic interior photograph of a modest spacious contemporary Belarusian apartment kitchen, L-shaped, warm white high-gloss acrylic flat slab fronts with crisp realistic reflections of a large side window, pale grey stone-look countertop, oak accent tall cabinet, understated brushed metal handles, natural plants minimal. Camera at eye height 35mm, complete kitchen and room visible, practical believable cabinet sizes and functional layout. Soft daylight, warm neutral palette, natural imperfections, authentic architectural photography, no CGI look. No people, text, logos, watermark, collage, labels. This is a visual concept, do not depict technical cutaways.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-1ee0065c-cef8-4650-af0e-7a935517b4f5.png"
+    },
+    {
+      "name": "straight-grey",
+      "prompt": "Use case: photorealistic-natural. Website acrylic kitchen design illustration, landscape 3:2. Real architectural photograph of a compact straight kitchen in a Belarusian new-build apartment, pale warm grey glossy flat acrylic front doors, softly reflected window, light countertop and backsplash, realistic metal handles, refrigerator tall unit, practical sink and cooktop separated by work space, oak dining table at edge. Entire cabinetry visible, eye level 35mm, soft overcast daylight, believable modest room, restrained details, no people, no text, logos, collage or CGI rendering.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-8b3b2d7f-5201-44eb-86c0-bb0c1bbc3950.png"
+    },
+    {
+      "name": "graphite-island",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 architectural photo for acrylic kitchen visual concept. Modern family house kitchen with an island, deep graphite high-gloss acrylic flat fronts, oak accent and ivory stone-look worktop, realistic soft window reflections on glossy doors, large patio window, uncluttered working kitchen, sensible walkway and realistic handles, eye level wide shot with entire kitchen visible. Natural soft daylight, neutral colors, authentic photography with subtle imperfections. No people, logos, writing, collages, 3D rendering.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-e0b80c00-dd82-4fae-ad14-c41ffaa90096.png"
+    },
+    {
+      "name": "cream-country",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 interior photograph. Straight compact kitchen in an inhabited heated country house, warm cream glossy acrylic lower cabinet fronts with gentle window reflections, cream upper flat fronts, oak open shelf and light wood dining area, pale neutral countertop, visible real handles, countryside through side window. Whole kitchen, eye-level 35mm, soft daylight and natural textures, believable functional cabinetry, sink and cooking zones spaced. No people, labels, logos, collage, CGI.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-48e3e4a7-33ce-4207-b01e-138f64f73cb3.png"
+    },
+    {
+      "name": "blue-two-tone",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 realistic kitchen interior photo, compact modern L-shaped kitchen with muted dusty blue glossy acrylic flat slab lower cabinet doors, warm white glossy uppers, pale worktop, oak accent shelf, window reflected in the blue fronts, practical metal handles, sink, induction hob, believable apartment room. Eye level editorial architecture photography, soft daylight, no people, text, logos, watermark, collage or CGI. Show whole kitchen with floor and ceiling breathing room.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-ab7e3093-c2e6-4984-842a-9b732d7f07ca.png"
+    },
+    {
+      "name": "gloss-side-light",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 educational macro photograph of a kitchen high gloss pale grey acrylic flat cabinet front viewed at an oblique angle. Show two adjacent door fronts, realistic slim gap, brushed metal handle, coherent soft reflected rectangular window in the glossy plane, tiny natural surface imperfections, fragment of pale countertop above. Shallow but readable depth of field, natural side lighting. Close up surface study, not a whole room. No text, people, logos, CGI, collage or test equipment.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-6a8f7439-8edd-45eb-874b-b90ec8f821eb.png"
+    },
+    {
+      "name": "matte-sample",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 product photograph, educational visual concept of two real cabinet door sample boards standing upright on pale oak tabletop. Left: warm beige satin matte acrylic-looking finish with diffuse soft light. Right: same beige high-gloss acrylic-looking finish with a coherent reflected window. Both flat slab rectangular sample boards at same angle and similar size, slim visible edges, no cutaway, neutral wall behind, soft side daylight, realistic tactile photography. No writing, labels, logos, hands, CGI, collage. Do not imply material certification or test result.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-406d7c73-34c9-49dd-a3af-007697698849.png"
+    },
+    {
+      "name": "edge-macro",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 realistic macro product photo of the top outer corner of a warm white glossy flat kitchen cabinet door sample resting diagonally on an oak table. Show glossy front surface, a separate color matched edge band on the narrow side, subtle fine joining line and a realistic slightly rounded corner. Do not show inner core or exploded cross section. Neutral background, soft side window light, crisp realistic workmanship, shallow depth of field. No text, ruler, logos, people, collage or CGI. Educational illustrative sample, not a certification.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-e28db15a-6669-4649-b8f5-c1e93af31940.png"
+    },
+    {
+      "name": "care-cloth",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 realistic editorial close-up photograph of cleaning a warm white high gloss flat kitchen cabinet door with a clean pale blue soft microfiber cloth, one natural adult hand gently holding the folded cloth, no spray bottle and no abrasive tools. Small fragment of countertop and slim cabinet handle visible. Gentle daylight with window reflection, hygienic everyday home scene, believable anatomy, no test demonstration, no scratches, no text, logos, collage, CGI.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-15c8f1be-0824-44f6-8905-d7d957e9ded8.png"
+    },
+    {
+      "name": "samples-worktop",
+      "prompt": "Use case: photorealistic-natural. Landscape 3:2 product photography for kitchen material selection. On a pale oak tabletop, neatly arranged physical flat cabinet front sample boards: warm white high-gloss and deep graphite high-gloss with realistic window reflections, alongside an oak veneer sample and an ivory stone-look countertop swatch. Slight overhead oblique view, neutral softly lit room, tactile edges and realistic scale, curated practical material board, no people, no text, no labels, logos, collage or CGI. All samples separate and readable, not an exploded technical diagram.",
+      "source": "C:\\Users\\User\\.codex\\generated_images\\01a15f4e-ccd8-7993-926e-cb2543428687\\exec-050904ba-8a3e-45f5-b355-3b443c2c4dfc.png"
+    }
+  ]
+}

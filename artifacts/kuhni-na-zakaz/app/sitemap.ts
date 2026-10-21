@@ -271,7 +271,9 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = normalizePath(path) === "/materials/plastik-hpl"
+  const effectiveLastModified = normalizePath(path) === "/materials/akril"
+    ? new Date("2026-10-21T00:00:00.000Z")
+    : normalizePath(path) === "/materials/plastik-hpl"
     ? new Date("2026-10-20T00:00:00.000Z")
     : VISUAL_REVIEW_PATHS.has(normalizePath(path)) || normalizePath(path) === "/locations/minsk"
     ? new Date("2026-10-18T00:00:00.000Z")

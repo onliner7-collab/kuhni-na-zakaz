@@ -18,6 +18,20 @@ import {
 import { answerRows } from "../../lib/leads/details";
 
 const now = Date.now();
+test("acrylic views migrate and restore independently of selection and lead data", () => {
+  assert.deepEqual(sanitizeMaterialState({version:1}, now).acrylicView, EMPTY_MATERIAL_STATE.acrylicView);
+  const state = sanitizeMaterialState({...EMPTY_MATERIAL_STATE, comparisonIds:["acrylic","hpl"], preferredId:"acrylic", updatedAt:now, acrylicView:{surface:2,room:1,alternative:"mdf-enamel",color:"Тёмные",layout:"Деталь",limit:12,photo:"acrylic-edge-macro"}},now);
+  assert.equal(state.acrylicView.surface, 2);
+  assert.equal(state.acrylicView.photo, "acrylic-edge-macro");
+  assert.equal(state.updatedAt, now);
+  assert.deepEqual(state.comparisonIds, ["acrylic", "hpl"]);
+  assert.equal(state.preferredId, "acrylic");
+  assert.ok(!JSON.stringify(normalizeMaterialLead(state)).includes("acrylicView"));
+  assert.deepEqual(sanitizeMaterialState({version:1,acrylicView:{surface:8,room:-1,alternative:"bad",color:"bad",layout:"bad",limit:Infinity,photo:"https://evil.test"}},now).acrylicView,EMPTY_MATERIAL_STATE.acrylicView);
+  const expired = sanitizeMaterialState({...state,updatedAt:now-MATERIAL_TTL-1},now);
+  assert.deepEqual(expired.comparisonIds,[]);
+  assert.equal(expired.acrylicView.surface,2);
+});
 test("HPL view restores safely without changing preference, TTL or lead payload", () => {
   assert.deepEqual(sanitizeMaterialState({version:1},now).hplView,EMPTY_MATERIAL_STATE.hplView);
   const s=sanitizeMaterialState({...EMPTY_MATERIAL_STATE,comparisonIds:["hpl","acrylic"],preferredId:"hpl",updatedAt:now,hplView:{base:1,finish:1,room:2,alternative:"ldsp",color:"Древесные",texture:"Под дерево",layout:"Прямая",limit:12,photo:"hpl-wood-country"}},now);

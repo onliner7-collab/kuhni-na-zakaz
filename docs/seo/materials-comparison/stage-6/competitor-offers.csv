@@ -1,0 +1,7 @@
+company,offer,sourceUrl,checkedAt,price,currency,unit,included,excludedOrUnknown,comparable,reason
+Zakaz-kuhni-minsk,Категория акрила,https://zakaz-kuhni-minsk.by/iz-akrila,2026-10-21,695,BYN,погонный метр,Рекламная стартовая цена,Размеры и единая комплектация неизвестны,false,Нет фиксированного состава
+Mebelmax,Чёрный глянцевый фасад,https://www.mebelmax.by/kitchen/acrylic,2026-10-21,510,BYN,погонный метр,Рекламная стартовая цена,Не подтверждены работа отдела и комплектация,false,Есть сообщение временно не работаем
+Mebelmax,Сахар и тальк,https://www.mebelmax.by/kitchen/acrylic,2026-10-21,510,BYN,погонный метр,Рекламная стартовая цена,Не подтверждены работа отдела и комплектация,false,Не независимый поставщик от предыдущей строки
+Primebeli-market,Eva 32,https://primebeli-market.by/produkciya/kollekcii-kuhon/kuhni-iz-akrila.html,2026-10-21,1345,BYN,погонный метр,Поисковая копия карточки,Прямая загрузка timeout и нет полного состава,false,Требует проверки страницы и состава
+Primebeli-market,Eva 31,https://primebeli-market.by/produkciya/kollekcii-kuhon/kuhni-iz-akrila.html,2026-10-21,1345,BYN,погонный метр,Поисковая копия карточки,Прямая загрузка timeout и нет полного состава,false,Не независимый поставщик от предыдущей строки
+Zov-market,Шоколад и молочный оттенок,https://zov-market.by/catalog/akril,2026-10-21,440,USD,погонный метр,Акрил и стекло по каталогу,Нет единого состава и цены в BYN,false,Не пересчитывать в BYN без курса и подтверждения

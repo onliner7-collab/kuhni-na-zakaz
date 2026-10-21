@@ -151,8 +151,8 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
     question:
       "Перед покупкой акриловой кухни посмотрите поверхность при боковом свете и уточните правила ухода.",
     availability: MATERIAL_UNKNOWN,
-    checkedAt: "2026-10-14",
-    sources: [],
+    checkedAt: "2026-10-21",
+    sources: ["https://www.rehau.com/downloads/1007090/rauvisio-brilliant.pdf"],
     values: {
       ...shared,
       base: MATERIAL_UNKNOWN,
@@ -161,6 +161,9 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
       finish: MATERIAL_UNKNOWN,
       milling: MATERIAL_UNKNOWN,
       edge: "Уточняются конструкция торца и тип кромки.",
+      care: "Чистая мягкая салфетка и разрешённое для серии средство. Не тереть пыль всухую; убрать остатки средства и влагу у торцов.",
+      limits: "Защищать торцы от стоящей воды, убирать конденсат, не направлять пар на шкафы. Отпечатки, стойкость и ограничения проверять для конкретной серии.",
+      repair: "Полировка разрешена не для всех акриловых поверхностей. Способ ремонта определяют по инструкции серии и после осмотра; незаметное восстановление не гарантируется.",
     },
   },
   {

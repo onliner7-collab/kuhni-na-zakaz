@@ -15,6 +15,7 @@ export type MaterialState = {
   enamelView: { finish: number; profile: number; room: number; alternative: string; galleryFinish: string; galleryMilling: string; galleryLayout: string; limit: number; photo: string | null };
   hplView: { base: number; finish: number; room: number; alternative: string; color: string; texture: string; layout: string; limit: number; photo: string | null };
   onlyDifferences: boolean;
+  acrylicView: { surface: number; room: number; alternative: string; color: string; layout: string; limit: number; photo: string | null };
   scenarioId: string;
   returnTo: string;
 };
@@ -32,6 +33,7 @@ export const EMPTY_MATERIAL_STATE: MaterialState = {
   enamelView: { finish: 0, profile: 0, room: 0, alternative: "mdf-film", galleryFinish: "", galleryMilling: "", galleryLayout: "", limit: 6, photo: null },
   hplView: { base: 0, finish: 0, room: 0, alternative: "acrylic", color: "", texture: "", layout: "", limit: 6, photo: null },
   onlyDifferences: false,
+  acrylicView: { surface: 0, room: 0, alternative: "hpl", color: "", layout: "", limit: 6, photo: null },
   scenarioId: "straight-3m",
   returnTo: "/materials#compare",
 };
@@ -123,6 +125,15 @@ export function sanitizeMaterialState(
         ? v.activePhoto
         : null,
     onlyDifferences: v.onlyDifferences === true,
+    acrylicView: {
+      surface: [0, 1, 2].includes(v.acrylicView?.surface ?? -1) ? v.acrylicView!.surface : 0,
+      room: [0, 1, 2].includes(v.acrylicView?.room ?? -1) ? v.acrylicView!.room : 0,
+      alternative: ["hpl", "mdf-enamel", "mdf-film"].includes(v.acrylicView?.alternative || "") ? v.acrylicView!.alternative : "hpl",
+      color: ["Светлые", "Тёмные", "Цветные"].includes(v.acrylicView?.color || "") ? v.acrylicView!.color : "",
+      layout: ["Прямая", "Угловая", "С островом", "Деталь"].includes(v.acrylicView?.layout || "") ? v.acrylicView!.layout : "",
+      limit: typeof v.acrylicView?.limit === "number" && Number.isFinite(v.acrylicView.limit) ? Math.min(60, Math.max(6, Math.floor(v.acrylicView.limit))) : 6,
+      photo: typeof v.acrylicView?.photo === "string" && /^acrylic-[a-z0-9-]{1,80}$/.test(v.acrylicView.photo) ? v.acrylicView.photo : null,
+    },
     ldspView: {
       construction: [0, 1, 2].includes(v.ldspView?.construction ?? -1) ? v.ldspView!.construction : 0,
       decor: [0, 1, 2, 3].includes(v.ldspView?.decor ?? -1) ? v.ldspView!.decor : 0,
