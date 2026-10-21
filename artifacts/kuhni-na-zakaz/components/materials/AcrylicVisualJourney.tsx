@@ -38,6 +38,8 @@ function Photo({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         width={1200}
         height={800}
+        unoptimized
+        loading="eager"
         sizes="(max-width: 768px) 100vw, 50vw"
         className="h-full w-full object-cover"
         onError={() => setFailed(src)}
