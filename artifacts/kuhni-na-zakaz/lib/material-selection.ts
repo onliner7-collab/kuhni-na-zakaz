@@ -16,6 +16,7 @@ export type MaterialState = {
   hplView: { base: number; finish: number; room: number; alternative: string; color: string; texture: string; layout: string; limit: number; photo: string | null };
   onlyDifferences: boolean;
   acrylicView: { surface: number; room: number; alternative: string; color: string; layout: string; limit: number; photo: string | null };
+  veneerView: { surface: number; combination: number; alternative: string; layout: string; photo: string | null };
   scenarioId: string;
   returnTo: string;
 };
@@ -34,6 +35,7 @@ export const EMPTY_MATERIAL_STATE: MaterialState = {
   hplView: { base: 0, finish: 0, room: 0, alternative: "acrylic", color: "", texture: "", layout: "", limit: 6, photo: null },
   onlyDifferences: false,
   acrylicView: { surface: 0, room: 0, alternative: "hpl", color: "", layout: "", limit: 6, photo: null },
+  veneerView: { surface: 0, combination: 0, alternative: "ldsp", layout: "", photo: null },
   scenarioId: "straight-3m",
   returnTo: "/materials#compare",
 };
@@ -125,6 +127,13 @@ export function sanitizeMaterialState(
         ? v.activePhoto
         : null,
     onlyDifferences: v.onlyDifferences === true,
+    veneerView: {
+      surface: [0, 1, 2].includes(v.veneerView?.surface ?? -1) ? v.veneerView!.surface : 0,
+      combination: [0, 1, 2].includes(v.veneerView?.combination ?? -1) ? v.veneerView!.combination : 0,
+      alternative: ["ldsp", "mdf-film", "mdf-enamel"].includes(v.veneerView?.alternative || "") ? v.veneerView!.alternative : "ldsp",
+      layout: ["Прямая", "Угловая", "С островом", "Деталь"].includes(v.veneerView?.layout || "") ? v.veneerView!.layout : "",
+      photo: typeof v.veneerView?.photo === "string" && /^veneer-[a-z0-9-]{1,80}$/.test(v.veneerView.photo) ? v.veneerView.photo : null,
+    },
     acrylicView: {
       surface: [0, 1, 2].includes(v.acrylicView?.surface ?? -1) ? v.acrylicView!.surface : 0,
       room: [0, 1, 2].includes(v.acrylicView?.room ?? -1) ? v.acrylicView!.room : 0,

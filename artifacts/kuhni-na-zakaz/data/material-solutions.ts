@@ -170,14 +170,14 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
     id: "veneer",
     title: "Шпонированные фасады",
     href: "/materials/shpon",
-    image: "/images/materials-hub-20261014/veneer-oak.webp",
+    image: "/images/veneer-20261021/oak-corner.webp",
     description:
       "Натуральный древесный шпон на плитной основе с защитной отделкой. Это не массив и не печатный декор.",
     question:
       "Чтобы купить кухню из шпона, согласуйте направление рисунка, отделку и сочетание с однотонными фасадами.",
     availability: MATERIAL_UNKNOWN,
-    checkedAt: "2026-10-14",
-    sources: [],
+    checkedAt: "2026-10-21",
+    sources: ["https://www.decospan.com/en-gb/shinnoki/product-overview"],
     values: {
       ...shared,
       base: MATERIAL_UNKNOWN,
@@ -186,6 +186,9 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
       finish: MATERIAL_UNKNOWN,
       milling: MATERIAL_UNKNOWN,
       edge: "Способ отделки торцов согласуется с конструкцией.",
+      care: "Мягкая чистая салфетка и средство по инструкции отделки; не наносить масло или воск на любое покрытие автоматически.",
+      limits: "Убирать капли и конденсат у стыков; защиту от пара, нагрева и условия влажности уточнять для всей конструкции фасада.",
+      repair: "Шлифовка может повредить тонкий слой шпона. Восстановление согласуется после осмотра; новая дверца может отличаться по рисунку и оттенку.",
     },
   },
 ];

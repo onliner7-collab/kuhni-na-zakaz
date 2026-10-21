@@ -1,0 +1,31 @@
+[
+  {
+    "url": "https://primebeli-market.by/produkciya/kollekcii-kuhon/kuhni-iz-shpona.html",
+    "error": "fetch failed"
+  },
+  {
+    "url": "https://drkitchen.by/kuhni-iz-shpona/",
+    "status": 200,
+    "finalUrl": "https://drkitchen.by/kuhni-iz-shpona/",
+    "checkedAt": "2026-10-21T18:10:25.328Z",
+    "links": [
+      "https://drkitchen.by/kuhni-iz-shpona/",
+      "https://drkitchen.by/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdrkitchen.by%2Fkuhni-iz-shpona%2F",
+      "https://drkitchen.by/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdrkitchen.by%2Fkuhni-iz-shpona%2F&#038;format=xml",
+      "/kuhni-iz-shpona/",
+      "/kuhni-iz-shpona/"
+    ]
+  },
+  {
+    "url": "https://www.decospan.com/en-gb/shinnoki/product-overview",
+    "status": 200,
+    "finalUrl": "https://www.decospan.com/en-gb/shinnoki/product-overview",
+    "checkedAt": "2026-10-21T18:10:25.586Z",
+    "links": [
+      "/en-gb/astrata",
+      "https://my.decospan.com/en-gb/marketing-materials?f=pd.productBrandName.eq-any.Astrata.Shinnoki.Querkus.Nuxe",
+      "https://my.decospan.com/en-gb/marketing-materials?f=pd.productBrandName.eq-any.Astrata.Shinnoki.Querkus.Nuxe",
+      "/en-gb/astrata"
+    ]
+  }
+]

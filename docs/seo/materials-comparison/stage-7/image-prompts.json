@@ -1,0 +1,36 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-21",
+  "assets": [
+    {
+      "name": "oak-corner",
+      "source": "C:/Users/User/.codex/generated_images/01a15f95-8564-71f2-8304-266232d8c555/exec-d559bfd7-1551-4f53-b4d3-c2e60f5eefac.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: website hero photograph, landscape 3:2. Primary request: realistic architectural interior photograph of a made-to-measure contemporary kitchen in a Belarusian apartment, natural oak veneer fronts with clear vertical wood grain, carefully aligned neighboring doors, warm off-white upper cabinets, light stone-look countertop, discreet black handles, integrated appliances, modest lived-in home with daylight from a side window. Eye-level three-quarter wide composition, kitchen dominates image, realistic cabinet construction and proportions, subtle wood variation, matte protective finish, neutral daylight, no exaggerated luxury. No people, no logos, no text, no watermark, no collage, no CGI appearance. This is a visual design illustration, not a completed client project."
+    },
+    {
+      "name": "grain-edge",
+      "source": "C:/Users/User/.codex/generated_images/01a15f95-8564-71f2-8304-266232d8c555/exec-6228f297-6c16-43c0-a5d4-5861da77ebde.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: website educational kitchen detail photograph, landscape 3:2. A close architectural photograph of three adjacent natural oak veneered kitchen cabinet doors, vertical wood grain in a calm sequential arrangement, narrow regular door gaps, natural subtle differences between leaves. Door on the right slightly ajar reveals a neat wood-toned finished edge and muted cabinet interior, no exposed chipboard cross-section, no fake diagram. Neutral side daylight reveals fine pores and a low sheen clear finish, warm light oak, small section of pale countertop above. Eye-level close-up fills frame with front surface and visible edge. Physically plausible kitchen joinery. No people, labels, arrows, text, logos, watermark, collage, no CGI. Visual illustration only, not a technical proof."
+    },
+    {
+      "name": "walnut-white",
+      "source": "C:/Users/User/.codex/generated_images/01a15f95-8564-71f2-8304-266232d8c555/exec-6356747d-00a6-4160-9677-85819782678b.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 kitchen website photograph. A contemporary straight kitchen in a real modest European apartment, natural walnut veneer lower cabinet fronts with flowing horizontal grain and rich medium brown tone, smooth matte warm-white upper cabinets, pale greige countertop, black simple handles, built-in oven, restrained decor, window light. Eye-level three-quarter architectural photograph, full kitchen visible, realistic joints and practical sink and cooktop spacing, subtle natural texture, not hyperluxury. No people, no text, logos, watermark, collage, CGI. Visual concept, not a real installed project."
+    },
+    {
+      "name": "oak-graphite",
+      "source": "C:/Users/User/.codex/generated_images/01a15f95-8564-71f2-8304-266232d8c555/exec-ec0257d5-de3c-4e0d-b442-506d4bed6a49.png",
+      "prompt": "Use case: photorealistic-natural. Asset: landscape 3:2 architectural kitchen photograph for website. Contemporary kitchen in a suburban home, natural light oak veneer tall cabinets and oak veneered island fronts with vertical aligned grain, smooth matte graphite wall cabinets, light warm grey countertop and backsplash, black small handles, believable integrated appliances. Wide eye-level view with island in foreground and comfortable circulation, daylight from large window, subtle pores, true-to-life cabinet geometry, warm restrained lived-in interior, no ostentatious decor. No people, no text, no brand, no watermark, no collage, no CGI look. Visual design illustration only."
+    },
+    {
+      "name": "finish-samples",
+      "source": "C:/Users/User/.codex/generated_images/01a15f95-8564-71f2-8304-266232d8c555/exec-28a63c48-d1d4-45dd-a579-7ff9e0a98c59.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 3:2 material selection photograph for kitchen website. Three rectangular real wood veneer sample doors laid side by side on pale stone-look worktop in a neutral kitchen showroom: light oak with subtle matte finish, medium warm walnut with low sheen satin finish, darker toned oak. Each sample has believable thin finished edges and natural wood pores, grain slightly varied, generous size, camera at 35 degree angle above. Warm beige plain cabinet sample partially visible behind, neutral daylight, tasteful honest material photography. No labels, text, people, logos, watermark, collage, diagrams, no CGI. These samples illustrate directions only, no guaranteed stock or finish specification."
+    },
+    {
+      "name": "oak-beige",
+      "source": "C:/Users/User/.codex/generated_images/01a15f95-8564-71f2-8304-266232d8c555/exec-a1e6d36e-c00e-4077-8694-8470366c4d31.png",
+      "prompt": "Use case: photorealistic-natural. Asset: kitchen website photograph 3:2 landscape. Compact L-shaped made-to-measure kitchen in a modest country house with normal-height ceiling and single garden window. Smooth matte beige lower fronts, natural oak veneer upper cupboard doors and one tall pantry with clear vertical wood grain. Pale countertop, practical visible small black handles, built-in oven, subtle domestic props, warm calm daylight, believable cabinetry and comfortable work triangle. Eye-level architectural interior photography, realistic natural wood variation, no excessive luxury. No people, text, logos, watermark, collage, CGI. Design illustration only."
+    }
+  ]
+}

@@ -271,7 +271,7 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = normalizePath(path) === "/materials/akril"
+  const effectiveLastModified = ["/materials/akril", "/materials/shpon"].includes(normalizePath(path))
     ? new Date("2026-10-21T00:00:00.000Z")
     : normalizePath(path) === "/materials/plastik-hpl"
     ? new Date("2026-10-20T00:00:00.000Z")

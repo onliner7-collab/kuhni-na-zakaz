@@ -1,0 +1,110 @@
+[
+  {
+    "name": "oak-corner",
+    "bytes": 82488,
+    "format": "webp",
+    "width": 1200,
+    "height": 800,
+    "space": "srgb",
+    "channels": 3,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": false,
+    "autoOrient": {
+      "width": 1200,
+      "height": 800
+    }
+  },
+  {
+    "name": "grain-edge",
+    "bytes": 91542,
+    "format": "webp",
+    "width": 1200,
+    "height": 800,
+    "space": "srgb",
+    "channels": 3,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": false,
+    "autoOrient": {
+      "width": 1200,
+      "height": 800
+    }
+  },
+  {
+    "name": "walnut-white",
+    "bytes": 93254,
+    "format": "webp",
+    "width": 1200,
+    "height": 800,
+    "space": "srgb",
+    "channels": 3,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": false,
+    "autoOrient": {
+      "width": 1200,
+      "height": 800
+    }
+  },
+  {
+    "name": "oak-graphite",
+    "bytes": 80550,
+    "format": "webp",
+    "width": 1200,
+    "height": 800,
+    "space": "srgb",
+    "channels": 3,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": false,
+    "autoOrient": {
+      "width": 1200,
+      "height": 800
+    }
+  },
+  {
+    "name": "finish-samples",
+    "bytes": 93558,
+    "format": "webp",
+    "width": 1200,
+    "height": 800,
+    "space": "srgb",
+    "channels": 3,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": false,
+    "autoOrient": {
+      "width": 1200,
+      "height": 800
+    }
+  },
+  {
+    "name": "oak-beige",
+    "bytes": 96478,
+    "format": "webp",
+    "width": 1200,
+    "height": 800,
+    "space": "srgb",
+    "channels": 3,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": false,
+    "autoOrient": {
+      "width": 1200,
+      "height": 800
+    }
+  }
+]

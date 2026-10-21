@@ -1,5 +1,35 @@
 # Контракт материалов v1
 
+## Дополнения этапа 7 — шпон, 21.10.2026
+
+Локальная реализация: отдельный server route `app/materials/shpon/page.tsx`, `VeneerVisualJourney`, `data/veneer-content.ts`. Прежние MaterialDecisionExplorer и MaterialDetailGallery сохранены в раскрываемых блоках. ID `veneer`, общий store v1, операции выбора, два scenarioId и контракт заявки прежние.
+
+`MaterialState.veneerView`: surface/combination (0–2), alternative (ldsp/mdf-film/mdf-enamel), layout, photo. Старые сохранения дополняются пустыми безопасными значениями, входные поля санитизируются. Просмотр включён в history materialsView и восстановление popstate, не меняет comparisonIds/preferredId/updatedAt и не передаётся в lead payload. Сохранённое фото не открывает модальное окно при refresh. Storage event по-прежнему принимает только явный выбор, не перезаписывая просмотр другой вкладки.
+
+Компактная панель подключена к шпону. Шесть новых generated / visual-only фото добавлены в конец общего реестра со стабильными ID; старые фото/ID не заменены. PNG-исходники сохранены в `public/images/veneer-20261021/sources`, UI использует WebP 1200×800. Префикс зарегистрирован в image-disclosure. Уход и ограничения шпона берутся из общего реестра; основание, финиш и наличие требуют подтверждения. Отчёт и итоговая локальная приёмка семи страниц: stage-7/implementation.md и stage-7/final-acceptance.md. На production этап 7 пока не опубликован.
+
+## Дополнения этапа 6 — акрил, 21.10.2026
+
+Production-уточнение d2749203: интерактивный Photo загружает готовые WebP напрямую (unoptimized/eager), без повторной обработки /_next/image. Storage event передаёт только comparisonIds/preferredId/updatedAt в память текущей вкладки и не записывает событие обратно в localStorage. Текущий просмотр/фильтры остаются за своей вкладкой; старая вкладка без acrylicView не сбрасывает новый ракурс. История при refresh восстанавливает сохранённый просмотр. Отдельный legacy-tab тест проверяет отсутствие сброса, получение предпочтения из другой вкладки и refresh.
+
+Отдельный server route app/materials/akril/page.tsx использует AcrylicVisualJourney (Actions/Surface/Gallery/Rooms/Comparison/Price), data/acrylic-content.ts и прежние неизменённые MaterialDecisionExplorer/MaterialDetailGallery. Старые фотоблоки доступны в native details, их конфигурация и файлы сохранены. ID acrylic, оба scenarioId, формы и общий store v1 прежние.
+
+MaterialState.acrylicView: surface/room (0–2), alternative (hpl/mdf-enamel/mdf-film), color/layout, limit/photo. Старые сохранения дополняются безопасными значениями, поля санитизируются и входят в materialsView history. Фотография открывается только по явному действию; refresh восстанавливает фильтры без модального окна. Просмотр не меняет сравнение, preferredId/updatedAt и не передаётся в lead payload. Новые фото дополняют общий MATERIAL_PHOTOS после существующих, стабильные ID и src остальных сохранены.
+
+Компактная панель включена на /materials/akril. image-disclosure регистрирует /images/acrylic-20261021/ как ИИ-иллюстрации. Основные WebP 1200×800, PNG-исходники сохранены. Уход и ограничения уточнены в едином реестре; основание/доступность/финиш остаются неизвестными до подтверждения серии. Канонический маршрут без параметров, BreadcrumbList по видимым крошкам. Изменение lastmod касается только акрила. Локальные проверки и ограничения: stage-6/report.md; публикация не выполнялась.
+
+## Дополнения этапа 4 — эмаль, 17.10.2026
+
+Отдельный server route app/materials/mdf-emal/page.tsx использует прежние MaterialDecisionExplorer с исходной конфигурацией и MaterialDetailGallery без изменения их исходников. Новые интерактивные блоки — EnamelVisualJourney.tsx, содержание и 8 изображений — data/enamel-content.ts. Четыре новых файла добавлены в общую фотогалерею после прежних записей, старые ID/порядок сохранены; повторные src отфильтровываются прежним способом. История новых фото сопоставляет повторно используемые src с прежними глобальными ID.
+
+MaterialState.enamelView: finish (0–1), profile/room (0–2), alternative (mdf-film/hpl/acrylic), galleryFinish/galleryMilling/galleryLayout, limit, photo. Миграция отсутствующего поля получает безопасное пустое состояние, версия store остаётся 1. Просмотр и фильтры не меняют comparisonIds/preferredId/updatedAt, в lead payload не входят. Состояния включены в materialsView history и восстановление popstate. scenarioId использует прежние два состава. Lightbox открывается только по явному действию; сохранённый ID не вызывает модальное окно при загрузке.
+
+Компактная прежняя шапка включена дополнительно на эмали; один MobileBottomNav остаётся глобальным Dock. В image-disclosure зарегистрирован только новый префикс /images/mdf-enamel-20261017/ с русским обозначением ИИ-иллюстрации. Уход/ограничения эмали дополнены в едином реестре с первичным источником; доступность и поставщик остаются неизвестными. Другие исполнения не переписаны. Цена не дублируется: реестр не содержит числовой вилки, публичные наблюдения явно отделены от собственной сметы.
+
+## Дополнения этапа 3 — ЛДСП, 17.10.2026
+
+app/materials/ldsp/page.tsx использует LdspVisualJourney и прежние MaterialDecisionExplorer/MaterialDetailGallery без изменения их исходников. `MaterialState.ldspView` содержит индексы construction (0–2), decor (0–3), room (0–2) и alternative (mdf-film/mdf-enamel). Санитизация дополняет старые сохранения безопасными значениями. updateView записывает эти поля в localStorage и снимки history; Back/Forward/refresh восстанавливают просмотр. Поля не затрагивают comparisonIds/preferredId/updatedAt и не входят в materialSelection заявки. Фильтры хаба и mdfGallery независимы. scenarioId продолжает использовать два общих состава. Компактная шапка выбора расширена с МДФ на ЛДСП; прочие маршруты сохраняют прежний вид. Новый префикс /images/ldsp-20261017/ зарегистрирован для безопасного watermarked-image endpoint.
+
 ## Дополнения этапа 2 — МДФ
 
 16.10.2026: `MdfVisualJourney` использует существующий `mdfGallery.activePhoto` для двух серий по три ракурса. `MdfVisualComparison`, `MdfVisualEquipment` и `MdfConstructionCompare` показывают фото до объяснений. Последний компонент переключает три пары с двумя иллюстрациями и подписями. Нового хранилища нет. Компактная шапка `MaterialsSelection` применяется только к `/materials/mdf-fasady`; остальные маршруты сохраняют прежнее представление. Оба существующих фотоблока ЛДСП встроены в native details на странице МДФ.
@@ -26,18 +56,6 @@
 ## Документация
 
 Next.js 15.3.9; проверены текущие официальные примеры Context7 `/vercel/next.js` по History API и layout. Точной версии 15.3.9 в выдаче Context7 нет, поэтому применены совместимые существующие API и проверена сборка установленной версии. SEO: Google Search Central SEO Starter Guide и Image SEO Best Practices. Разметка — BreadcrumbList и ItemList по видимым данным, без выдуманных Product/Offer/rating. Основные блоки и обычные ссылки доступны в серверном HTML.
-
-## Дополнения этапа 3 — ЛДСП, 17.10.2026
-
-app/materials/ldsp/page.tsx использует LdspVisualJourney и прежние MaterialDecisionExplorer/MaterialDetailGallery без изменения их исходников. `MaterialState.ldspView` содержит индексы construction (0–2), decor (0–3), room (0–2) и alternative (mdf-film/mdf-enamel). Санитизация дополняет старые сохранения безопасными значениями. updateView записывает эти поля в localStorage и снимки history; Back/Forward/refresh восстанавливают просмотр. Поля не затрагивают comparisonIds/preferredId/updatedAt и не входят в materialSelection заявки. Фильтры хаба и mdfGallery независимы. scenarioId продолжает использовать два общих состава. Компактная шапка выбора расширена с МДФ на ЛДСП; прочие маршруты сохраняют прежний вид. Новый префикс /images/ldsp-20261017/ зарегистрирован для безопасного watermarked-image endpoint.
-
-## Дополнения этапа 4 — эмаль, 17.10.2026
-
-Отдельный server route app/materials/mdf-emal/page.tsx использует прежние MaterialDecisionExplorer с исходной конфигурацией и MaterialDetailGallery без изменения их исходников. Новые интерактивные блоки — EnamelVisualJourney.tsx, содержание и 8 изображений — data/enamel-content.ts. Четыре новых файла добавлены в общую фотогалерею после прежних записей, старые ID/порядок сохранены; повторные src отфильтровываются прежним способом. История новых фото сопоставляет повторно используемые src с прежними глобальными ID.
-
-MaterialState.enamelView: finish (0–1), profile/room (0–2), alternative (mdf-film/hpl/acrylic), galleryFinish/galleryMilling/galleryLayout, limit, photo. Миграция отсутствующего поля получает безопасное пустое состояние, версия store остаётся 1. Просмотр и фильтры не меняют comparisonIds/preferredId/updatedAt, в lead payload не входят. Состояния включены в materialsView history и восстановление popstate. scenarioId использует прежние два состава. Lightbox открывается только по явному действию; сохранённый ID не вызывает модальное окно при загрузке.
-
-Компактная прежняя шапка включена дополнительно на эмали; один MobileBottomNav остаётся глобальным Dock. В image-disclosure зарегистрирован только новый префикс /images/mdf-enamel-20261017/ с русским обозначением ИИ-иллюстрации. Уход/ограничения эмали дополнены в едином реестре с первичным источником; доступность и поставщик остаются неизвестными. Другие исполнения не переписаны. Цена не дублируется: реестр не содержит числовой вилки, публичные наблюдения явно отделены от собственной сметы.
 
 ## Дополнения этапа 5 — HPL, 20.10.2026
 

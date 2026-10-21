@@ -1,0 +1,4 @@
+import fs from 'node:fs/promises';
+const urls=['https://primebeli-market.by/produkciya/kollekcii-kuhon/kuhni-iz-shpona.html','https://drkitchen.by/kuhni-iz-shpona/','https://www.decospan.com/en-gb/shinnoki/product-overview'];
+const results=await Promise.all(urls.map(async url=>{try{const r=await fetch(url,{signal:AbortSignal.timeout(20000)});const s=await r.text();const flat=s.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ');return {url,status:r.status,finalUrl:r.url,checkedAt:new Date().toISOString(),prices:flat.match(/.{0,20}BYN.{0,35}/g)?.slice(0,6),links:[...s.matchAll(/href=["']([^"']*(?:astra|shpon)[^"']*)["']/gi)].slice(0,20).map(x=>x[1])};}catch(e){return{url,error:e.message};}}));
+await fs.writeFile('docs/seo/materials-comparison/stage-7/source-http-check.json',JSON.stringify(results,null,2),'utf8');console.log(results);

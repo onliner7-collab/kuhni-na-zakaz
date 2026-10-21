@@ -18,6 +18,16 @@ import {
 import { answerRows } from "../../lib/leads/details";
 
 const now = Date.now();
+test("veneer view migrates, rejects invalid values and never extends explicit selection TTL", () => {
+  assert.deepEqual(sanitizeMaterialState({version:1}, now).veneerView, EMPTY_MATERIAL_STATE.veneerView);
+  const s = sanitizeMaterialState({...EMPTY_MATERIAL_STATE, comparisonIds:["veneer","ldsp"], preferredId:"veneer", updatedAt:now, veneerView:{surface:2,combination:1,alternative:"mdf-enamel",layout:"Деталь",photo:"veneer-grain-edge"}},now);
+  assert.equal(s.veneerView.surface,2); assert.equal(s.veneerView.photo,"veneer-grain-edge");
+  assert.equal(s.updatedAt,now); assert.deepEqual(s.comparisonIds,["veneer","ldsp"]);
+  assert.ok(!JSON.stringify(normalizeMaterialLead(s)).includes("veneerView"));
+  const expired=sanitizeMaterialState({...s,updatedAt:now-MATERIAL_TTL-1},now);
+  assert.deepEqual(expired.comparisonIds,[]); assert.equal(expired.veneerView.surface,2);
+  assert.deepEqual(sanitizeMaterialState({version:1,veneerView:{surface:Infinity,combination:-1,alternative:"bad",layout:"bad",photo:"https://evil.test"}},now).veneerView,EMPTY_MATERIAL_STATE.veneerView);
+});
 test("acrylic views migrate and restore independently of selection and lead data", () => {
   assert.deepEqual(sanitizeMaterialState({version:1}, now).acrylicView, EMPTY_MATERIAL_STATE.acrylicView);
   const state = sanitizeMaterialState({...EMPTY_MATERIAL_STATE, comparisonIds:["acrylic","hpl"], preferredId:"acrylic", updatedAt:now, acrylicView:{surface:2,room:1,alternative:"mdf-enamel",color:"Тёмные",layout:"Деталь",limit:12,photo:"acrylic-edge-macro"}},now);
