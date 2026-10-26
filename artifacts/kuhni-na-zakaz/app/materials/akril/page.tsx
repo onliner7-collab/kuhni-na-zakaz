@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MaterialMarketEvidence } from "@/components/materials/MaterialMarketEvidence";
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { ExploreContextProvider } from "@/components/exploration";
@@ -365,6 +366,7 @@ export default function AcrylicPage() {
           </section>
           <AcrylicComparison />
           <AcrylicPrice />
+          <MaterialMarketEvidence materialId="acrylic" />
           <section
             id="acrylic-faq"
             className={section}

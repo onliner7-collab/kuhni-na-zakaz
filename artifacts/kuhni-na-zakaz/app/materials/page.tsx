@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MaterialMarketEvidence } from "@/components/materials/MaterialMarketEvidence";
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { ContactForm } from "@/components/sections/ContactForm";
@@ -307,6 +308,7 @@ export default function MaterialsPage() {
             .
           </p>
         </section>
+        <MaterialMarketEvidence />
         <section
           id="materials-form"
           className="mx-auto mt-14 max-w-2xl scroll-mt-24"
@@ -315,12 +317,13 @@ export default function MaterialsPage() {
           <p className="my-4 leading-7 text-stone-600">
             Хотите купить кухню по индивидуальным размерам? Укажите планировку,
             размеры и населённый пункт. Сравним материалы на одном проекте;
-            доставку, установку, столешницу и технику уточним отдельно.
+            столешница, фурнитура и услуги включены в согласованный расчёт.
           </p>
           <MaterialsLeadSummary />
           <div className="rounded-3xl bg-white p-5 sm:p-7">
             <ContactForm
               source="materials-index"
+              sourcePage="/materials"
               sourceType="material-comparison"
               showDimensions
               showComment

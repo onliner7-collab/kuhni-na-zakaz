@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MaterialMarketEvidence } from "@/components/materials/MaterialMarketEvidence";
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { Droplets, Sparkles, Thermometer, ClipboardCheck } from "lucide-react";
@@ -447,6 +448,7 @@ export default function HplPage() {
 
           <HplComparison />
           <HplPriceScenarios />
+          <MaterialMarketEvidence materialId="hpl" />
           <details className={`${panel} mt-3`}>
             <summary className={summary}>
               Недорогая кухня и расширенная комплектация: что меняет стоимость?
@@ -469,9 +471,9 @@ export default function HplPage() {
                   Доводчики, дополнительные выдвижные системы, пеналы,
                   антресоли, подсветка, встроенная техника и столешница другого
                   класса меняют смету. Вариант без техники и кухня с техникой
-                  несопоставимы без уточнения. Доставка, подъём, сборка и
-                  установка фиксируются в составе услуг; включение не
-                  подразумевается автоматически.
+                  несопоставимы без уточнения. Для нашей кухни доставка,
+                  подъём, сборка и установка включены в согласованный расчёт;
+                  у конкурентов состав услуг проверяем отдельно.
                 </p>
               </div>
             </div>

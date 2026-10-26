@@ -163,6 +163,7 @@ export function MaterialsComparison() {
                       <p className="break-words text-sm leading-6">
                         {m.values[key]}
                       </p>
+                      {key === "price" && <a href="#market-prices" className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-violet-800 underline">Источники и состав</a>}
                     </div>
                   ))}
                 </dd>

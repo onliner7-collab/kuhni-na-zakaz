@@ -1,5 +1,6 @@
 import type { Prisma } from "@prisma/client";
 import { normalizeMaterialLead } from '@/lib/material-selection';
+import { MATERIAL_PRICE_SCENARIOS } from '@/data/material-solutions';
 import { prisma } from "@/lib/db";
 import { leadDetailsPath } from "@/lib/leads/details";
 import {
@@ -98,6 +99,8 @@ export function formatLeadCard(lead: NonNullable<LeadCardData>): string {
     const choice = normalizeMaterialLead(answerObject.materialSelection);
     lines.push(`<b>Варианты фасадов:</b> ${escapeTelegramHtml(choice.comparisonNames.join(', ') || 'Помогите выбрать')}`);
     if (choice.preferredName) lines.push(`<b>Предпочитаю:</b> ${escapeTelegramHtml(choice.preferredName)}`);
+    const scenario = MATERIAL_PRICE_SCENARIOS.find(item => item.id === choice.scenarioId);
+    if (scenario) lines.push(`<b>Пример комплектации:</b> ${escapeTelegramHtml(scenario.title)}`);
   }
   if (lead.email) lines.push(`<b>Email:</b> ${escapeTelegramHtml(lead.email)}`);
   if (lead.kitchenType) lines.push(`<b>Кухня:</b> ${escapeTelegramHtml(lead.kitchenType)}`);

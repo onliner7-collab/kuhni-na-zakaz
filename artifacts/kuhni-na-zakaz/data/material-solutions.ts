@@ -1,3 +1,4 @@
+import { MATERIAL_QUOTE_INCLUDES, MATERIAL_RESEARCH_DATE, materialOffers } from "./material-pricing";
 export const MATERIAL_UNKNOWN = "Уточним для выбранного исполнения";
 export const MATERIAL_ROUTES = [
   "/materials",
@@ -31,6 +32,7 @@ export type MaterialSolution = {
   availability: string;
   checkedAt: string;
   sources: string[];
+  evidence?: { availability: "owner-confirmed"; availabilityCheckedAt: string; series: "unknown"; technicalSources: "reference-only"; images: "visual-concepts" };
   values: Record<MaterialCriterion, string>;
 };
 const shared = {
@@ -192,6 +194,15 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
     },
   },
 ];
+// Availability is confirmed by the owner; individual series remain to be agreed.
+for (const material of MATERIAL_SOLUTIONS) {
+  material.evidence = { availability: "owner-confirmed", availabilityCheckedAt: MATERIAL_RESEARCH_DATE, series: "unknown", technicalSources: "reference-only", images: "visual-concepts" };
+  material.availability = "Изготавливаем на заказ; серию, декор и исполнение согласуем для вашего проекта";
+  const example = materialOffers(material.id).find(o => o.publicExample && o.materialConfirmed);
+  material.values.price = example && example.price !== null
+    ? `Пример публикации: ${example.company}, «${example.model}», ${example.dimensions} — ${example.priceType === "от" ? "от " : ""}${example.price.toLocaleString("ru-BY")} BYN ${example.unit}. Другой состав; не наша смета и не диапазон. Проверка ${MATERIAL_RESEARCH_DATE}. Источники и состав — в разделе опубликованных цен.`
+    : "Сопоставимый диапазон пока не подтверждён; опубликованные примеры и состав — в разделе цен.";
+}
 export const materialById = (id: string) =>
   MATERIAL_SOLUTIONS.find((m) => m.id === id);
 export const materialForRoute = (route: string) =>
@@ -204,7 +215,7 @@ export const MATERIAL_PRICE_SCENARIOS = [
     equipment:
       "Корпус ЛДСП 18 мм; нижние шкафы 720 мм, верхние 900 мм; 3 выдвижных ящика; петли и направляющие с доводчиками одного класса; столешница ламинат 38 мм; накладные ручки; без антресолей.",
     services:
-      "Техника, мойка, смеситель, доставка, подъём и монтаж — отдельными строками расчёта.",
+      MATERIAL_QUOTE_INCLUDES + " Техника, мойка и смеситель — по согласованной спецификации.",
   },
   {
     id: "corner-24-18",
@@ -213,6 +224,6 @@ export const MATERIAL_PRICE_SCENARIOS = [
     equipment:
       "Те же корпус, высоты, 3 ящика, класс механизмов, столешница и ручки. Угловой шкаф с полкой; без выдвижной угловой системы и антресолей.",
     services:
-      "Техника, мойка, смеситель, доставка, подъём и монтаж — отдельными строками расчёта.",
+      MATERIAL_QUOTE_INCLUDES + " Техника, мойка и смеситель — по согласованной спецификации.",
   },
 ] as const;

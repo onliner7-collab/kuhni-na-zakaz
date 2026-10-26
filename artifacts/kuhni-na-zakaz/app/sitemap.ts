@@ -271,7 +271,9 @@ function sitemapEntry(
     priority,
   };
 
-  const effectiveLastModified = ["/materials/akril", "/materials/shpon"].includes(normalizePath(path))
+  const effectiveLastModified = ["/materials", "/materials/mdf-fasady", "/materials/ldsp", "/materials/mdf-emal", "/materials/plastik-hpl", "/materials/akril", "/materials/shpon"].includes(normalizePath(path))
+    ? new Date("2026-10-26T00:00:00.000Z")
+    : ["/materials/akril", "/materials/shpon"].includes(normalizePath(path))
     ? new Date("2026-10-21T00:00:00.000Z")
     : normalizePath(path) === "/materials/plastik-hpl"
     ? new Date("2026-10-20T00:00:00.000Z")

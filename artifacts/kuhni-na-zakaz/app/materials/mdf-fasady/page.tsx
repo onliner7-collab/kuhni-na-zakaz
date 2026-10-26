@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MaterialMarketEvidence } from "@/components/materials/MaterialMarketEvidence";
 import Link from "@/components/navigation/Link";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { ExploreContextProvider } from "@/components/exploration";
@@ -11,7 +12,7 @@ import { MaterialDecisionExplorer } from "@/components/materials/MaterialDecisio
 import { MaterialDetailGallery } from "@/components/sections/MaterialDetailGallery";
 import { MATERIAL_EXPLORATION } from "@/data/material-exploration";
 import { MATERIAL_SOLUTIONS } from "@/data/material-solutions";
-import { MDF_FAQ, MDF_SCENARIOS, MDF_PRICE_RESEARCH } from "@/data/mdf-content";
+import { MDF_FAQ, MDF_SCENARIOS } from "@/data/mdf-content";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
@@ -49,7 +50,7 @@ export default function MdfFacadesPage() {
         <details id="construction" className={`${disclosure} scroll-mt-24`}><summary className={summary}>Основа, покрытие, корпус: в чём разница?</summary><div className="mt-3 grid gap-3 text-sm leading-6"><p><strong>Основа фасада — МДФ.</strong> Древесноволокнистая плита задаёт форму; возможность фрезеровки зависит от плиты и технологии.</p><p><strong>Покрытие</strong> формирует наружную поверхность: плёнка, окраска или облицовка. Торец и обратная сторона согласуются отдельно.</p><p><strong>Корпус</strong> — стенки и полки шкафов. Столешница, петли и ящики — отдельные позиции комплектации.</p><a href="https://www.egger.com/it/mobili-arredamento-dinterni/gamma/prodotti/mdfe05mb?country=IT" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-violet-800 underline">О свойствах основы: документация EGGER</a></div></details>
         <details id="rooms" className={`${disclosure} scroll-mt-24`}><summary className={summary}>Для квартиры, частного дома или дачи</summary><div className="mt-3 grid gap-4 text-sm leading-6">{MDF_SCENARIOS.map(s => <div key={s.title}><h3 className="font-bold">{s.title}</h3><p>{s.text}</p><Link href={s.href} className="inline-flex min-h-11 items-center font-semibold text-violet-800 underline">{s.link} →</Link></div>)}<p>Укажите адрес, этаж и подъезд. Выезд, доставку и монтаж согласуем до договора.</p></div></details>
         <details id="care" className={`${disclosure} scroll-mt-24`}><summary className={summary}>Уход, вода, пар и повреждения</summary><ul className="mt-3 list-disc space-y-3 pl-5 text-sm leading-6"><li>Убирайте воду и конденсат со стыков. Не направляйте пар чайника на фасады.</li><li>Используйте мягкую слегка влажную салфетку, затем вытрите насухо. Средство — по инструкции покрытия.</li><li>Зазоры у духовки и защиту от пара задают инструкции мебели и техники.</li><li>Ремонт, замену и совпадение декора уточняют у изготовителя. Для неотапливаемого помещения нужен подтверждённый допуск.</li></ul><a href="https://alanmebel.by/kompanija/pravila-ekspluataczii-mebeli/" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 items-center text-sm text-violet-800 underline">Пример инструкции производителя</a></details>
-        <details className={disclosure}><summary className={summary}>Почему стоимость рассчитывается индивидуально?</summary><p className="mt-3 text-sm leading-6">Размеры, покрытие, ящики, столешница и услуги меняют смету. Ставка за метр не равна цене целой кухни. Для одинаковой комплектации пока недостаточно сопоставимых предложений Беларуси.</p><details className="mt-3"><summary className={summary}>Источники исследования цен</summary><ul className="mt-3 grid gap-3 text-sm leading-6">{MDF_PRICE_RESEARCH.map(r => <li key={r.url}><a href={r.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-violet-800 underline">{r.seller}: {r.model}</a><p>{r.reason}</p></li>)}</ul></details></details>
+      <MaterialMarketEvidence materialId="mdf-film" />
       </div></section>
       <details id="questions" className={`${disclosure} mt-3 scroll-mt-24`}><summary className={summary}>Частые вопросы о фасадах МДФ</summary><div className="mt-3 grid gap-3">{MDF_FAQ.map(([q,a]) => <details key={q} className="rounded-xl bg-stone-50 p-4"><summary className={summary}>{q}</summary><p className="mt-2 text-sm leading-6 text-stone-600">{a}</p></details>)}</div></details>
 

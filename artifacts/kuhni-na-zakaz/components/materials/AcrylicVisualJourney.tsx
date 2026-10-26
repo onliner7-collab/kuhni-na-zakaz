@@ -492,7 +492,7 @@ export function AcrylicPrice() {
             ))}
           </ul>
           <p className={`${note} mt-3`}>
-            Отдельно: {scenario.excluded.join(", ")}. Условия:{" "}
+            {scenario.excluded.join(", ")}. Условия:{" "}
             {scenario.assumptions}
           </p>
           <p className={`${note} mt-3`}>

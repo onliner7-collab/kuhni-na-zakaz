@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MaterialMarketEvidence } from "@/components/materials/MaterialMarketEvidence";
 import Image from "next/image";
 import Link from "@/components/navigation/Link";
 import { ExploreContextProvider } from "@/components/exploration";
@@ -9,7 +10,7 @@ import { MaterialsLeadSummary } from "@/components/materials/MaterialsHub";
 import { MaterialDetailsLink } from "@/components/materials/MaterialsSelection";
 import { LdspActions, LdspConstruction, LdspDecors, LdspRooms, LdspComparison, LdspPriceScenarios } from "@/components/materials/LdspVisualJourney";
 import { MATERIAL_EXPLORATION } from "@/data/material-exploration";
-import { LDSP_FAQ, LDSP_IMAGE_ROOT, LDSP_PRICE_RESEARCH, LDSP_ROOMS } from "@/data/ldsp-content";
+import { LDSP_FAQ, LDSP_IMAGE_ROOT, LDSP_ROOMS } from "@/data/ldsp-content";
 import { JsonLd, breadcrumbJsonLd } from "@/lib/schema-org";
 import { buildOpenGraph, buildTwitterMetadata } from "@/lib/seo";
 
@@ -42,7 +43,7 @@ export default function LdspPage() {
       <LdspRooms/>
       <LdspComparison/>
       <LdspPriceScenarios/>
-      <details className={`${panel} mt-3`}><summary className={summary}>Исследование белорусских цен: источники и ограничения</summary><p className="mt-3 text-sm leading-6">Проверка 17 октября 2026 года. Ниже — опубликованные предложения других компаний, а не наши цены. Различаются размеры, фасады, механизмы, столешницы и услуги. Данных недостаточно для сопоставимой числовой вилки.</p><div className="mt-4 grid gap-3 md:grid-cols-2">{LDSP_PRICE_RESEARCH.map(r=><article key={`${r.seller}-${r.model}`} className="rounded-xl bg-stone-50 p-4 text-sm leading-6"><h3 className="font-bold">{r.seller} · {r.model}</h3><p className="mt-1 font-medium">{r.price}</p><p className="mt-2">{r.composition}</p><p className="mt-2 text-stone-600">{r.reason}</p><a href={r.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-violet-800 underline">Источник предложения ↗</a></article>)}</div></details>
+      <MaterialMarketEvidence materialId="ldsp" />
       <section id="ldsp-care" className="mt-10 scroll-mt-24" aria-labelledby="ldsp-care-title"><h2 id="ldsp-care-title" className="text-2xl font-bold md:text-3xl">Три зоны внимания при эксплуатации</h2><div className="mt-4 grid gap-4 sm:grid-cols-3">{[
         {title:"Вода и мойка",image:`${LDSP_IMAGE_ROOT}/cabinet.webp`,alt:"Мойка, столешница и корпус кухни возле влажной зоны",text:"Убирайте воду и конденсат со стыков. Спилы и примыкания требуют защиты по технологии изготовителя."},
         {title:"Пар и нагрев",image:`${LDSP_IMAGE_ROOT}/country.webp`,alt:"Рабочая зона кухни с варочной поверхностью и верхними шкафами",text:"Не направляйте пар чайника на фасады. Зазоры у духовки и защиту от пара определяют инструкции мебели и техники."},
