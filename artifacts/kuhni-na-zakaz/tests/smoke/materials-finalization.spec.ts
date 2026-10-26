@@ -65,6 +65,8 @@ test('failed form keeps contacts and selection; client navigation restores the d
   await form.getByRole('button',{name:'Рассчитать кухню',exact:true}).click();
   await expect.poll(()=>attempt).toBe(1);await expect(form.locator('[name="name"]')).toHaveValue('ТЕСТ ЧЕРНОВИКА');
   await page.getByRole('navigation',{name:'Другие материалы',exact:true}).getByRole('link',{name:'Фасады ЛДСП',exact:true}).click();
+  await expect(page).toHaveURL(/\/materials\/ldsp(?:\?|$)/);
+  await expect(page.getByRole('heading',{level:1})).toHaveText('Кухни из ЛДСП на заказ');
   const next=page.locator('#form form');await expect(next.locator('[name="name"]')).toHaveValue('ТЕСТ ЧЕРНОВИКА');
   await next.getByRole('button',{name:'Рассчитать кухню',exact:true}).click();await expect.poll(()=>attempt).toBe(2);
   expect(payload.answers.materialSelection.comparisonIds).toEqual(['mdf-enamel','ldsp']);expect(payload.answers.materialSelection.preferredId).toBe('ldsp');
