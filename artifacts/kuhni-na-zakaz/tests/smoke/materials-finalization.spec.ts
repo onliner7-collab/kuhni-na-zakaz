@@ -1,12 +1,11 @@
 import { test, expect, type Page } from "@playwright/test";
 import { MATERIAL_ROUTES } from "../../data/material-solutions";
 import { VENEER_PHOTOS } from "../../data/veneer-content";
-import { MATERIAL_MARKET_OFFERS } from "../../data/material-pricing";
 const route = "/materials/shpon";
 const selection = "?compare=veneer,ldsp&preferred=veneer";
 const state = (page: Page) => page.evaluate(() => JSON.parse(localStorage.getItem("kuhni-materials-v1") || "{}"));
 
-test('all seven pages at five widths: no overflow, one Dock, loaded visible images and shared price evidence', async ({page,request})=>{
+test('all seven pages at five widths: no overflow, one Dock, loaded visible images and our quote terms without competitor advertising', async ({page,request})=>{
   test.setTimeout(240000);
   for(const width of [360,390,768,1024,1440]) for(const path of MATERIAL_ROUTES){
     await page.setViewportSize({width,height:960});
@@ -14,8 +13,7 @@ test('all seven pages at five widths: no overflow, one Dock, loaded visible imag
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.getByTestId('mobile-bottom-nav')).toHaveCount(1);
     await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
-    const evidence=page.locator('#market-prices');await evidence.scrollIntoViewIfNeeded();
-    await expect(evidence.locator('time')).toHaveAttribute('datetime','2026-10-26');
+    const evidence=page.locator('#material-quote');await evidence.scrollIntoViewIfNeeded();
     await expect(evidence).toContainText('В расчёт включены замер');
     if(width===390 || width===1440){
       for(const image of await page.locator('main img, #veneer-visual-page img, #mdf-visual-page img, #ldsp-visual-page img, #enamel-visual-page img, #hpl-visual-page img, #acrylic-visual-page img').all()){
@@ -27,12 +25,10 @@ test('all seven pages at five widths: no overflow, one Dock, loaded visible imag
       await page.screenshot({path:`../../docs/seo/materials-comparison/finalization-2026-10-26/browser/${path.split('/').pop()}-prices-${width}.png`});
     }
   }
-  const hub=await request.get('/materials');const html=await hub.text();
-  for(const offer of MATERIAL_MARKET_OFFERS.filter(o=>o.publicExample&&o.materialConfirmed)){
-    expect(html).toContain(`data-offer-id="${offer.id}"`);
-    const paths:Record<string,string>={ldsp:'ldsp','mdf-film':'mdf-fasady','mdf-enamel':'mdf-emal',hpl:'plastik-hpl',acrylic:'akril',veneer:'shpon'};
-    const detail=await request.get('/materials/'+paths[offer.materialId]);
-    expect(await detail.text()).toContain(`data-offer-id="${offer.id}"`);
+  for(const path of MATERIAL_ROUTES){
+    const response=await request.get(path);const html=await response.text();
+    expect(html).not.toMatch(/mkfaraon|alanmebel|prostokuhni|zk\.by|primebeli|drkitchen|atelie-mebeli|nadommebel|mebelmax|zakaz-kuhni-minsk|Фараон|АЛВИгард|Алан Мебель|Стиль Хауз|data-offer-id|market-prices/iu);
+    expect(html).toContain('id="material-quote"');
   }
 });
 
@@ -192,9 +188,9 @@ test("blocked storage and reduced motion keep controls usable", async ({ browser
 
 test("comparison return, copied URL, gallery filter and recent photos restore", async ({ page, context }) => {
   await page.goto('/materials' + selection + '#compare');
-  await page.locator('#compare').getByRole('link',{name:'Источники и состав',exact:true}).first().click();
-  await expect(page.locator('#market-prices-title')).toBeInViewport();
-  const headingBox=await page.locator('#market-prices-title').boundingBox();
+  await page.locator('#compare').getByRole('link',{name:'Что входит в расчёт',exact:true}).first().click();
+  await expect(page.locator('#material-quote-title')).toBeInViewport();
+  const headingBox=await page.locator('#material-quote-title').boundingBox();
   const headerBox=await page.locator('header').first().boundingBox();
   expect(headingBox!.y).toBeGreaterThanOrEqual(headerBox!.y+headerBox!.height);
   await page.goBack();

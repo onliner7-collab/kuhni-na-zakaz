@@ -610,7 +610,7 @@ export function HplPriceScenarios() {
           <p className={`${note} mt-3`}>{scenario.equipment}</p>
           <p className={`${note} mt-3`}>{scenario.services}</p>
           <p className="mt-4 rounded-xl bg-violet-50 p-4 text-sm leading-6">
-            Проверенной рыночной вилки для одинаковой комплектации пока нет.
+            Размеры, фурнитуру и состав кухни фиксируем перед расчётом.
             Стоимость нашей кухни подтвердим отдельной сметой.
           </p>
           <a href="#materials-form" className={`${materialButton} mt-4`}>

@@ -496,7 +496,7 @@ export function AcrylicPrice() {
             {scenario.assumptions}
           </p>
           <p className={`${note} mt-3`}>
-            Сопоставимая рыночная вилка пока не подтверждена. Рекламная цена за
+            Стоимость рассчитываем по вашему проекту. Цена за
             погонный метр или за м² фасада не заменяет смету готовой кухни.
           </p>
           <a href="#materials-form" className={`${materialButton} mt-4`}>

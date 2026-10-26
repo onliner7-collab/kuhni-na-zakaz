@@ -1,4 +1,4 @@
-import { MATERIAL_QUOTE_INCLUDES, MATERIAL_RESEARCH_DATE, materialOffers } from "./material-pricing";
+import { MATERIAL_QUOTE_INCLUDES, MATERIAL_RESEARCH_DATE } from "./material-quote-terms";
 export const MATERIAL_UNKNOWN = "Уточним для выбранного исполнения";
 export const MATERIAL_ROUTES = [
   "/materials",
@@ -40,7 +40,7 @@ const shared = {
   limits: "Нужны требования поставщика к воде, пару, нагреву и защите торцов.",
   repair: MATERIAL_UNKNOWN,
   price:
-    "Расчёт в BYN по размерам и составу кухни; проверенная сопоставимая вилка пока не опубликована.",
+    "Рассчитаем стоимость в BYN по вашим размерам, выбранным фасадам и комплектации.",
 };
 export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
   {
@@ -79,7 +79,7 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
       "Кухня МДФ в плёнке для квартиры или дачи: сначала согласуйте декор и условия помещения.",
     availability: MATERIAL_UNKNOWN,
     checkedAt: "2026-10-15",
-    sources: ["https://www.egger.com/it/mobili-arredamento-dinterni/gamma/prodotti/mdfe05mb?country=IT", "https://alanmebel.by/kompanija/pravila-ekspluataczii-mebeli/"],
+    sources: ["https://www.egger.com/it/mobili-arredamento-dinterni/gamma/prodotti/mdfe05mb?country=IT"],
     values: {
       ...shared,
       base: "МДФ",
@@ -198,10 +198,7 @@ export const MATERIAL_SOLUTIONS: MaterialSolution[] = [
 for (const material of MATERIAL_SOLUTIONS) {
   material.evidence = { availability: "owner-confirmed", availabilityCheckedAt: MATERIAL_RESEARCH_DATE, series: "unknown", technicalSources: "reference-only", images: "visual-concepts" };
   material.availability = "Изготавливаем на заказ; серию, декор и исполнение согласуем для вашего проекта";
-  const example = materialOffers(material.id).find(o => o.publicExample && o.materialConfirmed);
-  material.values.price = example && example.price !== null
-    ? `Пример публикации: ${example.company}, «${example.model}», ${example.dimensions} — ${example.priceType === "от" ? "от " : ""}${example.price.toLocaleString("ru-BY")} BYN ${example.unit}. Другой состав; не наша смета и не диапазон. Проверка ${MATERIAL_RESEARCH_DATE}. Источники и состав — в разделе опубликованных цен.`
-    : "Сопоставимый диапазон пока не подтверждён; опубликованные примеры и состав — в разделе цен.";
+  material.values.price = shared.price;
 }
 export const materialById = (id: string) =>
   MATERIAL_SOLUTIONS.find((m) => m.id === id);

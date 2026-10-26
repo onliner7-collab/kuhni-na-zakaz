@@ -163,7 +163,7 @@ export function MaterialsComparison() {
                       <p className="break-words text-sm leading-6">
                         {m.values[key]}
                       </p>
-                      {key === "price" && <a href="#market-prices" className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-violet-800 underline">Источники и состав</a>}
+                      {key === "price" && <a href="#material-quote" className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-violet-800 underline">Что входит в расчёт</a>}
                     </div>
                   ))}
                 </dd>
@@ -441,8 +441,7 @@ export function MaterialsPriceScenarios() {
       <p className="mt-3 text-sm leading-7">{scenario.equipment}</p>
       <p className="mt-3 text-sm leading-7">{scenario.services}</p>
       <p className="mt-4 rounded-xl bg-amber-50 p-4 text-sm leading-6">
-        Это пример состава для сравнения, а не готовая смета. Проверенной
-        рыночной вилки для одинаковых комплектаций пока нет. Расчёт нашей кухни
+        Это пример состава для сравнения, а не готовая смета. Расчёт нашей кухни
         — в BYN по вашим размерам; материал корпуса, количество ящиков и состав
         услуг укажем отдельно.
       </p>
