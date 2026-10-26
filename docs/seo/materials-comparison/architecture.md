@@ -1,5 +1,7 @@
 # Контракт материалов v1
 
+26.10.2026, runtime e569f3c5: конкурентные цены и ссылки отключены от публичного приложения. MaterialMarketEvidence теперь показывает только собственные условия расчёта под якорем #material-quote; сравнение читает нейтральный текст стоимости. Публичные условия отделены в data/material-quote-terms.ts: material-solutions.ts больше не импортирует реестр конкурентного исследования. Контракты выбора/URL/форм не менялись. Публичное правило: [public-content-policy.md](public-content-policy.md).
+
 ## Дополнения этапа 7 — шпон, 21.10.2026
 
 Локальная реализация: отдельный server route `app/materials/shpon/page.tsx`, `VeneerVisualJourney`, `data/veneer-content.ts`. Прежние MaterialDecisionExplorer и MaterialDetailGallery сохранены в раскрываемых блоках. ID `veneer`, общий store v1, операции выбора, два scenarioId и контракт заявки прежние.
