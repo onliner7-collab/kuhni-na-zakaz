@@ -10,6 +10,7 @@ import { optimizedImageSrc } from "@/lib/image-optimization";
 import { getImageDisclosure } from "@/lib/image-disclosure";
 
 interface PortfolioProjectHeroImageProps {
+  statusLabel?: string;
   title: string;
   mainImage: string;
   alt: string;
@@ -17,6 +18,7 @@ interface PortfolioProjectHeroImageProps {
 }
 
 export function PortfolioProjectHeroImage({
+  statusLabel,
   title,
   mainImage,
   alt,
@@ -76,7 +78,7 @@ export function PortfolioProjectHeroImage({
         />
         <BrandedImageWatermark show={disclosure.kind === "generated"} />
         <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-          {disclosure.label}
+          {statusLabel || disclosure.label}
         </span>
         <span className="absolute right-3 top-3 inline-flex min-h-10 items-center gap-2 rounded-md bg-white/90 px-3 py-2 text-sm font-semibold text-foreground shadow-sm opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
           <Maximize2 className="h-4 w-4" />

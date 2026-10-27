@@ -1,5 +1,7 @@
 # Page Registry
 
+27.10.2026 — портфолио: /portfolio и 49 карточек разделены по доказательности на работы/идеи; география, цены и completion claims неизвестного происхождения не выводятся. URL сохранены. Отчёт: docs/seo/2026-10-27-portfolio-cleanup.md; статус публикации проверять по финальному разделу отчёта.
+
 27.10.2026: /scenarios/dlya-malenkoy-kuhni объединён с /catalog/malenkie-kuhni по поручению владельца. Runtime 5187e914, sitemap 111 URL, production QA PASS. Аудит всех прежних 112 URL и статусы: docs/seo/2026-10-27-master-plan-audit.md и audit-20261027/page-status.md.
 
 ## МДФ, этап 2 системы материалов

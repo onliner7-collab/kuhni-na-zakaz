@@ -113,8 +113,8 @@ function getStyleValue(project: PortfolioProject) {
 function getColorValue(project: PortfolioProject) {
   const color = project.color.toLowerCase();
 
-  if (color.includes("свет")) return "svetlye";
-  if (color.includes("тём") || color.includes("тем")) return "temnye";
+  if (color.includes("свет") || color.includes("бел") || color.includes("беж")) return "svetlye";
+  if (color.includes("тём") || color.includes("тем") || color.includes("графит") || color.includes("чёрн") || color.includes("черн")) return "temnye";
   if (color.includes("дерев")) return "pod-derevo";
   if (color.includes("комб")) return "kombinirovannye";
 
@@ -178,7 +178,7 @@ function FilterGroup({
               type="button"
               aria-pressed={isSelected}
               onClick={() => onChange(option.value)}
-              className={`min-h-10 rounded-md border px-3 py-2 text-sm font-medium transition-colors ${
+              className={`min-h-11 rounded-md border px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
                 isSelected
                   ? "border-primary bg-primary text-white shadow-sm"
                   : "border-border bg-white text-muted-foreground hover:border-primary/50 hover:text-foreground"
@@ -194,6 +194,7 @@ function FilterGroup({
 }
 
 export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
+  const [statusFilter, setStatusFilter] = useState("all");
   const [cityFilter, setCityFilter] = useState("all");
   const [typeFilter, setTypeFilter] = useState("all");
   const [styleFilter, setStyleFilter] = useState("all");
@@ -202,6 +203,7 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
   const [budgetFilter, setBudgetFilter] = useState("all");
 
   const hasFilters =
+    statusFilter !== "all" ||
     cityFilter !== "all" ||
     typeFilter !== "all" ||
     styleFilter !== "all" ||
@@ -212,6 +214,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
   const filteredProjects = useMemo(
     () =>
       projects.filter((project) => {
+        if (statusFilter === "real" && project.provenance !== "verified_real") return false;
+        if (statusFilter === "ideas" && project.provenance === "verified_real") return false;
         if (!doesMatchCity(project, cityFilter)) return false;
         if (typeFilter !== "all" && getKitchenTypeValue(project) !== typeFilter) return false;
         if (styleFilter !== "all" && getStyleValue(project) !== styleFilter) return false;
@@ -221,7 +225,7 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
 
         return true;
       }),
-    [budgetFilter, cityFilter, colorFilter, materialFilter, projects, styleFilter, typeFilter],
+    [statusFilter, budgetFilter, cityFilter, colorFilter, materialFilter, projects, styleFilter, typeFilter],
   );
 
   function handleFilterChange(filterName: "city" | "type" | "style" | "color" | "material" | "budget", value: string) {
@@ -255,6 +259,7 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
   }
 
   function resetFilters() {
+    setStatusFilter("all");
     trackAnalyticsEvent(ANALYTICS_EVENTS.PORTFOLIO_FILTER_CHANGE, {
       filter_name: "reset",
       filter_value: "all",
@@ -273,9 +278,9 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
         <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 id="portfolio-catalog-heading" className="font-serif text-2xl font-bold">
-              Каталог проектов
+              Работы и идеи
             </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p aria-live="polite" className="mt-1 text-sm text-muted-foreground">
               Найдено проектов: {filteredProjects.length}
             </p>
           </div>
@@ -291,20 +296,27 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-2">
+          <FilterGroup label="Статус проекта" options={[
+            { label: "Все", value: "all" },
+            { label: `Реальные работы (${projects.filter((project) => project.provenance === "verified_real").length})`, value: "real" },
+            { label: `Идеи (${projects.filter((project) => project.provenance !== "verified_real").length})`, value: "ideas" },
+          ]} value={statusFilter} onChange={(value) => { setStatusFilter(value); setCityFilter("all"); setBudgetFilter("all"); }} />
+          {projects.some((project) => project.city) && (
           <FilterGroup label="Город" options={cityOptions} value={cityFilter} onChange={(value) => handleFilterChange("city", value)} />
+          )}
           <FilterGroup id="layouts-filter" label="Тип кухни" options={kitchenTypeOptions} value={typeFilter} onChange={(value) => handleFilterChange("type", value)} />
           <FilterGroup id="styles-filter" label="Стиль" options={styleOptions} value={styleFilter} onChange={(value) => handleFilterChange("style", value)} />
           <FilterGroup label="Цвет" options={colorOptions} value={colorFilter} onChange={(value) => handleFilterChange("color", value)} />
           <FilterGroup label="Материал" options={materialOptions} value={materialFilter} onChange={(value) => handleFilterChange("material", value)} />
-          <FilterGroup label="Бюджет" options={budgetOptions} value={budgetFilter} onChange={(value) => handleFilterChange("budget", value)} />
+          {projects.some((project) => project.priceFrom > 0) && <FilterGroup label="Бюджет подтверждённых работ" options={budgetOptions} value={budgetFilter} onChange={(value) => handleFilterChange("budget", value)} />}
         </div>
       </div>
 
       {filteredProjects.length === 0 ? (
         <div className="rounded-lg border border-dashed border-border bg-gray-50 px-4 py-12 text-center">
-          <h3 className="font-serif text-2xl font-bold">Проекты не найдены</h3>
+          <h3 className="font-serif text-2xl font-bold">{statusFilter === "real" ? "Подтверждённые работы пока не опубликованы" : "Проекты не найдены"}</h3>
           <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-            По выбранным параметрам пока нет опубликованных работ. Попробуйте изменить город, тип кухни, стиль или цвет.
+            {statusFilter === "real" ? "Добавим выполненные кухни после проверки источника, фотографий и характеристик заказа. Пока можно посмотреть идеи для своего проекта." : "По выбранным параметрам пока нет проектов. Попробуйте изменить тип кухни, стиль или цвет."}
           </p>
           <button
             type="button"
@@ -342,7 +354,7 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                 />
                 <BrandedImageWatermark show={disclosure.kind === "generated"} compact />
                 <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-                  {disclosure.label}
+                  {project.provenanceLabel}
                 </span>
               </Link>
 
@@ -365,8 +377,8 @@ export function PortfolioFilters({ projects }: PortfolioFiltersProps) {
                 <dl className="mt-4 space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 shrink-0 text-primary" />
-                    <dt className="sr-only">{disclosure.kind === "generated" ? "Привязка" : "Город"}</dt>
-                    <dd>{disclosure.kind === "generated" ? "Пример без привязки к городу" : project.city}</dd>
+                    <dt className="sr-only">{project.provenance !== "verified_real" ? "Привязка" : "Город"}</dt>
+                    <dd>{project.city || "Идея без привязки к городу"}</dd>
                   </div>
                   <div className="flex items-center gap-2">
                     <Ruler className="h-4 w-4 shrink-0 text-primary" />

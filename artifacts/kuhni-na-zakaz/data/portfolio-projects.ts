@@ -1,5 +1,6 @@
 import { buildImageAlt, getImageDisclosure } from "@/lib/image-disclosure";
 import type { PortfolioCase } from "@prisma/client";
+import { getPortfolioEvidence } from "@/data/portfolio-evidence";
 
 export interface PortfolioProjectImage {
   src: string;
@@ -8,6 +9,8 @@ export interface PortfolioProjectImage {
 }
 
 export interface PortfolioProject {
+  provenance: "verified_real" | "ai_concept" | "unverified";
+  provenanceLabel: string;
   id: string;
   slug: string;
   title: string;
@@ -526,7 +529,7 @@ function buildImages(portfolioCase: EditablePortfolioCase, projectAlt: string) {
   }));
 }
 
-export function toPortfolioProject(portfolioCase: EditablePortfolioCase): PortfolioProject {
+function toRawPortfolioProject(portfolioCase: EditablePortfolioCase): Omit<PortfolioProject, "provenance" | "provenanceLabel"> {
   const kitchenType = normalizeKitchenType(portfolioCase);
   const materials = normalizeMaterials(portfolioCase);
   const cityKey = portfolioCase.cityKey || normalizeCityKey(portfolioCase.city);
@@ -565,5 +568,65 @@ export function toPortfolioProject(portfolioCase: EditablePortfolioCase): Portfo
     relatedLocationSlugs: normalizeRelatedLocations(portfolioCase),
     isFeatured: portfolioCase.featured,
     createdAt: portfolioCase.createdAt.toISOString().slice(0, 10),
+  };
+}
+
+const publicLabels: Record<string, string> = {
+  belaya: "Белая", bezhevaya: "Бежевая", seraya: "Серая", zelenaya: "Зелёная",
+  derevo: "Под дерево", kombinacii: "Комбинированная", unknown: "Не указан",
+  sovremennaya: "Современный", minimalizm: "Минимализм", neoklassika: "Неоклассика",
+  klassika: "Классический", loft: "Лофт", skandinavskaya: "Скандинавский",
+};
+
+function publicLabel(value: string) {
+  return publicLabels[value.trim().toLowerCase()] || value.replace(/Japandi/gi, "Джапанди");
+}
+
+export function withoutPortfolioGeography(value: string) {
+  return publicLabel(value)
+    .replace(/\s+(?:в|для|из)\s+(?:Минск(?:е|а)?|Брест(?:е|а)?|Гомел(?:ь|е|я)|Гродно|Могил[её]в(?:е|а)?|Витебск(?:е|а)?)(?=[\s,.:;!?]|$)/gi, "")
+    .replace(/(^|\s)минск(?:ой|ая|ую|ого|ом|ие|их)(?=\s|$)/gi, "$1")
+    .replace(/\s{2,}/g, " ").trim();
+}
+
+export function toPortfolioProject(portfolioCase: EditablePortfolioCase): PortfolioProject {
+  const raw = toRawPortfolioProject(portfolioCase);
+  const evidence = getPortfolioEvidence(raw.slug);
+  const generated = getImageDisclosure(raw.mainImage).kind === "generated";
+  // Даже подтверждённая запись не превращает ИИ-изображение в фотографию заказа.
+  const verified = Boolean(evidence) && !generated;
+  const provenance = verified ? "verified_real" : generated ? "ai_concept" : "unverified";
+  const provenanceLabel = verified ? "Реальная работа" : generated ? "ИИ-иллюстрация · идея" : "Идея · объект не подтверждён";
+  const title = verified ? publicLabel(raw.title) : withoutPortfolioGeography(raw.title);
+  const price = verified ? evidence?.price : undefined;
+  const validPrice = price && price.source.trim() && price.checkedAt && price.scope.trim() &&
+    Number.isFinite(price.from) && price.from > 0 && Number.isFinite(price.to) && price.to >= price.from;
+  const alt = `${verified ? "" : generated ? "ИИ-иллюстрация: " : "Идея кухни: "}${title}`;
+
+  return {
+    ...raw, provenance, provenanceLabel, title,
+    shortTitle: verified ? publicLabel(raw.shortTitle) : withoutPortfolioGeography(raw.shortTitle),
+    city: verified ? evidence!.city : "",
+    cityKey: verified ? evidence!.cityKey : "",
+    region: verified ? evidence!.region : "",
+    district: verified ? evidence!.district : "",
+    relatedLocationSlugs: verified && evidence!.cityKey ? [evidence!.cityKey] : [],
+    color: publicLabel(portfolioCase.color || "Не указан"),
+    style: publicLabel(raw.style),
+    price: validPrice ? formatPrice(price.from, price.to) : "",
+    priceFrom: validPrice ? price.from : 0,
+    priceNote: validPrice ? `${price.scope} · Проверено ${price.checkedAt}` : "Стоимость похожей кухни — по индивидуальной смете после замера.",
+    workDuration: verified ? raw.workDuration : "",
+    size: verified ? raw.size : "",
+    // Для идеи это варианты комплектации, а не подтверждённая спецификация заказа.
+    description: verified ? raw.description : `${title}. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.`,
+    task: verified ? raw.task : "Выбрать подходящее сочетание планировки, фасадов и хранения для будущей кухни.",
+    solution: verified ? raw.solution : "Адаптируем идею к размерам помещения, расположению коммуникаций и выбранной технике.",
+    features: verified ? raw.features : ["Идея для индивидуального проекта", "Комплектация уточняется при расчёте"],
+    alt,
+    images: raw.images.map((image, index) => ({ ...image,
+      alt: verified ? image.alt : `${alt}, ракурс ${index + 1}`,
+      caption: verified ? image.caption : provenanceLabel,
+    })),
   };
 }

@@ -323,8 +323,8 @@ function DetailRow({ label, value }: { label: string; value?: string }) {
 
 function getProjectProofItems(project: PortfolioProject, isConceptProject: boolean) {
   const imageStatus = isConceptProject
-    ? "Изображение подписано как 3D-визуализация, без привязки к выполненной работе."
-    : "Город, фото и характеристики берутся из данных опубликованного кейса.";
+    ? `${project.provenanceLabel}. Выполнение заказа и город не подтверждены.`
+    : "Выполненная работа с проверенными источниками проекта и фотографий.";
 
   return [
     {
@@ -376,7 +376,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const project = toPortfolioProject(portfolioCase as EditablePortfolioCase);
-  const isConceptProject = getImageDisclosure(project.mainImage).kind === "generated";
+  const isConceptProject = project.provenance !== "verified_real";
   const customDescription = portfolioCase.seoDescription
     && !isGenericPortfolioDescription(portfolioCase.seoDescription)
     ? trimMetaDescription(portfolioCase.seoDescription, portfolioCase.seoDescription)
@@ -385,8 +385,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     "3D-визуализация кухни на заказ: планировка, материалы и идеи для похожего проекта без привязки к выполненной работе.",
     project.description,
   );
-  const metaDescription = customDescription || (isConceptProject ? conceptDescription : buildMetaDescription(project));
-  const metaTitle = buildPortfolioMetaTitle(project);
+  const metaDescription = isConceptProject ? trimMetaDescription(project.description, conceptDescription) : customDescription || buildMetaDescription(project);
+  const metaTitle = isConceptProject ? `${[portfolioBaseTitle(project), projectNumberFromSlug(project.slug)].filter(Boolean).join(", ")} — идея кухни` : buildPortfolioMetaTitle(project);
 
   return {
     title: metaTitle,
@@ -409,7 +409,10 @@ export default async function PortfolioProjectPage({ params }: Props) {
   if (!portfolioCase) notFound();
 
   const project = toPortfolioProject(portfolioCase as EditablePortfolioCase);
-  const { style, materials, scenarios, reviews, locationPage } = await getAuxiliaryProjectData(portfolioCase);
+  const { style, materials, scenarios, reviews, locationPage } = await getAuxiliaryProjectData({
+    ...portfolioCase, city: project.city,
+    reviewIds: project.provenance === "verified_real" ? portfolioCase.reviewIds : [],
+  });
   const relatedProjects = getRelatedProjects(
     project,
     portfolioEntries.map((entry) => entry.project),
@@ -418,8 +421,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
   const regionalLink = locationPage?.slug ? `/locations/${locationPage.slug}` : regionalLocationByCity ? `/locations/${regionalLocationByCity.slug}` : null;
   const regionalTitle = locationPage?.h1 || (project.city ? `Кухни в ${project.city}` : null);
   const cityKey = locationPage?.slug || regionalLocationByCity?.slug || "";
-  const mainImageDisclosure = getImageDisclosure(project.mainImage);
-  const isConceptProject = mainImageDisclosure.kind === "generated";
+  const isConceptProject = project.provenance !== "verified_real";
   const projectProofItems = getProjectProofItems(project, isConceptProject);
   const projectNextLinks = [
     { href: "/prices", label: "Цены и смета" },
@@ -506,7 +508,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 )}
                 {isConceptProject && (
                   <span className="inline-flex items-center rounded-md bg-amber-100 px-3 py-1 text-sm font-semibold text-amber-800">
-                    3D-визуализация, не реальный кейс
+                    {project.provenanceLabel}
                   </span>
                 )}
                 {project.kitchenType && (
@@ -530,7 +532,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
               </p>
               {isConceptProject && (
                 <p className="mt-3 max-w-3xl rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-900">
-                  Это иллюстративная 3D-визуализация. Не используем ее как подтверждение выполненной работы в конкретном городе.
+                  {project.provenance === "ai_concept" ? "Иллюстрация создана с помощью ИИ. " : "Источник и выполнение заказа пока не подтверждены. "}Это идея для будущей кухни без привязки к городу. Стоимость и сроки определяются по вашей комплектации.
                 </p>
               )}
 
@@ -554,6 +556,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
               {project.mainImage ? (
                 <PortfolioProjectHeroImage
+                  statusLabel={project.provenanceLabel}
                   title={project.title}
                   mainImage={project.mainImage}
                   alt={project.alt || project.title}
@@ -571,7 +574,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
             <div className="space-y-12">
               <section aria-labelledby="project-specs-heading" className="rounded-lg border border-border bg-white p-5 shadow-sm sm:p-6">
                 <h2 id="project-specs-heading" className="font-serif text-3xl font-bold">
-                  Характеристики
+                  {isConceptProject ? "Варианты для похожей кухни" : "Характеристики"}
                 </h2>
                 <dl className="mt-4">
                   {!isConceptProject && <DetailRow label="Город" value={project.city} />}
@@ -588,7 +591,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 </dl>
               </section>
 
-              <ProjectGallery title={project.title} images={project.images} />
+              <ProjectGallery title={project.title} images={project.images} statusLabel={project.provenanceLabel} />
 
               <section aria-labelledby="project-description-heading" className="space-y-6">
                 <div>
@@ -617,7 +620,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                   )}
                 </div>
 
-                {portfolioCase.constraints && (
+                {!isConceptProject && portfolioCase.constraints && (
                   <article className="rounded-lg border border-orange-200 bg-orange-50/60 p-5">
                     <div className="flex items-center gap-2">
                       <AlertTriangle className="h-5 w-5 text-orange-600" />
@@ -641,7 +644,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                   </div>
                 )}
 
-                {portfolioCase.result && (
+                {!isConceptProject && portfolioCase.result && (
                   <article className="rounded-lg border border-green-200 bg-green-50/60 p-5">
                     <div className="flex items-center gap-2">
                       <Lightbulb className="h-5 w-5 text-green-700" />
@@ -654,7 +657,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 <section aria-labelledby="project-proof-heading" className="rounded-lg border border-border bg-white p-5 shadow-sm sm:p-6">
                   <div className="max-w-2xl">
                     <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-primary">
-                      Доказательства
+                      {isConceptProject ? "Перед расчётом" : "Доказательства"}
                     </p>
                     <h2 id="project-proof-heading" className="font-serif text-3xl font-bold">
                       Что проверить в похожем проекте
@@ -686,7 +689,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 </section>
               </section>
 
-              {(portfolioCase.photosBefore.length > 0 || portfolioCase.photosAfter.length > 0) && (
+              {!isConceptProject && (portfolioCase.photosBefore.length > 0 || portfolioCase.photosAfter.length > 0) && (
                 <section aria-labelledby="before-after-heading">
                   <h2 id="before-after-heading" className="font-serif text-3xl font-bold">
                     До и после
@@ -726,7 +729,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                 </section>
               )}
 
-              {reviews.length > 0 && (
+              {!isConceptProject && reviews.length > 0 && (
                 <section aria-labelledby="project-reviews-heading">
                   <h2 id="project-reviews-heading" className="font-serif text-3xl font-bold">
                     Отзыв клиента
@@ -763,21 +766,21 @@ export default async function PortfolioProjectPage({ params }: Props) {
               {(style || materials.length > 0 || scenarios.length > 0) && (
                 <section aria-labelledby="project-used-heading">
                   <h2 id="project-used-heading" className="font-serif text-3xl font-bold">
-                    Использованные стиль и материалы
+                    {isConceptProject ? "Стиль и материалы для похожей кухни" : "Использованные стиль и материалы"}
                   </h2>
                   <div className="mt-5 grid gap-4 sm:grid-cols-2">
                     {style && (
                       <Link href={`/styles/${style.slug}`} className="rounded-lg border border-border bg-white p-4 transition-shadow hover:shadow-md">
                         <p className="text-xs font-semibold uppercase text-muted-foreground">Стиль</p>
                         <h3 className="mt-1 font-serif text-xl font-bold">{style.title}</h3>
-                        <p className="mt-2 text-sm font-semibold text-primary">от {style.priceFrom.toLocaleString("ru")} BYN</p>
+                        <p className="mt-2 text-sm font-semibold text-primary">Смотреть стиль</p>
                       </Link>
                     )}
                     {materials.map((material) => (
                       <Link key={material.slug} href={`/materials/${material.slug}`} className="rounded-lg border border-border bg-white p-4 transition-shadow hover:shadow-md">
                         <p className="text-xs font-semibold uppercase text-muted-foreground">Материал</p>
                         <h3 className="mt-1 font-serif text-xl font-bold">{material.title}</h3>
-                        <p className="mt-2 text-sm font-semibold text-primary">от {material.priceFrom.toLocaleString("ru")} BYN</p>
+                        <p className="mt-2 text-sm font-semibold text-primary">Сравнить материал</p>
                       </Link>
                     ))}
                     {scenarios.map((scenario) => (
@@ -850,7 +853,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
                             {relatedProject.shortTitle || relatedProject.title}
                           </h3>
                           <p className="mt-2 text-sm text-muted-foreground">
-                            {getImageDisclosure(relatedProject.mainImage).kind === "generated" ? "Пример без привязки к городу" : relatedProject.city} · {relatedProject.kitchenType}
+                            {relatedProject.provenanceLabel} · {relatedProject.city || "Без привязки к городу"} · {relatedProject.kitchenType}
                           </p>
                         </div>
                       </Link>
@@ -910,7 +913,7 @@ export default async function PortfolioProjectPage({ params }: Props) {
               </div>
 
               <div className="rounded-lg bg-gray-50 p-5">
-                <p className="text-sm font-semibold text-foreground">Цена проекта</p>
+                <p className="text-sm font-semibold text-foreground">{project.price ? "Стоимость и состав" : "Расчёт похожей кухни"}</p>
                 <p className="mt-2 text-2xl font-bold text-primary">{formatProjectPrice(project)}</p>
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                   Точная стоимость зависит от размеров, материалов, фурнитуры и комплектации после замера.

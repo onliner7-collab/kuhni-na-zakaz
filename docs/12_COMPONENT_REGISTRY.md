@@ -1,5 +1,7 @@
 # Component Registry
 
+27.10.2026 — PortfolioFilters: статус работы/идеи, честное пустое состояние, условные фильтры города/бюджета. Hero/Gallery принимают provenanceLabel. toPortfolioProject — единая публичная проекция с data/portfolio-evidence.ts. Область использования проверена: только страницы портфолио.
+
 27.10.2026: SiteLink точечно разрешает retired path через lib/retired-public-routes.ts; хаб/Transition Registry исключают старый сценарий, категория использует собственный якорь. Проверки 16 unit, server build и production QA PASS. Остальные href не меняются.
 
 ## МДФ, этап 2

@@ -12,11 +12,12 @@ import { cn } from "@/lib/utils";
 import { ANALYTICS_EVENTS, trackAnalyticsEvent } from "@/lib/analytics";
 
 interface ProjectGalleryProps {
+  statusLabel?: string;
   title: string;
   images: PortfolioProjectImage[];
 }
 
-export function ProjectGallery({ title, images }: ProjectGalleryProps) {
+export function ProjectGallery({ title, images, statusLabel }: ProjectGalleryProps) {
   const galleryImages = useMemo(
     () =>
       images
@@ -79,7 +80,7 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
         />
         <BrandedImageWatermark show={activeDisclosure.kind === "generated"} />
         <span className="absolute left-3 top-3 z-[3] rounded-md bg-white/90 px-2.5 py-1 text-xs font-semibold text-foreground shadow-sm">
-          {activeDisclosure.label}
+          {statusLabel || activeDisclosure.label}
         </span>
         <span className="absolute right-3 top-3 inline-flex min-h-10 items-center gap-2 rounded-md bg-white/90 px-3 py-2 text-sm font-semibold text-foreground shadow-sm transition-colors group-hover:bg-white">
           <Maximize2 className="h-4 w-4" />
