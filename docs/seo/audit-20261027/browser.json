@@ -1,0 +1,557 @@
+[
+  {
+    "route": "/",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 20952
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-minimalizm-036__01__01-uglovaya-kuhnya-minimalizm-seraya-036-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-035__01__01-uglovaya-kuhnya-neoklassika-belaya-035-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-035__02__02-uglovaya-kuhnya-neoklassika-belaya-035-side-085.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-035__03__03-uglovaya-kuhnya-neoklassika-belaya-035-extra-02-086.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-035__04__04-uglovaya-kuhnya-neoklassika-belaya-035-extra-03-087.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-035__05__05-uglovaya-kuhnya-neoklassika-belaya-035-detail-088.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhni-hero.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fmedia%2Fpilots%2Fborisov%2Fwebp%2Fborisov-process-production.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fseo-showcase%2Fportfolio-minsk-uglovaya-1.avif&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fmedia%2Fpilots%2Fborisov%2Fwebp%2Fborisov-process-installation.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fseo-showcase%2Fkuhnya-neoklassika-1.avif&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2Fconfig-style-dark.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhnya-do-potolka.webp&w=640&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhnya-s-ostrovom.webp&w=1920&q=75"
+    ],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "overflow": false,
+    "height": 12933
+  },
+  {
+    "route": "/catalog",
+    "width": 390,
+    "initial": {
+      "heroTop": 256.1875,
+      "overflow": false,
+      "height": 18203
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/prices",
+    "width": 390,
+    "initial": {
+      "heroTop": 321,
+      "overflow": false,
+      "height": 14852
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/calculator",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 6773
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/catalog/uglovye-kuhni",
+    "width": 390,
+    "initial": {
+      "heroTop": 458.5,
+      "overflow": false,
+      "height": 12218
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/catalog/pryamye-kuhni",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 10206
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/catalog/malenkie-kuhni",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 13101
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/catalog/malenkie-kuhni",
+    "width": 1440,
+    "overflow": false,
+    "height": 7751
+  },
+  {
+    "route": "/catalog/kuhni-do-potolka",
+    "width": 390,
+    "initial": {
+      "heroTop": 427.234375,
+      "overflow": false,
+      "height": 15360
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/catalog/kuhni-bez-ruchek",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 5953
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/catalog/p-obraznye-kuhni",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 5923
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/catalog/kuhni-s-ostrovom",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 5863
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/locations/borisov",
+    "width": 390,
+    "initial": {
+      "heroTop": 360.65625,
+      "overflow": false,
+      "height": 7133
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [
+      "https://kuhni.minsk.by/media/visual-rescue/malenkie-kuhni/webp/small-overview.webp",
+      "https://kuhni.minsk.by/media/visual-rescue/kuhni-do-potolka/webp/ceiling-overview.webp"
+    ],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/locations/minsk",
+    "width": 390,
+    "initial": {
+      "heroTop": 416,
+      "overflow": false,
+      "height": 12399
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/locations/minsk",
+    "width": 1440,
+    "overflow": false,
+    "height": 8202
+  },
+  {
+    "route": "/locations/zhodino",
+    "width": 390,
+    "initial": {
+      "heroTop": 350,
+      "overflow": false,
+      "height": 10655
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/locations/smolevichi",
+    "width": 390,
+    "initial": {
+      "heroTop": 414,
+      "overflow": false,
+      "height": 15716
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/locations/logoisk",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 21522
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/locations/minskaya-oblast",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 34871
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/locations/minskaya-oblast",
+    "width": 1440,
+    "overflow": false,
+    "height": 21048
+  },
+  {
+    "route": "/materials",
+    "width": 390,
+    "initial": {
+      "heroTop": 267,
+      "overflow": false,
+      "height": 22005
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/materials/mdf-fasady",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 10985
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-a-front.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-a-front.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-a-front.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-b-angle.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-c-macro.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-d-kitchen.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-kitchen-1.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-kitchen-2.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-kitchen-3.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fldsp%2Fldsp-kitchen-4.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/images/mdf-facades-20261015/film-country.webp",
+      "https://kuhni.minsk.by/images/mdf-facades-20261015/enamel-apartment.webp",
+      "https://kuhni.minsk.by/images/mdf-facades-20261015/film-profile.webp",
+      "https://kuhni.minsk.by/images/mdf-facades-20261015/film-wood.webp",
+      "https://kuhni.minsk.by/images/mdf-facades-20261015/finish-combination.webp"
+    ],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/materials/mdf-fasady",
+    "width": 1440,
+    "overflow": false,
+    "height": 8969
+  },
+  {
+    "route": "/materials/akril",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 18301
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fvisual-consistency-20261018%2Facrylic-front.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-a-front.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-a-front.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-b-angle.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-c-macro.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-d-kitchen.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-kitchen-1.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-kitchen-2.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-kitchen-3.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fmaterials-gallery-v2%2Fakril%2Fakril-kitchen-4.webp&w=1920&q=75"
+    ],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/styles/sovremennye",
+    "width": 390,
+    "initial": {
+      "heroTop": 438,
+      "overflow": false,
+      "height": 5284
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/styles/neoklassika",
+    "width": 390,
+    "initial": {
+      "heroTop": 438,
+      "overflow": false,
+      "height": 5322
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/scenarios/dlya-studii",
+    "width": 390,
+    "initial": {
+      "heroTop": 528.5,
+      "overflow": false,
+      "height": 4438
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/scenarios/do-potolka",
+    "width": 390,
+    "initial": {
+      "heroTop": 528.5,
+      "overflow": false,
+      "height": 4478
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/scenarios/byudzhetnaya-kuhnya",
+    "width": 390,
+    "initial": {
+      "heroTop": 684,
+      "overflow": false,
+      "height": 25293
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/design-proekt-kuhni",
+    "width": 390,
+    "initial": {
+      "heroTop": 73,
+      "overflow": false,
+      "height": 24330
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhnya-s-ostrovom.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhni-hero.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-p-obraznaya-kuhnya.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhnya-s-ostrovom.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-neoklassicheskaya-kuhnya.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Flocations%2Fminsk-stage34%2Fminsk-project-03-dark-wood-obshchiy-vid.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Flocations%2Fminsk-stage34%2Fminsk-project-05-island-living-obshchiy-vid.webp&w=384&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhnya-do-potolka.webp&w=384&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fimages%2Fdesign-proekt-kuhni%2F3d-proekt-kuhni-hero.webp&w=1920&q=75"
+    ],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/design-proekt-kuhni",
+    "width": 1440,
+    "overflow": false,
+    "height": 18983
+  },
+  {
+    "route": "/reviews",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 7462
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 5,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/portfolio",
+    "width": 390,
+    "initial": {
+      "heroTop": 1873,
+      "overflow": false,
+      "height": 36275
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-minimalizm-004__01__01-pryamaya-kuhnya-minimalizm-belaya-004-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-minimalizm-006__02__02-pryamaya-kuhnya-minimalizm-belaya-006-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-minimalizm-010__01__01-pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-minimalizm-016__05__05-pryamaya-kuhnya-minimalizm-kombinacii-016-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-minimalizm-022__01__01-pryamaya-kuhnya-minimalizm-kombinacii-022-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-minimalizm-027__01__01-pryamaya-kuhnya-minimalizm-bezhevaya-027-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-minimalizm-034__03__03-pryamaya-kuhnya-minimalizm-seraya-034-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-neoklassika-020__01__01-pryamaya-kuhnya-neoklassika-belaya-020-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-neoklassika-028__01__01-pryamaya-kuhnya-neoklassika-belaya-028-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-sovremennaya-008__01__01-pryamaya-kuhnya-sovremennaya-kombinacii-008-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-sovremennaya-013__02__02-pryamaya-kuhnya-sovremennaya-kombinacii-013-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-sovremennaya-026__01__01-pryamaya-kuhnya-sovremennaya-seraya-026-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fpryamaya-kuhnya-sovremennaya-031__01__01-pryamaya-kuhnya-sovremennaya-kombinacii-031-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-loft-023__01__01-uglovaya-kuhnya-loft-kombinacii-023-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-minimalizm-017__01__01-uglovaya-kuhnya-minimalizm-seraya-017-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-minimalizm-018__02__02-uglovaya-kuhnya-minimalizm-seraya-018-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-minimalizm-029__02__02-uglovaya-kuhnya-minimalizm-bezhevaya-029-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-minimalizm-033__01__01-uglovaya-kuhnya-minimalizm-seraya-033-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-002__01__01-uglovaya-kuhnya-neoklassika-belaya-002-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-014__01__01-uglovaya-kuhnya-neoklassika-bezhevaya-014-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-neoklassika-035__01__01-uglovaya-kuhnya-neoklassika-belaya-035-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-skandinavskaya-012__04__04-uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-sovremennaya-001__01__01-uglovaya-kuhnya-sovremennaya-belaya-001-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-sovremennaya-007__01__01-uglovaya-kuhnya-sovremennaya-kombinacii-007-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-sovremennaya-015__01__01-uglovaya-kuhnya-sovremennaya-kombinacii-015-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-sovremennaya-021__01__01-uglovaya-kuhnya-sovremennaya-belaya-021-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-sovremennaya-024__01__01-uglovaya-kuhnya-sovremennaya-kombinacii-024-main.webp&w=1920&q=75",
+      "https://kuhni.minsk.by/_next/image?url=%2Fuploads%2Fkitchens%2Fportfolio%2Fuglovaya-kuhnya-sovremennaya-032__02__02-uglovaya-kuhnya-sovremennaya-seraya-032-main.webp&w=1920&q=75"
+    ],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  },
+  {
+    "route": "/blog/kuhnya-6-kv-m-v-hruschevke",
+    "width": 390,
+    "initial": {
+      "heroTop": null,
+      "overflow": false,
+      "height": 8388
+    },
+    "overflow": false,
+    "broken": [],
+    "pendingLazy": [],
+    "blankButtons": 0,
+    "missingAnchors": [],
+    "errors": []
+  }
+]

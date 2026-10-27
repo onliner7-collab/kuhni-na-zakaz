@@ -1,5 +1,7 @@
 # Page Registry
 
+27.10.2026: /scenarios/dlya-malenkoy-kuhni объединён с /catalog/malenkie-kuhni по поручению владельца. Runtime 5187e914, sitemap 111 URL, production QA PASS. Аудит всех прежних 112 URL и статусы: docs/seo/2026-10-27-master-plan-audit.md и audit-20261027/page-status.md.
+
 ## МДФ, этап 2 системы материалов
 
 /materials/mdf-fasady: основа/покрытия/комплектация, 12 новых изображений, отдельная галерея в общем store, FAQ и явный выбор. Статус публикации и QA: docs/seo/materials-comparison/stage-2/report.md. ЛДСП сохраняет оба визуальных блока; добавлены контекстные переходы из МДФ.

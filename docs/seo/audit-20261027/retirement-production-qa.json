@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-27",
+  "redirects": [
+    {
+      "url": "/scenarios/dlya-malenkoy-kuhni",
+      "status": 308,
+      "location": "/catalog/malenkie-kuhni"
+    },
+    {
+      "url": "/scenarios/dlya-malenkoy-kuhni?from=qa",
+      "status": 308,
+      "location": "/catalog/malenkie-kuhni?from=qa"
+    }
+  ],
+  "protected": [
+    "/",
+    "/locations/borisov",
+    "/locations/minsk",
+    "/locations/minskaya-oblast",
+    "/materials/furnitura",
+    "/design-proekt-kuhni"
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "overflow": false,
+      "oldLinks": 0
+    },
+    {
+      "width": 390,
+      "overflow": false,
+      "oldLinks": 0
+    },
+    {
+      "width": 768,
+      "overflow": false,
+      "oldLinks": 0
+    },
+    {
+      "width": 1440,
+      "overflow": false,
+      "oldLinks": 0
+    }
+  ],
+  "oldLinks": [],
+  "sitemapCount": 111
+}

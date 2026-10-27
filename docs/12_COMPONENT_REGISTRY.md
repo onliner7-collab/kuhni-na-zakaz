@@ -1,5 +1,7 @@
 # Component Registry
 
+27.10.2026: SiteLink точечно разрешает retired path через lib/retired-public-routes.ts; хаб/Transition Registry исключают старый сценарий, категория использует собственный якорь. Проверки 16 unit, server build и production QA PASS. Остальные href не меняются.
+
 ## МДФ, этап 2
 
 MdfPhotoGallery — 6/12 фото, фильтры, lightbox и история; MaterialSurfaceComparator — новые детали и свет; MaterialsSelection — совместимое поле mdfGallery и якорные MaterialDetailsLink. Общие формы и MobileBottomNav без изменения контракта. См. stage-2/report.md.
