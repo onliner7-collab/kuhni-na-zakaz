@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { emptyExploreContext } from "@/lib/explore-context";
 import { readTransitions } from "@/lib/transition-registry";
 import { SCENARIO_FAMILY, STYLE_FAMILY, type FamilyLink } from "@/data/exploration-families";
+import { isRetiredScenario } from "@/lib/retired-public-routes";
 
 test("ExploreContext has no URL facet state", () => {
   const context = emptyExploreContext("/catalog/uglovye-kuhni");
@@ -18,6 +19,10 @@ test("style and scenario families keep unique contracts and four server transiti
     const titles = new Set<string>();
     const headings = new Set<string>();
     for (const config of Object.values(configs)) {
+      if (family === "scenarios" && isRetiredScenario(config.slug)) {
+        assert.equal(readTransitions(`/scenarios/${config.slug}`).length, 0);
+        continue;
+      }
       assert.ok(!titles.has(config.title));
       assert.ok(!headings.has(config.h1));
       titles.add(config.title);

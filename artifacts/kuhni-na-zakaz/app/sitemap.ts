@@ -110,6 +110,7 @@ export const FINAL_POLISH_PATHS = new Set<string>([
 ]);
 
 const NON_CANONICAL_DYNAMIC_PATHS = new Set([
+  "/scenarios/dlya-malenkoy-kuhni",
   "/locations/zhodzina",
   "/scenarios/kuhnya-dlya-studii",
   "/catalog/kuhnya-bez-ruchek-minsk",

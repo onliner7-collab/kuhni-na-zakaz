@@ -49,7 +49,7 @@ function SmallKitchenDetails() {
         { href: "/catalog/pryamye-kuhni", label: "Прямые планировки" },
         { href: "/catalog/uglovye-kuhni", label: "Угловые планировки" },
         { href: "/catalog/kuhni-do-potolka", label: "Шкафы до потолка" },
-        { href: "/scenarios/dlya-malenkoy-kuhni", label: "Организация маленькой кухни" },
+        { href: "#small-before-order-heading", label: "Что проверить перед заказом" },
         { href: "/materials/ldsp", label: "Практичные фасады ЛДСП" },
         { href: "/materials/mdf-fasady", label: "Фасады МДФ и покрытия" },
         { href: "/design-proekt-kuhni", label: "Что входит в проект кухни" },

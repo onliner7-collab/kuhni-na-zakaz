@@ -7,6 +7,7 @@ import { STATIC_SCENARIO_FALLBACKS } from "@/data/scenario-fallbacks";
 import { ContextSummary, ExploreContextProvider, RelatedExplorationRail } from "@/components/exploration";
 import { FamilyHubExplorer } from "@/components/exploration/FamilyHubExplorer";
 import { SCENARIO_FAMILY } from "@/data/exploration-families";
+import { isRetiredScenario } from "@/lib/retired-public-routes";
 
 export const metadata: Metadata = {
   title: "Сценарии кухни: семья, студия, бюджет",
@@ -53,7 +54,7 @@ async function getScenarios() {
 }
 
 export default async function ScenariosPage() {
-  const scenarios = (await getScenarios()).filter((item) => isPublicContentSlug(item.slug));
+  const scenarios = (await getScenarios()).filter((item) => isPublicContentSlug(item.slug) && !isRetiredScenario(item.slug));
   const explorerOptions = scenarios.flatMap((scenario) => {
     const config = SCENARIO_FAMILY[scenario.slug];
     const visual = config?.visualFrames?.[0] ?? config?.visual;

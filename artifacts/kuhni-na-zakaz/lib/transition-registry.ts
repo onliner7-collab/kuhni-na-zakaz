@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { SCENARIO_FAMILY, STYLE_FAMILY } from "@/data/exploration-families";
 import { regionalLocations } from "@/data/locations";
+import { resolvePublicPath, RETIRED_SMALL_SCENARIO } from "@/lib/retired-public-routes";
 import type {
   EvidenceStatus,
   ExplorationAnalyticsEvent,
@@ -262,7 +263,10 @@ function statusFor(item: LegacyTransitionRecord): TransitionStatus {
   return "active";
 }
 
-const registry = legacyRegistry.map((item) => transitionSchema.parse({
+const registry = legacyRegistry
+  .filter((item) => item.fromRoute !== RETIRED_SMALL_SCENARIO && !(item.toRoute === RETIRED_SMALL_SCENARIO && resolvePublicPath(item.toRoute) === item.fromRoute))
+  .map((item) => ({ ...item, toRoute: resolvePublicPath(item.toRoute) }))
+  .map((item) => transitionSchema.parse({
   ...item,
   id: stableTransitionId(item),
   evidenceStatus: evidenceStatusFor(item),

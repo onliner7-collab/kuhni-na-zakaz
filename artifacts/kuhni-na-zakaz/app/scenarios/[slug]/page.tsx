@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
+import { isRetiredScenario, SMALL_KITCHEN_CANONICAL } from "@/lib/retired-public-routes";
 import Link from "@/components/navigation/Link";
 import { ArrowRight, CheckCircle, Lightbulb, Star } from "lucide-react";
 import { prisma } from "@/lib/db";
@@ -289,12 +290,13 @@ export async function generateStaticParams() {
   try {
     const scenarios = await prisma.scenarioPage.findMany({ where: { published: true, slug: publicSlugWhere() }, select: { slug: true } });
     const slugs = new Set([...Object.keys(SCENARIO_FAMILY), ...STATIC_SCENARIO_FALLBACKS.map((item) => item.slug), ...scenarios.map((item) => item.slug)]);
-    return Array.from(slugs).filter(isPublicContentSlug).map((slug) => ({ slug }));
-  } catch { return Array.from(new Set([...Object.keys(SCENARIO_FAMILY), ...STATIC_SCENARIO_FALLBACKS.map((item) => item.slug)])).map((slug) => ({ slug })); }
+    return Array.from(slugs).filter((slug) => isPublicContentSlug(slug) && !isRetiredScenario(slug)).map((slug) => ({ slug }));
+  } catch { return Array.from(new Set([...Object.keys(SCENARIO_FAMILY), ...STATIC_SCENARIO_FALLBACKS.map((item) => item.slug)])).filter((slug) => !isRetiredScenario(slug)).map((slug) => ({ slug })); }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (isRetiredScenario(slug)) permanentRedirect(SMALL_KITCHEN_CANONICAL);
   if (slug === "byudzhetnaya-kuhnya") {
     return {
       title: budgetKitchenTitle,
@@ -343,6 +345,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ScenarioDetailPage({ params }: Props) {
   const { slug } = await params;
+  if (isRetiredScenario(slug)) permanentRedirect(SMALL_KITCHEN_CANONICAL);
   if (slug === "byudzhetnaya-kuhnya") return <BudgetKitchenPage />;
   const family = SCENARIO_FAMILY[slug];
   if (family) {

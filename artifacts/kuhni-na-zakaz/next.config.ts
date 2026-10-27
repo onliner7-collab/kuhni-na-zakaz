@@ -159,6 +159,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/scenarios/dlya-malenkoy-kuhni",
+        destination: "/catalog/malenkie-kuhni",
+        permanent: true,
+      },
+      {
         source: "/:legacyPhone(%20375293720674|375293720674|\\+375293720674)",
         destination: "/contacts",
         statusCode: 301,
