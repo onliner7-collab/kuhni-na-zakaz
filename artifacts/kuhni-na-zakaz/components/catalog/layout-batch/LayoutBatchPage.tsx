@@ -108,7 +108,7 @@ const configs: Record<string, Config> = {
     ],
     visualFrames: handlelessFrames(),
     media: media("opening", "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek.webp", "Визуализация кухни без ручек", "/images/design-proekt-kuhni/3d-proekt-kuhnya-bez-ruchek-rakurs-1.webp", "Визуализация зоны открывания фасадов"),
-    links: [{ href: "/materials/furnitura", label: "Сравнить механизмы и фурнитуру" }, { href: "/styles/minimalizm", label: "Проверить минималистичный стиль" }, { href: "/materials/mdf-fasady", label: "Сравнить поверхности МДФ" }, { href: "/blog/kuhnya-bez-ruchek-plyusy-minusy", label: "Разобрать плюсы и ограничения" }],
+    links: [{ href: "/materials/furnitura", label: "Сравнить механизмы и фурнитуру" }, { href: "/styles/minimalizm", label: "Проверить минималистичный стиль" }, { href: "/materials/mdf-fasady", label: "Сравнить поверхности МДФ" }, { href: "/blog/kakie-fasady-luchshe", label: "Сравнить материалы фасадов" }],
   },
 };
 
