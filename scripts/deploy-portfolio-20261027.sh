@@ -2,11 +2,14 @@
 set -euo pipefail
 phase=$1
 target=$2
+expected=${3:-384199790b6490ddaac4747fcdc142f332f94afd}
+revision=${4:-20261027}
 [[ "$target" =~ ^[a-f0-9]{40}$ ]]
+[[ "$expected" =~ ^[a-f0-9]{40}$ ]]
+[[ "$revision" =~ ^[0-9]{8}$ ]]
 repo=/var/www/kuhni-na-zakaz
-release=/var/www/kuhni-portfolio-20261027
+release=/var/www/kuhni-portfolio-$revision
 app=artifacts/kuhni-na-zakaz
-expected=384199790b6490ddaac4747fcdc142f332f94afd
 branch=codex/portfolio-cleanup-20261027
 check_baseline() {
   test "$(sudo -u kuhni git -C "$repo" rev-parse HEAD)" = "$expected"
@@ -31,9 +34,9 @@ elif test "$phase" = activate; then
   check_baseline
   test "$(sudo -u kuhni git -C "$release" rev-parse HEAD)" = "$target"
   test -f "$release/$app/.next/BUILD_ID"
-  backup="$repo/$app/.next-before-portfolio-20261027"
+  backup="$repo/$app/.next-before-portfolio-$revision"
   test ! -e "$backup"
-  cp "$repo/$app/public/sitemap-static.xml" /var/tmp/sitemap-before-portfolio-20261027.xml
+  cp "$repo/$app/public/sitemap-static.xml" "/var/tmp/sitemap-before-portfolio-$revision.xml"
   sudo -u kuhni git -C "$repo" merge --ff-only "$target"
   mv "$repo/$app/.next" "$backup"
   ln -s "$release/$app/.next" "$repo/$app/.next"
@@ -53,7 +56,7 @@ elif test "$phase" = activate; then
   unlink "$repo/$app/.next"
   mv "$backup" "$repo/$app/.next"
   sudo -u kuhni git -C "$repo" switch --detach "$expected"
-  cp /var/tmp/sitemap-before-portfolio-20261027.xml "$repo/$app/public/sitemap-static.xml"
+  cp "/var/tmp/sitemap-before-portfolio-$revision.xml" "$repo/$app/public/sitemap-static.xml"
   chown kuhni:kuhni "$repo/$app/public/sitemap-static.xml"
   systemctl start kuhni-na-zakaz
   exit 1

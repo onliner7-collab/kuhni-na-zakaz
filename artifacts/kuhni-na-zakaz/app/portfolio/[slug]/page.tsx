@@ -386,7 +386,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     project.description,
   );
   const metaDescription = isConceptProject ? trimMetaDescription(project.description, conceptDescription) : customDescription || buildMetaDescription(project);
-  const metaTitle = isConceptProject ? `${[portfolioBaseTitle(project), projectNumberFromSlug(project.slug)].filter(Boolean).join(", ")} — идея кухни` : buildPortfolioMetaTitle(project);
+  const metaTitle = isConceptProject ? `${project.title} — идея кухни` : buildPortfolioMetaTitle(project);
 
   return {
     title: metaTitle,
