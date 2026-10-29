@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-29T14:20:28.597Z",
+  "responsiveResults": [
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio",
+      "width": 320
+    },
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio/kuhnya-s-ostrovom-minimalizm-005",
+      "width": 320
+    },
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio",
+      "width": 390
+    },
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio/kuhnya-s-ostrovom-minimalizm-005",
+      "width": 390
+    },
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio",
+      "width": 768
+    },
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio/kuhnya-s-ostrovom-minimalizm-005",
+      "width": 768
+    },
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio",
+      "width": 1440
+    },
+    {
+      "brokenLoadedImages": 0,
+      "h1": 1,
+      "overflow": false,
+      "route": "/portfolio/kuhnya-s-ostrovom-minimalizm-005",
+      "width": 1440
+    }
+  ],
+  "filters": {
+    "realEmpty": true,
+    "ideas": 49,
+    "corner": 19
+  },
+  "gallery": {
+    "caption": "Идея · объект не подтверждён",
+    "naturalWidth": 1440,
+    "nextFrame": true,
+    "escapeAndFocusRestore": true
+  }
+}

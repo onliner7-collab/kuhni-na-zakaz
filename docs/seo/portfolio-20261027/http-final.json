@@ -1,0 +1,1194 @@
+{
+  "checkedAt": "2026-10-29T14:22:09.370Z",
+  "protected": {
+    "/": {
+      "title": "Купить кухню на заказ — по вашим размерам | КухниBY",
+      "description": "Кухни на заказ по индивидуальным размерам. Выберите планировку, фасады и хранение, посмотрите примеры комплектаций и отправьте заявку на расчёт.",
+      "h1": "Купить кухню на заказ по вашим размерам",
+      "canonical": "https://kuhni.minsk.by"
+    },
+    "/design-proekt-kuhni": {
+      "title": "3D-проект кухни на заказ в Минске — дизайн, планировка и визуализация",
+      "description": "Разработаем 3D-проект кухни по вашим размерам: планировка, материалы, техника, системы хранения и предварительный расчёт стоимости. Работаем в Минске и по Беларуси.",
+      "h1": "3D-проект кухни на заказ",
+      "canonical": "https://kuhni.minsk.by/design-proekt-kuhni"
+    },
+    "/locations/minskaya-oblast": {
+      "title": "Кухни в Минской области на заказ | КухниBY",
+      "description": "Кухни на заказ по Минской области: выберите город, уточните условия замера, доставки и монтажа. Подготовим проект и расчёт по размерам и комплектации.",
+      "h1": "Купить кухню в Минской области под размер, с доставкой и монтажом",
+      "canonical": "https://kuhni.minsk.by/locations/minskaya-oblast"
+    },
+    "/locations/minsk": {
+      "title": "Купить кухню на заказ в Минске — размеры, стили и материалы | КухниBY",
+      "description": "Кухни на заказ в Минске по вашим размерам. Сравните планировки, стили и материалы, выберите комплектацию. Получите расчёт, уточните замер, доставку и монтаж.",
+      "h1": "Купить кухню в Минске на заказ",
+      "canonical": "https://kuhni.minsk.by/locations/minsk"
+    },
+    "/materials/furnitura": {
+      "title": "Фурнитура для кухни: петли и направляющие | КухниBY",
+      "description": "Фурнитура для кухни на заказ: петли, направляющие, доводчики, подъемники, ручки и системы хранения. Подбор под проект в Минске.",
+      "h1": "Фурнитура для кухни на заказ",
+      "canonical": "https://kuhni.minsk.by/materials/furnitura"
+    },
+    "/locations/borisov": {
+      "title": "Купить кухню на заказ в Борисове: каталог и цены | КухниBY",
+      "description": "Ваша семья заслуживает кухни, от которой ахнут гости. Создадим её под ваши размеры и бюджет. Своё производство в Борисове, доставка и монтаж по договору.",
+      "h1": "Кухни на заказ в Борисове",
+      "canonical": "https://kuhni.minsk.by/locations/borisov"
+    }
+  },
+  "portfolio": [
+    {
+      "route": "/portfolio/kuhnya-japandi-zelenye-fasady-minsk",
+      "status": 200,
+      "title": "Кухня Джапанди с зелеными фасадами — идея кухни | КухниBY",
+      "description": "Кухня Джапанди с зелеными фасадами. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Кухня Джапанди с зелеными фасадами",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-japandi-zelenye-fasady-minsk"
+    },
+    {
+      "route": "/portfolio/loft-kuhnya-oreh-poluostrov-minsk",
+      "status": 200,
+      "title": "Лофт-кухня с орехом и полуостровом — идея кухни | КухниBY",
+      "description": "Лофт-кухня с орехом и полуостровом. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Лофт-кухня с орехом и полуостровом",
+      "canonical": "https://kuhni.minsk.by/portfolio/loft-kuhnya-oreh-poluostrov-minsk"
+    },
+    {
+      "route": "/portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk",
+      "status": 200,
+      "title": "Неоклассическая кухня с синими фасадами — идея кухни | КухниBY",
+      "description": "Неоклассическая кухня с синими фасадами. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Неоклассическая кухня с синими фасадами",
+      "canonical": "https://kuhni.minsk.by/portfolio/neoklassicheskaya-kuhnya-sinie-fasady-minsk"
+    },
+    {
+      "route": "/portfolio/belaya-kuhnya-do-potolka-minsk",
+      "status": 200,
+      "title": "Белая кухня до потолка для квартиры — идея кухни | КухниBY",
+      "description": "Белая кухня до потолка для квартиры. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Белая кухня до потолка для квартиры",
+      "canonical": "https://kuhni.minsk.by/portfolio/belaya-kuhnya-do-potolka-minsk"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-zelenyj-akcent-minsk",
+      "status": 200,
+      "title": "Кухня с островом и зелёным акцентом — идея кухни | КухниBY",
+      "description": "Кухня с островом и зелёным акцентом. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Кухня с островом и зелёным акцентом",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-zelenyj-akcent-minsk"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-studiya-dubovaya-nisha-minsk",
+      "status": 200,
+      "title": "Прямая кухня для студии с дубовой нишей — идея кухни | КухниBY",
+      "description": "Прямая кухня для студии с дубовой нишей. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня для студии с дубовой нишей",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-studiya-dubovaya-nisha-minsk"
+    },
+    {
+      "route": "/portfolio/seraya-uglovaya-kuhnya-novostrojka-minsk",
+      "status": 200,
+      "title": "Серая угловая кухня для новостройки — идея кухни | КухниBY",
+      "description": "Серая угловая кухня для новостройки. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Серая угловая кухня для новостройки",
+      "canonical": "https://kuhni.minsk.by/portfolio/seraya-uglovaya-kuhnya-novostrojka-minsk"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk",
+      "status": 200,
+      "title": "Угловая кухня для новостройки — идея кухни | КухниBY",
+      "description": "Угловая кухня для новостройки. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня для новостройки",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-dlya-novostroyki-minsk"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-dlya-studii-brest",
+      "status": 200,
+      "title": "Прямая кухня для студии — идея кухни | КухниBY",
+      "description": "Прямая кухня для студии. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня для студии",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-dlya-studii-brest"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-grodno",
+      "status": 200,
+      "title": "Кухня с островом для дома — идея кухни | КухниBY",
+      "description": "Кухня с островом для дома. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Кухня с островом для дома",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-grodno"
+    },
+    {
+      "route": "/portfolio/neoklassicheskaya-kuhnya-vitebsk",
+      "status": 200,
+      "title": "Неоклассическая кухня — идея кухни | КухниBY",
+      "description": "Неоклассическая кухня. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Неоклассическая кухня",
+      "canonical": "https://kuhni.minsk.by/portfolio/neoklassicheskaya-kuhnya-vitebsk"
+    },
+    {
+      "route": "/portfolio/malenkaya-kuhnya-gomel",
+      "status": 200,
+      "title": "Маленькая кухня для квартиры — идея кухни | КухниBY",
+      "description": "Маленькая кухня для квартиры. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Маленькая кухня для квартиры",
+      "canonical": "https://kuhni.minsk.by/portfolio/malenkaya-kuhnya-gomel"
+    },
+    {
+      "route": "/portfolio/kuhnya-do-potolka-mogilev",
+      "status": 200,
+      "title": "Кухня до потолка — идея кухни | КухниBY",
+      "description": "Кухня до потолка. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Кухня до потолка",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-do-potolka-mogilev"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-minimalizm-005",
+      "status": 200,
+      "title": "Кухня с островом белая в стиле минимализм, проект №005 — идея кухни | КухниBY",
+      "description": "Кухня с островом белая в стиле минимализм, проект №005. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещ...",
+      "h1": "Кухня с островом белая в стиле минимализм, проект №005",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-minimalizm-005"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-minimalizm-011",
+      "status": 200,
+      "title": "Кухня с островом белая в стиле минимализм, проект №011 — идея кухни | КухниBY",
+      "description": "Кухня с островом белая в стиле минимализм, проект №011. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещ...",
+      "h1": "Кухня с островом белая в стиле минимализм, проект №011",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-minimalizm-011"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-minimalizm-025",
+      "status": 200,
+      "title": "Кухня с островом серая в стиле минимализм — идея кухни | КухниBY",
+      "description": "Кухня с островом серая в стиле минимализм. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Кухня с островом серая в стиле минимализм",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-minimalizm-025"
+    },
+    {
+      "route": "/portfolio/kuhnya-s-ostrovom-sovremennaya-009",
+      "status": 200,
+      "title": "Кухня с островом комбинированная в современном стиле — идея кухни | КухниBY",
+      "description": "Кухня с островом комбинированная в современном стиле. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Кухня с островом комбинированная в современном стиле",
+      "canonical": "https://kuhni.minsk.by/portfolio/kuhnya-s-ostrovom-sovremennaya-009"
+    },
+    {
+      "route": "/portfolio/malenkaya-kuhnya-sovremennaya-030",
+      "status": 200,
+      "title": "Маленькая кухня серая в современном стиле — идея кухни | КухниBY",
+      "description": "Маленькая кухня серая в современном стиле. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Маленькая кухня серая в современном стиле",
+      "canonical": "https://kuhni.minsk.by/portfolio/malenkaya-kuhnya-sovremennaya-030"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-klassika-019",
+      "status": 200,
+      "title": "Прямая кухня под дерево в классическом стиле — идея кухни | КухниBY",
+      "description": "Прямая кухня под дерево в классическом стиле. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня под дерево в классическом стиле",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-klassika-019"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-003",
+      "status": 200,
+      "title": "Прямая кухня комбинированная в стиле минимализм, проект №003 — идея кухни | КухниBY",
+      "description": "Прямая кухня комбинированная в стиле минимализм, проект №003. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего...",
+      "h1": "Прямая кухня комбинированная в стиле минимализм, проект №003",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-003"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-004",
+      "status": 200,
+      "title": "Прямая кухня белая в стиле минимализм, проект №004 — идея кухни | КухниBY",
+      "description": "Прямая кухня белая в стиле минимализм, проект №004. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня белая в стиле минимализм, проект №004",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-004"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-006",
+      "status": 200,
+      "title": "Прямая кухня белая в стиле минимализм, проект №006 — идея кухни | КухниBY",
+      "description": "Прямая кухня белая в стиле минимализм, проект №006. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня белая в стиле минимализм, проект №006",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-006"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-010",
+      "status": 200,
+      "title": "Прямая кухня зелёная в стиле минимализм — идея кухни | КухниBY",
+      "description": "Прямая кухня зелёная в стиле минимализм. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня зелёная в стиле минимализм",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-010"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-016",
+      "status": 200,
+      "title": "Прямая кухня комбинированная в стиле минимализм, проект №016 — идея кухни | КухниBY",
+      "description": "Прямая кухня комбинированная в стиле минимализм, проект №016. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего...",
+      "h1": "Прямая кухня комбинированная в стиле минимализм, проект №016",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-016"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-022",
+      "status": 200,
+      "title": "Прямая кухня комбинированная в стиле минимализм, проект №022 — идея кухни | КухниBY",
+      "description": "Прямая кухня комбинированная в стиле минимализм, проект №022. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего...",
+      "h1": "Прямая кухня комбинированная в стиле минимализм, проект №022",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-022"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-027",
+      "status": 200,
+      "title": "Прямая кухня бежевая в стиле минимализм — идея кухни | КухниBY",
+      "description": "Прямая кухня бежевая в стиле минимализм. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня бежевая в стиле минимализм",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-027"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-minimalizm-034",
+      "status": 200,
+      "title": "Прямая кухня серая в стиле минимализм — идея кухни | КухниBY",
+      "description": "Прямая кухня серая в стиле минимализм. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня серая в стиле минимализм",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-minimalizm-034"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-neoklassika-020",
+      "status": 200,
+      "title": "Прямая кухня белая в стиле неоклассика, проект №020 — идея кухни | КухниBY",
+      "description": "Прямая кухня белая в стиле неоклассика, проект №020. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня белая в стиле неоклассика, проект №020",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-neoklassika-020"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-neoklassika-028",
+      "status": 200,
+      "title": "Прямая кухня белая в стиле неоклассика, проект №028 — идея кухни | КухниBY",
+      "description": "Прямая кухня белая в стиле неоклассика, проект №028. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня белая в стиле неоклассика, проект №028",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-neoklassika-028"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-sovremennaya-008",
+      "status": 200,
+      "title": "Прямая кухня комбинированная в современном стиле, проект №008 — идея кухни | КухниBY",
+      "description": "Прямая кухня комбинированная в современном стиле, проект №008. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашег...",
+      "h1": "Прямая кухня комбинированная в современном стиле, проект №008",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-sovremennaya-008"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-sovremennaya-013",
+      "status": 200,
+      "title": "Прямая кухня комбинированная в современном стиле, проект №013 — идея кухни | КухниBY",
+      "description": "Прямая кухня комбинированная в современном стиле, проект №013. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашег...",
+      "h1": "Прямая кухня комбинированная в современном стиле, проект №013",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-sovremennaya-013"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-sovremennaya-026",
+      "status": 200,
+      "title": "Прямая кухня серая в современном стиле — идея кухни | КухниBY",
+      "description": "Прямая кухня серая в современном стиле. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Прямая кухня серая в современном стиле",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-sovremennaya-026"
+    },
+    {
+      "route": "/portfolio/pryamaya-kuhnya-sovremennaya-031",
+      "status": 200,
+      "title": "Прямая кухня комбинированная в современном стиле, проект №031 — идея кухни | КухниBY",
+      "description": "Прямая кухня комбинированная в современном стиле, проект №031. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашег...",
+      "h1": "Прямая кухня комбинированная в современном стиле, проект №031",
+      "canonical": "https://kuhni.minsk.by/portfolio/pryamaya-kuhnya-sovremennaya-031"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-loft-023",
+      "status": 200,
+      "title": "Угловая кухня комбинированная в стиле лофт — идея кухни | КухниBY",
+      "description": "Угловая кухня комбинированная в стиле лофт. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня комбинированная в стиле лофт",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-loft-023"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-minimalizm-017",
+      "status": 200,
+      "title": "Угловая кухня серая в стиле минимализм, проект №017 — идея кухни | КухниBY",
+      "description": "Угловая кухня серая в стиле минимализм, проект №017. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня серая в стиле минимализм, проект №017",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-minimalizm-017"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-minimalizm-018",
+      "status": 200,
+      "title": "Угловая кухня серая в стиле минимализм, проект №018 — идея кухни | КухниBY",
+      "description": "Угловая кухня серая в стиле минимализм, проект №018. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня серая в стиле минимализм, проект №018",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-minimalizm-018"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-minimalizm-029",
+      "status": 200,
+      "title": "Угловая кухня бежевая в стиле минимализм — идея кухни | КухниBY",
+      "description": "Угловая кухня бежевая в стиле минимализм. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня бежевая в стиле минимализм",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-minimalizm-029"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-minimalizm-033",
+      "status": 200,
+      "title": "Угловая кухня серая в стиле минимализм, проект №033 — идея кухни | КухниBY",
+      "description": "Угловая кухня серая в стиле минимализм, проект №033. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня серая в стиле минимализм, проект №033",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-minimalizm-033"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-minimalizm-036",
+      "status": 200,
+      "title": "Угловая кухня серая в стиле минимализм, проект №036 — идея кухни | КухниBY",
+      "description": "Угловая кухня серая в стиле минимализм, проект №036. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня серая в стиле минимализм, проект №036",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-minimalizm-036"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-neoklassika-002",
+      "status": 200,
+      "title": "Угловая кухня белая в стиле неоклассика, проект №002 — идея кухни | КухниBY",
+      "description": "Угловая кухня белая в стиле неоклассика, проект №002. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня белая в стиле неоклассика, проект №002",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-neoklassika-002"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-neoklassika-014",
+      "status": 200,
+      "title": "Угловая кухня бежевая в стиле неоклассика — идея кухни | КухниBY",
+      "description": "Угловая кухня бежевая в стиле неоклассика. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня бежевая в стиле неоклассика",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-neoklassika-014"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-neoklassika-035",
+      "status": 200,
+      "title": "Угловая кухня белая в стиле неоклассика, проект №035 — идея кухни | КухниBY",
+      "description": "Угловая кухня белая в стиле неоклассика, проект №035. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня белая в стиле неоклассика, проект №035",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-neoklassika-035"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-skandinavskaya-012",
+      "status": 200,
+      "title": "Угловая кухня зелёная в скандинавском стиле — идея кухни | КухниBY",
+      "description": "Угловая кухня зелёная в скандинавском стиле. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня зелёная в скандинавском стиле",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-skandinavskaya-012"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-sovremennaya-001",
+      "status": 200,
+      "title": "Угловая кухня белая в современном стиле, проект №001 — идея кухни | КухниBY",
+      "description": "Угловая кухня белая в современном стиле, проект №001. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня белая в современном стиле, проект №001",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-sovremennaya-001"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-sovremennaya-007",
+      "status": 200,
+      "title": "Угловая кухня комбинированная в современном стиле, проект №007 — идея кухни | КухниBY",
+      "description": "Угловая кухня комбинированная в современном стиле, проект №007. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для ваше...",
+      "h1": "Угловая кухня комбинированная в современном стиле, проект №007",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-sovremennaya-007"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-sovremennaya-015",
+      "status": 200,
+      "title": "Угловая кухня комбинированная в современном стиле, проект №015 — идея кухни | КухниBY",
+      "description": "Угловая кухня комбинированная в современном стиле, проект №015. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для ваше...",
+      "h1": "Угловая кухня комбинированная в современном стиле, проект №015",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-sovremennaya-015"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-sovremennaya-021",
+      "status": 200,
+      "title": "Угловая кухня белая в современном стиле, проект №021 — идея кухни | КухниBY",
+      "description": "Угловая кухня белая в современном стиле, проект №021. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня белая в современном стиле, проект №021",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-sovremennaya-021"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-sovremennaya-024",
+      "status": 200,
+      "title": "Угловая кухня комбинированная в современном стиле, проект №024 — идея кухни | КухниBY",
+      "description": "Угловая кухня комбинированная в современном стиле, проект №024. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для ваше...",
+      "h1": "Угловая кухня комбинированная в современном стиле, проект №024",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-sovremennaya-024"
+    },
+    {
+      "route": "/portfolio/uglovaya-kuhnya-sovremennaya-032",
+      "status": 200,
+      "title": "Угловая кухня серая в современном стиле — идея кухни | КухниBY",
+      "description": "Угловая кухня серая в современном стиле. Идея для выбора планировки и оформления; размеры, материалы и комплектацию согласуем для вашего помещения.",
+      "h1": "Угловая кухня серая в современном стиле",
+      "canonical": "https://kuhni.minsk.by/portfolio/uglovaya-kuhnya-sovremennaya-032"
+    }
+  ],
+  "images": [
+    {
+      "src": "/uploads/portfolio/generated-minsk/minsk-japandi-sage-realistic.webp",
+      "status": 200,
+      "bytes": 110286,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fportfolio%2Fgenerated-minsk%2Fminsk-japandi-sage-realistic.webp",
+      "status": 200,
+      "bytes": 11542,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/portfolio/generated-minsk/minsk-loft-walnut-realistic.webp",
+      "status": 200,
+      "bytes": 136062,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fportfolio%2Fgenerated-minsk%2Fminsk-loft-walnut-realistic.webp",
+      "status": 200,
+      "bytes": 12752,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/portfolio/generated-minsk/minsk-neoklassika-blue-realistic.webp",
+      "status": 200,
+      "bytes": 115256,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fportfolio%2Fgenerated-minsk%2Fminsk-neoklassika-blue-realistic.webp",
+      "status": 200,
+      "bytes": 11390,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/portfolio/generated-minsk/minsk-kuhnya-do-potolka-realistic.webp",
+      "status": 200,
+      "bytes": 90806,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fportfolio%2Fgenerated-minsk%2Fminsk-kuhnya-do-potolka-realistic.webp",
+      "status": 200,
+      "bytes": 9838,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/portfolio/generated-minsk/minsk-kuhnya-s-ostrovom-green-realistic.webp",
+      "status": 200,
+      "bytes": 115360,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fportfolio%2Fgenerated-minsk%2Fminsk-kuhnya-s-ostrovom-green-realistic.webp",
+      "status": 200,
+      "bytes": 12072,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/portfolio/generated-minsk/minsk-pryamaya-studiya-dub-realistic.webp",
+      "status": 200,
+      "bytes": 66468,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fportfolio%2Fgenerated-minsk%2Fminsk-pryamaya-studiya-dub-realistic.webp",
+      "status": 200,
+      "bytes": 8846,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/portfolio/generated-minsk/minsk-uglovaya-seraya-realistic.webp",
+      "status": 200,
+      "bytes": 61090,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fportfolio%2Fgenerated-minsk%2Fminsk-uglovaya-seraya-realistic.webp",
+      "status": 200,
+      "bytes": 8148,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/portfolio-minsk-uglovaya-1.webp",
+      "status": 200,
+      "bytes": 57164,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fportfolio-minsk-uglovaya-1.webp",
+      "status": 200,
+      "bytes": 8100,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/kuhnya-uglovaya-modern-minsk-1.webp",
+      "status": 200,
+      "bytes": 213376,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fkuhnya-uglovaya-modern-minsk-1.webp",
+      "status": 200,
+      "bytes": 12704,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/portfolio-brest-pryamaya-1.webp",
+      "status": 200,
+      "bytes": 55012,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fportfolio-brest-pryamaya-1.webp",
+      "status": 200,
+      "bytes": 8500,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/kuhnya-pryamaya-svetlaya-1.webp",
+      "status": 200,
+      "bytes": 195730,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fkuhnya-pryamaya-svetlaya-1.webp",
+      "status": 200,
+      "bytes": 12540,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/portfolio-grodno-ostrov-1.webp",
+      "status": 200,
+      "bytes": 57022,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fportfolio-grodno-ostrov-1.webp",
+      "status": 200,
+      "bytes": 7306,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/kuhnya-s-ostrovom-1.webp",
+      "status": 200,
+      "bytes": 194394,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fkuhnya-s-ostrovom-1.webp",
+      "status": 200,
+      "bytes": 12048,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/portfolio-vitebsk-neoklassika-1.webp",
+      "status": 200,
+      "bytes": 71030,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fportfolio-vitebsk-neoklassika-1.webp",
+      "status": 200,
+      "bytes": 9042,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/kuhnya-neoklassika-1.webp",
+      "status": 200,
+      "bytes": 59704,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fkuhnya-neoklassika-1.webp",
+      "status": 200,
+      "bytes": 8122,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/portfolio-gomel-malenkaya-1.webp",
+      "status": 200,
+      "bytes": 54572,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fportfolio-gomel-malenkaya-1.webp",
+      "status": 200,
+      "bytes": 7380,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/kuhnya-malenkaya-funkcionalnaya-1.webp",
+      "status": 200,
+      "bytes": 214390,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fkuhnya-malenkaya-funkcionalnaya-1.webp",
+      "status": 200,
+      "bytes": 10738,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/portfolio-mogilev-do-potolka-1.webp",
+      "status": 200,
+      "bytes": 49840,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fportfolio-mogilev-do-potolka-1.webp",
+      "status": 200,
+      "bytes": 7878,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/seo-showcase/kuhnya-do-potolka-1.webp",
+      "status": 200,
+      "bytes": 199970,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/kapi/watermarked-image?src=%2Fuploads%2Fseo-showcase%2Fkuhnya-do-potolka-1.webp",
+      "status": 200,
+      "bytes": 9516,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-005__01__01-kuhnya-s-ostrovom-minimalizm-belaya-005-main.webp",
+      "status": 200,
+      "bytes": 149476,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-005__02__02-kuhnya-s-ostrovom-minimalizm-belaya-005-side-011.webp",
+      "status": 200,
+      "bytes": 192450,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-005__03__03-kuhnya-s-ostrovom-minimalizm-belaya-005-extra-02-012.webp",
+      "status": 200,
+      "bytes": 109282,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-005__04__04-kuhnya-s-ostrovom-minimalizm-belaya-005-extra-03-013.webp",
+      "status": 200,
+      "bytes": 175716,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-011__01__01-kuhnya-s-ostrovom-minimalizm-belaya-011-extra-00-027.webp",
+      "status": 200,
+      "bytes": 142440,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-011__02__02-kuhnya-s-ostrovom-minimalizm-belaya-011-side-028.webp",
+      "status": 200,
+      "bytes": 154132,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-011__03__03-kuhnya-s-ostrovom-minimalizm-belaya-011-main.webp",
+      "status": 200,
+      "bytes": 80602,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-011__04__04-kuhnya-s-ostrovom-minimalizm-belaya-011-extra-03-030.webp",
+      "status": 200,
+      "bytes": 120722,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-011__05__05-kuhnya-s-ostrovom-minimalizm-belaya-011-extra-04-031.webp",
+      "status": 200,
+      "bytes": 175300,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-025__01__01-kuhnya-s-ostrovom-minimalizm-seraya-025-side-065.webp",
+      "status": 200,
+      "bytes": 82950,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-minimalizm-025__02__02-kuhnya-s-ostrovom-minimalizm-seraya-025-main.webp",
+      "status": 200,
+      "bytes": 86568,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-sovremennaya-009__01__01-kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-00-021.webp",
+      "status": 200,
+      "bytes": 101104,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-sovremennaya-009__02__02-kuhnya-s-ostrovom-sovremennaya-kombinacii-009-main.webp",
+      "status": 200,
+      "bytes": 94720,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-sovremennaya-009__03__03-kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-02-023.webp",
+      "status": 200,
+      "bytes": 112178,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/kuhnya-s-ostrovom-sovremennaya-009__04__04-kuhnya-s-ostrovom-sovremennaya-kombinacii-009-extra-03-024.webp",
+      "status": 200,
+      "bytes": 110044,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/malenkaya-kuhnya-sovremennaya-030__01__01-malenkaya-kuhnya-sovremennaya-seraya-030-main.webp",
+      "status": 200,
+      "bytes": 132178,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-klassika-019__01__01-pryamaya-kuhnya-klassika-derevo-019-main.webp",
+      "status": 200,
+      "bytes": 199660,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-klassika-019__02__02-pryamaya-kuhnya-klassika-derevo-019-side-055.webp",
+      "status": 200,
+      "bytes": 208776,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-003__01__01-pryamaya-kuhnya-minimalizm-kombinacii-003-side-005.webp",
+      "status": 200,
+      "bytes": 108990,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-003__02__02-pryamaya-kuhnya-minimalizm-kombinacii-003-main.webp",
+      "status": 200,
+      "bytes": 95124,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-003__03__03-pryamaya-kuhnya-minimalizm-kombinacii-003-extra-02-007.webp",
+      "status": 200,
+      "bytes": 169906,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-003__04__04-pryamaya-kuhnya-minimalizm-kombinacii-003-extra-03-008.webp",
+      "status": 200,
+      "bytes": 192208,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-004__01__01-pryamaya-kuhnya-minimalizm-belaya-004-main.webp",
+      "status": 200,
+      "bytes": 137894,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-006__01__01-pryamaya-kuhnya-minimalizm-belaya-006-side-014.webp",
+      "status": 200,
+      "bytes": 78518,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-006__02__02-pryamaya-kuhnya-minimalizm-belaya-006-main.webp",
+      "status": 200,
+      "bytes": 50642,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-006__03__03-pryamaya-kuhnya-minimalizm-belaya-006-detail-016.webp",
+      "status": 200,
+      "bytes": 125450,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-006__04__04-pryamaya-kuhnya-minimalizm-belaya-006-detail-017.webp",
+      "status": 200,
+      "bytes": 122410,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-006__05__05-pryamaya-kuhnya-minimalizm-belaya-006-extra-04-018.webp",
+      "status": 200,
+      "bytes": 67832,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-010__01__01-pryamaya-kuhnya-minimalizm-zelenaya-010-main.webp",
+      "status": 200,
+      "bytes": 174716,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-010__02__02-pryamaya-kuhnya-minimalizm-zelenaya-010-side-026.webp",
+      "status": 200,
+      "bytes": 215242,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-016__01__01-pryamaya-kuhnya-minimalizm-kombinacii-016-extra-00-042.webp",
+      "status": 200,
+      "bytes": 95276,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-016__02__02-pryamaya-kuhnya-minimalizm-kombinacii-016-side-043.webp",
+      "status": 200,
+      "bytes": 89506,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-016__03__03-pryamaya-kuhnya-minimalizm-kombinacii-016-extra-02-044.webp",
+      "status": 200,
+      "bytes": 97472,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-016__04__04-pryamaya-kuhnya-minimalizm-kombinacii-016-extra-03-045.webp",
+      "status": 200,
+      "bytes": 103720,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-016__05__05-pryamaya-kuhnya-minimalizm-kombinacii-016-main.webp",
+      "status": 200,
+      "bytes": 133764,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-022__01__01-pryamaya-kuhnya-minimalizm-kombinacii-022-main.webp",
+      "status": 200,
+      "bytes": 87560,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-022__02__02-pryamaya-kuhnya-minimalizm-kombinacii-022-side-059.webp",
+      "status": 200,
+      "bytes": 128140,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-027__01__01-pryamaya-kuhnya-minimalizm-bezhevaya-027-main.webp",
+      "status": 200,
+      "bytes": 55110,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-034__01__01-pryamaya-kuhnya-minimalizm-seraya-034-side-081.webp",
+      "status": 200,
+      "bytes": 28762,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-034__02__02-pryamaya-kuhnya-minimalizm-seraya-034-side-082.webp",
+      "status": 200,
+      "bytes": 29714,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-minimalizm-034__03__03-pryamaya-kuhnya-minimalizm-seraya-034-main.webp",
+      "status": 200,
+      "bytes": 28642,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-neoklassika-020__01__01-pryamaya-kuhnya-neoklassika-belaya-020-main.webp",
+      "status": 200,
+      "bytes": 131508,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-neoklassika-028__01__01-pryamaya-kuhnya-neoklassika-belaya-028-main.webp",
+      "status": 200,
+      "bytes": 152648,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-neoklassika-028__02__02-pryamaya-kuhnya-neoklassika-belaya-028-side-071.webp",
+      "status": 200,
+      "bytes": 182128,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-008__01__01-pryamaya-kuhnya-sovremennaya-kombinacii-008-main.webp",
+      "status": 200,
+      "bytes": 110000,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-013__01__01-pryamaya-kuhnya-sovremennaya-kombinacii-013-side-035.webp",
+      "status": 200,
+      "bytes": 82170,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-013__02__02-pryamaya-kuhnya-sovremennaya-kombinacii-013-main.webp",
+      "status": 200,
+      "bytes": 103546,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-013__03__03-pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-02-050.webp",
+      "status": 200,
+      "bytes": 163172,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-013__04__04-pryamaya-kuhnya-sovremennaya-kombinacii-013-extra-03-051.webp",
+      "status": 200,
+      "bytes": 156094,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-026__01__01-pryamaya-kuhnya-sovremennaya-seraya-026-main.webp",
+      "status": 200,
+      "bytes": 190464,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-026__02__02-pryamaya-kuhnya-sovremennaya-seraya-026-side-068.webp",
+      "status": 200,
+      "bytes": 111550,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-031__01__01-pryamaya-kuhnya-sovremennaya-kombinacii-031-main.webp",
+      "status": 200,
+      "bytes": 66110,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/pryamaya-kuhnya-sovremennaya-031__02__02-pryamaya-kuhnya-sovremennaya-kombinacii-031-side-076.webp",
+      "status": 200,
+      "bytes": 77978,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-loft-023__01__01-uglovaya-kuhnya-loft-kombinacii-023-main.webp",
+      "status": 200,
+      "bytes": 67734,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-loft-023__02__02-uglovaya-kuhnya-loft-kombinacii-023-side-061.webp",
+      "status": 200,
+      "bytes": 63758,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-loft-023__03__03-uglovaya-kuhnya-loft-kombinacii-023-extra-02-062.webp",
+      "status": 200,
+      "bytes": 130960,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-017__01__01-uglovaya-kuhnya-minimalizm-seraya-017-main.webp",
+      "status": 200,
+      "bytes": 129296,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-017__02__02-uglovaya-kuhnya-minimalizm-seraya-017-side-048.webp",
+      "status": 200,
+      "bytes": 131762,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-018__01__01-uglovaya-kuhnya-minimalizm-seraya-018-side-052.webp",
+      "status": 200,
+      "bytes": 96492,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-018__02__02-uglovaya-kuhnya-minimalizm-seraya-018-main.webp",
+      "status": 200,
+      "bytes": 98056,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-029__01__01-uglovaya-kuhnya-minimalizm-bezhevaya-029-side-072.webp",
+      "status": 200,
+      "bytes": 49412,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-029__02__02-uglovaya-kuhnya-minimalizm-bezhevaya-029-main.webp",
+      "status": 200,
+      "bytes": 59604,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-033__01__01-uglovaya-kuhnya-minimalizm-seraya-033-main.webp",
+      "status": 200,
+      "bytes": 68364,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-minimalizm-036__01__01-uglovaya-kuhnya-minimalizm-seraya-036-main.webp",
+      "status": 200,
+      "bytes": 35828,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-002__01__01-uglovaya-kuhnya-neoklassika-belaya-002-main.webp",
+      "status": 200,
+      "bytes": 78374,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-002__02__02-uglovaya-kuhnya-neoklassika-belaya-002-side-004.webp",
+      "status": 200,
+      "bytes": 80722,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-014__01__01-uglovaya-kuhnya-neoklassika-bezhevaya-014-main.webp",
+      "status": 200,
+      "bytes": 90836,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-014__02__02-uglovaya-kuhnya-neoklassika-bezhevaya-014-side-038.webp",
+      "status": 200,
+      "bytes": 92942,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-035__01__01-uglovaya-kuhnya-neoklassika-belaya-035-main.webp",
+      "status": 200,
+      "bytes": 46386,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-035__02__02-uglovaya-kuhnya-neoklassika-belaya-035-side-085.webp",
+      "status": 200,
+      "bytes": 64916,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-035__03__03-uglovaya-kuhnya-neoklassika-belaya-035-extra-02-086.webp",
+      "status": 200,
+      "bytes": 41548,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-035__04__04-uglovaya-kuhnya-neoklassika-belaya-035-extra-03-087.webp",
+      "status": 200,
+      "bytes": 44902,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-neoklassika-035__05__05-uglovaya-kuhnya-neoklassika-belaya-035-detail-088.webp",
+      "status": 200,
+      "bytes": 64420,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-012__01__01-uglovaya-kuhnya-skandinavskaya-zelenaya-012-extra-00-032.webp",
+      "status": 200,
+      "bytes": 136242,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-012__02__02-uglovaya-kuhnya-skandinavskaya-zelenaya-012-side-033.webp",
+      "status": 200,
+      "bytes": 152444,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-012__03__03-uglovaya-kuhnya-skandinavskaya-zelenaya-012-detail-034.webp",
+      "status": 200,
+      "bytes": 106298,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-skandinavskaya-012__04__04-uglovaya-kuhnya-skandinavskaya-zelenaya-012-main.webp",
+      "status": 200,
+      "bytes": 111316,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-001__01__01-uglovaya-kuhnya-sovremennaya-belaya-001-main.webp",
+      "status": 200,
+      "bytes": 123846,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-007__01__01-uglovaya-kuhnya-sovremennaya-kombinacii-007-main.webp",
+      "status": 200,
+      "bytes": 152998,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-015__01__01-uglovaya-kuhnya-sovremennaya-kombinacii-015-main.webp",
+      "status": 200,
+      "bytes": 114444,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-015__02__02-uglovaya-kuhnya-sovremennaya-kombinacii-015-side-040.webp",
+      "status": 200,
+      "bytes": 96300,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-015__03__03-uglovaya-kuhnya-sovremennaya-kombinacii-015-extra-02-041.webp",
+      "status": 200,
+      "bytes": 118854,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-021__01__01-uglovaya-kuhnya-sovremennaya-belaya-021-main.webp",
+      "status": 200,
+      "bytes": 71984,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-024__01__01-uglovaya-kuhnya-sovremennaya-kombinacii-024-main.webp",
+      "status": 200,
+      "bytes": 84498,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-024__02__02-uglovaya-kuhnya-sovremennaya-kombinacii-024-side-064.webp",
+      "status": 200,
+      "bytes": 87430,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-032__01__01-uglovaya-kuhnya-sovremennaya-seraya-032-side-077.webp",
+      "status": 200,
+      "bytes": 132140,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-032__02__02-uglovaya-kuhnya-sovremennaya-seraya-032-main.webp",
+      "status": 200,
+      "bytes": 121538,
+      "contentType": "image/webp"
+    },
+    {
+      "src": "/uploads/kitchens/portfolio/uglovaya-kuhnya-sovremennaya-032__03__03-uglovaya-kuhnya-sovremennaya-seraya-032-detail-079.webp",
+      "status": 200,
+      "bytes": 125020,
+      "contentType": "image/webp"
+    }
+  ],
+  "sitemapCount": 111
+}
